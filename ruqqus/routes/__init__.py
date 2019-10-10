@@ -7,3 +7,4 @@ from .settings import *
 from .static import *
 from .things import *
 from .votes import *
+from .feedback import *

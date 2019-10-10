@@ -5,3 +5,4 @@ from .submission import *
 from .ips import *
 from .votes import *
 from .images import *
+from .feedback import *
