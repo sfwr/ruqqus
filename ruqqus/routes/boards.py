@@ -11,7 +11,7 @@ from flask import *
 from ruqqus.__main__ import app, db
 
 @app.route("/api/board_available/<name>", methods=["GET"])
-def api_is_available(name):
+def api_board_available(name):
     if db.query(Board.name).filter(Board.name.ilike(name)).count():
         return jsonify({"board":name, name:False})
     else:
