@@ -32,8 +32,8 @@ def board_name(name, v):
         return redirect(board.permalink)
 
     return board.rendered_board_page(v,
-                                     sort=request.args.get("sort"),
-                                     page=int(request.args.get("page"))
+                                     sort=request.args.get("sort","hot"),
+                                     page=int(request.args.get("page", 0))
                                      )
 #@app.route("/board/<name>/<pid>", methods=["GET"])
 
