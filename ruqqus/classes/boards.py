@@ -30,6 +30,9 @@ class Board(Base):
 
         super().__init__(**kwargs)
 
+    def base36id(self):
+        return base36encode(self.id)
+
     @property
     def mods(self):
 

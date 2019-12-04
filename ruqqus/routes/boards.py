@@ -96,5 +96,46 @@ def board_name(name, v):
                                      sort=sort,
                                      page=page)
 
-#@app.route("/board/<name>/<pid>", methods=["GET"])
+@app.route("/mod/kick/<bid>/<pid>", methods=["POST"])
+@auth_required
+def mod_kick_bid_pid(bid,pid):
 
+    board=db.query(Board).filter_by(id=base36decode(bid)).first()
+    if not board:
+        abort(404)
+
+    post = db.query(Board).filter_by(id=base36decode(bid)).first()
+    if not post:
+        abort(404)
+
+    if not post.board_id==board.id:
+        abort(422)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    post.board_id=1
+    db.add(post)
+    db.commit()
+
+@app.route("/mod/take/<bid>/<pid>", methods=["POST"])
+@auth_required
+def mod_take_bid_pid(bid,pid):
+
+    board=db.query(Board).filter_by(id=base36decode(bid)).first()
+    if not board:
+        abort(404)
+
+    post = db.query(Board).filter_by(id=base36decode(bid)).first()
+    if not post:
+        abort(404)
+
+    if not post.board_id==1:
+        abort(422)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    post.board_id=board.id
+    db.add(post)
+    db.commit()
