@@ -17,7 +17,7 @@ class Board(Base):
         return f"/board/{self.name}"
 
     @cache.memoize(timeout=30)
-    def idlist(sort="hot", page=1):
+    def idlist(v, sort="hot", page=1):
 
         posts=db.query(Submission).filter_by(is_banned=False,
                                              is_deleted=False,
