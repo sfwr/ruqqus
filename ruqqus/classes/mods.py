@@ -4,12 +4,11 @@ from sqlalchemy import *
 from ruqqus.__main__ import Base, db, cache
 import time
 
-class MODs(Base):
+class Mod(Base):
     __tablename__ = "mods"
     id = Column(BigInteger, primary_key=True)
     uid = Column(BigInteger, ForeignKey("users.id"))
     board_id = Column(BigInteger, ForeignKey("boards.id"))
-    is_banned = Column(Integer, default=0)
     created_utc = Column(BigInteger, default=0)
 
     def __init__(self, *args, **kwargs):
@@ -19,4 +18,4 @@ class MODs(Base):
         super().__init__(*args, **kwargs)
 
     def __repr__(self):
-        return f"<Boards(id={self.id}, uid={self.uid})>"
+        return f"<Mod(id={self.id}, uid={self.uid}, board_id={self.board_id})>"

@@ -88,3 +88,31 @@ class Board(Base):
             posts=[]
 
         return render_template("board.html", b=self, v=v, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
+
+
+    @property
+    def age_string(self):
+
+        age=self.age
+
+        if age<60:
+            return "just now"
+        elif age<3600:
+            minutes=int(age/60)
+            return f"{minutes} minute{'s' if minutes>1 else ''} ago"
+        elif age<86400:
+            hours=int(age/3600)
+            return f"{hours} hour{'s' if hours>1 else ''} ago"
+        elif age<2592000:
+            days=int(age/86400)
+            return f"{days} day{'s' if days>1 else ''} ago"
+
+        now=time.gmtime()
+        ctd=time.gmtime(self.created_utc)
+        months=now.tm_mon-ctd.tm_mon+12*(now.tm_year-ctd.tm_year)
+
+        if months < 12:
+            return f"{months} month{'s' if months>1 else ''} ago"
+        else:
+            years=now.tm_year-ctd.tm_year
+            return f"{years} year{'s' if years>1 else ''} ago"

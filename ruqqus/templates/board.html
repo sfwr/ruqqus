@@ -6,7 +6,10 @@
 {% block sidebarblock %}
 <div class="sidebar-section sidebar-profile-basic">
   <div class="body">
-    <h1 class="h6 d-inline-block mb-3">+{{ b.name }}</h1>
+    <h1 class="h6 d-inline-block mb-1">+{{ b.name }}</h1>
+  </div>
+  <div class="body">
+    <p class="text-muted">Founded {{ b.age_string }}</p>
   </div>
   <div class="body">
     <p class="text d-inline-block mb-0">{{ b.description_html | safe }}</p>
