@@ -1,5 +1,6 @@
 from urllib.parse import urlparse
 import mistletoe
+import re
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -10,6 +11,8 @@ from ruqqus.classes import *
 from flask import *
 from ruqqus.__main__ import app, db
 
+valid_board_regex=re.compile("^\w{3,25}")
+
 @app.route("/api/board_available/<name>", methods=["GET"])
 def api_board_available(name):
     if db.query(Board).filter(Board.name.ilike(name)).first():
@@ -17,11 +20,18 @@ def api_board_available(name):
     else:
         return jsonify({"board":name, name:True})
 
+@app.route("/create_board", methods=["GET"])
+@is_not_banned
+def create_board_get(v):
+    return render_template("make_board.html", v=v)
+
 @app.route("/create_board", methods=["POST"])
 @is_not_banned
-def create_board(v):
+@validate_formkey
+def create_board_post(v):
 
     board_name=request.form.get("board_name")
+    board_name=board_name.lstrip("+")
 
     if v.karma<100:
         return render_template("message.html", title="Unable to make board", text="You need more rep to do that")
@@ -29,10 +39,17 @@ def create_board(v):
     if not v.is_activated:
         return render_template("message.html", title="Unable to make board", text="Please verify your email first")
     #check name
-    if db.query(Board).filter(Board.name.ilike(name)).first():
+    if db.query(Board).filter(Board.name.ilike(board_name)).first():
         abort(409)
 
-    new_board=Board(name=board_name)
+    description = request.form.get("description")
+    description_html=sanitize(description, linkgen=True)
+
+    
+
+    new_board=Board(name=board_name,
+                    description=description,
+                    description_html=description_html)
 
     db.add(new_board)
     db.commit()

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>ruqqus - the open, free-speech social platform</title>
+    <title>Ruqqus - the open, free-speech social platform</title>
 
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 
@@ -63,10 +63,10 @@
         <div class="col-12 col-md-7 h-100">
 
             <div class="mt-3 mt-md-0">
-                <h1 class="h3">Create a post</h1>
+                <h1 class="h3">{% block pagetitle %}Create a post{% endblock %}</h1>
             </div>
 
-            <p class="text-muted">The first step to making a quality post is choosing an interesting title!</p>
+            <p class="text-muted">{% block subtitle %}The first step to making a quality post is choosing an interesting title!{% endblock %}</p>
 
             <div class="bg-white shadow-sm shadow-sm-0 rounded">
 
@@ -76,7 +76,8 @@
                     <div class="col-12">
 
                         <div class="submission">
-
+			
+			{% block form %}
                             <form id="submitform" action="/submit" method="post">
 
                                 <div class="body">
@@ -141,6 +142,7 @@
                             </div>
 
                         </form>
+			{% endblock %}
 
                     </div>
 
