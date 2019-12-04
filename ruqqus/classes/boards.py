@@ -30,6 +30,10 @@ class Board(Base):
 
         super().__init__(**kwargs)
 
+    def mods:
+
+        return [x.user for x in self.moderators.order_by(text("id")).all()]
+
     @property
     def permalink(self):
 

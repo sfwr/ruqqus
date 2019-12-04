@@ -42,7 +42,7 @@ class User(Base):
     ban_reason=Column(String, default="")
 
     moderates=relationship("ModRelationship" lazy="dynamic", backref="user")
-    banned_from=relationship("BanRelationship" lazy="dynamic", backref="board")
+    banned_from=relationship("BanRelationship" lazy="dynamic", backref="user")
 
     #properties defined as SQL server-side functions
     energy = deferred(Column(Integer, server_default=FetchedValue()))
@@ -60,6 +60,10 @@ class User(Base):
         kwargs["created_utc"]=int(time())
 
         super().__init__(**kwargs)
+
+    def boards:
+
+        return [x.board for x in self.moderates.order_by(text("id")).all()]
 
     @property
     @cache.memoize(timeout=60)
