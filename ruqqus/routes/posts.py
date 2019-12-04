@@ -21,10 +21,6 @@ BAN_REASONS=['',
             ]
 
 
-
-
-
-
 @app.route("/post/<base36id>", methods=["GET"])
 @auth_desired
 def post_base36id(base36id, v=None):
@@ -36,9 +32,6 @@ def post_base36id(base36id, v=None):
         abort(404)
         
     return post.rendered_page(v=v)
-
-
-
 
 @app.route("/submit", methods=['POST'])
 @limiter.limit("6/minute")

@@ -41,7 +41,7 @@ class Board(Base):
 
         return posts
 
-    def rendered_board_page(v, sort="hot", page=1):
+    def rendered_board_page(self, v, sort="hot", page=1):
         
         ids=self.idlist(sort=sort, page=page)
 
