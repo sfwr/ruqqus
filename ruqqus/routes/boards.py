@@ -13,7 +13,7 @@ from ruqqus.__main__ import app, db, limiter
 
 valid_board_regex=re.compile("^\w{3,25}")
 
-@app.route("/create_board", methods=["GET"])
+@app.route("/create_guild", methods=["GET"])
 @is_not_banned
 def create_board_get(v):
     if not v.is_activated:
@@ -31,7 +31,7 @@ def api_board_available(name):
     else:
         return jsonify({"board":name, "available":True})
 
-@app.route("/create_board", methods=["POST"])
+@app.route("/create_guild", methods=["POST"])
 @is_not_banned
 @validate_formkey
 def create_board_post(v):

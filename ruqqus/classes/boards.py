@@ -5,6 +5,7 @@ import time
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from .submission import *
+from .board_relationships import *
 from ruqqus.__main__ import Base, db, cache
 
 class Board(Base):
@@ -17,8 +18,9 @@ class Board(Base):
     description = Column(String)
     description_html=Column(String)
     
-    submissions=relationship("Submission", lazy="dynamic", backref="board")
-    
+    submissions=relationship("Submission", lazy="dynamic", backref="board", primary_join="Board.id==Submission.board_id")
+    original_submissions=relationship("Submission", lazy="dynamic", backref="original_board", primary_join="Board.id==Submission.original_board_id")
+        
     def __init__(self, **kwargs):
 
         kwargs["created_utc"]=int(time.time())
@@ -116,3 +118,17 @@ class Board(Base):
         else:
             years=int(months/12)
             return f"{years} year{'s' if years>1 else ''} ago"
+
+    def has_mod(self, user):
+
+        if db.query(ModRelationship).filter_by(board_id=self.id, user_id=user.id).first():
+            return True
+        else:
+            return False
+
+    def has_ban(self, user):
+
+        if db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first():
+            return True
+        else:
+            return False

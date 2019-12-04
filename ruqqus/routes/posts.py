@@ -157,7 +157,8 @@ def submit_post(v):
                         body_html=body_html,
                         embed_url=embed,
                         domain_ref=domain_obj.id if domain_obj else None,
-                        board_id=board.id
+                        board_id=board.id,
+                        original_board_id=board.id
                         )
 
     db.add(new_post)
