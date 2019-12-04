@@ -46,7 +46,7 @@ class Board(Base):
         ids=self.idlist(sort=sort, page=page)
 
         next_exists=(len(ids)==26)
-        ids=ids[25]
+        ids=ids[0:25]
 
         if ids:
 
