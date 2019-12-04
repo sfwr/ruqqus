@@ -41,3 +41,15 @@ document.getElementById("sms-share").href = "sms://?body=" + url;
 document.getElementById("clipboard-link").value = url;
 
 };
+
+var clipboard = new ClipboardJS('.share-modal-link');
+  clipboard.on('success', function(e) {
+
+    document.getElementById("clipboard-link").innerHTML = '<span class="text-success">Copied!</span>';
+    console.log(e);
+  });
+  clipboard.on('error', function(e) {
+
+    document.getElementById("clipboard-link").innerHTML = '<span class="text-success">Copy failed...</span>';
+    console.log(e);
+});
