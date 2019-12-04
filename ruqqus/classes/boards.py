@@ -9,6 +9,7 @@ class Board(Base):
 
     id=Column(Integer, primary_key=True)
     name=Column(String)
+    created_utc=Column(Integer)
 
     @property
     def permalink(self):
