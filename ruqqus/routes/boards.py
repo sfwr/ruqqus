@@ -54,7 +54,9 @@ def create_board_post(v):
         abort(409)
 
     description = request.form.get("description")
-    description_md=mistletoe.markdown(description)
+
+    with CustomRenderer as Renderer:
+        description_md=Renderer.render(mistletoe.Document(description))
     description_html=sanitize(description_md, linkgen=True)
 
     #make the board
