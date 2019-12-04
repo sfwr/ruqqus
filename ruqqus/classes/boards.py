@@ -1,6 +1,6 @@
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
-from .submissions import *
+from .submission import *
 from ruqqus.__main__ import Base, db, cache
 
 class Board(Base):
