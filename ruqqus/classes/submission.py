@@ -85,7 +85,9 @@ class Submission(Base):
     @property
     @cache.memoize(timeout=120)
     def board(self):
-        return db.query("Board").filter_by(id=self.board_id).first()
+        if not self.board_id:
+            return None
+        return db.query("boards").filter_by(id=self.board_id).first()
 
     @property
     def base36id(self):
