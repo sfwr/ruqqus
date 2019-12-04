@@ -83,6 +83,19 @@ def submit_post(v):
         if not domain_obj.can_submit:
             return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason])
 
+    #board
+    board_name=request.form.get("board","general")
+    board_name=board_name.lstrip("+")
+    
+    board=db.query(Board).filter_by(name=board_name).first()
+    if not board:
+        board=db.query(Board).filter_by(id=1).first()
+    
+    if board.id !=1:
+
+        if board.has_ban(v):
+            abort(403)
+
     #Huffman-Ohanian growth method
     if v.admin_level >=2:
 
@@ -140,15 +153,7 @@ def submit_post(v):
     if domain.endswith(("youtube.com","youtu.be")):
         embed=youtube_embed(url)
 
-    #board
-    board_name=request.form.get("board","general")
-    board_name=board_name.lstrip("+")
-    
-    board=db.query(Board).filter_by(name=board_name).first()
-    if not board:
-        board=db.query(Board).filter_by(id=1).first()
-    
-    
+
     
     new_post=Submission(title=title,
                         url=url,
