@@ -24,8 +24,10 @@ def create_board(v):
     board_name=request.form.get("board_name")
 
     if v.karma<100:
-        return render_template("message.html", msg="You need more rep to do that")
+        return render_template("message.html", title="Unable to make board", text="You need more rep to do that")
 
+    if not v.is_activated:
+        rturn render_template("message.html", title="Unable to make board", text="Please verify your email first")
     #check name
     if db.query(Board).filter(Board.name.ilike(name)).first():
         abort(409)
