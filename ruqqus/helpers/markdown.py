@@ -7,6 +7,7 @@ import re
 class UserMention(SpanToken):
 
     pattern=re.compile("(^|\s)@(\w{3,25})")
+    parse_inner=False
     
     def __init__(self, match_obj):
         self.target = (match_obj.group(1), match_obj.group(2))
@@ -14,6 +15,7 @@ class UserMention(SpanToken):
 class BoardMention(SpanToken):
 
     pattern=re.compile("(^|\s)\+(\w{3,25})")
+    parse_inner=False
 
     def __init__(self, match_obj):
 
@@ -29,7 +31,6 @@ class CustomRenderer(HTMLRenderer):
         template = '{space}<a href="/u/{target}">@{target}</a>'
         space = token.target[0]
         target = token.target[1]
-        #inner = self.render_inner(token)
         return template.format(space=space, target=target)
 
     def render_board_mention(self, token):
@@ -37,6 +38,5 @@ class CustomRenderer(HTMLRenderer):
         template='{space}<a href="/board/{target}">+{target}</a>'
         space=token.target[0]
         target=token.target[1]
-        #inner=self.render_inner(token)
         return template.format(space=space, target=target)
         
