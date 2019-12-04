@@ -45,11 +45,11 @@ document.getElementById("clipboard-link").value = url;
 var clipboard = new ClipboardJS('.share-modal-link');
   clipboard.on('success', function(e) {
 
-    document.getElementById("clipboard-link-feedback").innerHTML = '<span class="text-success" style="position: absolute;right: 1rem;top: .7rem;z-index:3">Copied!</span>';
+    document.getElementById("clipboard-link-feedback").innerHTML = '<span class="text-success font-weight-bold" style="position: absolute;right: 1rem;top: .7rem;z-index:3">Copied!</span>';
     console.log(e);
   });
   clipboard.on('error', function(e) {
 
-    document.getElementById("clipboard-link-feedback").innerHTML = '<span class="text-success" style="position: absolute;right: 1rem;top: .7rem;z-index:3">Copy failed...</span>';
+    document.getElementById("clipboard-link-feedback").innerHTML = '<span class="text-success font-weight-bold" style="position: absolute;right: 1rem;top: .7rem;z-index:3">Copy failed...</span>';
     console.log(e);
 });
