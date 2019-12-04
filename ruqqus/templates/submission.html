@@ -150,7 +150,7 @@
     </div>
     <div class="submission-date mt-3">Submitted on:<span class="date"> {{ p.created_date }}</span></div>
 	{% if p.board_id %}
-    <div class="submission-board mt-3">Submitted to: <a class="text-primary" href="/board/{{ p.board.name }}">+{{ p.board.name }}</a></div>
+    <div class="submission-date mt-3">Submitted to: <a class="text-primary" href="/board/{{ p.board.name }}">+{{ p.board.name }}</a></div>
 	{% endif %}    
 <div class="shortlink mt-1">Shortlink:<span class="link"></span> <input type="text" class="form-control form-control-sm copy-link d-md-inline-block" readonly value="https://ruqq.us/{{ p.base36id }}" data-clipboard-text="https://ruqq.us/{{ p.base36id }}"></input></div>
   </div>
