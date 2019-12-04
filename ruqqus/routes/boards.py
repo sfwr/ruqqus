@@ -30,7 +30,7 @@ def api_board_available(name):
 @validate_formkey
 def create_board_post(v):
 
-    board_name=request.form.get("board_name")
+    board_name=request.form.get("name")
     board_name=board_name.lstrip("+")
 
     if v.karma<100:
