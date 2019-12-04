@@ -34,7 +34,7 @@ class Board(Base):
         return base36encode(self.id)
 
     @property
-    @cache.memoize(timout=30)
+    @cache.memoize(timeout=30)
     def mods(self):
 
         return [x.user for x in self.moderators.order_by(text("id")).all()]
