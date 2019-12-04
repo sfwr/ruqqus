@@ -31,7 +31,7 @@ def board_name(name, v):
     if not board.name==name:
         return redirect(board.permalink)
 
-    sort=request.args.get("sort","hot"
+    sort=request.args.get("sort","hot")
     page=int(request.args.get("page", 1))
              
     return board.rendered_board_page(v=v,
