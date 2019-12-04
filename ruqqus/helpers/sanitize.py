@@ -33,7 +33,7 @@ _allowed_protocols=['http', 'https']
 #filter to make all links show domain on hover
 def nofollow(attrs, new=False):
     domain=urlparse(attrs[(None, "href")]).netloc
-    if not domain.endswith(("ruqqus.com","ruqq.us")):
+    if domain and not domain.endswith(("ruqqus.com","ruqq.us")):
         attrs[(None, "rel")]="nofollow"
         attrs[(None, "target")]="_blank"
     return attrs
