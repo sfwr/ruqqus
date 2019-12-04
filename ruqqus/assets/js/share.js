@@ -2,7 +2,7 @@
 
 share_commentModal = function(url, snippet) {
 
-document.getElementById("share-modal-title").innerHTML = "Share comment";
+document.getElementById("share-modal-title").innerHTML = "Share this comment";
 
 document.getElementById("twitter-share").href = "http://twitter.com/share?text=" + snippet + "&url=" + url + "&hashtags=#MakeARuqqus";
 
@@ -24,7 +24,7 @@ document.getElementById("clipboard-link").value = url;
 
 share_postModal = function(url, title) {
 
-document.getElementById("share-modal-title").innerHTML = "Share post";
+document.getElementById("share-modal-title").innerHTML = "Share this post";
 
 document.getElementById("twitter-share").href = "http://twitter.com/share?text=" + title + "&url=" + url + "&hashtags=#MakeARuqqus";
 
