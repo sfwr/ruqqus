@@ -98,6 +98,7 @@ def board_name(name, v):
 
 @app.route("/mod/kick/<bid>/<pid>", methods=["POST"])
 @auth_required
+@validate_formkey
 def mod_kick_bid_pid(bid,pid):
 
     board=db.query(Board).filter_by(id=base36decode(bid)).first()
@@ -118,8 +119,41 @@ def mod_kick_bid_pid(bid,pid):
     db.add(post)
     db.commit()
 
+@app.route("/user/kick/<pid>", methods=["POST"])
+@auth_required
+@validate_formkey
+@def user_kick_pid(pid, v):
+
+    #allows a user to yank their content back to +general if it was there previously
+    
+    post=db.query(Submission).filter_by(id=base36decode(bid)).first()
+    if not post:
+        abort(404)
+
+    if not post.author_id==v.id:
+        abort(403)
+
+    if post.board_id==post.original_board_id:
+        abort(403)
+
+    if post.board_id==1:
+        abort(400)
+
+    #block further yanks
+    new_rel=PostRelationship(post_id=post.id,
+                             board_id=post.board.id)
+    db.add(new_rel)
+    db.commit()
+
+    post.board_id=1
+    
+    db.add(post)
+    db.commit()
+    
+
 @app.route("/mod/take/<bid>/<pid>", methods=["POST"])
 @auth_required
+@validate_formkey
 def mod_take_bid_pid(bid,pid):
 
     board=db.query(Board).filter_by(id=base36decode(bid)).first()
@@ -136,13 +170,17 @@ def mod_take_bid_pid(bid,pid):
     if not board.has_mod(v):
         abort(403)
 
+    if not board.can_take(post):
+        abort(403)
+
     post.board_id=board.id
     db.add(post)
     db.commit()
 
-@app.route("/mod/add/<bid>/<username>", methods=["POST"])
+@app.route("/mod/invite/<bid>/<username>", methods=["POST"])
 @auth_required
-def mod_add_username(bid, username,v):
+@validate_formkey
+def mod_invite_username(bid, username,v):
 
     user=db.query(User).filter_by(username=username).first()
     if not user:
@@ -155,16 +193,36 @@ def mod_add_username(bid, username,v):
     if not board.has_mod(v):
         abort(403)
 
-    if board.has_mod(user):
+    if not board.can_invite_mod(user):
         abort(409)
 
     new_mod=ModRelationship(user_id=user.id,
-                            board_id=board.id)
+                            board_id=board.id,
+                            accepted=False)
     db.add(new_mod)
     db.commit()
 
+@app.route("/mod/accept/<bid>", methods=["POST"])
+@auth_required
+@validate_formkey
+def mod_accept_board(bid, v):
+
+    board=db.query(Board).filter_by(id=base36decode(bid)).first()
+    if not board:
+        abort(404)
+
+    x=board.has_invite(user):
+    if not x:
+        abort(403)
+
+    x.accepted=True
+    db.add(x)
+    db.commit()
+    
+
 @app.route("/mod/remove/<bid>/<username>", methods=["POST"])
 @auth_required
+@validate_formkey
 def mod_remove_username(bid, username,v):
 
     user=db.query(User).filter_by(username=username).first()

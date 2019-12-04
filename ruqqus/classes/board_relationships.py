@@ -7,9 +7,10 @@ import time
 class ModRelationship(Base):
     __tablename__ = "mods"
     id = Column(BigInteger, primary_key=True)
-    user_id = Column(BigInteger, ForeignKey("users.id"))
-    board_id = Column(BigInteger, ForeignKey("boards.id"))
-    created_utc = Column(BigInteger, default=0)
+    user_id = Column(Integer, ForeignKey("users.id"))
+    board_id = Column(Integer, ForeignKey("boards.id"))
+    created_utc = Column(Integer, default=0)
+    accepted = Column(Boolean, default=False)
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
@@ -25,8 +26,8 @@ class BanRelationship(Base):
 
     __tablename__="bans"
     id = Column(BigInteger, primary_key=True)
-    user_id = Column(BigInteger, ForeignKey("users.id"))
-    board_id = Column(BigInteger, ForeignKey("boards.id"))
+    user_id = Column(Integer, ForeignKey("users.id"))
+    board_id = Column(Integer, ForeignKey("boards.id"))
     created_utc = Column(BigInteger, default=0)
 
     def __init__(self, *args, **kwargs):
@@ -37,3 +38,10 @@ class BanRelationship(Base):
 
     def __repr__(self):
         return f"<Mod(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
+
+class PostRelationship(Base):
+
+    __tablename__="postrels"
+    id=Column(BigInteger, primary_key=True)
+    post_id=Column(Integer, ForeignKey("Submission.id"))
+    board_id=Column(Integer, ForeignKey("Board.id"))

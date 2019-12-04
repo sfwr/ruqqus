@@ -23,6 +23,7 @@ class Board(Base):
 
     moderators = relationship("ModRelationship", lazy="dynamic", backref="board")
     bans = relationship("BanRelationship", lazy="dynamic", backref="board")
+    postrels=relationship("PostRelationship", lazy="dynamic", backref="board")
     
     def __init__(self, **kwargs):
 
@@ -37,12 +38,15 @@ class Board(Base):
     @cache.memoize(timeout=30)
     def mods(self):
 
-        return [x.user for x in self.moderators.order_by(text("id")).all()]
+        return [x.user for x in self.moderators.filter_by(accepted=True).order_by(text("id")).all()]
 
     @property
     def permalink(self):
 
         return f"/board/{self.name}"
+
+    def can_take(self, post):
+        return self.postrels.filter_by(post_id=post.id).first()
 
     @cache.memoize(timeout=30)
     def idlist(self, sort="hot", page=1):
@@ -134,16 +138,21 @@ class Board(Base):
     @cache.memoize(timeout=60)
     def has_mod(self, user):
 
-        x=db.query(ModRelationship).filter_by(board_id=self.id, user_id=user.id).first()
-        if x:
-            return x
-        else:
-            return False
+        return self.moderators.filter_by(user_id=user.id, accepted=True).first()
 
+
+    @cache.memoize(timeout=60)
+    def can_invite_mod(self, user):
+
+        return user.id not in [x.user_id for x in self.moderators.all()]
+
+    @cache.memoize(timeout=60)
+    def has_invite(self, user):
+
+        return self.moderators.filter_by(user_id=user.id, accepted=False).first()
+        
+    @cache.memoize(timeout=60)
     def has_ban(self, user):
 
-        x=db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first()
-        if x:
-            return x
-        else:
-            return False
+        return=db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first()
+
