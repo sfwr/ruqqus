@@ -44,7 +44,7 @@ def create_board_post(v):
 
     description = request.form.get("description")
     description_md=mistletoe.markdown(description)
-    description_html=sanitize(description_md), linkgen=True)
+    description_html=sanitize(description_md, linkgen=True)
 
     
 
