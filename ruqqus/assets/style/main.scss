@@ -1422,6 +1422,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     padding: 0.5rem 1rem;
 }
 
+.modal-header .close {
+    padding: 1.25rem 1rem 0 1rem;
+}
+
 .modal-content {
     border: none;
     box-shadow: $box-shadow;
@@ -2546,6 +2550,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
+
+html {
+    font-size: 14px;
+}
 
 .container {
     max-width: none;
