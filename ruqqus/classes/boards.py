@@ -34,6 +34,8 @@ class Board(Base):
             posts=posts.order_by(text("submissions.score desc"))
         elif sort=="activity":
             posts=posts.order_by(text("submissions.rank_activity desc"))
+        else:
+            abort(422)
 
         posts=[x.id for x in posts.offset(25*(page-1)).limit(26).all()]
 
@@ -67,7 +69,7 @@ class Board(Base):
                                 join (values {tups}) as x(id, n) on submissions.id=x.id
                                 order by x.n"""
                                )).all()
-            else:
-                posts=[]
+        else:
+            posts=[]
 
-            return render_template("board.html", v=v, listin=posts, next_exists=next_exists, sort_method=sort, page=page)        
+        return render_template("board.html", v=v, listin=posts, next_exists=next_exists, sort_method=sort, page=page)        
