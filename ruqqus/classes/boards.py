@@ -26,7 +26,8 @@ class Board(Base):
         posts=db.query(Submission).filter_by(is_banned=False,
                                              is_deleted=False,
                                              stickied=False,
-                                             board_id=self.id)
+                                             #board_id=self.id
+                                             )
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.rank_hot desc"))
