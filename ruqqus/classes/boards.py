@@ -18,8 +18,8 @@ class Board(Base):
     description = Column(String)
     description_html=Column(String)
     
-    submissions=relationship("Submission", lazy="dynamic", backref="board", primary_join="Board.id==Submission.board_id")
-    original_submissions=relationship("Submission", lazy="dynamic", backref="original_board", primary_join="Board.id==Submission.original_board_id")
+    submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
+    original_submissions=relationship("Submission", lazy="dynamic", backref="original_board", primaryjoin="Board.id==Submission.original_board_id")
         
     def __init__(self, **kwargs):
 
