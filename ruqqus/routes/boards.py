@@ -57,13 +57,19 @@ def create_board_post(v):
     description_md=mistletoe.markdown(description)
     description_html=sanitize(description_md, linkgen=True)
 
-    
+    #make the board
 
     new_board=Board(name=board_name,
                     description=description,
                     description_html=description_html)
 
     db.add(new_board)
+    db.commit()
+
+    #add user as mod
+    mod=ModRelationship(user_id=v.id
+                        board_id=new_board.id)
+    db.add(mod)
     db.commit()
 
     return redirect(new_board.permalink)
