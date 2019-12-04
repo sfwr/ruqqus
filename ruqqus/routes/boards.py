@@ -20,8 +20,8 @@ def api_board_available(name):
     else:
         return jsonify({"board":name, name:True})
 
-@app.route("/create_board", methods=["GET"])
-@app.route("/new_board", methods=["GET"])
+#@app.route("/create_board", methods=["GET"])
+@app.route("/make_board", methods=["GET"])
 @is_not_banned
 def create_board_get(v):
     return render_template("make_board.html", v=v)
