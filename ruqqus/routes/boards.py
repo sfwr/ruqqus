@@ -35,4 +35,5 @@ def board_name(name, v):
                                      sort=request.args.get("sort"),
                                      page=int(request.args.get("page"))
                                      )
-@app.route("/board/<name>/<pid>", methods=["GET"])
+#@app.route("/board/<name>/<pid>", methods=["GET"])
+
