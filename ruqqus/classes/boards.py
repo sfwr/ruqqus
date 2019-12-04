@@ -34,6 +34,7 @@ class Board(Base):
         return base36encode(self.id)
 
     @property
+    @cache.memoize(timout=30)
     def mods(self):
 
         return [x.user for x in self.moderators.order_by(text("id")).all()]
@@ -133,14 +134,16 @@ class Board(Base):
     @cache.memoize(timeout=60)
     def has_mod(self, user):
 
-        if db.query(ModRelationship).filter_by(board_id=self.id, user_id=user.id).first():
-            return True
+        x=db.query(ModRelationship).filter_by(board_id=self.id, user_id=user.id).first():
+        if x:
+            return x
         else:
             return False
 
     def has_ban(self, user):
 
-        if db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first():
-            return True
+        x=db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first():
+        if x:
+            return x
         else:
             return False

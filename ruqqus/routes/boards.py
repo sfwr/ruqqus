@@ -104,7 +104,7 @@ def mod_kick_bid_pid(bid,pid):
     if not board:
         abort(404)
 
-    post = db.query(Board).filter_by(id=base36decode(bid)).first()
+    post = db.query(Submission).filter_by(id=base36decode(bid)).first()
     if not post:
         abort(404)
 
@@ -126,7 +126,7 @@ def mod_take_bid_pid(bid,pid):
     if not board:
         abort(404)
 
-    post = db.query(Board).filter_by(id=base36decode(bid)).first()
+    post = db.query(Submission).filter_by(id=base36decode(bid)).first()
     if not post:
         abort(404)
 
@@ -138,4 +138,52 @@ def mod_take_bid_pid(bid,pid):
 
     post.board_id=board.id
     db.add(post)
+    db.commit()
+
+@app.route("/mod/add/<bid>/<username>", methods=["POST"])
+@auth_required
+def mod_add_username(bid, username,v):
+
+    user=db.query(User).filter_by(username=username).first()
+    if not user:
+        abort(404)
+
+    board = db.query(Board).filter_by(id=base36decode(bid)).first()
+    if not board:
+        abort(404)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    if board.has_mod(user)
+        abort(409)
+
+    new_mod=ModRelationship(user_id=user.id,
+                            board_id=board.id)
+    db.add(new_mod)
+    db.commit()
+
+@app.route("/mod/remove/<bid>/<username>", methods=["POST"])
+@auth_required
+def mod_remove_username(bid, username,v):
+
+    user=db.query(User).filter_by(username=username).first()
+    if not user:
+        abort(404)
+
+    board = db.query(Board).filter_by(id=base36decode(bid)).first()
+    if not board:
+        abort(404)
+
+    v_mod=board.has_mod(v)
+    u_mod=board.has_mod(user)
+
+    if not v_mod:
+        abort(403)
+    if not u_mod:
+        abort(422)
+    if v_mod.id > u_mod.id:
+        abort(403)
+
+    db.delete(u_mod)
     db.commit()
