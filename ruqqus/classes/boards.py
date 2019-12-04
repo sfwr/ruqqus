@@ -26,7 +26,7 @@ class Board(Base):
         posts=db.query(Submission).filter_by(is_banned=False,
                                              is_deleted=False,
                                              stickied=False,
-                                             #board_id=self.id
+                                             board_id=self.id
                                              )
 
         if sort=="hot":
@@ -69,7 +69,7 @@ class Board(Base):
                            ).from_statement(
                                text(
                                f"""
-                                select submissions.*, submission.ups, submission.downs
+                                select submissions.*, submissions.ups, submissions.downs
                                 from submissions
                                 join (values {tups}) as x(id, n) on submissions.id=x.id
                                 order by x.n"""
