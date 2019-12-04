@@ -1,5 +1,6 @@
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
+import time
 
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
@@ -14,6 +15,12 @@ class Board(Base):
     name=Column(String)
     created_utc=Column(Integer)
     submissions=relationship("Submission", lazy="dynamic", backref="board")
+    
+    def __init__(self, **kwargs):
+
+        kwargs["created_utc"]=int(time.time())
+
+        super().__init__(**kwargs)
 
     @property
     def permalink(self):

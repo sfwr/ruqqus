@@ -12,11 +12,30 @@ from ruqqus.__main__ import app, db
 
 @app.route("/api/board_available/<name>", methods=["GET"])
 def api_board_available(name):
-    if db.query(Board.name).filter(Board.name.ilike(name)).count():
+    if db.query(Board).filter(Board.name.ilike(name)).first():
         return jsonify({"board":name, name:False})
     else:
         return jsonify({"board":name, name:True})
 
+@app.route("/create_board", methods=["POST"])
+@is_not_banned
+def create_board(v):
+
+    board_name=request.form.get("board_name")
+
+    if v.karma<100:
+        return render_template("message.html", msg="You need more rep to do that")
+
+    #check name
+    if db.query(Board).filter(Board.name.ilike(name)).first():
+        abort(409)
+
+    new_board=Board(name=board_name)
+
+    db.add(new_board)
+    db.commit()
+
+    return redirect(board.permalink)
 
 @app.route("/board/<name>", methods=["GET"])
 @app.route("/+<name>", methods=["GET"])
