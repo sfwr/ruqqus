@@ -134,7 +134,7 @@ class Board(Base):
     @cache.memoize(timeout=60)
     def has_mod(self, user):
 
-        x=db.query(ModRelationship).filter_by(board_id=self.id, user_id=user.id).first():
+        x=db.query(ModRelationship).filter_by(board_id=self.id, user_id=user.id).first()
         if x:
             return x
         else:
@@ -142,7 +142,7 @@ class Board(Base):
 
     def has_ban(self, user):
 
-        x=db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first():
+        x=db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first()
         if x:
             return x
         else:
