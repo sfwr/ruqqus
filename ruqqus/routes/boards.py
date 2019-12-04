@@ -16,6 +16,12 @@ valid_board_regex=re.compile("^\w{3,25}")
 @app.route("/create_board", methods=["GET"])
 @is_not_banned
 def create_board_get(v):
+    if not v.is_activated:
+        return render_template("message.html", title="Unable to make board", text="You need to verify your email adress first.")
+    if v.karma<100:
+        return render_template("message.html", title="Unable to make board", text="You need more rep to do that.")
+
+        
     return render_template("make_board.html", v=v)
 
 @app.route("/api/board_available/<name>", methods=["GET"])
@@ -33,11 +39,16 @@ def create_board_post(v):
     board_name=request.form.get("name")
     board_name=board_name.lstrip("+")
 
-    if v.karma<100:
-        return render_template("message.html", title="Unable to make board", text="You need more rep to do that")
+    if not re.match(valid_board_regex, board_name):
+        return render_template("message.html", title="Unable to make board", text="Valid board names are 3-25 letters or numbers.")
 
     if not v.is_activated:
         return render_template("message.html", title="Unable to make board", text="Please verify your email first")
+
+    if v.karma<100:
+        return render_template("message.html", title="Unable to make board", text="You need more rep to do that")
+
+
     #check name
     if db.query(Board).filter(Board.name.ilike(board_name)).first():
         abort(409)
