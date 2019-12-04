@@ -41,6 +41,9 @@ class User(Base):
     is_banned=Column(Integer, default=0)
     ban_reason=Column(String, default="")
 
+    moderates=relationship("ModRelationship" lazy="dynamic", backref="user")
+    banned_from=relationship("BanRelationship" lazy="dynamic", backref="board")
+
     #properties defined as SQL server-side functions
     energy = deferred(Column(Integer, server_default=FetchedValue()))
     referral_count=deferred(Column(Integer, server_default=FetchedValue()))
