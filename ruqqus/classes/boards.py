@@ -1,3 +1,6 @@
+from sqlalchemy import *
+from sqlalchemy.orm import relationship
+
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from .submission import *
@@ -10,6 +13,7 @@ class Board(Base):
     id=Column(Integer, primary_key=True)
     name=Column(String)
     created_utc=Column(Integer)
+    submissions=relationship("Submissions", dynamic="lazy", backref="board")
 
     @property
     def permalink(self):
