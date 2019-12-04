@@ -67,7 +67,7 @@ def create_board_post(v):
     db.commit()
 
     #add user as mod
-    mod=ModRelationship(user_id=v.id
+    mod=ModRelationship(user_id=v.id,
                         board_id=new_board.id)
     db.add(mod)
     db.commit()
