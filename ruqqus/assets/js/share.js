@@ -34,7 +34,7 @@ document.getElementById("reddit-share").href = "http://www.reddit.com/submit?url
 
 document.getElementById("whatsapp-share").href = "https://api.whatsapp.com/send?text=" + url;
 
-document.getElementById("telegram-share").href = "https://telegram.me/share/url?url=" + url + "&text=" + snippet;
+document.getElementById("telegram-share").href = "https://telegram.me/share/url?url=" + url + "&text=" + title;
 
 document.getElementById("sms-share").href = "sms://?body=" + url;
 
