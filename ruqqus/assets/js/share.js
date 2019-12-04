@@ -42,6 +42,8 @@ document.getElementById("clipboard-link").value = url;
 
 };
 
+// Show feedback to user when post link is copied to clipboard
+
 var clipboard = new ClipboardJS('.share-modal-link');
   clipboard.on('success', function(e) {
 
@@ -52,4 +54,12 @@ var clipboard = new ClipboardJS('.share-modal-link');
 
     document.getElementById("clipboard-link-feedback").innerHTML = '<span class="text-success font-weight-bold" style="position: absolute;right: 1rem;top: .5rem;z-index:3">Copy failed...</span>';
     console.log(e);
+});
+
+// Reset clipboard feedback when share modal is closed
+
+$('#shareModal').on('hidden.bs.modal', function () {
+
+  document.getElementById("clipboard-link-feedback").innerHTML = '<i class="far fa-copy text-muted" style="position: absolute;right: 1rem;top: .7rem;"></i>';
+
 });
