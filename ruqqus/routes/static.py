@@ -32,7 +32,7 @@ def settings_security(v):
 @app.route("/help", methods=["GET"])
 @auth_desired
 def help(v):
-    return redirect("help.html", v=v)
+    return redirect("help.html")
 
 @app.route("/favicon.ico", methods=["GET"])
 def favicon():
