@@ -84,7 +84,7 @@ class Submission(Base):
 
     @property
     @cache.memoize(timeout=120)
-    @def board(self):
+    def board(self):
         return db.query("Board").filter_by(id=self.board_id).first()
 
     @property
