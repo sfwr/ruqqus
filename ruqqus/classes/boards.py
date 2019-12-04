@@ -30,7 +30,7 @@ class Board(Base):
 
         super().__init__(**kwargs)
 
-    def mods:
+    def mods(self):
 
         return [x.user for x in self.moderators.order_by(text("id")).all()]
 

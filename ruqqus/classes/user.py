@@ -61,7 +61,7 @@ class User(Base):
 
         super().__init__(**kwargs)
 
-    def boards:
+    def boards(self):
 
         return [x.board for x in self.moderates.order_by(text("id")).all()]
 
