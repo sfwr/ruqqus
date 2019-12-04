@@ -13,7 +13,7 @@ class Board(Base):
     id=Column(Integer, primary_key=True)
     name=Column(String)
     created_utc=Column(Integer)
-    #submissions=relationship("Submissions", dynamic="lazy")
+    submissions=relationship("Submissions", dynamic="lazy", backref="board")
 
     @property
     def permalink(self):
