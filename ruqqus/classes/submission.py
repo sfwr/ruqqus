@@ -82,12 +82,12 @@ class Submission(Base):
         except ZeroDivisionError:
             return 0
 
-    @property
-    @cache.memoize(timeout=120)
-    def board(self):
-        if not self.board_id:
-            return db.query("Board").filter_by(id=1).first()
-        return db.query("Board").filter_by(id=self.board_id).first()
+##    @property
+##    @cache.memoize(timeout=120)
+##    def board(self):
+##        if not self.board_id:
+##            return None
+##        return db.query(text("Board")).filter_by(id=self.board_id).first()
 
     @property
     def base36id(self):
