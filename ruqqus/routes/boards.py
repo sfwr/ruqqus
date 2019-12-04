@@ -27,7 +27,7 @@ def create_board(v):
         return render_template("message.html", title="Unable to make board", text="You need more rep to do that")
 
     if not v.is_activated:
-        rturn render_template("message.html", title="Unable to make board", text="Please verify your email first")
+        return render_template("message.html", title="Unable to make board", text="Please verify your email first")
     #check name
     if db.query(Board).filter(Board.name.ilike(name)).first():
         abort(409)
