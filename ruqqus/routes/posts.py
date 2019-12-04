@@ -140,6 +140,14 @@ def submit_post(v):
     if domain.endswith(("youtube.com","youtu.be")):
         embed=youtube_embed(url)
 
+    #board
+    board_name=request.form.get("board","general")
+    board_name=board_name.lstrip("+")
+    
+    board=db.query(Board).filter_by(name=board_name).first()
+    if not board:
+        board=db.query(Board).filter_by(id=1).first()
+    
     
     
     new_post=Submission(title=title,
@@ -148,7 +156,8 @@ def submit_post(v):
                         body=body,
                         body_html=body_html,
                         embed_url=embed,
-                        domain_ref=domain_obj.id if domain_obj else None
+                        domain_ref=domain_obj.id if domain_obj else None,
+                        board_id=board.id
                         )
 
     db.add(new_post)
