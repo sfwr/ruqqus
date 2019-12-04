@@ -127,6 +127,7 @@ class Board(Base):
             years=int(months/12)
             return f"{years} year{'s' if years>1 else ''} ago"
 
+    @cache.memoize(timeout=60)
     def has_mod(self, user):
 
         if db.query(ModRelationship).filter_by(board_id=self.id, user_id=user.id).first():
