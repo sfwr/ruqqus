@@ -54,7 +54,7 @@ def create_board_post(v):
     db.add(new_board)
     db.commit()
 
-    return redirect(board.permalink)
+    return redirect(new_board.permalink)
 
 @app.route("/board/<name>", methods=["GET"])
 @app.route("/+<name>", methods=["GET"])
