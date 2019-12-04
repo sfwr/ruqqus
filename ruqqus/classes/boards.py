@@ -72,4 +72,4 @@ class Board(Base):
         else:
             posts=[]
 
-        return render_template("board.html", v=v, listin=posts, next_exists=next_exists, sort_method=sort, page=page)        
+        return render_template("board.html", b=self, v=v, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
