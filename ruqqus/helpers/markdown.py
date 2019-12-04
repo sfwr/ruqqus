@@ -24,8 +24,8 @@ class BoardMention(SpanToken):
 class CustomRenderer(HTMLRenderer):
 
     def __init__(self):
-        super().__init__(UserMention)
-        super().__init__(BoardMention)
+        super().__init__(UserMention,
+                         BoardMention)
 
     def render_user_mention(self, token):
         template = '{space}<a href="/u/{target}">@{target}</a>'
