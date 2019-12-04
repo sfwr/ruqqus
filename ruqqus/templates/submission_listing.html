@@ -36,7 +36,7 @@
 
       <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2"
       aria-labelledby="dropdownMoreLink">
-      <a href="javascript:void(0);" data-toggle="modal" data-target="#shareModal" onclick="share_postModal('https://www.ruqq.us{{ p.permalink }}','{{ p.title | urlencode }}')" role="button" class="dropdown-item copy-link"><i class="fas fa-share-alt"></i>Share</a>
+      <a href="javascript:void(0);" data-toggle="modal" data-target="#shareModal" onclick="share_postModal('https://www.ruqq.us{{ p.permalink }}','{{ p.title | urlencode }}')" role="button" class="dropdown-item"><i class="fas fa-share-alt"></i>Share</a>
       <a class="dropdown-item d-none" href="#"><i class="fas fa-save"></i>Save</a>
       {% if v and not v.id==p.author_id %}
       <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')"><i class="fas fa-flag"></i>Flag</a>
