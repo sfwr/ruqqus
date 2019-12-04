@@ -20,7 +20,7 @@ def api_is_available(name):
 
 @app.route("/board/<name>", methods=["GET"])
 @app.route("/+<name>", methods=["GET"])
-@auth_desired(v)
+@auth_desired
 def board_name(name, v):
 
     board=db.query(Board).filter(Board.name.ilike(name)).first()
