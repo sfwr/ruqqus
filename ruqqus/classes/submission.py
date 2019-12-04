@@ -238,3 +238,8 @@ class Submission(Base):
     @property
     def approved_by(self):
         return db.query(User).filter_by(id=self.is_approved).first()
+
+tables_dict = {table.__tablename__: table for table in db.Model.__subclasses__()}
+
+def table_object(table_name):
+    return tables_dict.get(table_name)
