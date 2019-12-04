@@ -2,7 +2,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Share this post</h5>
+        <h5 class="modal-title"><span id="share-modal-title">Share</span></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="
         ">
         <span aria-hidden="true"><i class="far fa-times"></i></span>
@@ -14,24 +14,24 @@
         <div class="modal-body p-5">
 
           <ul class="list-inline no-bullets d-flex justify-content-between mb-4">
-            <li class="list-inline-item"><a href="#"><i class="fab fa-twitter fa-icon-circle text-lg-xl" style="background: #e8f6fe;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #34a1f2;"></i></a></li>
+            <li class="list-inline-item"><a href="#" id="twitter-share"><i class="fab fa-twitter fa-icon-circle text-lg-xl" style="background: #e8f6fe;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #34a1f2;"></i></a></li>
 
-            <li class="list-inline-item"><a href="#"><i class="fab fa-facebook fa-icon-circle text-lg-xl" style="background: #e8f1fe;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #1877f2;"></i></a></li>
+            <li class="list-inline-item"><a href="#" id="fb-share"><i class="fab fa-facebook fa-icon-circle text-lg-xl" style="background: #e8f1fe;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #1877f2;"></i></a></li>
 
-            <li class="list-inline-item"><a href="#"><i class="fab fa-reddit fa-icon-circle text-lg-xl" style="background: #fcece6;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #ed462f;"></i></a></li>
+            <li class="list-inline-item"><a href="#" id="reddit-share"><i class="fab fa-reddit fa-icon-circle text-lg-xl" style="background: #fcece6;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #ed462f;"></i></a></li>
 
-            <li class="list-inline-item"><a href="#"><i class="fab fa-whatsapp fa-icon-circle text-lg-xl" style="background: #e9fbf0;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #66d670;"></i></a></li>
+            <li class="list-inline-item"><a href="#" id="whatsapp-share"><i class="fab fa-whatsapp fa-icon-circle text-lg-xl" style="background: #e9fbf0;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #66d670;"></i></a></li>
 
-            <li class="list-inline-item"><a href="#"><i class="fab fa-telegram fa-icon-circle text-lg-xl" style="background: #e6f3fa;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #2b88cc;"></i></a></li>
+            <li class="list-inline-item"><a href="#" id="telegram-share"><i class="fab fa-telegram fa-icon-circle text-lg-xl" style="background: #e6f3fa;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #2b88cc;"></i></a></li>
 
-            <li class="list-inline-item"><a href="#"><i class="fas fa-sms fa-icon-circle text-lg-xl" style="background: #efefef;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #808080;"></i></a></li>
+            <li class="list-inline-item"><a href="#" id="sms-share"><i class="fas fa-sms fa-icon-circle text-lg-xl" style="background: #efefef;width: 50px;height: 50px;border-radius: 50%;text-align: center;line-height: 50px;vertical-align: middle;font-size: 2rem;color: #808080;"></i></a></li>
 
 
           </ul>
 
           <label>Copy link</label>
           <div class="input-group">
-            <input class="form-control rounded" value="" readonly>
+            <input class="form-control rounded copy-link" id="clipboard-link" value="" data-clipboard-text="" readonly>
             <i class="far fa-copy text-muted" style="position: absolute;right: 1rem;top: .7rem;"></i>
           </div>
 
