@@ -1,6 +1,7 @@
 from .alts import *
 from .badges import *
 from .boards import *
+from .board_relationships import *
 from .comment import *
 from .flags import *
 from .user import *
@@ -8,5 +9,4 @@ from .submission import *
 from .votes import *
 from .images import *
 from .domains import *
-from .mods import *
 from .subscriptions import *
