@@ -36,7 +36,7 @@ class Submission(Base):
     flags=relationship("Flag", lazy="dynamic", backref="submission")
     is_approved=Column(Integer, default=0)
     approved_utc=Column(Integer, default=0)
-    board_id=Column(Integer, default=None, ForeignKey("boards.id"))
+    board_id=Column(Integer, ForeignKey("boards.id"), default=None)
 
 
     #These are virtual properties handled as postgres functions server-side
