@@ -155,7 +155,7 @@ def mod_add_username(bid, username,v):
     if not board.has_mod(v):
         abort(403)
 
-    if board.has_mod(user)
+    if board.has_mod(user):
         abort(409)
 
     new_mod=ModRelationship(user_id=user.id,
