@@ -127,7 +127,7 @@
 
 {% if not v %}
 <div class="sidebar-section sidebar-alert">
-<div class="body">
+  <div class="body">
     <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
     <h5>Join the discourse.</h5>
     <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
@@ -149,11 +149,13 @@
       aria-valuenow="{{ p.score_percent }}" aria-valuemin="0" aria-valuemax="100"></div>
     </div>
     <div class="submission-date mt-3">Submitted on:<span class="date"> {{ p.created_date }}</span></div>
-	{% if p.board_id %}
-            <div class="submission-date mt-3">Guild: {% if p.board_id != p.original_board_id %}<a class="text-primary" href="{{ p.original_board.permalink }}">+{{ p.original_board.name }}</a> <i class="fal fa-long-arrow-right px-2 text-black"></i> {% endif %}<a class="text-primary" href="{{ p.board.permalink }}">+{{ p.board.name }}</a></div>
-	
-	{% endif %}    
-<div class="shortlink mt-1">Shortlink:<span class="copy-link text-primary" style="cursor: pointer;" data-clipboard-text="https://ruqq.us/{{ p.base36id }}"> https://ruqq.us/{{ p.base36id }}</span></div>
+    {% if p.board_id %}
+    <div class="submission-date mt-3">Guild:
+    {% if p.board_id != p.original_board_id %}<a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.original_board.permalink }}">+{{ p.original_board.name }}</a> <i class="fal fa-long-arrow-right px-2 text-black"></i>
+    {% endif %}
+    <a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.board.permalink }}">+{{ p.board.name }}</a></div>
+    {% endif %}    
+    <div class="shortlink mt-1">Shortlink:<span class="copy-link text-primary" style="cursor: pointer;" data-clipboard-text="https://ruqq.us/{{ p.base36id }}"> https://ruqq.us/{{ p.base36id }}</span></div>
   </div>
 </div>
 
