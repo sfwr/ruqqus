@@ -121,6 +121,39 @@ def mod_kick_bid_pid(bid,pid):
 @validate_formkey
 def mod_ban_bid_user(bid, username, v):
 
+    user=get_user(username)
+    board=get_board(bid)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    if board.has_ban(user):
+        abort(409)
+
+    new_ban=BanRelationship(user_id=user.id,
+                            board_id=board.id)
+
+    db.add(new_ban)
+    db.commit()
+    
+@app.route("/mod/unban/<bid>/<username>", methods=["POST"])
+@auth_required
+@validate_formkey
+def mod_ban_bid_user(bid, username, v):
+
+    user=get_user(username)
+    board=get_board(bid)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    x= board.has_ban(user)
+    if not x:
+        abort(409)
+
+    db.delete(x)
+    db.commit()
+    
     
 
 @app.route("/user/kick/<pid>", methods=["POST"])
