@@ -236,7 +236,7 @@ def mod_accept_board(bid, v):
 
     board=get_board(bid)
 
-    x=board.has_invite(user):
+    x=board.has_invite(user)
     if not x:
         abort(403)
 
