@@ -279,7 +279,7 @@ ol > li::before {
 // Buttons
 
 .btn {
-    font-size: $extra-small-font-size;
+    font-size: $small-font-size;
     font-weight: $font-weight-bold;
     border-radius: $border-radius-sm;
 }
@@ -1098,7 +1098,7 @@ color: $dark;
     display: block;
     padding: 0.5rem 1rem;
     color: $text-muted;
-    font-size: $extra-small-font-size;
+    font-size: $small-font-size;
     font-weight: 600;
     margin-bottom: 0.25rem;
     text-decoration: none;
