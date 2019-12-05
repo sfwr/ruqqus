@@ -43,5 +43,5 @@ class PostRelationship(Base):
 
     __tablename__="postrels"
     id=Column(BigInteger, primary_key=True)
-    post_id=Column(Integer, ForeignKey("Submission.id"))
-    board_id=Column(Integer, ForeignKey("Board.id"))
+    post_id=Column(Integer, ForeignKey("submissions.id"))
+    board_id=Column(Integer, ForeignKey("boards.id"))
