@@ -221,6 +221,11 @@
   <div class="col">
 
     {% if u.comment_count>=1 %}
+    <div class="posts p-3">
+     {% for c in listing %}
+     {{ c.rendered_comment(v=v, render_replies=False, standalone=True) | safe }}
+     {% endfor%}
+   </div>
     {% else %}
     <div class="text-center py-5">
 
@@ -236,13 +241,6 @@
       {% endif %}
     </div>
     {% endif %}
-
-    <div class="posts p-3">
-     {% for c in listing %}
-     {{ c.rendered_comment(v=v, render_replies=False, standalone=True) | safe }}
-     {% endfor%}
-
-   </div>
  </div>
 </div>
 {% endblock %}
