@@ -153,7 +153,7 @@
             <div class="submission-date mt-3">Guild: {% if p.board_id != p.original_board_id %}<a class="text-primary" href="{{ p.original_board.permalink }}">+{{ p.original_board.name }}</a> <i class="fal fa-long-arrow-right px-2 text-black"></i> {% endif %}<a class="text-primary" href="{{ p.board.permalink }}">+{{ p.board.name }}</a></div>
 	
 	{% endif %}    
-<div class="shortlink mt-1">Shortlink:<span class="link"></span> <input type="text" class="form-control form-control-sm copy-link d-md-inline-block" readonly value="https://ruqq.us/{{ p.base36id }}" data-clipboard-text="https://ruqq.us/{{ p.base36id }}"></input></div>
+<div class="shortlink mt-1">Shortlink:<span class="copy-link text-primary" data-clipboard-text="https://ruqq.us/{{ p.base36id }}"> https://ruqq.us/{{ p.base36id }}</span></div>
   </div>
 </div>
 
