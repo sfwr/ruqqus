@@ -122,7 +122,7 @@ $sizes: map-merge(
 
 // Box Shadow
 
-$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !default;
+$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !default;
 
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
 
@@ -1069,6 +1069,11 @@ color: $dark;
     box-shadow: none;
 }
 
+.sidebar-section.sidebar-alert {
+    border: 1px solid $border-color;
+    box-shadow: $box-shadow-sm;
+}
+
 .sidebar.sidebar-left {
     -ms-flex: 0 0 200px;
     flex: 0 0 200px;
@@ -1116,7 +1121,7 @@ color: $dark;
 
 .filter-list > .filter-item > .filter-link.active {
     color: $primary;
-    background-color: $gray-100;
+    background-color: $gray-200;
     border-radius: $border-radius;
     border: 1px solid $border-color;
 }
@@ -1435,6 +1440,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     padding: 0.5rem 1rem;
 }
 
+.modal-header .close {
+    padding: 1.25rem 1rem 0 1rem;
+}
+
 .modal-content {
     border: none;
     box-shadow: $box-shadow;
@@ -1734,8 +1743,7 @@ blockquote {
     font-size: $font-size-base;
     font-weight: $font-weight-medium;
     background-color: #46444a;
-    border-radius: $border-radius;
-    padding: 0.5rem 0.75rem;
+    padding: 0.5rem 1rem;
     margin: 0.5rem 0rem 1rem 0.5rem;
 }
 
@@ -2112,8 +2120,8 @@ ul.comment-section {
 
 .settings .settings-section .footer {
     background-color: $secondary;
-    border-bottom-left-radius: .25rem;
-    border-bottom-right-radius: .25rem;
+    border-bottom-left-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
 }
 
 // Modal Profile Actions
@@ -2602,7 +2610,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 @media (max-width: 767.98px) {
 
 html {
-        font-size: 14px;
+    font-size: 14px;
 }
 
 .container {
