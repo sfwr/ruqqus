@@ -1,6 +1,6 @@
 from ruqqus.classes import *
 from .base36 import *
-from ruqqus.main import db
+from ruqqus.__main__ import db
 
 def get_user(username):
 
