@@ -7,6 +7,7 @@ from ruqqus.helpers.base36 import *
 from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.filters import *
 from ruqqus.helpers.markdown import *
+from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from flask import *
 from ruqqus.__main__ import app, db, limiter
@@ -101,13 +102,9 @@ def board_name(name, v):
 @validate_formkey
 def mod_kick_bid_pid(bid,pid):
 
-    board=db.query(Board).filter_by(id=base36decode(bid)).first()
-    if not board:
-        abort(404)
+    board=get_board(bid)
 
-    post = db.query(Submission).filter_by(id=base36decode(bid)).first()
-    if not post:
-        abort(404)
+    post = get_post(pid)
 
     if not post.board_id==board.id:
         abort(422)
@@ -119,16 +116,21 @@ def mod_kick_bid_pid(bid,pid):
     db.add(post)
     db.commit()
 
+@app.route("/mod/ban/<bid>/<username>", methods=["POST"])
+@auth_required
+@validate_formkey
+def mod_ban_bid_user(bid, username, v):
+
+    
+
 @app.route("/user/kick/<pid>", methods=["POST"])
 @auth_required
 @validate_formkey
-@def user_kick_pid(pid, v):
+def user_kick_pid(pid, v):
 
     #allows a user to yank their content back to +general if it was there previously
     
-    post=db.query(Submission).filter_by(id=base36decode(bid)).first()
-    if not post:
-        abort(404)
+    post=get_post(pid)
 
     if not post.author_id==v.id:
         abort(403)
@@ -139,7 +141,7 @@ def mod_kick_bid_pid(bid,pid):
     if post.board_id==1:
         abort(400)
 
-    #block further yanks
+    #block further yanks to the same board
     new_rel=PostRelationship(post_id=post.id,
                              board_id=post.board.id)
     db.add(new_rel)
@@ -156,13 +158,9 @@ def mod_kick_bid_pid(bid,pid):
 @validate_formkey
 def mod_take_bid_pid(bid,pid):
 
-    board=db.query(Board).filter_by(id=base36decode(bid)).first()
-    if not board:
-        abort(404)
+    board=get_board(bid)
 
-    post = db.query(Submission).filter_by(id=base36decode(bid)).first()
-    if not post:
-        abort(404)
+    post = get_post(pid)
 
     if not post.board_id==1:
         abort(422)
@@ -182,13 +180,9 @@ def mod_take_bid_pid(bid,pid):
 @validate_formkey
 def mod_invite_username(bid, username,v):
 
-    user=db.query(User).filter_by(username=username).first()
-    if not user:
-        abort(404)
+    user=get_user(username)
 
-    board = db.query(Board).filter_by(id=base36decode(bid)).first()
-    if not board:
-        abort(404)
+    board = get_board(bid)
 
     if not board.has_mod(v):
         abort(403)
@@ -207,9 +201,7 @@ def mod_invite_username(bid, username,v):
 @validate_formkey
 def mod_accept_board(bid, v):
 
-    board=db.query(Board).filter_by(id=base36decode(bid)).first()
-    if not board:
-        abort(404)
+    board=get_board(bid)
 
     x=board.has_invite(user):
     if not x:
