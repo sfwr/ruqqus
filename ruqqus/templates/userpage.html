@@ -355,6 +355,9 @@
   <div class="col">
 
     {% if u.post_count>=1 %}
+    <div class="posts">
+      {% include "submission_listing.html" %}
+    </div>
     {% else %}
     <div class="text-center py-5">
 
@@ -370,10 +373,6 @@
       {% endif %}
     </div>
     {% endif %}
-
-    <div class="posts">
-      {% include "submission_listing.html" %}
-    </div>
   </div>
 </div>
 {% endblock %}
