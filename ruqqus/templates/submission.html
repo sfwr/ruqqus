@@ -154,7 +154,7 @@
     </div>
     {% if p.board_id %}
     <div class="submission-date mt-3">
-    {% if p.board_id != p.original_board_id %}<a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.original_board.permalink }}">+{{ p.original_board.name }}</a> <i class="fal fa-long-arrow-right px-2 text-black"></i>
+    {% if p.board_id != p.original_board_id %}<a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.original_board.permalink }}">+{{ p.original_board.name }}</a> <i class="fal fa-long-arrow-right px-2"></i>
     {% endif %}
     <a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.board.permalink }}">+{{ p.board.name }}</a></div>
     {% endif %}    
