@@ -139,7 +139,7 @@ def mod_ban_bid_user(bid, username, v):
 @app.route("/mod/unban/<bid>/<username>", methods=["POST"])
 @auth_required
 @validate_formkey
-def mod_ban_bid_user(bid, username, v):
+def mod_unban_bid_user(bid, username, v):
 
     user=get_user(username)
     board=get_board(bid)
