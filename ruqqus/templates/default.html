@@ -154,6 +154,13 @@
             {% endif %}
           </div>
         </div>
+	{% if v and v.is_activated and v.karma >=100 %}
+	<div class="sidebar-section sidebar-make-guild">
+		<div class="title">Start a Guild</div>
+		<p>Start your own community, for something you love</p>
+		<a href="/create_guild"><button class="btn" value="Start a Guild"></button></a>
+	</div>
+	{% endif %}
         {% endblock %}
 
         {% if v and v.referral_count==0 %}
