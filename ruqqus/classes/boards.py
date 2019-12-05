@@ -43,7 +43,7 @@ class Board(Base):
     @property
     def permalink(self):
 
-        return f"/board/{self.name}"
+        return f"/+{self.name}"
 
     def can_take(self, post):
         return self.postrels.filter_by(post_id=post.id).first()
