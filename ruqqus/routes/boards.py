@@ -200,6 +200,9 @@ def mod_take_bid_pid(bid,pid):
     if not post.board_id==1:
         abort(422)
 
+    if board.has_ban(post.author):
+        abort(403)
+
     if not board.has_mod(v):
         abort(403)
 
@@ -252,13 +255,9 @@ def mod_accept_board(bid, v):
 @validate_formkey
 def mod_remove_username(bid, username,v):
 
-    user=db.query(User).filter_by(username=username).first()
-    if not user:
-        abort(404)
+    user=get_user(username)
 
-    board = db.query(Board).filter_by(id=base36decode(bid)).first()
-    if not board:
-        abort(404)
+    board = get_board(bid)
 
     v_mod=board.has_mod(v)
     u_mod=board.has_mod(user)
