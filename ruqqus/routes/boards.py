@@ -240,6 +240,28 @@ def mod_invite_username(bid, username,v):
     db.commit()
     return "", 204
 
+@app.route("mod/rescind/<bid>/<username>", methods=["POST"])
+@auth_required
+@validate_formkey
+def mod_rescind_bid_username(bid, username, v):
+
+    board=get_board(bid)
+
+    if not board.has_mod(v):
+        abort(403)
+        
+    user=get_user(username)
+
+    invitation = db.query(ModRelationship).filter_by(board_id=board.id,
+                                                     user_id=user.id,
+                                                     accepted=False).first()
+    if not invitation:
+        abort(404)
+
+    db.delete(invitation)
+    db.commit()
+    
+
 @app.route("/mod/accept/<bid>", methods=["POST"])
 @auth_required
 @validate_formkey

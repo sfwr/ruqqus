@@ -146,6 +146,9 @@ class Board(Base):
     @cache.memoize(timeout=60)
     def has_mod(self, user):
 
+        if user is None:
+            return None
+
         return self.moderators.filter_by(user_id=user.id, accepted=True).first()
 
 
