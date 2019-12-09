@@ -14,8 +14,8 @@
   </div>
 </div>
 <div class="sidebar-section sidebar-mods">
- <div class="body"
-  <h1 class="h6 d-inline-block">Guildmasters</h1>
+  <div class="title">Guildmasters</div>
+  <div class="body">
   <ul>
   {% for user in b.mods %}
   <li><a href="{{ user.permalink }}">@{{ user.username }}</a></li>
@@ -27,9 +27,7 @@
 </div>
 {% if v and b.has_mod(v) %}
 <div class="sidebar-section sidebar-guild-tools">
-	<div class="body pb-0">
-	<h1 class="h6 d-inline-block">Guild Master Tools</h1>
-	</div>
+	<div class="title">Guild Master Tools</div>
 	<div class="body pt-0">
   		<a "{{ b.permalink}}/about/settings"><i class="fad fa-cog"></i>Settings</a>
 	</div>
