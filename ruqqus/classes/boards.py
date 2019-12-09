@@ -4,6 +4,7 @@ import time
 
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
+from ruqqus.helpers.lazy import *
 from .submission import *
 from .board_relationships import *
 from ruqqus.__main__ import Base, db, cache
@@ -31,6 +32,8 @@ class Board(Base):
 
         super().__init__(**kwargs)
 
+    @property
+    @lazy
     def base36id(self):
         return base36encode(self.id)
 
