@@ -37,7 +37,7 @@ class BanRelationship(Base):
         super().__init__(*args, **kwargs)
 
     def __repr__(self):
-        return f"<Mod(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
+        return f"<Ban(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
 
 class PostRelationship(Base):
 
@@ -45,3 +45,6 @@ class PostRelationship(Base):
     id=Column(BigInteger, primary_key=True)
     post_id=Column(Integer, ForeignKey("submissions.id"))
     board_id=Column(Integer, ForeignKey("boards.id"))
+
+    def __repr__(self):
+        return f"<PostRel(id={self.id}, uid={self.uid}, board_id={self.board_id})>"

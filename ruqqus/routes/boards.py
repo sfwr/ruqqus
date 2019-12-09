@@ -276,6 +276,7 @@ def mod_remove_username(bid, username,v):
     if v_mod.id > u_mod.id:
         abort(403)
 
+    del v_mod
     db.delete(u_mod)
     db.commit()
     return "", 204
