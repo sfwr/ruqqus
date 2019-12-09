@@ -25,6 +25,16 @@
   </ul>
  </div>
 </div>
+{% if v and b.has_mod(v) %}
+<div class="sidebar-section sidebar-guild-tools">
+	<div class="body pb-0">
+	<h1 class="h6 d-inline-block">Guild Master Tools</h1>
+	</div>
+	<div class="body pt-0">
+  		<a "{{ b.permalink}}/about/settings"><i class="fad fa-cog"></i>Settings</a>
+	</div>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block pagetype %}userpage{% endblock %}
