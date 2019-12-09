@@ -218,17 +218,19 @@ def mod_take_bid_pid(bid,pid):
     db.commit()
     return "", 204
 
-@app.route("/mod/invite/<bid>/<username>", methods=["POST"])
+@app.route("/mod/invite_mod/<bid>", methods=["POST"])
 @auth_required
 @validate_formkey
-def mod_invite_username(bid, username,v):
+def mod_invite_username(bid,v):
 
-    user=get_user(username)
 
     board = get_board(bid)
 
     if not board.has_mod(v):
         abort(403)
+
+    username=request.form.get("username")
+    user=get_user(username)
 
     if not board.can_invite_mod(user):
         abort(409)

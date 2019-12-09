@@ -28,9 +28,9 @@
 				{% endfor %}
 
 				<label>Invite</label>
-				<div>
-				<input type="text id="invite-user" class="form-input">
-				<a class="btn btn-primary" href="javascript:void(0)" onlick="x=document.getElementById('invite-user');post('/mod/invite/{{ b.base36id }}/'+x.value)">Invite User</a>
+				<form action="/mod/invite_mod/{{ b.base36id }}>
+				<input type="text name="username" class="form-input">
+				<input class="btn btn-primary" value="Invite user"
 				</div>
 
                             </div>
