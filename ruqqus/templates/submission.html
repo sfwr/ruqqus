@@ -198,15 +198,16 @@
           {% if v and not v.id==p.author_id %}
           <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')"><i class="fas fa-flag"></i>Flag</a>
           {% endif %}
-          {% if v %}
-          {% if v.admin_level >=1 %}
+          {% if v and v.admin_level >=1 %}
           {% if p.is_banned %}
-          <a class="dropdown-item approveDropdownItem" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a>
+          <a class="dropdown-item approveDropdownItem" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a>
           {% else %}
-          <a class="dropdown-item removeDropdownItem" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="removePost('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a>
+          <a class="dropdown-item removeDropdownItem" href="javascript:void(0)" onclick="removePost('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a>
           {% endif %}
           {% endif %}
-          {% endif %}
+	  {% if v and p.board.has_mod(v) %}
+	  <a class="dropdown-item removeDropdownItem" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}')"><i class="fas fa-share-square" data-fa-transform="flip-h"></i>Kick Post</a>
+	  {% endif %}
         </div>
       </div>
     </div>

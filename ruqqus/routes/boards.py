@@ -271,3 +271,20 @@ def mod_remove_username(bid, username,v):
 
     db.delete(u_mod)
     db.commit()
+
+@app.route("/mod/is_banned/<bid>/<username>", methods=["GET"])
+@auth_required
+@validate_formkey
+def mod_is_banned_board_username(bid, username, v):
+    board=get_board(bid)
+    user=get_user(username)
+
+    result={"board":board.name,
+            "user":user.username}
+
+    if board.has_ban(user):
+        result["is_banned"]=True
+    else:
+        result["is_banned"]=False
+
+    return jsonify(result)

@@ -4,7 +4,7 @@ from ruqqus.__main__ import db
 
 def get_user(username):
 
-    x=db.query(User).filter_by(username=username).first()
+    x=db.query(User).filter_by(User.username.ilike(username)).first()
     if not x:
         abort(404)
     return x
