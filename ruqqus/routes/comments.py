@@ -9,6 +9,7 @@ from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.filters import *
 from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
+from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from flask import *
 from ruqqus.__main__ import app, db, limiter
@@ -93,6 +94,12 @@ def api_comment(v):
     if parent.is_banned or parent.is_deleted:
         abort(403)
 
+    #check for ban state
+    post = get_submission(request.form.get("submission"))
+    ban = post.board.has_ban(v):
+    if ban:
+        abort(403)
+        
     #create comment
     c=Comment(author_id=v.id,
               body=body,
