@@ -51,11 +51,11 @@ def submit_post(v):
     url=request.form.get("url","")
 
     if len(title)<10:
-        return render_template("submit.html", v=v, error="Please enter a better title.")
+        return render_template("submit.html", v=v, error="Please enter a better title.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
 
     parsed_url=urlparse(url)
     if not (parsed_url.scheme and parsed_url.netloc) and not request.form.get("body"):
-        return render_template("submit.html", v=v, error="Please enter a URL or some text.")
+        return render_template("submit.html", v=v, error="Please enter a URL or some text.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
 
     #sanitize title
     title=sanitize(title, linkgen=False)
@@ -90,7 +90,7 @@ def submit_post(v):
 
     if domain_obj:
         if not domain_obj.can_submit:
-            return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason])
+            return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason], title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
 
     #board
     board_name=request.form.get("board","general")
@@ -103,7 +103,8 @@ def submit_post(v):
     if board.id !=1:
 
         if board.has_ban(v):
-            abort(403)
+            return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
+
             
     #Huffman-Ohanian growth method
     if v.admin_level >=2:
