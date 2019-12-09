@@ -1,55 +1,66 @@
-{% extends "settings.html" %}
+{% extends "submit.html" %}
 
-{% block pagetitle %}Guild settings - +{{ b.name }}{% endblock %}
+{% block title %}<title>+{{ b.name }} Guildmasters</title>{% endblock %}
 
-{% block content %}
-<div class="row justify-content-around">
+{% block pagetitle %}+{{ b.name }} Guildmasters{% endblock %}
+{% block subtitle %}Invite or remove masters to +{{ b.name }}{% endblock %}
 
-    <div class="col-12 col-md-7 h-100">
+{% block form %}
 
-    {% if error %}
-    <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
-          <i class="fas fa-exclamation-circle my-auto"></i>
-          <span>
-              {{ error }}
-          </span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="far fa-times"></i></span>
-        </button>
-    </div>
-    {% endif %}
-    {% if msg %}
-    <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
-        <i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
-        <span>
-          {{ msg }}
-      </span>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true"><i class="far fa-times"></i></span>
-      </button>
-    </div>
-    {% endif %}
 
-<div class="mt-3 mt-md-0">
+                                <div class="body">
 
-    <h1 class="h3">+{{ b.name }} Exiles</h1>
+				{% if b.has_invite(v) %}
+				<div>You have been invited to be a master of this guild. <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/mod/accept/{{ b.base36id }}', callback=function(){window.location.reload(true)})">Accept</a>
+				</div>
+				{% endif %}
 
-	<form 
+                                <label for="title">Guildmasters</label>
+                                <div class="form-text">Current guildmasters</div>
 
-    
 
-</div>
+				
+				{% set me=b.has_mod(v) %}
 
-<div class="row">
+				{% for mod in b.mods %}
+					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me and me.id <= mod.id %} - <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">{% if mod.user==v %}step down{% else %}remove{% endif %}</a>{% endif %}</div>
+				{% else %}
+					<div class="form-text text-muted">No guildmasters at this time.</div>
+				{% endfor %}
+				<div class="mt-2">
+				<label class="pt-1" >Guildmaster Invitations</label>
+				<div class="form-text">Pending Guildmaster invitations</div>
+				
+				{% for mod in b.invited_mods %}
+					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me %} - <a href="javascript:void(0)", onclick="post('/mod/rescind/{{ b.base36id }}/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">rescind</a>{% endif %}</div>
+				{% else %}
+					<div class="form-text text-muted">No invitees at this time.</div>
+				{% endfor %}
+				</div>
+				<div class="mt-2">
+				<label>Invite</label>
+				<form action="/mod/invite_mod/{{ b.base36id }}" method="post">
+				<input type="hidden" name="formkey" value="{{ v.formkey }}">
+				<input type="text" name="username" class="form-input">
+				<input type="submit" class="btn btn-primary" value="Invite user">
+				</form>
+				</div>
 
-    <div class="col">
+                            </div>
 
-        <div class="settings">
+                            <div class="footer">
 
-</div>
-</div>
-</div>
+                                <div class="d-flex">
 
-    </div>
-</div>
+                                    {% if error %}
+                                    <p class="mb-0">
+                                        <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                                    </p>
+                                    {% endif %}
+
+                                </div>
+
+                            </div>
+
+
 {% endblock %}

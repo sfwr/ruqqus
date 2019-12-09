@@ -386,5 +386,11 @@ def board_about_exiled(boardname, pagename, v):
     if not board.has_mod(v):
         abort(403)
 
+    username=request.args.get("user")
+    if username:
+        user=get_user(username)
+    else:
+        user=None
+
     return render_template(safe_join("guild/bans.html", v=v, b=board)
 
