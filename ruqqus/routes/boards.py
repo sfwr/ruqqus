@@ -366,7 +366,7 @@ def board_about_settings(boardname, v):
 
 @app.route("/+<boardname>/mod/mods", methods=["GET"])
 @auth_desired
-def board_about_settings(boardname, v):
+def board_about_mods(boardname, v):
 
     board=db.query(Board).filter(Board.name.ilike(boardname)).first()
     if not board:
@@ -377,7 +377,7 @@ def board_about_settings(boardname, v):
 
 @app.route("/+<boardname>/mod/exiled", methods=["GET"])
 @auth_required
-def board_about_settings(boardname, pagename, v):
+def board_about_exiled(boardname, pagename, v):
 
     board=db.query(Board).filter(Board.name.ilike(boardname)).first()
     if not board:
