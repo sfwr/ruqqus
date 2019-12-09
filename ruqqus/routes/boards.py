@@ -314,7 +314,7 @@ def board_about_settings(boardname, v):
 @app.route("/mod/<bid>/settings", methods=["POST"])
 @auth_required
 @validate_formkey
-def board_about_settings(bid, v):
+def mod_bid_settings(bid, v):
 
     board=get_board(bid)
 
