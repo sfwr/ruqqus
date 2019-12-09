@@ -24,8 +24,7 @@ class Board(Base):
 
     moderators = relationship("ModRelationship", lazy="dynamic", backref="board")
     bans = relationship("BanRelationship", lazy="dynamic", backref="board")
-    postrels=relationship("PostRelationship", lazy="dynamic", backref="board")
-    
+   
     def __init__(self, **kwargs):
 
         kwargs["created_utc"]=int(time.time())
