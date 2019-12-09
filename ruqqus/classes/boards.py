@@ -44,7 +44,7 @@ class Board(Base):
         return self.moderators.filter_by(accepted=True).order_by(text("id")).all()
 
     @property
-    @cache.memoize(timout=30)
+    @cache.memoize(timeout=30)
     def invited_mods(self):
         return self.moderators.filter_by(accepted=False).order_by(text("id")).all()
 
