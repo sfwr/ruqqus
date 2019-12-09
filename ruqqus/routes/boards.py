@@ -302,7 +302,7 @@ def mod_is_banned_board_username(bid, username, v):
 @auth_required
 def board_about_settings(boardname, v):
 
-    board=db.query(Board).filter_by(name=boardname).first()
+    board=db.query(Board).filter(Board.name.ilike(boardname)).first()
     if not board:
         abort(404)
 
