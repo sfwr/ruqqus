@@ -134,6 +134,9 @@ def mod_ban_bid_user(bid, username, v):
     if board.has_ban(user):
         abort(409)
 
+    if board.has_mod(user):
+        abort(409)
+
     new_ban=BanRelationship(user_id=user.id,
                             board_id=board.id,
                             banning_mod_id=v.id)
