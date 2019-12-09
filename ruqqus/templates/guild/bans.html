@@ -20,7 +20,7 @@
 				</form>
 
 				{% for user in users %}
-				<div class="body"><a href="{{ user.permalink }}">@{{ user.username }}</a> - {% if b.has_ban(user) %}exiled - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Pardon User</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/ban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Exile User</a>{% endif %}
+				<div class="body"><a href="{{ user.permalink }}">@{{ user.username }}</a> - {% if b.has_ban(user) %}exiled - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Pardon User</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary{% if b.has_mod(user) %} disabled{% endif %}" onclick="post('/mod/ban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Exile User</a>{% endif %}
 				</div>
 				{% else %}
 				<div class="body">Search for a user to see if they are banned.</div>
