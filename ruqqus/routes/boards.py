@@ -331,7 +331,7 @@ def board_about_settings(boardname, pagename, v):
     if not board:
         abort(404)
 
-    if not board.has_mod(v):
+    if not board.has_mod(v) and not board.has_invite(v):
         abort(403)
 
     try:
