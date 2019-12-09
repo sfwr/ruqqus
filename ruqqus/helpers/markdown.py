@@ -28,7 +28,7 @@ class CustomRenderer(HTMLRenderer):
                          BoardMention)
 
     def render_user_mention(self, token):
-        template = '{space}<a href="/u/{target}">@{target}</a>'
+        template = '{space}<a href="/@{target}">@{target}</a>'
         space = token.target[0]
         target = token.target[1]
         return template.format(space=space, target=target)
