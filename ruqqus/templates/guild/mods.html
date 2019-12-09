@@ -29,9 +29,10 @@
 
 				<label>Invite</label>
 				<form action="/mod/invite_mod/{{ b.base36id }}" method="post">
+				<input type="hidden" name="formkey" value="{{ v.formkey }}">
 				<input type="text" name="username" class="form-input">
 				<input type="submit" class="btn btn-primary" value="Invite user">
-				</div>
+				</form>
 
                             </div>
 
