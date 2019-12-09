@@ -42,7 +42,8 @@ class User(Base):
     ban_reason=Column(String, default="")
 
     moderates=relationship("ModRelationship", lazy="dynamic", backref="user")
-    banned_from=relationship("BanRelationship", lazy="dynamic", backref="user")
+    banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id", backref="user")
+    banhammered=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.banning_mod_id==User.id", backref="mod")
 
     #properties defined as SQL server-side functions
     energy = deferred(Column(Integer, server_default=FetchedValue()))

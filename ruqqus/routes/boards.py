@@ -135,7 +135,8 @@ def mod_ban_bid_user(bid, username, v):
         abort(409)
 
     new_ban=BanRelationship(user_id=user.id,
-                            board_id=board.id)
+                            board_id=board.id,
+                            banning_mod_id=v.id)
 
     db.add(new_ban)
     db.commit()
@@ -388,10 +389,8 @@ def board_about_exiled(boardname, v):
     if not board.has_mod(v):
         abort(403)
 
-    username=request.args.get("user")
+    username=request.args.get("user","")
     if username:
-        user=get_user(username)
-    else:
-        user=None
+        user=db.query(User).filter(User.username.ilike(username)).first()
 
     return render_template("guild/bans.html", v=v, b=board, user=user)

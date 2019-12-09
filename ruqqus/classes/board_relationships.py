@@ -29,6 +29,7 @@ class BanRelationship(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     board_id = Column(Integer, ForeignKey("boards.id"))
     created_utc = Column(BigInteger, default=0)
+    banning_mod_id=Column(Integer, ForeignKey("users.id"))
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
