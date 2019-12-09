@@ -15,7 +15,7 @@
                                 <div class="form-text">Users who are exiled from +{{ b.name }}</div>
 
 				<form action="/+{{ b.name }}/mod/exiled" method="get">
-				<input class="form-input" name="username" type="text" value="{{ request.args.get('user','') }}">
+				<input class="form-input" name="user" type="text" value="{{ request.args.get('user','') }}">
 				<input type="submit" value="Check Ban">
 				</form>
 
