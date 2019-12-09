@@ -379,7 +379,7 @@ def board_about_mods(boardname, v):
 
 @app.route("/+<boardname>/mod/exiled", methods=["GET"])
 @auth_required
-def board_about_exiled(boardname, pagename, v):
+def board_about_exiled(boardname, v):
 
     board=db.query(Board).filter(Board.name.ilike(boardname)).first()
     if not board:

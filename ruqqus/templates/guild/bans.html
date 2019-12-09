@@ -14,6 +14,14 @@
                                 <label for="title">Exiles</label>
                                 <div class="form-text">Users who are exiled from +{{ b.name }}</div>
 
+				<form action="/+{{ b.name }}/mod/exiled" method="get">
+				<input class="form-input" name="username" type="text" value="{{ request.args.get('user','') }}">
+				<input type="submit" value="Check Ban">
+				</form>
+
+				{% if user %}
+				<div class="body">@{{ user.username }} - {% if b.has_ban(user) %}exiled - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Pardon user</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/ban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Exile User</a>{% endif %}
+				{% endif %}
 
 				
 				</div>
