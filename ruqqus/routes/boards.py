@@ -298,7 +298,7 @@ def mod_is_banned_board_username(bid, username, v):
     return jsonify(result)
 
 
-@app.route("/+<boardname>/about/settings", methods=["GET"])
+@app.route("/+<boardname>/mod/settings", methods=["GET"])
 @auth_required
 def board_about_settings(boardname, v):
 
