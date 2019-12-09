@@ -3,8 +3,7 @@ from bleach.linkifier import LinkifyFilter
 from urllib.parse import urlparse, ParseResult, urlunparse
 from functools import partial
 
-_allowed_tags=tags=['a',
-                    'b',
+_allowed_tags=tags=['b',
                     'blockquote',
                     'code',
                     'del',
@@ -26,7 +25,8 @@ _allowed_tags=tags=['a',
 
 _allowed_tags_with_links=_allowed_tags+["a"]
 
-_allowed_attributes={'a': ['href', 'title', "rel"]}
+_allowed_attributes={'a': ['href', 'title', "rel"],
+                     'img':['src']}
 
 _allowed_protocols=['http', 'https']
 
@@ -57,7 +57,7 @@ _clean_wo_links = bleach.Cleaner(tags=_allowed_tags,
                                  attributes=_allowed_attributes,
                                  protocols=_allowed_protocols,
                                  )
-_clean_w_links = bleach.Cleaner(tags=_allowed_tags,
+_clean_w_links = bleach.Cleaner(tags=_allowed_tags_with_links,
                                 attributes=_allowed_attributes,
                                 protocols=_allowed_protocols,
                                 filters=[partial(LinkifyFilter,
