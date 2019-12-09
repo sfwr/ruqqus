@@ -391,6 +391,6 @@ def board_about_exiled(boardname, v):
 
     username=request.args.get("user","")
     if username:
-        users=db.query(User).filter(func.lower(User.username).contains(username.lower()).all()
+        users=db.query(User).filter(func.lower(User.username).contains(username.lower()).limit(25)
 
     return render_template("guild/bans.html", v=v, b=board, users=users)
