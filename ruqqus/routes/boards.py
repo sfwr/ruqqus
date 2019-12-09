@@ -102,7 +102,7 @@ def board_name(name, v):
 @app.route("/mod/kick/<bid>/<pid>", methods=["POST"])
 @auth_required
 @validate_formkey
-def mod_kick_bid_pid(bid,pid):
+def mod_kick_bid_pid(bid,pid, v):
 
     board=get_board(bid)
 
