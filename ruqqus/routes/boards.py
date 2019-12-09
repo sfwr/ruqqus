@@ -300,7 +300,7 @@ def mod_is_banned_board_username(bid, username, v):
 
 @app.route("/+<boardname>/mod/<pagename>", methods=["GET"])
 @auth_required
-def board_about_settings(boardname, v):
+def board_about_settings(boardname, pagename, v):
 
     board=db.query(Board).filter(Board.name.ilike(boardname)).first()
     if not board:

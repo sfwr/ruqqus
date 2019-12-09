@@ -1,6 +1,6 @@
 {% extends "submit.html" %}
 
-
+{% block title %}<title>+{{ b.name }} Guildmasters</title>{% endblock %}
 
 {% block pagetitle %}+{{ b.name }} Guildmasters{% endblock %}
 {% block subtitle %}Invite or remove moderators to +{{ b.name }}{% endblock %}
@@ -13,7 +13,7 @@
 
                                     <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
-                                    <label for="title">Guild Name</label>
+                                    <label for="title">Guildmasters</label>
 
                                     <input class="form-control" id="title-register"
                                     aria-describedby="titleHelpRegister" type="text" name="name" value="{{ b.name }}" required>
