@@ -392,5 +392,4 @@ def board_about_exiled(boardname, pagename, v):
     else:
         user=None
 
-    return render_template(safe_join("guild/bans.html", v=v, b=board)
-
+    return render_template(safe_join("guild/bans.html", v=v, b=board, user=user)
