@@ -91,6 +91,10 @@ class Comment(Base):
     def post(self):
 
         return db.query(Submission).filter_by(id=self.parent_submission).first()
+    @property
+    @lazy
+    def board(self):
+        return self.post.board
     
     @property
     @lazy
