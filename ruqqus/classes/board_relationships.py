@@ -39,13 +39,3 @@ class BanRelationship(Base):
 
     def __repr__(self):
         return f"<Ban(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
-
-class PostRelationship(Base):
-
-    __tablename__="postrels"
-    id=Column(BigInteger, primary_key=True)
-    post_id=Column(Integer, ForeignKey("submissions.id"))
-    board_id=Column(Integer, ForeignKey("boards.id"))
-
-    def __repr__(self):
-        return f"<PostRel(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
