@@ -38,7 +38,6 @@ class Submission(Base):
     approved_utc=Column(Integer, default=0)
     board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
-    board_rels=relationship("PostRelationship", lazy="dynamic", backref="post")
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
