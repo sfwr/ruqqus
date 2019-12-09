@@ -21,6 +21,10 @@ BAN_REASONS=['',
             ]
 
 
+
+
+
+
 @app.route("/post/<base36id>", methods=["GET"])
 @auth_desired
 def post_base36id(base36id, v=None):
@@ -32,6 +36,9 @@ def post_base36id(base36id, v=None):
         abort(404)
         
     return post.rendered_page(v=v)
+
+
+
 
 @app.route("/submit", methods=['POST'])
 @limiter.limit("6/minute")
@@ -85,19 +92,6 @@ def submit_post(v):
         if not domain_obj.can_submit:
             return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason])
 
-    #board
-    board_name=request.form.get("board","general")
-    board_name=board_name.lstrip("+")
-    
-    board=db.query(Board).filter_by(name=board_name).first()
-    if not board:
-        board=db.query(Board).filter_by(id=1).first()
-    
-    if board.id !=1:
-
-        if board.has_ban(v):
-            abort(403)
-
     #Huffman-Ohanian growth method
     if v.admin_level >=2:
 
@@ -138,7 +132,7 @@ def submit_post(v):
                 
                 
     #Force https for submitted urls
-    if request.form.get("url")
+    if request.form.get("url"):
         new_url=ParseResult(scheme="https",
                             netloc=parsed_url.netloc,
                             path=parsed_url.path,
@@ -155,7 +149,7 @@ def submit_post(v):
 
     body=request.form.get("body","")
 
-    with CustomRenderer() as renderer:
+    with UserRenderer() as renderer:
         body_md=renderer.render(mistletoe.Document(body))
     body_html = sanitize(body_md, linkgen=True)
 
@@ -165,7 +159,7 @@ def submit_post(v):
     if domain.endswith(("youtube.com","youtu.be")):
         embed=youtube_embed(url)
 
-
+    
     
     new_post=Submission(title=title,
                         url=url,
@@ -173,9 +167,7 @@ def submit_post(v):
                         body=body,
                         body_html=body_html,
                         embed_url=embed,
-                        domain_ref=domain_obj.id if domain_obj else None,
-                        board_id=board.id,
-                        original_board_id=board.id
+                        domain_ref=domain_obj.id if domain_obj else None
                         )
 
     db.add(new_post)
