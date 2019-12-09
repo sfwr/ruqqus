@@ -257,7 +257,7 @@ def mod_accept_board(bid, v):
     return "", 204
     
 
-@app.route("/mod/remove/<bid>/<username>", methods=["POST"])
+@app.route("/mod/<bid>/remove/<username>", methods=["POST"])
 @auth_required
 @validate_formkey
 def mod_remove_username(bid, username,v):

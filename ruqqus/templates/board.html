@@ -17,8 +17,8 @@
   <div class="title">Guildmasters</div>
   <div class="body">
   <ul>
-  {% for user in b.mods %}
-  <li><a href="{{ user.permalink }}">@{{ user.username }}</a></li>
+  {% for mod in b.mods %}
+  <li><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a></li>
   {% else %}
   <li>None</li>
   {% endfor %}
