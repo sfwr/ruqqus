@@ -296,3 +296,46 @@ def mod_is_banned_board_username(bid, username, v):
         result["is_banned"]=False
 
     return jsonify(result)
+
+
+@app.route("/+<boardname>/about/settings", methods=["GET"])
+@auth_required
+def board_about_settings(boardname, v):
+
+    board=db.query(Board).filter_by(name=boardname).first()
+    if not board:
+        abort(404)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    return render_template("guild/settings.html", v=v, b=board)
+
+@app.route("/mod/<bid>/settings", methods=["POST"])
+@auth_required
+@validate_formkey
+def board_about_settings(bid, v):
+
+    board=get_board(bid)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    new_name=request.form.get("name","").lstrip("+")
+
+    if new_name.lower()==board.name.lower():
+        board.name=new_name
+
+    
+    description = request.form.get("description")
+    with CustomRenderer() as renderer:
+        description_md=renderer.render(mistletoe.Document(description))
+    description_html=sanitize(description_md, linkgen=True)
+    
+    board.description = description
+    board.description_html=description_html
+
+    db.add(board)
+    db.commit()
+
+    return redirect(board.permalink)
