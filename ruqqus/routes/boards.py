@@ -372,7 +372,9 @@ def board_about_mods(boardname, v):
     if not board:
         abort(404)
 
-    return render_template("guild/mods.html", v=v, b=board)
+    me=b.has_mod(v)
+
+    return render_template("guild/mods.html", v=v, b=board, me=me)
 
 
 @app.route("/+<boardname>/mod/exiled", methods=["GET"])
