@@ -368,3 +368,41 @@ def mod_bid_settings(bid, v):
     db.commit()
 
     return redirect(board.permalink)
+
+@app.route("/+<boardname>/mod/settings", methods=["GET"])
+@auth_required
+def board_about_settings(boardname, v):
+
+    board=db.query(Board).filter(Board.name.ilike(boardname)).first()
+    if not board:
+        abort(404)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    return render_template("guild/settings.html", v=v, b=board)
+
+@app.route("/+<boardname>/mod/mods", methods=["GET"])
+@auth_desired
+def board_about_settings(boardname, v):
+
+    board=db.query(Board).filter(Board.name.ilike(boardname)).first()
+    if not board:
+        abort(404)
+
+    return render_template("guild/mods.html", v=v, b=board)
+
+
+@app.route("/+<boardname>/mod/exiled", methods=["GET"])
+@auth_required
+def board_about_settings(boardname, pagename, v):
+
+    board=db.query(Board).filter(Board.name.ilike(boardname)).first()
+    if not board:
+        abort(404)
+
+    if not board.has_mod(v):
+        abort(403)
+
+    return render_template(safe_join("guild/bans.html", v=v, b=board)
+
