@@ -6,7 +6,7 @@ $secondary: #EAEAEA;
 $danger: #F05D5E;
 $white: #ffffff;
 $black: #1F1F1F;
-$light: #F7F6F8;
+$light: #F6F6F6;
 $success: #23CE6B;
 
 
@@ -57,7 +57,7 @@ $theme-colors: (
 // Borders
 
 $input-border-color: #ECECEC;
-$border-color: #E3E3E3;
+$border-color: #E1E1E1;
 
 $border-radius: .35rem;
 $border-radius-sm: .25rem;
@@ -122,7 +122,7 @@ $sizes: map-merge(
 
 // Box Shadow
 
-$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !default;
+$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !default;
 
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
 
@@ -137,7 +137,7 @@ $yiq-contrasted-threshold:  160 !default;
 @import "node_modules/bootstrap/scss/bootstrap";
 
 html {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 @supports (font-variation-settings: normal) {
@@ -146,7 +146,7 @@ html {
 
 body {
     color: $black;
-    padding-top: 98px;
+    padding-top: 90px;
     background-color: $light;
 }
 
@@ -761,7 +761,7 @@ label.terms {
 }
 
 .fa-width-rem {
-    width: 1rem;
+    width: 1.25rem;
 }
 
 .fa-bold:hover {
@@ -918,7 +918,7 @@ color: $dark;
     background-color: $white;
     border-radius: $border-radius;
     border: 1px solid $border-color;
-    box-shadow: $box-shadow-sm;
+    //box-shadow: $box-shadow-sm;
 }
 
 #frontpage .pseudo-submit-form.card .card-body, #search .search-results.card .card-body {
@@ -952,7 +952,7 @@ color: $dark;
 .posts, #thread #main-content-col {
     background-color: $white;
     border: 1px solid $border-color;
-    box-shadow: $box-shadow-sm;
+    //box-shadow: $box-shadow-sm;
     border-radius: $border-radius;
 }
 
@@ -1024,7 +1024,7 @@ color: $dark;
     margin-bottom: 1rem;
     background-color: #fff;
     border: 1px solid $border-color;
-    box-shadow: $box-shadow-sm;
+    //box-shadow: $box-shadow-sm;
     border-radius: 0.35rem;
 }
 
@@ -1061,7 +1061,7 @@ color: $dark;
 
 .sidebar-section.sidebar-alert {
     border: 1px solid $border-color;
-    box-shadow: $box-shadow-sm;
+    //box-shadow: $box-shadow-sm;
 }
 
 .sidebar.sidebar-left {
@@ -1106,12 +1106,12 @@ color: $dark;
 }
 
 .filter-list .filter-link:hover, .filter-list .filter-link:focus {
-    color: $primary;
+    color: $black;
 }
 
 .filter-list > .filter-item > .filter-link.active {
-    color: $primary;
-    background-color: $gray-200;
+    color: $black;
+    background-color: $white;
     border-radius: $border-radius;
     border: 1px solid $border-color;
 }
@@ -1120,6 +1120,7 @@ color: $dark;
     font-size: $small-font-size;
     margin-right: 0.5rem;
     color: $gray-600;
+    text-align: center;
 }
 
 .filter-list .filter-link:hover .fa , .filter-list .filter-link:focus .fa, .filter-list .filter-link:hover .fas, .filter-list .filter-link:focus .fas, .filter-list .filter-link:hover .far, .filter-list .filter-link:focus .far, .filter-list .filter-link:hover .fab , .filter-list .filter-link:focus .fab {
@@ -1163,7 +1164,7 @@ color: $dark;
 }
 
 .dashboard-list .dashboard-link:hover, .dashboard-list .dashboard-link:focus {
-    color: $primary;
+    color: $black;
 }
 
 .dashboard-list > .dashboard-item > .dashboard-link.active {
@@ -1176,6 +1177,7 @@ color: $dark;
     font-size: $small-font-size;
     margin-right: 0.5rem;
     color: $gray-600;
+    text-align: center;
 }
 
 .dashboard-list .dashboard-link:hover .fa , .dashboard-list .dashboard-link:focus .fa, .dashboard-list .dashboard-link:hover .fas, .dashboard-list .dashboard-link:focus .fas, .dashboard-list .dashboard-link:hover .far, .dashboard-list .dashboard-link:focus .far, .dashboard-list .dashboard-link:hover .fab , .dashboard-list .dashboard-link:focus .fab {
@@ -1282,7 +1284,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-radius: $border-radius;
     padding: 15px;
     margin-top: 1rem;
-    box-shadow: $box-shadow-sm;
+    //box-shadow: $box-shadow-sm;
 }
 
 #frontpage.toggle-card-view .posts .card:first-of-type, #userpage.toggle-card-view .posts .card:first-of-type, #search.toggle-card-view .posts .card:first-of-type {
@@ -1325,6 +1327,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     padding: 0;
     line-height: 1;
     box-shadow: none;
+    border-radius: 0;
 }
 
 .toggle-view .fa, .toggle-view .fas, .toggle-view .far, .toggle-view .fab, .toggle-view .fal {
@@ -1353,6 +1356,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 // Thread
+
+.card-header:first-child {
+    border-radius: $border-radius $border-radius 0 0;
+}
 
 .card-header {
     font-size: $small-font-size;
@@ -2074,7 +2081,7 @@ ul.comment-section {
     margin-bottom: 3rem;
     background: $white;
     border: 1px solid $border-color;
-    box-shadow: $box-shadow-sm;
+    //box-shadow: $box-shadow-sm;
     border-radius: 0.35rem;
 }
 
@@ -2559,6 +2566,13 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 // Responsive media queries
 
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+    #frontpage, #userpage, #search {
+        padding-top: 110px;
+    }
+}
+
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
 
@@ -2614,8 +2628,14 @@ body {
 }
 
 #frontpage, #userpage, #search {
-    padding-top: 98px;
+    padding-top: 95px;
     background-color: $white;
+}
+
+#search .search-results.card  {
+    border-bottom: 1px solid #e3e3e3;
+    border-width: 0 0 1px 0;
+    border-radius: 0;
 }
 
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type {
