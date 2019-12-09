@@ -298,7 +298,7 @@ def mod_is_banned_board_username(bid, username, v):
     return jsonify(result)
 
 
-@app.route("/+<boardname>/mod/settings", methods=["GET"])
+@app.route("/+<boardname>/mod/<pagename>", methods=["GET"])
 @auth_required
 def board_about_settings(boardname, v):
 
@@ -309,8 +309,12 @@ def board_about_settings(boardname, v):
     if not board.has_mod(v):
         abort(403)
 
-    return render_template("guild/settings.html", v=v, b=board)
+    try:
+        return render_template(safe_join("guild", pagename+".html"), v=v, b=board)
+    except jinja2.exceptions.TemplateNotFound:
+        abort(404)
 
+        
 @app.route("/mod/<bid>/settings", methods=["POST"])
 @auth_required
 @validate_formkey
