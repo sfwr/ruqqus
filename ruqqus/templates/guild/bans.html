@@ -16,7 +16,7 @@
 
 				<form action="/+{{ b.name }}/mod/exiled" method="get">
 				<input class="form-input" name="user" type="text" value="{{ request.args.get('user','') }}">
-				<input type="submit" value="Check Ban">
+				<input type="submit" class="btn btn-primary" value="Check Ban">
 				</form>
 
 				{% if user %}
