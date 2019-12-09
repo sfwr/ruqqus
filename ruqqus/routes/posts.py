@@ -154,9 +154,7 @@ def submit_post(v):
                             fragment=parsed_url.fragment)
         url=urlunparse(new_url)
     else:
-        url=None
-        
-
+        url=""
 
     #now make new post
 
