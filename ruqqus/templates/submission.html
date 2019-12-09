@@ -206,7 +206,7 @@
           {% endif %}
           {% endif %}
 	  {% if v and p.board.has_mod(v) %}
-	  <a class="dropdown-item removeDropdownItem" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}')"><i class="fas fa-boot" data-fa-transform="flip-h"></i>Kick Post</a>
+	  <a class="dropdown-item removeDropdownItem text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}')"><i class="fas fa-boot" data-fa-transform="flip-h"></i>Kick Post</a>
 	  {% endif %}
         </div>
       </div>
@@ -296,7 +296,7 @@
                                 {% endif %}
 {% endif %}
 {% if v and p.board.has_mod(v) %}
-	<a class="dropdown-item removeDropdownItem" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}')"><i class="fas fa-boot" data-fa-transform="flip-h"></i>Kick Post</a>
+	<a class="dropdown-item removeDropdownItem text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}')"><i class="fas fa-boot" data-fa-transform="flip-h"></i>Kick Post</a>
 {% endif %}
                           </div>
                         </div>
