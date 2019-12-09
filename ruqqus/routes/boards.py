@@ -118,6 +118,8 @@ def mod_kick_bid_pid(bid,pid, v):
     db.add(post)
     db.commit()
 
+    return "", 204
+
 @app.route("/mod/ban/<bid>/<username>", methods=["POST"])
 @auth_required
 @validate_formkey
@@ -137,6 +139,8 @@ def mod_ban_bid_user(bid, username, v):
 
     db.add(new_ban)
     db.commit()
+
+    return "", 204
     
 @app.route("/mod/unban/<bid>/<username>", methods=["POST"])
 @auth_required
@@ -156,7 +160,7 @@ def mod_unban_bid_user(bid, username, v):
     db.delete(x)
     db.commit()
     
-    
+    return "", 204
 
 @app.route("/user/kick/<pid>", methods=["POST"])
 @auth_required
@@ -186,7 +190,7 @@ def user_kick_pid(pid, v):
     
     db.add(post)
     db.commit()
-    
+    return "", 204
 
 @app.route("/mod/take/<bid>/<pid>", methods=["POST"])
 @auth_required
@@ -212,6 +216,7 @@ def mod_take_bid_pid(bid,pid):
     post.board_id=board.id
     db.add(post)
     db.commit()
+    return "", 204
 
 @app.route("/mod/invite/<bid>/<username>", methods=["POST"])
 @auth_required
@@ -233,6 +238,7 @@ def mod_invite_username(bid, username,v):
                             accepted=False)
     db.add(new_mod)
     db.commit()
+    return "", 204
 
 @app.route("/mod/accept/<bid>", methods=["POST"])
 @auth_required
@@ -248,6 +254,7 @@ def mod_accept_board(bid, v):
     x.accepted=True
     db.add(x)
     db.commit()
+    return "", 204
     
 
 @app.route("/mod/remove/<bid>/<username>", methods=["POST"])
@@ -271,6 +278,7 @@ def mod_remove_username(bid, username,v):
 
     db.delete(u_mod)
     db.commit()
+    return "", 204
 
 @app.route("/mod/is_banned/<bid>/<username>", methods=["GET"])
 @auth_required
