@@ -203,3 +203,23 @@ def submit_post(v):
 
     return redirect(new_post.permalink)
     
+@app.route("/api/nsfw/<pid>/<x>", method=["POST"])
+@auth_required
+@validate_formkey
+def api_nsfw_pid(pid, x, v):
+
+    try:
+        x=bool(int(x))
+    except:
+        abort(400)
+
+    post=get_post(pid)
+
+    if not v.admin_level >=3 and not post.author_id==v.id and not post.board.has_mod(v):
+        abort(403)
+        
+    post.over_18=x
+    db.add(post)
+    db.commit()
+
+    return "", 204
