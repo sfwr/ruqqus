@@ -92,6 +92,9 @@ def board_name(name, v):
     if not board.name==name:
         return redirect(board.permalink)
 
+    if board.over_18 and not (v and v.over_18):
+        abort(451)
+
     sort=request.args.get("sort","hot")
     page=int(request.args.get("page", 1))
              

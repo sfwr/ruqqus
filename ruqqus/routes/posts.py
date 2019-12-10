@@ -10,6 +10,7 @@ from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.filters import *
 from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
+from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from flask import *
 from ruqqus.__main__ import app, db, limiter
@@ -29,11 +30,10 @@ BAN_REASONS=['',
 @auth_desired
 def post_base36id(base36id, v=None):
     
-    base10id = base36decode(base36id)
-    
-    post=db.query(Submission).filter_by(id=base10id).first()
-    if not post:
-        abort(404)
+    post=get_post(base36id)
+
+    if post.over_18 and not (v and v.over_18):
+        abort(451)
         
     return post.rendered_page(v=v)
 
