@@ -30,20 +30,15 @@ def comment_cid(cid, v):
 @auth_desired
 def post_pid_comment_cid(p_id, c_id, v=None):
 
-    c_id = base36decode(c_id)
+    comment=get_comment(c_id)
 
-    comment=db.query(Comment).filter_by(id=c_id).first()
-    if not comment:
-        abort(404)
-
-    p_id = base36decode(p_id)
-    
-    post=db.query(Submission).filter_by(id=p_id).first()
-    if not post:
-        abort(404)
+    post=get_post(p_id)
 
     if comment.parent_submission != p_id:
         abort(404)
+
+    if post.over_18 and not (v and v.over_18):
+        abort(451)
         
     return post.rendered_page(v=v, comment=comment)
 
