@@ -10,7 +10,7 @@
 
                                 <div class="body">
 
-				{% if b.has_invite(v) %}
+				{% if v and b.has_invite(v) %}
 				<div>You have been invited to be a master of this guild. <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/mod/accept/{{ b.base36id }}', callback=function(){window.location.reload(true)})">Accept</a>
 				</div>
 				{% endif %}
