@@ -197,6 +197,16 @@ def prep_database():
     IMMUTABLE
     RETURNS NULL ON NULL INPUT;
     """)
+
+    #comment over_18 is based on the status of the parent post
+    c.execute("""
+    CREATE OR REPLACE FUNCTION over_18(comments)
+    RETURNS boolean AS '
+      SELECT submissions.over_18
+      FROM submissions
+      WHERE submissions.id==$1.parent_submission
+      '
+    """)
     
 
     #===========USERS=============

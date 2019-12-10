@@ -38,6 +38,7 @@ class Comment(Base):
     age=Column(Integer, server_default=FetchedValue())
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
     flag_count=Column(Integer, server_default=FetchedValue())
+    over_18=Column(Boolean, server_default=FetchedValue())
 
     def __init__(self, *args, **kwargs):
                    
