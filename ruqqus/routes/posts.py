@@ -110,7 +110,6 @@ def submit_post(v):
     
     if board.has_ban(v):
         return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
-
             
     #Huffman-Ohanian growth method
     if v.admin_level >=2:
@@ -187,7 +186,8 @@ def submit_post(v):
                         embed_url=embed,
                         domain_ref=domain_obj.id if domain_obj else None,
                         board_id=board.id,
-                        original_board_id=board.id
+                        original_board_id=board.id,
+                        over_18=(request.form.get("over_18","") or board.over_18)
                         )
 
     db.add(new_post)

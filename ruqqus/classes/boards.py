@@ -18,6 +18,7 @@ class Board(Base):
     created_utc=Column(Integer)
     description = Column(String)
     description_html=Column(String)
+    over_18=Column(Boolean, default=False)
     
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
     original_submissions=relationship("Submission", lazy="dynamic", backref="original_board", primaryjoin="Board.id==Submission.original_board_id")
