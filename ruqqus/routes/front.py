@@ -13,13 +13,12 @@ def frontlist(sort="hot", page=1, nsfw=False):
 
     #cutoff=int(time.time())-(60*60*24*30)
 
-    posts = db.query(Submission).filter(#Submission.created_utc>=cutoff,
-                                        Submission.is_banned==False,
-                                        Submission.is_deleted==False,
-                                        Submission.stickied==False)
+    posts = db.query(Submission).filter_by(is_banned=False,
+                                           is_deleted=False,
+                                           stickied=False)
 
     if not nsfw:
-        posts=posts.filter(Submission.over_18=False)
+        posts=posts.filter_by(Submission.over_18=False)
 
     if sort=="hot":
         posts=posts.order_by(text("submissions.rank_hot desc"))
