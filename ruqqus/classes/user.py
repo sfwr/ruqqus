@@ -166,10 +166,10 @@ class User(Base):
         comments=self.comments
 
         if not (v and v.over_18):
-            submissions=submissions.filter_by(over_18=False)
+            comments=comments.filter_by(over_18=False)
             
         if not (v and (v.admin_level >=3)):
-            submissions=submissions.filter_by(is_deleted=False)
+            comments=comments.filter_by(is_deleted=False)
             
         if not (v and (v.admin_level >=3 or v.id==self.id)):
             comments=comments.filter_by(is_banned=False)
