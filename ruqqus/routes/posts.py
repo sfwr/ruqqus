@@ -203,7 +203,7 @@ def submit_post(v):
 
     return redirect(new_post.permalink)
     
-@app.route("/api/nsfw/<pid>/<x>", method=["POST"])
+@app.route("/api/nsfw/<pid>/<x>", methods=["POST"])
 @auth_required
 @validate_formkey
 def api_nsfw_pid(pid, x, v):
