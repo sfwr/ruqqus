@@ -204,7 +204,7 @@ def prep_database():
     RETURNS boolean AS '
       SELECT submissions.over_18
       FROM submissions
-      WHERE submissions.id==$1.parent_submission
+      WHERE submissions.id=$1.parent_submission
       '
     LANGUAGE SQL
     IMMUTABLE
