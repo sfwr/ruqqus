@@ -96,14 +96,12 @@ def submit_post(v):
     board_name=request.form.get("board","general")
     board_name=board_name.lstrip("+")
     
-    board=db.query(Board).filter_by(name=board_name).first()
+    board=db.query(Board).filter(Board.name.ilike(board_name)).first()
     if not board:
         board=db.query(Board).filter_by(id=1).first()
     
-    if board.id !=1:
-
-        if board.has_ban(v):
-            return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
+    if board.has_ban(v):
+        return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
 
             
     #Huffman-Ohanian growth method
