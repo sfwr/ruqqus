@@ -137,15 +137,19 @@ class User(Base):
         page=int(request.args.get("page","1"))
         page=max(page, 1)
 
-        
-        if v:
-            if v.admin_level or v.id==self.id:
-                listing=[p for p in self.submissions.order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
-            else:
-                listing=[p for p in self.submissions.filter_by(is_banned=False).order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
-        else:
-            listing=[p for p in self.submissions.filter_by(is_banned=False).order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
+        submissions=self.submissions
 
+        if not (v and v.over_18):
+            submissions=submissions.filter_by(over_18=False)
+
+        if not (v and (v.admin_level >=3)):
+            submissions=submissions.filter_by(is_deleted=False)
+
+        if not (v and (v.admin_level >=3 or v.id==self.id)):
+            submission=submissions.filter_by(is_banned=False)
+
+        listing = [x for x in submissions.order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
+        
         #we got 26 items just to see if a next page exists
         next_exists=(len(listing)==26)
         listing=listing[0:25]
