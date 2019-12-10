@@ -18,7 +18,7 @@ def frontlist(sort="hot", page=1, nsfw=False):
                                            stickied=False)
 
     if not nsfw:
-        posts=posts.filter_by(Submission.over_18=False)
+        posts=posts.filter_by(over_18=False)
 
     if sort=="hot":
         posts=posts.order_by(text("submissions.rank_hot desc"))
