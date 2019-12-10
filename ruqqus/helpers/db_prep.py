@@ -206,6 +206,9 @@ def prep_database():
       FROM submissions
       WHERE submissions.id==$1.parent_submission
       '
+    LANGUAGE SQL
+    IMMUTABLE
+    RETURNS NULL ON NULL INPUT;
     """)
     
 
