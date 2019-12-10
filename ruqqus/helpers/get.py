@@ -29,3 +29,10 @@ def get_board(bid):
     if not x:
         abort(404)
     return x
+
+def get_guild(name):
+
+    x=db.query(Board).filter(Board.name.ilike(name)).first()
+    if not x:
+        abort(404)
+    return x
