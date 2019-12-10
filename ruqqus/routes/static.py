@@ -50,11 +50,6 @@ def notifications(v):
     return v.notifications_page(page=request.args.get("page","1"),
                                    include_read=request.args.get("all",False))
 
-@app.route("/submit", methods=["GET"])
-@is_not_banned
-def submit_get(v):
-    return render_template("submit.html", v=v)
-
 @app.route("/about/<path:path>")
 def about_path(path):
     return redirect(f"/help/{path}")
