@@ -38,6 +38,11 @@ def error_405(e, v):
 def error_429(e, v):
     return render_template('errors/429.html', v=v), 429
 
+@app.errorhandler(451)
+@auth_desired
+def error_451(e, v):
+    return render_template('errors/451.html', v=v), 451
+
 @app.errorhandler(500)
 @auth_desired
 def error_500(e, v):
