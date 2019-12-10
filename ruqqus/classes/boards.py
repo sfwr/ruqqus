@@ -56,13 +56,16 @@ class Board(Base):
         return self.postrels.filter_by(post_id=post.id).first()
 
     @cache.memoize(timeout=30)
-    def idlist(self, sort="hot", page=1):
+    def idlist(self, sort="hot", page=1, nsfw=False):
 
         posts=db.query(Submission).filter_by(is_banned=False,
                                              is_deleted=False,
                                              stickied=False,
                                              board_id=self.id
                                              )
+
+        if not nsfw:
+            posts=posts.filter_by(over_18=False)
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.rank_hot desc"))
@@ -83,7 +86,7 @@ class Board(Base):
 
     def rendered_board_page(self, v, sort="hot", page=1):
         
-        ids=self.idlist(sort=sort, page=page)
+        ids=self.idlist(sort=sort, page=page, nsfw=(v and v.over_18))
 
         next_exists=(len(ids)==26)
         ids=ids[0:25]

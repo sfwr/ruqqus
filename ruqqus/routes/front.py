@@ -9,7 +9,7 @@ from ruqqus.classes.submission import Submission
 
 
 @cache.memoize(timeout=30)
-def frontlist(sort="hot", page=1):
+def frontlist(sort="hot", page=1, nsfw=False):
 
     #cutoff=int(time.time())-(60*60*24*30)
 
@@ -17,6 +17,9 @@ def frontlist(sort="hot", page=1):
                                         Submission.is_banned==False,
                                         Submission.is_deleted==False,
                                         Submission.stickied==False)
+
+    if not nsfw:
+        posts=posts.filter(Submission.over_18=False)
 
     if sort=="hot":
         posts=posts.order_by(text("submissions.rank_hot desc"))
@@ -50,7 +53,7 @@ def home(v):
     sort_method=request.args.get("sort", "hot")
 
     #get list of ids
-    ids = frontlist(sort=sort_method, page=page)
+    ids = frontlist(sort=sort_method, page=page, nsfw=(v and v.over_18))
 
     #check existence of next page
     next_exists=(len(ids)==26)
