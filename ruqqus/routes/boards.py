@@ -354,6 +354,7 @@ def mod_bid_settings(bid, v):
     
     board.description = description
     board.description_html=description_html
+    board.over_18=bool(request.form.get("over_18",False))
 
     db.add(board)
     db.commit()
