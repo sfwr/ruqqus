@@ -433,7 +433,7 @@ def unsubscribe_board(boardname, v):
     board=get_guild(boardname)
 
     #check for existing subscription
-    sub= db.query(Subscription).filter_by(user_id=v.id, board_id=board.id).first():
+    sub= db.query(Subscription).filter_by(user_id=v.id, board_id=board.id).first()
 
     if not sub:
         abort(409)
