@@ -100,5 +100,16 @@ def home(v):
 def home_subs(v):
 
     return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
-                                        page=max(int(request.args.get("page",1)),0)
+                                        page=max(int(request.args.get("page",1)),0),
+                                        kind="board"
                                         )
+
+@app.route("/following", methods=["GET"])
+@auth_required
+def home_subs(v):
+
+    return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
+                                        page=max(int(request.args.get("page",1)),0),
+                                        kind="user"
+                                        )
+

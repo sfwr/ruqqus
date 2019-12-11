@@ -70,18 +70,26 @@ class User(Base):
         super().__init__(**kwargs)
         
     @cache.memoize(timeout=120)
-    def idlist(self, sort="hot", page=1):
+    def idlist(self, sort="hot", page=1, kind="board"):
 
-        board_ids=[x.board_id for x in self.subscriptions]
+        
 
         posts=db.query(Submission).filter_by(is_banned=False,
                                              is_deleted=False,
                                              stickied=False
                                              )
-        posts=posts.filter(Submission.board_id.in_(board_ids))
+        if kind="board":
+            board_ids=[x.board_id for x in self.subscriptions]
+            posts=posts.filter(Submission.board_id.in_(board_ids))
+        elif kind="user":
+            user_ids=[x.user_id for x in self.following.all()]
+            posts=posts.filter(Submission.author_id.in_(user_ids))
+        else:
+            abort(422)
 
         if not self.over_18:
             posts=posts.filter_by(over_18=False)
+            
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.rank_hot desc"))
@@ -100,9 +108,9 @@ class User(Base):
 
         return posts
 
-    def rendered_subscription_page(self, sort="hot", page=1):
+    def rendered_subscription_page(self, sort="hot", page=1, kind="board"):
 
-        ids=self.idlist(sort=sort, page=page)
+        ids=self.board_idlist(sort=sort, page=page, kind=kind)
 
         next_exists=(len(ids)==26)
         ids=ids[0:25]
@@ -132,7 +140,9 @@ class User(Base):
             posts=[]
 
         return render_template("subscriptions.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
-    
+
+
+
 
     @property
     def boards_modded(self):
