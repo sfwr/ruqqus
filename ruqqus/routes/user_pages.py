@@ -76,3 +76,40 @@ def u_username_comments(username, v=None):
         return redirect(result.url)
         
     return result.rendered_comments_page(v=v)
+
+@app.route("/api/follow/<username>")
+@auth_required
+def follow_user(username, v):
+
+    target=get_user(username)
+
+    #check for existing follow
+    if db.query(Follow).filter_by(user_id=v.id, target_id=target.id).first():
+        abort(409)
+
+    new_follow=Follow(user_id=v.id,
+                      target_id=target.id)
+
+    db.add(new_follow)
+    db.commit()
+
+    return "", 204
+
+
+@app.route("/api/unfollow/<username>")
+@auth_required
+def unfollow_user(username, v):
+
+    target=get_user(username)
+
+    #check for existing follow
+    follow= db.query(Follow).filter_by(user_id=v.id, target_id=target.id).first()
+
+    if not follow:
+        abort(409)
+
+    db.delete(follow)
+    db.commit()
+
+    return "", 204
+
