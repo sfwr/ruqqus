@@ -9,7 +9,6 @@ import random
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base, db, cache
-from .user import User
 from .votes import Vote
 from .domains import Domain
 from .flags import Flag
@@ -19,7 +18,7 @@ class Submission(Base):
     __tablename__="submissions"
 
     id = Column(BigInteger, primary_key=True)
-    author_id = Column(BigInteger, ForeignKey(User.id))
+    author_id = Column(BigInteger, ForeignKey("users.id"))
     title = Column(String(500), default=None)
     url = Column(String(500), default=None)
     edited_utc = Column(BigInteger, default=0)
@@ -40,7 +39,8 @@ class Submission(Base):
     board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     over_18=Column(Boolean, default=False)
-    board_rels=relationship("PostRelationship", lazy="dynamic", backref="post")
+
+    approved_by=relationship("User", lazy="dynamic", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
 
     #These are virtual properties handled as postgres functions server-side
@@ -126,7 +126,7 @@ class Submission(Base):
     @property
     @lazy
     def author(self):
-        return db.query(User).filter_by(id=self.author_id).first()
+        return self.author_rel
 
 
     @property
@@ -268,7 +268,3 @@ class Submission(Base):
             return 0
         else:
             return self.flags.filter(Flag.created_utc>self.approved_utc).count()
-
-    @property
-    def approved_by(self):
-        return db.query(User).filter_by(id=self.is_approved).first()

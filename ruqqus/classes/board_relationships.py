@@ -1,6 +1,7 @@
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 from ruqqus.__main__ import Base, db, cache
 import time
 
@@ -11,6 +12,9 @@ class ModRelationship(Base):
     board_id = Column(Integer, ForeignKey("boards.id"))
     created_utc = Column(Integer, default=0)
     accepted = Column(Boolean, default=False)
+
+    user=relationship("User", lazy="dynamic", uselist=False)
+    board=relationship("Board", lazy="dynamic", uselist=False)
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
@@ -31,6 +35,10 @@ class BanRelationship(Base):
     created_utc = Column(BigInteger, default=0)
     banning_mod_id=Column(Integer, ForeignKey("users.id"))
 
+    user=relationship("User", lazy="dynamic", uselist=False, primaryjoin="User.id==BanRelationship.user_id")
+    banning_mod=relationship("User", lazy="dynamic", uselist=False, primaryjoin="User.id==BanRelationship.banning_mod_id")
+    board=relationship("Board", lazy="dynamic", uselist=False)
+
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
             kwargs["created_utc"] = int(time.time())
@@ -46,6 +54,9 @@ class PostRelationship(Base):
     id=Column(BigInteger, primary_key=True)
     post_id=Column(Integer, ForeignKey("submissions.id"))
     board_id=Column(Integer, ForeignKey("boards.id"))
+
+    post=relationship("Submission", lazy="dynamic", uselist=False)
+    board=relationship("Board", lazy="dynamic", uselist=False)
 
     def __repr__(self):
         return f"<PostRel(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
