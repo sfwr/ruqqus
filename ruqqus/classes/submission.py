@@ -34,7 +34,7 @@ class Submission(Base):
     embed_url=Column(String(256), default="")
     domain_ref=Column(Integer, ForeignKey("domains.id"))
     flags=relationship("Flag", lazy="dynamic", backref="submission")
-    is_approved=Column(Integer, default=0)
+    is_approved=Column(Integer, default=0, ForeignKey("users.id"))
     approved_utc=Column(Integer, default=0)
     board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
