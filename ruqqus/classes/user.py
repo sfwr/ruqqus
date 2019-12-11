@@ -72,7 +72,7 @@ class User(Base):
                                              is_deleted=False,
                                              stickied=False
                                              )
-        posts=posts.filter(Submission.board_id._in(board_ids))
+        posts=posts.filter(Submission.board_id.in_(board_ids))
 
         if not self.over_18:
             posts=posts.filter_by(over_18=False)
