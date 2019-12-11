@@ -12,13 +12,12 @@ def search(v):
 
     query=request.args.get("q")
     sort=request.args.get("sort", "hot").lower()
-    nsfw=bool(request.args.get("nsfw", False))
     
     page=max(1, int(request.args.get("page", 1)))
 
     posts = db.query(Submission).filter(func.lower(Submission.title).contains(query.lower()))
 
-    if not (v and nsfw and v.over_18):
+    if not (v and v.over_18):
         posts=posts.filter_by(over_10=False)
 
     if not(v and v.admin_level>=3):
