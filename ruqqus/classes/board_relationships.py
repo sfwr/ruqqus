@@ -13,8 +13,8 @@ class ModRelationship(Base):
     created_utc = Column(Integer, default=0)
     accepted = Column(Boolean, default=False)
 
-    user=relationship("User", lazy="dynamic", uselist=False)
-    board=relationship("Board", lazy="dynamic", uselist=False)
+    user=relationship("User", uselist=False)
+    board=relationship("Board", uselist=False)
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
@@ -35,9 +35,9 @@ class BanRelationship(Base):
     created_utc = Column(BigInteger, default=0)
     banning_mod_id=Column(Integer, ForeignKey("users.id"))
 
-    user=relationship("User", lazy="dynamic", uselist=False, primaryjoin="User.id==BanRelationship.user_id")
-    banning_mod=relationship("User", lazy="dynamic", uselist=False, primaryjoin="User.id==BanRelationship.banning_mod_id")
-    board=relationship("Board", lazy="dynamic", uselist=False)
+    user=relationship("User", uselist=False, primaryjoin="User.id==BanRelationship.user_id")
+    banning_mod=relationship("User", uselist=False, primaryjoin="User.id==BanRelationship.banning_mod_id")
+    board=relationship("Board", uselist=False)
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
@@ -55,8 +55,8 @@ class PostRelationship(Base):
     post_id=Column(Integer, ForeignKey("submissions.id"))
     board_id=Column(Integer, ForeignKey("boards.id"))
 
-    post=relationship("Submission", lazy="dynamic", uselist=False)
-    board=relationship("Board", lazy="dynamic", uselist=False)
+    post=relationship("Submission", uselist=False)
+    board=relationship("Board", uselist=False)
 
     def __repr__(self):
         return f"<PostRel(id={self.id}, uid={self.uid}, board_id={self.board_id})>"

@@ -12,8 +12,8 @@ class Subscription(Base):
     board_id = Column(BigInteger, ForeignKey("boards.id"))
     created_utc = Column(BigInteger, default=0)
 
-    user=relationship("User", lazy="dynamic", uselist=False)
-    board=relationship("Board", lazy="dynamic", uselist=False)
+    user=relationship("User", uselist=False)
+    board=relationship("Board", uselist=False)
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
