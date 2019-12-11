@@ -93,3 +93,12 @@ def home(v):
             posts=[sticky]+posts
     
     return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort_method=sort_method, page=page)
+
+
+@app.route("/home", methods=["GET"])
+@auth_required
+def home_subs(v):
+
+    return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
+                                        page=max(int(request.args.get("page",1)),0)
+                                        )

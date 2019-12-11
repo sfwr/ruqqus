@@ -125,7 +125,7 @@ class User(Base):
         else:
             posts=[]
 
-        return render_template("subscriptions.html", b=self, v=v, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
+        return render_template("subscriptions.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
 
 
     

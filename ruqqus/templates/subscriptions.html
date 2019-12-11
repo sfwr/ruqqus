@@ -1,0 +1,13 @@
+{% extends "home.html" %}
+
+{% block sidebarblock %}
+        <div class="sidebar-section sidebar-about">
+          <div class="title">Your Guilds</div>
+          <div class="body">
+            <p>Multi-guild view of your guilds.</p>
+            {% if v and not v.is_banned %}
+            <div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
+            {% endif %}
+          </div>
+        </div>
+{% endblock %}
