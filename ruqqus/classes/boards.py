@@ -1,5 +1,5 @@
 from sqlalchemy import *
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, deferred
 import time
 
 from ruqqus.helpers.base36 import *
@@ -23,6 +23,9 @@ class Board(Base):
     moderators=relationship("ModRelationship", lazy="dynamic")
     
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
+
+    #db side functions
+    subscriber_count=deferred(Column(Integer, server_default=FetchedValue()))
     
     def __init__(self, **kwargs):
 

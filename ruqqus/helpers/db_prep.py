@@ -246,27 +246,37 @@ def prep_database():
     RETURNS NULL ON NULL INPUT;
     """)
 
-    ##c.execute("""
-    ##CREATE OR REPLACE FUNCTION overview(users)
-    ##RETURNS refcursor AS '
-    ##  SELECT * from
-    ##  (
-    ##    select id, created_utc, 'submission' as item_type,
-    ##    from submissions
-    ##    where author_id=$1.id
-    ##    union all
-    ##    select id, created_utc, 'comment' as item_type,
-    ##    from comments
-    ##    where author_id=$1.id
-    ##  ) as t1
-    ##order by created_utc desc
-    ##offset 0
-    ##limit 5
-    ##'
-    ##LANGUAGE SQL
-    ##IMMUTABLE
-    ##RETURNS NULL ON NULL INPUT
-    ##""")
+    c.execute("""
+    CREATE OR REPLACE FUNCTION follower_count(users)
+     RETURNS bigint
+     LANGUAGE sql
+     IMMUTABLE STRICT
+    AS $function$
+         select count(*)
+         from follows
+         left join users
+         on follows.target_id=users.id
+         where follows.target_id=$1.id
+         and users.is_banned=0
+        $function$
+    """)
+
+    #==========BOARDS===========
+
+    c.execute("""
+    CREATE OR REPLACE FUNCTION subscriber_count(boards)
+     RETURNS bigint
+     LANGUAGE sql
+     IMMUTABLE STRICT
+    AS $function$
+         select count(*)
+         from subscriptions
+         left join users
+         on subscriptions.user_id=users.id
+         where subscriptions.board_id=$1.id
+         and users.is_banned=0
+        $function$
+    """)
 
     #==========RANDOM IMAGE SPLASH SELECTION=========
 
