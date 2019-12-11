@@ -45,10 +45,16 @@ class User(Base):
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
     subscriptions=relationship("Subscription", lazy="dynamic")
+
+    following=relationship("Follow", lazy="dynamic", primaryjoin="Follow.user_id==User.id")
+    followers=relationship("Follow", lazy="dynamic", primaryjoin="Follow.target_id==User.id")
+
+
     
     #properties defined as SQL server-side functions
     energy = deferred(Column(Integer, server_default=FetchedValue()))
     referral_count=deferred(Column(Integer, server_default=FetchedValue()))
+    follower_count=deferred(Column(Integer, server_default=FetchedValue()))
 
 
 
@@ -126,8 +132,6 @@ class User(Base):
             posts=[]
 
         return render_template("subscriptions.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
-
-
     
 
     @property
