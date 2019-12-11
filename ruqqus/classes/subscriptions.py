@@ -22,4 +22,23 @@ class Subscription(Base):
         super().__init__(*args, **kwargs)
 
     def __repr__(self):
-        return f"<Subscription(id={self.id}, user)>"
+        return f"<Subscription(id={self.id})>"
+
+class Follow(Base):
+    __tablename__ = "follows"
+    id = Column(BigInteger, primary_key=True)
+    user_id = Column(BigInteger, ForeignKey("users.id"))
+    target_id = Column(BigInteger, ForeignKey("users.id"))
+    created_utc = Column(BigInteger, default=0)
+
+    user=relationship("User", uselist=False, primary_join="User.id==Follow.user_id")
+    target=relationship("Board", uselist=False, primary_join="User.id==Follow.target_id")
+
+    def __init__(self, *args, **kwargs):
+        if "created_utc" not in kwargs:
+            kwargs["created_utc"] = int(time.time())
+
+        super().__init__(*args, **kwargs)
+
+    def __repr__(self):
+        return f"<Follow(id={self.id})>"
