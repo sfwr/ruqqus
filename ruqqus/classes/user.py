@@ -12,7 +12,7 @@ from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
 from .votes import Vote
 from .alts import Alt
-from .submissions import Submission
+from .submission import Submission
 from ruqqus.__main__ import Base, db, cache
 
 class User(Base):
