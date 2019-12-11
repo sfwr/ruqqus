@@ -406,3 +406,39 @@ def board_about_exiled(boardname, v):
                                     
 
     return render_template("guild/bans.html", v=v, b=board, users=users)
+
+@app.route("/subscribe/<boardname>")
+@auth_required
+def subscribe_board(boardname, v):
+
+    board=get_guild(boardname)
+
+    #check for existing subscription
+    if db.query(Subscription).filter_by(user_id=v.id, board_id=board.id).first():
+        abort(409)
+
+    new_sub=Subscription(user_id=v.id,
+                         board_id=board.id)
+
+    db.add(new_sub)
+    db.commit()
+
+    return "", 204
+
+
+@app.route("/unsubscribe/<boardname>")
+@auth_required
+def unsubscribe_board(boardname, v):
+
+    board=get_guild(boardname)
+
+    #check for existing subscription
+    sub= db.query(Subscription).filter_by(user_id=v.id, board_id=board.id).first():
+
+    if not sub:
+        abort(409)
+
+    db.delete(sub)
+    db.commit()
+
+    return "", 204
