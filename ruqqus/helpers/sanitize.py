@@ -1,4 +1,5 @@
 import bleach
+from bs4 import BeautifulSoup
 from bleach.linkifier import LinkifyFilter
 from urllib.parse import urlparse, ParseResult, urlunparse
 from functools import partial
@@ -15,6 +16,7 @@ _allowed_tags=tags=['b',
                     'h5',
                     'h6',
                     'i',
+                    'img',
                     'li',
                     'ol',
                     'p',
@@ -72,8 +74,19 @@ _clean_w_links = bleach.Cleaner(tags=_allowed_tags_with_links,
 def sanitize(text, linkgen=False):
 
     if linkgen:
-        return _clean_w_links.clean(text)
+        sanitized= _clean_w_links.clean(text)
+
+        soup=BeautifulSoup(sanitized)
+
+        for tag in soup.find_all("img"):
+            tag["crossorigin"]="anonymous"
+            tag["rel"]="nofollow"
+            tag["alt"]="Anonymous load failed"
+
+        sanitized=str(soup)
     else:
-        return _clean_wo_links.clean(text)
+        sanitized= _clean_wo_links.clean(text)
+
+    return sanitized
     
 
