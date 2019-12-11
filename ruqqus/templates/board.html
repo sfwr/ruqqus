@@ -10,12 +10,18 @@
     <p class="text-muted">Founded {{ b.age_string }}</p>
   </div>
   {% if b.over_18 %}
-  <div class="body py-0">
+  <div class="body>
     <span class="badge badge-danger">NSFW</span>
   </div>
   {% endif %}
   <div class="body pt-0">
     {{ b.description_html | safe }}
+  </div>
+</div>
+<div class="sidebar-section sidebar-submit">
+  <div class="title">Submit to +{{ b.name }}</div>
+  <div class="body>
+    <a class="btn btn-primary form-input" href="/submit?guild={{ b.name | urlencode }}">Create Post</a>
   </div>
 </div>
 <div class="sidebar-section sidebar-mods">
