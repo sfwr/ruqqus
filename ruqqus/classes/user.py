@@ -64,7 +64,7 @@ class User(Base):
         super().__init__(**kwargs)
         
     @cache.memoize(timeout=120)
-    def idlist(self, sort="hot", page=1, nsfw=False):
+    def idlist(self, sort="hot", page=1):
 
         board_ids=[x.board_id for x in self.subscriptions]
 
@@ -74,7 +74,7 @@ class User(Base):
                                              )
         posts=posts.filter(Submission.board_id._in(board_ids))
 
-        if not nsfw:
+        if not self.over_18:
             posts=posts.filter_by(over_18=False)
 
         if sort=="hot":
@@ -96,7 +96,7 @@ class User(Base):
 
     def rendered_subscription_page(self, sort="hot", page=1):
 
-        ids=self.idlist(sort=sort, page=page, nsfw=(v and v.over_18))
+        ids=self.idlist(sort=sort, page=page)
 
         next_exists=(len(ids)==26)
         ids=ids[0:25]
