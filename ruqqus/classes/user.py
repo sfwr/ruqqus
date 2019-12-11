@@ -12,6 +12,7 @@ from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
 from .votes import Vote
 from .alts import Alt
+from .submission import Submission
 from ruqqus.__main__ import Base, db, cache
 
 class User(Base):
@@ -28,7 +29,7 @@ class User(Base):
     over_18=Column(Boolean, default=False)
     creation_ip=Column(String, default=None)
     most_recent_ip=Column(String, default=None)
-    submissions=relationship("Submission", lazy="dynamic", backref="users")
+    submissions=relationship("Submission", lazy="dynamic", primaryjoin="Submission.author_id==User.id", backref="author_rel")
     comments=relationship("Comment", lazy="dynamic", primaryjoin="Comment.author_id==User.id")
     votes=relationship("Vote", lazy="dynamic", backref="users")
     commentvotes=relationship("CommentVote", lazy="dynamic", backref="users")
@@ -41,10 +42,9 @@ class User(Base):
     is_banned=Column(Integer, default=0)
     ban_reason=Column(String, default="")
 
-    moderates=relationship("ModRelationship", lazy="dynamic", backref="user")
-    banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id", backref="user")
-    banhammered=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.banning_mod_id==User.id", backref="mod")
-    subscriptions=relationship("Subscription", lazy="dynamic", backref="user")
+    moderates=relationship("ModRelationship", lazy="dynamic")
+    banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
+    subscriptions=relationship("Subscription", lazy="dynamic")
     
     #properties defined as SQL server-side functions
     energy = deferred(Column(Integer, server_default=FetchedValue()))
@@ -72,7 +72,7 @@ class User(Base):
                                              is_deleted=False,
                                              stickied=False
                                              )
-        posts=posts.filter(Submission.board_id._in(board_ids))
+        posts=posts.filter(Submission.board_id.in_(board_ids))
 
         if not self.over_18:
             posts=posts.filter_by(over_18=False)

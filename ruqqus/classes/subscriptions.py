@@ -1,6 +1,7 @@
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from sqlalchemy import *
+from sqlalchemy.orm import relationship
 from ruqqus.__main__ import Base, db, cache
 import time
 
@@ -10,6 +11,9 @@ class Subscription(Base):
     user_id = Column(BigInteger, ForeignKey("users.id"))
     board_id = Column(BigInteger, ForeignKey("boards.id"))
     created_utc = Column(BigInteger, default=0)
+
+    user=relationship("User", uselist=False)
+    board=relationship("Board", uselist=False)
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:

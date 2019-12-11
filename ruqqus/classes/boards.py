@@ -22,11 +22,6 @@ class Board(Base):
     
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
     original_submissions=relationship("Submission", lazy="dynamic", backref="original_board", primaryjoin="Board.id==Submission.original_board_id")
-
-    moderators = relationship("ModRelationship", lazy="dynamic", backref="board")
-    bans = relationship("BanRelationship", lazy="dynamic", backref="board")
-    postrels=relationship("PostRelationship", lazy="dynamic", backref="board")
-    subscribers=relationship("Subscription", lazy="dynamic", backref="board")
     
     def __init__(self, **kwargs):
 
