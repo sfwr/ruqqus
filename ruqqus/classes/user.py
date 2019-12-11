@@ -110,7 +110,7 @@ class User(Base):
 
     def rendered_subscription_page(self, sort="hot", page=1, kind="board"):
 
-        ids=self.board_idlist(sort=sort, page=page, kind=kind)
+        ids=self.idlist(sort=sort, page=page, kind=kind)
 
         next_exists=(len(ids)==26)
         ids=ids[0:25]
