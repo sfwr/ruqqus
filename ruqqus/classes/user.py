@@ -44,7 +44,8 @@ class User(Base):
     moderates=relationship("ModRelationship", lazy="dynamic", backref="user")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id", backref="user")
     banhammered=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.banning_mod_id==User.id", backref="mod")
-
+    subscriptions=relationship("Subscription", lazy="dynamic", backref="user")
+    
     #properties defined as SQL server-side functions
     energy = deferred(Column(Integer, server_default=FetchedValue()))
     referral_count=deferred(Column(Integer, server_default=FetchedValue()))
@@ -61,6 +62,73 @@ class User(Base):
         kwargs["created_utc"]=int(time())
 
         super().__init__(**kwargs)
+        
+    @cache.memoize(timeout=120)
+    def idlist(self, sort="hot", page=1, nsfw=False):
+
+        board_ids=[x.board_id for x in self.subscriptions]
+
+        posts=db.query(Submission).filter_by(is_banned=False,
+                                             is_deleted=False,
+                                             stickied=False
+                                             )
+        posts=posts.filter(Submission.board_id._in(board_ids))
+
+        if not nsfw:
+            posts=posts.filter_by(over_18=False)
+
+        if sort=="hot":
+            posts=posts.order_by(text("submissions.rank_hot desc"))
+        elif sort=="new":
+            posts=posts.order_by(Submission.created_utc.desc())
+        elif sort=="disputed":
+            posts=posts.order_by(text("submissions.rank_fiery desc"))
+        elif sort=="top":
+            posts=posts.order_by(text("submissions.score desc"))
+        elif sort=="activity":
+            posts=posts.order_by(text("submissions.rank_activity desc"))
+        else:
+            abort(422)
+
+        posts=[x.id for x in posts.offset(25*(page-1)).limit(26).all()]
+
+        return posts
+
+    def rendered_subscription_page(self, sort="hot", page=1):
+
+        ids=self.idlist(sort=sort, page=page, nsfw=(v and v.over_18))
+
+        next_exists=(len(ids)==26)
+        ids=ids[0:25]
+
+        if ids:
+
+            #assemble list of tuples
+            i=1
+            tups=[]
+            for x in ids:
+                tups.append((x,i))
+                i+=1
+
+            tups=str(tups).lstrip("[").rstrip("]")
+
+            #hit db for entries
+            posts=db.query(Submission
+                           ).from_statement(
+                               text(
+                               f"""
+                                select submissions.*, submissions.ups, submissions.downs
+                                from submissions
+                                join (values {tups}) as x(id, n) on submissions.id=x.id
+                                order by x.n"""
+                               )).all()
+        else:
+            posts=[]
+
+        return render_template("subscriptions.html", b=self, v=v, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
+
+
+    
 
     @property
     def boards_modded(self):
