@@ -39,6 +39,8 @@ class Submission(Base):
     board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     over_18=Column(Boolean, default=False)
+    board_rels=relationship("PostRelationship", lazy="dynamic", backref="post")
+
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
