@@ -40,7 +40,7 @@ class Submission(Base):
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     over_18=Column(Boolean, default=False)
 
-    approved_by=relationship("User", lazy="dynamic", uselist=False, primaryjoin="Submission.is_approved==User.id")
+    approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
 
     #These are virtual properties handled as postgres functions server-side
