@@ -19,9 +19,10 @@ class Board(Base):
     description = Column(String)
     description_html=Column(String)
     over_18=Column(Boolean, default=False)
+
+    moderators=relationship("ModRelationship", lazy="dynamic")
     
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
-    original_submissions=relationship("Submission", lazy="dynamic", backref="original_board", primaryjoin="Board.id==Submission.original_board_id")
     
     def __init__(self, **kwargs):
 

@@ -39,6 +39,7 @@ class Submission(Base):
     board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     over_18=Column(Boolean, default=False)
+    original_board=relationship("Board", uselist=False, primaryjoin="Board.id==Submission.original_board_id")
 
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
