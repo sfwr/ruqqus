@@ -9,6 +9,11 @@
     <h1 class="h6 d-inline-block">+{{ b.name }}</h1>
     <p class="text-muted">Founded {{ b.age_string }}</p>
   </div>
+  {% if b.over_18 %}
+  <div class="body py-0">
+    <span class="badge badge-danger">NSFW</span>
+  </div>
+  {% endif %}
   <div class="body pt-0">
     {{ b.description_html | safe }}
   </div>
