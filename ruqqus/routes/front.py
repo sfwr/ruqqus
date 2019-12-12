@@ -95,7 +95,7 @@ def home(v):
     return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort_method=sort_method, page=page)
 
 
-@app.route("/home", methods=["GET"])
+@app.route("/guilds", methods=["GET"])
 @auth_required
 def home_subs(v):
 
@@ -103,7 +103,7 @@ def home_subs(v):
                                         page=max(int(request.args.get("page",1)),0)
                                         )
 
-@app.route("/following", methods=["GET"])
+@app.route("/subscriptions", methods=["GET"])
 @auth_required
 def user_subs(v):
 
