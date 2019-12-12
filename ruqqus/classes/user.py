@@ -108,7 +108,7 @@ class User(Base):
 
         return posts
 
-    def list_of_posts(ids):
+    def list_of_posts(self, ids):
 
         next_exists=(len(ids)==26)
         ids=ids[0:25]
