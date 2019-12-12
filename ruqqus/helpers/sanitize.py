@@ -82,7 +82,7 @@ def sanitize(text, linkgen=False):
             tag["crossorigin"]="anonymous"
             tag["rel"]="nofollow"
             tag["alt"]="Anonymous load failed"
-            tag["style"]="max-height: 300px;"
+            tag["style"]="max-height: 150px;"
 
         sanitized=str(soup)
     else:
