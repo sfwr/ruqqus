@@ -407,7 +407,7 @@ def board_about_exiled(boardname, v):
 
     return render_template("guild/bans.html", v=v, b=board, users=users)
 
-@app.route("/api/subscribe/<boardname>")
+@app.route("/api/subscribe/<boardname>", methods=["POST"])
 @auth_required
 def subscribe_board(boardname, v):
 
@@ -426,7 +426,7 @@ def subscribe_board(boardname, v):
     return "", 204
 
 
-@app.route("/api/unsubscribe/<boardname>")
+@app.route("/api/unsubscribe/<boardname>", methods=["POST"])
 @auth_required
 def unsubscribe_board(boardname, v):
 
