@@ -2,12 +2,12 @@
 
 {% block sidebarblock %}
         <div class="sidebar-section sidebar-about">
+	  <div class="text-primary h3">
+		<i class="fad fa-users"></i>
+	  </div>
           <div class="title">User Subscriptions</div>
           <div class="body">
             <p>The users you are subscribed to.</p>
-            {% if v and not v.is_banned %}
-            <div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
-            {% endif %}
           </div>
         </div>
 {% endblock %}

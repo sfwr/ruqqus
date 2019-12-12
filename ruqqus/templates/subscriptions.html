@@ -2,12 +2,12 @@
 
 {% block sidebarblock %}
         <div class="sidebar-section sidebar-about">
+	  <div class="text-primary h3">
+		<i class="fad fa-university"></i>
+	  </div>
           <div class="title">Your Guilds</div>
           <div class="body">
             <p>Content in the guilds you are a member of.</p>
-            {% if v and not v.is_banned %}
-            <div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
-            {% endif %}
           </div>
         </div>
 {% endblock %}
