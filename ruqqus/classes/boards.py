@@ -181,3 +181,7 @@ class Board(Base):
     def has_subscriber(self, user):
 
         return self.subscribers.filter_by(board_id=self.id, user_id=user.id).first()
+
+    @property
+    def created_date(self):
+        return time.strftime("%d %B %Y", time.gmtime(self.created_utc))

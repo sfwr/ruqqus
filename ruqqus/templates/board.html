@@ -7,7 +7,7 @@
 <div class="sidebar-section sidebar-info-basic">
   <div class="body pb-0">
     <h1 class="h6 d-inline-block">+{{ b.name }}</h1>
-    <div class="text-muted">Founded {{ b.age_string }}</div>
+    <div><span title="{{ b.created_date }}"><i class="fad fa-calendar-day text-muted"></i> Founded {{ b.age_string }}</span</div>
     <div><i class="fad fa-users text-muted"></i> <span class="text-muted">{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}</span></div>
   </div>
   {% if b.over_18 %}
