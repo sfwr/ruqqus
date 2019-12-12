@@ -250,7 +250,15 @@ class User(Base):
         next_exists=(len(listing)==26)
         listing=listing[0:25]
 
-        return render_template("userpage.html", u=self, v=v, listing=listing, page=page, next_exists=next_exists)
+        is_following=(v and self.has_follower(v))
+
+        return render_template("userpage.html",
+                               u=self,
+                               v=v,
+                               listing=listing,
+                               page=page,
+                               next_exists=next_exists,
+                               is_following=is_following)
 
     def rendered_comments_page(self, v=None):
 
@@ -275,8 +283,16 @@ class User(Base):
         #we got 26 items just to see if a next page exists
         next_exists=(len(listing)==26)
         listing=listing[0:25]
+
+        is_following=(v and self.has_follower(v))
         
-        return render_template("userpage_comments.html", u=self, v=v, listing=listing, page=page, next_exists=next_exists)
+        return render_template("userpage_comments.html",
+                               u=self,
+                               v=v,
+                               listing=listing,
+                               page=page,
+                               next_exists=next_exists,
+                               is_following=is_following)
 
     @property
     def formkey(self):
@@ -388,4 +404,7 @@ class User(Base):
 
         return list(set([x for x in alts1]+[y for y in alts2]))
         
-        
+
+    def has_follower(self, user):
+
+        return self.followers.filter_by(user_id=user.id).first()
