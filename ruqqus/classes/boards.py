@@ -19,6 +19,7 @@ class Board(Base):
     description = Column(String)
     description_html=Column(String)
     over_18=Column(Boolean, default=False)
+    fa_icon=Column(String, default="")
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")

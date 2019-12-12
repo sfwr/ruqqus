@@ -33,8 +33,14 @@
                                         <small class="format"><i class="fas fa-link"></i></small>
                                     </div>
                                 </div>
+				
+				<label for="fa_icon" class="mt-3>Guild Icon</label>
+				<small>Paste the link to any non-brand [FontAwesome](https://fontawesome.com/icons?d=gallery) icon, including "pro" icons.</small>
+				<input type="text" name="fa_icon" id="fa_icon" value="{{ b.fa_icon }}">
+
+
 				<label for="over_18" class="mt-3">NSFW?</label><br>
-				<input type="checkbox" name="over_18" value="true"{% if b.over_18 %} checked{% endif %}> This guild is oriented around adult material.<br>
+				<input id="over_18" type="checkbox" name="over_18" value="true"{% if b.over_18 %} checked{% endif %}> This guild is oriented around adult material.<br>
 
                             </div>
 

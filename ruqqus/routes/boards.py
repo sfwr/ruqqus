@@ -13,6 +13,7 @@ from flask import *
 from ruqqus.__main__ import app, db, limiter
 
 valid_board_regex=re.compile("^\w{3,25}")
+fa_icon_regex=re.compile("(fas|far|fal|fad) fa-([a-z0-9-]+)")
 
 @app.route("/create_guild", methods=["GET"])
 @is_not_banned
@@ -355,6 +356,30 @@ def mod_bid_settings(bid, v):
     board.description = description
     board.description_html=description_html
     board.over_18=bool(request.form.get("over_18",False))
+
+    #fontawesome
+    fa_raw=request.form.get("fa_icon","")
+    try:
+        if fa_raw.startswith("http"):
+            parsed_link=urlparse(fa_raw)
+            icon=parsed_link.path.split("/")[-1]
+            style=parsed_link.path.split("=")[-1]
+            styles={"duotone":"fad",
+                    "light":"fal",
+                    "regular":"far",
+                    "solid":"fas"}
+            style=styles[style]
+        else:
+
+            regex=re.search(fa_icon_regex, fa_raw)
+            style=results.group(1)
+            icon=results.group(2)
+            
+        board.fa_icon=f"{style} fa-{icon}"
+    except:
+        board.fa_icon=""
+        
+        
 
     db.add(board)
     db.commit()
