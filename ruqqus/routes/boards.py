@@ -376,7 +376,8 @@ def mod_bid_settings(bid, v):
             icon=results.group(2)
             
         board.fa_icon=f"{style} fa-{icon}"
-    except:
+    except Exception as e:
+        print(e)
         board.fa_icon=""
         
         
