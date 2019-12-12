@@ -108,9 +108,7 @@ class User(Base):
 
         return posts
 
-    def rendered_subscription_page(self, sort="hot", page=1, kind="board"):
-
-        ids=self.idlist(sort=sort, page=page, kind=kind)
+    def list_of_posts(ids):
 
         next_exists=(len(ids)==26)
         ids=ids[0:25]
@@ -139,9 +137,25 @@ class User(Base):
         else:
             posts=[]
 
+        return posts, next_exists
+
+    def rendered_follow_page(self, sort="hot", page=1)
+
+        ids=self.idlist(sort=sort, page=page, kind="user")
+
+        posts, next_exists = self.list_of_posts(ids)
+
+        return render_template("follows.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)
+
+    def rendered_subscription_page(self, sort="hot", page=1):
+
+        ids=self.idlist(sort=sort, page=page, kind="board")
+
+        posts, next_exists = self.list_of_posts(ids)
+
         return render_template("subscriptions.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
 
-
+    
 
 
     @property
