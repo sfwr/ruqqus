@@ -99,13 +99,10 @@ def board_name(name, v):
 
     sort=request.args.get("sort","hot")
     page=int(request.args.get("page", 1))
-
-    is_subscribed=(v and board.has_subscriber(v))
              
     return board.rendered_board_page(v=v,
                                      sort=sort,
-                                     page=page,
-                                     is_subscribed=is_subscribed)
+                                     page=page)
 
 @app.route("/mod/kick/<bid>/<pid>", methods=["POST"])
 @auth_required

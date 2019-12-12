@@ -117,7 +117,17 @@ class Board(Base):
         else:
             posts=[]
 
-        return render_template("board.html", b=self, v=v, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
+        
+        is_subscribed=(v and self.has_subscriber(v))
+
+        return render_template("board.html",
+                               b=self,
+                               v=v,
+                               listing=posts,
+                               next_exists=next_exists,
+                               sort_method=sort,
+                               page=page,
+                               is_subscribed=is_subscribed)        
 
 
     @property
