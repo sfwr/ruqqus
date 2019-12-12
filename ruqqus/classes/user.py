@@ -82,7 +82,7 @@ class User(Base):
             board_ids=[x.board_id for x in self.subscriptions]
             posts=posts.filter(Submission.board_id.in_(board_ids))
         elif kind=="user":
-            user_ids=[x.user_id for x in self.following.all()]
+            user_ids=[x.target_id for x in self.following.all()]
             posts=posts.filter(Submission.author_id.in_(user_ids))
         else:
             abort(422)
