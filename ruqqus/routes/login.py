@@ -271,7 +271,7 @@ def sign_up_post(v):
 
     #give a beta badge
     beta_badge=Badge(user_id=new_user.id,
-                        badge_id=1)
+                        badge_id=6)
 
     db.add(beta_badge)
     db.commit()
