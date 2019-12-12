@@ -20,9 +20,9 @@
   {% if v %}
     <div class="body">
     {% if not is_subscribed %}
-      <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){window.location.reload(true)})">Join +{{ b.name }}</a>
+      <a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){window.location.reload(true)})">Join +{{ b.name }}</a>
     {% else %}
-      <a class="btn" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){window.location.reload(true)})">Leave +{{ b.name }}</a>
+      <a class="btn btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){window.location.reload(true)})">Leave +{{ b.name }}</a>
     {% endif %}
     </div>
   {% endif %}
@@ -30,7 +30,7 @@
 <div class="sidebar-section sidebar-submit">
   <div class="title">Submit to +{{ b.name }}</div>
   <div class="body">
-    <a class="btn btn-primary form-input" href="/submit?guild={{ b.name | urlencode }}">Create Post</a>
+    <a class="btn btn-primary btn-block" href="/submit?guild={{ b.name | urlencode }}">Create Post</a>
   </div>
 </div>
 <div class="sidebar-section sidebar-mods">
