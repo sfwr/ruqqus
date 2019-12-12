@@ -9,6 +9,7 @@ from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.filters import *
 from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
+from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from flask import *
 from ruqqus.__main__ import app, db
