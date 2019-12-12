@@ -82,7 +82,8 @@ def sanitize(text, linkgen=False):
             tag["crossorigin"]="anonymous"
             tag["rel"]="nofollow"
             tag["alt"]="Anonymous load failed"
-            tag["style"]="max-height: 150px;"
+            tag["style"]="max-height: 150px; max-width=250px"
+            tag["class"]="in-comment-image"
 
         sanitized=str(soup)
     else:
