@@ -19,7 +19,7 @@
   </div>
   {% if v %}
     <div class="body">
-      <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){window.location.reload(true)})">Join +{{ b.name }}</a></div>
+      <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
       <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
     </div>
   {% endif %}
