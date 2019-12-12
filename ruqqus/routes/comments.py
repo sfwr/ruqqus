@@ -161,7 +161,7 @@ def edit_comment(cid, v):
         abort(403)
         
     body = request.form.get("body", "")
-    with UserRenderer() as renderer:
+    with CustomRenderer() as renderer:
         body_md=renderer.render(mistletoe.Document(body))
     body_html = sanitize(body_md, linkgen=True)
 
