@@ -7,7 +7,8 @@
 <div class="sidebar-section sidebar-info-basic">
   <div class="body pb-0">
     <h1 class="h6 d-inline-block">+{{ b.name }}</h1>
-    <p class="text-muted">Founded {{ b.age_string }}</p>
+    <div class="text-muted">Founded {{ b.age_string }}</div>
+    <div class="text_muted"><i class="fad fa-users"></i> {{ b.subscriber_count }} Members</div>
   </div>
   {% if b.over_18 %}
   <div class="body">
