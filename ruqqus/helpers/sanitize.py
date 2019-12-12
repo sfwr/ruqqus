@@ -77,7 +77,7 @@ def sanitize(text, linkgen=False):
     if linkgen:
         sanitized= _clean_w_links.clean(text)
 
-        soup=BeautifulSoup(sanitized)
+        soup=BeautifulSoup(sanitized, features="html.parser")
 
         for tag in soup.find_all("img"):
             tag["rel"]="nofollow"
