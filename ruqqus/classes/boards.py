@@ -42,7 +42,7 @@ class Board(Base):
     @cache.memoize(timeout=30)
     def mods(self):
 
-        return self.moderators.filter_by(accepted=True).order_by(text("id")).all()
+        return [x.user for x in self.moderators.filter_by(accepted=True).order_by(text("id")).all()]
 
     @property
     @cache.memoize(timeout=30)
