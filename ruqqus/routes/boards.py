@@ -342,19 +342,23 @@ def mod_bid_settings(bid, v):
     if not board.has_mod(v):
         abort(403)
 
+    #name capitalization
     new_name=request.form.get("name","").lstrip("+")
 
     if new_name.lower()==board.name.lower():
         board.name=new_name
 
-    
+    #board description
     description = request.form.get("description")
     with CustomRenderer() as renderer:
         description_md=renderer.render(mistletoe.Document(description))
     description_html=sanitize(description_md, linkgen=True)
-    
+
+
     board.description = description
     board.description_html=description_html
+
+    #nsfw
     board.over_18=bool(request.form.get("over_18",False))
 
     #fontawesome
@@ -372,8 +376,8 @@ def mod_bid_settings(bid, v):
         else:
 
             regex=re.search(fa_icon_regex, fa_raw)
-            style=results.group(1)
-            icon=results.group(2)
+            style=regex.group(1)
+            icon=regex.group(2)
             
         board.fa_icon=f"{style} fa-{icon}"
     except Exception as e:
