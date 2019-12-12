@@ -29,7 +29,9 @@ _allowed_tags=tags=['b',
 _allowed_tags_with_links=_allowed_tags+["a"]
 
 _allowed_attributes={'a': ['href', 'title', "rel"],
-                     'img':['src']}
+                     "i": ["class"],
+                     'img':['src']
+                     }
 
 _allowed_protocols=['http', 'https']
 
