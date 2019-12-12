@@ -77,7 +77,7 @@ def u_username_comments(username, v=None):
         
     return result.rendered_comments_page(v=v)
 
-@app.route("/api/follow/<username>")
+@app.route("/api/follow/<username>", methods=["POST"])
 @auth_required
 def follow_user(username, v):
 
@@ -96,7 +96,7 @@ def follow_user(username, v):
     return "", 204
 
 
-@app.route("/api/unfollow/<username>")
+@app.route("/api/unfollow/<username>", methods=["POST"])
 @auth_required
 def unfollow_user(username, v):
 
