@@ -2,11 +2,14 @@ from ruqqus.classes import *
 from .base36 import *
 from ruqqus.__main__ import db
 
-def get_user(username):
+def get_user(username, graceful=False):
 
     x=db.query(User).filter(User.username.ilike(username)).first()
     if not x:
-        abort(404)
+        if not graceful:
+            abort(404)
+        else:
+            return None
     return x
 
 def get_post(pid):
