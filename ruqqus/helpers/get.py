@@ -37,7 +37,7 @@ def get_guild(name):
         abort(404)
     return x
 
-def get_domain(domain)
+def get_domain(domain):
 
 
         #parse domain into all possible subdomains
