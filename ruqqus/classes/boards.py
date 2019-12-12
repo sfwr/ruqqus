@@ -21,7 +21,7 @@ class Board(Base):
     over_18=Column(Boolean, default=False)
 
     moderators=relationship("ModRelationship", lazy="dynamic")
-    
+    subscriptions=relationship("Subscription", lazy="dynamic")
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
 
     #db side functions
@@ -147,7 +147,6 @@ class Board(Base):
             years=int(months/12)
             return f"{years} year{'s' if years>1 else ''} ago"
 
-    @cache.memoize(timeout=60)
     def has_mod(self, user):
 
         if user is None:
@@ -161,13 +160,14 @@ class Board(Base):
 
         return user.id not in [x.user_id for x in self.moderators.all()]
 
-    @cache.memoize(timeout=60)
     def has_invite(self, user):
 
         return self.moderators.filter_by(user_id=user.id, accepted=False).first()
         
-    @cache.memoize(timeout=60)
     def has_ban(self, user):
 
         return db.query(BanRelationship).filter_by(board_id=self.id, user_id=user.id).first()
 
+    def has_subscriber(self, user):
+
+        return self.subscribers.filter_by(board_id=self.id, user_id=user.id).first()

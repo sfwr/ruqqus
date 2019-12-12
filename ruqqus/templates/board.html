@@ -17,6 +17,15 @@
   <div class="body pt-0">
     {{ b.description_html | safe }}
   </div>
+  {% if v %}
+    <div class="body">
+    {% if not b.has_subscriber(v) %}
+      <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){window.location.reload(true)})">Join +{{ b.name }}</a>
+    {% else %}
+      <a class="btn" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){window.location.reload(true)})">Leave +{{ b.name }}</a>
+    {% endif %}
+    </div>
+  {% endif %}
 </div>
 <div class="sidebar-section sidebar-submit">
   <div class="title">Submit to +{{ b.name }}</div>
