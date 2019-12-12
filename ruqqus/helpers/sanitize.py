@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from bleach.linkifier import LinkifyFilter
 from urllib.parse import urlparse, ParseResult, urlunparse
 from functools import partial
+from .get import *
 
 _allowed_tags=tags=['b',
                     'blockquote',
@@ -79,11 +80,16 @@ def sanitize(text, linkgen=False):
         soup=BeautifulSoup(sanitized)
 
         for tag in soup.find_all("img"):
-            tag["crossorigin"]="anonymous"
             tag["rel"]="nofollow"
             tag["alt"]="Anonymous load failed"
             tag["style"]="max-height: 150px; max-width=250px"
             tag["class"]="in-comment-image"
+
+            domain=get_domain(urlparse(tag["href"]).netloc)
+            if not(domain and domain.show_thumbnail):
+                tag["crossorigin"]="anonymous"
+                
+            
 
         sanitized=str(soup)
     else:
