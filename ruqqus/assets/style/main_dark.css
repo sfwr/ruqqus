@@ -13455,6 +13455,13 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   margin-top: 1rem;
 }
 
+#frontpage.toggle-card-view .posts .card:last-of-type, #userpage.toggle-card-view .posts .card:last-of-type, #search.toggle-card-view .posts .card:last-of-type {
+  border-bottom-left-radius: 0.35rem;
+  border-bottom-right-radius: 0.35rem;
+  border: 1px solid #494a4e;
+  border-radius: 0.35rem;
+}
+
 #frontpage.toggle-card-view .posts .card:first-of-type, #userpage.toggle-card-view .posts .card:first-of-type, #search.toggle-card-view .posts .card:first-of-type {
   margin-top: 0;
 }
