@@ -21,7 +21,7 @@ class Board(Base):
     over_18=Column(Boolean, default=False)
 
     moderators=relationship("ModRelationship", lazy="dynamic")
-    subscriptions=relationship("Subscription", lazy="dynamic")
+    subscribers=relationship("Subscription", lazy="dynamic")
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
 
     #db side functions
