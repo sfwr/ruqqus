@@ -139,7 +139,7 @@ class User(Base):
 
         return posts, next_exists
 
-    def rendered_follow_page(self, sort="hot", page=1)
+    def rendered_follow_page(self, sort="hot", page=1):
 
         ids=self.idlist(sort=sort, page=page, kind="user")
 
