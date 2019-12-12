@@ -1,3 +1,5 @@
+from .get import get_guild
+
 from mistletoe.span_token import SpanToken
 from mistletoe.html_renderer import HTMLRenderer
 import re
@@ -35,8 +37,15 @@ class CustomRenderer(HTMLRenderer):
 
     def render_board_mention(self, token):
 
-        template='{space}<a href="/board/{target}">+{target}</a>'
+        template='{space}<a href="/board/{target}">{icon}+{target}</a>'
+        icon_template='<i class="{icon}"></i>
         space=token.target[0]
         target=token.target[1]
-        return template.format(space=space, target=target)
+
+        board=get_guild(target, graceful=True)
+        if board and board.fa_icon:
+            icon=icon_template.format(icon=board.fa_icon)
+        else:
+            icon=""
+        return template.format(space=space, target=target, icon=icon)
         

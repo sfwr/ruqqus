@@ -30,11 +30,14 @@ def get_board(bid):
         abort(404)
     return x
 
-def get_guild(name):
+def get_guild(name, graceful=False):
 
     x=db.query(Board).filter(Board.name.ilike(name)).first()
     if not x:
-        abort(404)
+        if not graceful:
+            abort(404)
+        else:
+            return None
     return x
 
 def get_domain(domain):
