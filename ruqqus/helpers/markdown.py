@@ -43,7 +43,7 @@ class CustomRenderer(HTMLRenderer):
     def render_board_mention(self, token):
 
         template='{space}<a href="/board/{target}">{icon}+{target}</a>'
-        icon_template='<i class="{icon} fa-width-rem"></i>'
+        icon_template='<i class="{icon} fa-width-rem mr-1"></i>'
         space=token.target[0]
         target=token.target[1]
 
