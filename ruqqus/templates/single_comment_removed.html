@@ -14,7 +14,7 @@
 
     <div class="comment-body">
 
-        <div id="comment-{{ c.base36id }}-only" class="{% if c.is_banned %} banned{% endif %}{% if c.is_deleted %} deleted{% endif %}">
+        <div id="comment-{{ c.base36id }}-only" class="">
 
             <div class="user-info">{% if standalone and c.over_18 %}<span class="badge badge-danger">NSFW</span> {% endif %}
                 {% if c.is_banned %}[Removed by administrators]{% else %}[Deleted by author]{% endif %}
