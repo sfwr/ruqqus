@@ -206,9 +206,9 @@
           {% endif %}
 
           {% if v %}
-{% if v.id==p.author_id and not v.is_banned %}
-	<a class="dropdown-item" href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a>
-{% endif %}
+	{% if v.id==p.author_id and not v.is_banned %}
+		<a class="dropdown-item" href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a>
+	{% endif %}
           {% if v.admin_level >=1 %}
 
           {% if p.is_banned %}
@@ -220,6 +220,7 @@
 	  {% if v and p.board.has_mod(v) %}
 	  <a class="dropdown-item removeDropdownItem text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}')"><i class="fas fa-boot" data-fa-transform="flip-h"></i>Kick Post</a>
 	  {% endif %}
+      {% endif %}
         </div>
       </div>
     </div>
