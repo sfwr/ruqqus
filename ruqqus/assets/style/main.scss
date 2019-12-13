@@ -2710,6 +2710,10 @@ body {
     min-width: length;
 }
 
+.post-actions a {
+    color: $gray-600;
+}
+
 .post-title {
     font-size: 14px;
     font-weight: $font-weight-normal;

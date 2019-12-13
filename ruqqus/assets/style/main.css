@@ -15260,6 +15260,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     min-width: length;
   }
 
+  .post-actions a {
+    color: #ACACAC;
+  }
+
   .post-title {
     font-size: 14px;
     font-weight: 400;
