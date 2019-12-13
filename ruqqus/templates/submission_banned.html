@@ -86,7 +86,7 @@
                             </div>
 
                         </div>
-			{% if p.ban_reason %}
+			{% if p.is_banned and p.ban_reason %}
 			<div class="text-danger mt-4 mb-2">Reason: {{ p.ban_reason }}</div>
 			{% endif %}
 			
