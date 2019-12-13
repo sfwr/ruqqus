@@ -87,9 +87,7 @@
 
                         </div>
 			{% if p.ban_reason %}
-			<div class="body text-warning mt-4 mb-2">
-				{{ p.ban_reason }}
-			</div>
+			<div class="body text-warning mt-4 mb-2">Reason: {{ p.ban_reason }}</div>
 			{% endif %}
 			
 			{% if v and v.admin_level >=3 and p.body_html %}
