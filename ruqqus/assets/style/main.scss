@@ -6,7 +6,7 @@ $secondary: #EAEAEA;
 $danger: #F05D5E;
 $white: #ffffff;
 $black: #1F1F1F;
-$light: #F6F6F6;
+$light: #EEF0F2;
 $success: #23CE6B;
 
 
@@ -15,7 +15,7 @@ $red:  #F05D5E;
 $gray: #5F5F5F;
 $green: #23CE6B;
 
-$gray-100: #F2F2F2;
+$gray-100: #F5F6F7;
 $gray-200: #EBE9EF;
 $gray-300: #E0E4E9;
 $gray-400: #C2C2C2;
@@ -452,7 +452,7 @@ ol > li::before {
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    color: $primary;
+    color: $black;
     text-align: center;
     font-size: $font-size-lg;
 }
