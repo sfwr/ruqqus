@@ -57,7 +57,7 @@ def create_board_post(v):
 
     #check # recent boards made by user
     cutoff=int(time.time())-60*60*24
-    recent=db.query(Board).filter_by(creator_id=v.id, created_utc >= cutoff).all()
+    recent=db.query(Board).filter(Board.creator_id==v.id, Board.created_utc >= cutoff).all()
     if len([x for x in recent])>=2:
         abort(429)
 
