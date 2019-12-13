@@ -36,7 +36,7 @@ class CustomRenderer(HTMLRenderer):
 
         user=get_user(target, graceful=True)
         if not user:
-            return f"@{target}"
+            return f"{space}@{target}"
         
         return template.format(space=space, target=target)
 
@@ -50,7 +50,7 @@ class CustomRenderer(HTMLRenderer):
         board=get_guild(target, graceful=True)
 
         if not board:
-            return f"+{target}"
+            return f"{space}+{target}"
         if board and board.fa_icon:
             icon=icon_template.format(icon=board.fa_icon)
         else:
