@@ -18,7 +18,7 @@
                                 <label for="title">Guildmasters</label>
                                 <div class="form-text">Current guildmasters</div>
 
-				{% for mod in b.moderators.filter_by(accepted=True).order_by(text("id asc")).all() %}
+				{% for mod in b.mods_list %}
 					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me and me.id <= mod.id %} - <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">{% if mod.user==v %}step down{% else %}remove{% endif %}</a>{% endif %}</div>
 				{% else %}
 					<div class="form-text text-muted">No guildmasters at this time.</div>
