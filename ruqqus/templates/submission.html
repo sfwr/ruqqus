@@ -238,6 +238,7 @@
       <div id="post-body" {% if p.body_html %}class="post-body mt-3"{% endif %}> 
         {{ p.body_html | safe }}
       </div>
+
 	{% if v and v.id==p.author_id and not v.is_banned %}
 	<div id="edit-post-body" class="d-none comment-write collapsed child">
 <form id="post-edit-form-{{ p.base36id }}" action="/edit_post/{{ p.base36id }}" method="post" class="input-group">
