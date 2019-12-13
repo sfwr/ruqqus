@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+<nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
   <div class="container-fluid">
     <div class="flex-grow-1"><a href="/" class="navbar-brand">ruqqus</a></div>
     <div class="flex-grow-1 d-fl d-none d-md-block">
@@ -53,10 +53,10 @@
         <div class="dropdown">
           <a class="nav-link bg-transparent py-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          <div class="d-inline-block my-auto text-right pr-2">
+          <div class="profile-pic" style="background-color:#{{ v.color }}"><span class="letter">{{ v.username[0] }}</span></div>
+           <div class="d-inline-block my-auto text-right pr-2">
             <span class="text-white text-small-extra font-weight-bold">Hi, {{ v.username }}</span>
           </div>
-          <div class="profile-pic" style="background-color:#{{ v.color }}"><span class="letter">{{ v.username[0] }}</span></div>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left border-0 shadow fade px-0 mt-2"
         aria-labelledby="dropdownMenuButton">
