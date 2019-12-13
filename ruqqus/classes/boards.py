@@ -20,6 +20,7 @@ class Board(Base):
     description_html=Column(String)
     over_18=Column(Boolean, default=False)
     fa_icon=Column(String, default="")
+    creator_id=deferred(Column(Integer, ForeignKey("users.id")))
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")

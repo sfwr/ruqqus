@@ -34,7 +34,6 @@ def api_board_available(name):
         return jsonify({"board":name, "available":True})
 
 @app.route("/create_guild", methods=["POST"])
-#@limiter.limit("2/day")
 @is_not_banned
 @validate_formkey
 def create_board_post(v):
@@ -56,6 +55,12 @@ def create_board_post(v):
     if db.query(Board).filter(Board.name.ilike(board_name)).first():
         abort(409)
 
+    #check # recent boards made by user
+    cutoff=int(time.time())-60*60*24
+    recent=db.query(Board).filter(creator_id=v.id, created_utc >= cutoff).all()
+    if len([x for x in recent])>=2:
+        abort(429)
+
     description = request.form.get("description")
 
     with CustomRenderer() as renderer:
@@ -67,7 +72,8 @@ def create_board_post(v):
     new_board=Board(name=board_name,
                     description=description,
                     description_html=description_html,
-                    over_18=(bool(request.form.get("over_18","")) or board.over_18)
+                    over_18=(bool(request.form.get("over_18","")) or board.over_18),
+                    creator_id=v.id
                     )
 
     db.add(new_board)
