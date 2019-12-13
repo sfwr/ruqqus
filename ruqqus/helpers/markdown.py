@@ -30,7 +30,6 @@ class CustomRenderer(HTMLRenderer):
                          BoardMention)
 
     def render_user_mention(self, token):
-        template = '{space}<a href="/@{target}">@{target}</a>'
         space = token.target[0]
         target = token.target[1]
 
@@ -38,11 +37,11 @@ class CustomRenderer(HTMLRenderer):
         if not user:
             return f"{space}@{target}"
         
-        return template.format(space=space, target=target)
+        return f'{space}<a href="{user.permalink}">@{user.username}</a>'
 
     def render_board_mention(self, token):
 
-        template='{space}<a href="/board/{target}">{icon}+{target}</a>'
+
         icon_template='<i class="{icon} fa-width-rem"></i>'
         space=token.target[0]
         target=token.target[1]
@@ -55,5 +54,5 @@ class CustomRenderer(HTMLRenderer):
             icon=icon_template.format(icon=board.fa_icon)
         else:
             icon=""
-        return template.format(space=space, target=target, icon=icon)
+        return f'{space}<a href="{board.permalink}">{icon}+{board.name}</a>'
         
