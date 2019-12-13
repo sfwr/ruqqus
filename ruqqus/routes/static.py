@@ -1,6 +1,7 @@
 import time
 from ruqqus.helpers.wrappers import *
 from flask import *
+from jinja2.exceptions import TemplateNotFound
 
 from ruqqus.__main__ import app, limiter
 from ruqqus.classes import *
@@ -59,5 +60,5 @@ def about_path(path):
 def help_path(path, v):
     try:
         return render_template(safe_join("help", path+".html"), v=v)
-    except jinja2.exceptions.TemplateNotFound:
+    except TemplateNotFound:
         abort(404)
