@@ -61,11 +61,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="mb-2 p-3{% if p.is_banned %} banned{% endif %}">
+<div class="mb-2 p-3{">
 
                     <div class="col-12">
 
-                        <div id="post-{{ p.base36id }}" class="card d-flex flex-row-reverse flex-nowrap justify-content-end border-0 p-0 banned{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
+                        <div id="post-{{ p.base36id }}" class="card d-flex flex-row-reverse flex-nowrap justify-content-end border-0 p-0 % if p.is_banned %} banned{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
                             <div class="card-block my-md-auto">
                                 <div class="post-meta text-left d-block d-md-none mb-1">{% if p.over_18 %}<span class="badge badge-danger">NSFW</span> {% endif %}{% if p.is_banned %}[Removed by admins]{% else %}[Deleted by user]{% endif %}</div>
                                 <h5 class="card-title post-title text-left mb-0 mb-md-1">{{ p.title }}</h5>
@@ -87,7 +87,7 @@
 
                         </div>
 			{% if p.ban_reason %}
-			<div class="body text-warning mt-4 mb-2">Reason: {{ p.ban_reason }}</div>
+			<div class="text-danger mt-4 mb-2">Reason: {{ p.ban_reason }}</div>
 			{% endif %}
 			
 			{% if v and v.admin_level >=3 and p.body_html %}
