@@ -18,9 +18,8 @@
                                 <label for="title">Guildmasters</label>
                                 <div class="form-text">Current guildmasters</div>
 
-				{% set is_above=False %}
 				{% for mod in b.mods %}
-					<div><a href="{{ mod.permalink }}">@{{ mod.username }}</a>{% if is_above %} - <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ modusername }}', callback=function(){window.location.reload(true)})">remove</a>{% elif mod==v %}<a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ modusername }}', callback=function(){window.location.reload(true)})">step down</a>{% set is_above=True %}{% endif %}</a></div>
+					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me and me.id <= mod.id %} - <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">{% if mod.user==v %}step down{% else %}remove{% endif %}</a>{% endif %}</div>
 				{% else %}
 					<div class="form-text text-muted">No guildmasters at this time.</div>
 				{% endfor %}
