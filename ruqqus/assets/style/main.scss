@@ -1016,9 +1016,10 @@ color: $dark;
 .sidebar .sidebar-section .title {
     font-size: $small-font-size;
     font-weight: $font-weight-bold;
-    color: $gray-100;
+    color: $gray;
     padding: 0.5rem 1rem;
     border-bottom: 1px solid $input-border-color;
+    background-color: $gray-100;
 }
 
 .sidebar .sidebar-section .body {
@@ -1085,6 +1086,7 @@ color: $dark;
 
 .sidebar.sidebar-left .sidebar-section .title {
     border-bottom: none;
+    background-color: transparent;
 }
 
 .sidebar-section.sidebar-filters .body {

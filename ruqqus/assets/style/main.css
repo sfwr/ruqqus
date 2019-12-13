@@ -13186,9 +13186,10 @@ a:hover .link-arrow {
 .sidebar .sidebar-section .title {
   font-size: 12px;
   font-weight: 600;
-  color: #F5F6F7;
+  color: #5F5F5F;
   padding: 0.5rem 1rem;
   border-bottom: 1px solid #ECECEC;
+  background-color: #F5F6F7;
 }
 
 .sidebar .sidebar-section .body {
@@ -13251,6 +13252,7 @@ a:hover .link-arrow {
 
 .sidebar.sidebar-left .sidebar-section .title {
   border-bottom: none;
+  background-color: transparent;
 }
 
 .sidebar-section.sidebar-filters .body {
