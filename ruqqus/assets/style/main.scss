@@ -2710,14 +2710,18 @@ body {
     min-width: length;
 }
 
-.post-actions a {
-    color: $gray-600;
-}
-
 .post-title {
     font-size: 14px;
     font-weight: $font-weight-normal;
     line-height: normal;
+}
+
+.post-meta {
+    color: $gray-600;
+}
+
+.post-actions a {
+    color: $gray-600;
 }
 
 #thread .post-title {
