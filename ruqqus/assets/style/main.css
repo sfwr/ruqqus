@@ -12849,6 +12849,10 @@ ol > li::before {
   color: #E0E4E9;
 }
 
+.input-group-append-focus {
+  margin-left: 1px;
+}
+
 .form-control:hover {
   color: #1F1F1F;
   background-color: #ffffff;

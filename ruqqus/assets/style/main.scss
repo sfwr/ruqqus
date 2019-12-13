@@ -659,6 +659,10 @@ ol > li::before {
     color: $gray-300;
 }
 
+.input-group-append-focus {
+    margin-left: 1px;
+}
+
 .form-control:hover {
     color: $black;
     background-color: #ffffff;
