@@ -34,7 +34,7 @@ def api_board_available(name):
         return jsonify({"board":name, "available":True})
 
 @app.route("/create_guild", methods=["POST"])
-@limiter.limit("2/day")
+#@limiter.limit("2/day")
 @is_not_banned
 @validate_formkey
 def create_board_post(v):
