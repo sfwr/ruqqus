@@ -12601,7 +12601,7 @@ ol > li::before {
 }
 
 .navbar-brand, .navbar-light .navbar-brand {
-  color: #1F1F1F;
+  color: #603abb;
   font-weight: 600;
 }
 
@@ -12775,7 +12775,7 @@ ol > li::before {
 }
 
 .form-inline.search .form-control:hover, .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-  border-color: #ffffff;
+  border-color: #603abb;
 }
 
 .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
@@ -12783,31 +12783,31 @@ ol > li::before {
 }
 
 .form-inline.search .form-control {
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: #EEF0F2;
   font-size: 1rem;
 }
 
 .form-inline.search .input-group-append .input-group-text .fa.fa-search {
-  color: #ffffff;
+  color: #1F1F1F;
   opacity: 0.25;
 }
 
 .form-inline.search .form-control::placeholder {
   /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: #ffffff;
+  color: #1F1F1F;
   opacity: 0.25;
   /* Firefox */
 }
 
 .form-inline.search .form-control::-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #ffffff;
+  color: #1F1F1F;
   opacity: 0.25;
 }
 
 .form-inline.search .form-control::-ms-input-placeholder {
   /* Microsoft Edge */
-  color: #ffffff;
+  color: #1F1F1F;
   opacity: 0.25;
 }
 

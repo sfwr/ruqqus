@@ -408,7 +408,7 @@ ol > li::before {
 }
 
 .navbar-brand, .navbar-light .navbar-brand {
-    color: $black;
+    color: $primary;
     font-weight: $font-weight-bold;
 }
 
@@ -588,7 +588,7 @@ ol > li::before {
 // Navbar icons and search box
 
 .form-inline.search .form-control:hover, .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
-    border-color: $white;
+    border-color: $primary;
 }
 
 .form-inline.search .form-control:active, .form-inline.search .form-control:focus {
@@ -596,27 +596,27 @@ ol > li::before {
 }
 
 .form-inline.search .form-control {
-    background-color: rgba(0, 0, 0, 0.25);
+    background-color: $light;
     font-size: $font-size-base;
 }
 
 .form-inline.search .input-group-append .input-group-text .fa.fa-search {
-    color: $white;
+    color: $black;
     opacity: .25;
 }
 
 .form-inline.search .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
-  color: $white;
+  color: $black;
   opacity: .25; /* Firefox */
 }
 
 .form-inline.search .form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: $white;
+  color: $black;
   opacity: .25;
 }
 
 .form-inline.search .form-control::-ms-input-placeholder { /* Microsoft Edge */
-  color: $white;
+  color: $black;
   opacity: .25;
 }
 
