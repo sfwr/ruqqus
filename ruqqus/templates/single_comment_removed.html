@@ -12,7 +12,11 @@
 
 <div class="comment-body">
 
-    <div class="user-info">{% if c.is_banned %}[comment removed by adminstrators]{% elif c.is_deleted %}[comment deleted by owner]{% endif %}</div>
+    <div class="user-info">{% if c.is_banned %}[comment removed by administrators]{% elif c.is_deleted %}[comment deleted by owner]{% endif %}</div>
+
+	{% if c.is_banned and c.ban_reason %}
+	<div class="text-danger">Reason: {{ c.ban_reason }}</div>
+	{% endif %}
 
 
   {% for reply in c.replies %}
