@@ -40,6 +40,7 @@ class Submission(Base):
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     over_18=Column(Boolean, default=False)
     original_board=relationship("Board", uselist=False, primaryjoin="Board.id==Submission.original_board_id")
+    ban_reason=Column(String(128), default="")
 
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
@@ -109,7 +110,7 @@ class Submission(Base):
     def rendered_page(self, comment=None, v=None):
 
         #check for banned
-        if self.is_banned:
+        if self.is_banned or self.is_deleted:
             if v and v.admin_level>=3:
                 template="submission.html"
             else:

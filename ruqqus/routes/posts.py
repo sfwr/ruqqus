@@ -250,3 +250,18 @@ def api_nsfw_pid(pid, x, v):
     db.commit()
 
     return "", 204
+
+@app.route("/delete_post/<pid>", methods=["POST"])
+@auth_required
+@validate_formkey
+def delete_post_pid(pid, v):
+
+    post=get_post(pid)
+    if not post.author_id==v.id:
+        abort(403)
+
+    post.is_deleted=True
+    db.add(post)
+    db.commit()
+
+    return "",204
