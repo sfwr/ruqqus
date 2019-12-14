@@ -468,13 +468,13 @@ ol > li::before {
 .navbar-light .navbar-nav .nav-link:active .fa, .navbar-light .navbar-nav .nav-link:active .fas, .navbar-light .navbar-nav .nav-link:active .far, .navbar-light .navbar-nav .nav-link:active .fab {
     color: $primary;
     text-align: center;
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
     color: $primary;
     text-align: center;
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
 }
 
 .navbar-light .navbar-nav .btn-primary.nav-link {

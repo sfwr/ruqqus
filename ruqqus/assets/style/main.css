@@ -12639,13 +12639,13 @@ ol > li::before {
 .navbar-light .navbar-nav .nav-link:active .fa, .navbar-light .navbar-nav .nav-link:active .fas, .navbar-light .navbar-nav .nav-link:active .far, .navbar-light .navbar-nav .nav-link:active .fab {
   color: #603abb;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
   color: #1F1F1F;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .navbar-light .navbar-nav .btn-primary.nav-link {
