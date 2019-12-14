@@ -78,7 +78,7 @@ def before_request():
 
 def log_event(name, link):
 
-    sleep(10)
+    sleep(5)
 
     x=requests.get(link)
 
@@ -105,6 +105,7 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth"
                          )
 
+    #signups - hit discord webhook
     if request.method=="POST" and response.status_code in [301, 302] and request.path=="/signup":
         link=f'https://{app.config["SERVER_NAME"]}/@{request.form.get("username")}'
         thread=threading.Thread(target=lambda:log_event(name="Account Signup", link=link))
