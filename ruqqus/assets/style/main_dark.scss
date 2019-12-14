@@ -2692,6 +2692,10 @@ body {
     font-size: $font-size-base;
 }
 
+.navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
+    font-size: $font-size-base;
+}
+
 #fixed-bar-mobile {
     box-shadow: none;
 }

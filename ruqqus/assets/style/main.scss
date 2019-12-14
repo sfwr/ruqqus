@@ -454,7 +454,7 @@ ol > li::before {
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
     color: $black;
     text-align: center;
-    font-size: $font-size-base;
+    font-size: $font-size-lg;
 }
 
 .navbar-light .navbar-nav .btn-primary.nav-link {
@@ -2636,6 +2636,10 @@ body {
 }
 
 .navbar-dark .navbar-nav .nav-link .fa, .navbar-dark .navbar-nav .nav-link .fas, .navbar-dark .navbar-nav .nav-link .far, .navbar-dark .navbar-nav .nav-link .fab {
+    font-size: $font-size-base;
+}
+
+.navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
     font-size: $font-size-base;
 }
 

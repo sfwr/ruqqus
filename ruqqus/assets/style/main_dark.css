@@ -15233,6 +15233,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 1rem;
   }
 
+  .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
+    font-size: 1rem;
+  }
+
   #fixed-bar-mobile {
     box-shadow: none;
   }
