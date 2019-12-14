@@ -2282,6 +2282,15 @@ ul.comment-section {
   }
 }
 
+// Responsive Shadow
+
+@media (min-width: 768px) {
+    .shadow-md {
+      box-shadow: $box-shadow;
+    }
+  }
+
+
 // Responsive Sizing
 
 @media (min-width: 576px) {
