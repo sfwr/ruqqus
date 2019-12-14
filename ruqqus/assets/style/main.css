@@ -12592,15 +12592,6 @@ ol > li::before {
   padding-right: 1rem;
 }
 
-.nav-custom-shadow {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
-}
-
-.nav-custom-border {
-  border: none;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
-}
-
 #page .navbar-light .navbar-nav .nav-link {
   color: #23183E;
 }
@@ -15187,15 +15178,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .navbar-dark .navbar-nav .nav-link .fa, .navbar-dark .navbar-nav .nav-link .fas, .navbar-dark .navbar-nav .nav-link .far, .navbar-dark .navbar-nav .nav-link .fab {
     font-size: 1rem;
-  }
-
-  .nav-custom-shadow {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  }
-
-  .nav-custom-border {
-    border-bottom: 1px solid #E1E1E1;
-    box-shadow: none;
   }
 
   #fixed-bar-mobile {

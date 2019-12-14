@@ -399,15 +399,6 @@ ol > li::before {
     padding-right: 1rem;
 }
 
-.nav-custom-shadow {
-    box-shadow: $box-shadow;
-}
-
-.nav-custom-border {
-    border: none;
-    box-shadow: $box-shadow;
-}
-
 #page .navbar-light .navbar-nav .nav-link {
     color: $dark;
 }
@@ -2637,15 +2628,6 @@ body {
 
 .navbar-dark .navbar-nav .nav-link .fa, .navbar-dark .navbar-nav .nav-link .fas, .navbar-dark .navbar-nav .nav-link .far, .navbar-dark .navbar-nav .nav-link .fab {
     font-size: $font-size-base;
-}
-
-.nav-custom-shadow {
-    box-shadow: $box-shadow;
-}
-
-.nav-custom-border {
-    border-bottom: 1px solid $border-color;
-    box-shadow: none;
 }
 
 #fixed-bar-mobile {
