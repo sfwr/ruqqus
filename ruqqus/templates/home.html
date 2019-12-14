@@ -17,6 +17,7 @@
  
 {% block fixedMobileBarJS %}
 <script>
+if (screen.width <= 768) {
   var prevScrollpos = window.pageYOffset;
   window.onscroll = function () {
     var currentScrollPos = window.pageYOffset;
@@ -39,6 +40,7 @@
     }
     prevScrollpos = currentScrollPos;
   }
+}
 </script>
 {% endblock %}
 
