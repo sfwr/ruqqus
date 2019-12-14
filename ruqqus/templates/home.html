@@ -24,11 +24,13 @@
       document.getElementById("fixed-bar-mobile").style.top = "49px";
       document.getElementById("navbar").style.boxShadow="none";
       document.getElementById("navbar").classList.add("border-bottom");
+      document.getElementById("navbar").classList.remove("shadow");
     } 
     else if (currentScrollPos <= 125) {
       document.getElementById("fixed-bar-mobile").style.top = "49px";
       document.getElementById("navbar").style.boxShadow="none";
       document.getElementById("navbar").classList.add("border-bottom");
+      document.getElementById("navbar").classList.remove("shadow");
     }
     else {
       document.getElementById("fixed-bar-mobile").style.top = "-49px";
@@ -36,6 +38,7 @@
       document.getElementById("dropdownMenuFrom").classList.remove('show');
       document.getElementById("navbar").style.boxShadow="0 1px 2px 0 rgba(0, 0, 0, 0.03)";
       document.getElementById("navbar").classList.remove("border-bottom");
+      document.getElementById("navbar").classList.add("shadow");
     }
     prevScrollpos = currentScrollPos;
   }
