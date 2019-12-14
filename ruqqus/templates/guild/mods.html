@@ -1,6 +1,18 @@
 {% extends "submit.html" %}
 
-{% block title %}<title>+{{ b.name }} Guildmasters</title>{% endblock %}
+{% block title %}
+<title>+{{ b.name }} Guildmasters</title>
+<script>
+toggleSure=function(id){
+
+x=document.getElementById("init-"+id);
+y=document.getElementById("conf-"+id);
+
+x.classList.toggle("d-none");
+y.classList.toggle("d-none");
+}
+</script>
+{% endblock %}
 
 {% block pagetitle %}<a href="{{ b.permalink }}">+{{ b.name }}</a> Guildmasters{% endblock %}
 {% block subtitle %}Invite or remove masters to +{{ b.name }}{% endblock %}
@@ -19,7 +31,7 @@
                                 <div class="form-text">Current guildmasters</div>
 
 				{% for mod in b.mods_list %}
-					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me and me.id <= mod.id %} - <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">{% if mod.user==v %}step down{% else %}remove{% endif %}</a>{% endif %}</div>
+					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me and me.id <= mod.id %} - <span id="init-{{ mod.user.base36id }}"><a href="javascript:void(0)" onclick="toggleSure('mod.user.base36id')>{% if mod.user==v %}step down{% else %}remove{% endif %}</a>{% endif %}</a></span><span id="conf-{{ mod.user.base36id }}" class="d-none">Are you sure? <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">Yes</a> / <a href="javascript:void(0)" onclick="toggleSure('mod.user.base36id')>No</a></span></div>
 				{% else %}
 					<div class="form-text text-muted">No guildmasters at this time.</div>
 				{% endfor %}
@@ -37,7 +49,7 @@
 				<label>Invite</label>
 				<form action="/mod/invite_mod/{{ b.base36id }}" method="post">
 				<input type="hidden" name="formkey" value="{{ v.formkey }}">
-				<input type="text" name="username" class="form-input">
+				<input type="text" name="username" class="form-control">
 				<input type="submit" class="btn btn-primary" value="Invite user">
 				</form>
 				</div>
