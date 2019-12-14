@@ -2740,18 +2740,16 @@ body {
 
 .x-scroll {
     white-space: nowrap;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
-    width: 0px;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE 10+ */
 }
 
 .x-scroll::-webkit-scrollbar {
     white-space: nowrap;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
-    width: 0px;
     background: transparent; /* Chrome/Safari/Webkit */
 }
 
