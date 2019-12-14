@@ -1014,8 +1014,9 @@ color: $dark;
 }
 
 .sidebar .sidebar-section .title {
-    font-size: $small-font-size;
+    font-size: $extra-small-font-size;
     font-weight: $font-weight-bold;
+    text-transform: uppercase;
     color: $gray;
     padding: 0.5rem 1rem;
     border-bottom: 1px solid $input-border-color;
