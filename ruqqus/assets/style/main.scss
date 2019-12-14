@@ -399,6 +399,14 @@ ol > li::before {
     padding-right: 1rem;
 }
 
+.nav-custom-shadow {
+    box-shadow: $box-shadow;
+}
+
+.nav-custom-border {
+    border: none;
+}
+
 #page .navbar-light .navbar-nav .nav-link {
     color: $dark;
 }
@@ -2282,23 +2290,6 @@ ul.comment-section {
   }
 }
 
-// Responsive Shadow
-
-@each $breakpoint in map-keys($grid-breakpoints) {
-    @include media-breakpoint-up($breakpoint) {
-      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
-  
-      .shadow#{$infix} {
-        box-shadow: $box-shadow;
-      }
-  
-      .shadow#{$infix}-0 {
-        box-shadow: none !important;
-      }
-  
-    }
-  }
-
 // Responsive Sizing
 
 @media (min-width: 576px) {
@@ -2645,6 +2636,14 @@ body {
 
 .navbar-dark .navbar-nav .nav-link .fa, .navbar-dark .navbar-nav .nav-link .fas, .navbar-dark .navbar-nav .nav-link .far, .navbar-dark .navbar-nav .nav-link .fab {
     font-size: $font-size-base;
+}
+
+.nav-custom-shadow {
+    box-shadow: $box-shadow;
+}
+
+.nav-custom-border {
+    border: 1px solid $border-color;
 }
 
 #fixed-bar-mobile {
