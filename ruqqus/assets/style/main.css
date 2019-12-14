@@ -13820,7 +13820,20 @@ div:hover .thumb-img-link-overlay {
   white-space: nowrap;
   overflow-x: scroll;
   overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
+  width: 0px;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE 10+ */
+}
+
+.x-scroll::-webkit-scrollbar {
+  white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  width: 0px;
+  background: transparent;
+  /* Chrome/Safari/Webkit */
 }
 
 @media (max-width: 767.98px) {
