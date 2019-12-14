@@ -40,7 +40,7 @@ y.classList.toggle("d-none");
 				<div class="form-text">Pending Guildmaster invitations</div>
 				
 				{% for mod in b.invited_mods %}
-					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me %} - <span id="init-{{ mod.user.base36id }}"><a href="javascript:void(0)" onclick="toggleSure('{{ mod.user.base36id }}')">rescind invitation</a></span><span id="conf-{{ mod.user.base36id }}" class="d-none">Are you sure? <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">Yes</a> / <a href="javascript:void(0)" onclick="toggleSure('{{ mod.user.base36id }}')">No</a></span>{% endif %}</div>
+					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me %} - <span id="init-{{ mod.user.base36id }}"><a href="javascript:void(0)" onclick="toggleSure('{{ mod.user.base36id }}')">rescind invitation</a></span><span id="conf-{{ mod.user.base36id }}" class="d-none">Are you sure? <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/rescind/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">Yes</a> / <a href="javascript:void(0)" onclick="toggleSure('{{ mod.user.base36id }}')">No</a></span>{% endif %}</div>
 				{% else %}
 					<div class="form-text text-muted">No invitees at this time.</div>
 				{% endfor %}

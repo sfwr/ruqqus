@@ -258,7 +258,7 @@ def mod_invite_username(bid,v):
     db.commit()
     return redirect(f"/+{board.name}/mod/mods")
 
-@app.route("/mod/rescind/<bid>/<username>", methods=["POST"])
+@app.route("/mod/<bid>/rescind/<username>", methods=["POST"])
 @auth_required
 @validate_formkey
 def mod_rescind_bid_username(bid, username, v):
