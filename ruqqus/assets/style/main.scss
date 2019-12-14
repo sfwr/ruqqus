@@ -2282,6 +2282,23 @@ ul.comment-section {
   }
 }
 
+// Responsive Shadow
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+  
+      .shadow#{$infix} {
+        box-shadow: $box-shadow;
+      }
+  
+      .shadow#{$infix}-0 {
+        box-shadow: none !important;
+      }
+  
+    }
+  }
+
 // Responsive Sizing
 
 @media (min-width: 576px) {
