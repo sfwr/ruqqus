@@ -2725,11 +2725,21 @@ body {
 }
 
 .post-meta {
+    font-size: 1rem;
     color: $gray-600;
 }
 
 .post-actions a {
     color: $gray-600;
+}
+
+.post-actions .fa, .post-actions .fas, .post-actions .far {
+    font-size: $font-size-base;
+    color: $gray-400;
+}
+
+.btn-tag {
+    font-size: $small-font-size;
 }
 
 // Horizontal scroll

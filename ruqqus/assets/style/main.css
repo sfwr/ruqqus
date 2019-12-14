@@ -15272,11 +15272,21 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .post-meta {
+    font-size: 1rem;
     color: #ACACAC;
   }
 
   .post-actions a {
     color: #ACACAC;
+  }
+
+  .post-actions .fa, .post-actions .fas, .post-actions .far {
+    font-size: 1rem;
+    color: #C2C2C2;
+  }
+
+  .btn-tag {
+    font-size: 12px;
   }
 
   .x-scroll-parent {

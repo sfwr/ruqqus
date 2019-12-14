@@ -2781,6 +2781,39 @@ body {
     line-height: normal;
 }
 
+.post-meta {
+    font-size: 1rem;
+}
+
+.post-actions .fa, .post-actions .fas, .post-actions .far {
+    font-size: $font-size-base;
+}
+
+.btn-tag {
+    font-size: $small-font-size;
+}
+
+// Horizontal scroll
+
+.x-scroll-parent {
+    overflow: hidden;
+}
+
+.x-scroll {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+}
+
+.x-scroll::-webkit-scrollbar {
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    background: transparent; /* Chrome/Safari/Webkit */
+}
+
 #thread .post-title {
     font-size: 16px;
     font-weight: $font-weight-medium;
