@@ -31,7 +31,7 @@ y.classList.toggle("d-none");
                                 <div class="form-text">Current guildmasters</div>
 
 				{% for mod in b.mods_list %}
-					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me and me.id <= mod.id %} - <span id="init-{{ mod.user.base36id }}"><a href="javascript:void(0)" onclick="toggleSure('mod.user.base36id')">{% if mod.user==v %}step down{% else %}remove{% endif %}</a></span><span id="conf-{{ mod.user.base36id }}" class="d-none">Are you sure? <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">Yes</a> / <a href="javascript:void(0)" onclick="toggleSure('mod.user.base36id')">No</a></span>{% endif %}</div>
+					<div><a href="{{ mod.user.permalink }}">@{{ mod.user.username }}</a>{% if me and me.id <= mod.id %} - <span id="init-{{ mod.user.base36id }}"><a href="javascript:void(0)" onclick="toggleSure('{{ mod.user.base36id }}')">{% if mod.user==v %}step down{% else %}remove{% endif %}</a></span><span id="conf-{{ mod.user.base36id }}" class="d-none">Are you sure? <a href="javascript:void(0)", onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})">Yes</a> / <a href="javascript:void(0)" onclick="toggleSure('{{ mod.user.base36id }}')">No</a></span>{% endif %}</div>
 				{% else %}
 					<div class="form-text text-muted">No guildmasters at this time.</div>
 				{% endfor %}
