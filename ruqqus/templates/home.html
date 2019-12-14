@@ -22,13 +22,11 @@
     var currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
       document.getElementById("fixed-bar-mobile").style.top = "49px";
-      document.getElementById("navbar").style.boxShadow="none";
       document.getElementById("navbar").classList.add("nav-custom-border");
       document.getElementById("navbar").classList.remove("nav-custom-shadow");
     } 
     else if (currentScrollPos <= 125) {
       document.getElementById("fixed-bar-mobile").style.top = "49px";
-      document.getElementById("navbar").style.boxShadow="none";
       document.getElementById("navbar").classList.add("nav-custom-border");
       document.getElementById("navbar").classList.remove("nav-custom-shadow");
     }
@@ -36,7 +34,6 @@
       document.getElementById("fixed-bar-mobile").style.top = "-49px";
       document.getElementById("dropdownMenuSortBy").classList.remove('show');
       document.getElementById("dropdownMenuFrom").classList.remove('show');
-      document.getElementById("navbar").style.boxShadow="0 1px 2px 0 rgba(0, 0, 0, 0.03)";
       document.getElementById("navbar").classList.remove("nav-custom-border");
       document.getElementById("navbar").classList.add("nav-custom-shadow");
     }
