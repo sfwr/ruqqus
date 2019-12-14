@@ -15330,6 +15330,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 1rem;
   }
 
+  .btn-tag {
+    font-size: 12px;
+  }
+
   .x-scroll-parent {
     overflow: hidden;
   }

@@ -15285,6 +15285,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     color: #C2C2C2;
   }
 
+  .btn-tag {
+    font-size: 12px;
+  }
+
   .x-scroll-parent {
     overflow: hidden;
   }
