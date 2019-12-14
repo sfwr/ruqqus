@@ -32,15 +32,21 @@
   window.onscroll = function () {
     var currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
-      document.getElementById("filter-bar-mobile").style.top = "48px";
+      document.getElementById("fixed-bar-mobile").style.top = "49px";
+      document.getElementById("navbar").style.boxShadow="none";
+      document.getElementById("navbar").classList.add("border-bottom");
     } 
     else if (currentScrollPos <= 125) {
-      document.getElementById("filter-bar-mobile").style.top = "48px";
+      document.getElementById("fixed-bar-mobile").style.top = "49px";
+      document.getElementById("navbar").style.boxShadow="none";
+      document.getElementById("navbar").classList.add("border-bottom");
     }
     else {
-      document.getElementById("filter-bar-mobile").style.top = "-98px";
+      document.getElementById("fixed-bar-mobile").style.top = "-49px";
       document.getElementById("dropdownMenuSortBy").classList.remove('show');
       document.getElementById("dropdownMenuFrom").classList.remove('show');
+      document.getElementById("navbar").style.boxShadow="0 1px 2px 0 rgba(0, 0, 0, 0.03)";
+      document.getElementById("navbar").classList.remove("border-bottom");
     }
     prevScrollpos = currentScrollPos;
   }
