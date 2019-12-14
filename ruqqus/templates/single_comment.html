@@ -144,10 +144,10 @@
                         {% endif %}
                         {% if v.admin_level>=3 %}
                         {% if not c.is_banned or c.active_flags%}
-                        <a class="dropdown-item removeDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="removeComment('{{ c.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a>
+                        <a class="dropdown-item removeDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="removeComment('{{ c.base36id }}')"><i class="fas fa-comment-times"></i>Remove</a>
 			{% endif %}
                         {% if c.is_banned or c.active_flags %}
-                        <a class="dropdown-item approveDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="approveComment('{{ c.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a>
+                        <a class="dropdown-item approveDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="approveComment('{{ c.base36id }}')"><i class="fas fa-comment-check"></i>Approve</a>
                         {% endif %}
                         {% endif %}
                         {% endif %}
