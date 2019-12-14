@@ -26,7 +26,7 @@ _allowed_tags=tags=['b',
                     'ul',
                    ]
 
-_allowed_tags_with_links=_allowed_tags+["a"]
+_allowed_tags_with_links=_allowed_tags+["a", "hr"]
 
 _allowed_attributes={'a': ['href', 'title', "rel"],
                      "i": ["class"],
