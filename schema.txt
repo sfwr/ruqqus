@@ -260,13 +260,13 @@ CREATE FUNCTION public.flag_count(public.submissions) RETURNS bigint
 CREATE FUNCTION public.follower_count(public.users) RETURNS bigint
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-     select count(*)
-     from follows
-     left join users
-     on follows.target_id=users.id
-     where follows.target_id=$1.id
-     and users.is_banned=0
-    $_$;
+         select count(*)
+         from follows
+         left join users
+         on follows.target_id=users.id
+         where follows.target_id=$1.id
+         and users.is_banned=0
+        $_$;
 
 
 --
@@ -362,6 +362,40 @@ CREATE FUNCTION public.rank_hot(public.submissions) RETURNS double precision
 
 
 --
+-- Name: boards; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.boards (
+    id integer NOT NULL,
+    name character varying(64),
+    is_banned boolean,
+    created_utc integer,
+    description character varying(256) DEFAULT ''::character varying,
+    description_html character varying(256) DEFAULT ''::character varying,
+    over_18 boolean DEFAULT false,
+    fa_icon character varying(64),
+    creator_id integer
+);
+
+
+--
+-- Name: recent_subscriptions(public.boards); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.recent_subscriptions(public.boards) RETURNS bigint
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+         select count(*)
+         from subscriptions
+         left join users
+         on subscriptions.user_id=users.id
+         where subscriptions.board_id=$1.id
+         and subscriptions.created_utc > CAST( EXTRACT( EPOCH FROM CURRENT_TIMESTAMP) AS int) - 60*60*24
+         and users.is_banned=0
+        $_$;
+
+
+--
 -- Name: referral_count(public.users); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -425,36 +459,30 @@ CREATE FUNCTION public.splash(text) RETURNS SETOF public.images
 
 
 --
--- Name: boards; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.boards (
-    id integer NOT NULL,
-    name character varying(64),
-    is_banned boolean,
-    created_utc integer,
-    description character varying(256) DEFAULT ''::character varying,
-    description_html character varying(256) DEFAULT ''::character varying,
-    over_18 boolean DEFAULT false,
-    fa_icon character varying(64),
-    creator_id integer
-);
-
-
---
 -- Name: subscriber_count(public.boards); Type: FUNCTION; Schema: public; Owner: -
 --
 
 CREATE FUNCTION public.subscriber_count(public.boards) RETURNS bigint
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-     select count(*)
-     from subscriptions
-     left join users
-     on subscriptions.user_id=users.id
-     where subscriptions.board_id=$1.id
-     and users.is_banned=0
-    $_$;
+         select count(*)
+         from subscriptions
+         left join users
+         on subscriptions.user_id=users.id
+         where subscriptions.board_id=$1.id
+         and users.is_banned=0
+        $_$;
+
+
+--
+-- Name: trending_rank(public.boards); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.trending_rank(public.boards) RETURNS double precision
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+select cast($1.recent_subscriptions as float) / cast($1.subscriber_count as float)
+$_$;
 
 
 --
