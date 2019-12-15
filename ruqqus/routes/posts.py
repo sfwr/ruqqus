@@ -12,6 +12,7 @@ from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
 from ruqqus.classes import *
+from .front import frontlist
 from flask import *
 from ruqqus.__main__ import app, db, limiter
 
@@ -227,6 +228,10 @@ def submit_post(v):
               )
     db.add(vote)
     db.commit()
+
+    #expire the relevant caches: front page new, board new
+    Cache.delete_memoized(frontlist, sort="new")
+    Cache.delete_memoized(board.idlist, sort="new")
 
     return redirect(new_post.permalink)
     

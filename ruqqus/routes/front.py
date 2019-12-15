@@ -8,7 +8,7 @@ from ruqqus.__main__ import app, db, cache
 from ruqqus.classes.submission import Submission
 
 
-@cache.memoize(timeout=30)
+@cache.memoize(timeout=600)
 def frontlist(sort="hot", page=1, nsfw=False):
 
     #cutoff=int(time.time())-(60*60*24*30)

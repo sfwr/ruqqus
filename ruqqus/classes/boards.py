@@ -65,7 +65,7 @@ class Board(Base):
     def can_take(self, post):
         return self.postrels.filter_by(post_id=post.id).first()
 
-    @cache.memoize(timeout=30)
+    @cache.memoize(timeout=600)
     def idlist(self, sort="hot", page=1, nsfw=False):
 
         posts=db.query(Submission).filter_by(is_banned=False,

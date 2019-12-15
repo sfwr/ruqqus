@@ -69,7 +69,7 @@ class User(Base):
 
         super().__init__(**kwargs)
         
-    @cache.memoize(timeout=120)
+    @cache.memoize(timeout=600)
     def idlist(self, sort="hot", page=1, kind="board"):
 
         
