@@ -48,14 +48,12 @@ class Submission(Base):
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
 
-    ups = Column(Integer, server_default=FetchedValue())
-    downs=Column(Integer, server_default=FetchedValue())
-    age=Column(Integer, server_default=FetchedValue())
+    ups = deferred(Column(Integer, server_default=FetchedValue()))
+    downs=deferred(Column(Integer, server_default=FetchedValue()))
+    age=deferred(Column(Integer, server_default=FetchedValue()))
     comment_count=Column(Integer, server_default=FetchedValue())
-    flag_count=Column(Integer, server_default=FetchedValue())
+    flag_count=deferred(Column(Integer, server_default=FetchedValue()))
     score=Column(Float, server_default=FetchedValue())
-    rank_hot=Column(Float, server_default=FetchedValue())
-    rank_fiery=Column(Float, server_default=FetchedValue())
     
 
     def __init__(self, *args, **kwargs):

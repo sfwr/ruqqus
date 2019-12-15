@@ -33,8 +33,8 @@ class User(Base):
     comments=relationship("Comment", lazy="dynamic", primaryjoin="Comment.author_id==User.id")
     votes=relationship("Vote", lazy="dynamic", backref="users")
     commentvotes=relationship("CommentVote", lazy="dynamic", backref="users")
-    bio=deferred(Column(String, default=""))
-    bio_html=deferred(Column(String, default=""))
+    bio=Column(String, default="")
+    bio_html=Column(String, default="")
     badges=relationship("Badge", lazy="dynamic", backref="user")
     real_id=Column(String, default=None)
     notifications=relationship("Notification", lazy="dynamic", backref="user")
@@ -42,12 +42,12 @@ class User(Base):
     is_banned=Column(Integer, default=0)
     ban_reason=Column(String, default="")
 
-    moderates=relationship("ModRelationship", lazy="dynamic")
-    banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
-    subscriptions=relationship("Subscription", lazy="dynamic")
+    moderates=deferred(relationship("ModRelationship", lazy="dynamic"))
+    banned_from=deferred(relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id"))
+    subscriptions=deferred(relationship("Subscription", lazy="dynamic"))
 
-    following=relationship("Follow", lazy="dynamic", primaryjoin="Follow.user_id==User.id")
-    followers=relationship("Follow", lazy="dynamic", primaryjoin="Follow.target_id==User.id")
+    following=deferred(relationship("Follow", lazy="dynamic", primaryjoin="Follow.user_id==User.id"))
+    followers=deferred(relationship("Follow", lazy="dynamic", primaryjoin="Follow.target_id==User.id"))
 
 
     
