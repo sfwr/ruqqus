@@ -13348,8 +13348,8 @@ a:hover .link-arrow {
 }
 
 .dashboard-list > .dashboard-item > .dashboard-link.active {
-  color: #af92de;
-  background-color: #3f404a;
+  color: #dadada;
+  background-color: #35363e;
   border-radius: 0.35rem;
 }
 

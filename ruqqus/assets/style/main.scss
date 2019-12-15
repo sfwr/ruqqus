@@ -1176,9 +1176,10 @@ color: $dark;
 }
 
 .dashboard-list > .dashboard-item > .dashboard-link.active {
-    color: $primary;
-    background-color: $gray-100;
-    border-radius: $border-radius;
+    color: $black;
+    background-color: $white;
+    border-radius: 0.35rem;
+    border: 1px solid $border-color;
 }
 
 .dashboard-list .dashboard-item .fa, .dashboard-list .dashboard-item .fas, .dashboard-list .dashboard-item .far, .dashboard-list .dashboard-item .fab, .dashboard-list .dashboard-item .fal {
