@@ -164,7 +164,7 @@ class User(Base):
         return [x.board for x in self.moderates.order_by(text("id")).all()]
 
     @property
-    @cache.memoize(timeout=60)
+    @cache.memoize(timeout=3600) #1hr cache time for user rep
     def karma(self):
         return self.energy
 
