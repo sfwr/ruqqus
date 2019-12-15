@@ -174,7 +174,7 @@
             "></i></div>
             <div>
               <a href="{{ board.permalink }}"><i class="{{ board.fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ board.name }}</a>
-              <div class="text-muted text-small font-weight-normal">trending today</div>
+              <div class="text-muted text-small font-weight-normal">{{ board.subscriber_count }} Members</div>
             </div>
           </div>
           {% endfor %}
