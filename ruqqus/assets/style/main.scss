@@ -1048,9 +1048,14 @@ color: $dark;
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
     margin-bottom: .5rem;
-    padding-bottom: .25rem;
+    padding-bottom: .5rem;
     color: $text-muted;
     font-weight: $font-weight-bold;
+    border-bottom: 1px solid rgba(225, 225, 225, 0.25);
+}
+
+.sidebar-section.sidebar-trending .trending-hashtag:last-child, .sidebar-section.sidebar-trending .trending-guild:last-child {
+    border-bottom: none;
 }
 
 .sidebar-section.sidebar-alert {

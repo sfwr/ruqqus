@@ -13236,9 +13236,14 @@ a:hover .link-arrow {
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
   margin-bottom: 0.5rem;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
   color: #8c8d94;
   font-weight: 600;
+  border-bottom: 1px solid #494a4e;
+}
+
+.sidebar-section.sidebar-trending .trending-hashtag:last-child, .sidebar-section.sidebar-trending .trending-guild:last-child {
+  border-bottom: none;
 }
 
 .sidebar-section.sidebar-alert {
