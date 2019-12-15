@@ -10,7 +10,7 @@ from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from flask import *
-from ruqqus.__main__ import app, db, limiter
+from ruqqus.__main__ import app, db, limiter, Cache
 
 valid_board_regex=re.compile("^\w{3,25}")
 fa_icon_regex=re.compile("(fas|far|fal|fad) fa-([a-z0-9-]+)")
@@ -472,6 +472,9 @@ def subscribe_board(boardname, v):
     db.add(new_sub)
     db.commit()
 
+    #clear your cached guild listings
+    Cache.delete_memoized(User.idlist, self=v, kind="board")
+
     return "", 204
 
 
@@ -493,5 +496,8 @@ def unsubscribe_board(boardname, v):
 
     db.add(sub)
     db.commit()
+
+    #clear your cached guild listings
+    Cache.delete_memoized(User.idlist, self=v, kind="board")
 
     return "", 204
