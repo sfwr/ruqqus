@@ -21,11 +21,11 @@ class Board(Base):
     over_18=Column(Boolean, default=False)
     fa_icon=Column(String, default="")
     
-    creator_id=deferred(Column(Integer, ForeignKey("users.id")))
+    creator_id=Column(Integer, ForeignKey("users.id"))
 
-    moderators=deferred(relationship("ModRelationship", lazy="dynamic"))
-    subscribers=deferred(relationship("Subscription", lazy="dynamic"))
-    submissions=deferred(relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id"))
+    moderators=relationship("ModRelationship", lazy="dynamic")
+    subscribers=relationship("Subscription", lazy="dynamic")
+    submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
 
     #db side functions
     subscriber_count=deferred(Column(Integer, server_default=FetchedValue()))
