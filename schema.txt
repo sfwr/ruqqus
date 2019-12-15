@@ -481,7 +481,10 @@ CREATE FUNCTION public.subscriber_count(public.boards) RETURNS bigint
 CREATE FUNCTION public.trending_rank(public.boards) RETURNS double precision
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-select cast($1.recent_subscriptions as float) / cast($1.subscriber_count as float)
+select coalesce(
+	(cast($1.recent_subscriptions as float) / cast($1.subscriber_count as float))
+	,
+	0)
 $_$;
 
 

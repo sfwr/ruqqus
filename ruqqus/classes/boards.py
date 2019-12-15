@@ -26,6 +26,7 @@ class Board(Base):
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
+    trending_rank=deferred(Column(Float, server_default=FetchedValue()))
 
     #db side functions
     subscriber_count=deferred(Column(Integer, server_default=FetchedValue()))
