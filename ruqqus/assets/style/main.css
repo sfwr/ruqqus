@@ -12714,7 +12714,7 @@ ol > li::before {
 
 .settings-nav .nav-link {
   color: #5F5F5F;
-  font-size: 11px;
+  font-size: 1rem;
   font-weight: 400;
   padding-top: 0;
 }
