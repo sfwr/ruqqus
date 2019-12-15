@@ -453,10 +453,19 @@ def subscribe_board(boardname, v):
 
     board=get_guild(boardname)
 
-    #check for existing subscription
-    if db.query(Subscription).filter_by(user_id=v.id, board_id=board.id).first():
-        abort(409)
+    #check for existing subscription, canceled or otherwise
+    sub= db.query(Subscription).filter_by(user_id=v.id, board_id=board.id).first()
+    if sub:
+        if sub.is_active:
+            abort(409)
+        else:
+            #reactivate canceled sub
+            sub.is_active=True
+            db.add(sub)
+            db.commit()
+            return "", 204
 
+    
     new_sub=Subscription(user_id=v.id,
                          board_id=board.id)
 
@@ -477,8 +486,12 @@ def unsubscribe_board(boardname, v):
 
     if not sub:
         abort(409)
+    elif not sub.is_active:
+        abort(409)
 
-    db.delete(sub)
+    sub.is_active=False
+
+    db.add(sub)
     db.commit()
 
     return "", 204

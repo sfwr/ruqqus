@@ -21,6 +21,7 @@ class Board(Base):
     over_18=Column(Boolean, default=False)
     fa_icon=Column(String, default="")
     is_banned=Column(Boolean, default=False)
+    is_active=Column(Boolean, default=True)
     
     creator_id=Column(Integer, ForeignKey("users.id"))
 
@@ -191,7 +192,7 @@ class Board(Base):
 
     def has_subscriber(self, user):
 
-        return self.subscribers.filter_by(board_id=self.id, user_id=user.id).first()
+        return self.subscribers.filter_by(board_id=self.id, user_id=user.id, is_active=True).first()
 
     @property
     def created_date(self):
