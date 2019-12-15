@@ -473,7 +473,7 @@ def subscribe_board(boardname, v):
     db.commit()
 
     #clear your cached guild listings
-    Cache.delete_memoized(User.idlist, self=v, kind="board")
+    Cache.delete_memoized(v.idlist, kind="board")
 
     return "", 204
 
@@ -498,6 +498,6 @@ def unsubscribe_board(boardname, v):
     db.commit()
 
     #clear your cached guild listings
-    Cache.delete_memoized(User.idlist, self=v, kind="board")
+    Cache.delete_memoized(v.idlist, kind="board")
 
     return "", 204
