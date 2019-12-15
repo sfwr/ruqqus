@@ -9,6 +9,13 @@ from ruqqus.classes.submission import Submission
 
 
 @cache.memoize(timeout=600)
+def trending_boards(n=5):
+
+    boards=db.query(Board).filter_by(is_banned=False).order_by(text("boards.trending_rank desc")).limit(n)
+
+    return [x for x in boards]
+
+@cache.memoize(timeout=600)
 def frontlist(sort="hot", page=1, nsfw=False):
 
     #cutoff=int(time.time())-(60*60*24*30)

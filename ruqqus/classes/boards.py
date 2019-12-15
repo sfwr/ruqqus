@@ -20,6 +20,7 @@ class Board(Base):
     description_html=Column(String)
     over_18=Column(Boolean, default=False)
     fa_icon=Column(String, default="")
+    is_banned=Column(Boolean, default=False)
     
     creator_id=Column(Integer, ForeignKey("users.id"))
 
