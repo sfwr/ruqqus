@@ -390,6 +390,7 @@ CREATE FUNCTION public.recent_subscriptions(public.boards) RETURNS bigint
          left join users
          on subscriptions.user_id=users.id
          where subscriptions.board_id=$1.id
+         and subscriptions.is_active=true
          and subscriptions.created_utc > CAST( EXTRACT( EPOCH FROM CURRENT_TIMESTAMP) AS int) - 60*60*24
          and users.is_banned=0
         $_$;
@@ -471,6 +472,7 @@ CREATE FUNCTION public.subscriber_count(public.boards) RETURNS bigint
          on subscriptions.user_id=users.id
          where subscriptions.board_id=$1.id
          and users.is_banned=0
+         and subscriptions.is_active=true
         $_$;
 
 
@@ -1054,7 +1056,8 @@ CREATE TABLE public.subscriptions (
     id integer NOT NULL,
     user_id integer,
     board_id integer,
-    created_utc integer NOT NULL
+    created_utc integer NOT NULL,
+    is_active boolean DEFAULT true
 );
 
 
