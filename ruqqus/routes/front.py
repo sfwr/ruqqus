@@ -99,7 +99,14 @@ def home(v):
         if sticky:
             posts=[sticky]+posts
     
-    return render_template("home.html", v=v, listing=posts, next_exists=next_exists, sort_method=sort_method, page=page)
+    return render_template("home.html",
+                           v=v,
+                           listing=posts,
+                           next_exists=next_exists,
+                           sort_method=sort_method,
+                           page=page,
+                           trending_boards = trending_boards(n=5)
+                           )
 
 
 @app.route("/guilds", methods=["GET"])
