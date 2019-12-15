@@ -84,6 +84,11 @@ def create_board_post(v):
                         board_id=new_board.id,
                         accepted=True)
     db.add(mod)
+
+    #add subscription for user
+    sub=Subscription(user_id=v.id,
+                     board_id=new_board.id)
+    db.add(sub)
     db.commit()
 
     return redirect(new_board.permalink)
