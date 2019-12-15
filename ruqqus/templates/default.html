@@ -84,7 +84,7 @@
 
         {% if not v %}
         <div class="sidebar-section sidebar-alert">
-        <div class="body">
+          <div class="body">
             <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
             <h5>Join the discourse.</h5>
             <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
@@ -154,90 +154,95 @@
             {% endif %}
           </div>
         </div>
-	{% if v and v.is_activated and v.karma >=100 %}
-	<div class="sidebar-section sidebar-make-guild">
-		<div class="title">Start a Guild</div>
-		<div class="body">
-			<p>Start your own community, for something you love</p>
-			<a href="/create_guild" class="btn btn-primary btn-block">Start a Guild</a>
-		</div>
-	</div>
-	{% endif %}
-	{% if trending_boards %}
-	<div class="sidebar-section sidebar-trending">
-		<div class="title">Rising Guilds</div>
-		<div class="body">
-			{% for board in trending_boards %}
-			<div class="trending-guild">
-      <a href="{{ board.permalink }}"><i class="{{ board.fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ board.name }}</a>
-      <div class="text-muted text-small font-weight-normal">trending today</div>
-      </div>
-			{% endfor %}
-		</div>
-	</div>
-	{% endif %}
-        {% endblock %}
-
-        {% if v and v.referral_count==0 %}
-        <div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
-          <div class="title" style="
-          color: #fff;
-          border-color: rgba(230, 230, 230, 0.1);
-          ">Announcement</div>
+        {% if v and v.is_activated and v.karma >=100 %}
+        <div class="sidebar-section sidebar-make-guild">
+          <div class="title">Start a Guild</div>
           <div class="body">
-            <div class="text-center my-3">
-              <i class="fad fa-moon-stars text-warning" style="font-size: 4rem"></i>
-            </div>
-
-            <div class="mb-2">
-              <span class="h5">Refer a friend. Get dark mode.</span>
-            </div>
-            <p class="text-small">When you invite a friend to make a Ruqqus, you'll unlock dark mode. Copy your referral code to get started.</p>
-            <label for="referral_code" class="text-white">Referral code</label>
-            <input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://ruqqus.com/signup?ref={{ v.username }}" data-clipboard-text="https://ruqqus.com/signup?ref={{ v.username }}">
-          </div>
-        </div>
-        {% endif %}
-
-        {% if v %}
-        {% if v.admin_level %}
-        <div class="sidebar-section sidebar-adminpanel">
-         <div class="title">Admin Panel</div>
-         <div class="body">
-           {% block adminpanel %}
-           <p class="text-center text-small text-muted mb-0">No admin actions available</p>
-           {% endblock %}
+           <p>Start your own community, for something you love</p>
+           <a href="/create_guild" class="btn btn-primary btn-block">Start a Guild</a>
          </div>
        </div>
        {% endif %}
-       {% endif %}
-
-       <div class="sidebar-section sidebar-trending d-none">
-        <div class="title">What's Hot</div>
+       {% if trending_boards %}
+       <div class="sidebar-section sidebar-trending">
+        <div class="title">Rising Guilds</div>
         <div class="body">
-          <p>Here are the most popular tags from the last 24 hours.</p>
-          <div class="hashtag">
-            <a href="#">#Mueller</a>
-            <div class="text-muted text-small font-weight-normal">2.3K posting about this</div>
+         {% for board in trending_boards %}
+         <div class="d-flex justify-content-start mb-2 pb-2 border-bottom">
+          <div class="my-auto mr-3"><i class="fad fa-caret-square-up text-success" style="
+            font-size: 14px;
+            "></i></div>
+            <div class="trending-guild">
+              <a href="{{ board.permalink }}"><i class="{{ board.fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ board.name }}</a>
+              <div class="text-muted text-small font-weight-normal">trending today</div>
+            </div>
           </div>
-          <div class="hashtag">
-            <a href="#">#MemeWar2</a>
-            <div class="text-muted text-small font-weight-normal">1.2K posting about this</div>
-          </div>
-          <div class="hashtag">
-            <a href="#">#AskTrumpSupporters</a>
-            <div class="text-muted text-small font-weight-normal">900 posting about this</div>
-          </div>
-          <div class="hashtag">
-            <a href="#">#DNCDebates</a>
-            <div class="text-muted text-small font-weight-normal">600 posting about this</div>
-          </div>
-          <div class="hashtag">
-            <a href="#">#DNCDebates</a>
-            <div class="text-muted text-small font-weight-normal">600 posting about this</div>
-          </div>
+          {% endfor %}
         </div>
       </div>
+      {% endif %}
+      {% endblock %}
+
+      {% if v and v.referral_count==0 %}
+      <div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
+        <div class="title" style="
+        color: #fff;
+        border-color: rgba(230, 230, 230, 0.1);
+        ">Announcement</div>
+        <div class="body">
+          <div class="text-center my-3">
+            <i class="fad fa-moon-stars text-warning" style="font-size: 4rem"></i>
+          </div>
+
+          <div class="mb-2">
+            <span class="h5">Refer a friend. Get dark mode.</span>
+          </div>
+          <p class="text-small">When you invite a friend to make a Ruqqus, you'll unlock dark mode. Copy your referral code to get started.</p>
+          <label for="referral_code" class="text-white">Referral code</label>
+          <input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://ruqqus.com/signup?ref={{ v.username }}" data-clipboard-text="https://ruqqus.com/signup?ref={{ v.username }}">
+        </div>
+      </div>
+      {% endif %}
+
+      {% if v %}
+      {% if v.admin_level %}
+      <div class="sidebar-section sidebar-adminpanel">
+       <div class="title">Admin Panel</div>
+       <div class="body">
+         {% block adminpanel %}
+         <p class="text-center text-small text-muted mb-0">No admin actions available</p>
+         {% endblock %}
+       </div>
+     </div>
+     {% endif %}
+     {% endif %}
+
+     <div class="sidebar-section sidebar-trending d-none">
+      <div class="title">What's Hot</div>
+      <div class="body">
+        <p>Here are the most popular tags from the last 24 hours.</p>
+        <div class="hashtag">
+          <a href="#">#Mueller</a>
+          <div class="text-muted text-small font-weight-normal">2.3K posting about this</div>
+        </div>
+        <div class="hashtag">
+          <a href="#">#MemeWar2</a>
+          <div class="text-muted text-small font-weight-normal">1.2K posting about this</div>
+        </div>
+        <div class="hashtag">
+          <a href="#">#AskTrumpSupporters</a>
+          <div class="text-muted text-small font-weight-normal">900 posting about this</div>
+        </div>
+        <div class="hashtag">
+          <a href="#">#DNCDebates</a>
+          <div class="text-muted text-small font-weight-normal">600 posting about this</div>
+        </div>
+        <div class="hashtag">
+          <a href="#">#DNCDebates</a>
+          <div class="text-muted text-small font-weight-normal">600 posting about this</div>
+        </div>
+      </div>
+    </div>
       <!--
       <div class="sidebar-section sidebar-rules">
         <div class="title">Ruqqus Rules</div>
