@@ -21,7 +21,6 @@ class Board(Base):
     over_18=Column(Boolean, default=False)
     fa_icon=Column(String, default="")
     is_banned=Column(Boolean, default=False)
-    is_active=Column(Boolean, default=True)
     
     creator_id=Column(Integer, ForeignKey("users.id"))
 

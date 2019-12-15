@@ -11,6 +11,7 @@ class Subscription(Base):
     user_id = Column(BigInteger, ForeignKey("users.id"))
     board_id = Column(BigInteger, ForeignKey("boards.id"))
     created_utc = Column(BigInteger, default=0)
+    is_active=Column(Boolean, default=True)
 
     user=relationship("User", uselist=False)
     board=relationship("Board", uselist=False)
