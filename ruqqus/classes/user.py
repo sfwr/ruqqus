@@ -42,12 +42,12 @@ class User(Base):
     is_banned=Column(Integer, default=0)
     ban_reason=Column(String, default="")
 
-    moderates=deferred(relationship("ModRelationship", lazy="dynamic"))
-    banned_from=deferred(relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id"))
-    subscriptions=deferred(relationship("Subscription", lazy="dynamic"))
+    moderates=relationship("ModRelationship", lazy="dynamic")
+    banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
+    subscriptions=relationship("Subscription", lazy="dynamic")
 
-    following=deferred(relationship("Follow", lazy="dynamic", primaryjoin="Follow.user_id==User.id"))
-    followers=deferred(relationship("Follow", lazy="dynamic", primaryjoin="Follow.target_id==User.id"))
+    following=relationship("Follow", lazy="dynamic", primaryjoin="Follow.user_id==User.id")
+    followers=relationship("Follow", lazy="dynamic", primaryjoin="Follow.target_id==User.id")
 
 
     
