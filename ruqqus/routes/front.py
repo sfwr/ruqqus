@@ -11,7 +11,7 @@ from ruqqus.classes.submission import Submission
 @cache.memoize(timeout=600)
 def trending_boards(n=5):
 
-    boards=db.query(Board).filter_by(is_banned=False).order_by(text("boards.trending_rank desc")).limit(n)
+    boards=db.query(Board).filter_by(is_banned=False, over_18=False).order_by(text("boards.trending_rank desc")).limit(n)
 
     return [x for x in boards]
 
