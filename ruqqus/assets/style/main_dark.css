@@ -13243,6 +13243,8 @@ a:hover .link-arrow {
 }
 
 .sidebar-section.sidebar-trending .trending-hashtag:last-child, .sidebar-section.sidebar-trending .trending-guild:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
   border-bottom: none;
 }
 
