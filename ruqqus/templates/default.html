@@ -164,11 +164,14 @@
 	</div>
 	{% endif %}
 	{% if trending_boards %}
-	<div class="sidebar-section sidebar-trending-guilds">
+	<div class="sidebar-section sidebar-trending">
 		<div class="title">Rising Guilds</div>
 		<div class="body">
 			{% for board in trending_boards %}
-			<div><a href="{{ board.permalink }}"><i class="{{ board.fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ board.name }}</a></div>
+			<div class="trending-guilds">
+      <a href="{{ board.permalink }}"><i class="{{ board.fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ board.name }}</a>
+      <div class="text-muted text-small font-weight-normal">{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}</div>
+      </div>
 			{% endfor %}
 		</div>
 	</div>
