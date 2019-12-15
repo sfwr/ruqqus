@@ -13213,7 +13213,7 @@ a:hover .link-arrow {
   border-radius: 0.35rem;
 }
 
-.sidebar-section.sidebar-trending .hashtag, .sidebar-section.sidebar-trending .guild {
+.sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
   margin-bottom: 0.5rem;
   padding-bottom: 0.25rem;
   color: #7D7D7D;
