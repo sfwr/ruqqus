@@ -231,7 +231,7 @@ def submit_post(v):
 
     #expire the relevant caches: front page new, board new
     cache.delete_memoized(frontlist, sort="new")
-    cache.delete_memoized(board.idlist, sort="new")
+    cache.delete_memoized(Board.idlist, self=board, sort="new")
 
     return redirect(new_post.permalink)
     

@@ -94,7 +94,7 @@ def follow_user(username, v):
     db.add(new_follow)
     db.commit()
 
-    cache.delete_memoized(v.idlist, kind="user")
+    cache.delete_memoized(User.idlist, self=v, kind="user")
 
     return "", 204
 
@@ -114,7 +114,7 @@ def unfollow_user(username, v):
     db.delete(follow)
     db.commit()
 
-    cache.delete_memoized(v.idlist, kind="user")
+    cache.delete_memoized(User.idlist, self=v, kind="user")
 
     return "", 204
 
