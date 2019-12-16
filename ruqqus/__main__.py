@@ -54,7 +54,9 @@ limiter = Limiter(
 
 #setup db
 _engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
-db = sessionmaker(bind=_engine)()
+db = sessionmaker(bind=_engine,
+                  expire_on_commit=False
+                  )()
 Base = declarative_base()
 
 #import and bind all routing functions
