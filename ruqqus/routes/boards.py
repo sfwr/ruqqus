@@ -135,6 +135,8 @@ def mod_kick_bid_pid(bid,pid, v):
     db.add(post)
     db.commit()
 
+    cache.delete_memoized(Board.idlist, board)
+
     return "", 204
 
 @app.route("/mod/ban/<bid>/<username>", methods=["POST"])
@@ -192,6 +194,8 @@ def user_kick_pid(pid, v):
     
     post=get_post(pid)
 
+    current_board=post.board
+
     if not post.author_id==v.id:
         abort(403)
 
@@ -205,20 +209,23 @@ def user_kick_pid(pid, v):
     new_rel=PostRelationship(post_id=post.id,
                              board_id=post.board.id)
     db.add(new_rel)
-    db.commit()
 
     post.board_id=1
     
     db.add(post)
     db.commit()
+    
+    #clear board's listing caches
+    cache.delete_memoized(Board.idlist, current_board)
+    
     return "", 204
 
-@app.route("/mod/take/<bid>/<pid>", methods=["POST"])
+@app.route("/mod/take/<pid>", methods=["POST"])
 @auth_required
 @validate_formkey
-def mod_take_bid_pid(bid,pid):
+def mod_take_bid_pid(bid, v):
 
-    board=get_board(bid)
+    board=get_board(request.form("board_id"))
 
     post = get_post(pid)
 
@@ -237,6 +244,10 @@ def mod_take_bid_pid(bid,pid):
     post.board_id=board.id
     db.add(post)
     db.commit()
+
+    #clear board's listing caches
+    cache.delete_memoized(Board.idlist, board)
+    
     return "", 204
 
 @app.route("/mod/invite_mod/<bid>", methods=["POST"])

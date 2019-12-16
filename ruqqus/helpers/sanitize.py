@@ -82,16 +82,27 @@ def sanitize(text, linkgen=False):
         soup=BeautifulSoup(sanitized, features="html.parser")
 
         for tag in soup.find_all("img"):
-            tag["rel"]="nofollow"
-            tag["alt"]="Anonymous load failed"
-            tag["style"]="max-height: 150px; max-width=250px"
-            tag["class"]="in-comment-image"
 
-            domain=get_domain(urlparse(tag["href"]).netloc)
+
+            domain=get_domain(urlparse(tag["src"]).netloc)
             if not(domain and domain.show_thumbnail):
-                tag["crossorigin"]="anonymous"
+                #non-whitelisted images get replaced with links
+                new_tag=soup.new_tag("a")
+                new_tag.string=tag["src"]
+                new_tag["href"]=tag["src"]
+                new_tag["rel"]="nofollow"
+                tag.replace_with(new_tag)
                 
-            
+            else:
+                #set classes and wrap in link
+                tag["rel"]="nofollow"
+                tag["style"]="max-height: 150px; max-width=250px"
+                tag["class"]="in-comment-image"
+
+                link=soup.new_tag("a")
+                link["href"]=tag["src"]
+                link["rel"]="nofollow"
+                tag.wrap(link)
 
         sanitized=str(soup)
     else:
