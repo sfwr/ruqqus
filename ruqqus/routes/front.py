@@ -98,6 +98,8 @@ def home(v):
         sticky=db.query(Submission).filter_by(stickied=True).first()
         if sticky:
             posts=[sticky]+posts
+
+    boards=trending_boards(n=5)
     
     return render_template("home.html",
                            v=v,
@@ -105,7 +107,7 @@ def home(v):
                            next_exists=next_exists,
                            sort_method=sort_method,
                            page=page,
-                           trending_boards = trending_boards(n=5)
+                           trending_boards = boards
                            )
 
 
