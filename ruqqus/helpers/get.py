@@ -48,6 +48,7 @@ def get_domain(domain):
 
         #parse domain into all possible subdomains
         parts=domain.split(".")
+        domain_list=[]
         for i in range(len(parts)):
             new_domain=parts[i]
             for j in range(i+1, len(parts)):
