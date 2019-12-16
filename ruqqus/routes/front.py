@@ -13,7 +13,7 @@ def trending_boards(n=5):
 
     boards=db.query(Board).filter_by(is_banned=False, over_18=False).order_by(text("boards.trending_rank desc")).limit(n)
 
-    return [x for x in boards]
+    return [(x, x.subscriber_count) for x in boards]
 
 @cache.memoize(timeout=600)
 def frontlist(sort="hot", page=1, nsfw=False):
@@ -99,7 +99,7 @@ def home(v):
         if sticky:
             posts=[sticky]+posts
 
-    boards=trending_boards(n=5)
+    boards_list=trending_boards(n=5)
     
     return render_template("home.html",
                            v=v,
@@ -107,7 +107,7 @@ def home(v):
                            next_exists=next_exists,
                            sort_method=sort_method,
                            page=page,
-                           trending_boards = boards
+                           trending_boards = boards_list
                            )
 
 

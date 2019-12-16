@@ -167,14 +167,14 @@
        <div class="sidebar-section sidebar-trending">
         <div class="title">Rising Guilds</div>
         <div class="body">
-         {% for board in trending_boards %}
+         {% for entry in trending_boards %}
          <div class="d-flex justify-content-start trending-guild">
           <div class="my-auto mr-3"><i class="fad fa-caret-square-up text-success" style="
             font-size: 14px;
             "></i></div>
             <div>
-              <a href="{{ board.permalink }}"><i class="{{ board.fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ board.name }}</a>
-              <div class="text-muted text-small font-weight-normal">{{ board.subscriber_count }} Member{{ '' if board.subscriber_count==1 else 's' }}</div>
+              <a href="{{ entry[0].permalink }}"><i class="{{ entry[0].fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ entry[0].name }}</a>
+              <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
             </div>
           </div>
           {% endfor %}
