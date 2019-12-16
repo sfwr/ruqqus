@@ -378,8 +378,7 @@ def mod_bid_settings(bid, v):
         board.fa_icon=""
     else:
         try:
-            
-            elif if fa_raw.startswith("http"):
+            if fa_raw.startswith("http"):
                 parsed_link=urlparse(fa_raw)
                 icon=parsed_link.path.split("/")[-1]
                 style=parsed_link.query.split("=")[-1]
