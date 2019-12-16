@@ -100,6 +100,7 @@ def home(v):
             posts=[sticky]+posts
 
     boards_list=trending_boards(n=5)
+    print(boards_list)
     
     return render_template("home.html",
                            v=v,
