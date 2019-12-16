@@ -174,7 +174,7 @@
             "></i></div>
             <div>
               <a href="{{ board.permalink }}"><i class="{{ board.fa_icon if board.fa_icon else 'fad' }} fa-width-rem"></i>+{{ board.name }}</a>
-              <div class="text-muted text-small font-weight-normal"> Members</div>
+              <div class="text-muted text-small font-weight-normal">{{ board.subscriber_count }} Member{{ 's' if board.subscriber_count != 1 else '' }}</div>
             </div>
           </div>
           {% endfor %}
