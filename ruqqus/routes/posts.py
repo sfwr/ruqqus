@@ -14,7 +14,7 @@ from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from .front import frontlist
 from flask import *
-from ruqqus.__main__ import app, db, limiter, Cache
+from ruqqus.__main__ import app, db, limiter, cache
 
 BAN_REASONS=['',
              "URL shorteners are not permitted.",
@@ -230,8 +230,8 @@ def submit_post(v):
     db.commit()
 
     #expire the relevant caches: front page new, board new
-    Cache.delete_memoized(frontlist, sort="new")
-    Cache.delete_memoized(board.idlist, sort="new")
+    cache.delete_memoized(frontlist, sort="new")
+    cache.delete_memoized(board.idlist, sort="new")
 
     return redirect(new_post.permalink)
     
