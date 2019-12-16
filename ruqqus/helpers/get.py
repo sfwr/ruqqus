@@ -48,13 +48,15 @@ def get_domain(domain):
 
         #parse domain into all possible subdomains
         parts=domain.split(".")
-        domain_list=[]
+        domain_list=set([])
         for i in range(len(parts)):
             new_domain=parts[i]
             for j in range(i+1, len(parts)):
                 new_domain+="."+parts[j]
 
                 domain_list.add(new_domain)
+
+        domain_list=list(domain_list)
 
         doms=[x for x in db.query(Domain).filter(domain.domain.in_(domain_list)).all()]
 
