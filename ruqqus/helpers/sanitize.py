@@ -96,7 +96,7 @@ def sanitize(text, linkgen=False):
             else:
                 #set classes and wrap in link
                 tag["rel"]="nofollow"
-                tag["style"]="max-height: 150px; max-width: 250px"
+                tag["style"]="max-height: 150px; max-width: 150px"
                 tag["class"]="in-comment-image"
 
                 link=soup.new_tag("a")
