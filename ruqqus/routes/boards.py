@@ -72,7 +72,7 @@ def create_board_post(v):
     new_board=Board(name=board_name,
                     description=description,
                     description_html=description_html,
-                    over_18=(bool(request.form.get("over_18","")) or board.over_18),
+                    over_18=request.form.get("over_18",""),
                     creator_id=v.id
                     )
 
