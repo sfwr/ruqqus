@@ -14,7 +14,7 @@ from ruqqus.helpers.get import *
 from ruqqus.classes import *
 from .front import frontlist
 from flask import *
-from ruqqus.__main__ import app, db, limiter
+from ruqqus.__main__ import app, db, limiter, Cache
 
 BAN_REASONS=['',
              "URL shorteners are not permitted.",
