@@ -374,28 +374,31 @@ def mod_bid_settings(bid, v):
 
     #fontawesome
     fa_raw=request.form.get("fa_icon","")
-    try:
-        if fa_raw.startswith("http"):
-            parsed_link=urlparse(fa_raw)
-            icon=parsed_link.path.split("/")[-1]
-            style=parsed_link.query.split("=")[-1]
-            styles={"duotone":"fad",
-                    "light":"fal",
-                    "regular":"far",
-                    "solid":"fas"}
-            style=styles[style]
-        else:
-
-            regex=re.search(fa_icon_regex, fa_raw)
-            style=regex.group(1)
-            icon=regex.group(2)
+    if not fa_raw:
+        board.fa_icon=""
+    else:
+        try:
             
-        board.fa_icon=f"{style} fa-{icon}"
-    except Exception as e:
-        pass
-        
-        
+            elif if fa_raw.startswith("http"):
+                parsed_link=urlparse(fa_raw)
+                icon=parsed_link.path.split("/")[-1]
+                style=parsed_link.query.split("=")[-1]
+                styles={"duotone":"fad",
+                        "light":"fal",
+                        "regular":"far",
+                        "solid":"fas"}
+                style=styles[style]
+            else:
 
+                regex=re.search(fa_icon_regex, fa_raw)
+                style=regex.group(1)
+                icon=regex.group(2)
+                
+            board.fa_icon=f"{style} fa-{icon}"
+        except Exception as e:
+            pass
+        
+    
     db.add(board)
     db.commit()
 
