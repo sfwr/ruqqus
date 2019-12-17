@@ -15,7 +15,7 @@ def auth_desired(f):
         if "user_id" in session:
             v=db.query(User).filter_by(id=session["user_id"]).first()
             nonce=session.get("login_nonce",0)
-            if nonce<v.nonce:
+            if nonce<v.login_nonce:
                 abort(401)
             #if v:
                 #v.update_ip(request.remote_addr)
@@ -35,7 +35,7 @@ def auth_required(f):
         if "user_id" in session:
             v=db.query(User).filter_by(id=session["user_id"]).first()
             nonce=session.get("login_nonce",0)
-            if nonce<v.nonce:
+            if nonce<v.login_nonce:
                 abort(401)
             
             if not v:
@@ -58,7 +58,7 @@ def is_not_banned(f):
         if "user_id" in session:
             v=db.query(User).filter_by(id=session["user_id"]).first()
             nonce=session.get("login_nonce",0)
-            if nonce<v.nonce:
+            if nonce<v.login_nonce:
                 abort(401)
             
             if not v:
@@ -93,7 +93,7 @@ def admin_level_required(x):
                 if not v:
                     abort(401)
                 nonce=session.get("login_nonce",0)
-                if nonce<v.nonce:
+                if nonce<v.login_nonce:
                     abort(401)
                 
                 if v.is_banned:
