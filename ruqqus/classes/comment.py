@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import *
 import time
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
@@ -31,6 +31,7 @@ class Comment(Base):
     is_approved = Column(Integer, default=0)
     approved_utc=Column(Integer, default=0)
     ban_reason=Column(String(256), default='')
+    creation_ip=Column(String(64), defautl='')
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
@@ -46,10 +47,10 @@ class Comment(Base):
 
         if "created_utc" not in kwargs:
             kwargs["created_utc"]=int(time.time())
+
+        kwargs["creation_ip"]=request.remote_addr
             
-        for x in kwargs:
-            if x not in ["ups","downs","score","rank_hot","rank_fiery","age","comment_count"]:
-                self.__dict__[x]=kwargs[x]
+        super().__init__(*args, **kwargs)
                 
     def __repr__(self):
         return f"<Comment(id={self.id})"

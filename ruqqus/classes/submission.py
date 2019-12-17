@@ -14,7 +14,7 @@ from .domains import Domain
 from .flags import Flag
 
 class Submission(Base):
-
+ 
     __tablename__="submissions"
 
     id = Column(BigInteger, primary_key=True)
@@ -41,6 +41,7 @@ class Submission(Base):
     over_18=Column(Boolean, default=False)
     original_board=relationship("Board", uselist=False, primaryjoin="Board.id==Submission.original_board_id")
     ban_reason=Column(String(128), default="")
+    creation_ip=Column(String(64), default="")
 
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
@@ -62,6 +63,7 @@ class Submission(Base):
             kwargs["created_utc"]=int(time.time())
             kwargs["created_str"]=time.strftime("%I:%M %p on %d %b %Y", time.gmtime(kwargs["created_utc"]))
 
+        kwargs["creation_ip"]=request.remote_addr
 
         super().__init__(*args, **kwargs)
         
