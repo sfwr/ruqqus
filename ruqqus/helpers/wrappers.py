@@ -16,7 +16,7 @@ def auth_desired(f):
             v=db.query(User).filter_by(id=session["user_id"]).first()
             nonce=session.get("login_nonce",0)
             if nonce<v.login_nonce:
-                abort(401)
+                v=None
             #if v:
                 #v.update_ip(request.remote_addr)
         else:
