@@ -4,7 +4,6 @@ bs4==0.0.1
 certifi==2019.6.16
 chardet==3.0.4
 Click==7.0
-dropbox==9.4.0
 Flask==1.1.1
 Flask-Caching==1.7.2
 Flask-Limiter==1.1.0
@@ -29,4 +28,3 @@ urllib3==1.25.7
 webencodings==0.5.1
 websocket-client==0.56.0
 Werkzeug==0.15.5
-wkhtmltopdf==0.2
