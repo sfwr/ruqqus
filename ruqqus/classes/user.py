@@ -285,13 +285,13 @@ class User(Base):
         if "session_id" not in session:
             session["session_id"]=token_hex(16)
 
-        msg=f"{session['session_id']}{self.id}"
+        msg=f"{session['session_id']}+{self.id}+{self.login_nonce}"
 
         return generate_hash(msg)
 
     def validate_formkey(self, formkey):
 
-        return validate_hash(f"{session['session_id']}{self.id}", formkey)
+        return validate_hash(f"{session['session_id']}+{self.id}+{self.login_nonce}", formkey)
     
     @property
     def url(self):

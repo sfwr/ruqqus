@@ -66,7 +66,7 @@ def settings_security_post(v):
     if request.form.get("new_email"):
 
         if not v.verifyPass(request.form.get('password')):
-            return render_template("settings_security.html", v=v, error="Invalid password")
+            return render_template("settings_security.html", v=v, error="Invalid password"), 401
             
         
         new_email = request.form.get("new_email")
@@ -117,6 +117,11 @@ def settings_dark_mode(x, v):
 @validate_formkey
 def settings_log_out_others(v):
 
+    submitted_password=request.form.get("password","")
+
+    if not v.verifyPass(submitted_password):
+        return render_template("settings_security.html", v=v, error="Incorrect Password"), 401
+
     #increment account's nonce
     v.login_nonce +=1
 
@@ -126,4 +131,4 @@ def settings_log_out_others(v):
     db.add(v)
     db.commit()
 
-    return "", 204
+    return render_template("settings_security.html", v=v, msg="All other devices have been logged out")
