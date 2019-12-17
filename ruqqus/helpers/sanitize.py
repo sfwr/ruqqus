@@ -23,7 +23,7 @@ _allowed_tags=tags=['b',
                     'p',
                     'pre',
                     'strong',
-                    'ul',
+                    'ul'
                    ]
 
 _allowed_tags_with_links=_allowed_tags+["a", "hr"]
