@@ -71,7 +71,11 @@
 <body id="{% block pagetype %}frontpage{% endblock %}" class="">
 
   {% include "header.html" %}
+
   <!-- Page Content -->
+
+  {% block banner %}
+  {% endblock %}
 
   <div class="container">
     <div class="row justify-content-around" id="main-content-row">
@@ -122,6 +126,9 @@
       </div>
 
       <div class="col h-100 custom-gutters" id="main-content-col">
+
+        {% block postNav %}
+        {% endblock %}
 
         {% block PseudoSubmitForm %}
         {% endblock %}

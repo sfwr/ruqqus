@@ -39,6 +39,28 @@
 </script>
 {% endblock %}
 
+{% block postNav %}
+<div class="flex-row bg-light box-shadow-bottom sticky d-flex pt-3 mb-3">
+  <ul class="nav post-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="/"><i class="fas fa-fire"></i>Hot</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="/?sort=top"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="/?sort=new"><i class="fas fa-asterisk"></i>New</a> 
+    </li>
+    <li class="nav-item">
+      <a class="nav-link{% if sort_method=="disputed" %} active{% endif %}" href="/?sort=disputed"><i class="fas fa-bullhorn"></i>Disputed</a>
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link {% if sort_method=="activity" %} active{% endif %}" href="/?sort=activity"><i class="fas fa-comments"></i>Activity</a>
+    </li>
+  </ul>
+</div>
+{% endblock %}
+
 {% block PseudoSubmitForm %}
 <!-- Link to submission page from homepage, only visible on home -->
 

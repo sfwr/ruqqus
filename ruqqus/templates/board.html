@@ -1,32 +1,63 @@
 {% extends "home.html" %}
 
+{% block banner %}
+<div class="container">
+  <div class="row">
+    <div class="col px-0">
+      <div class="jumbotron jumbotron-guild text-white">
+        <div class="jumbotron-overlay"></div>
+        <div class="position-absolute" style="bottom: 1rem;">
+          <div class="d-flex">
+            <div class="position-relative">
+              <img src="" class="guild-icon-square-lg">
+            </div>
+            <div class="ml-3">
+              <h1 class="h3">+{{ b.name }}
+               {% if b.over_18 %}
+               <span class="badge badge-danger">NSFW</span>
+               {% endif %}
+             </h1>
+             <p>{{ b.description_html | safe }}</p>
+             {% if v %}
+             <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
+             <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
+             {% endif %}
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+</div>
+{% endblock %}
+
 {% block adminpanel %}
 {% endblock %}
 
 {% block sidebarblock %}
 <div class="sidebar-section sidebar-info-basic">
   <div class="body pb-0">
-	{% if b.fa_icon %}
-	<div class="body text-primary text-center"><i class="{{ b.fa_icon }}" style="font-size:4rem"></i></div>
-	{% endif %}
-    <h1 class="h6 d-inline-block">+{{ b.name }}</h1>
-    <div><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}" class="text-muted"><i class="fad fa-calendar-day fa-width-rem text-muted"></i> Founded {{ b.age_string }}</span></div>
-    <div><span class="text-muted"><i class="fad fa-users fa-width-rem"></i> {{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}</span></div>
-  </div>
-  {% if b.over_18 %}
-  <div class="body">
-    <span class="badge badge-danger">NSFW</span>
-  </div>
-  {% endif %}
-  <div class="body pt-0">
-    {{ b.description_html | safe }}
-  </div>
-  {% if v %}
-    <div class="body">
-      <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
-      <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
-    </div>
-  {% endif %}
+   {% if b.fa_icon %}
+   <div class="body text-primary text-center"><i class="{{ b.fa_icon }}" style="font-size:4rem"></i></div>
+   {% endif %}
+   <h1 class="h6 d-inline-block">+{{ b.name }}</h1>
+   <div><span data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}" class="text-muted"><i class="fad fa-calendar-day fa-width-rem text-muted"></i> Founded {{ b.age_string }}</span></div>
+   <div><span class="text-muted"><i class="fad fa-users fa-width-rem"></i> {{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}</span></div>
+ </div>
+ {% if b.over_18 %}
+ <div class="body">
+  <span class="badge badge-danger">NSFW</span>
+</div>
+{% endif %}
+<div class="body pt-0">
+  {{ b.description_html | safe }}
+</div>
+{% if v %}
+<div class="body">
+  <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
+  <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
+</div>
+{% endif %}
 </div>
 <div class="sidebar-section sidebar-submit">
   <div class="title">Submit to +{{ b.name }}</div>
@@ -37,23 +68,23 @@
 <div class="sidebar-section sidebar-mods">
   <div class="title">Guildmasters</div>
   <div class="body">
-  <ul>
-  {% for mod in b.mods %}
-  <li><a href="{{ mod.permalink }}">@{{ mod.username }}</a></li>
-  {% else %}
-  <li>None</li>
-  {% endfor %}
-  </ul>
- </div>
+    <ul>
+      {% for mod in b.mods %}
+      <li><a href="{{ mod.permalink }}">@{{ mod.username }}</a></li>
+      {% else %}
+      <li>None</li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
 {% if v and b.has_mod(v) %}
 <div class="sidebar-section sidebar-guild-tools">
 	<div class="title">Guildmaster Tools</div>
 	<div class="body pt-0">
-  		<div><a href="{{ b.permalink}}/mod/settings"><i class="fad fa-cog fa-width-rem"></i>Settings</a></div>
-		<div><a href="{{ b.permalink}}/mod/mods"><i class="fad fa-user-crown fa-width-rem"></i>Guildmasters</a></div>
-		<div><a href="{{ b.permalink}}/mod/exiled"><i class="fad fa-gavel fa-width-rem"></i>Exiles</a></div>
-	</div>
+    <div><a href="{{ b.permalink}}/mod/settings"><i class="fad fa-cog fa-width-rem"></i>Settings</a></div>
+    <div><a href="{{ b.permalink}}/mod/mods"><i class="fad fa-user-crown fa-width-rem"></i>Guildmasters</a></div>
+    <div><a href="{{ b.permalink}}/mod/exiled"><i class="fad fa-gavel fa-width-rem"></i>Exiles</a></div>
+  </div>
 </div>
 {% endif %}
 {% endblock %}
