@@ -31,7 +31,7 @@ class Comment(Base):
     is_approved = Column(Integer, default=0)
     approved_utc=Column(Integer, default=0)
     ban_reason=Column(String(256), default='')
-    creation_ip=Column(String(64), defautl='')
+    creation_ip=Column(String(64), default='')
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
