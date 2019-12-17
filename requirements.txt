@@ -9,6 +9,7 @@ Flask-Caching==1.7.2
 Flask-Limiter==1.1.0
 Flask-Markdown==0.3
 greenlet==0.4.15
+gunicorn==20.0.4
 idna==2.8
 imgkit==1.0.2
 itsdangerous==1.1.0

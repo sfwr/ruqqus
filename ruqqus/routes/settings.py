@@ -94,6 +94,7 @@ def settings_security_post(v):
 
 @app.route("/settings/dark_mode/<x>", methods=["POST"])
 @auth_required
+@validate_formkey
 def settings_dark_mode(x, v):
 
     try:
@@ -111,3 +112,18 @@ def settings_dark_mode(x, v):
         session["dark_mode_enabled"]=bool(x)
         return "",204
         
+@app.route("/settings/log_out_all_others", methods=["POST"])
+@auth_required
+@validate_formkey
+def settings_log_out_others(v):
+
+    #increment account's nonce
+    v.login_nonce +=1
+
+    #update cookie accordingly
+    session["login_nonce"]=v.login_nonce
+
+    db.add(v)
+    db.commit()
+
+    return "", 204

@@ -81,6 +81,7 @@ def login_post():
         #set session and user id
         session["user_id"]=account.id
         session["session_id"]=token_hex(16)
+        session["login_nonce"]=account.login_nonce
 
         check_for_alts(account.id)
 
