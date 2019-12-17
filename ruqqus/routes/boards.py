@@ -12,7 +12,7 @@ from ruqqus.classes import *
 from flask import *
 from ruqqus.__main__ import app, db, limiter, cache
 
-valid_board_regex=re.compile("^\w{3,25}")
+valid_board_regex=re.compile("^\w{3,25}$")
 fa_icon_regex=re.compile("(fas|far|fal|fad) fa-([a-z0-9-]+)")
 
 @app.route("/create_guild", methods=["GET"])
