@@ -122,9 +122,6 @@
     <div class="body">
      {% for entry in trending_boards[0:5] %}
      <div class="d-flex justify-content-start trending-guild">
-      <div class="my-auto mr-3"><i class="fas fa-caret-up text-success" style="
-        font-size: 1.25rem
-        "></i></div>
         <div>
           <a href="{{ entry[0].permalink }}" class="text-black font-weight-normal"><i class="{{ entry[0].fa_icon if entry[0].fa_icon else 'fad fa-university' }} fa-width-rem text-primary"></i>+{{ entry[0].name }}</a>
           <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
