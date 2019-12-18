@@ -273,7 +273,7 @@ def mod_invite_username(bid,v):
 
         text=f"You have been invited to join +{board.name} as a guildmaster. You can [click here]({board.permalink}/mod/mods) and accept this invitation. Or, if you weren't expecting this, you can ignore it."
         with CustomRenderer() as renderer:
-            text_html=renderer.render()
+            text_html=renderer.render(mistletoe.Document(text))
 
         
         new_comment=Comment(user_id=1,
