@@ -3,6 +3,7 @@ import mistletoe
 from sqlalchemy import func
 from bs4 import BeautifulSoup
 import secrets
+import threading
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -231,7 +232,8 @@ def submit_post(v):
     db.commit()
 
     #spin off thumbnail generation as  new thread
-    generate_thumbnail(new_post)
+    new_thread=threading.Thread(thumbnail_thread, args=(new_post,))
+    new_thread.start()
 
     #expire the relevant caches: front page new, board new
     cache.delete_memoized(frontlist, sort="new")

@@ -1,7 +1,6 @@
 import requests
 from os import environ
 from urllib.parse import urlparse
-import threading
 
 from .get import *
 from ruqqus.__main__ import db
@@ -23,12 +22,3 @@ def thumbnail_thread(post):
 
     db.add(post)
     db.commit()
-
-
-def generate_thumbnail(post):
-
-    print("about to start thread")
-    new_thread=threading.Thread(target=generate_thumbnail, args=(post,))
-    print("thread created")
-    new_thread.start()
-    print("thread started")
