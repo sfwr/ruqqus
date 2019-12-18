@@ -103,6 +103,9 @@ class Comment(Base):
     @lazy
     def parent(self):
 
+        if not self.parent_submission:
+            return None
+
         if self.is_top_level:
             return db.query(Submission).filter_by(id=self.parent_submission).first()
         else:
