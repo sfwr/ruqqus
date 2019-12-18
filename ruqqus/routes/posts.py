@@ -232,7 +232,7 @@ def submit_post(v):
     db.commit()
 
     #spin off thumbnail generation as  new thread
-    if not new_post.url.endswith((".jpeg",".jpg",".png")):
+    if new_post.url and not new_post.url.endswith((".jpeg",".jpg",".png")):
         new_thread=threading.Thread(target=thumbnail_thread, args=(new_post,))
         new_thread.start()
 
