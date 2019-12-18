@@ -45,6 +45,8 @@ y.classList.toggle("d-none");
 					<div class="form-text text-muted">No invitees at this time.</div>
 				{% endfor %}
 				</div>
+
+				{% if me %}
 				<div class="mt-2">
 				<label>Invite</label>
 				<form action="/mod/invite_mod/{{ b.base36id }}" method="post">
@@ -53,6 +55,7 @@ y.classList.toggle("d-none");
 				<input type="submit" class="btn btn-primary" value="Invite user">
 				</form>
 				</div>
+				{% endif %}
 
                             </div>
 
