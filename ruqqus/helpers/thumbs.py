@@ -27,5 +27,8 @@ def thumbnail_thread(post):
 
 def generate_thumbnail(post):
 
+    print("about to start thread")
     new_thread=threading.Thread(target=generate_thumbnail, args=(post,))
+    print("thread created")
     new_thread.start()
+    print("thread started")
