@@ -16,9 +16,12 @@ def thumbnail_thread(post):
             "thumbnail_width":300
             }
 
+    print("getting thumbnail")
     x=requests.get("https://api.apiflash.com/v1/urltoimage", params=params)
 
-    post.thumb_id=urlparse(x.json()["url"]).split("/")[-1].split(".")[0]
+    post.thumb_id=urlparse(x.json()["url"]).path.split("/")[-1].split(".")[0]
+
+    print(post.thumb_id)
 
     db.add(post)
     db.commit()
