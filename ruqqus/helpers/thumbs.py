@@ -27,5 +27,5 @@ def thumbnail_thread(post):
 
 def generate_thumbnail(post):
 
-    new_thread=threading.Thread(target=lambda:generate_thumbnail(post))
+    new_thread=threading.Thread(target=generate_thumbnail, args=(post,))
     new_thread.start()
