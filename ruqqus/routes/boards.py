@@ -276,7 +276,7 @@ def mod_invite_username(bid,v):
             text_html=renderer.render(mistletoe.Document(text))
 
         
-        new_comment=Comment(user_id=1,
+        new_comment=Comment(author_id=1,
                             body=text,
                             body_html=text_html,
                             parent_submission=None)
