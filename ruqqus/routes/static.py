@@ -1,10 +1,10 @@
 import time
-from ruqqus.helpers.wrappers import *
+import jinja2
 from flask import *
-from jinja2.exceptions import TemplateNotFound
 
-from ruqqus.__main__ import app, limiter
+from ruqqus.helpers.wrappers import *
 from ruqqus.classes import *
+from ruqqus.__main__ import app, limiter
 
 #take care of misc pages that never really change (much)
 @app.route('/assets/<path:path>')
@@ -60,5 +60,5 @@ def about_path(path):
 def help_path(path, v):
     try:
         return render_template(safe_join("help", path+".html"), v=v)
-    except TemplateNotFound:
+    except jinja2.exceptions.TemplateNotFound:
         abort(404)
