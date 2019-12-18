@@ -252,7 +252,7 @@ class User(Base):
         
         page=int(request.args.get("page","1"))
 
-        comments=self.comments.filter(bool(Comment.parent_submission))
+        comments=self.comments.filter(text("parent_submission is not null"))
 
         if not (v and v.over_18):
             comments=comments.filter_by(over_18=False)
@@ -360,7 +360,7 @@ class User(Base):
     @cache.memoize(timeout=60) 
     def comment_count(self):
 
-        return self.comments.filter_by(is_banned=False, is_deleted=False).count()
+        return self.comments.filter(text("parent_submission is not null"))filter_by(is_banned=False, is_deleted=False).count()
 
     @property
     #@cache.memoize(timeout=60)
