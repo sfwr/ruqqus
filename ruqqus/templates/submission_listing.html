@@ -32,7 +32,7 @@
 	{% elif p.thumb_id and not p.over_18 %}
 
       <div class="position-relative d-none d-md-block" style="z-index: 3;">
-        <a href="{{ p.url }}">
+        <a href="{{ p.url }}" rel="nofollow">
           <div class="thumb-img-link-overlay">
             <i class="fas fa-external-link-alt text-lg d-block mb-1"></i>View full
           </div>
@@ -40,7 +40,7 @@
         </a>
       </div>
       <div class="d-block d-md-none" style="z-index: 3;">
-        <img src="/thumbs/{{ p.base36id }}" class="post-img" alt="" onclick="enlarge_thumb('post-{{ p.base36id }}')">
+        <a href="{{ p.url }}" rel="nofollow"><img src="/thumbs/{{ p.base36id }}" class="post-img" alt="" onclick="enlarge_thumb('post-{{ p.base36id }}')"></a>
       </div>
 
       {% endif %}
