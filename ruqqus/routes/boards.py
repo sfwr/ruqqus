@@ -281,9 +281,11 @@ def mod_invite_username(bid,v):
                             body_html=text_html,
                             parent_submission=None)
         db.add(new_comment)
+        db.commit()
         notif=Notification(comment_id=new_comment.id,
                            user_id=user.id)
         db.add(notif)
+        db.commit()
 
     new_mod=ModRelationship(user_id=user.id,
                             board_id=board.id,
