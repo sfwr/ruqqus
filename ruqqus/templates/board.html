@@ -17,7 +17,7 @@
                <span class="badge badge-danger">NSFW</span>
                {% endif %}
              </h1>
-             <p>{{ b.description_html | safe }}</p>
+             <div class="d-block d-md-none">{{ b.description_html | safe }}</div>
              {% if v %}
              <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
              <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
