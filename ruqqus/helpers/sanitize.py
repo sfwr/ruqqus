@@ -102,6 +102,7 @@ def sanitize(text, linkgen=False):
                 link=soup.new_tag("a")
                 link["href"]=tag["src"]
                 link["rel"]="nofollow"
+                link["target"]="_blank"
                 tag.wrap(link)
 
         sanitized=str(soup)
