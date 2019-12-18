@@ -317,6 +317,8 @@ def mod_rescind_bid_username(bid, username, v):
 
     db.add(invitation)
     db.commit()
+
+    return "", 204
     
 
 @app.route("/mod/accept/<bid>", methods=["POST"])
