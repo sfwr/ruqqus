@@ -231,10 +231,14 @@ def submit_post(v):
     db.add(vote)
     db.commit()
 
+    # Earlier processing for new post stuff
+    
     #spin off thumbnail generation as  new thread
-    if new_post.url and not new_post.url.endswith((".jpeg",".jpg",".png")):
+    if new_post.url and not new_post.url.lower().endswith((".jpeg",".jpg",".png")):
         new_thread=threading.Thread(target=thumbnail_thread, args=(new_post,))
         new_thread.start()
+
+    #continue processing new post stuff
 
     #expire the relevant caches: front page new, board new
     cache.delete_memoized(frontlist, sort="new")
