@@ -283,7 +283,7 @@ def mod_invite_username(bid,v):
         db.add(new_comment)
         notif=Notification(comment_id=new_comment.id,
                            user_id=user.id)
-        db.add(new_comment)
+        db.add(Notification)
 
     new_mod=ModRelationship(user_id=user.id,
                             board_id=board.id,
@@ -310,7 +310,9 @@ def mod_rescind_bid_username(bid, username, v):
     if not invitation:
         abort(404)
 
-    db.delete(invitation)
+    invitation.invite_rescinded=True
+
+    db.add(invitation)
     db.commit()
     
 
