@@ -267,7 +267,7 @@ def mod_invite_username(bid,v):
     if not board.can_invite_mod(user):
         abort(409)
 
-    if not board.invite_rescinded:
+    if not board.has_rescinded_invite(user):
 
         #notification
 
