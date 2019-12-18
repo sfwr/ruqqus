@@ -42,6 +42,7 @@ class Submission(Base):
     original_board=relationship("Board", uselist=False, primaryjoin="Board.id==Submission.original_board_id")
     ban_reason=Column(String(128), default="")
     creation_ip=Column(String(64), default="")
+    thumb_id=Column(String(128), default="")
     
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 

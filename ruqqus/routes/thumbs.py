@@ -6,10 +6,15 @@ from ruqqus.__main__ import app, limiter
 
 APIFLASH_KEY=environ.get("APIFLASH_KEY")
 
-@app.route('/thumbs/<image_id>', methods=["GET"])
-def thumbs(image_id):
+@app.route('/thumbs/<pid>', methods=["GET"])
+def thumbs(pid):
 
-    url=f"https://api.apiflash.com/v1/urltoimage/cache/{image_id}.jpeg?access_key={APIFLASH_KEY}"
+    post=get_post(pid)
+
+    if not post.thumb_id:
+        abort(404)
+
+    url=f"https://api.apiflash.com/v1/urltoimage/cache/{post.thumb_id}.jpeg?access_key={APIFLASH_KEY}"
 
     x=requests.get(url)
 
