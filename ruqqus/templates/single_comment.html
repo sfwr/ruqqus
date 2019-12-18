@@ -9,7 +9,11 @@
 
 {% if standalone %}
 <div class="post-info font-weight-bold">
+	{% if c.submission %}
     <span class="align-top"><a href="{{ c.permalink }}">{{ c.post.title | safe }}</a></span>
+	{% else %}
+    <span class="align-top">Notification</span>
+	{% endif %}
 </div>
 {% endif %}
 
