@@ -11,6 +11,7 @@ from ruqqus.helpers.filters import *
 from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
+from ruqqus.helpers.thumbs import *
 from ruqqus.classes import *
 from .front import frontlist
 from flask import *
@@ -228,6 +229,9 @@ def submit_post(v):
               )
     db.add(vote)
     db.commit()
+
+    #spin off thumbnail generation as  new thread
+    generate_thumbnail(new_post)
 
     #expire the relevant caches: front page new, board new
     cache.delete_memoized(frontlist, sort="new")
