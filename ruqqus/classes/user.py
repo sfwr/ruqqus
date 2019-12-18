@@ -252,7 +252,7 @@ class User(Base):
         
         page=int(request.args.get("page","1"))
 
-        comments=self.comments
+        comments=self.comments.filter(bool(Comment.parent_submission))
 
         if not (v and v.over_18):
             comments=comments.filter_by(over_18=False)
@@ -333,7 +333,7 @@ class User(Base):
         if not include_read:
             notifications=notifications.filter_by(read=False)
 
-        notifications = notifications.order_by(text("notifications.created_utc desc")).offset(25*(page-1)).limit(25)
+        notifications = notifications.order_by(text("id desc")).offset(25*(page-1)).limit(25)
 
         comments=[n.comment for n in notifications]
 
