@@ -35,6 +35,7 @@ y.classList.toggle("d-none");
 				{% else %}
 					<div class="form-text text-muted">No guildmasters at this time.</div>
 				{% endfor %}
+				{% if me %}
 				<div class="mt-2">
 				<label class="pt-1" >Guildmaster Invitations</label>
 				<div class="form-text">Pending Guildmaster invitations</div>
@@ -46,7 +47,7 @@ y.classList.toggle("d-none");
 				{% endfor %}
 				</div>
 
-				{% if me %}
+
 				<div class="mt-2">
 				<label>Invite</label>
 				<form action="/mod/invite_mod/{{ b.base36id }}" method="post">
