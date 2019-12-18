@@ -2,6 +2,7 @@ from flask import *
 from os import environ
 import requests
 
+from ruqqus.helpers.get import *
 from ruqqus.__main__ import app, limiter
 
 APIFLASH_KEY=environ.get("APIFLASH_KEY")
