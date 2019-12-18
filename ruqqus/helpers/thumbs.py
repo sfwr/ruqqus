@@ -1,7 +1,7 @@
 import requests
 from os import environ
 from urllib.parse import urlparse
-import Threading
+import threading
 
 from .get import *
 from ruqqus.__main__ import db
