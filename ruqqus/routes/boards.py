@@ -277,7 +277,7 @@ def mod_invite_username(bid,v):
 
         
         new_comment=Comment(user_id=1,
-                            body=text
+                            body=text,
                             body_html=text_html,
                             parent_submission=None)
         db.add(new_comment)
