@@ -15,7 +15,7 @@ y.classList.toggle("d-none");
 {% endblock %}
 
 {% block pagetitle %}<a href="{{ b.permalink }}">+{{ b.name }}</a> Guildmasters{% endblock %}
-{% block subtitle %}Invite or remove masters to +{{ b.name }}{% endblock %}
+{% block subtitle %}{% if me %}Invite or remove guildmasters in +{{ b.name }}{% else %}Current guild masters of +{{ b.name }}{% endif %}{% endblock %}
 
 {% block form %}
 
