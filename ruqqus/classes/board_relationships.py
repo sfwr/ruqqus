@@ -12,6 +12,7 @@ class ModRelationship(Base):
     board_id = Column(Integer, ForeignKey("boards.id"))
     created_utc = Column(Integer, default=0)
     accepted = Column(Boolean, default=False)
+    invite_rescinded=Column(Boolean, default=False)
 
     user=relationship("User", uselist=False)
     board=relationship("Board", uselist=False)

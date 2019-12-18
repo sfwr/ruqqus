@@ -267,6 +267,24 @@ def mod_invite_username(bid,v):
     if not board.can_invite_mod(user):
         abort(409)
 
+    if not board.invite_rescinded:
+
+        #notification
+
+        text=f"You have been invited to join +{board.name} as a guildmaster. You can [click here]({board.permalink}/mod/mods) and accept this invitation. Or, if you weren't expecting this, you can ignore it."
+        with CustomRenderer() as renderer:
+            text_html=renderer.render()
+
+        
+        new_comment=Comment(user_id=1,
+                            body=text
+                            body_html=text_html,
+                            parent_submission=None)
+        db.add(new_comment)
+        notif=Notification(comment_id=new_comment.id,
+                           user_id=user.id)
+        db.add(new_comment)
+
     new_mod=ModRelationship(user_id=user.id,
                             board_id=board.id,
                             accepted=False)

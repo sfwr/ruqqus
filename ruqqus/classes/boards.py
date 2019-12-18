@@ -179,11 +179,15 @@ class Board(Base):
     @cache.memoize(timeout=60)
     def can_invite_mod(self, user):
 
-        return user.id not in [x.user_id for x in self.moderators.all()]
+        return user.id not in [x.user_id for x in self.moderators.filter_by(invite_rescinded=False).all()]
+
+    def has_rescinded_invite(self, user):
+
+        return user.id in [x.user_id for x in self.moderators.filter_by(invite_rescinded=True).all()]
 
     def has_invite(self, user):
 
-        return self.moderators.filter_by(user_id=user.id, accepted=False).first()
+        return self.moderators.filter_by(user_id=user.id, accepted=False, invite_rescinded=False).first()
         
     def has_ban(self, user):
 
