@@ -14,6 +14,6 @@ def thumbs(image_id):
     x=requests.get(url)
 
     resp = make_response(x.content)
-    resp.headers["Content-Type"]="image/jpeg"
+    resp.headers.add("Content-Type", "image/jpeg")
 
     return x.content
