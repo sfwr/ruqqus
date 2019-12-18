@@ -279,7 +279,8 @@ def mod_invite_username(bid,v):
         new_comment=Comment(author_id=1,
                             body=text,
                             body_html=text_html,
-                            parent_submission=None)
+                            parent_submission=None,
+                            distinguish_level=6)
         db.add(new_comment)
         db.commit()
         notif=Notification(comment_id=new_comment.id,
