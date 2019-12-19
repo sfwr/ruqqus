@@ -156,13 +156,16 @@ class User(Base):
 
         return render_template("subscriptions.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
 
-    
+    @property
+    def mods_anything(self):
+
+        return bool(self.moderates.filter_by(accepted=True).first())
 
 
     @property
     def boards_modded(self):
 
-        return [x.board for x in self.moderates.order_by(text("name asc")).all()]
+        return [x.board for x in self.moderates.filter_by(accepted=True).order_by(text("name asc")).all()]
 
     @property
     @cache.memoize(timeout=3600) #1hr cache time for user rep
