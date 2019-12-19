@@ -342,7 +342,7 @@ def mod_remove_username(bid, username, board, v):
 @auth_required
 @is_guildmaster
 @validate_formkey
-def mod_is_banned_board_username(bid, username, board v):
+def mod_is_banned_board_username(bid, username, board, v):
 
     user=get_user(username)
 
