@@ -12,6 +12,7 @@ from .user import User
 from .submission import Submission
 from .votes import CommentVote
 from .flags import CommentFlag
+from .boards import Board
 
 class Comment(Base):
 
@@ -33,14 +34,20 @@ class Comment(Base):
     ban_reason=Column(String(256), default='')
     creation_ip=Column(String(64), default='')
 
+    flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
+
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
     ups = Column(Integer, server_default=FetchedValue())
     downs=Column(Integer, server_default=FetchedValue())
     age=Column(Integer, server_default=FetchedValue())
-    flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
-    flag_count=Column(Integer, server_default=FetchedValue())
+
+    flag_count=deferred(Column(Integer, server_default=FetchedValue()))
     over_18=Column(Boolean, server_default=FetchedValue())
+
+    board_id=Column(Integer, server_default=FetchedValue())
+    
+    
 
     def __init__(self, *args, **kwargs):
                    
@@ -250,3 +257,8 @@ class Notification(Base):
     def comment(self):
 
         return db.query(Comment).filter_by(id=self.comment_id).first()
+
+    @property
+    def board(self):
+
+        return db.query(Board).filter_by(id=self.board_id).first()

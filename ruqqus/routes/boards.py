@@ -98,10 +98,7 @@ def create_board_post(v):
 @auth_desired
 def board_name(name, v):
 
-    board=db.query(Board).filter(Board.name.ilike(name)).first()
-
-    if not board:
-        abort(404)
+    board=get_guild(name)
 
     if not board.name==name:
         return redirect(board.permalink)
@@ -118,10 +115,9 @@ def board_name(name, v):
 
 @app.route("/mod/kick/<bid>/<pid>", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_kick_bid_pid(bid,pid, v):
-
-    board=get_board(bid)
+def mod_kick_bid_pid(bid,pid, board, v):
 
     post = get_post(pid)
 
@@ -141,11 +137,11 @@ def mod_kick_bid_pid(bid,pid, v):
 
 @app.route("/mod/ban/<bid>/<username>", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_ban_bid_user(bid, username, v):
+def mod_ban_bid_user(bid, username, board, v):
 
     user=get_user(username)
-    board=get_board(bid)
 
     if not board.has_mod(v):
         abort(403)
@@ -167,14 +163,11 @@ def mod_ban_bid_user(bid, username, v):
     
 @app.route("/mod/unban/<bid>/<username>", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_unban_bid_user(bid, username, v):
+def mod_unban_bid_user(bid, username, board, v):
 
     user=get_user(username)
-    board=get_board(bid)
-
-    if not board.has_mod(v):
-        abort(403)
 
     x= board.has_ban(user)
     if not x:
@@ -222,10 +215,9 @@ def user_kick_pid(pid, v):
 
 @app.route("/mod/take/<pid>", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_take_bid_pid(bid, v):
-
-    board=get_board(request.form("board_id"))
+def mod_take_bid_pid(pid, board, v):
 
     post = get_post(pid)
 
@@ -233,9 +225,6 @@ def mod_take_bid_pid(bid, v):
         abort(422)
 
     if board.has_ban(post.author):
-        abort(403)
-
-    if not board.has_mod(v):
         abort(403)
 
     if not board.can_take(post):
@@ -252,14 +241,9 @@ def mod_take_bid_pid(bid, v):
 
 @app.route("/mod/invite_mod/<bid>", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_invite_username(bid,v):
-
-
-    board = get_board(bid)
-
-    if not board.has_mod(v):
-        abort(403)
+def mod_invite_username(bid, board, v):
 
     username=request.form.get("username")
     user=get_user(username)
@@ -297,13 +281,9 @@ def mod_invite_username(bid,v):
 
 @app.route("/mod/<bid>/rescind/<username>", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_rescind_bid_username(bid, username, v):
-
-    board=get_board(bid)
-
-    if not board.has_mod(v):
-        abort(403)
+def mod_rescind_bid_username(bid, username, board, v):
         
     user=get_user(username)
 
@@ -340,18 +320,14 @@ def mod_accept_board(bid, v):
 
 @app.route("/mod/<bid>/remove/<username>", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_remove_username(bid, username,v):
+def mod_remove_username(bid, username, board, v):
 
     user=get_user(username)
 
-    board = get_board(bid)
-
-    v_mod=board.has_mod(v)
     u_mod=board.has_mod(user)
 
-    if not v_mod:
-        abort(403)
     if not u_mod:
         abort(422)
     if v_mod.id > u_mod.id:
@@ -364,9 +340,10 @@ def mod_remove_username(bid, username,v):
 
 @app.route("/mod/is_banned/<bid>/<username>", methods=["GET"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_is_banned_board_username(bid, username, v):
-    board=get_board(bid)
+def mod_is_banned_board_username(bid, username, board, v):
+
     user=get_user(username)
 
     result={"board":board.name,
@@ -381,13 +358,9 @@ def mod_is_banned_board_username(bid, username, v):
         
 @app.route("/mod/<bid>/settings", methods=["POST"])
 @auth_required
+@is_guildmaster
 @validate_formkey
-def mod_bid_settings(bid, v):
-
-    board=get_board(bid)
-
-    if not board.has_mod(v):
-        abort(403)
+def mod_bid_settings(bid,  board, v):
 
     #name capitalization
     new_name=request.form.get("name","").lstrip("+")
@@ -441,14 +414,8 @@ def mod_bid_settings(bid, v):
 
 @app.route("/+<boardname>/mod/settings", methods=["GET"])
 @auth_required
-def board_about_settings(boardname, v):
-
-    board=db.query(Board).filter(Board.name.ilike(boardname)).first()
-    if not board:
-        abort(404)
-
-    if not board.has_mod(v):
-        abort(403)
+@is_guildmaster
+def board_about_settings(boardname, board, v):
 
     return render_template("guild/settings.html", v=v, b=board)
 
@@ -456,9 +423,7 @@ def board_about_settings(boardname, v):
 @auth_desired
 def board_about_mods(boardname, v):
 
-    board=db.query(Board).filter(Board.name.ilike(boardname)).first()
-    if not board:
-        abort(404)
+    board=get_guild(boardname)
 
     me=board.has_mod(v)
 
@@ -467,14 +432,8 @@ def board_about_mods(boardname, v):
 
 @app.route("/+<boardname>/mod/exiled", methods=["GET"])
 @auth_required
-def board_about_exiled(boardname, v):
-
-    board=db.query(Board).filter(Board.name.ilike(boardname)).first()
-    if not board:
-        abort(404)
-
-    if not board.has_mod(v):
-        abort(403)
+@is_guildmaster
+def board_about_exiled(boardname, board, v):
 
     username=request.args.get("user","")
     if username:
@@ -539,3 +498,8 @@ def unsubscribe_board(boardname, v):
     cache.delete_memoized(User.idlist, v, kind="board")
 
     return "", 204
+
+##@app.route("/+<boardname>/mod/queue", methods=["GET"])
+##@auth_required
+##@is_guildmaster
+##def board_mod_queue(boardname, board, v):

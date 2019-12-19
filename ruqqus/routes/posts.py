@@ -206,6 +206,15 @@ def submit_post(v):
                                text=body[0:2000],
                                url=url), 400
 
+    if len(url)>2048:
+
+        return render_template("submit.html",
+                               v=v,
+                               error="URLs cannot be over 2048 characters",
+                               title=title,
+                               text=body[0:2000]
+                               ), 400
+
     with CustomRenderer() as renderer:
         body_md=renderer.render(mistletoe.Document(body))
     body_html = sanitize(body_md, linkgen=True)
