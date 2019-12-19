@@ -47,7 +47,6 @@ class Submission(Base):
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
 
-
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
 
