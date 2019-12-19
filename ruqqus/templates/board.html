@@ -134,28 +134,23 @@
 
 {% endif %}
 
-<div class="sidebar-section sidebar-filters sticky-63">
-  <div class="title">Filter posts</div>
-  <div class="body">
-    <ul class="no-bullets filter-list pl-0">
-      <li class="filter-item">
-        <a class="filter-link {% if sort_method=="hot" %} active{% endif %}" href="?sort=hot"><i class="fas fa-fire fa-width-rem"></i>Hot</a>
-      </li>
-      <li class="filter-item">
-        <a class="filter-link {% if sort_method=="top" %} active{% endif %}" href="?sort=top"><i class="fas fa-arrow-alt-circle-up fa-width-rem"></i>Top</a>
-      </li>
-      <li class="filter-item">
-        <a class="filter-link {% if sort_method=="new" %} active{% endif %}" href="?sort=new"><i class="fas fa-asterisk fa-width-rem"></i>New</a> 
-      </li>
-      <li class="filter-item">
-        <a class="filter-link {% if sort_method=="disputed" %} active{% endif %}" href="?sort=disputed"><i class="fas fa-bullhorn fa-width-rem"></i>Disputed</a>
-      </li>
-      <li class="filter-item">
-        <a class="filter-link {% if sort_method=="activity" %} active{% endif %}" href="?sort=activity"><i class="fas fa-comments fa-width-rem"></i>Activity</a>
-      </li>
-    </ul>
-  </div>
-</div>
+        {% if trending_boards %}
+        <div class="sidebar-section sidebar-recommendations">
+          <div class="title">Rising Guilds</div>
+          <div class="body">
+           {% for entry in trending_boards[0:5] %}
+           <li class="guild-recommendations-item">
+            <div class="d-flex"><div class="mr-2"><img src="" class="guild-icon-square-35"></div>
+            <div>
+              <a href="{{ entry[0].permalink }}" class="text-black font-weight-normal">+{{ entry[0].name }}</a>
+              <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+            </div>
+          </div>
+        </li>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
 
 {% endblock %}
 
