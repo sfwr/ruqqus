@@ -6,13 +6,13 @@
     <div class="col px-0">
       <div class="jumbotron jumbotron-guild text-white">
         <div class="jumbotron-overlay"></div>
-        <div class="position-absolute" style="bottom: 1rem;">
-          <div class="d-flex">
+        <div class="position-absolute w-100" style="bottom: 1rem;">
+          <div class="d-md-flex text-center text-md-left">
             <div class="position-relative">
               <img src="" class="guild-icon-square-lg">
             </div>
-            <div class="ml-3">
-              <h1 class="h3">+{{ b.name }}
+            <div class="ml-3 w-100">
+              <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
                {% if b.over_18 %}
                <span class="badge badge-danger">NSFW</span>
                {% endif %}
@@ -20,12 +20,20 @@
              <div><span class="text-small"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
              <span class="font-weight-bold">{{ b.age_string }}</span> est.</span>
               </div>
-             <p>{{ b.description_html | safe }}</p>
-             <div class="d-block d-lg-none">{{ b.description_html | safe }}</div>
+             <p class="mt-1">{{ b.description_html | safe }}</p>
+             <div class="d-flex">
+             <div class="w-100">
+             {% for mod in b.mods %}
+             <a href="{{ mod.permalink }}"><div class="profile-pic border-3 border-white rounded-circle" style="background-color:#{{ mod.color }}"><span class="letter">{{ mod.username[0] }}</span></div></a>
+             {% else %}
+             No guildmasters
+             {% endfor %}
+             </div>
              {% if v %}
              <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
              <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
              {% endif %}
+             </div>
            </div>
          </div>
        </div>
