@@ -13414,7 +13414,7 @@ a:hover .link-arrow {
 
 .dashboard-list .dashboard-link {
   display: block;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0;
   color: #8c8d94;
   font-size: 12px;
   font-weight: 600;
