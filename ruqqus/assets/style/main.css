@@ -13441,24 +13441,28 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   width: 25px;
   height: 25px;
   border-radius: 50rem;
+  text-align: center;
 }
 
 .profile-pic-35 {
   width: 35px;
   height: 35px;
   border-radius: 50rem;
+  text-align: center;
 }
 
 .profile-pic-40 {
   width: 40px;
   height: 40px;
   border-radius: 50rem;
+  text-align: center;
 }
 
 .profile-pic-75 {
   width: 75px;
   height: 75px;
   border-radius: 50rem;
+  text-align: center;
 }
 
 #frontpage.toggle-card-view .tab-bar, #userpage.toggle-card-view .tab-bar, #search.toggle-card-view .tab-bar {
