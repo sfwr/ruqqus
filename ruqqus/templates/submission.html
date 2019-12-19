@@ -224,7 +224,7 @@
           {% endif %}
           {% endif %}
 	  {% if v and p.board.has_mod(v) %}
-	  <a class="dropdown-item removeDropdownItem text-danger" href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="kick_postModal('{{ p.base36id }}')"><i class="fas fa-boot" data-fa-transform="flip-h"></i>Kick</a>
+	  <a class="dropdown-item removeDropdownItem" href="javascript:void(0)" data-toggle="modal" data-target="#kickPostModal" onclick="kick_postModal('{{ p.base36id }}')"><i class="fas fa-boot" data-fa-transform="flip-h"></i>Kick</a>
 	  {% endif %}
       {% endif %}
         </div>
