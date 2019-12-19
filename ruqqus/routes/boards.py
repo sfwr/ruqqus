@@ -502,4 +502,4 @@ def unsubscribe_board(boardname, v):
 ##@app.route("/+<boardname>/mod/queue", methods=["GET"])
 ##@auth_required
 ##@is_guildmaster
-##def 
+##def board_mod_queue(boardname, board, v):
