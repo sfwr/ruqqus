@@ -4,6 +4,7 @@ import requests
 
 from ruqqus.__main__ import Base, db
 from ruqqus.classes import *
+from .get import *
 
 
 #Wrappers
@@ -76,7 +77,29 @@ def is_not_banned(f):
 
     wrapper.__name__=f.__name__
     return wrapper
-    
+
+def is_guildmaster(f):
+    #decorator that enforces guildmaster status
+    #use under auth_required
+
+    def wrapper(*args, **kwargs):
+
+        v=kwargs["v"]
+        boardname=kwargs.get("boardname")
+        board_id=kwargs.get("bid")
+
+        if boardname:
+            board=get_guild(boardname)
+        else:
+            board=get_board(board_id)
+
+        if not board.has_mod(v):
+            abort(403)
+
+        return f(*args, **kwargs)
+
+    wrapper.__name__=f.__name__
+    return wrapper
 
 #this wrapper takes args and is a bit more complicated
 
