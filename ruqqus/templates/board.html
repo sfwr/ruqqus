@@ -138,6 +138,7 @@
         <div class="sidebar-section sidebar-recommendations">
           <div class="title">Rising Guilds</div>
           <div class="body">
+          <ul class="no-bullets filter-list pl-0">
            {% for entry in trending_boards[0:5] %}
            <li class="guild-recommendations-item">
             <div class="d-flex"><div class="mr-2"><img src="" class="guild-icon-square-35"></div>
@@ -148,6 +149,7 @@
           </div>
         </li>
         {% endfor %}
+        </ul>
       </div>
     </div>
     {% endif %}
