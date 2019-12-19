@@ -122,73 +122,75 @@
     <div class="body">
      {% for entry in trending_boards[0:5] %}
      <div class="d-flex justify-content-start trending-guild">
-        <div>
-          <a href="{{ entry[0].permalink }}" class="text-black font-weight-normal"><i class="{{ entry[0].fa_icon if entry[0].fa_icon else 'fad fa-university' }} fa-width-rem text-primary"></i>+{{ entry[0].name }}</a>
-          <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-        </div>
+      <div>
+        <a href="{{ entry[0].permalink }}" class="text-black font-weight-normal"><i class="{{ entry[0].fa_icon if entry[0].fa_icon else 'fad fa-university' }} fa-width-rem text-primary"></i>+{{ entry[0].name }}</a>
+        <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
-  {% endif %}
-  {% endblock %}
+</div>
+{% endif %}
+{% endblock %}
 
-  {% block sidebarLeftblock %}
+{% block sidebarLeftblock %}
 
-  {% if not v %}
-  <div class="sidebar-section sidebar-alert">
-    <div class="body">
-      <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
-      <h5>Join the discourse.</h5>
-      <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
-      <a href="/signup" class="btn btn-primary btn-block">Sign up</a>
-    </div>
+{% if not v %}
+<div class="sidebar-section sidebar-alert">
+  <div class="body">
+    <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
+    <h5>Join the discourse.</h5>
+    <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
+    <a href="/signup" class="btn btn-primary btn-block">Sign up</a>
   </div>
-  {% endif %}
+</div>
+{% endif %}
 
-  {% if v %}
+{% if v %}
 
-  <div class="sidebar-section sidebar-dashboard">
-    <div class="title">Dashboard</div>
-    <div class="body">
-      <ul class="no-bullets dashboard-list pl-0">
-        <li class="dashboard-item">
-          <a class="dashboard-link active" href="/"><i class="fas fa-home-alt fa-width-rem"></i>Home</a>
-        </li>
-        <li class="dashboard-item">
-         <a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Guilds</a>
-       </li>
-       <li class="dashboard-item">
-         <a class="dashboard-link" href="/subscriptions"><i class="fas fa-heart fa-width-rem"></i>Subscriptions</a>
-       </li>
-       <li class="dashboard-item">
-        <a class="dashboard-link" href="/browse"><i class="fas fa-binoculars fa-width-rem"></i>Browse</a>
+<div class="sidebar-section sidebar-dashboard">
+  <div class="title">Dashboard</div>
+  <div class="body">
+    <ul class="no-bullets dashboard-list pl-0">
+      <li class="dashboard-item">
+        <a class="dashboard-link active" href="/"><i class="fas fa-home-alt fa-width-rem"></i>Home</a>
       </li>
-    </ul>
-  </div>
+      <li class="dashboard-item">
+       <a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Guilds</a>
+     </li>
+     <li class="dashboard-item">
+       <a class="dashboard-link" href="/subscriptions"><i class="fas fa-heart fa-width-rem"></i>Subscriptions</a>
+     </li>
+     <li class="dashboard-item">
+      <a class="dashboard-link" href="/browse"><i class="fas fa-binoculars fa-width-rem"></i>Browse</a>
+    </li>
+  </ul>
+</div>
 </div>
 
 {% endif %}
 
-        {% if trending_boards %}
-        <div class="sidebar-section sidebar-recommendations">
-          <div class="title">Rising Guilds</div>
-          <div class="body">
-          <ul class="no-bullets filter-list pl-0">
-           {% for entry in trending_boards[0:5] %}
-           <li class="guild-recommendations-item">
-            <div class="d-flex"><div class="mr-2"><img src="" class="guild-icon-square-35"></div>
-            <div>
-              <a href="{{ entry[0].permalink }}" class="text-black font-weight-normal">+{{ entry[0].name }}</a>
-              <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-            </div>
-          </div>
-        </li>
-        {% endfor %}
-        </ul>
-      </div>
+{% if trending_boards %}
+<div class="sidebar-section sidebar-recommendations">
+  <div class="title">Rising Guilds</div>
+  <div class="body">
+    <ul class="no-bullets filter-list pl-0">
+     {% for entry in trending_boards[0:5] %}
+     <li class="guild-recommendations-item">
+      <div class="d-flex"><div class="mr-2"><img src="" class="guild-icon-square-35"></div>
+      <a href="{{ entry[0].permalink }}">
+        <div>
+          <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
+          <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+        </div>
+      </a>
     </div>
-    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
+</div>
+</div>
+{% endif %}
 
 {% endblock %}
 
