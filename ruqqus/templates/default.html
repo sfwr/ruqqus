@@ -128,8 +128,9 @@
           <ul class="no-bullets filter-list pl-0">
            {% for entry in trending_boards[0:5] %}
            <li class="guild-recommendations-item">
-            <div class="d-flex"><div class="mr-2"><img src="" class="guild-icon-square-35"></div>
+            <div class="d-flex"><div class="mr-2">
             <a href="{{ entry[0].permalink }}">
+            <img src="" class="guild-icon-square-35"></div>
             <div>
               <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
               <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
