@@ -13219,7 +13219,7 @@ a:hover .link-arrow {
   font-weight: 600;
   text-transform: uppercase;
   color: #dadada;
-  padding: 0.5rem 0;
+  padding: 0.5rem 1rem;
   border-bottom: 1px solid #56575a;
 }
 
@@ -13278,6 +13278,7 @@ a:hover .link-arrow {
 
 .sidebar.sidebar-left .sidebar-section .title {
   border-bottom: none;
+  padding: 0 0 0.5rem 0;
 }
 
 .sidebar-section.sidebar-filters .body {
