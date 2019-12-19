@@ -90,7 +90,7 @@
                                     <label for="title">Post Title</label>
 
                                     <input class="form-control" id="title-register"
-                          aria-describedby="titleHelpRegister" type="text" name="title" value="{{ title if title else request.args.get('title','') }}" required>
+                          aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="{{ title if title else request.args.get('title','') }}" required>
 
                                     <small class="form-text text-muted">Title must be at least 10 characters long</small>
                                     <small id="titleHelpRegister"
@@ -115,7 +115,7 @@
                                 <div class="input-group">
                                     <textarea form="submitform" class="form-control rounded" aria-label="With textarea"
 
-                                    placeholder="Optional if you have a link" rows="7" name="body">{{ text if text else request.args.get('text','') }}</textarea>
+                                    placeholder="Optional if you have a link. 2000 character maximum." rows="7" name="body">{{ text if text else request.args.get('text','') }}</textarea>
                                     <div class="bg-light text-format d-none">
                                         <small class="format"><i class="fas fa-bold"></i></small>
                                         <small class="format"><i class="fas fa-italic"></i></small>
