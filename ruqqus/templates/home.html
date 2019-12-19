@@ -41,7 +41,7 @@
 
 
 {% block banner %}
-<div class="container">
+<div class="container d-none d-lg-block">
   <div class="row">
     <div class="col px-0">
       <div class="jumbotron jumbotron-guild text-white bg-dark">
@@ -64,7 +64,7 @@
 {% endblock %}
 
 {% block postNav %}
-<div class="flex-row bg-light box-shadow-bottom sticky d-flex pt-3 mb-3">
+<div class="flex-row bg-light box-shadow-bottom sticky d-none d-md-flex pt-3 mb-3">
   <ul class="nav post-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="/"><i class="fas fa-fire"></i>Hot</a>
