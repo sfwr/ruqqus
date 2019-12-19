@@ -43,6 +43,7 @@ class Submission(Base):
     ban_reason=Column(String(128), default="")
     creation_ip=Column(String(64), default="")
     thumb_id=Column(String(128), default="")
+    mod_approved=Column(Integer, default=None)
     
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
@@ -55,6 +56,7 @@ class Submission(Base):
     age=deferred(Column(Integer, server_default=FetchedValue()))
     comment_count=Column(Integer, server_default=FetchedValue())
     flag_count=deferred(Column(Integer, server_default=FetchedValue()))
+    report_count=deferred(Column(Integer, server_default=FetchedValue()))
     score=Column(Float, server_default=FetchedValue())
     
 

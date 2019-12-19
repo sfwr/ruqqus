@@ -499,7 +499,29 @@ def unsubscribe_board(boardname, v):
 
     return "", 204
 
-##@app.route("/+<boardname>/mod/queue", methods=["GET"])
-##@auth_required
-##@is_guildmaster
-##def board_mod_queue(boardname, board, v):
+@app.route("/+<boardname>/mod/queue", methods=["GET"])
+@auth_required
+@is_guildmaster
+def board_mod_queue(boardname, board, v):
+
+    page=int(request.args.get("page",1))
+
+    posts = board.submissions.filter_by(is_banned=False,
+                                        mod_approved=0)
+
+    if not v.over_18:
+        posts=posts.filter_by(over_18=False)
+
+    posts=posts.order_by(text('report_count desc')).offset((page-1)*25).limit(26)
+
+    posts=[x for x in posts]
+
+    next_exists=(len(posts)==26)
+
+    posts=posts[0:25]
+
+    #return render_template
+    return "", 204
+        
+
+    
