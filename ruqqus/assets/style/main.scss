@@ -1159,6 +1159,77 @@ color: $dark;
     color: $primary;
 }
 
+// Guild recommendations section
+
+.sidebar-left .sidebar-section.sidebar-recommendations {
+    margin-bottom: 1rem;
+    background-color: transparent;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.sidebar-section.sidebar-guild-recommendations .body {
+    padding: 0;
+}
+
+.sidebar-guild-recommendations .guild-recommendations-list {
+    list-style: none;
+}
+
+.guild-recommendations-list .guild-recommendations-item {
+    color: $text-muted;
+    text-decoration: none;
+    margin-top: 0.5rem;
+}
+
+.guild-recommendations-list .guild-recommendations-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: $text-muted;
+    font-size: $small-font-size;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    text-decoration: none;
+}
+
+.guild-recommendations-list .guild-recommendations-link:hover, .guild-recommendations-list .guild-recommendations-link:focus {
+    color: $black;
+}
+
+.guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active {
+    color: $black;
+    background-color: $white;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+}
+
+.guild-recommendations-list .guild-recommendations-item .fa, .guild-recommendations-list .guild-recommendations-item .fas, .guild-recommendations-list .guild-recommendations-item .far, .guild-recommendations-list .guild-recommendations-item .fab, .guild-recommendations-list .guild-recommendations-item .fal {
+    font-size: $small-font-size;
+    margin-right: 0.5rem;
+    color: $gray-600;
+    text-align: center;
+}
+
+.guild-recommendations-list .guild-recommendations-link:hover .fa , .guild-recommendations-list .guild-recommendations-link:focus .fa, .guild-recommendations-list .guild-recommendations-link:hover .fas, .guild-recommendations-list .guild-recommendations-link:focus .fas, .guild-recommendations-list .guild-recommendations-link:hover .far, .guild-recommendations-list .guild-recommendations-link:focus .far, .guild-recommendations-list .guild-recommendations-link:hover .fab , .guild-recommendations-list .guild-recommendations-link:focus .fab {
+    color: $primary;
+}
+
+.guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .fa, .guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .fas, .guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .far, .guild-recommendations-list > .guild-recommendations-item > .guild-recommendations-link.active .fab {
+    color: $primary;
+}
+
+.guild-recommendations-link:hover, .guild-recommendations-link:focus {
+    color: $primary;
+}
+
+.guild-icon-square-35 {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow-sm;
+}
+
 // Sidebar Left Dashboard Section
 
 .sidebar-left .sidebar-section.sidebar-dashboard {
