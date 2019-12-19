@@ -507,7 +507,7 @@ ol > li::before {
     top: -6px;
     left: 14px;
     line-height: 1.25rem;
-    border: 2px solid $primary;
+    border: 2px solid $white;
     padding: 0px 4px 2px 3px;
 }
 
@@ -1258,8 +1258,12 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     text-transform: uppercase;
 }
 
+.profile-pic-35 .letter {
+    line-height: 2;
+}
+
 .profile-pic-75 .letter {
-    line-height: 5.5rem;
+    line-height: 5.5;
     font-size: 2rem;
 }
 
