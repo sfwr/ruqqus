@@ -82,7 +82,7 @@
 
       <!-- Left Sidebar (hidden on devices smaller than "large") -->
 
-      <div class="col sidebar sidebar-left d-none d-lg-block mr-3">
+      <div class="col sidebar sidebar-left d-none d-lg-block mr-3 pt-3">
 
         {% block sidebarLeftblock %}
 
@@ -129,7 +129,7 @@
            {% for entry in trending_boards[0:5] %}
            <li class="guild-recommendations-item">
             <div class="d-flex"><div class="mr-2">
-            <a href="{{ entry[0].permalink }}">
+            <a href="{{ entry[0].permalink }}" class="guild-recommendations-link">
             <img src="" class="guild-icon-square-35"></div>
             <div>
               <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
