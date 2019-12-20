@@ -528,7 +528,7 @@ def board_mod_queue(boardname, board, v):
         
 @app.route("/mod/queue", methods=["GET"])
 @auth_required
-def board_mod_queue(v):
+def all_mod_queue(v):
 
     page=int(request.args.get("page",1))
 
