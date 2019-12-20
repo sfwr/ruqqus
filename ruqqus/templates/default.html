@@ -121,28 +121,29 @@
 
         {% endif %}
 
-        {% if trending_boards %}
-        <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-          <div class="title">Rising Guilds</div>
-          <div class="body">
-          <ul class="no-bullets guild-recommendations-list pl-0">
-           {% for entry in trending_boards[0:5] %}
-           <li class="guild-recommendations-item">
-            <div class="d-flex"><div class="mr-2">
-            <a href="{{ entry[0].permalink }}" class="guild-recommendations-link">
-            <img src="" class="guild-icon-square-35"></div>
-            <div>
-              <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
-              <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-            </div>
-            </a>
+{% if trending_boards %}
+<div class="sidebar-section sidebar-guild-recommendations sticky-63">
+  <div class="title">Rising Guilds</div>
+  <div class="body">
+    <ul class="no-bullets guild-recommendations-list pl-0">
+     {% for entry in trending_boards[0:5] %}
+     <li class="guild-recommendations-item">
+      <div class="d-flex">
+      <a href="{{ entry[0].permalink }}">
+      <div class="mr-2">
+          <img src="" class="guild-icon-square-35"></div>
+          <div>
+            <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
+            <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
           </div>
-        </li>
-        {% endfor %}
-        </ul>
+        </a>
       </div>
-    </div>
-    {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+</div>
+{% endif %}
 
     {% endblock %}
 

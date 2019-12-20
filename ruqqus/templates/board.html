@@ -141,8 +141,9 @@
     <ul class="no-bullets guild-recommendations-list pl-0">
      {% for entry in trending_boards[0:5] %}
      <li class="guild-recommendations-item">
-      <div class="d-flex"><div class="mr-2">
-        <a href="{{ entry[0].permalink }}">
+      <div class="d-flex">
+      <a href="{{ entry[0].permalink }}">
+      <div class="mr-2">
           <img src="" class="guild-icon-square-35"></div>
           <div>
             <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
