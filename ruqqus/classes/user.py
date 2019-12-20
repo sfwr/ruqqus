@@ -182,6 +182,12 @@ class User(Base):
         return f"t1_{self.base36id}"
 
     @property
+    @cache.memoized(timeout=60)
+    def has_report_queue(self):
+        board_ids=[x.board_id for x in self.moderates.filter_by(accepted=True).all()]
+        return bool(db.query(Submission).filter(Submission.board_id.in_(board_ids), Submission.mod_approved==0, Submission.report_count>=1).first())
+
+    @property
     def banned_by(self):
 
         if not self.is_banned:
