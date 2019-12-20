@@ -507,7 +507,7 @@ def board_mod_queue(boardname, board, v):
     page=int(request.args.get("page",1))
 
     posts = board.submissions.filter_by(is_banned=False,
-                                        mod_approved=0)
+                                        mod_approved=0).filter(Submission.report_count>=1)
 
     if not v.over_18:
         posts=posts.filter_by(over_18=False)
@@ -520,8 +520,38 @@ def board_mod_queue(boardname, board, v):
 
     posts=posts[0:25]
 
-    #return render_template
-    return "", 204
+    return render_template("reported_posts.html",
+                           listing=posts,
+                           next_exists=next_exists,
+                           page=page,
+                           v=v)
         
+@app.route("/mod/queue", methods=["GET"])
+@auth_required
+def board_mod_queue(v):
 
+    page=int(request.args.get("page",1))
+
+    board_ids=[x.board_id for x in v.moderates.filter_by(accepted=True).all()]
+
+    posts = db.query(Submission).filter(Submission.board_id.in_(board_ids),
+                                        Submission.mod_approved==0,
+                                        Submission.report_count >=1)
+
+    if not v.over_18:
+        posts=posts.filter_by(over_18=False)
+
+    posts=posts.order_by(text('report_count desc')).offset((page-1)*25).limit(26)
+
+    posts=[x for x in posts]
+
+    next_exists=(len(posts)==26)
+
+    posts=posts[0:25]
+
+    return render_template("reported_posts.html",
+                           listing=posts,
+                           next_exists=next_exists,
+                           page=page,
+                           v=v)
     
