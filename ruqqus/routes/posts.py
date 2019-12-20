@@ -253,7 +253,7 @@ def submit_post(v):
     # Earlier processing for new post stuff
     
     #spin off thumbnail generation as  new thread
-    if new_post.url and not new_post.url.lower().endswith((".jpeg",".jpg",".png")):
+    if new_post.url and not embed:
         new_thread=threading.Thread(target=thumbnail_thread, args=(new_post,))
         new_thread.start()
 
