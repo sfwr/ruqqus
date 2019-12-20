@@ -12375,7 +12375,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 #settings body, #notifications body, #submit body {
-  padding-top: 45px;
+  padding-top: 98px;
 }
 
 #page {
@@ -13210,8 +13210,6 @@ a:hover .link-arrow {
 .sidebar {
   -ms-flex: 0 0 250px;
   flex: 0 0 250px;
-  padding-left: 0rem;
-  padding-right: 0rem;
 }
 
 .sidebar h1, h2, h3, h4, h5, h6 {
@@ -13269,8 +13267,6 @@ a:hover .link-arrow {
 .sidebar.sidebar-left {
   -ms-flex: 0 0 200px;
   flex: 0 0 200px;
-  padding-left: 0rem;
-  padding-right: 0rem;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {
