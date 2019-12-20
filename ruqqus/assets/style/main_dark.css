@@ -12729,7 +12729,7 @@ ol > li::before {
   font-size: 12px;
   font-weight: 600;
   padding-top: 0;
-  padding-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
 }
 
 .settings-nav .nav-link {
