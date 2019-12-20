@@ -12370,13 +12370,13 @@ p {
   font-size: 14px;
 }
 
+#settings body, #notifications body, #submit body {
+  padding-top: 45px;
+}
+
 #page {
   padding-top: 45px;
   background-color: #ffffff;
-}
-
-#settings, #notifications, #submit {
-  padding-top: 98px;
 }
 
 #article {
@@ -15276,11 +15276,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     max-width: none;
   }
 
-  body {
-    padding-top: 45px;
-  }
-
-  #settings, #notifications, #submit {
+  body, #settings body, #notifications body, #submit body {
     padding-top: 45px;
   }
 
