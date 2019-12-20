@@ -12366,12 +12366,12 @@ body {
   background-color: #EEF0F2;
 }
 
-#settings body, #notifications body, #submit body {
-  padding-top: 98px;
-}
-
 p {
   font-size: 14px;
+}
+
+#settings, #notifications, #submit {
+  padding-top: 98px;
 }
 
 #page {
@@ -15272,7 +15272,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     max-width: none;
   }
 
-  body, #settings body, #notifications body, #submit body {
+  body, #settings, #notifications, #submit {
     padding-top: 45px;
   }
 

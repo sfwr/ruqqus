@@ -12374,7 +12374,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #FFFFFF;
 }
 
-#settings body, #notifications body, #submit body {
+#settings, #notifications, #submit {
   padding-top: 98px;
 }
 
@@ -15315,7 +15315,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     background-color: #232327;
   }
 
-  #settings body, #notifications body, #submit body {
+  #settings, #notifications, #submit {
     padding-top: 45px;
   }
 

@@ -148,12 +148,12 @@ body {
     background-color: $light;
 }
 
-#settings body, #notifications body, #submit body {
-    padding-top: 98px;
-}
-
 p {
     font-size: 14px;
+}
+
+#settings, #notifications, #submit {
+    padding-top: 98px;
 }
 
 #page {
@@ -2730,7 +2730,7 @@ html {
     max-width: none;
 }
 
-body, #settings body, #notifications body, #submit body {
+body, #settings, #notifications, #submit {
     padding-top: 45px;
 }
 
