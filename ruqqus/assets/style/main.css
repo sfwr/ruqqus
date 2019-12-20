@@ -13419,10 +13419,7 @@ a:hover .link-arrow {
 }
 
 .dashboard-list > .dashboard-item > .dashboard-link.active {
-  color: #1F1F1F;
-  background-color: #ffffff;
-  border-radius: 0.35rem;
-  border: 1px solid #E1E1E1;
+  color: #603abb;
 }
 
 .dashboard-list .dashboard-item .fa, .dashboard-list .dashboard-item .fas, .dashboard-list .dashboard-item .far, .dashboard-list .dashboard-item .fab, .dashboard-list .dashboard-item .fal {
