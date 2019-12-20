@@ -90,7 +90,7 @@
             {% endif %}
 
             
-        <form  id="profile-settings" action="/settings/profile" method="post">
+        <form id="profile-settings" action="/settings/profile" method="post">
 
             <h2 class="h5">Content Filters</h2>
 
@@ -109,7 +109,7 @@
                     <div class="body w-lg-100">
 
                         <div class="custom-control custom-switch">
-                            <input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if v.over_18 %} checked{% endif %}>
+                            <input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if v.over_18 %} checked{% endif %} onchange="document.getElementById('profile-settings').submit()>
                             <label class="custom-control-label" for="over18"></label>
                         </div>
 
