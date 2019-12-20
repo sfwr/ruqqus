@@ -7,6 +7,14 @@ from ruqqus.__main__ import db
 
 def thumbnail_thread(post):
 
+    #step 1: see if post is image
+
+    x=requests.head(post.url)
+
+    if x.headers["Content-Type"].split("/")[0]=="image":
+        return
+
+    #if it's not an image, hit apiflash
     params={"access_key":environ.get("APIFLASH_KEY"),
             "url": post.url,
             "height":720,
