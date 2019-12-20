@@ -1,68 +1,236 @@
-{% extends "submit.html" %}
-
-{% block title %}
-<title>Display settings for +{{ b.name }}</title>
-{% endblock %}
+{% extends "settings.html" %}
 
 {% block pagetitle %}<a href="{{ b.permalink }}">+{{ b.name }}</a> Settings{% endblock %}
-{% block subtitle %}Display settings for +{{ b.name }}{% endblock %}
 
-{% block form %}
+{% block content %}
+<div class="row justify-content-around">
 
-                            <form id="submitform" action="/mod/{{ b.base36id }}/settings" method="post">
+    <div class="col h-100">
 
-                                <div class="body">
+        {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+            <i class="fas fa-exclamation-circle my-auto"></i>
+            <span>
+              {{ error }}
+          </span>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true"><i class="far fa-times"></i></span>
+        </button>
+    </div>
+    {% endif %}
+    {% if msg %}
+    <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+        <i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
+        <span>
+          {{ msg }}
+      </span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"><i class="far fa-times"></i></span>
+    </button>
+</div>
+{% endif %}
 
-                                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
+<div class="mt-3 mt-md-0">
 
-                                    <label for="title">Guild Name</label>
+    <h1>Guildmaster tools</h1>
 
-                                    <input class="form-control" id="title-register"
-                                    aria-describedby="titleHelpRegister" type="text" name="name" value="{{ b.name }}" required>
-                                    <small class="form-text text-muted">Update the capitalization of the guild name</small>
+</div>
 
-                                <label for="description" class="mt-3">Guild Description</label>
+<!-- Tools tabs -->
 
-                                <div class="input-group">
-                                    <textarea form="submitform" class="form-control rounded" aria-label="With textarea"
-                                    placeholder="What's this guild all about?" rows="7" name="description">{{ b.description }}</textarea>
-                                    <div class="bg-light text-format d-none">
-                                        <small class="format"><i class="fas fa-bold"></i></small>
-                                        <small class="format"><i class="fas fa-italic"></i></small>
-                                        <small class="format"><i class="fas fa-quote-right"></i></small>
-                                        <small class="format"><i class="fas fa-link"></i></small>
-                                    </div>
-                                </div>
-				<div>
-				<label for="fa_icon" class="mt-3">Guild Icon</label><br>
-				<small>Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</small>
-				<input type="text" name="fa_icon" id="fa_icon" value="{{ b.fa_icon }}" class="form-control">
-				</div>
+<div class="flex-row bg-light box-shadow-bottom sticky d-flex pt-3 mb-5">
 
-				<div>
+    <ul class="nav settings-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link active" href="/settings/profile">Guild settings</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="/settings/profile">User management</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/settings/security">Content moderation</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/settings/notifications">Other</a>
+        </li>
+    </ul>
 
-				<label for="over_18" class="mt-3">NSFW?</label><br>
-				<input id="over_18" type="checkbox" name="over_18" value="true"{% if b.over_18 %} checked{% endif %}> This guild is oriented around adult material.<br>
-				</div>
+</div>
 
+
+<div class="row">
+
+    <div class="col col-md-8">
+
+        <div class="settings">
+
+            <form  id="profile-settings" action="/settings/profile" method="post">
+
+                <h2 class="h5" name="guild_name">Guild Name</h2>
+
+                <p class="text-small text-muted">Change the capitilization of your guild's name.</p>
+
+                <div class="settings-section rounded">
+
+                    <div class="d-lg-flex">
+
+                        <div class="title w-lg-25">
+                            <label for="guild_name">Name</label>
+                        </div>
+
+                        <div class="body w-lg-100">
+
+                            <input type="text" readonly="" class="form-control copy-link" id="guild_name" value="{{ b.name }}">
+
+                            <div class="text-small-extra text-muted mt-3">Only the guild name capitalization can be changed.</div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="footer">
+
+                        <div class="d-flex">
+
+                            {% if error %}
+                            <p class="mb-0">
+                                <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                            </p>
+                            {% endif %}
+
+                            <button class="btn btn-primary ml-auto" id="create_button">Save</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h2 class="h5" name="guild_icon">Guild Icon</h2>
+
+                <p class="text-small text-muted">Change the icon associated with this guild.</p>
+
+                <div class="settings-section rounded">
+
+                    <div class="d-lg-flex">
+
+                        <div class="title w-lg-25">
+                            <label for="guild_icon">Icon</label>
+                        </div>
+
+                        <div class="body w-lg-100">
+
+                            <input type="text" name="guild_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
+
+                            <span class="text-small-extra text-muted">Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="footer">
+
+                        <div class="d-flex">
+
+                            {% if error %}
+                            <p class="mb-0">
+                                <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                            </p>
+                            {% endif %}
+
+                            <button class="btn btn-primary ml-auto" id="create_button">Save</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <h2 class="h5" id="guild_description" name="guild_description">Guild Description</h2>
+
+                <p class="text-small text-muted">Edit the guild's public description. All visitors to the guild will see this.</p>
+
+                <div class="settings-section rounded">
+
+                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
+
+                    <div class="body d-lg-flex">
+
+                        <label for="bio" class="text-black w-lg-25">Description</label>
+
+                        <div class="w-lg-100">
+                            <div class="input-group mb-2">
+                                <textarea class="form-control rounded" id="bio" aria-label="With textarea"
+                                placeholder="What's this guild all about?"
+                                rows="3" name="bio" form="profile-settings">{{ b.description }}</textarea>
                             </div>
 
-                            <div class="footer">
+                            <small>Limit of 1000 characters</small>
 
-                                <div class="d-flex">
+                        </div>
 
-                                    {% if error %}
-                                    <p class="mb-0">
-                                        <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
-                                    </p>
-                                    {% endif %}
+                    </div>
 
-                                    <button class="btn btn-primary ml-auto" id="create_button">Update Guild</button>
+                    <div class="footer">
 
-                                </div>
+                        <div class="d-flex">
 
+                            {% if error %}
+                            <p class="mb-0">
+                                <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                            </p>
+                            {% endif %}
+
+                            <button class="btn btn-primary ml-auto" id="create_button">Save</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <h2 class="h5">Age-Restricted Content</h2>
+
+                <p class="text-small text-muted">Designate whether your guild contains mature content.</p>
+
+                <div class="settings-section rounded">
+
+                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
+
+                    <div class="d-lg-flex">
+
+                        <div class="title w-lg-25">
+                            <label for="over18">NSFW Content</label>
+                        </div>
+
+                        <div class="body w-lg-100">
+
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if b.over_18 %} checked{% endif %}>
+                                <label class="custom-control-label" for="over18"></label>
                             </div>
 
-                        </form>
+                            <span class="text-small-extra text-muted">Enable if your guild contains NSFW content suitable only for 18+ users.</span>
 
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
 {% endblock %}
