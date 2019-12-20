@@ -12,6 +12,9 @@ def thumbnail_thread(post):
     x=requests.head(post.url)
 
     if x.headers["Content-Type"].split("/")[0]=="image":
+        post.is_image=True
+        db.add
+        db.commit()
         return
 
     #if it's not an image, hit apiflash
