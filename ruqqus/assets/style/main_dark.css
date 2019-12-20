@@ -12379,7 +12379,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   background-color: #232327;
 }
 
-#settings, #notifications {
+#settings, #notifications, #submit {
   padding-top: 98px;
 }
 
