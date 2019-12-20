@@ -15280,6 +15280,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     padding-top: 45px;
   }
 
+  #settings, #notifications, #submit {
+    padding-top: 45px;
+  }
+
   .shadow-sm-0 {
     box-shadow: none !important;
   }

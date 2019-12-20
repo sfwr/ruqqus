@@ -2784,6 +2784,10 @@ body {
     background-color: $dark;
 }
 
+#settings, #notifications, #submit {
+    padding-top: 45px;
+}
+
 #notifications body, #settings body {
     background-color: $dark!important;
 }

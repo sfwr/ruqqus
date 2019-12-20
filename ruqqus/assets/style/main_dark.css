@@ -15319,6 +15319,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     background-color: #232327;
   }
 
+  #settings, #notifications, #submit {
+    padding-top: 45px;
+  }
+
   #notifications body, #settings body {
     background-color: #232327 !important;
   }
