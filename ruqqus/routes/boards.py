@@ -369,7 +369,8 @@ def mod_bid_settings_nsfw(bid,  board, v):
     db.add(board)
     db.commit()
 
-    return redirect(board.permalink)
+    # return redirect(board.permalink)
+    return True
 
 @app.route("/mod/<bid>/settings/name", methods=["POST"])
 @auth_required
@@ -385,7 +386,8 @@ def mod_bid_settings_name(bid, board, v):
     db.add(board)
     db.commit()
 
-    return redirect(board.permalink)
+    #return redirect(board.permalink)
+    return True
 
 @app.route("/mod/<bid>/settings/fa", methods=["POST"])
 @auth_required
@@ -420,7 +422,8 @@ def mod_bid_settings_fa(bid, board, v):
     db.add(board)
     db.commit()
 
-    return redirect(board.permalink)
+    # return redirect(board.permalink)
+    return True
 
 @app.route("/mod/<bid>/settings/description", methods=["POST"])
 @auth_required
@@ -440,7 +443,8 @@ def mod_bid_settings_description(bid, board, v):
     db.add(board)
     db.commit()
 
-    return redirect(board.permalink)
+    # return redirect(board.permalink)
+    return True
 
 
 @app.route("/mod/<bid>/settings", methods=["POST"])
