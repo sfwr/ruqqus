@@ -378,7 +378,7 @@ def mod_bid_settings_nsfw(bid,  board, v):
 @validate_formkey
 def mod_bid_settings_name(bid, board, v):
     # name capitalization
-    new_name = request.form.get("name", "").lstrip("+")
+    new_name = request.form.get("guild_name", "").lstrip("+")
 
     if new_name.lower() == board.name.lower():
         board.name = new_name
