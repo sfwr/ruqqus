@@ -2932,6 +2932,7 @@ body {
 }
 
 .x-scroll {
+    flex-wrap: nowrap;
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -2940,6 +2941,7 @@ body {
 }
 
 .x-scroll::-webkit-scrollbar {
+    flex-wrap: nowrap;
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;

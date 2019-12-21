@@ -15416,6 +15416,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .x-scroll {
+    flex-wrap: nowrap;
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
@@ -15426,6 +15427,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .x-scroll::-webkit-scrollbar {
+    flex-wrap: nowrap;
     white-space: nowrap;
     overflow-x: auto;
     overflow-y: hidden;
