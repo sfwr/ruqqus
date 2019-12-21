@@ -357,7 +357,7 @@ def mod_is_banned_board_username(bid, username, board, v):
     return jsonify(result)
 
 
-@app.route("/mod/<bid>/settings/nsfw", methods=["POST"])
+@app.route("/mod/<bid>/settings/over_18", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey
@@ -389,7 +389,7 @@ def mod_bid_settings_name(bid, board, v):
     #return redirect(board.permalink)
     return True
 
-@app.route("/mod/<bid>/settings/fa", methods=["POST"])
+@app.route("/mod/<bid>/settings/fa_icon", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey

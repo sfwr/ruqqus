@@ -56,7 +56,19 @@
     </ul>
 
 </div>
-
+<script>
+function mod_post(url, type, callback, errortext) {
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      var form = new FormData()
+      form.append("formkey", "{{ v.formkey }}");
+      form.append(type, (document.getElementById('type'));
+      xhr.withCredentials=true;
+      xhr.onload=callback
+      xhr.onerror=function(){alert(errortext)}
+      xhr.send(form);
+}
+</script>
 
 <div class="row">
 
@@ -64,7 +76,7 @@
 
         <div class="settings">
 
-            <form id="guild-settings" action="/mod/{{ b.base36id }}/settings" method="post">
+            <form id="name">
 
                 <h2 class="h5" name="guild_name">Guild Name</h2>
 
@@ -97,16 +109,19 @@
                                 <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
                             </p>
                             {% endif %}
-
-                            <button class="btn btn-primary ml-auto" type="submit">Save</button>
+                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'name');">
+                            <button class="btn btn-primary ml-auto" type="submit">Save
+                            </button>
+                            </a>
 
                         </div>
 
                     </div>
 
                 </div>
+            </form>
 
-
+            <form id="fa_icon">
                 <h2 class="h5" name="guild_icon">Guild Icon</h2>
 
                 <p class="text-small text-muted">Change the icon associated with this guild.</p>
@@ -139,13 +154,18 @@
                             </p>
                             {% endif %}
 
-                            <button class="btn btn-primary ml-auto" type="submit">Save</button>
+                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'fa_icon');">
+                            <button class="btn btn-primary ml-auto" type="submit">Save
+                            </button>
+                            </a>
 
                         </div>
 
                     </div>
 
                 </div>
+            </form>
+        <form id="description">
 
                 <h2 class="h5" id="guild_description" name="guild_description">Guild Description</h2>
 
@@ -182,14 +202,18 @@
                             </p>
                             {% endif %}
 
-                            <button class="btn btn-primary ml-auto" type="submit">Save</button>
+                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'description');">
+                            <button class="btn btn-primary ml-auto" type="submit">Save
+                            </button>
+                            </a>
 
                         </div>
 
                     </div>
 
                 </div>
-
+        </form>
+        <form id="over_18">
 
                 <h2 class="h5">Age-Restricted Content</h2>
 
