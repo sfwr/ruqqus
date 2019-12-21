@@ -77,6 +77,7 @@ function mod_post(url, type, callback, errortext) {
         <div class="settings">
 
             <form id="name">
+            <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
                 <h2 class="h5" name="guild_name">Guild Name</h2>
 
@@ -109,7 +110,7 @@ function mod_post(url, type, callback, errortext) {
                                 <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
                             </p>
                             {% endif %}
-                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'name');">
+                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name');">
                             <button class="btn btn-primary ml-auto" type="submit">Save
                             </button>
                             </a>
@@ -122,6 +123,7 @@ function mod_post(url, type, callback, errortext) {
             </form>
 
             <form id="fa_icon">
+            <input type="hidden" name="formkey" value="{{ v.formkey }}">
                 <h2 class="h5" name="guild_icon">Guild Icon</h2>
 
                 <p class="text-small text-muted">Change the icon associated with this guild.</p>
@@ -166,14 +168,14 @@ function mod_post(url, type, callback, errortext) {
                 </div>
             </form>
         <form id="description">
-
+        <input type="hidden" name="formkey" value="{{ v.formkey }}">
                 <h2 class="h5" id="guild_description" name="guild_description">Guild Description</h2>
 
                 <p class="text-small text-muted">Edit the guild's public description. All visitors to the guild will see this.</p>
 
                 <div class="settings-section rounded">
 
-                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
+
 
                     <div class="body d-lg-flex">
 
@@ -214,6 +216,7 @@ function mod_post(url, type, callback, errortext) {
                 </div>
         </form>
         <form id="over_18">
+        <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
                 <h2 class="h5">Age-Restricted Content</h2>
 
