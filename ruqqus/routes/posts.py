@@ -240,10 +240,9 @@ def submit_post(v):
     db.add(vote)
     db.commit()
 
-    # Earlier processing for new post stuff
     
     #spin off thumbnail generation as  new thread
-    if new_post.url and not embed:
+    if new_post.url and embed:
         new_thread=threading.Thread(target=thumbnail_thread,
                                     args=(new_post,),
                                     kwargs={
@@ -251,8 +250,6 @@ def submit_post(v):
                                         }
                                     )
         new_thread.start()
-
-    #continue processing new post stuff
 
     #expire the relevant caches: front page new, board new
     cache.delete_memoized(frontlist, sort="new")
