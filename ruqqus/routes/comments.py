@@ -20,11 +20,8 @@ from datetime import datetime
 @admin_level_required(1)
 def comment_cid(cid, v):
 
-    comment=db.query(Comment).filter_by(id=base36decode(cid)).first()
-    if comment:
-        return redirect(comment.permalink)
-    else:
-        abort(404)
+    comment=get_comment(cid)
+    return redirect(comment.permalink)
 
 @app.route("/post/<p_id>/comment/<c_id>", methods=["GET"])
 @auth_desired
@@ -39,8 +36,17 @@ def post_pid_comment_cid(p_id, c_id, v=None):
 
     if post.over_18 and not (v and v.over_18):
         abort(451)
+
+    context=int(request.args.get("context", 0))
+    c=comment
+    while context > 0 and not c.is_top_level:
+
+        parent=c.parent:
+            parent.replies=[c]
+
+        c=parent
         
-    return post.rendered_page(v=v, comment=comment)
+    return post.rendered_page(v=v, comment=c)
 
 @app.route("/api/comment", methods=["POST"])
 @limiter.limit("10/minute")
