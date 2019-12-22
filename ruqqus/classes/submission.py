@@ -44,6 +44,7 @@ class Submission(Base):
     creation_ip=Column(String(64), default="")
     thumb_id=Column(String(128), default="")
     mod_approved=Column(Integer, default=None)
+    is_image=Column(Boolean, default=False)
     
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
