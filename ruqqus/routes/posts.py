@@ -126,10 +126,10 @@ def submit_post(v):
     
     board=db.query(Board).filter(Board.name.ilike(board_name)).first()
     if not board:
-        board=db.query(Board).filter_by(id=1).first()
+        board=get_guild('general')
     
     if board.has_ban(v):
-        return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
+        return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""))
             
     #Huffman-Ohanian growth method
     if v.admin_level >=2:
