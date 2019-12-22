@@ -615,7 +615,8 @@ def board_mod_queue(boardname, board, v):
                            listing=posts,
                            next_exists=next_exists,
                            page=page,
-                           v=v)
+                           v=v,
+                           b=board)
         
 @app.route("/mod/queue", methods=["GET"])
 @auth_required
