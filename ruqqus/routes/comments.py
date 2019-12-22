@@ -37,12 +37,13 @@ def post_pid_comment_cid(p_id, c_id, v=None):
     if post.over_18 and not (v and v.over_18):
         abort(451)
 
+    #context improver
     context=int(request.args.get("context", 0))
     c=comment
     while context > 0 and not c.is_top_level:
 
-        parent=c.parent:
-            parent.replies=[c]
+        parent=c.parent
+        parent.replies=[c]
 
         c=parent
         
