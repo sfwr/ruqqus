@@ -192,7 +192,7 @@
 
 <a href="{{ p.url }}" rel="nofollow"><img src="{{ p.url }}" class="post-img d-none d-md-block" alt="Unable to anonymously load image"></a>
 
-{% elif p.thumb_id and not p.over_18 %}
+{% elif p.thumb_id and not p.over_18 and not p.embed_url %}
 
 <a href="{{ p.url }}"><img src="/thumbs/{{ p.base36id }}" class="post-img d-none d-md-block" alt="Unable to load thumbnail"></a>
 
