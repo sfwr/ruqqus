@@ -69,6 +69,12 @@ class User(Base):
         kwargs["created_utc"]=int(time())
 
         super().__init__(**kwargs)
+
+    @property
+    def boards_subscribed(self):
+
+        boards= [x.board for x in self.subscriptions]
+        return boards
         
     @cache.memoize(timeout=600)
     def idlist(self, sort="hot", page=1, kind="board"):
