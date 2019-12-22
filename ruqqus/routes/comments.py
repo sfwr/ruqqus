@@ -48,7 +48,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
         c=parent
         context -=1
         
-    return post.rendered_page(v=v, comment=c)
+    return post.rendered_page(v=v, comment=c, comment_info=comment)
 
 @app.route("/api/comment", methods=["POST"])
 @limiter.limit("10/minute")

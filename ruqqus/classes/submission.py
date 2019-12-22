@@ -103,7 +103,7 @@ class Submission(Base):
     def permalink(self):
         return f"/post/{self.base36id}"
                                       
-    def rendered_page(self, comment=None, v=None):
+    def rendered_page(self, comment=None, comment_info=None, v=None):
 
         #check for banned
         if self.is_banned or self.is_deleted:
@@ -119,7 +119,12 @@ class Submission(Base):
         self.tree_comments(comment=comment)
         
         #return template
-        return render_template(template, v=v, p=self, sort_method=request.args.get("sort","Hot").capitalize(), linked_comment=comment)
+        return render_template(template,
+                               v=v,
+                               p=self,
+                               sort_method=request.args.get("sort","Hot").capitalize(),
+                               linked_comment=comment,
+                               comment_info=comment_info)
 
     @property
     @lazy
