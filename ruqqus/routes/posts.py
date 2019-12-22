@@ -115,17 +115,7 @@ def submit_post(v):
     domain=parsed_url.netloc
 
     ##all possible subdomains
-    parts=domain.split(".")
-    domains=[]
-    for i in range(len(parts)):
-        new_domain=parts[i]
-        for j in range(i+1, len(parts)):
-            new_domain+="."+parts[j]
-
-        domains.append(new_domain)
-        
-    domain_obj=db.query(Domain).filter(Domain.domain.in_(domains)).first()
-
+    domain_obj=get_domain(domain)
     if domain_obj:
         if not domain_obj.can_submit:
             return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason], title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
@@ -254,7 +244,12 @@ def submit_post(v):
     
     #spin off thumbnail generation as  new thread
     if new_post.url and not embed:
-        new_thread=threading.Thread(target=thumbnail_thread, args=(new_post,))
+        new_thread=threading.Thread(target=thumbnail_thread,
+                                    args=(new_post,),
+                                    kwargs={
+                                        "can_show_thumbnail": domain_obj and domain_obj.show_thumbnail
+                                        }
+                                    )
         new_thread.start()
 
     #continue processing new post stuff
