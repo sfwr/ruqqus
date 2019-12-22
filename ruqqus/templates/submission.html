@@ -12,7 +12,7 @@
 {% block title %}
 {% if comment_info and not comment_info.is_banned and not linked_comment.is_deleted %}
 <title>@{{ comment_info.author.username }} comments in +{{ p.board.name }} on "{{ p.title }}"</title>
-<meta name="description" content="{{ linked_comment.body }}">
+<meta name="description" content="{{ comment_info.body }}">
 {% else %}
 <title>{{ p.title | safe}}</title>
 <meta name="description" content="posted by @{{ p.author.username }} in +{{ p.board.name }}">
