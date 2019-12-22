@@ -65,12 +65,14 @@
   {{ b.description_html | safe }}
 </div>
 </div>
+{% if v and not b.has_ban(v) %}
 <div class="sidebar-section sidebar-submit">
   <div class="title">Submit to +{{ b.name }}</div>
   <div class="body">
     <a class="btn btn-primary btn-block" href="/submit?guild={{ b.name | urlencode }}">Create Post in +{{ b.name }}</a>
   </div>
 </div>
+{% endif %}
 <div class="sidebar-section sidebar-mods">
   <div class="title">Guildmasters</div>
   <div class="body">
