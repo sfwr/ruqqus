@@ -31,8 +31,95 @@
 {% endblock %}
 
 {% block title %}
-<title>{{ u.username }}</title>
+<title>{{ u.username }}'s profile</title>
 <meta name="description" content="on Ruqqus">
+{% endblock %}
+
+{% block banner %}
+<div class="container">
+  <div class="row">
+    <div class="col px-0">
+      <div class="jumbotron jumbotron-guild text-white">
+        <div class="jumbotron-overlay"></div>
+        <div class="position-absolute w-100 p-3" style="bottom: 0;">
+          <div class="d-md-flex text-center text-md-left">
+            <div>
+              <img src="" class="guild-icon-square-lg">
+            </div>
+            <div class="ml-3 w-100">
+              <h1 class="h3 d-inline-block mr-2">{{ u.username }}
+               <!--{% if u.over_18 %}
+               <span class="badge badge-danger">NSFW</span>
+               {% endif %}-->
+             </h1>
+             <span>
+              {% if u.admin_level %}
+              <i class="fad fa-shield text-admin ml-1" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>
+              {% endif %}
+              {% if u.real_id %}<span class="badge badge-pill text-white badge-info">{{ u.real_id }}</span>
+              {% endif %}
+            </span>
+            <div class="profile-actions d-inline-block float-right">
+             {% if v and v.id != u.id %}
+             <div class="dropdown show">
+              <a href="#" role="button" id="dropdownProfileActionsLink" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-h"></i>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right border-0 shadow" aria-labelledby="dropdownMoreLink">
+              <a class="dropdown-item" href="#"><i class="fas fa-paper-plane"></i>Message</a>
+              <a class="dropdown-item" href="#"><i class="fas fa-flag"></i>Report</a>
+            </div>
+          </div>
+          {% endif %}
+          {% if v and v.id == u.id %}
+          <div class="dropdown show">
+            <a href="#" role="button" id="dropdownProfileActionsLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-ellipsis-h"></i>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right border-0 shadow" aria-labelledby="dropdownMoreLink">
+            <a class="dropdown-item" href="/settings/profile#bio"><i class="fas fa-edit"></i>Edit profile</a>
+            <a class="dropdown-item" href="/settings/security"><i class="fas fa-cog"></i>Account details</a>
+          </div>
+        </div>
+        {% endif %}   
+      </div>
+      <div><span class="text-small"><span class="font-weight-bold">{{ u.follower_count }}</span> subscriber{{ 's' if u.follower_count != 1 else '' }}<span> · </span>
+       <span class="font-weight-bold">{{ u.created_date }}</span> joined</span>
+     </div>
+     <div class="mt-1">
+      {% if u.bio_html %}
+      {{ u.bio_html | safe }}
+      {% endif %}
+      {% if v %}
+      {% if v.id == u.id %}
+      <div><a class="btn btn-secondary btn-block btn-sm mb-3" href="/settings/profile#bio">Update bio</a></div>
+      {% endif %}
+      {% endif %}
+    </div>
+    <div class="d-flex">
+     <div class="w-100">
+       {% for mod in b.mods %}
+       <a href="{{ mod.permalink }}"><div class="profile-pic-35 border-3 border-white rounded-circle d-inline-block" style="background-color:#{{ mod.color }}"><span class="letter text-white">{{ mod.username[0] }}</span></div></a>
+       {% else %}
+       No guildmasters
+       {% endfor %}
+     </div>
+     {% if v and v.id != u.id %}
+     <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe</a></div>
+     <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe</a></div>
+     {% endif %}
+   </div>
+ </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 {% endblock %}
 
 {% block sidebarblock %}
@@ -77,28 +164,28 @@
  <div class="title">Profile</div>
  <div class="body">
    {% if u.bio_html %}
-    {{ u.bio_html | safe }}
+   {{ u.bio_html | safe }}
    {% endif %}
-  {% if v %}
-	{% if v.id == u.id %}
-  <div><a class="btn btn-secondary btn-block btn-sm mb-3" href="/settings/profile#bio">Update bio</a></div>
-  	{% endif %}
-  {% endif %}
-  <div class="text-muted text-small"><i class="fas fa-medal fa-width-rem text-muted mr-2"></i>{{ u.karma }} Rep</div>
-  <div class="text-muted text-small mt-2"><i class="fas fa-feather-alt fa-width-rem text-muted mr-2"></i>{{ u.post_count }} Post{{ 's' if u.post_count!=1 else '' }}
-  </div>
-  <div class="text-muted text-small mt-2"><i class="fas fa-comment-dots fa-width-rem text-muted mr-2"></i>{{ u.comment_count }} Comment{{ 's' if u.comment_count !=1 else '' }}
-  </div>
-  <div class="text-muted text-small mt-2"><i class="fas fa-user-friends fa-width-rem text-muted mr-2"></i>{{ u.follower_count }} Subscriber{{ 's' if u.follower_count !=1 else '' }}
-  </div>
-  <div class="text-muted text-small mt-2"><i class="fas fa-birthday-cake fa-width-rem text-muted mr-2"></i>User
+   {% if v %}
+   {% if v.id == u.id %}
+   <div><a class="btn btn-secondary btn-block btn-sm mb-3" href="/settings/profile#bio">Update bio</a></div>
+   {% endif %}
+   {% endif %}
+   <div class="text-muted text-small"><i class="fas fa-medal fa-width-rem text-muted mr-2"></i>{{ u.karma }} Rep</div>
+   <div class="text-muted text-small mt-2"><i class="fas fa-feather-alt fa-width-rem text-muted mr-2"></i>{{ u.post_count }} Post{{ 's' if u.post_count!=1 else '' }}
+   </div>
+   <div class="text-muted text-small mt-2"><i class="fas fa-comment-dots fa-width-rem text-muted mr-2"></i>{{ u.comment_count }} Comment{{ 's' if u.comment_count !=1 else '' }}
+   </div>
+   <div class="text-muted text-small mt-2"><i class="fas fa-user-friends fa-width-rem text-muted mr-2"></i>{{ u.follower_count }} Subscriber{{ 's' if u.follower_count !=1 else '' }}
+   </div>
+   <div class="text-muted text-small mt-2"><i class="fas fa-birthday-cake fa-width-rem text-muted mr-2"></i>User
     since {{ u.created_date }}
   </div>
 
-{% if v and v.id != u.id %}
-		<div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe from @{{ u.username }}</a></div>
-		<div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe to @{{ u.username }}</a></div>
-{% endif %}
+  {% if v and v.id != u.id %}
+  <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe from @{{ u.username }}</a></div>
+  <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe to @{{ u.username }}</a></div>
+  {% endif %}
 </div>
 </div>
 
@@ -153,7 +240,7 @@
 
 {% if not v %}
 <div class="sidebar-section sidebar-alert">
-<div class="body">
+  <div class="body">
     <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
     <h5>Join the discourse.</h5>
     <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
@@ -177,14 +264,14 @@
       <li class="dashboard-item">
         <a class="dashboard-link" href="/settings"><i class="fas fa-cog fa-width-rem"></i>Settings</a>
       </li>
-	<li class="dashboard-item">
-	<a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Your guilds</a>
-	</li>
-	<li class="dashboard-item">
-	<a class="dashboard-link" href="/subscriptions"><i class="fas fa-user-friends fa-width-rem"></i>Your subscriptions</a>
-	</li>
-    </ul>
-  </div>
+      <li class="dashboard-item">
+       <a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Your guilds</a>
+     </li>
+     <li class="dashboard-item">
+       <a class="dashboard-link" href="/subscriptions"><i class="fas fa-user-friends fa-width-rem"></i>Your subscriptions</a>
+     </li>
+   </ul>
+ </div>
 </div>
 
 
