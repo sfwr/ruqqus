@@ -43,7 +43,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
     while context > 0 and not c.is_top_level:
 
         parent=c.parent
-        parent.replies=[c]
+        parent.__dict__["replies"]=[c]
 
         c=parent
         context -=1
