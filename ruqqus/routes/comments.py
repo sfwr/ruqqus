@@ -46,6 +46,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
         parent.replies=[c]
 
         c=parent
+        context -=1
         
     return post.rendered_page(v=v, comment=c)
 
