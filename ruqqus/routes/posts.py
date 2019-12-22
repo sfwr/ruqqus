@@ -115,17 +115,7 @@ def submit_post(v):
     domain=parsed_url.netloc
 
     ##all possible subdomains
-    parts=domain.split(".")
-    domains=[]
-    for i in range(len(parts)):
-        new_domain=parts[i]
-        for j in range(i+1, len(parts)):
-            new_domain+="."+parts[j]
-
-        domains.append(new_domain)
-        
-    domain_obj=db.query(Domain).filter(Domain.domain.in_(domains)).first()
-
+    domain_obj=get_domain(domain)
     if domain_obj:
         if not domain_obj.can_submit:
             return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason], title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
@@ -136,10 +126,10 @@ def submit_post(v):
     
     board=db.query(Board).filter(Board.name.ilike(board_name)).first()
     if not board:
-        board=db.query(Board).filter_by(id=1).first()
+        board=get_guild('general')
     
     if board.has_ban(v):
-        return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""), board=request.form.get("board",""))
+        return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""))
             
     #Huffman-Ohanian growth method
     if v.admin_level >=2:
@@ -250,14 +240,16 @@ def submit_post(v):
     db.add(vote)
     db.commit()
 
-    # Earlier processing for new post stuff
     
     #spin off thumbnail generation as  new thread
-    if new_post.url and not embed:
-        new_thread=threading.Thread(target=thumbnail_thread, args=(new_post,))
+    if new_post.url and embed:
+        new_thread=threading.Thread(target=thumbnail_thread,
+                                    args=(new_post,),
+                                    kwargs={
+                                        "can_show_thumbnail": domain_obj and domain_obj.show_thumbnail
+                                        }
+                                    )
         new_thread.start()
-
-    #continue processing new post stuff
 
     #expire the relevant caches: front page new, board new
     cache.delete_memoized(frontlist, sort="new")

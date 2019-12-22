@@ -5,11 +5,11 @@ from urllib.parse import urlparse
 from .get import *
 from ruqqus.__main__ import db
 
-def thumbnail_thread(post):
+def thumbnail_thread(post, can_show_thumbnail=False):
 
     #step 1: see if post is image
 
-    if post.domain_obj and post.domain_obj.show_thumbnail:
+    if can_show_thumbnail:
         x=requests.head(post.url)
 
         if x.headers["Content-Type"].split("/")[0]=="image":
@@ -21,7 +21,7 @@ def thumbnail_thread(post):
 
     #if it's not an image, hit apiflash
     params={"access_key":environ.get("APIFLASH_KEY"),
-            "url": post.url,
+            "url": post.embed_url if post.embed_url else post.url,
             "height":720,
             "width":1280,
             "format":"jpeg",

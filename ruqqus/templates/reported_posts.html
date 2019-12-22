@@ -4,6 +4,8 @@
 
 {% block pagetype %}userpage{% endblock %}
 
+{% block banner %}{% endblock %}
+
 {% block sidebarLeftblock %}
 {% endblock %}
 
@@ -46,7 +48,7 @@
 {% block sidebarblock %}
 <div class="sidebar-section sidebar-profile-basic">
   <div class="body">
-    <h1 class="h6 d-inline-block mb-0" style="color:black">Reported Posts</h1>
+    <h1 class="h6 d-inline-block mb-0" style="color:black">{% if b %}<a href="{{ b.permalink }}"><i class="{{ b.fa_icon+' fa-width-rem' if b.fa_icon else ''}}"></i>+{{ b.name }}</a> {% endif %}Reported Posts</h1>
 	<p>Potentially off-topic posts reported by your readers are listed here.</p>
 
 </div>
@@ -73,10 +75,9 @@
     <div class="profile-details">
       <div class="media">
       <div class="media-body">
-        <h1 class="h6 d-inline-block">Flagged Posts</h1>
+        <h1 class="h6 d-inline-block">Reported Posts</h1>
 
       </div>
-
     </div>
 
   </div>

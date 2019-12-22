@@ -44,6 +44,7 @@ class Submission(Base):
     creation_ip=Column(String(64), default="")
     thumb_id=Column(String(128), default="")
     mod_approved=Column(Integer, default=None)
+    is_image=Column(Boolean, default=False)
     
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
@@ -103,7 +104,7 @@ class Submission(Base):
     def permalink(self):
         return f"/post/{self.base36id}"
                                       
-    def rendered_page(self, comment=None, v=None):
+    def rendered_page(self, comment=None, comment_info=None, v=None):
 
         #check for banned
         if self.is_banned or self.is_deleted:
@@ -119,7 +120,12 @@ class Submission(Base):
         self.tree_comments(comment=comment)
         
         #return template
-        return render_template(template, v=v, p=self, sort_method=request.args.get("sort","Hot").capitalize(), linked_comment=comment)
+        return render_template(template,
+                               v=v,
+                               p=self,
+                               sort_method=request.args.get("sort","Hot").capitalize(),
+                               linked_comment=comment,
+                               comment_info=comment_info)
 
     @property
     @lazy
