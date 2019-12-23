@@ -4,6 +4,7 @@ import requests
 
 from ruqqus.helpers.get import *
 from ruqqus.helpers.wrappers import *
+from ruqqus.mail.mail import send_mail
 from ruqqus.__main__ import app, limiter
 
 @app.route("/legal", methods=["GET"])
@@ -35,13 +36,14 @@ def legal_2(v):
 @validate_formkey
 def legal_final(v):
 
-    url=environ.get("BASIN_URL")
-
     data={x: request.form[x] for x in request.form if x !="formkey"}
 
-    basin=requests.post(url,
-                    data=data,
-                    files=request.files)
+    send_mail(environ.get("admin_email"),
+              "Legal request submission",
+              render_template_string("<div>{% for k in data %}<h1>{{ k }}<h1><p>{{ data[k] }}</p></div>",
+                                     data=data),
+              files=request.files
+              )
 
     return render_template("legal/legal_done.html",
                            success=(basin.status_code==200),
