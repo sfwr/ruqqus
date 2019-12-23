@@ -12,7 +12,8 @@ def legal_1(v):
 
 @app.route("/legal/2", methods=["POST"])
 @is_not_banned
-def help_legal_2(v):
+@validate_formkey
+def legal_2(v):
 
     if request.form.get("about_yourself","") not in ["law_enforcement","gov_official"]:
         return render_template("legal_reject.html")
@@ -28,4 +29,18 @@ def help_legal_2(v):
     
     
 
+@app.route("/legal/final", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def legal_final(v):
 
+    url=environ.get("BASIN_URL")
+
+    data={x: request.form[x] for x in request.form if x !="formkey"}
+
+    basin=requests.post(url,
+                    form=data,
+                    files=request.files)
+
+    return render_template("legal_done.html", v=v)
+    
