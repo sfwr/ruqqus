@@ -40,7 +40,7 @@ def legal_final(v):
     data={x: request.form[x] for x in request.form if x !="formkey"}
 
     basin=requests.post(url,
-                    form=data,
+                    data=data,
                     files=request.files)
 
     return render_template("legal/legal_done.html", v=v)

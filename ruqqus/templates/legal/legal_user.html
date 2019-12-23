@@ -1,9 +1,4 @@
-{% extends "default.html" %}
-
-{% block title %}
-<title>Ruqqus Legal Request</title>
-<meta name="description" content="Ruqqus legal request">
-{% endblock %}
+{% extends "legal_default.html" %}
 
 {% block content%}
 <form action="/legal/final", method="post">
@@ -28,9 +23,9 @@
 
 	<div class="h6 mt-5">Can Ruqqus notify the user that their information has been requested?</div>
 	<div class="body">It is Ruqqus policy to notify a user that their information has been requested by legal process, except when prohibited by law or in certain exigent circumstances.</div>
-	<input type="radio" name="info_type" value="non_disclosure" required> This legal process includes a non-disclosure provision pursuant to 18 USC 2705(b). Ruqqus is prohibited from notifying the user.<br>
+	<input type="radio" name="info_type" value="non_disclosure"> This legal process includes a non-disclosure provision pursuant to 18 USC 2705(b). Ruqqus is prohibited from notifying the user.<br>
 	<input type="radio" name="info_type" value="exigent"> This legal process involves exigent circumstances such as terrorism, human trafficking, or imminent threats to life. Although Ruqqus is legally permitted to notify the user, Ruqqus policy means we will most likely refrain from doing so.<br>
-	<input type="radio" name="info_type" value="may_notify" checked> None of the above. Ruqqus is permitted to notify the user that their information has been requested.<br>
+	<input type="radio" name="info_type" value="may_notify" checked required> None of the above. Ruqqus is permitted to notify the user that their information has been requested.<br>
 
 	<div class="h6 mt-5">Upload the legal document</div>
 	<div class="body">It must be in English or include an official English translation.</div>
@@ -39,6 +34,6 @@
 	<div class="h6 mt-5">Required Statement</div>
 	<input type="checkbox" name="target_user" class="form-control" required> I swear, under penalty of perjury, that the information in this Request is accurate.</br>
 
-	<input type="submit" value="Next">	
+	<input class="btn btn-primary" type="submit" value="Next">	
 </form>
 {% endblock %}
