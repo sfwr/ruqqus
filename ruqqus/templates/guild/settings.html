@@ -64,7 +64,11 @@ function mod_post(url, type) {
       form.append("formkey", "{{ v.formkey }}");
       item=document.getElementById(type);
       if (item.type=="checkbox") {
-        form.append(item.name, item.checked)
+	if (item.checked) {
+          form.append(item.name, 1)
+        }else{
+	  form.append(item.name, 0)
+	}
       }
       else {
         form.append(item.name, item.value);
@@ -139,7 +143,7 @@ function mod_post(url, type) {
 
                         <div class="body w-lg-100">
 
-                            <input type="text" name="guild_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
+                            <input type="text" name="fa_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
 
                             <span class="text-small-extra text-muted">Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</span>
 
