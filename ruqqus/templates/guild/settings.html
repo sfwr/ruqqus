@@ -88,6 +88,7 @@ function mod_post(url, type) {
         `<i class="fas fa-check mr-2"></i>Saved`);
       }
       xhr.onerror=function(){
+        this.prop("disabled", false);
         this.classList.add("btn-danger");
         this.html(
         `<i class="fas fa-times mr-2"></i>Settings not saved. Try again.`);
