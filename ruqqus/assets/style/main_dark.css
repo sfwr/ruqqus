@@ -13534,6 +13534,14 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   text-align: center;
 }
 
+.profile-pic-overlap {
+  margin-left: -1rem;
+}
+
+.profile-pic-overlap:first-child {
+  margin-left: 0;
+}
+
 #frontpage.toggle-card-view .tab-bar, #userpage.toggle-card-view .tab-bar, #search.toggle-card-view .tab-bar {
   border-radius: 0;
 }
