@@ -83,6 +83,7 @@ function mod_post(url, type, id) {
         button.innerHTML = `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving`;
       }
       xhr.onload=function(){
+        button.classList.add("btn-danger");
         button.classList.add("btn-success");
         button.innerHTML = `<i class="fas fa-check mr-2"></i>Saved`;
       }
