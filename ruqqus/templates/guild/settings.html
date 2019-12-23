@@ -56,6 +56,7 @@
     </ul>
 
 </div>
+
 <script>
 function mod_post(url, type) {
       var xhr = new XMLHttpRequest();
@@ -64,14 +65,21 @@ function mod_post(url, type) {
       form.append("formkey", "{{ v.formkey }}");
       item=document.getElementById(type);
       if (item.type=="checkbox") {
-	form.append(item.name, item.checked);
+        form.append(item.name, item.checked)
       }
       else {
         form.append(item.name, item.value);
       }
       xhr.withCredentials=true;
-      xhr.onload=function(){alert("success")}
-      xhr.onerror=function(){alert(errortext)}
+      xhr.onprogress=function(){
+
+      }
+      xhr.onload=function(){
+
+      }
+      xhr.onerror=function(){
+        
+      }
       xhr.send(form);
 }
 </script>
@@ -115,7 +123,7 @@ function mod_post(url, type) {
                                 <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
                             </p>
                             {% endif %}
-                            <a class="btn btn-primary ml-auto" href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name');">Save</a>
+                            <button class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name');">Save</button>
 
                         </div>
 
@@ -157,7 +165,7 @@ function mod_post(url, type) {
                             </p>
                             {% endif %}
 
-                            <a href="javascript:void(0)" class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon');">Save</a>
+                            <button class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon');">Save</button>
 
                         </div>
 
@@ -199,7 +207,7 @@ function mod_post(url, type) {
                             </p>
                             {% endif %}
 
-                            <a class="btn btn-primary ml-auto" href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio');">Save</a>
+                            <button class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio');">Save</button>
 
                         </div>
 
