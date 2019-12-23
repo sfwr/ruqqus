@@ -1,6 +1,7 @@
 from flask import *
 from os import environ
 import requests
+from werkzeug.utils import secure_filename
 
 from ruqqus.helpers.get import *
 from ruqqus.helpers.wrappers import *
@@ -40,12 +41,14 @@ def legal_final(v):
 
     data=sorted(data, key=lambda x: x[0])
 
+    files={secure_filename(files[x].filename): files[x] for x in request.files}
+
     try:
         send_mail(environ.get("admin_email"),
               "Legal request submission",
               render_template("email/legal.html",
                                      data=data),
-              files=request.files
+              files=files
               )
     except:
             return render_template("legal/legal_done.html",
