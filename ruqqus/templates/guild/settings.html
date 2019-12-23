@@ -94,6 +94,27 @@ function mod_post(url, type, id) {
       }
       xhr.send(form);
 }
+
+document.getElementById("guild_name").addEventListener("change", guild_name);
+document.getElementById("guild_icon").addEventListener("change", guild_icon);
+document.getElementById("guild_description").addEventListener("change", guild_description);
+
+function guild_name() {
+
+var guild_name = document.getElementById("guild_name").value;
+
+var original_name = document.getElementById("guild_name").defaultValue;
+
+var button = document.getElementById("save-guild-name");
+
+  if (original_name !== guild_name) {
+    button.disabled = false;
+  }
+  else {
+    button.disabled = true;
+  }
+
+}
 </script>
 
 <div class="row">
