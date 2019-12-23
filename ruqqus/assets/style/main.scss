@@ -1326,7 +1326,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .profile-pic-75 .letter {
-    line-height: 5.5;
+    line-height: 2.75;
     font-size: 2rem;
 }
 
@@ -1706,6 +1706,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     object-fit: cover;
     border-radius: $border-radius;
     border: 5px solid $white;
+}
+
+.guild-description p {
+    margin-bottom: 0.5rem;
 }
 
 // Pagination
@@ -2850,7 +2854,7 @@ body, #settings, #notifications, #submit {
 
 .voting {
     font-weight: $font-weight-normal;
-    min-width: length;
+    font-size: $font-size-base;
 }
 
 .post-title {
@@ -2866,6 +2870,7 @@ body, #settings, #notifications, #submit {
 
 .post-actions a {
     color: $gray-600;
+    font-size: $font-size-base;
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {

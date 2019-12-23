@@ -152,7 +152,7 @@ var save_button = document.getElementById(button);
                                 <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
                             </p>
                             {% endif %}
-                            <button class="btn btn-primary ml-auto" disabled id="save-guild-name" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name', 'save-guild-name');">Save</button>
+                            <button class="btn btn-primary ml-auto" id="save-guild-name" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name', 'save-guild-name');">Save</button>
 
                         </div>
 

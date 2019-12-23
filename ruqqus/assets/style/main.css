@@ -13483,7 +13483,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .profile-pic-75 .letter {
-  line-height: 5.5;
+  line-height: 2.75;
   font-size: 2rem;
 }
 
@@ -13854,6 +13854,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   object-fit: cover;
   border-radius: 0.35rem;
   border: 5px solid #ffffff;
+}
+
+.guild-description p {
+  margin-bottom: 0.5rem;
 }
 
 .page-link {
@@ -15392,7 +15396,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .voting {
     font-weight: 400;
-    min-width: length;
+    font-size: 1rem;
   }
 
   .post-title {
@@ -15408,6 +15412,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .post-actions a {
     color: #ACACAC;
+    font-size: 1rem;
   }
 
   .post-actions .fa, .post-actions .fas, .post-actions .far {
