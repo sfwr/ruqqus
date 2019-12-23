@@ -140,9 +140,14 @@
                 </a>
               </li>
             {% endfor %}
-		</ul>
+	   </ul>
+	</div>
+	</div>
           {% elif v %}
-		<ul>
+        <div class="sidebar-section sidebar-guild-recommendations sticky-63">
+          <div class="title">Rising Guilds</div>
+          <div class="body">
+		<ul class="no-bullets guild-recommendations-list pl-0">
             {% for board in v.boards_subscribed[0:8] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">
@@ -234,64 +239,14 @@
            <div class="title">Admin Panel</div>
            <div class="body">
              {% block adminpanel %}
-             <p class="text-center text-small text-muted mb-0">No admin actions available</p>
+             <div class="text-center text-small text-muted mb-0">No admin actions available</div>
              {% endblock %}
            </div>
          </div>
          {% endif %}
          {% endif %}
-
-         <div class="sidebar-section sidebar-trending d-none">
-          <div class="title">What's Hot</div>
-          <div class="body">
-            <p>Here are the most popular tags from the last 24 hours.</p>
-            <div class="hashtag">
-              <a href="#">#Mueller</a>
-              <div class="text-muted text-small font-weight-normal">2.3K posting about this</div>
-            </div>
-            <div class="hashtag">
-              <a href="#">#MemeWar2</a>
-              <div class="text-muted text-small font-weight-normal">1.2K posting about this</div>
-            </div>
-            <div class="hashtag">
-              <a href="#">#AskTrumpSupporters</a>
-              <div class="text-muted text-small font-weight-normal">900 posting about this</div>
-            </div>
-            <div class="hashtag">
-              <a href="#">#DNCDebates</a>
-              <div class="text-muted text-small font-weight-normal">600 posting about this</div>
-            </div>
-            <div class="hashtag">
-              <a href="#">#DNCDebates</a>
-              <div class="text-muted text-small font-weight-normal">600 posting about this</div>
-            </div>
           </div>
         </div>
-      <!--
-      <div class="sidebar-section sidebar-rules">
-        <div class="title">Ruqqus Rules</div>
-        <div class="body">
-          <ol class="pl-0">
-            <li>No racism</li>
-            <li>No doxxing, threats, or calls to violence</li>
-            <li>No trolling</li>
-            <li>No solicitation</li>
-          </ol>
-        </div>
-      </div>
-      <!--
-      <div class="sidebar-section sidebar-rules">
-        <div class="title">Ruqqus Rules</div>
-        <div class="body">
-          <ol class="pl-0">
-            <li>No racism</li>
-            <li>No doxxing, threats, or calls to violence</li>
-            <li>No trolling</li>
-            <li>No solicitation</li>
-          </ol>
-        </div>
-      </div>
-    -->
   </div>
 
 </div>
