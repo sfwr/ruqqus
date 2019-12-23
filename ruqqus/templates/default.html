@@ -121,7 +121,7 @@
 
         {% endif %}
 
-        {% if v and trending_boards %}
+        {% if trending_boards %}
         <div class="sidebar-section sidebar-guild-recommendations sticky-63">
           <div class="title">Rising Guilds</div>
           <div class="body">
@@ -140,7 +140,7 @@
                 </a>
               </li>
               {% endfor %}
-              {% else %}
+              {% elif v %}
               {% for board in v.boards_subscribed[0:8] %}
               <li class="guild-recommendations-item">
                 <a href="{{ entry[0].permalink }}">
