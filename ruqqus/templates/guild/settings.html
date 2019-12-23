@@ -62,7 +62,7 @@ function mod_post(url, type) {
       xhr.open("POST", url, true);
       var form = new FormData()
       form.append("formkey", "{{ v.formkey }}");
-      form.append(type, (document.getElementById(type).value));
+      form.append(type, document.getElementById(type).value);
       xhr.withCredentials=true;
       xhr.onload=function(){alert("success")}
       xhr.onerror=function(){alert(errortext)}
@@ -76,7 +76,7 @@ function mod_post(url, type) {
 
         <div class="settings">
 
-            <form id="name">
+            <div id="name">
             <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
                 <h2 class="h5" name="guild_name">Guild Name</h2>
@@ -110,19 +110,16 @@ function mod_post(url, type) {
                                 <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
                             </p>
                             {% endif %}
-                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name');">
-                            <button class="btn btn-primary ml-auto" type="submit">Save
-                            </button>
-                            </a>
+                            <a class="btn btn-primary ml-auto" href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name');">Save</a>
 
                         </div>
 
                     </div>
 
                 </div>
-            </form>
+            </div>
 
-            <form id="fa_icon">
+            <div id="fa_icon">
             <input type="hidden" name="formkey" value="{{ v.formkey }}">
                 <h2 class="h5" name="guild_icon">Guild Icon</h2>
 
@@ -156,18 +153,15 @@ function mod_post(url, type) {
                             </p>
                             {% endif %}
 
-                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon');">
-                            <button class="btn btn-primary ml-auto" type="submit">Save
-                            </button>
-                            </a>
+                            <a href="javascript:void(0)" class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon');">Save</a>
 
                         </div>
 
                     </div>
 
                 </div>
-            </form>
-        <form id="description">
+            </div>
+        <div id="description">
         <input type="hidden" name="formkey" value="{{ v.formkey }}">
                 <h2 class="h5" id="guild_description" name="guild_description">Guild Description</h2>
 
@@ -204,27 +198,21 @@ function mod_post(url, type) {
                             </p>
                             {% endif %}
 
-                            <a href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio');">
-                            <button class="btn btn-primary ml-auto" type="submit">Save
-                            </button>
-                            </a>
+                            <a class="btn btn-primary ml-auto" href="javascript:void(0)" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio');">Save</a>
 
                         </div>
 
                     </div>
 
                 </div>
-        </form>
-        <form id="nsfw">
-        <input type="hidden" name="formkey" value="{{ v.formkey }}">
+        </div>
+        <div id="nsfw">
 
                 <h2 class="h5">Age-Restricted Content</h2>
 
                 <p class="text-small text-muted">Designate whether your guild contains mature content.</p>
 
                 <div class="settings-section rounded">
-
-                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
                     <div class="d-lg-flex">
 
@@ -235,7 +223,7 @@ function mod_post(url, type) {
                         <div class="body w-lg-100">
 
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if b.over_18 %} checked{% endif %} onchange="document.getElementById('guild-settings').submit()">
+                                <input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if b.over_18 %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/over_18','over18')">
                                 <label class="custom-control-label" for="over18"></label>
                             </div>
 
@@ -247,7 +235,7 @@ function mod_post(url, type) {
 
                 </div>
 
-            </form>
+            </div>
 
         </div>
 
