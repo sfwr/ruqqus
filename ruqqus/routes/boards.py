@@ -366,7 +366,7 @@ def mod_bid_settings_nsfw(bid,  board, v):
     print(request.form)
 
     # nsfw
-    board.over_18 = request.form.get("over_18", False)
+    board.over_18 = bool(request.form.get("over_18", False))
 
     db.add(board)
     db.commit()
