@@ -14,7 +14,7 @@
             <div class="ml-3 w-100">
               <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
                {% if b.over_18 %}
-               <span class="badge badge-danger">NSFW</span>
+               <span class="badge badge-danger text-small align-middle">NSFW</span>
                {% endif %}
              </h1>
              <div><span class="text-small"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
@@ -58,7 +58,7 @@
  </div>
  {% if b.over_18 %}
  <div class="body">
-  <span class="badge badge-danger">NSFW</span>
+  <span class="badge badge-danger text-small align-middle">NSFW</span>
 </div>
 {% endif %}
 <div class="body pt-0">
