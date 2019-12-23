@@ -24,7 +24,7 @@ def legal_2(v):
 
 
     if request.form.get("request_type","")=="user_info_legal":
-        return render_tempalte("legal/legal_user.html", v=v)
+        return render_template("legal/legal_user.html", v=v)
 
 
     
