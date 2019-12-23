@@ -89,7 +89,7 @@ function mod_post(url, type, id) {
       xhr.onerror=function(){
         button.disabled = false;
         button.classList.add("btn-danger");
-        button.innerHTML = `<i class="fas fa-times mr-2"></i>Settings not saved. Try again.`;
+        button.innerHTML = `<i class="fas fa-times mr-2"></i>Setting not saved. Try again.`;
       }
       xhr.send(form);
 }
