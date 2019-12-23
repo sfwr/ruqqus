@@ -63,7 +63,12 @@ function mod_post(url, type) {
       var form = new FormData()
       form.append("formkey", "{{ v.formkey }}");
       item=document.getElementById(type);
-      form.append(item.name, item.value);
+      if (item.type=="checkbox") {
+        form.append(item.name, item.checked)
+      }
+      else {
+        form.append(item.name, item.value);
+      }
       xhr.withCredentials=true;
       xhr.onload=function(){alert("success")}
       xhr.onerror=function(){alert(errortext)}
