@@ -80,7 +80,7 @@ function mod_post(url, type) {
         this.classList.toggle("btn-success");
         this.prop("disabled", true);
         this.html(
-        `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving`;
+        `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving`);
       }
       xhr.onload=function(){
         this.classList.add("btn-success");
@@ -90,7 +90,7 @@ function mod_post(url, type) {
       xhr.onerror=function(){
         this.classList.add("btn-danger");
         this.html(
-        `<i class="fas fa-times mr-2"></i>Settings not saved. Try again.`;
+        `<i class="fas fa-times mr-2"></i>Settings not saved. Try again.`);
       }
       xhr.send(form);
 }
