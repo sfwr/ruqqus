@@ -1721,6 +1721,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border: 5px solid $white;
 }
 
+.guild-description p {
+    margin-bottom: 0.5rem;
+}
+
 // Pagination
 
 .page-link {

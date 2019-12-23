@@ -13860,6 +13860,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   border: 5px solid #FFFFFF;
 }
 
+.guild-description p {
+  margin-bottom: 0.5rem;
+}
+
 .page-link {
   font-weight: 600;
   background-color: #232327;
