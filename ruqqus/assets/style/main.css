@@ -15397,7 +15397,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   .voting {
     font-weight: 400;
     font-size: 1rem;
-    min-width: length;
   }
 
   .post-title {
