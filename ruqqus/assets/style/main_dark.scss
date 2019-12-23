@@ -959,23 +959,27 @@ color: $dark;
 
 // Main Content
 
-#frontpage .pseudo-submit-form.card, #search .search-results.card {
+#frontpage .pseudo-submit-form.card, #search .search-results.card, #guild .pseudo-submit-form.card {
     background-color: $light;
     border-radius: $border-radius;
     border: none;
     //box-shadow: $box-shadow-sm;
 }
 
-#frontpage .pseudo-submit-form.card .card-body, #search .search-results.card .card-body {
+#frontpage .pseudo-submit-form.card .card-body, #search .search-results.card .card-body, #guild .pseudo-submit-form.card .card-body {
     padding-left: 15px;
     padding-right: 15px;
 }
 
-#frontpage .pseudo-submit-form.card .card-body .form-control {
+#frontpage .pseudo-submit-form.card .card-body .form-control, #guild .pseudo-submit-form.card .card-body .form-control {
     background-color: $gray-100;
 }
 
 #frontpage .pseudo-submit-form.card .card-body .form-control:hover, #frontpage .pseudo-submit-form.card .card-body .form-control:active, #frontpage .pseudo-submit-form.card .card-body .form-control:focus {
+    background-color: $light;
+}
+
+#guild .pseudo-submit-form.card .card-body .form-control:hover, #guild .pseudo-submit-form.card .card-body .form-control:active, #guild .pseudo-submit-form.card .card-body .form-control:focus {
     background-color: $light;
 }
 
@@ -1395,11 +1399,11 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 // Thread Card View
 
-#frontpage.toggle-card-view .tab-bar, #userpage.toggle-card-view .tab-bar, #search.toggle-card-view .tab-bar {
+#frontpage.toggle-card-view .tab-bar, #userpage.toggle-card-view .tab-bar, #search.toggle-card-view .tab-bar, #guild.toggle-card-view .tab-bar {
     border-radius: 0;
 }
 
-#frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card {
+#frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card{
     border: 1px solid $border-color;
     border-radius: $border-radius;
     padding: 15px;
@@ -1414,34 +1418,34 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-radius: $border-radius;
 }
 
-#frontpage.toggle-card-view .posts .card:first-of-type, #userpage.toggle-card-view .posts .card:first-of-type, #search.toggle-card-view .posts .card:first-of-type {
+#frontpage.toggle-card-view .posts .card:first-of-type, #userpage.toggle-card-view .posts .card:first-of-type, #search.toggle-card-view .posts .card:first-of-type, #guild.toggle-card-view .posts .card:first-of-type {
     margin-top: 0;
 }
 
-#frontpage.toggle-card-view .posts .card .post-img, #userpage.toggle-card-view .posts .card .post-img, #search.toggle-card-view .posts .card .post-img { 
+#frontpage.toggle-card-view .posts .card .post-img, #userpage.toggle-card-view .posts .card .post-img, #search.toggle-card-view .posts .card .post-img, #guild.toggle-card-view .posts .card .post-img { 
     display: none;
 }
 
-#frontpage.toggle-card-view .posts .card .post-img-lg, #userpage.toggle-card-view .posts .card .post-img-lg, #search.toggle-card-view .posts .card .post-img-lg { 
+#frontpage.toggle-card-view .posts .card .post-img-lg, #userpage.toggle-card-view .posts .card .post-img-lg, #search.toggle-card-view .posts .card .post-img-lg, #guild.toggle-card-view .posts .card .post-img-lg { 
     display: block;
     text-align: center;
 }
 
-#frontpage.toggle-card-view .posts .card .post-img-lg img, #userpage.toggle-card-view .posts .card .post-img-lg img, #search.toggle-card-view .posts .card .post-img-lg img { 
+#frontpage.toggle-card-view .posts .card .post-img-lg img, #userpage.toggle-card-view .posts .card .post-img-lg img, #search.toggle-card-view .posts .card .post-img-lg img, #guild.toggle-card-view .posts .card .post-img-lg img { 
     max-width: 55%;
     height: auto;
 }
 
-#frontpage.toggle-card-view .posts .card .embed-lg, #userpage.toggle-card-view .posts .card .embed-lg, #search.toggle-card-view .posts .card .embed-lg { 
+#frontpage.toggle-card-view .posts .card .embed-lg, #userpage.toggle-card-view .posts .card .embed-lg, #search.toggle-card-view .posts .card .embed-lg, #guild.toggle-card-view .posts .card .embed-lg { 
     display: flex;
     z-index: 2;
 }
 
-#frontpage.toggle-card-view .posts .card .post-preview-lg, #userpage.toggle-card-view .posts .card .post-preview-lg, #search.toggle-card-view .posts .card .post-preview-lg { 
+#frontpage.toggle-card-view .posts .card .post-preview-lg, #userpage.toggle-card-view .posts .card .post-preview-lg, #search.toggle-card-view .posts .card .post-preview-lg, #guild.toggle-card-view .posts .card .post-preview-lg { 
     display: block;
 }
 
-#frontpage.toggle-card-view .posts .card .post-preview-lg .post-body, #userpage.toggle-card-view .posts .card .post-preview-lg .post-body, #search.toggle-card-view .posts .card .post-preview-lg .post-body { 
+#frontpage.toggle-card-view .posts .card .post-preview-lg .post-body, #userpage.toggle-card-view .posts .card .post-preview-lg .post-body, #search.toggle-card-view .posts .card .post-preview-lg .post-body, #guild.toggle-card-view .posts .card .post-preview-lg .post-body { 
     -webkit-mask-image: linear-gradient(180deg,#000 40%,transparent);
     mask-image: linear-gradient(180deg,#000 40%,transparent);
     overflow: hidden;
@@ -1500,18 +1504,18 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     background-color: $light;
 }
 
-#frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type {
+#frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
 }
 
-#frontpage .posts .card:last-of-type, #userpage .posts .card:last-of-type, #search .posts .card:last-of-type {
+#frontpage .posts .card:last-of-type, #userpage .posts .card:last-of-type, #search .posts .card:last-of-type, #guild .posts .card:last-of-type {
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
     border-bottom: 0;
 }
 
-#frontpage .posts .card, #userpage .posts .card, #search .posts .card {
+#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
     border-width: 0 0 1px 0;
     border-color: $border-color;
     border-style: solid;
@@ -1519,7 +1523,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     padding: 15px;
 }
 
-#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover {
+#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover, #guild .posts .card:hover {
     background-color: $gray-100;
 }
 
