@@ -25,6 +25,8 @@ def legal_2(v):
 
     if req_type=="user_info_baseless":
         return render_template("legal/legal_reject2.html", v=v)
+    elif req_type=="user_info_emergency":
+        return render_template("legal/legal_emergency.html", v=v)
     elif req_type=="post_takedown":
         return render_template("legal/legal_takedown.html", v=v)
     elif req_type=="user_info_legal":
