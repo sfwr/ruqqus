@@ -3,6 +3,7 @@ from os import environ
 import requests
 
 from ruqqus.helpers.get import *
+from ruqqus.helpers.wrappers import *
 from ruqqus.__main__ import app, limiter
 
 @app.route("/legal", methods=["GET"])
