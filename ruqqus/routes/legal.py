@@ -41,7 +41,7 @@ def legal_final(v):
 
     data=sorted(data, key=lambda x: x[0])
 
-    files={secure_filename(files[x].filename): files[x] for x in request.files}
+    files={secure_filename(request.files[x].filename): request.files[x] for x in request.files}
 
     try:
         send_mail(environ.get("admin_email"),
