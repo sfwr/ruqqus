@@ -92,7 +92,7 @@
      </div>
      <div class="mt-1">
       {% if u.bio_html %}
-      {{ u.bio_html | safe }}
+      <p>{{ u.bio_html | safe }}</p>
       {% endif %}
       {% if v %}
       {% if v.id == u.id %}
