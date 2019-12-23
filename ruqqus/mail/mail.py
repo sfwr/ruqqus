@@ -23,7 +23,7 @@ def send_mail(to_address, subject, html, plaintext=None, files={}, from_address=
     return requests.post(url,
                          auth=("api",environ.get("MAILGUN_KEY")),
                          data=data,
-                         files=[("attachment", files[k]) for k in files]
+                         files=[("attachment", (k, files[k])) for k in files]
                          )
 
 
