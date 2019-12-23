@@ -140,7 +140,9 @@
                 </a>
               </li>
             {% endfor %}
+		</ul>
           {% elif v %}
+		<ul>
             {% for board in v.boards_subscribed[0:8] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">
@@ -160,9 +162,9 @@
           </div>
           {% endif %}
 
-          {% endblock %}
 
         </div>
+        {% endblock %}
 
         <div class="col h-100 custom-gutters" id="main-content-col">
 
