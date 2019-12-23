@@ -15451,6 +15451,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .voting {
     font-weight: 400;
+    font-size: 1rem;
     min-width: length;
   }
 
@@ -15461,6 +15462,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .post-meta {
+    font-size: 1rem;
+  }
+
+  .post-actions a {
     font-size: 1rem;
   }
 

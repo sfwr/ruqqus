@@ -2916,6 +2916,7 @@ body {
 
 .voting {
     font-weight: $font-weight-normal;
+    font-size: $font-size-base;
     min-width: length;
 }
 
@@ -2927,6 +2928,10 @@ body {
 
 .post-meta {
     font-size: 1rem;
+}
+
+.post-actions a {
+    font-size: $font-size-base;
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {

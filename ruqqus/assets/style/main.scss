@@ -2854,6 +2854,7 @@ body, #settings, #notifications, #submit {
 
 .voting {
     font-weight: $font-weight-normal;
+    font-size: $font-size-base;
     min-width: length;
 }
 
@@ -2870,6 +2871,7 @@ body, #settings, #notifications, #submit {
 
 .post-actions a {
     color: $gray-600;
+    font-size: $font-size-base;
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
