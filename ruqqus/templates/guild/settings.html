@@ -95,23 +95,19 @@ function mod_post(url, type, id) {
       xhr.send(form);
 }
 
-document.getElementById("guild_name").addEventListener("change", guild_name);
-document.getElementById("guild_icon").addEventListener("change", guild_icon);
-document.getElementById("guild_description").addEventListener("change", guild_description);
+function detect_change(id, button) {
 
-function guild_name() {
+var new_val = id.value;
 
-var guild_name = document.getElementById("guild_name").value;
+var original_val = id.defaultValue;
 
-var original_name = document.getElementById("guild_name").defaultValue;
+var save_button = document.getElementById(button);
 
-var button = document.getElementById("save-guild-name");
-
-  if (original_name !== guild_name) {
-    button.disabled = false;
+  if (original_val !== new_val) {
+    save_button.disabled = false;
   }
   else {
-    button.disabled = true;
+    save_button.disabled = true;
   }
 
 }
@@ -139,7 +135,7 @@ var button = document.getElementById("save-guild-name");
 
                         <div class="body w-lg-100">
 
-                            <input type="text" class="form-control copy-link" id="guild_name" value="{{ b.name }}">
+                            <input type="text" class="form-control copy-link" id="guild_name" onchange="detect_change('guild_name','save-guild-name')" value="{{ b.name }}">
 
                             <div class="text-small-extra text-muted mt-3">Only the guild name capitalization can be changed.</div>
 
