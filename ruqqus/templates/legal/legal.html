@@ -12,8 +12,14 @@
 Use this page to submit a legal request to Ruqqus. You must provide an official email address, such as a .gov address. Requests with non-official email addresses will not be processed.
 {% endfilter %}
 
-{% if v and v.is_activated %}
-<form id="legal-form" action="https://usebasin.com/f/3d1216ed6d31" method="post">
+{% if v and v.is_banned %}
+
+<div>Your Ruqqus account has been suspended. You are not permitted to submit legal requests at this time.</div>
+
+{% elif v and v.is_activated %}
+<form id="legal-form" action="/legal/2" method="post">
+	
+	<input type="hidden" name="formkey" value="{{ v.formkey }}">
 
 	<div class="h6 mt-5">Email</div>
 	<input type="text" name="email" class="form-control" value="{{ v.email }}" readonly="readonly">
@@ -21,7 +27,7 @@ Use this page to submit a legal request to Ruqqus. You must provide an official 
 	<div class="h6 mt-5">Tell us about yourself.</div>
 	<input type="radio" name="about_yourself" value="law_enforcement"> I am an authorized United States federal or state law enforcement representative.<br>
 	<input type="radio" name="about_yourself" value="gov_official"> I am an authorized United States federal or state government representative (ex. district attorney)<br>
-	<input type="radio" name="about_yourself" value="not_authorized"> None of the above<br>
+	<input type="radio" name="about_yourself" value="not_authorized" checked required> None of the above<br>
 
 	<div class="h6 mt-5">Your name</div>
 	<div class="body">Your full, legal name. Stage names, pen names, nicknames, pseudonyms, etc. are not accepted and will result in the denial of your request.</div>
@@ -42,11 +48,13 @@ Use this page to submit a legal request to Ruqqus. You must provide an official 
 	<input type="text" name="your_reference" class="form-control" required>
 
 	<div class="h6 mt-5">What kind of request is this?</div>
-	<input type="radio" name="request_type" value="law_enforcement"> Request for user account information<br>
-	<input type="radio" name="request_type" value="gov_official"> Request to take down illegal content<br>
-	<input type="radio" name="request_type" value="not_authorized"> Request to preserve data for a future information request<br>
+	<input type="radio" name="request_type" value="user_info_emergency" checked required> Emergency request for user account information<br>
+	<input type="radio" name="request_type" value="user_info_legal" checked required> Subpoena, search warrant, or similar legal request for user account information<br>
+	<input type="radio" name="request_type" value="user_info_baseless" checked required> Other request for user account information<br>
+	<input type="radio" name="request_type" value="post_takedown"> Request to take down illegal content<br>
+	<input type="radio" name="request_type" value="data_save"> Request to preserve data for a future information request<br>
 
-	<input type="submit" value="Submit legal request">
+	<input type="submit" value="Next">
 </form>
 
 {% elif v %}
