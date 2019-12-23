@@ -43,5 +43,7 @@ def legal_final(v):
                     data=data,
                     files=request.files)
 
-    return render_template("legal/legal_done.html", v=v)
+    return render_template("legal/legal_done.html",
+                           success=(basin.status_code==200),
+                           v=v)
     
