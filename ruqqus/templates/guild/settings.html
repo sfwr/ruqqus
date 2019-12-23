@@ -224,7 +224,7 @@ function mod_post(url, type) {
                         <div class="body w-lg-100">
 
                             <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="over18" name="over18"{% if b.over_18 %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/over_18','over18')">
+                                <input type="checkbox" class="custom-control-input" id="over18" name="over_18"{% if b.over_18 %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/over_18','over18')">
                                 <label class="custom-control-label" for="over18"></label>
                             </div>
 
