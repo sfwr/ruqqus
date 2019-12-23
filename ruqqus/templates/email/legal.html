@@ -1,0 +1,19 @@
+{% extends "email/default.html" %}
+
+{% block title %}Legal Request Submission{% endblock %}
+
+{% block content %}
+
+<table>
+	<th>
+		<td>Key</td>
+		<td>Value</td>
+	</th>
+	{% for entry in data %}
+	<tr>
+		<td>{{ entry[0] }}</td>
+		<td>{{ entry[1] }}
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

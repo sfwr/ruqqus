@@ -36,12 +36,14 @@ def legal_2(v):
 @validate_formkey
 def legal_final(v):
 
-    data={x: request.form[x] for x in request.form if x !="formkey"}
+    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
+
+    data=sorted(data, key=lambda x: x[0])
 
     try:
         send_mail(environ.get("admin_email"),
               "Legal request submission",
-              render_template_string("<div>{% for k in data %}<h1>{{ k }}<h1><p>{{ data[k] }}</p>{% endfor %}</div>",
+              render_template("email/legal.html",
                                      data=data),
               files=request.files
               )
