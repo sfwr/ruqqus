@@ -9,7 +9,7 @@ from ruqqus.__main__ import app, limiter
 @app.route("/legal", methods=["GET"])
 @auth_desired
 def legal_1(v):
-    return render_template("legal/legal.html")
+    return render_template("legal/legal.html", v=v)
 
 @app.route("/legal/2", methods=["POST"])
 @is_not_banned
@@ -17,10 +17,10 @@ def legal_1(v):
 def legal_2(v):
 
     if request.form.get("about_yourself","") not in ["law_enforcement","gov_official"]:
-        return render_template("legal/legal_reject.html")
+        return render_template("legal/legal_reject.html", v=v)
 
     elif request.form.get("request_type","")=="user_info_baseless":
-        return render_template("legal/legal_reject2.html")
+        return render_template("legal/legal_reject2.html", v=v)
 
 
     if request.form.get("request_type","")=="user_info":
