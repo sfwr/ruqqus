@@ -29,6 +29,8 @@ def legal_2(v):
         return render_template("legal/legal_takedown.html", v=v)
     elif req_type=="user_info_legal":
         return render_template("legal/legal_user.html", v=v)
+    elif req_type=="data_save":
+        return render_template("legal/legal_infosave.html", v=v)
     else:
         abort(400)
 
