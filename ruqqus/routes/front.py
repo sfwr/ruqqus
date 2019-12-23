@@ -104,8 +104,7 @@ def home(v):
         if sticky:
             posts=[sticky]+posts
 
-    boards_list=trending_boards(n=7)
-    print(boards_list)
+    boards_list=trending_boards(n=5)
     
     return render_template("home.html",
                            v=v,

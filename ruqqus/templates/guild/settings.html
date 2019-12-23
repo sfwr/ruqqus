@@ -64,11 +64,7 @@ function mod_post(url, type) {
       form.append("formkey", "{{ v.formkey }}");
       item=document.getElementById(type);
       if (item.type=="checkbox") {
-	if (item.checked) {
-          form.append(item.name, 1)
-        }else{
-	  form.append(item.name, 0)
-	}
+	form.append(item.name, item.checked);
       }
       else {
         form.append(item.name, item.value);
