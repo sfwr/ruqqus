@@ -57,14 +57,14 @@
 
 </div>
 <script>
-function mod_post(url, type, callback, errortext) {
+function mod_post(url, type) {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", url, true);
       var form = new FormData()
       form.append("formkey", "{{ v.formkey }}");
       form.append(type, (document.getElementById(type).value));
       xhr.withCredentials=true;
-      xhr.onload=callback
+      xhr.onload=function(){alert("success")}
       xhr.onerror=function(){alert(errortext)}
       xhr.send(form);
 }
