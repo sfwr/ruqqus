@@ -78,7 +78,7 @@ function mod_post(url, type, id) {
       }
       xhr.withCredentials=true;
       xhr.onprogress=function(){
-        button.classList.toggle("btn-success");
+        button.classList.add("btn-primary");
         button.disabled = true;
         button.innerHTML = `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving`;
       }
