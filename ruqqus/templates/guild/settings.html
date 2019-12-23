@@ -66,6 +66,11 @@ function mod_post(url, type) {
       item=document.getElementById(type);
       if (item.type=="checkbox") {
         form.append(item.name, item.checked)
+        if (item.checked) {
+	  form.append(item.name, true);
+	} else {
+	  form.append(item.name, false);
+	}
       }
       else {
         form.append(item.name, item.value);
