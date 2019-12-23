@@ -1,0 +1,15 @@
+{% extends "default.html" %}
+
+{% block title %}
+<title>Ruqqus Legal Request</title>
+<meta name="description" content="Ruqqus legal request">
+{% endblock %}
+
+{% block content%}
+{% filter markdown %}
+# Completed
+
+Your legal request has been successfully submitted. We will send a response to your email address {{ request.form.get("email","") }}
+
+{% endfilter %}
+{% endblock %}

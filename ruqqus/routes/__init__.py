@@ -5,6 +5,7 @@ from .comments import *
 from .errors import *
 from .flagging import *
 from .front import *
+from .legal import *
 from .login import *
 from .posts import *
 from .search import *
