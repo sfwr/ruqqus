@@ -143,13 +143,13 @@
               {% elif v %}
               {% for board in v.boards_subscribed[0:8] %}
               <li class="guild-recommendations-item">
-                <a href="{{ entry[0].permalink }}">
+                <a href="{{ board.permalink }}">
                   <div class="d-flex">
                     <div class="mr-2">
                       <img src="" class="guild-icon-square-35"></div>
                       <div>
-                        <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
-                        <div class="text-muted text-small font-weight-normal d-none">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+                        <div class="text-black font-weight-normal">+{{ board.name }}</div>
+                        <div class="text-muted text-small font-weight-normal d-none">{{ board.subscriber_count }} Member{{ '' if board.subscriber_count==1 else 's' }}</div>
                       </div>
                     </div>
                   </a>
