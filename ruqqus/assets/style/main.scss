@@ -517,10 +517,10 @@ ol > li::before {
 
 .post-nav .nav-link {
     color: $gray;
-    font-size: $small-font-size;
+    font-size: $font-size-base;
     font-weight: $font-weight-bold;
     padding-top: 0;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.75rem;
 }
 
 .settings-nav .nav-link {
@@ -528,6 +528,7 @@ ol > li::before {
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
     padding-top: 0;
+    padding-bottom: 0.75rem;
 }
 
 .post-nav > .nav-item > .nav-link.active {
