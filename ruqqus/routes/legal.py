@@ -29,9 +29,6 @@ def legal_2(v):
         return render_template("legal/legal_user.html", v=v)
 
 
-    
-    
-
 @app.route("/legal/final", methods=["POST"])
 @is_not_banned
 @validate_formkey
