@@ -40,7 +40,7 @@ def legal_final(v):
 
     send_mail(environ.get("admin_email"),
               "Legal request submission",
-              render_template_string("<div>{% for k in data %}<h1>{{ k }}<h1><p>{{ data[k] }}</p></div>",
+              render_template_string("<div>{% for k in data %}<h1>{{ k }}<h1><p>{{ data[k] }}</p>{% endfor %}</div>",
                                      data=data),
               files=request.files
               )
