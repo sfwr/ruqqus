@@ -58,13 +58,13 @@
 </div>
 
 <script>
-function mod_post(url, type) {
+function mod_post(url, type, id) {
       var xhr = new XMLHttpRequest();
       xhr.open("POST", url, true);
       var form = new FormData()
       form.append("formkey", "{{ v.formkey }}");
       item=document.getElementById(type);
-      var button = this;
+      button=document.getElementById(id);
       if (item.type=="checkbox") {
         form.append(item.name, item.checked)
         if (item.checked) {
@@ -137,7 +137,7 @@ function mod_post(url, type) {
                                 <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
                             </p>
                             {% endif %}
-                            <button class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name');">Save</button>
+                            <button class="btn btn-primary ml-auto" id="save-guild-name" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name', 'save-guild-name');">Save</button>
 
                         </div>
 
@@ -179,7 +179,7 @@ function mod_post(url, type) {
                             </p>
                             {% endif %}
 
-                            <button class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon');">Save</button>
+                            <button class="btn btn-primary ml-auto" id="save-guild-icon" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon', 'save-guild-icon');">Save</button>
 
                         </div>
 
@@ -221,7 +221,7 @@ function mod_post(url, type) {
                             </p>
                             {% endif %}
 
-                            <button class="btn btn-primary ml-auto" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio');">Save</button>
+                            <button class="btn btn-primary ml-auto" id="save-bio" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio', 'save-bio');">Save</button>
 
                         </div>
 
