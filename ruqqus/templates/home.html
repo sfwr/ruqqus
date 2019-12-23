@@ -170,30 +170,44 @@
 
 {% endif %}
 
-{% if trending_boards %}
-<div class="sidebar-section sidebar-guild-recommendations sticky-63">
-  <div class="title">Rising Guilds</div>
-  <div class="body">
-    <ul class="no-bullets guild-recommendations-list pl-0">
-     {% for entry in trending_boards[0:5] %}
-     <li class="guild-recommendations-item">
-      <a href="{{ entry[0].permalink }}">
-      <div class="d-flex">
-      <div class="mr-2">
-          <i class="{{ entry[0].fa_icon if entry[0].fa_icon else 'fad fa-university' }} text-primary" style="font-size:2.5em"></i>
-	</div>
-          <div>
-            <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
-            <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+        {% if trending_boards %}
+        <div class="sidebar-section sidebar-guild-recommendations sticky-63">
+          <div class="title">Rising Guilds</div>
+          <div class="body">
+            <ul class="no-bullets guild-recommendations-list pl-0">
+             {% for entry in trending_boards[0:5] %}
+             <li class="guild-recommendations-item">
+              <a href="{{ entry[0].permalink }}">
+                <div class="d-flex">
+                  <div class="mr-2">
+                    <img src="" class="guild-icon-square-35"></div>
+                    <div>
+                      <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
+                      <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              {% endfor %}
+              {% elif v %}
+              {% for board in v.boards_subscribed[0:8] %}
+              <li class="guild-recommendations-item">
+                <a href="{{ entry[0].permalink }}">
+                  <div class="d-flex">
+                    <div class="mr-2">
+                      <img src="" class="guild-icon-square-35"></div>
+                      <div>
+                        <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
+                        <div class="text-muted text-small font-weight-normal d-none">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
           </div>
-      </div>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
-</div>
-{% endif %}
+          {% endif %}
 
 {% endblock %}
 
