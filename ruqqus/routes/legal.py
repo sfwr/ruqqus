@@ -1,9 +1,11 @@
 from flask import *
 from os import environ
 import requests
+from werkzeug.utils import secure_filename
 
 from ruqqus.helpers.get import *
 from ruqqus.helpers.wrappers import *
+from ruqqus.mail.mail import send_mail
 from ruqqus.__main__ import app, limiter
 
 @app.route("/legal", methods=["GET"])
@@ -27,23 +29,30 @@ def legal_2(v):
         return render_template("legal/legal_user.html", v=v)
 
 
-    
-    
-
 @app.route("/legal/final", methods=["POST"])
 @is_not_banned
 @validate_formkey
 def legal_final(v):
 
-    url=environ.get("BASIN_URL")
+    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
 
-    data={x: request.form[x] for x in request.form if x !="formkey"}
+    data=sorted(data, key=lambda x: x[0])
 
-    basin=requests.post(url,
-                    data=data,
-                    files=request.files)
+    files={secure_filename(request.files[x].filename): request.files[x] for x in request.files}
+
+    try:
+        send_mail(environ.get("admin_email"),
+              "Legal request submission",
+              render_template("email/legal.html",
+                                     data=data),
+              files=files
+              )
+    except:
+            return render_template("legal/legal_done.html",
+                           success=False,
+                           v=v)
 
     return render_template("legal/legal_done.html",
-                           success=(basin.status_code==200),
+                           success=True,
                            v=v)
     

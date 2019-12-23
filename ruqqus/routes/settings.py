@@ -7,7 +7,7 @@ from ruqqus.mail import *
 from ruqqus.__main__ import db, app
 
 @app.route("/settings/profile", methods=["POST"])
-@auth_required
+@is_not_banned
 @validate_formkey
 def settings_profile_post(v):
 
@@ -45,7 +45,7 @@ def settings_profile_post(v):
         return render_template("settings_profile.html", v=v, error="You didn't change anything.")
 
 @app.route("/settings/security", methods=["POST"])
-@auth_required
+@is_not_banned
 @validate_formkey
 def settings_security_post(v):
 
