@@ -80,19 +80,16 @@ function mod_post(url, type, id) {
       xhr.onprogress=function(){
         button.classList.toggle("btn-success");
         button.prop("disabled", true);
-        button.html(
-        `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving`);
+        button.innerHTML = `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving`;
       }
       xhr.onload=function(){
         button.classList.add("btn-success");
-        button.html(
-        `<i class="fas fa-check mr-2"></i>Saved`);
+        button.innerHTML = `<i class="fas fa-check mr-2"></i>Saved`;
       }
       xhr.onerror=function(){
         button.prop("disabled", false);
         button.classList.add("btn-danger");
-        button.html(
-        `<i class="fas fa-times mr-2"></i>Settings not saved. Try again.`);
+        button.innerHTML = `<i class="fas fa-times mr-2"></i>Settings not saved. Try again.`;
       }
       xhr.send(form);
 }
