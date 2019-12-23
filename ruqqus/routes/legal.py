@@ -21,12 +21,16 @@ def legal_2(v):
     if request.form.get("about_yourself","") not in ["law_enforcement","gov_official"]:
         return render_template("legal/legal_reject.html", v=v)
 
-    elif request.form.get("request_type","")=="user_info_baseless":
+    req_type=request.form.get("request_type","")
+
+    if req_type=="user_info_baseless":
         return render_template("legal/legal_reject2.html", v=v)
-
-
-    if request.form.get("request_type","")=="user_info_legal":
+    elif req_type=="post_takedown":
+        return render_template("legal/legal_takedown.html", v=v)
+    elif req_type=="user_info_legal":
         return render_template("legal/legal_user.html", v=v)
+    else:
+        abort(400)
 
 
 @app.route("/legal/final", methods=["POST"])

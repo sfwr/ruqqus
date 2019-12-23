@@ -1,7 +1,7 @@
 {% extends "legal_default.html" %}
 
 {% block content%}
-<h1>Content Takedown Request>
+<h1>Content Takedown Request</h1>
 <form id="takedownform" action="/legal/final" method="post" enctype="multipart/form-data">
 	{% for k in request.form %}
 		<input type="hidden" name="{{ k }}" value="{{ request.form[k] }}">
@@ -17,7 +17,7 @@
 	<input type="radio" name="nonprotected_type" value="fraud"> Fraudulent misrepresentation<br>
 	<input type="radio" name="nonprotected_type" value="defamation"> Defamation.<br>
 	<input type="radio" name="nonprotected_type" value="nondisclosure"> Violation of a non-disclosure order issued by a United States court<br>
-	<input type="radio" name="nonprotected_type" value="export"> Violation United States information export law<br>
+	<input type="radio" name="nonprotected_type" value="export"> Violation of United States information export law<br>
 	<input type="radio" name="nonprotected_type" value="other"> Other<br>
 
 	<div class="h6 mt-5">Cite the statute that this content violates</div>
@@ -28,8 +28,8 @@
 	<textarea class="form-control" form="takedownform" name="context" required></textarea>
 
 	<div class="h6 mt-5">Supporting documentation</div>
-	<div class="body">If the content violates a court order, upload a copy of it.</div>
-	<input type="file" name="file" required>	
+	<div class="body">If the content violates a court order, upload a copy of it. It must be in English or be accompanied by an official English translation.</div>
+	<input type="file" name="file" required>
 
 	<div class="h6 mt-5">Required Statement</div>
 	<input type="checkbox" name="swear_perjury" required> I swear, under penalty of perjury, that the information in this Request is accurate.</br>
