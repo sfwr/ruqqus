@@ -62,7 +62,8 @@ function mod_post(url, type) {
       xhr.open("POST", url, true);
       var form = new FormData()
       form.append("formkey", "{{ v.formkey }}");
-      form.append(type, document.getElementById(type).value);
+      item=document.getElementById(type);
+      form.append(item.name, item.value);
       xhr.withCredentials=true;
       xhr.onload=function(){alert("success")}
       xhr.onerror=function(){alert(errortext)}
