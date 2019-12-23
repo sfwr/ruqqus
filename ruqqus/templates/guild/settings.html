@@ -79,7 +79,7 @@ function mod_post(url, type, id) {
       xhr.withCredentials=true;
       xhr.onprogress=function(){
         button.classList.toggle("btn-success");
-        button.prop("disabled", true);
+        button.disabled = true;
         button.innerHTML = `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Saving`;
       }
       xhr.onload=function(){
@@ -87,7 +87,7 @@ function mod_post(url, type, id) {
         button.innerHTML = `<i class="fas fa-check mr-2"></i>Saved`;
       }
       xhr.onerror=function(){
-        button.prop("disabled", false);
+        button.disabled = false;
         button.classList.add("btn-danger");
         button.innerHTML = `<i class="fas fa-times mr-2"></i>Settings not saved. Try again.`;
       }
