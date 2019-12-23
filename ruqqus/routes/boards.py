@@ -442,63 +442,6 @@ def mod_bid_settings_description(bid, board, v):
 
     return "", 204
 
-
-@app.route("/mod/<bid>/settings", methods=["POST"])
-@auth_required
-@is_guildmaster
-@validate_formkey
-def mod_bid_settings(bid,  board, v):
-
-    #name capitalization
-    new_name=request.form.get("name","").lstrip("+")
-
-    if new_name.lower()==board.name.lower():
-        board.name=new_name
-
-    #board description
-    description = request.form.get("description")
-    with CustomRenderer() as renderer:
-        description_md=renderer.render(mistletoe.Document(description))
-    description_html=sanitize(description_md, linkgen=True)
-
-
-    board.description = description
-    board.description_html=description_html
-
-    #nsfw
-    board.over_18=bool(request.form.get("over_18",False))
-
-    #fontawesome
-    fa_raw=request.form.get("fa_icon","")
-    if not fa_raw:
-        board.fa_icon=""
-    else:
-        try:
-            if fa_raw.startswith("http"):
-                parsed_link=urlparse(fa_raw)
-                icon=parsed_link.path.split("/")[-1]
-                style=parsed_link.query.split("=")[-1]
-                styles={"duotone":"fad",
-                        "light":"fal",
-                        "regular":"far",
-                        "solid":"fas"}
-                style=styles[style]
-            else:
-
-                regex=re.search(fa_icon_regex, fa_raw)
-                style=regex.group(1)
-                icon=regex.group(2)
-                
-            board.fa_icon=f"{style} fa-{icon}"
-        except Exception as e:
-            pass
-        
-    
-    db.add(board)
-    db.commit()
-
-    return redirect(board.permalink)
-
 @app.route("/+<boardname>/mod/settings", methods=["GET"])
 @auth_required
 @is_guildmaster
