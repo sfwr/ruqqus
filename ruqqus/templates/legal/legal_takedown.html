@@ -1,7 +1,7 @@
 {% extends "legal_default.html" %}
 
 {% block content%}
-<h1>Content Takedown Request>
+<h1>Content Takedown Request</h1>
 <form id="takedownform" action="/legal/final" method="post" enctype="multipart/form-data">
 	{% for k in request.form %}
 		<input type="hidden" name="{{ k }}" value="{{ request.form[k] }}">
