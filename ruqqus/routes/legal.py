@@ -18,6 +18,9 @@ def legal_1(v):
 @validate_formkey
 def legal_2(v):
 
+    if request.form.get("username") != v.username:
+        abort(422)
+
     if request.form.get("about_yourself","") not in ["law_enforcement","gov_official"]:
         return render_template("legal/legal_reject.html", v=v)
 
@@ -41,6 +44,9 @@ def legal_2(v):
 @is_not_banned
 @validate_formkey
 def legal_final(v):
+
+    if request.form.get("username") != v.username:
+        abort(422)
 
     data=[(x, request.form[x]) for x in request.form if x !="formkey"]
 
