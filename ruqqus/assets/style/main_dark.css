@@ -12501,6 +12501,11 @@ body {
   background-color: #232327;
 }
 
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1190px;
+  }
+}
 p {
   font-size: 14px;
 }
