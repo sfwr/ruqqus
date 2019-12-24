@@ -1057,12 +1057,10 @@ color: $dark;
 }
 
 .sidebar .sidebar-section .title {
-    font-size: $extra-small-font-size;
+    font-size: $font-size-base;
     font-weight: $font-weight-bold;
-    text-transform: uppercase;
     color: $black;
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid $input-border-color;
+    padding: 1rem;
 }
 
 .sidebar .sidebar-section .body {
