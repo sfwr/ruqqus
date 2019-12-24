@@ -558,7 +558,7 @@ ol > li::before {
 .post-nav .fa, .post-nav .fas, .post-nav .far, .post-nav .fab, .post-nav .fal {
     font-size: $small-font-size;
     margin-right: .5rem;
-    color: $black;
+    color: $muted;
 }
 
 // Settings navigation
@@ -1051,8 +1051,8 @@ color: $dark;
 }
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
-    margin-bottom: .5rem;
-    padding-bottom: .5rem;
+    margin-bottom: .25rem;
+    padding-bottom: .25rem;
     color: $text-muted;
     font-weight: $font-weight-bold;
     border-bottom: 1px solid rgba(225, 225, 225, 0.25);
