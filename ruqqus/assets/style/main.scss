@@ -938,7 +938,7 @@ color: $dark;
 #frontpage .pseudo-submit-form.card, #search .search-results.card, #guild .pseudo-submit-form.card {
     background-color: $white;
     border-radius: $border-radius;
-    //border: 1px solid $border-color;
+    border: none;
     //box-shadow: $box-shadow-sm;
 }
 
@@ -1384,7 +1384,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
-    //border: 1px solid $border-color;
+    border: none;
     border-radius: $border-radius;
     padding: 15px;
     margin-top: 1rem;
