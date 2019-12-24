@@ -13469,10 +13469,6 @@ a:hover .link-arrow {
   border-radius: 0;
 }
 
-.sidebar-section.sidebar-guild-recommendations .body {
-  padding: 0;
-}
-
 .sidebar-guild-recommendations .guild-recommendations-list {
   list-style: none;
 }
@@ -13544,7 +13540,7 @@ a:hover .link-arrow {
   display: block;
   padding: 0.5rem 0;
   color: #7F7F8A;
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
   text-decoration: none;

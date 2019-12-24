@@ -1196,10 +1196,6 @@ color: $dark;
     border-radius: 0;
 }
 
-.sidebar-section.sidebar-guild-recommendations .body {
-    padding: 0;
-}
-
 .sidebar-guild-recommendations .guild-recommendations-list {
     list-style: none;
 }
@@ -1261,11 +1257,6 @@ color: $dark;
     border-radius: 0;
 }
 
-.sidebar-section.sidebar-dashboard .body {
-    padding: 0;
-}
-
-
 .dashboard-list .dashboard-item {
     color: $text-muted;
     text-decoration: none;
@@ -1275,7 +1266,7 @@ color: $dark;
     display: block;
     padding: 0.5rem 0;
     color: $text-muted;
-    font-size: $small-font-size;
+    font-size: $font-size-base;
     font-weight: $font-weight-bold;
     margin-bottom: 0.25rem;
     text-decoration: none;

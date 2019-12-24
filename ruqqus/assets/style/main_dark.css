@@ -13484,10 +13484,6 @@ a:hover .link-arrow {
   border-radius: 0;
 }
 
-.sidebar-section.sidebar-guild-recommendations .body {
-  padding: 0;
-}
-
 .sidebar-guild-recommendations .guild-recommendations-list {
   list-style: none;
 }
@@ -13547,10 +13543,6 @@ a:hover .link-arrow {
   border-radius: 0;
 }
 
-.sidebar-section.sidebar-dashboard .body {
-  padding: 0;
-}
-
 .dashboard-list .dashboard-item {
   color: #8c8d94;
   text-decoration: none;
@@ -13560,7 +13552,7 @@ a:hover .link-arrow {
   display: block;
   padding: 0.5rem 0;
   color: #8c8d94;
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 500;
   margin-bottom: 0.25rem;
   text-decoration: none;
