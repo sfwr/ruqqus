@@ -676,7 +676,7 @@ ol > li::before {
 }
 
 .input-group-append-focus {
-    margin-left: 1px;
+    margin-left: -1px;
 }
 
 .form-control:hover {
