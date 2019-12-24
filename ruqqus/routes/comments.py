@@ -60,7 +60,7 @@ def api_comment(v):
     parent_fullname=request.form.get("parent_fullname")
 
     #process and sanitize
-    body=request.form.get("body","")
+    body=request.form.get("body","")[0:2000]
     with CustomRenderer() as renderer:
         body_md=renderer.render(mistletoe.Document(body))
     body_html=sanitize(body_md, linkgen=True)
@@ -110,9 +110,6 @@ def api_comment(v):
               parent_submission=parent_submission,
               parent_fullname=parent_fullname,
               )
-
-
-        
 
     db.add(c)
     db.commit()

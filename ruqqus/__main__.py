@@ -38,7 +38,6 @@ app.config["CACHE_REDIS_URL"]=environ.get("REDIS_URL")
 app.config["CACHE_DEFAULT_TIMEOUT"]=60
 
 Markdown(app)
-
 cache=Cache(app)
 
 limit_url=environ.get("HEROKU_REDIS_PURPLE_URL", environ.get("HEROKU_REDIS_ORANGE_URL"))
@@ -67,12 +66,23 @@ import ruqqus.helpers.jinja2
 #enforce https
 @app.before_request
 def before_request():
+    
+    #check ip ban
+    if db.query(ruqqus.classes.IP).filter_by(addr=request.remote_addr).first():
+        abort(403)
+
+    #check useragent ban
+    if db.query(ruqqus.classes.Agent).filter(ruqqus.classes.Agent.kwd.in_(request.headers.get('User-Agent').split())).first():
+        abort(403)
+        
     if request.url.startswith('http://') and "localhost" not in app.config["SERVER_NAME"]:
         url = request.url.replace('http://', 'https://', 1)
         return redirect(url, code=301)
 
     if not session.get("session_id"):
         session["session_id"]=secrets.token_hex(16)
+
+
 
     db.rollback()
 
