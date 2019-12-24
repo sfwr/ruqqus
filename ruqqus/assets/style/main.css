@@ -12842,7 +12842,7 @@ ol > li::before {
 }
 
 .post-nav .nav-link {
-  color: #1F1F1F;
+  color: #7F7F8A;
   font-size: 1rem;
   font-weight: 600;
   padding-top: 0;
@@ -14004,7 +14004,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   }
 }
 .post-actions .list-inline .list-inline-item .dropdown-item {
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 .post-actions .list-inline .list-inline-item .dropdown-item:active {
@@ -14014,7 +14014,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions a {
   color: #5F5F5F;
   text-decoration: none;
-  font-size: 12px;
+  font-size: 1rem;
 }
 
 .post-actions a:hover {

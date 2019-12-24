@@ -518,7 +518,7 @@ ol > li::before {
 }
 
 .post-nav .nav-link {
-    color: $black;
+    color: $muted;
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
     padding-top: 0;
@@ -1730,7 +1730,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .post-actions .list-inline .list-inline-item .dropdown-item {
-    font-size: $small-font-size;
+    font-size: $font-size-base;
 }
 
 .post-actions .list-inline .list-inline-item .dropdown-item:active {
@@ -1740,7 +1740,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions a {
     color: $gray;
     text-decoration: none;
-    font-size: $small-font-size;
+    font-size: $font-size-base;
 }
 
 .post-actions a:hover {
