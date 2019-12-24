@@ -13202,7 +13202,7 @@ a:hover .link-arrow {
   font-size: 1rem;
   font-weight: 600;
   color: #1F1F1F;
-  padding: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .sidebar .sidebar-section .body {
