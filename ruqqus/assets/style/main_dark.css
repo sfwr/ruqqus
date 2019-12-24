@@ -13484,6 +13484,10 @@ a:hover .link-arrow {
   border-radius: 0;
 }
 
+.sidebar-section.sidebar-guild-recommendations .body {
+  padding: 0;
+}
+
 .sidebar-guild-recommendations .guild-recommendations-list {
   list-style: none;
 }
@@ -13541,6 +13545,10 @@ a:hover .link-arrow {
   background-color: transparent;
   box-shadow: none;
   border-radius: 0;
+}
+
+.sidebar-section.sidebar-dashboard .body {
+  padding: 0;
 }
 
 .dashboard-list .dashboard-item {
