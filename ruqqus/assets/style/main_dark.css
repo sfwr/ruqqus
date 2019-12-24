@@ -12899,7 +12899,7 @@ ol > li::before {
 .post-nav .fa, .post-nav .fas, .post-nav .far, .post-nav .fab, .post-nav .fal {
   font-size: 12px;
   margin-right: 0.5rem;
-  color: #8c8d94;
+  color: #dadada;
 }
 
 .settings-nav > .nav-item > .nav-link.active {
