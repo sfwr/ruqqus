@@ -6,8 +6,9 @@ $secondary: #EAEAEA;
 $danger: #F05D5E;
 $white: #ffffff;
 $black: #1F1F1F;
-$light: #EEF0F2;
+$light: #E6E9F0;
 $success: #23CE6B;
+$muted: #868686;
 
 
 $purple: #603abb;
@@ -15,7 +16,7 @@ $red:  #F05D5E;
 $gray: #5F5F5F;
 $green: #23CE6B;
 
-$gray-100: #F5F6F7;
+$gray-100: #F5F6FA;
 $gray-200: #EBE9EF;
 $gray-300: #E0E4E9;
 $gray-400: #C2C2C2;
@@ -42,6 +43,7 @@ $theme-colors: (
   "black": $black,
   "light": $light,
   "success": $success,
+  "muted": $muted,
   "downvote": $downvote,
   "upvote": $upvote,
   "gold": $gold,
@@ -57,14 +59,14 @@ $theme-colors: (
 // Borders
 
 $input-border-color: #ECECEC;
-$border-color: #E1E1E1;
+$border-color: #EAEAEA;
 
 $border-radius: .35rem;
 $border-radius-sm: .25rem;
 
 // Text styling
 
-$text-muted: #7D7D7D;
+$text-muted: #868686;
 
 // Fonts
 
@@ -936,7 +938,7 @@ color: $dark;
 #frontpage .pseudo-submit-form.card, #search .search-results.card, #guild .pseudo-submit-form.card {
     background-color: $white;
     border-radius: $border-radius;
-    border: 1px solid $border-color;
+    //border: 1px solid $border-color;
     //box-shadow: $box-shadow-sm;
 }
 
@@ -1043,7 +1045,7 @@ color: $dark;
 .sidebar-section {
     margin-bottom: 1rem;
     background-color: #fff;
-    border: 1px solid $border-color;
+    //border: 1px solid $border-color;
     //box-shadow: $box-shadow-sm;
     border-radius: 0.35rem;
 }
@@ -1084,11 +1086,6 @@ color: $dark;
 .sidebar-left .sidebar-section {
     border: 0;
     box-shadow: none;
-}
-
-.sidebar-section.sidebar-alert {
-    border: 1px solid $border-color;
-    //box-shadow: $box-shadow-sm;
 }
 
 .sidebar.sidebar-left {
@@ -1141,7 +1138,7 @@ color: $dark;
     color: $black;
     background-color: $white;
     border-radius: $border-radius;
-    border: 1px solid $border-color;
+    //border: 1px solid $border-color;
 }
 
 .filter-list .filter-item .fa, .filter-list .filter-item .fas, .filter-list .filter-item .far, .filter-list .filter-item .fab, .filter-list .filter-item .fal {
@@ -1198,7 +1195,7 @@ color: $dark;
     color: $black;
     background-color: $white;
     border-radius: $border-radius;
-    border: 1px solid $border-color;
+    //border: 1px solid $border-color;
 }
 
 .guild-recommendations-list .guild-recommendations-item .fa, .guild-recommendations-list .guild-recommendations-item .fas, .guild-recommendations-list .guild-recommendations-item .far, .guild-recommendations-list .guild-recommendations-item .fab, .guild-recommendations-list .guild-recommendations-item .fal {
@@ -1387,7 +1384,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
-    border: 1px solid $border-color;
+    //border: 1px solid $border-color;
     border-radius: $border-radius;
     padding: 15px;
     margin-top: 1rem;

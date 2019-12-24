@@ -29,6 +29,7 @@
   --dark: #232327;
   --white: #FFFFFF;
   --black: #dadada;
+  --muted: #8c8d94;
   --downvote: #48A9A6;
   --upvote: #af92de;
   --gold: #ddbd37;
@@ -1765,6 +1766,26 @@ pre code {
   background-color: #e8e8e8;
 }
 
+.table-muted,
+.table-muted > th,
+.table-muted > td {
+  background-color: #dfdfe1;
+}
+.table-muted th,
+.table-muted td,
+.table-muted thead th,
+.table-muted tbody + tbody {
+  border-color: #c3c4c7;
+}
+
+.table-hover .table-muted:hover {
+  background-color: #d2d2d5;
+}
+.table-hover .table-muted:hover > td,
+.table-hover .table-muted:hover > th {
+  background-color: #d2d2d5;
+}
+
 .table-downvote,
 .table-downvote > th,
 .table-downvote > td {
@@ -2816,6 +2837,33 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(190, 191, 191, 0.5);
 }
 
+.btn-muted {
+  color: #FFFFFF;
+  background-color: #8c8d94;
+  border-color: #8c8d94;
+}
+.btn-muted:hover {
+  color: #FFFFFF;
+  background-color: #787a81;
+  border-color: #72737b;
+}
+.btn-muted:focus, .btn-muted.focus {
+  box-shadow: 0 0 0 0.2rem rgba(157, 158, 164, 0.5);
+}
+.btn-muted.disabled, .btn-muted:disabled {
+  color: #FFFFFF;
+  background-color: #8c8d94;
+  border-color: #8c8d94;
+}
+.btn-muted:not(:disabled):not(.disabled):active, .btn-muted:not(:disabled):not(.disabled).active, .show > .btn-muted.dropdown-toggle {
+  color: #FFFFFF;
+  background-color: #72737b;
+  border-color: #6c6d74;
+}
+.btn-muted:not(:disabled):not(.disabled):active:focus, .btn-muted:not(:disabled):not(.disabled).active:focus, .show > .btn-muted.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(157, 158, 164, 0.5);
+}
+
 .btn-downvote {
   color: #FFFFFF;
   background-color: #48A9A6;
@@ -3334,6 +3382,31 @@ fieldset:disabled a.btn {
 }
 .btn-outline-black:not(:disabled):not(.disabled):active:focus, .btn-outline-black:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-black.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(218, 218, 218, 0.5);
+}
+
+.btn-outline-muted {
+  color: #8c8d94;
+  border-color: #8c8d94;
+}
+.btn-outline-muted:hover {
+  color: #FFFFFF;
+  background-color: #8c8d94;
+  border-color: #8c8d94;
+}
+.btn-outline-muted:focus, .btn-outline-muted.focus {
+  box-shadow: 0 0 0 0.2rem rgba(140, 141, 148, 0.5);
+}
+.btn-outline-muted.disabled, .btn-outline-muted:disabled {
+  color: #8c8d94;
+  background-color: transparent;
+}
+.btn-outline-muted:not(:disabled):not(.disabled):active, .btn-outline-muted:not(:disabled):not(.disabled).active, .show > .btn-outline-muted.dropdown-toggle {
+  color: #FFFFFF;
+  background-color: #8c8d94;
+  border-color: #8c8d94;
+}
+.btn-outline-muted:not(:disabled):not(.disabled):active:focus, .btn-outline-muted:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-muted.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(140, 141, 148, 0.5);
 }
 
 .btn-outline-downvote {
@@ -5449,6 +5522,19 @@ a.badge-black:focus, a.badge-black.focus {
   box-shadow: 0 0 0 0.2rem rgba(218, 218, 218, 0.5);
 }
 
+.badge-muted {
+  color: #FFFFFF;
+  background-color: #8c8d94;
+}
+a.badge-muted:hover, a.badge-muted:focus {
+  color: #FFFFFF;
+  background-color: #72737b;
+}
+a.badge-muted:focus, a.badge-muted.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(140, 141, 148, 0.5);
+}
+
 .badge-downvote {
   color: #FFFFFF;
   background-color: #48A9A6;
@@ -5742,6 +5828,18 @@ a.badge-reddit:focus, a.badge-reddit.focus {
 }
 .alert-black .alert-link {
   color: #c1c1c1;
+}
+
+.alert-muted {
+  color: #b1b2b6;
+  background-color: #e8e8ea;
+  border-color: #dfdfe1;
+}
+.alert-muted hr {
+  border-top-color: #d2d2d5;
+}
+.alert-muted .alert-link {
+  color: #97989d;
 }
 
 .alert-downvote {
@@ -6225,6 +6323,20 @@ a.badge-reddit:focus, a.badge-reddit.focus {
   color: #FFFFFF;
   background-color: #dadada;
   border-color: #dadada;
+}
+
+.list-group-item-muted {
+  color: #b1b2b6;
+  background-color: #dfdfe1;
+}
+.list-group-item-muted.list-group-item-action:hover, .list-group-item-muted.list-group-item-action:focus {
+  color: #b1b2b6;
+  background-color: #d2d2d5;
+}
+.list-group-item-muted.list-group-item-action.active {
+  color: #FFFFFF;
+  background-color: #b1b2b6;
+  border-color: #b1b2b6;
 }
 
 .list-group-item-downvote {
@@ -7218,6 +7330,16 @@ button.bg-black:focus {
   background-color: #c1c1c1 !important;
 }
 
+.bg-muted {
+  background-color: #8c8d94 !important;
+}
+
+a.bg-muted:hover, a.bg-muted:focus,
+button.bg-muted:hover,
+button.bg-muted:focus {
+  background-color: #72737b !important;
+}
+
 .bg-downvote {
   background-color: #48A9A6 !important;
 }
@@ -7404,6 +7526,10 @@ button.bg-reddit:focus {
 
 .border-black {
   border-color: #dadada !important;
+}
+
+.border-muted {
+  border-color: #8c8d94 !important;
 }
 
 .border-downvote {
@@ -12130,6 +12256,14 @@ a.text-white:hover, a.text-white:focus {
 
 a.text-black:hover, a.text-black:focus {
   color: #b4b4b4 !important;
+}
+
+.text-muted {
+  color: #8c8d94 !important;
+}
+
+a.text-muted:hover, a.text-muted:focus {
+  color: #66676e !important;
 }
 
 .text-downvote {
