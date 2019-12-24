@@ -101,8 +101,8 @@
 <div class="col sidebar text-left d-none d-lg-block ml-3 pt-3">
   {% block sidebarblock %}
   <div class="sidebar-section sidebar-about">
-    <div class="title">About Ruqqus</div>
     <div class="body">
+    <div class="title">About Ruqqus</div>
       <p>The best of Ruqqus, served from the most active guilds. Here you'll find the top posts across all of Ruqqus.</p>
       <small><a href="/help/about">Learn more →</a></small>
       {% if v and not v.is_banned %}
@@ -118,8 +118,8 @@
   </div>
   {% if trending_boards %}
   <div class="sidebar-section sidebar-trending">
-    <div class="title">Rising Guilds</div>
     <div class="body">
+    <div class="title">Rising Guilds</div>
      {% for entry in trending_boards[0:5] %}
      <div class="d-flex justify-content-start trending-guild">
       <div>
