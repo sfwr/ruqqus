@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -45,7 +46,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Helvetica Neue", sans-serif;
+  --font-family-sans-serif: "Roboto", "Helvetica Neue", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -68,7 +69,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -127,7 +128,7 @@ ul ol {
 }
 
 dt {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 dd {
@@ -371,7 +372,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 0.5rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.2;
 }
 
@@ -530,7 +531,7 @@ kbd {
 kbd kbd {
   padding: 0;
   font-size: 100%;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 pre {
@@ -5360,7 +5361,7 @@ input[type=button].btn-block {
   display: inline-block;
   padding: 0.25em 0.4em;
   font-size: 75%;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   text-align: center;
   white-space: nowrap;
@@ -5696,7 +5697,7 @@ a.badge-reddit:focus, a.badge-reddit.focus {
 }
 
 .alert-link {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .alert-dismissible {
@@ -6482,7 +6483,7 @@ a.badge-reddit:focus, a.badge-reddit.focus {
 .close {
   float: right;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1;
   color: #dadada;
   text-shadow: 0 1px 0 #FFFFFF;
@@ -6742,7 +6743,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -6844,7 +6845,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Helvetica Neue", sans-serif;
+  font-family: "Roboto", "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.5;
@@ -12163,7 +12164,7 @@ button.bg-reddit:focus {
 }
 
 .font-weight-bold {
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 
 .font-weight-bolder {
@@ -12615,7 +12616,7 @@ ol > li::before {
   top: -1px;
   display: inline-block;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   color: #3f404a;
   text-align: center;
   margin-right: 0.5rem;
@@ -12627,7 +12628,7 @@ ol > li::before {
 
 .btn {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 0.2rem;
 }
 
@@ -12669,7 +12670,7 @@ ol > li::before {
 }
 
 .btn-integration {
-  font-weight: 600;
+  font-weight: 500;
   border-left: 1px solid #494a4e;
 }
 
@@ -12748,7 +12749,7 @@ ol > li::before {
 
 .navbar-brand, .navbar-light .navbar-brand {
   color: #dadada;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .navbar-dark .navbar-brand {
@@ -12861,7 +12862,7 @@ ol > li::before {
 .post-nav .nav-link {
   color: #8c8d94;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   padding-top: 0;
   padding-bottom: 0.75rem;
 }
@@ -12914,7 +12915,7 @@ ol > li::before {
 #page .nav-pills .nav-link {
   border-radius: 0;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #8c8d94;
   border-bottom: 2px solid transparent;
   padding: 1rem 1.5rem;
@@ -13039,7 +13040,7 @@ ol > li::before {
 
 label {
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   letter-spacing: 0.5px;
   color: #dadada;
@@ -13148,7 +13149,7 @@ label.terms {
   position: relative;
   z-index: 2;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   text-align: center;
   min-width: 40px;
 }
@@ -13291,7 +13292,7 @@ a:hover .link-arrow {
 .post-filter {
   display: inline-block;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   color: #8c8d94;
 }
 
@@ -13324,7 +13325,7 @@ a:hover .link-arrow {
   display: block;
   background-color: transparent;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #8c8d94;
   padding: 0.5rem 1rem;
   border: none;
@@ -13357,7 +13358,7 @@ a:hover .link-arrow {
 
 .sidebar .sidebar-section .title {
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 500;
   color: #dadada;
   margin-bottom: 0.5rem;
 }
@@ -13376,7 +13377,7 @@ a:hover .link-arrow {
   margin-bottom: 0.25rem;
   padding-bottom: 0.25rem;
   color: #8c8d94;
-  font-weight: 600;
+  font-weight: 500;
   border-bottom: 1px solid #494a4e;
 }
 
@@ -13437,7 +13438,7 @@ a:hover .link-arrow {
   padding: 0.5rem 1rem;
   color: #8c8d94;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.25rem;
   text-decoration: none;
 }
@@ -13555,7 +13556,7 @@ a:hover .link-arrow {
   padding: 0.5rem 0;
   color: #8c8d94;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.25rem;
   text-decoration: none;
 }
@@ -13620,7 +13621,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic .letter {
   line-height: 3.6rem;
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
 }
 
@@ -13734,7 +13735,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .toggle-view .nav-link {
   color: #8c8d94;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0;
   line-height: 1;
   box-shadow: none;
@@ -13772,7 +13773,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .card-header {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   color: #dadada;
   padding: 0.5rem 1rem;
   border-bottom: 1px solid #56575a;
@@ -14003,7 +14004,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .page-link {
-  font-weight: 600;
+  font-weight: 500;
   background-color: #232327;
   border: 1px solid #232327;
 }
@@ -14013,7 +14014,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .page-item.disabled .page-link {
-  font-weight: 600;
+  font-weight: 500;
   background-color: #232327;
   border: 1px solid #232327;
   opacity: 0.5;
@@ -14127,7 +14128,7 @@ div:hover .thumb-img-link-overlay {
 }
 
 .comments-count .total {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 12px;
   color: #8c8d94;
 }
@@ -14417,7 +14418,7 @@ ul.comment-section {
 }
 
 .reactions-count .total {
-  font-weight: 600;
+  font-weight: 500;
   margin-bottom: 0.5rem;
 }
 
@@ -14426,7 +14427,7 @@ ul.comment-section {
   background-color: #35363e;
   padding: 0.25rem 0.5rem;
   border-radius: 0.35rem;
-  font-weight: 600;
+  font-weight: 500;
   margin-right: 0.25rem;
 }
 
@@ -14446,7 +14447,7 @@ ul.comment-section {
 
 .sidebar-post-meta .score {
   font-size: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .sidebar-post-meta .score-percent {
@@ -14593,7 +14594,7 @@ ul.comment-section {
 
 #page .footer h1, #page .footer h2, #page .footer h3, #page .footer h4, #page .footer h5, #page .footer h6,
 #article .footer h1, #article .footer h2, #article .footer h3, #article .footer h4, #article .footer h5, #article .footer h6 {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 #page .footer a, #article .footer a {

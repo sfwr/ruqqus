@@ -70,7 +70,7 @@ $text-white: $white;
 
 // Fonts
 
-$font-family-sans-serif: 'Helvetica Neue', sans-serif;
+$font-family-sans-serif: 'Roboto', 'Helvetica Neue', sans-serif;
 
 // Font size
 
@@ -88,9 +88,7 @@ $lead-font-size: $font-size-base * 1.325 !default;
 
 // Font weight
 
-$font-weight-medium: 500;
-
-$font-weight-bold: 600;
+$font-weight-bold: 500;
 $font-weight-bolder: 700;
 $headings-font-weight: $font-weight-bold;
 
@@ -135,6 +133,8 @@ $tooltip-opacity: 1;
 $yiq-contrasted-threshold:  160 !default;
 
 @import "node_modules/bootstrap/scss/bootstrap";
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
 
 html {
     font-size: 14px;
@@ -1025,7 +1025,7 @@ color: $dark;
     display: block;
     background-color: transparent;
     font-size: $font-size-base;
-    font-weight: 600;
+    font-weight: $font-weight-bold;
     color: $text-muted;
     padding: 0.5rem 1rem;
     border: none;
@@ -1146,7 +1146,7 @@ color: $dark;
     padding: 0.5rem 1rem;
     color: $text-muted;
     font-size: $small-font-size;
-    font-weight: 600;
+    font-weight: $font-weight-bold;
     margin-bottom: 0.25rem;
     text-decoration: none;
 }
@@ -1270,7 +1270,7 @@ color: $dark;
     padding: 0.5rem 0;
     color: $text-muted;
     font-size: $small-font-size;
-    font-weight: 600;
+    font-weight: $font-weight-bold;
     margin-bottom: 0.25rem;
     text-decoration: none;
 }
@@ -1909,7 +1909,7 @@ blockquote {
     border-left: 4px solid $primary;
     color: $black;
     font-size: $font-size-base;
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-bold;
     background-color: #46444a;
     padding: 0.5rem 1rem;
     margin: 0.5rem 0rem 1rem 0.5rem;
@@ -2769,7 +2769,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 .post-title {
     font-size: 16px;
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-bold;
     word-break: break-word;
 }
 
@@ -2972,7 +2972,7 @@ body {
 
 #thread .post-title {
     font-size: 16px;
-    font-weight: $font-weight-medium;
+    font-weight: $font-weight-bold;
 }
 
 #submit .submission .body {
