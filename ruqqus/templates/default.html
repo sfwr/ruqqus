@@ -100,8 +100,8 @@
         {% if v %}
 
         <div class="sidebar-section sidebar-dashboard">
-          <div class="title">Dashboard</div>
           <div class="body">
+          <div class="title">Dashboard</div>
             <ul class="no-bullets dashboard-list pl-0">
               <li class="dashboard-item">
                 <a class="dashboard-link" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem"></i>Profile</a>
@@ -123,8 +123,8 @@
 
         {% if not v and trending_boards %}
         <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-          <div class="title">Rising Guilds</div>
           <div class="body">
+          <div class="title">Rising Guilds</div>
             <ul class="no-bullets guild-recommendations-list pl-0">
              {% for entry in trending_boards[0:5] %}
              <li class="guild-recommendations-item">
@@ -145,8 +145,8 @@
 	</div>
           {% elif v %}
         <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-          <div class="title">My Guilds</div>
           <div class="body">
+          <div class="title">My Guilds</div>
 		<ul class="no-bullets guild-recommendations-list pl-0">
             {% for board in v.boards_subscribed[0:8] %}
               <li class="guild-recommendations-item">
@@ -194,8 +194,8 @@
         <div class="col sidebar text-left d-none d-lg-block ml-3 pt-3">
           {% block sidebarblock %}
           <div class="sidebar-section sidebar-about">
-            <div class="title">About Ruqqus</div>
             <div class="body">
+            <div class="title">About Ruqqus</div>
               <p>Ruqqus lets you share and discover content from around the web in one place. Vote on what you like or dislike and engage in uncensored discussion with the community.</p>
               <small><a href="/help/about">Learn more →</a></small>
               {% if v and not v.is_banned %}
@@ -213,11 +213,11 @@
 
           {% if v and v.referral_count==0 %}
           <div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
+            <div class="body">
             <div class="title" style="
             color: #fff;
             border-color: rgba(230, 230, 230, 0.1);
             ">Announcement</div>
-            <div class="body">
               <div class="text-center my-3">
                 <i class="fad fa-moon-stars text-warning" style="font-size: 4rem"></i>
               </div>
@@ -235,8 +235,8 @@
           {% if v %}
           {% if v.admin_level %}
           <div class="sidebar-section sidebar-adminpanel">
-           <div class="title">Admin Panel</div>
            <div class="body">
+           <div class="title">Admin Panel</div>
              {% block adminpanel %}
              <div class="text-center text-small text-muted mb-0">No admin actions available</div>
              {% endblock %}
