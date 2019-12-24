@@ -13527,10 +13527,6 @@ a:hover .link-arrow {
   border-radius: 0;
 }
 
-.sidebar-section.sidebar-dashboard .body {
-  padding: 0;
-}
-
 .dashboard-list .dashboard-item {
   color: #7F7F8A;
   text-decoration: none;
