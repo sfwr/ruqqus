@@ -38,7 +38,7 @@ def settings_profile_post(v):
 
     x=int(request.form.get("title_id",0))
     if x==0:
-        self.title_id=None
+        v.title_id=None
         updated=True
 
     elif x:
@@ -46,6 +46,8 @@ def settings_profile_post(v):
         if title.check_eligibility(v):
             user.title_id=title.id
             updated=True
+        else:
+            return render_template("settings_profile.html", v=v, error=f"Unable to set title {title.text} - {title.requirement_string}")
         
     if updated:
         db.add(v)
