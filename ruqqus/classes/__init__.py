@@ -11,3 +11,4 @@ from .images import *
 from .domains import *
 from .subscriptions import *
 from .ips import *
+from .titles import *

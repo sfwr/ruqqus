@@ -67,3 +67,13 @@ def get_domain(domain):
         doms= sorted(doms, key=lambda x: len(x.domain), reverse=True)
 
         return doms[0]
+
+def get_title(x):
+
+    title=db.query(Title).filter_by(id=x).first()
+
+    if not title:
+        abort(400)
+
+    else:
+        return title

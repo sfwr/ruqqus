@@ -132,3 +132,23 @@ def settings_log_out_others(v):
     db.commit()
 
     return render_template("settings_security.html", v=v, msg="All other devices have been logged out")
+
+
+@app.route("/settings/title", methods=["POST"])
+@auth_required
+@validate_formkey
+def settings_title(v):
+
+    x=request.form.get("title_id","")
+    if x==0:
+        self.title_id=0
+        return "",204
+
+    title =get_title(x)
+
+    if not title.check_eligibility(v):
+        abort(403)
+
+    user.title=title.id
+    db.add(user)
+    db.commit()
