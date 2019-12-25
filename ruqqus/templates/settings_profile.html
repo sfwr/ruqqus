@@ -145,6 +145,25 @@
                     </div>
 
                 </div>
+                <div class="body d-lg-flex">
+
+                    <label for="bio" class="text-black w-lg-25">Title</label>
+
+                    <div class="w-lg-100">
+                        <div class="input-group mb-2">
+				<select form="profile-settings" name="title_id">
+					<option value="0"{{ ' selected' if v.title_id==0 else '' }}>[Clear Title]</option>
+					{% for entry in titles %}
+					<option value="{{ entry.id }}"{{ ' selected' if v.title_id==entry.id else '' }}>{{ entry.text }}</option}
+					{% endfor %}
+				</select>
+                        </div>
+
+                        <small>Limit of 280 characters</small>
+
+                    </div>
+
+                </div>
 
                 <div class="footer">
 
