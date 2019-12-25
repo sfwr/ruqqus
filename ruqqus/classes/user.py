@@ -85,8 +85,8 @@ class User(Base):
 
     def has_badge(badgedef_id):
         return self.badges.filter_by(badge_id=badgedef_id).first()
-    
-     def vote_status_on_post(self, post):
+
+    def vote_status_on_post(self, post):
 
         vote = self.votes.filter_by(submission_id=post.id).first()
         if not vote:
