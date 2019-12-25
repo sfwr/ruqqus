@@ -4,7 +4,7 @@ from flask import *
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.classes import *
-from ruqqus.__main__ import app, limiter
+from ruqqus.__main__ import app, db, limiter
 
 #take care of misc pages that never really change (much)
 @app.route('/assets/<path:path>')
@@ -24,7 +24,12 @@ def settings(v):
 @app.route("/settings/profile", methods=["GET"])
 @auth_required
 def settings_profile(v):
-    return render_template("settings_profile.html", v=v)
+
+    titles = db.query(Title).all()
+    
+    return render_template("settings_profile.html",
+                           v=v,
+                           titles=titles)
 
 @app.route("/settings/security", methods=["GET"])
 @auth_required
