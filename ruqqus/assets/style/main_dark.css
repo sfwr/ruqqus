@@ -15665,6 +15665,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-weight: 400;
   }
 
+  .comment-actions {
+    font-size: 1rem;
+  }
+
   .comment-write .comment-format .format {
     display: none;
   }
@@ -15679,7 +15683,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .user-name {
-    color: #8c8d94;
+    color: #dadada;
+    font-weight: 500;
   }
 
   .pagination {

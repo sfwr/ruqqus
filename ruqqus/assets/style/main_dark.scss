@@ -2997,6 +2997,10 @@ body {
     font-weight: $font-weight-normal;
 }
 
+.comment-actions {
+    font-size: $font-size-base;
+}
+
 .comment-write .comment-format .format {
     display: none;
 }
@@ -3011,7 +3015,8 @@ body {
 }
 
 .user-name {
-    color: $text-muted;
+    color: $black;
+    font-weight: $font-weight-bold;
 }
 
 .pagination {
