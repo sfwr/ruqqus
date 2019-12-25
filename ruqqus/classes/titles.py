@@ -15,7 +15,7 @@ class Title(Base):
     text=Column(String(64))
     qualification_expr = Column(String(256))
     requirement_string = Column(String(512))
-    color=Column(String(6))
+    color=Column(String(6), default="888888")
 
 
     def check_eligibility(self, user):
