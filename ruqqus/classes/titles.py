@@ -17,13 +17,7 @@ class Title(Base):
     requirement_string = Column(String(512))
     color=Column(String(6))
 
-    def assign_to(user):
 
-        user.title=self.id
-
-        db.add(user)
-        db.commit()
-
-    def check_eligibility(user):
+    def check_eligibility(self, user):
 
         return bool(eval(self.qualification_expr, {}, {"v":user, "user":user}))
