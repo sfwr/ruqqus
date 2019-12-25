@@ -37,10 +37,10 @@ def settings_profile_post(v):
 
 
     x=int(request.form.get("title_id",0))
+    print(f"x: {x}")
     if x==0:
         v.title_id=None
         updated=True
-
     elif x:
         title =get_title(x)
         if title.check_eligibility(v):
