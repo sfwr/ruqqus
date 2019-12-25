@@ -25,7 +25,7 @@ def settings(v):
 @auth_required
 def settings_profile(v):
 
-    titles = db.query(Title).all()
+    titles = [x for x in db.query(Title).all()]
     
     return render_template("settings_profile.html",
                            v=v,
