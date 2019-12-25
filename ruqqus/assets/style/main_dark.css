@@ -15663,6 +15663,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .comments-count .total {
     font-weight: 400;
+    font-size: 1rem;
   }
 
   .comment-actions {
@@ -15675,6 +15676,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .post-filter {
     font-weight: 400;
+    font-size: 1rem;
   }
 
   .post-filter .dropdown-item {
