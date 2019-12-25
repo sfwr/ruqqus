@@ -1,3 +1,5 @@
+from sqlalchemy import *
+
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
