@@ -41,7 +41,7 @@ def settings_profile_post(v):
     if x==0:
         v.title_id=None
         updated=True
-    elif x:
+    else:
         title =get_title(x)
         if title.check_eligibility(v):
             user.title_id=title.id
