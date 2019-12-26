@@ -25,9 +25,17 @@ def settings(v):
 @auth_required
 def settings_profile(v):
 
-    titles = [x for x in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr)]
+    titles = [x for x in db.query(Title).order_by(text("id asc")).all() if eval(x.qualification_expr)]
     
     return render_template("settings_profile.html",
+                           v=v,
+                           titles=titles)
+
+@app.route("/titles", methods=["GET"])
+@auth_desired
+def titles(v):
+    titles = [x for x in db.query(Title).order_by(text("id asc")).all()]
+    return render_template("titles.html",
                            v=v,
                            titles=titles)
 
