@@ -13,7 +13,7 @@ def settings_profile_post(v):
 
     updated=False
     def titles():
-        x=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(x.qualification_expr, {}, {"v":v})]
+        x=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, {"v":v})]
         return x
 
     if request.form.get("new_password"):
