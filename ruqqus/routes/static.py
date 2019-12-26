@@ -25,7 +25,7 @@ def settings(v):
 @auth_required
 def settings_profile(v):
 
-    titles = [x for x in db.query(Title).order_by(text("id asc")).all() if eval(x.qualification_expr, {}, locals)]
+    titles = [x for x in db.query(Title).order_by(text("id asc")).all() if eval(x.qualification_expr, {}, dict(locals()))]
     
     return render_template("settings_profile.html",
                            v=v,
