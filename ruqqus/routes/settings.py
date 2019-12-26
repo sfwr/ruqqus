@@ -12,13 +12,16 @@ from ruqqus.__main__ import db, app
 def settings_profile_post(v):
 
     updated=False
+    def titles():
+        x=[i for i in db.query(Title).all()]
+        return x
 
     if request.form.get("new_password"):
         if request.form.get("new_password") != request.form.get("cnf_password"):
-            return render_template("settings.html", v=v, error="Passwords do not match.")
+            return render_template("settings.html", v=v, error="Passwords do not match.", titles=titles())
 
         if not v.verifyPass(request.form.get("old_password")):
-            return render_template("settings.html", v=v, error="Incorrect password")
+            return render_template("settings.html", v=v, error="Incorrect password", titles=titles())
 
         v.passhash=v.hash_password(request.form.get("new_password"))
         updated=True
@@ -46,7 +49,11 @@ def settings_profile_post(v):
             v.title_id=title.id
             updated=True
         else:
-            return render_template("settings_profile.html", v=v, error=f"Unable to set title {title.text} - {title.requirement_string}")
+            return render_template("settings_profile.html",
+                                   v=v,
+                                   error=f"Unable to set title {title.text} - {title.requirement_string}",
+                                   title=titles()
+                                   )
     else:
         abort(400)
         
@@ -54,10 +61,18 @@ def settings_profile_post(v):
         db.add(v)
         db.commit()
 
-        return render_template("settings_profile.html", v=v, msg="Your settings have been saved.")
+        return render_template("settings_profile.html",
+                               v=v,
+                               msg="Your settings have been saved.",
+                               titles=titles()
+                               )
 
     else:
-        return render_template("settings_profile.html", v=v, error="You didn't change anything.")
+        return render_template("settings_profile.html",
+                               v=v,
+                               error="You didn't change anything.",
+                               titles=titles()
+                               )
 
 @app.route("/settings/security", methods=["POST"])
 @is_not_banned
