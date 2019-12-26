@@ -18,6 +18,6 @@ class Title(Base):
     color=Column(String(6), default="888888")
 
 
-    def check_eligibility(self, user):
+    def check_eligibility(self, v):
 
-        return bool(eval(self.qualification_expr, {}, {"v":user, "user":user}))
+        return bool(eval(self.qualification_expr, {}, {"v":v}))
