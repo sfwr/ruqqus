@@ -45,7 +45,7 @@ def settings_profile_post(v):
         updated=True
     elif x>0:
         title =get_title(x)
-        if title.check_eligibility(v):
+        if bool(eval(title.qualification_expr)):
             v.title_id=title.id
             updated=True
         else:
