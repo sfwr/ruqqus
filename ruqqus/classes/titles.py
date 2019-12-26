@@ -20,4 +20,4 @@ class Title(Base):
 
     def check_eligibility(self, user):
 
-        return bool(eval(self.qualification_expr, {}, {"v":user, "user":user}))
+        return bool(eval(self.qualification_expr, {})
