@@ -3,6 +3,7 @@ import jinja2
 from flask import *
 
 from ruqqus.helpers.wrappers import *
+import ruqqus.classes
 from ruqqus.classes import *
 from ruqqus.__main__ import app, db, limiter
 
@@ -25,8 +26,9 @@ def settings(v):
 @auth_required
 def settings_profile(v):
 
-    titles = [x for x in db.query(Title).order_by(text("id asc")).all() if eval(x.qualification_expr, {}, dict(locals()))]
-    
+    locs={name: cls for name, cls in ruqqus.classes.__dict__.items() if isinstance(cls, type)}
+    locs["v"]=v
+    titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, locs)]
     return render_template("settings_profile.html",
                            v=v,
                            titles=titles)

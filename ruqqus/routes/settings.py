@@ -1,4 +1,5 @@
 from flask import *
+import ruqqus.classes
 from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.security import *
@@ -13,8 +14,10 @@ def settings_profile_post(v):
 
     updated=False
     def titles():
-        x=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, dict(locals()))]
-        return x
+        locs={name: cls for name, cls in ruqqus.classes.__dict__.items() if isinstance(cls, type)}
+        locs["v"]=v
+        titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, locs)]
+        return titles
 
     if request.form.get("new_password"):
         if request.form.get("new_password") != request.form.get("cnf_password"):
