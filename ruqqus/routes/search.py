@@ -15,7 +15,13 @@ def search(v):
     
     page=max(1, int(request.args.get("page", 1)))
 
-    posts = db.query(Submission).filter(func.lower(Submission.title).contains(query.lower()))
+    #posts = db.query(Submission).filter(func.lower(Submission.title).contains(query.lower()))
+
+    columns = [Submission.title, Submission.body]
+    query = query.split(" ")
+    conditions = [column.contains(word) for word in query for column in columns]
+    posts = db.query(Submission).filter(or_(*conditions))
+
 
     if not (v and v.over_18):
         posts=posts.filter_by(over_10=False)
