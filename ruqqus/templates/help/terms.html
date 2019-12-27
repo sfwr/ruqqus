@@ -5,6 +5,39 @@
 <meta name="description" content="Terms of Service.">
 {% endblock %}
 
+<!-- Left Sidebar (hidden on devices smaller than "large") -->
+
+<div class="col sidebar sidebar-left d-none d-lg-block pt-3">
+
+	{% block sidebarLeftblock %}
+
+	{% if v %}
+
+	<div class="sidebar-section">
+		<div class="body">
+			<div class="title">Related articles</div>
+			<ul class="no-bullets pl-0 mb-0">
+				<li class="list-item">
+					<a href="{{ v.permalink }}">Privacy policy</a>
+				</li>
+				<li class="list-item">
+					<a href="{{ v.permalink }}/posts">Ruqqus content Policy</a>
+				</li>
+				<li class="list-item">
+					<a href="{{ v.permalink }}/comments">Legal request</a> 
+				</li>
+				<li class="list-item">
+					<a href="/settings"></i>Settings</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	{% endif %}
+
+	{% endblock %}
+</div>
+
 {% block content %}
 {% filter markdown %}
 
@@ -46,3 +79,4 @@ Ruqqus reserves the right to remove content that we deem to violate content poli
 
 {% endfilter %}
 {% endblock %}
+
