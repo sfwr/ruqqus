@@ -2319,12 +2319,7 @@ ul.comment-section {
 }
 
 #page .footer a, #article .footer a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.5);
-}
-
-#page .footer a:hover, #page .footer a:focus, #page .footer a:active, #article .footer a:hover, #article .footer a:focus, #article .footer a:active {
-    color: $white;
+    color: $primary;
 }
 
 #page .footer li, #article .footer li {
