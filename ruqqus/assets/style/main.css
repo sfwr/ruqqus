@@ -12515,7 +12515,7 @@ p {
 }
 
 #page {
-  padding-top: 45px;
+  padding-top: 49px;
   background-color: #ffffff;
 }
 
@@ -15415,7 +15415,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   body, #settings, #notifications, #submit {
-    padding-top: 45px;
+    padding-top: 49px;
   }
 
   .shadow-sm-0 {

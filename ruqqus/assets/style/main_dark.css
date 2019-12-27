@@ -15466,7 +15466,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   #settings, #notifications, #submit {
-    padding-top: 45px;
+    padding-top: 49px;
   }
 
   #notifications body, #settings body {
