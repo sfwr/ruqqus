@@ -41,6 +41,14 @@ def titles(v):
                            v=v,
                            titles=titles)
 
+@app.route("/badges", methods=["GET"])
+@auth_desired
+def badges(v):
+    badges=[x for x in db.query(BadgeDef).order_by(text("id asc")).all()]
+    return render_template("badges.html",
+                           v=v,
+                           badges=badges)
+
 @app.route("/settings/security", methods=["GET"])
 @auth_required
 def settings_security(v):
