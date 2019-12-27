@@ -24,7 +24,7 @@ def search(v):
 
 
     if not (v and v.over_18):
-        posts=posts.filter_by(over_10=False)
+        posts=posts.filter_by(over_18=False)
 
     if not(v and v.admin_level>=3):
         posts=posts.filter_by(is_deleted=False, is_banned=False)
