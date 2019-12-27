@@ -173,6 +173,15 @@ p {
     background-color: $white;
 }
 
+// Docs
+
+.article-title {
+    margin-bottom: 3rem;
+    font-weight: $font-size-bold;
+    line-height: 3rem;
+    margin-top: 2rem;
+}
+
 // Hide sidebar on all error pages
 
 #error-400 .sidebar, #error-401 .sidebar, #error-403 .sidebar, #error-404 .sidebar, #error-405 .sidebar, #error-409 .sidebar,
