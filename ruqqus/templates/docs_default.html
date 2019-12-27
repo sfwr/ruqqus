@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  <meta name="author" content="">
+
+  {% block title %}
+  <title>Ruqqus - The social platform for uncensored discourse</title>
+  <meta name="description" content="The independent social platform">
+  {% endblock %}
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- iOS webapp -->
+  <link rel="apple-touch-icon" href="/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-title" content="Ruqqus">
+  <script src="/assets/js/ios.js"></script>
+
+  <!-- Ruqqus CSS -->
+
+  <link id="css-link" rel="stylesheet" href="/assets/style/main.css">
+
+  <!-- Font Awesome -->
+  <link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+
+</head>
+
+<body id="{% block pagetype %}frontpage{% endblock %}" class="">
+
+  {% include "header.html" %}
+
+  <!-- Page Content -->
+
+  {% block banner %}
+  {% endblock %}
+
+  <div class="container">
+    <div class="row justify-content-around" id="main-content-row">
+
+      <!-- Left Sidebar (hidden on devices smaller than "large") -->
+
+      <div class="col sidebar sidebar-left d-none d-lg-block pt-3">
+
+        {% block sidebarLeftblock %}
+
+        {% if not v %}
+        <div class="sidebar-section sidebar-alert">
+          <div class="body">
+            <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
+            <h5>Join the discourse.</h5>
+            <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
+            <a href="/signup" class="btn btn-primary btn-block">Sign up</a>
+          </div>
+        </div>
+        {% endif %}
+
+        {% if v %}
+
+        <div class="sidebar-section">
+          <div class="body">
+            <div class="title">Related articles</div>
+            <ul class="no-bullets pl-0 mb-0">
+              <li class="list-item">
+                <a href="{{ v.permalink }}">Privacy policy</a>
+              </li>
+              <li class="list-item">
+                <a href="{{ v.permalink }}/posts">Ruqqus content Policy</a>
+              </li>
+              <li class="list-item">
+                <a href="{{ v.permalink }}/comments">Legal request</a> 
+              </li>
+              <li class="list-item">
+                <a href="/settings"></i>Settings</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {% endif %}
+
+        {% endblock %}
+      </div>
+
+
+      <div class="col h-100 custom-gutters" id="main-content-col">
+
+        {% block postNav %}
+        {% endblock %}
+
+        {% block PseudoSubmitForm %}
+        {% endblock %}
+
+        {% block searchText %}
+        {% endblock %}
+
+        {% block content %}
+        {% endblock %}
+
+        {% block pagenav %}
+        {% endblock %}
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</div>
+
+<footer class="footer py-5 d-none d-md-block">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col">
+        <ul class="list-inline text-center text-small text-muted font-weight-bold mb-0">
+          <li class="list-inline-item"><a href="/help/about">About</a></li>
+          <li class="list-inline-item"><a href="#">Contact</a></li>
+          <li class="list-inline-item"><a href="/help/terms">Terms</a></li>
+          <li class="list-inline-item"><a href="/help/privacy">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="#">Donate</a></li>
+          <li class="list-inline-item"><a href="#">Press</a></li>
+          <li class="list-inline-item"><a href="#">Help</a></li>
+          <li class="list-inline-item"><a href="https://www.twitter.com/ruqqus">Twitter</a></li>
+          <li class="list-inline-item"><a href="https://discord.gg/U57jqnn">Discord</a></li>
+          <li class="list-inline-item"><a href="https://github.com/ruqqus/ruqqus">Github</a></li>
+          <li class="list-inline-item">&copy; 2019 Ruqqus, LLC</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Clipboard Toast -->
+
+<div class="toast clipboard" id="toast-success" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
+  <div class="toast-body bg-success text-center text-white">
+    <i class="fas fa-check-circle mr-2"></i>Link copied to clipboard
+  </div>
+</div>
+
+<div class="toast clipboard" id="toast-error" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
+  <div class="toast-body bg-danger text-center text-white">
+    <i class="fas fa-exclamation-circle mr-2"></i>Unable to copy link
+  </div>
+</div>
+
+{% include "bootstrap.html" %}
+
+<!-- ClipboardJS -->
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+<!-- Instantiate clipboard by passing a string selector -->
+<script type="text/javascript">
+  var clipboard = new ClipboardJS('.copy-link');
+  clipboard.on('success', function(e) {
+
+    jQuery(function($) {
+      $('#toast-success').toast('show');
+    })
+    console.log(e);
+  });
+  clipboard.on('error', function(e) {
+
+    jQuery(function($) {
+      $('#toast-error').toast('show');
+    })
+    console.log(e);
+  });
+</script>
+
+<!-- Initialize BS 4 tool tips -->
+
+<script src="/assets/js/tooltips.js"></script>
+
+<!-- Search bar icon JS -->
+
+<script src="/assets/js/search_icon.js"></script>
+
+</body>
+
+</html>
