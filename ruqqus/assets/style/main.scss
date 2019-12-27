@@ -175,6 +175,19 @@ p {
 
 // Docs
 
+#article .navbar-light .navbar-nav .nav-link {
+    color: $black;
+}
+
+#article .navbar-light .navbar-nav .nav-link:hover {
+    background-color: transparent;
+}
+
+#article .navbar-light .navbar-nav .nav-link:focus {
+    background-color: transparent;
+    color: $primary;
+}
+
 .article-title {
     margin-bottom: 3rem;
     font-weight: $font-weight-bold;
