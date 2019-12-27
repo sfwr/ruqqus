@@ -44,7 +44,7 @@ def titles(v):
 @app.route("/badges", methods=["GET"])
 @auth_desired
 def badges(v):
-    badges=[x for x in db.query(BadgeDef).order_by(text("id asc")).all()]
+    badges=[x for x in db.query(BadgeDef).order_by(text("rank asc, id asc")).all()]
     return render_template("badges.html",
                            v=v,
                            badges=badges)
