@@ -12,6 +12,7 @@ class BadgeDef(Base):
     name=Column(String(64))
     description=Column(String(64))
     icon=Column(String(64))
+    kind=Column(Integer, default=1)
 
     def __repr__(self):
 
