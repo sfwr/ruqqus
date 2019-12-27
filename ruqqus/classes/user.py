@@ -78,6 +78,11 @@ class User(Base):
 
         boards= [x.board for x in self.subscriptions]
         return boards
+
+    @property
+    def age(self):
+
+        return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=600)
     def idlist(self, sort="hot", page=1, kind="board"):
