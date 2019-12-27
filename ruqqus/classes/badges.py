@@ -11,9 +11,10 @@ class BadgeDef(Base):
     id = Column(BigInteger, primary_key=True)
     name=Column(String(64))
     description=Column(String(64))
-    icon=Column(String(64))
+    icon=Column(String(64))=
     kind=Column(Integer, default=1)
     rank=Column(Integer, default=1)
+    qualification_expr=Column(String(128))
 
     def __repr__(self):
 
