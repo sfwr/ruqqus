@@ -11,9 +11,9 @@ S3=boto3.client("s3",
 
 def upload_file(name, file):
 
-    S3.upload_file(Bucket=BUCKET,
-                   Key=name,
-                   Body=file)
+    S3.upload_fileobj(file,
+                      Bucket=BUCKET,
+                      Key=name)
 
 def delete_file(name):
 
