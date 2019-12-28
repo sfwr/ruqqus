@@ -13,7 +13,7 @@
       </form>
     </div>
     {% if v %}
-    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/submit"><i class="far fa-feather-alt align-middle"></i></a>
+    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/submit{% block submit_param %}{% endblock %}"><i class="far fa-feather-alt align-middle"></i></a>
     {% else %}
     <a class="mobile-nav-icon text-lg d-block d-md-none" href="/login"><i class="far fa-feather-alt align-middle"></i></a>
     {% endif %}

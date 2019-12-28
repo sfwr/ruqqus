@@ -1,5 +1,7 @@
 {% extends "home.html" %}
 
+{% block submit_param %}?guild={{ b.name | urlencode }}{% endlbock %}
+
 {% block PseudoSubmitForm %}
 <!-- Link to submission page from guild -->
 
