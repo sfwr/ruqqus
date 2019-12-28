@@ -40,8 +40,8 @@
   <!-- Page Content -->
 
   <div class="jumbotron jumbotron-fluid" style="background-image: url(/assets/images/jumbotron/docs_jumbotron_bg.jpg); background-position: center;">
-  <div class="container">
-    <form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search" method="get">
+    <div class="container">
+      <form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search" method="get">
         <input class="form-control bg-white w-100" type="search" placeholder="Search" aria-label="Search" name="q">
         <span class="input-group-append">
           <span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
@@ -49,8 +49,8 @@
           </span>
         </span>
       </form>
+    </div>
   </div>
-</div>
 
   <div class="container">
     <div class="row justify-content-around" id="main-content-row">
@@ -60,41 +60,8 @@
       <div class="col sidebar d-none d-lg-block p-3">
 
         {% block sidebarLeftblock %}
-
-        {% if not v %}
-        <div class="sidebar-section sidebar-alert">
-          <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
-          <h5>Join the discourse.</h5>
-          <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
-          <a href="/signup" class="btn btn-primary btn-block">Sign up</a>
-        </div>
-        {% endif %}
-
-        {% if v %}
-
-        <div class="sidebar-section">
-          <div class="body">
-            <div class="title">Related articles</div>
-            <ul class="no-bullets pl-0 mb-0">
-              <li class="list-item">
-                <a href="/privacy">Privacy policy</a>
-              </li>
-              <li class="list-item">
-                <a href="/rules">Ruqqus content Policy</a>
-              </li>
-              <li class="list-item">
-                <a href="https://www.ruqqus.com/legal">Legal request</a> 
-              </li>
-              <li class="list-item">
-                <a href="/settings"></i>Settings</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {% endif %}
-
         {% endblock %}
+        
       </div>
 
       <div class="col p-3" id="main-content-col">
