@@ -1,6 +1,7 @@
 import boto3
+from os import environ
 
-BUCKET="ruqqusimages"
+BUCKET="i.ruqqus.com"
 
 #setup AWS connection
 S3=boto3.client("s3",
