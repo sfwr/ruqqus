@@ -15676,11 +15676,11 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .user-name {
-    color: #1F1F1F;
     font-weight: 400;
   }
 
   .comment .comment-body .user-name {
+    color: #1F1F1F;
     font-weight: 500;
   }
 
