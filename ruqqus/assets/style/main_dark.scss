@@ -1968,6 +1968,10 @@ div:hover .thumb-img-link-overlay {
     margin-top: -0.25rem;
 }
 
+.comment .comment-body .user-name {
+    color: $primary;
+}
+
 .comment .comment-body p.text {
     margin-bottom: 1rem;
     word-break: break-word;

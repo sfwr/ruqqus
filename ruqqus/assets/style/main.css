@@ -14203,6 +14203,10 @@ div:hover .thumb-img-link-overlay {
   margin-top: -0.25rem;
 }
 
+.comment .comment-body .user-name {
+  color: #603abb;
+}
+
 .comment .comment-body p.text {
   margin-bottom: 1rem;
   word-break: break-word;
