@@ -28,10 +28,10 @@ def error_405(e, v):
 def error_409(e, v):
     return render_template('errors/409.html', v=v), 409
 
-@app.errorhandler(419)
+@app.errorhandler(413)
 @auth_desired
-def error_419(e, v):
-    return render_template('errors/419.html', v=v), 419
+def error_413(e, v):
+    return render_template('errors/413.html', v=v), 413
 
 @app.errorhandler(422)
 @auth_desired
