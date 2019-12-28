@@ -876,7 +876,7 @@ th {
     content: "\f354";
 }
 
-.arrow-down::before {
+.arrow-down:hover::before {
     color: $downvote;
     opacity: 0.5;
 }

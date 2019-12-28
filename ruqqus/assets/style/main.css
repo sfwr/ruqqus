@@ -13188,7 +13188,7 @@ th {
   content: "";
 }
 
-.arrow-down::before {
+.arrow-down:hover::before {
   color: #48A9A6;
   opacity: 0.5;
 }
