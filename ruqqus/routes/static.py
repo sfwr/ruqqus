@@ -33,7 +33,7 @@ def settings_profile(v):
                            v=v,
                            titles=titles)
 
-@app.route("/titles", methods=["GET"])
+@app.route("/help/titles", methods=["GET"])
 @auth_desired
 def titles(v):
     titles = [x for x in db.query(Title).order_by(text("id asc")).all()]
