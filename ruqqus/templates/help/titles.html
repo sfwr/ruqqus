@@ -1,4 +1,29 @@
 {% extends "docs_default.html" %}
+
+<!-- Left Sidebar -->
+
+<div class="col sidebar d-none d-lg-block p-3">
+
+	{% block sidebarLeftblock %}
+
+	<div class="sidebar-section">
+			<div class="title">Related articles</div>
+			<ul class="no-bullets pl-0 mb-0">
+				<li class="list-item">
+					<a href="/privacy">Privacy policy</a>
+				</li>
+				<li class="list-item">
+					<a href="/rules">Ruqqus content Policy</a>
+				</li>
+				<li class="list-item">
+					<a href="https://www.ruqqus.com/legal">Legal request</a> 
+				</li>
+			</ul>
+	</div>
+
+	{% endblock %}
+</div>
+
 {% block content %}
 <h1 class="article-title">User titles</h1>
 
