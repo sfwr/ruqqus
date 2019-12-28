@@ -5,6 +5,7 @@ import time
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import *
+import ruqqus.helpers.aws as aws
 from .submission import *
 from .board_relationships import *
 from ruqqus.__main__ import Base, db, cache
@@ -21,7 +22,8 @@ class Board(Base):
     over_18=Column(Boolean, default=False)
     fa_icon=Column(String, default="")
     is_banned=Column(Boolean, default=False)
-    
+    has_banner=Column(Boolean, default=False)
+    has_profile=Column(Boolean, default=False)
     creator_id=Column(Integer, ForeignKey("users.id"))
 
     moderators=relationship("ModRelationship", lazy="dynamic")
@@ -200,3 +202,38 @@ class Board(Base):
     @property
     def created_date(self):
         return time.strftime("%d %B %Y", time.gmtime(self.created_utc))
+
+    def set_profile(self, file):
+
+        aws.upload_file(name=f"board/{self.name}/profile.png",
+                        file=file)
+        
+    def set_banner(self, file):
+
+        aws.upload_file(name=f"board/{self.name}/banner.png",
+                        file=file)
+
+    def del_profile(self):
+
+        aws.delete_file(name=f"board/{self.name}/profile.png")
+
+    def del_banner(self):
+
+        aws.delete_file(name=f"board/{self.name}/banner.png")
+
+    @property
+    def banner_url(self):
+
+        if self.has_banner:
+            return f"https://i.ruqqus.com/board/{self.name}/banner.png"
+        else:
+            return "/assets/images/jumbotron/docs_jumbotron_bg.png"
+
+    @property
+    def profile_url(self):
+
+        if self.has_banner:
+            return f"https://i.ruqqus.com/board/{self.name}/banner.png"
+        else:
+            return "/assets/images/logo/ruqqus_logo_square_white_fill.png"
+        

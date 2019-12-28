@@ -587,4 +587,21 @@ def all_mod_queue(v):
                            next_exists=next_exists,
                            page=page,
                            v=v)
-    
+
+@app.route("/mod/<boardname>/images/profile", methods=["POST"])
+@auth_required
+@is_guildmaster
+def mod_board_images_profile(boardname, board, v):
+
+    board.set_profile(request.files["profile"])
+
+    return "",204
+
+@app.route("/mod/<boardname>/images/banner", methods=["POST"])
+@auth_required
+@is_guildmaster
+def mod_board_images_profile(boardname, board, v):
+
+    board.set_banner(request.files["profile"])
+
+    return "",204
