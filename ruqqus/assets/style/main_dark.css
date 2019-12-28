@@ -13221,8 +13221,16 @@ th {
   color: #af92de;
 }
 
+.upvoted .arrow-up:hover::before {
+  opacity: 1;
+}
+
 .downvoted .arrow-down::before {
   color: #48A9A6;
+}
+
+.downvoted .arrow-down:hover::before {
+  opacity: 1;
 }
 
 .comment-actions .arrow-up {

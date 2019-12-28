@@ -885,8 +885,16 @@ th {
     color: $upvote;
 }
 
+.upvoted .arrow-up:hover::before {
+    opacity: 1;
+}
+
 .downvoted .arrow-down::before {
     color: $downvote;
+}
+
+.downvoted .arrow-down:hover::before {
+    opacity: 1;
 }
 
 .comment-actions .arrow-up {
