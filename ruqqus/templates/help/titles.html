@@ -1,22 +1,10 @@
 {% extends "docs_default.html" %}
 {% block content %}
-<h1>User Titles</h1>
+<h1>User titles</h1>
 <div>This page describes the requirements to display all available titles.</div>
 
-<h2 class="mt-3">Unlockable Titles</h2>
+<h2 class="mt-3">Unlockable titles</h2>
 <div>These titles automatically unlock through different kinds of activity on Ruqqus.</div>
-<table>
-	<tr>
-		<th>Title</th>
-		<th>Description</th>
-	</tr>
-	{% for t in titles if t.kind==1 %}
-	<tr>
-		<td>{% if t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span> {% endif %}{% if v %}<a href="{{ v.permalink }}" class="user-name">{{ v.username }}</a>{% else %}[name]{% endif %}{% if not t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span>{% endif %}</td>
-		<td>{{ t.requirement_string }}</td>
-	</tr>
-	{% endfor %}
-</table>
 
 <table class="table table-striped">
 	<thead class="bg-primary text-white">
@@ -35,34 +23,44 @@
 	</tbody>
 </table>
 
-<h2 class="mt-3">Granted Titles</h2>
-<div>These titles can be granted by staff.</div>
-<table>
-	<tr>
-		<th>Title</th>
-		<th>Description</th>
-	</tr>
-	{% for t in titles if t.kind==3 %}
-	<tr>
-		<td>{% if t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span> {% endif %}{% if v %}<a href="{{ v.permalink }}" class="user-name">{{ v.username }}</a>{% else %}[name]{% endif %}{% if not t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span>{% endif %}</td>
-		<td>{{ t.requirement_string }}</td>
-	</tr>
-	{% endfor %}
+<h2 class="mt-3">Granted titles</h2>
+<div>These titles can be granted by Ruqqus staff.</div>
+
+<table class="table table-striped">
+	<thead class="bg-primary text-white">
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for t in titles if t.kind==3 %}
+		<tr>
+			<td>{% if t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span> {% endif %}{% if v %}<a href="{{ v.permalink }}" class="user-name">{{ v.username }}</a>{% else %}[name]{% endif %}{% if not t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span>{% endif %}</td>
+			<td>{{ t.requirement_string }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
 </table>
 
-<h2 class="mt-3">Unobtainable Titles</h2>
+<h2 class="mt-3">Unobtainable titles</h2>
 <div>There is no way to acquire these titles if you don't already have them.</div>
-<table>
-	<tr>
-		<th>Title</th>
-		<th>Description</th>
-	</tr>
-	{% for t in titles if t.kind==4 %}
-	<tr>
-		<td>{% if t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span> {% endif %}{% if v %}<a href="{{ v.permalink }}" class="user-name">{{ v.username }}</a>{% else %}[name]{% endif %}{% if not t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span>{% endif %}</td>
-		<td>{{ t.requirement_string }}</td>
-	</tr>
-	{% endfor %}
+
+<table class="table table-striped">
+	<thead class="bg-primary text-white">
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for t in titles if t.kind==4 %}
+		<tr>
+			<td>{% if t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span> {% endif %}{% if v %}<a href="{{ v.permalink }}" class="user-name">{{ v.username }}</a>{% else %}[name]{% endif %}{% if not t.is_before %}<span style="color:#{{ t.color }}">{{ t.text }}</span>{% endif %}</td>
+			<td>{{ t.requirement_string }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
 </table>
 
 {% endblock %}
