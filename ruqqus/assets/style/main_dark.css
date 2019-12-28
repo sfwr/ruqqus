@@ -13198,6 +13198,11 @@ th {
   content: "";
 }
 
+.arrow-up:hover::before {
+  color: #af92de;
+  opacity: 0.5;
+}
+
 .arrow-down::before {
   cursor: pointer;
   font-size: 1rem;
@@ -13205,6 +13210,11 @@ th {
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
   content: "";
+}
+
+.arrow-down:hover::before {
+  color: #48A9A6;
+  opacity: 0.5;
 }
 
 .upvoted .arrow-up::before {
