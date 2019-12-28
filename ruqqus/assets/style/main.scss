@@ -1548,18 +1548,18 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-bottom: 1px solid $input-border-color;
 }
 
-#frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type {
+#frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type {
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
 }
 
-#frontpage .posts .card:last-of-type, #userpage .posts .card:last-of-type, #search .posts .card:last-of-type {
+#frontpage .posts .card:last-of-type, #userpage .posts .card:last-of-type, #search .posts .card:last-of-type, #guild .posts .card:last-of-type  {
     border-bottom-left-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
     border-bottom: 0;
 }
 
-#frontpage .posts .card, #userpage .posts .card, #search .posts .card {
+#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card{
     border-width: 0 0 1px 0;
     border-color: $border-color;
     border-style: solid;
@@ -1567,11 +1567,11 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     padding: 15px;
 }
 
-#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover {
+#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover, #guild .posts .card:hover {
     background-color: $gray-100;
 }
 
-#frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg {
+#frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg, #guild .posts .card.enlarged .post-img-lg {
     display: block;
 }
 
