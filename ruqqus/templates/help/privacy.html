@@ -5,38 +5,30 @@
 <meta name="description" content="Privacy Policy.">
 {% endblock %}
 
-<!-- Left Sidebar (hidden on devices smaller than "large") -->
-
-<div class="col sidebar sidebar-left d-none d-lg-block p-3">
+<!-- Left Sidebar -->
 
 	{% block sidebarLeftblock %}
 
-	{% if v %}
+	<div class="col sidebar d-none d-lg-block p-3">
 
 	<div class="sidebar-section">
-		<div class="body">
 			<div class="title">Related articles</div>
 			<ul class="no-bullets pl-0 mb-0">
 				<li class="list-item">
-					<a href="{{ v.permalink }}">Privacy policy</a>
+					<a href="help/privacy">Privacy policy</a>
 				</li>
 				<li class="list-item">
-					<a href="{{ v.permalink }}/posts">Ruqqus content Policy</a>
+					<a href="/help/terms">Terms</a>
 				</li>
 				<li class="list-item">
-					<a href="{{ v.permalink }}/comments">Legal request</a> 
-				</li>
-				<li class="list-item">
-					<a href="/settings"></i>Settings</a>
+					<a href="/legal">Legal request</a> 
 				</li>
 			</ul>
-		</div>
 	</div>
 
-	{% endif %}
+	</div>
 
 	{% endblock %}
-</div>
 
 {% block content %}
 {% filter markdown %}
