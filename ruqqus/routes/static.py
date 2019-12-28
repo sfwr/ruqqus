@@ -37,7 +37,7 @@ def settings_profile(v):
 @auth_desired
 def titles(v):
     titles = [x for x in db.query(Title).order_by(text("id asc")).all()]
-    return render_template("titles.html",
+    return render_template("/help/titles.html",
                            v=v,
                            titles=titles)
 
