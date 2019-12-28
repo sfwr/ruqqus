@@ -862,6 +862,11 @@ th {
 
 }
 
+.arrow-up:hover::before {
+    color: $upvote;
+    opacity: 0.5;
+}
+
 .arrow-down::before {
     cursor: pointer;
     font-size: $font-size-base;
@@ -869,6 +874,11 @@ th {
     font-family: "Font Awesome 5 Pro";
     font-weight: 900;
     content: "\f354";
+}
+
+.arrow-down::before {
+    color: $downvote;
+    opacity: 0.5;
 }
 
 .upvoted .arrow-up::before {
