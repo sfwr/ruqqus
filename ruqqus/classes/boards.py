@@ -227,7 +227,7 @@ class Board(Base):
         if self.has_banner:
             return f"https://i.ruqqus.com/board/{self.name}/banner.png"
         else:
-            return "/assets/images/jumbotron/docs_jumbotron_bg.png"
+            return "/assets/images/guilds/default-guild-banner.jpg"
 
     @property
     def profile_url(self):
@@ -235,5 +235,5 @@ class Board(Base):
         if self.has_banner:
             return f"https://i.ruqqus.com/board/{self.name}/banner.png"
         else:
-            return "/assets/images/logo/ruqqus_logo_square_white_fill.png"
+            return "/assets/images/guilds/default_guild_icon.png"
         
