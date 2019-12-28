@@ -207,19 +207,32 @@ class Board(Base):
 
         aws.upload_file(name=f"board/{self.name}/profile.png",
                         file=file)
+        self.has_profile=True
+        db.add(self)
+        db.commit()
         
     def set_banner(self, file):
 
         aws.upload_file(name=f"board/{self.name}/banner.png",
                         file=file)
 
+        self.has_banner=True
+        db.add(self)
+        db.commit()
+
     def del_profile(self):
 
         aws.delete_file(name=f"board/{self.name}/profile.png")
+        self.has_profile=False
+        db.add(self)
+        db.commit()
 
     def del_banner(self):
 
         aws.delete_file(name=f"board/{self.name}/banner.png")
+        self.has_banner=False
+        db.add(self)
+        db.commit()
 
     @property
     def banner_url(self):
