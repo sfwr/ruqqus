@@ -101,7 +101,7 @@
 
         <div class="sidebar-section sidebar-dashboard">
           <div class="body">
-          <div class="title">Dashboard</div>
+            <div class="title">Dashboard</div>
             <ul class="no-bullets dashboard-list pl-0 mb-0">
               <li class="dashboard-item">
                 <a class="dashboard-link" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem"></i>Profile</a>
@@ -124,7 +124,7 @@
         {% if not v and trending_boards %}
         <div class="sidebar-section sidebar-guild-recommendations sticky-63">
           <div class="body">
-          <div class="title">Rising Guilds</div>
+            <div class="title">Rising Guilds</div>
             <ul class="no-bullets guild-recommendations-list pl-0">
              {% for entry in trending_boards[0:5] %}
              <li class="guild-recommendations-item">
@@ -139,16 +139,16 @@
                   </div>
                 </a>
               </li>
-            {% endfor %}
-	   </ul>
-	</div>
-	</div>
-          {% elif v %}
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        {% elif v and v.subscriptions.filter_by(is_active=True).count() %}
         <div class="sidebar-section sidebar-guild-recommendations sticky-63">
           <div class="body">
-          <div class="title">My Guilds</div>
-		<ul class="no-bullets guild-recommendations-list pl-0">
-            {% for board in v.boards_subscribed[0:8] %}
+            <div class="title">My Guilds</div>
+            <ul class="no-bullets guild-recommendations-list pl-0">
+              {% for board in v.boards_subscribed[0:8] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">
                   <div class="d-flex">
@@ -164,100 +164,114 @@
               </ul>
             </div>
           </div>
-          {% endif %}
 
-	{% endblock %}
-        </div>
-
-
-        <div class="col h-100 custom-gutters" id="main-content-col">
-
-          {% block postNav %}
-          {% endblock %}
-
-          {% block PseudoSubmitForm %}
-          {% endblock %}
-
-          {% block searchText %}
-          {% endblock %}
-
-          {% block content %}
-          {% endblock %}
-
-          {% block pagenav %}
-          {% endblock %}
-
-        </div>
-
-        <!-- Right Sidebar (hidden on devices smaller than "large") -->
-
-        <div class="col sidebar text-left d-none d-lg-block pt-3">
-          {% block sidebarblock %}
-          <div class="sidebar-section sidebar-about">
+          {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
+          <div class="sidebar-section sidebar-guild-recommendations sticky-63">
             <div class="body">
-            <div class="title">About Ruqqus</div>
-              <p>Ruqqus lets you share and discover content from around the web in one place. Vote on what you like or dislike and engage in uncensored discussion with the community.</p>
-              <small><a href="/help/about">Learn more →</a></small>
-              {% if v and not v.is_banned %}
-              <div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
-              {% endif %}
-              {% if not v %}
-              <div class="mt-3"><a class="btn btn-primary btn-block" href="/login">Create post</a></div>
-              {% endif %}
-              {% if v and v.is_activated and v.karma >=100 %}
-              <div class="mt-3"><a href="/create_guild" class="btn btn-secondary btn-block">Start a Guild</a></div>
-              {% endif %}
-            </div>
-          </div>
-          {% endblock %}
-
-          {% if v and v.referral_count==0 %}
-          <div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
-            <div class="body">
-            <div class="title" style="
-            color: #fff;
-            border-color: rgba(230, 230, 230, 0.1);
-            ">Announcement</div>
-              <div class="text-center my-3">
-                <i class="fad fa-moon-stars text-warning" style="font-size: 4rem"></i>
+              <div class="title">My Guilds</div>
+              <img src="/assets/images/illustrations/searching.png" class="empty-state-img mb-3" alt="empty state">
+              <h5>Join some guilds!</h5>
+              <p class="text-small">You are not a member of any guilds. Join guilds and they'll appear right here.</p>
+              <a href="/browse" class="btn btn-primary btn-block">Discover guilds</a>
               </div>
-
-              <div class="mb-2">
-                <span class="h5">Refer a friend. Get dark mode.</span>
-              </div>
-              <p class="text-small">When you invite a friend to make a Ruqqus, you'll unlock dark mode. Copy your referral code to get started.</p>
-              <label for="referral_code" class="text-white">Referral code</label>
-              <input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://ruqqus.com/signup?ref={{ v.username }}" data-clipboard-text="https://ruqqus.com/signup?ref={{ v.username }}">
             </div>
-          </div>
-          {% endif %}
 
-          {% if v %}
-          {% if v.admin_level %}
-          <div class="sidebar-section sidebar-adminpanel">
-           <div class="body">
-           <div class="title">Admin Panel</div>
-             {% block adminpanel %}
-             <div class="text-center text-small text-muted mb-0">No admin actions available</div>
-             {% endblock %}
+            {% endif %}
+
+
+
+            {% endblock %}
+          </div>
+
+
+          <div class="col h-100 custom-gutters" id="main-content-col">
+
+            {% block postNav %}
+            {% endblock %}
+
+            {% block PseudoSubmitForm %}
+            {% endblock %}
+
+            {% block searchText %}
+            {% endblock %}
+
+            {% block content %}
+            {% endblock %}
+
+            {% block pagenav %}
+            {% endblock %}
+
+          </div>
+
+          <!-- Right Sidebar (hidden on devices smaller than "large") -->
+
+          <div class="col sidebar text-left d-none d-lg-block pt-3">
+            {% block sidebarblock %}
+            <div class="sidebar-section sidebar-about">
+              <div class="body">
+                <div class="title">About Ruqqus</div>
+                <p>Ruqqus lets you share and discover content from around the web in one place. Vote on what you like or dislike and engage in uncensored discussion with the community.</p>
+                <small><a href="/help/about">Learn more →</a></small>
+                {% if v and not v.is_banned %}
+                <div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
+                {% endif %}
+                {% if not v %}
+                <div class="mt-3"><a class="btn btn-primary btn-block" href="/login">Create post</a></div>
+                {% endif %}
+                {% if v and v.is_activated and v.karma >=100 %}
+                <div class="mt-3"><a href="/create_guild" class="btn btn-secondary btn-block">Start a Guild</a></div>
+                {% endif %}
+              </div>
+            </div>
+            {% endblock %}
+
+            {% if v and v.referral_count==0 %}
+            <div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
+              <div class="body">
+                <div class="title" style="
+                color: #fff;
+                border-color: rgba(230, 230, 230, 0.1);
+                ">Announcement</div>
+                <div class="text-center my-3">
+                  <i class="fad fa-moon-stars text-warning" style="font-size: 4rem"></i>
+                </div>
+
+                <div class="mb-2">
+                  <span class="h5">Refer a friend. Get dark mode.</span>
+                </div>
+                <p class="text-small">When you invite a friend to make a Ruqqus, you'll unlock dark mode. Copy your referral code to get started.</p>
+                <label for="referral_code" class="text-white">Referral code</label>
+                <input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://ruqqus.com/signup?ref={{ v.username }}" data-clipboard-text="https://ruqqus.com/signup?ref={{ v.username }}">
+              </div>
+            </div>
+            {% endif %}
+
+            {% if v %}
+            {% if v.admin_level %}
+            <div class="sidebar-section sidebar-adminpanel">
+             <div class="body">
+               <div class="title">Admin Panel</div>
+               {% block adminpanel %}
+               <div class="text-center text-small text-muted mb-0">No admin actions available</div>
+               {% endblock %}
+             </div>
            </div>
+           {% endif %}
+           {% endif %}
          </div>
-         {% endif %}
-         {% endif %}
-          </div>
-        </div>
-  </div>
+       </div>
+     </div>
 
-</div>
-</div>
+   </div>
+ </div>
 
-{% block actionsModal %}
-{% endblock %}
+ {% block actionsModal %}
+ {% endblock %}
 
-{% block reportCommentModal %}
-{% endblock %}
+ {% block reportCommentModal %}
+ {% endblock %}
 
-<footer class="footer py-5 d-none d-md-block">
+ <footer class="footer py-5 d-none d-md-block">
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col">
