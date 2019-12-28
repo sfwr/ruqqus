@@ -14195,12 +14195,12 @@ div:hover .thumb-img-link-overlay {
 .comment {
   display: flex;
   position: relative;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 #notifications .comment, #userpage .comment {
   margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 #notifications .comment:last-child, #userpage .comment:last-child {
