@@ -14185,6 +14185,7 @@ div:hover .thumb-img-link-overlay {
   font-size: 12px;
   color: #7F7F8A;
   margin-bottom: 0.25rem;
+  margin-top: -0.25rem;
 }
 
 .comment .comment-body p.text {
