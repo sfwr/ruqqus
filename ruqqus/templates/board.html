@@ -15,13 +15,13 @@
         </ul>
       </div>
       <div class="card-body">
-        {% if v %}
+        {% if v and not is_subscribed %}
         <a href="/submit?guild={{ b.name | urlencode }}">
           <input type="text" class="form-control"
           placeholder="Share something with this guild..." aria-label="Username"
           aria-describedby="basic-addon1">
         </a>
-        {% elif is_subscribed %}
+        {% elif v and is_subscribed %}
         <a href="/submit?guild={{ b.name | urlencode }}">
           <input type="text" class="form-control"
           placeholder="Share something with your guild..." aria-label="Username"
