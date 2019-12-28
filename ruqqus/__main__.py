@@ -28,6 +28,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = environ.get("DATABASE_URL")
 app.config['SECRET_KEY']=environ.get('MASTER_KEY')
 app.config["SERVER_NAME"]=environ.get("domain", None)
 app.config["VERSION"]="0.1.0"
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
 if "localhost" in app.config["SERVER_NAME"]:
     app.config["CACHE_TYPE"]="null"
