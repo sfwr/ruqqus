@@ -18,13 +18,19 @@
         {% if v %}
         <a href="/submit?guild={{ b.name | urlencode }}">
           <input type="text" class="form-control"
-          placeholder="Share something with +{{ b.name }}..." aria-label="Username"
+          placeholder="Share something with this guild..." aria-label="Username"
+          aria-describedby="basic-addon1">
+        </a>
+        {% elif is_subscribed %}
+        <a href="/submit?guild={{ b.name | urlencode }}">
+          <input type="text" class="form-control"
+          placeholder="Share something with your guild..." aria-label="Username"
           aria-describedby="basic-addon1">
         </a>
         {% else %}
         <a href="/signup">
           <input type="text" class="form-control"
-          placeholder="Share something with +{{ b.name }}..." aria-label="Username"
+          placeholder="Share something with this guild..." aria-label="Username"
           aria-describedby="basic-addon1">
         </a>
         {% endif %}
