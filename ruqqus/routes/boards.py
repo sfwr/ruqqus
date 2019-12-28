@@ -602,6 +602,6 @@ def mod_board_images_profile(boardname, board, v):
 @is_guildmaster
 def mod_board_images_banner(boardname, board, v):
 
-    board.set_banner(request.files["profile"])
+    board.set_banner(request.files["banner"])
 
     return "",204
