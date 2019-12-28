@@ -13,7 +13,10 @@ def upload_file(name, file):
 
     S3.upload_fileobj(file,
                       Bucket=BUCKET,
-                      Key=name)
+                      Key=name,
+                      ExtraArgs={'ACL':'public-read'
+                      }
+                     )
 
 def delete_file(name):
 
