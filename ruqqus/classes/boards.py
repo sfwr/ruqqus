@@ -238,7 +238,7 @@ class Board(Base):
     def banner_url(self):
 
         if self.has_banner:
-            return f"http://i.ruqqus.com/board/{self.name}/banner.png"
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name}/banner.png"
         else:
             return "/assets/images/guilds/default-guild-banner.jpg"
 
@@ -246,7 +246,7 @@ class Board(Base):
     def profile_url(self):
 
         if self.has_profile:
-            return f"http://i.ruqqus.com/board/{self.name}/profile.png"
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name}/profile.png"
         else:
             return "/assets/images/guilds/default-guild-icon.png"
         
