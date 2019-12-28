@@ -15702,6 +15702,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .user-name {
     color: #dadada;
+    font-weight: 400;
+  }
+
+  .comment .comment-body .user-name {
     font-weight: 500;
   }
 
