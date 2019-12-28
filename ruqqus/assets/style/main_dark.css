@@ -13885,7 +13885,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   position: relative;
   z-index: 2;
   color: #8c8d94;
-  font-size: 1rem;
+  font-size: 12px;
   width: fit-content;
 }
 
