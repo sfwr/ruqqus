@@ -273,7 +273,31 @@ var save_button = document.getElementById(button);
 
                 </div>
 
-            </div>
+        </div>
+
+
+	<div id="images">
+		<h2 class="h5">Guild Images</h2>
+		<p class="text-small text-muted">Change the guild profile and header images.</p>
+
+<div class="settings-section rounded">
+
+<form action="/mod/{{ b.name }}/images/profile" method="post" enctype="multipart/form-data">
+  <input name="formkey" value="{{ v.formkey }}">
+  <input type="file" name="profile">
+  <input type="submit" class="btn btn-primary">
+</form>
+
+<form action="/mod/{{ b.name }}/images/banner" method="post" enctype="multipart/form-data">
+  <input name="formkey" value="{{ v.formkey }}">
+  <input type="file" name="banner">
+  <input type="submit" class="btn btn-primary">
+</form>
+
+<div>
+
+
+	</div>
 
         </div>
 

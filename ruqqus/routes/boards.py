@@ -591,6 +591,7 @@ def all_mod_queue(v):
 @app.route("/mod/<boardname>/images/profile", methods=["POST"])
 @auth_required
 @is_guildmaster
+@validate_formkey
 def mod_board_images_profile(boardname, board, v):
 
     board.set_profile(request.files["profile"])
@@ -600,6 +601,7 @@ def mod_board_images_profile(boardname, board, v):
 @app.route("/mod/<boardname>/images/banner", methods=["POST"])
 @auth_required
 @is_guildmaster
+@validate_formkey
 def mod_board_images_banner(boardname, board, v):
 
     board.set_banner(request.files["banner"])
