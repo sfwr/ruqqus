@@ -13093,6 +13093,10 @@ label.terms {
   color: #1F1F1F;
 }
 
+th {
+  font-weight: 500;
+}
+
 .fa-rotate-45 {
   -webkit-transform: rotate(45deg);
   -moz-transform: rotate(45deg);
