@@ -1395,6 +1395,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     text-transform: uppercase;
 }
 
+.profile-pic-30 .letter {
+    line-height: 1.75;
+}
+
 .profile-pic-35 .letter {
     line-height: 2;
 }
@@ -1418,6 +1422,13 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-25 {
     width: 25px;
     height: 25px;
+    border-radius: 50rem;
+    text-align: center;
+}
+
+.profile-pic-30 {
+    width: 30px;
+    height: 30px;
     border-radius: 50rem;
     text-align: center;
 }
