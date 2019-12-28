@@ -17,22 +17,22 @@
                <span class="badge badge-danger text-small align-middle">NSFW</span>
                {% endif %}
              </h1>
-             <div><span class="text-small"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
-             <span class="font-weight-bold">{{ b.age_string }}</span> est.</span>
-              </div>
+             <div><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
+               <span class="font-weight-bold">{{ b.age_string }}</span> est.
+             </div>
              <div class="mt-1">{{ b.description_html | safe }}</div>
              <div class="d-flex">
-             <div class="w-100">
-             {% for mod in b.mods %}
-             <a href="{{ mod.permalink }}" class="profile-pic-overlap"><div class="profile-pic-35 border-3 border-white rounded-circle d-inline-block" style="background-color:#{{ mod.color }}"><span class="letter text-white">{{ mod.username[0] }}</span></div></a>
-             {% else %}
-             No guildmasters
-             {% endfor %}
-             </div>
-             {% if v %}
-             <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
-             <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
-             {% endif %}
+               <div class="w-100">
+                 {% for mod in b.mods %}
+                 <a href="{{ mod.permalink }}" class="profile-pic-overlap"><div class="profile-pic-35 border-3 border-white rounded-circle d-inline-block" style="background-color:#{{ mod.color }}"><span class="letter text-white">{{ mod.username[0] }}</span></div></a>
+                 {% else %}
+                 No guildmasters
+                 {% endfor %}
+               </div>
+               {% if v %}
+               <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
+               <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
+               {% endif %}
              </div>
            </div>
          </div>
@@ -68,14 +68,14 @@
 {% if v and not b.has_ban(v) %}
 <div class="sidebar-section sidebar-submit">
   <div class="body">
-  <div class="title">Submit to +{{ b.name }}</div>
+    <div class="title">Submit to +{{ b.name }}</div>
     <a class="btn btn-primary btn-block" href="/submit?guild={{ b.name | urlencode }}">Create Post in +{{ b.name }}</a>
   </div>
 </div>
 {% endif %}
 <div class="sidebar-section sidebar-mods">
   <div class="body">
-  <div class="title">Guildmasters</div>
+    <div class="title">Guildmasters</div>
     <ul>
       {% for mod in b.mods %}
       <li><a href="{{ mod.permalink }}">@{{ mod.username }}</a></li>
@@ -88,7 +88,7 @@
 {% if v and b.has_mod(v) %}
 <div class="sidebar-section sidebar-guild-tools">
   <div class="body pt-0">
-  <div class="title">Guildmaster Tools</div>
+    <div class="title">Guildmaster Tools</div>
     <div><a href="{{ b.permalink}}/mod/settings"><i class="fad fa-cog fa-width-rem"></i>Settings</a></div>
     <div><a href="{{ b.permalink}}/mod/mods"><i class="fad fa-user-crown fa-width-rem"></i>Guildmasters</a></div>
     <div><a href="{{ b.permalink}}/mod/exiled"><i class="fad fa-gavel fa-width-rem"></i>Exiles</a></div>
@@ -140,24 +140,24 @@
 {% if trending_boards %}
 <div class="sidebar-section sidebar-guild-recommendations sticky-63">
   <div class="body">
-  <div class="title">Rising Guilds</div>
+    <div class="title">Rising Guilds</div>
     <ul class="no-bullets guild-recommendations-list pl-0">
      {% for entry in trending_boards[0:5] %}
      <li class="guild-recommendations-item">
       <a href="{{ entry[0].permalink }}">
-      <div class="d-flex">
-      <div class="mr-2">
-          <img src="{{ profile_url }}" class="guild-icon-square-35"></div>
-          <div>
-            <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
-            <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+        <div class="d-flex">
+          <div class="mr-2">
+            <img src="{{ profile_url }}" class="guild-icon-square-35"></div>
+            <div>
+              <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
+              <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+            </div>
           </div>
-      </div>
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-</div>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
 {% endif %}
 
