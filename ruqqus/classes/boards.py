@@ -248,5 +248,5 @@ class Board(Base):
         if self.has_banner:
             return f"https://i.ruqqus.com/board/{self.name}/banner.png"
         else:
-            return "/assets/images/guilds/default_guild_icon.png"
+            return "/assets/images/guilds/default-guild-icon.png"
         
