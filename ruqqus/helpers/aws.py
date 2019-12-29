@@ -11,8 +11,10 @@ S3=boto3.client("s3",
                 )
 
 def upload_file(name, file):
+
+    file.save("temp", name)
     
-    image=Image.frombuffer(data=file.read())
+    image=Image.open(f"temp/{name}")
     raw_image=list(image.getdata())
     no_exif=Image.new(image.mode, image.size)
     no_exif.putdata(raw_image)
