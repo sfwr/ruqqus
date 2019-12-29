@@ -118,56 +118,7 @@ var save_button = document.getElementById(button);
     <div class="col col-md-8">
 
         <div class="settings">
-<h2 class="h5" name="referral">Guild rofile picture</h2>
 
-          <div class="settings-section rounded">
-
-            <div class="d-lg-flex">
-
-              <div class="title w-lg-25 text-md-center">
-                <img src="{{ b.profile_url }}" class="profile-pic-75">
-              </div>
-
-              <div class="body w-lg-100 my-auto">
-
-               <form action="/mod/{{ b.base36id }}/images/profile" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                <input class="form-control-file" type="file" name="profile">
-                <input class="btn btn-primary ml-auto" type="submit" value="Update">
-		
-              </form>
-		{% if b.has_profile %}<form action="/mod/{{ b.base36id }}/delete/profile" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
-		</div>
-
-            </div>
-
-          </div>
-	  <h2 class="h5" name="referral">Banner picture</h2>
-
-          <div class="settings-section rounded">
-
-            <div class="d-lg-flex">
-
-              <div class="title w-lg-25 text-md-center">
-                <img src="{{ b.banner_url }}" width="75px" height="75px">
-              </div>
-
-              <div class="body w-lg-100 my-auto">
-
-               <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                <input class="form-control-file" type="file" name="profile">
-                <input class="btn btn-primary ml-auto" type="submit" value="Update">
-		
-              </form>
-		{% if b.has_banner %}<form action="/mod/{{ b.base36id }}/delete/banner" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
-		
-
-            </div>
-
-          </div>
-
-        </div>
 
 
             <div id="name">
@@ -323,7 +274,56 @@ var save_button = document.getElementById(button);
                     </div>
 
                 </div>
+<h2 class="h5" name="referral">Guild rofile picture</h2>
 
+          <div class="settings-section rounded">
+
+            <div class="d-lg-flex">
+
+              <div class="title w-lg-25 text-md-center">
+                <img src="{{ b.profile_url }}" class="profile-pic-75">
+              </div>
+
+              <div class="body w-lg-100 my-auto">
+
+               <form action="/mod/{{ b.base36id }}/images/profile" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                <input class="form-control-file" type="file" name="profile">
+                <input class="btn btn-primary ml-auto" type="submit" value="Update">
+		
+              </form>
+		{% if b.has_profile %}<form action="/mod/{{ b.base36id }}/delete/profile" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
+		</div>
+
+            </div>
+
+          </div>
+	  <h2 class="h5" name="referral">Banner picture</h2>
+
+          <div class="settings-section rounded">
+
+            <div class="d-lg-flex">
+
+              <div class="title w-lg-25 text-md-center">
+                <img src="{{ b.banner_url }}" width="75px" height="75px">
+              </div>
+
+              <div class="body w-lg-100 my-auto">
+
+               <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                <input class="form-control-file" type="file" name="profile">
+                <input class="btn btn-primary ml-auto" type="submit" value="Update">
+		
+              </form>
+		{% if b.has_banner %}<form action="/mod/{{ b.base36id }}/delete/banner" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
+		
+
+            </div>
+
+          </div>
+
+        </div>
         </div>
 
 
