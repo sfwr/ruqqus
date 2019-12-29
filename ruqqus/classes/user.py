@@ -470,7 +470,5 @@ class User(Base):
     @property
     def available_titles(self):
 
-        locs={name: cls for name, cls in ruqqus.classes.__dict__.items() if isinstance(cls, type)}
-        locs["v"]=v
-        titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, locs)]
+        titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr,{}, {"v":self})]
         return titles
