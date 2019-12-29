@@ -12,7 +12,9 @@ S3=boto3.client("s3",
 
 def upload_file(name, file):
 
-    file.save("temp", name)
+    #save in temp dir for exif stripping
+
+    file.save(f"temp/{name}")
     
     image=Image.open(f"temp/{name}")
     raw_image=list(image.getdata())
