@@ -76,7 +76,7 @@ class User(Base):
     @property
     def boards_subscribed(self):
 
-        boards= [x.board for x in self.subscriptions]
+        boards= [x.board for x in self.subscriptions if x.is_active]
         return boards
 
     @property
