@@ -3,8 +3,6 @@ from sqlalchemy import *
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
-from .votes import Vote
-from .alts import Alt
 from ruqqus.__main__ import Base, db, cache
 
 class Title(Base):

@@ -13,6 +13,7 @@ from ruqqus.helpers.lazy import lazy
 import ruqqus.helpers.aws as aws
 from .votes import Vote
 from .alts import Alt
+from .titles import Title
 from .submission import Submission
 from ruqqus.__main__ import Base, db, cache
 
