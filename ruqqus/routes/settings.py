@@ -160,4 +160,44 @@ def settings_log_out_others(v):
 
 
 
+@app.route("/settings/images/profile", methods=["POST"])
+@auth_required
+@validate_formkey
+def settings_images_profile(v):
+
+    v.set_profile(request.files["profile"])
+
+    return render_template("settings_profile.html", v=v, msg="Profile picture successfully updated.")
+
+@app.route("/settings/images/banner", methods=["POST"])
+@auth_required
+@validate_formkey
+def settings_images_banner(v):
+
+    v.set_banner(request.files["banner"])
+
+    return render_template("settings_profile.html", v=v, msg="Banner successfully updated.")
+
+
+@app.route("/settings/delete/profile", methods=["POST"])
+@auth_required
+@validate_formkey
+def settings_delete_profile(v):
+
+    v.del_profile()
+
+    return render_template("settings_profile.html", v=v, msg="Profile picture successfully removed.")
+
+@app.route("/settings/delete/banner", methods=["POST"])
+@auth_required
+@validate_formkey
+def settings_delete_banner(v):
+
+    v.del_banner()
+
+    return render_template("settings_profile.html", v=v, msg="Banner successfully removed.")
+
+
+
+
 

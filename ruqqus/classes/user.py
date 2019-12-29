@@ -466,3 +466,11 @@ class User(Base):
             return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/users/{self.username}/profile.png"
         else:
             return "/assets/images/profiles/default-profile-pic.png"
+
+    @property
+    def available_titles(self):
+
+        locs={name: cls for name, cls in ruqqus.classes.__dict__.items() if isinstance(cls, type)}
+        locs["v"]=v
+        titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, locs)]
+        return titles
