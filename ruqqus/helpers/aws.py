@@ -21,8 +21,9 @@ def upload_file(name, file):
     raw_image=list(image.getdata())
     no_exif=Image.new(image.mode, image.size)
     no_exif.putdata(raw_image)
+    no_exif.save(tempname)
     
-    S3.upload_fileobj(no_exif,
+    S3.upload_file(tempname,
                       Bucket=BUCKET,
                       Key=name,
                       ExtraArgs={'ACL':'public-read',
