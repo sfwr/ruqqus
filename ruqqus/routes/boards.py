@@ -588,11 +588,11 @@ def all_mod_queue(v):
                            page=page,
                            v=v)
 
-@app.route("/mod/<boardname>/images/profile", methods=["POST"])
+@app.route("/mod/<bid>/images/profile", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey
-def mod_board_images_profile(boardname, board, v):
+def mod_board_images_profile(bid, board, v):
 
     board.set_profile(request.files["profile"])
 
@@ -602,13 +602,41 @@ def mod_board_images_profile(boardname, board, v):
                            msg="Guild profile successfully updated."
                            )
 
-@app.route("/mod/<boardname>/images/banner", methods=["POST"])
+@app.route("/mod/<bid>/images/banner", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey
-def mod_board_images_banner(boardname, board, v):
+def mod_board_images_banner(bid, board, v):
 
     board.set_banner(request.files["banner"])
+
+    return render_template("guild/settings.html",
+                           v=v,
+                           b=board,
+                           msg="Guild banner successfully updated."
+                           )
+
+@app.route("/mod/<bid>/delete/profile", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_board_images_delete_profile(bid, board, v):
+
+    board.del_profile()
+
+    return render_template("guild/settings.html",
+                           v=v,
+                           b=board,
+                           msg="Guild profile successfully updated."
+                           )
+
+@app.route("/mod/<bid>/delete/banner", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_board_images_delete_banner(bid, board, v):
+
+    board.del_banner()
 
     return render_template("guild/settings.html",
                            v=v,
