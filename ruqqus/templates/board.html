@@ -44,40 +44,36 @@
 {% endblock %}
 
 {% block banner %}
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div class="jumbotron jumbotron-guild text-white" style="background-image: url({{ b.banner_url }})">
-        <div class="jumbotron-overlay"></div>
-        <div class="position-absolute w-100 p-3" style="bottom: 0;">
-          <div class="d-md-flex text-center text-md-left">
-            <div>
-              <img src="{{ b.profile_url }}" class="guild-icon-square-lg">
-            </div>
-            <div class="ml-3 w-100">
-              <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
-               {% if b.over_18 %}
-               <span class="badge badge-danger text-small align-middle">NSFW</span>
-               {% endif %}
-             </h1>
-             <div><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
-               <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
-             </div>
-             <div class="mt-1">{{ b.description_html | safe }}</div>
-             <div class="d-flex">
-               <div class="w-100">
-                 {% for mod in b.mods %}
-                 <a href="{{ mod.permalink }}" class="profile-pic-overlap"><div class="profile-pic-30 border-2 border-white rounded-circle d-inline-block" style="background-color:#{{ mod.color }}"><span class="letter text-white">{{ mod.username[0] }}</span></div></a>
-                 {% else %}
-                 No guildmasters
-                 {% endfor %}
-               </div>
-               {% if v %}
-               <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
-               <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
-               {% endif %}
-             </div>
+<div class="jumbotron jumbotron-fluid jumbotron-guild text-white" style="background-image: url({{ b.banner_url }})">
+  <div class="jumbotron-overlay"></div>
+  <div class="position-absolute w-100 p-3">
+    <div class="container" style="bottom: 0;">
+      <div class="d-md-flex text-center text-md-left">
+        <div>
+          <img src="{{ b.profile_url }}" class="guild-icon-square-lg">
+        </div>
+        <div class="ml-3 w-100">
+          <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
+           {% if b.over_18 %}
+           <span class="badge badge-danger text-small align-middle">NSFW</span>
+           {% endif %}
+         </h1>
+         <div><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
+           <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
+         </div>
+         <div class="mt-1">{{ b.description_html | safe }}</div>
+         <div class="d-flex">
+           <div class="w-100">
+             {% for mod in b.mods %}
+             <a href="{{ mod.permalink }}" class="profile-pic-overlap"><div class="profile-pic-30 border-2 border-white rounded-circle d-inline-block" style="background-color:#{{ mod.color }}"><span class="letter text-white">{{ mod.username[0] }}</span></div></a>
+             {% else %}
+             No guildmasters
+             {% endfor %}
            </div>
+           {% if v %}
+           <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
+           <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
+           {% endif %}
          </div>
        </div>
      </div>
@@ -190,7 +186,7 @@
       <a href="{{ entry[0].permalink }}">
         <div class="d-flex">
           <div class="mr-2">
-          <img src="{{ entry.profile_url }}" class="guild-icon-square-35"></div>
+            <img src="{{ entry.profile_url }}" class="guild-icon-square-35"></div>
             <div>
               <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
               <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
