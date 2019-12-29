@@ -422,7 +422,7 @@ class User(Base):
 
     def set_profile(self, file):
 
-        aws.upload_file(name=f"user/{self.username}/profile.png",
+        aws.upload_file(name=f"users/{self.username}/profile.png",
                         file=file)
         self.has_profile=True
         db.add(self)
@@ -430,7 +430,7 @@ class User(Base):
         
     def set_banner(self, file):
 
-        aws.upload_file(name=f"user/{self.username}/banner.png",
+        aws.upload_file(name=f"users/{self.username}/banner.png",
                         file=file)
 
         self.has_banner=True
@@ -439,14 +439,14 @@ class User(Base):
 
     def del_profile(self):
 
-        aws.delete_file(name=f"user/{self.username}/profile.png")
+        aws.delete_file(name=f"users/{self.username}/profile.png")
         self.has_profile=False
         db.add(self)
         db.commit()
 
     def del_banner(self):
 
-        aws.delete_file(name=f"user/{self.username}/banner.png")
+        aws.delete_file(name=f"users/{self.username}/banner.png")
         self.has_banner=False
         db.add(self)
         db.commit()
