@@ -44,6 +44,8 @@ class User(Base):
     login_nonce=Column(Integer, default=0)
     title_id=Column(Integer, ForeignKey("titles.id"), default=None)
     title=relationship("Title")
+    has_profile=Column(Boolean, default=False)
+    has_banner=Column(Boolean, default=False)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
