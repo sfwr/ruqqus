@@ -121,7 +121,7 @@ def unfollow_user(username, v):
 @app.route("/settings/images/profile", methods=["POST"])
 @auth_required
 @validate_formkey
-def mod_board_images_profile(v):
+def settings_images_profile(v):
 
     v.set_profile(request.files["profile"])
 
@@ -130,7 +130,7 @@ def mod_board_images_profile(v):
 @app.route("/settings/images/banner", methods=["POST"])
 @auth_required
 @validate_formkey
-def mod_board_images_banner(v):
+def settings_images_banner(v):
 
     v.set_banner(request.files["banner"])
 
