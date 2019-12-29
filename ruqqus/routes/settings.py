@@ -49,7 +49,8 @@ def settings_profile_post(v):
         else:
             return render_template("settings_profile.html",
                                    v=v,
-                                   error=f"Unable to set title {title.text} - {title.requirement_string}")                                   )
+                                   error=f"Unable to set title {title.text} - {title.requirement_string}"
+                                   )
     else:
         abort(400)
         
