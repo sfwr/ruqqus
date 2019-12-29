@@ -25,13 +25,8 @@ def settings(v):
 @app.route("/settings/profile", methods=["GET"])
 @auth_required
 def settings_profile(v):
-
-    locs={name: cls for name, cls in ruqqus.classes.__dict__.items() if isinstance(cls, type)}
-    locs["v"]=v
-    titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, locs)]
     return render_template("settings_profile.html",
-                           v=v,
-                           titles=titles)
+                           v=v)
 
 @app.route("/help/titles", methods=["GET"])
 @auth_desired

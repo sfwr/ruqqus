@@ -13,18 +13,13 @@ from ruqqus.__main__ import db, app
 def settings_profile_post(v):
 
     updated=False
-    def titles():
-        locs={name: cls for name, cls in ruqqus.classes.__dict__.items() if isinstance(cls, type)}
-        locs["v"]=v
-        titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr, {}, locs)]
-        return titles
 
     if request.form.get("new_password"):
         if request.form.get("new_password") != request.form.get("cnf_password"):
-            return render_template("settings.html", v=v, error="Passwords do not match.", titles=titles())
+            return render_template("settings.html", v=v, error="Passwords do not match.")
 
         if not v.verifyPass(request.form.get("old_password")):
-            return render_template("settings.html", v=v, error="Incorrect password", titles=titles())
+            return render_template("settings.html", v=v, error="Incorrect password")
 
         v.passhash=v.hash_password(request.form.get("new_password"))
         updated=True
@@ -54,9 +49,7 @@ def settings_profile_post(v):
         else:
             return render_template("settings_profile.html",
                                    v=v,
-                                   error=f"Unable to set title {title.text} - {title.requirement_string}",
-                                   titles=titles()
-                                   )
+                                   error=f"Unable to set title {title.text} - {title.requirement_string}")                                   )
     else:
         abort(400)
         
@@ -66,15 +59,13 @@ def settings_profile_post(v):
 
         return render_template("settings_profile.html",
                                v=v,
-                               msg="Your settings have been saved.",
-                               titles=titles()
+                               msg="Your settings have been saved."
                                )
 
     else:
         return render_template("settings_profile.html",
                                v=v,
-                               error="You didn't change anything.",
-                               titles=titles()
+                               error="You didn't change anything."
                                )
 
 @app.route("/settings/security", methods=["POST"])
