@@ -454,7 +454,7 @@ class User(Base):
         if self.has_banner:
             return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/users/{self.username}/banner.png"
         else:
-            return "/assets/images/profiles/default-bg.jpg"
+            return "/assets/images/profiles/default_bg.png"
 
     @property
     def profile_url(self):
