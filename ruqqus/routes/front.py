@@ -50,11 +50,20 @@ def frontlist(sort="hot", page=1, nsfw=False):
 
     return posts
     
+@app.route("/guilds", methods=["GET"])
+@auth_required
+def home_subs(v):
 
+    return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
+                                        page=max(int(request.args.get("page",1)),0)
+                                        )
 
 @app.route("/", methods=["GET"])
 @auth_desired
 def home(v):
+
+    if v:
+        return home_subs():
 
     page=int(request.args.get("page",1))
 
@@ -116,13 +125,7 @@ def home(v):
                            )
 
 
-@app.route("/guilds", methods=["GET"])
-@auth_required
-def home_subs(v):
 
-    return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
-                                        page=max(int(request.args.get("page",1)),0)
-                                        )
 
 @app.route("/subscriptions", methods=["GET"])
 @auth_required
