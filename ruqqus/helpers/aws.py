@@ -14,7 +14,8 @@ def upload_file(name, file):
     S3.upload_fileobj(file,
                       Bucket=BUCKET,
                       Key=name,
-                      ExtraArgs={'ACL':'public-read'
+                      ExtraArgs={'ACL':'public-read',
+                                 "ContentType":"image/png"
                       }
                      )
 
