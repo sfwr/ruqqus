@@ -39,12 +39,12 @@
 <div class="container d-none d-md-block">
   <div class="row">
     <div class="col">
-      <div class="jumbotron jumbotron-guild text-white" style="background-image: url(/assets/images/profiles/default_bg.png)">
+      <div class="jumbotron jumbotron-guild text-white" style="background-image: url({{ u.banner_url }})">
         <div class="jumbotron-overlay"></div>
         <div class="position-absolute w-100 p-3" style="bottom: 0;">
           <div class="d-md-flex text-center text-md-left">
             <div>
-              <img src="/assets/images/profiles/default-profile-pic.png" class="guild-icon-square-lg">
+              <img src="{{ u.profile_url }}" class="guild-icon-square-lg">
             </div>
             <div class="ml-3 w-100">
               <h1 class="h3 align-middle d-inline-block m-0">{{ u.username }}
