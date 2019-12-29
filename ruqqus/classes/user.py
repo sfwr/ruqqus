@@ -416,3 +416,50 @@ class User(Base):
     def has_follower(self, user):
 
         return self.followers.filter_by(user_id=user.id).first()
+
+                                 def set_profile(self, file):
+
+        aws.upload_file(name=f"board/{self.name}/profile.png",
+                        file=file)
+        self.has_profile=True
+        db.add(self)
+        db.commit()
+        
+    def set_banner(self, file):
+
+        aws.upload_file(name=f"board/{self.name}/banner.png",
+                        file=file)
+
+        self.has_banner=True
+        db.add(self)
+        db.commit()
+
+    def del_profile(self):
+
+        aws.delete_file(name=f"board/{self.name}/profile.png")
+        self.has_profile=False
+        db.add(self)
+        db.commit()
+
+    def del_banner(self):
+
+        aws.delete_file(name=f"board/{self.name}/banner.png")
+        self.has_banner=False
+        db.add(self)
+        db.commit()
+
+    @property
+    def banner_url(self):
+
+        if self.has_banner:
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/users/{self.username}/banner.png"
+        else:
+            return "/assets/images/profiles/default-bg.jpg"
+
+    @property
+    def profile_url(self):
+
+        if self.has_profile:
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/users/{self.username}/profile.png"
+        else:
+            return "/assets/images/profiles/default-profile-pic.png"
