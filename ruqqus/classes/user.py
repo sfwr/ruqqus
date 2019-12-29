@@ -417,7 +417,7 @@ class User(Base):
 
         return self.followers.filter_by(user_id=user.id).first()
 
-                                 def set_profile(self, file):
+    def set_profile(self, file):
 
         aws.upload_file(name=f"board/{self.name}/profile.png",
                         file=file)
