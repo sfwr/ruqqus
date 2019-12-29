@@ -240,7 +240,7 @@ class Board(Base):
         if self.has_banner:
             return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name}/banner.png"
         else:
-            return "/assets/images/guilds/default-guild-banner.jpg"
+            return "/assets/images/guilds/default-guild-banner.png"
 
     @property
     def profile_url(self):
