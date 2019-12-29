@@ -25,6 +25,7 @@ class Board(Base):
     has_banner=Column(Boolean, default=False)
     has_profile=Column(Boolean, default=False)
     creator_id=Column(Integer, ForeignKey("users.id"))
+    ban_reason=Column(String(256), default=None)
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
@@ -100,6 +101,10 @@ class Board(Base):
         return posts
 
     def rendered_board_page(self, v, sort="hot", page=1):
+
+        if self.is_banned:
+            if not (v and v.admin_level>=3):
+                return render_template("board_banned.html", v=v, b=self)
         
         ids=self.idlist(sort=sort, page=page, nsfw=(v and v.over_18))
 
