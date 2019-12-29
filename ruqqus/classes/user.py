@@ -472,5 +472,10 @@ class User(Base):
     @property
     def available_titles(self):
 
-        titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr,{}, {"v":self, "Board":Board})]
+        locs={"v":self,
+              "Board":Board,
+              "Submission":Submission
+              }
+
+        titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr,{}, locs)]
         return titles
