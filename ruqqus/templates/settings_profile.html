@@ -77,7 +77,9 @@
                 <input type="hidden" name="formkey" value="{{ v.formkey }}">
                 <input class="form-control-file" type="file" name="profile">
                 <input class="btn btn-primary ml-auto" type="submit" value="Update">
+		
               </form>
+		{% if v.has_profile %}<a href="javascript:void(0)" onclick="" class="btn btn-primary">Delete</a>{% endif %}
 
             </div>
 
@@ -167,18 +169,6 @@
 
             <hr>
 
-                        <div class="w-lg-100">
-                        <p>Titles change the way your name is displayed across Ruqqus, allowing you to show off a site achievement.</p>
-                         <div class="input-group">
-                            <select class="form-control" form="profile-settings" name="title_id">
-                               <option value="0"{{ ' selected' if v.title_id==0 else '' }}>No title</option>
-                               {% for entry in v.available_titles %}
-                               <option value="{{ entry.id }}"{{ ' selected' if v.title_id==entry.id else '' }}>{{ entry.text }}</option>
-                               {% endfor %}
-                           </select>
-                       </div>
-                       <div class="text-small-extra text-muted mt-3"><a href="/help/titles">Click here</a> to see all titles and the requirements to unlock them.</div>
-
 
               <label for="bio" class="text-black w-lg-25">Title</label>
 
@@ -187,7 +177,7 @@
                 <div class="input-group">
                   <select class="form-control" form="profile-settings" name="title_id">
                    <option value="0"{{ ' selected' if v.title_id==0 else '' }}>No title</option>
-                   {% for entry in titles %}
+                   {% for entry in v.available_titles %}
                    <option value="{{ entry.id }}"{{ ' selected' if v.title_id==entry.id else '' }}>{{ entry.text }}</option>
                    {% endfor %}
                  </select>
