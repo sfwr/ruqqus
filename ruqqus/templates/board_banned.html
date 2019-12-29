@@ -1,24 +1,6 @@
 {% extends "home.html" %}
 
-{% block banner %}
-<div class="jumbotron jumbotron-fluid jumbotron-guild text-white" style="background-image: url(/assets/images/guilds/default-guild-banner.png)">
-  <div class="jumbotron-overlay"></div>
-  <div class="position-absolute w-100 p-3" style="bottom: 0;">
-  <div class="container">
-      <div class="d-md-flex text-center text-md-left">
-        <div>
-          <img src="/assets/images/guilds/default-guild-icon.png" class="guild-icon-square-lg">
-        </div>
-	<div class="ml-3 w-100">
-          <h1 class="h3 d-inline-block mr-2">+{{ b.name }}</h1>
-	</div>
-
-
-     </div>
-   </div>
- </div>
-</div>
-{% endblock %}
+{% block banner %}{% endblock %}
 
 {% block adminpanel %}
 {% endblock %}
@@ -70,9 +52,9 @@
 {% block content %}
 <div class="row justify-content-center">
 	<div class="col-10 col-md-5">
-	<div class="text-center px-3 my-8">
+	<div class="text-center px-3 mt-2">
 			<i class="fad fa-gavel text-muted mb-5" style="font-size: 5rem;"></i>
-			<h1 class="h5">Guild Banned</h1>
+			<h1 class="h5">+{{ b.name }} is banned</h1>
 			{% if b.ban_reason %}<p class="text-muted mb-5">{{ b.ban_reason }}</p>{% endif %}
 			<div><a href="/" class="btn btn-primary">Go to frontpage</a></div>
 		</div>
