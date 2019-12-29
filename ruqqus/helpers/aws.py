@@ -1,5 +1,6 @@
 import boto3
 from os import environ
+from PIL import Image
 
 BUCKET="i.ruqqus.com"
 
@@ -10,8 +11,13 @@ S3=boto3.client("s3",
                 )
 
 def upload_file(name, file):
-
-    S3.upload_fileobj(file,
+    
+    image=Image.fromarray(file)
+    raw_image=list(image.getdata())
+    no_exif=Image.new(image.mode, image.size)
+    no_exif.putdata(raw_image)
+    
+    S3.upload_fileobj(no_exif,
                       Bucket=BUCKET,
                       Key=name,
                       ExtraArgs={'ACL':'public-read',
