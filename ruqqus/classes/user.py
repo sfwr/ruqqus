@@ -10,6 +10,7 @@ import random
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
+import ruqqus.helpers.aws as aws
 from .votes import Vote
 from .alts import Alt
 from .submission import Submission
