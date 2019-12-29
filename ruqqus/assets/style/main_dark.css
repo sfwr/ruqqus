@@ -13358,6 +13358,10 @@ a:hover .link-arrow {
   border-radius: 0.35rem;
 }
 
+#thread #main-content-col, #userpage #main-content-col {
+  margin-top: 1rem;
+}
+
 .scrollspy.sidebar-sticky {
   position: sticky;
   overflow-y: auto;
