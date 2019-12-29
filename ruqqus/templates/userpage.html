@@ -242,28 +242,24 @@
 {% if v %}
 
 <div class="sidebar-section sidebar-dashboard">
-  <div class="title">Dashboard</div>
   <div class="body">
+    <div class="title">Dashboard</div>
     <ul class="no-bullets dashboard-list pl-0 mb-0">
       <li class="dashboard-item">
-        <a class="dashboard-link " href="{{ v.permalink }}"><i class="fas fa-feather-alt fa-width-rem"></i>Your posts</a>
+        <a class="dashboard-link" href="/"><i class="fas fa-home-alt fa-width-rem"></i>Home</a>
       </li>
       <li class="dashboard-item">
-        <a class="dashboard-link" href="{{ v.permalink }}/comments"><i class="fas fa-comment-dots fa-width-rem"></i>Your comments</a> 
-      </li>
-      <li class="dashboard-item">
-        <a class="dashboard-link" href="/settings"><i class="fas fa-cog fa-width-rem"></i>Settings</a>
-      </li>
-      <li class="dashboard-item">
-       <a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Your guilds</a>
+       <a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Guilds</a>
      </li>
      <li class="dashboard-item">
-       <a class="dashboard-link" href="/subscriptions"><i class="fas fa-user-friends fa-width-rem"></i>Your subscriptions</a>
+       <a class="dashboard-link" href="/subscriptions"><i class="fas fa-heart fa-width-rem"></i>Subscriptions</a>
      </li>
-   </ul>
- </div>
+     <li class="dashboard-item">
+      <a class="dashboard-link" href="/browse"><i class="fas fa-binoculars fa-width-rem"></i>Browse</a>
+    </li>
+  </ul>
 </div>
-
+</div>
 
 {% endif %}
 
