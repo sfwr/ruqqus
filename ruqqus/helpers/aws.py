@@ -1,5 +1,5 @@
 import boto3
-from os import environ
+from os import environ, remove
 from PIL import Image
 
 BUCKET="i.ruqqus.com"
@@ -12,22 +12,26 @@ S3=boto3.client("s3",
 
 def upload_file(name, file):
 
-    #save in temp dir for exif stripping
+    #temp save for exif stripping
+    tempname=name.replace("/","_")
 
-    file.save(f"temp/{name}")
+    file.save(tempname)
     
-    image=Image.open(f"temp/{name}")
+    image=Image.open(tempname)
     raw_image=list(image.getdata())
     no_exif=Image.new(image.mode, image.size)
     no_exif.putdata(raw_image)
+    no_exif.save(tempname)
     
-    S3.upload_fileobj(no_exif,
+    S3.upload_file(tempname,
                       Bucket=BUCKET,
                       Key=name,
                       ExtraArgs={'ACL':'public-read',
                                  "ContentType":"image/png"
                       }
                      )
+
+    remove(tempname)
 
 def delete_file(name):
 

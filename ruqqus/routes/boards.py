@@ -596,7 +596,11 @@ def mod_board_images_profile(boardname, board, v):
 
     board.set_profile(request.files["profile"])
 
-    return render_template("guild/settings.html", v=v, msg="Guild profile successfully updated.")
+    return render_template("guild/settings.html",
+                           v=v,
+                           b=board,
+                           msg="Guild profile successfully updated."
+                           )
 
 @app.route("/mod/<boardname>/images/banner", methods=["POST"])
 @auth_required
@@ -606,4 +610,8 @@ def mod_board_images_banner(boardname, board, v):
 
     board.set_banner(request.files["banner"])
 
-    return render_template("guild/settings.html", v=v, msg="Guild banner successfully updated.")
+    return render_template("guild/settings.html",
+                           v=v,
+                           b=board,
+                           msg="Guild banner successfully updated."
+                           )
