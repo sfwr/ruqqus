@@ -14036,9 +14036,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  border-radius: 0.35rem;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+  border-radius: 0;
   overflow: hidden;
   margin-bottom: 0;
   padding: 0;
