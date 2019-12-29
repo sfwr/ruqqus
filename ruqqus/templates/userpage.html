@@ -47,14 +47,14 @@
               <img src="/assets/images/profiles/default-profile-pic.png" class="guild-icon-square-lg">
             </div>
             <div class="ml-3 w-100">
-              <h1 class="h3 d-inline-block mr-2">{{ u.username }}
+              <h1 class="h3 d-inline-block m-0">{{ u.username }}
                <!--{% if u.over_18 %}
                <span class="badge badge-danger">NSFW</span>
                {% endif %}-->
              </h1>
              <span>
               {% if u.admin_level %}
-              <i class="fad fa-shield text-admin ml-1" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>
+              <i class="fad fa-shield text-admin ml-2" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>
               {% endif %}
               {% if u.real_id %}<span class="badge badge-pill text-white badge-info">{{ u.real_id }}</span>
               {% endif %}
