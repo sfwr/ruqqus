@@ -15,6 +15,7 @@ from .votes import Vote
 from .alts import Alt
 from .titles import Title
 from .submission import Submission
+from .boards import Board
 from ruqqus.__main__ import Base, db, cache
 
 class User(Base):
