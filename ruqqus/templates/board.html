@@ -48,14 +48,14 @@
   <div class="container">
       <div class="d-md-flex text-center text-md-left">
         <div>
-          <img src="{{ b.profile_url }}" class="guild-icon-square-lg">
+          <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="guild-icon-square-lg"></a>
         </div>
         <div class="ml-3 w-100">
-          <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
+         <a href="{{ b.permalink }}" class="text-white"><h1 class="h3 d-inline-block mr-2">+{{ b.name }}
            {% if b.over_18 %}
            <span class="badge badge-danger text-small align-middle">NSFW</span>
            {% endif %}
-         </h1>
+         </h1></a>
          <div><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
            <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
          </div>
