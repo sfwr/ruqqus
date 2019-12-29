@@ -1362,6 +1362,13 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     color: inherit;
 }
 
+.banner-pic-135 {
+    object-fit: cover;
+    height: 135px;
+    max-width: 425px;
+    width: 425px;
+}
+
 .profile-pic {
     width: 50px;
     height: 50px;
@@ -2946,6 +2953,12 @@ body, #settings, #notifications, #submit {
 
 .btn-tag {
     font-size: $small-font-size;
+}
+
+// User and Profile (mobile)
+
+.banner-pic-135 {
+    max-width: 100%
 }
 
 // Horizontal scroll
