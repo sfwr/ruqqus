@@ -294,7 +294,7 @@ class Submission(Base):
 
         with open(tempname, "wb") as file:
             for chunk in x.iter_content(1024):
-                f.write(chunk)
+                file.write(chunk)
 
         print("thumb saved")
 
