@@ -242,6 +242,7 @@
   </div>
   <h5 class="card-title post-title text-left mb-0 mb-md-2"><a href="{{ b.permalink }}" class="stretched-link text-primary">+{{ b.name | safe }}</a></h5>
   <div class="post-meta text-left d-none d-md-block">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}
+  <div class="body text-left">{{ b.description }}</div>
   </div>
 
   {% if b.body_html %}
