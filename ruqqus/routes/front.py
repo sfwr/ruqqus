@@ -129,7 +129,7 @@ def user_subs(v):
                                   page=max(int(request.args.get("page",1)),0)
                                   )
 
-@cache.memoize(60)
+@cache.memoize(600)
 def guild_ids(sort="subs", page=1, nsfw=False):
     #cutoff=int(time.time())-(60*60*24*30)
 

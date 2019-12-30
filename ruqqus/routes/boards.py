@@ -91,6 +91,9 @@ def create_board_post(v):
     db.add(sub)
     db.commit()
 
+    #clear cache
+    cache.delete_memoized("guild_ids", sort="new")
+
     return redirect(new_board.permalink)
 
 @app.route("/board/<name>", methods=["GET"])

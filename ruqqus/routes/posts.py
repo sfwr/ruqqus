@@ -242,7 +242,7 @@ def submit_post(v):
 
     
     #spin off thumbnail generation as  new thread
-    if new_post.url and embed:
+    if new_post.url and not embed:
         new_thread=threading.Thread(target=thumbnail_thread,
                                     args=(new_post,),
                                     kwargs={

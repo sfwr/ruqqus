@@ -28,47 +28,53 @@
 
 	</div>
 
-	{% endblock %}
+{% endblock %}
+
+
+
 
 {% block content %}
-
-<span class="text-uppercase text-primary" style="letter-spacing: 1px"><a href="#">Legal</a></span>
-
 <h1 class="article-title">Terms of Service</h1>
+{% filter markdown %}
 
-<p>These terms of service are between Ruqqus LLC ("Ruqqus") and you, regarding the use of the social platform ruqqus.com.</p>
+These terms of service are between Ruqqus LLC ("Ruqqus") and you, regarding the use of the social platform ruqqus.com and its associated image hosting service i.ruqqus.com.
 
-<p>Content on this page displayed in blockquotes is not officially part of the terms of service.</p>
+Content on this page displayed in blockquotes is not officially part of the terms of service.
 
-<h2 class="h3">Conduct and content</h2>
+## Conduct and content
 
-<p>You will follow the <a href="/help/rules">content policy</a>.</p>
+You agree to follow the content policy [here](/help/rules). 
 
-<h2 class="h3">Legal</h2>
+## Legal
 
-<p>You warrant that you are at least 13 years old. You warrant that you are at least 18 years old, if you indicate as such in your user settings.</p>
+You warrant that you are at least 13 years old. You warrant that you are at least 18 years old, if you indicate as such in your user settings.
 
-<p>You will not hold Ruqqus liable for damages arising from: the use of ruqqus.com, the failure of ruqqus.com, administrative actions by Ruqqus staff, or the unauthorized access of a third party to your ruqqus.com account.</p>
+You will not hold Ruqqus liable for damages arising from: the use of ruqqus.com, the failure of ruqqus.com, administrative actions by Ruqqus staff, or the unauthorized access of a third party to your ruqqus.com account.
 
-<p>You will not hold Ruqqus liable for damages arising from a loss or breach of ruqqus.com data.</p>
+You will not hold Ruqqus liable for damages arising from a loss or breach of ruqqus.com data.
 
-<p>You accept full liability for all content you upload to, or embed within, ruqqus.com, and indemnify Ruqqus from all such liability.</p>
+You accept full liability for all content you upload to, or embed within, ruqqus.com, and indemnify Ruqqus from all such liability.
 
-<p>You are responsible for everything you do with your ruqqus.com account. Don't use ruqqus.com to store important data, and don't let anyone else into your ruqqus.com account.</p>
+> You are responsible for everything you do with your ruqqus.com account. Don't use ruqqus.com to store important data, and don't let anyone else into your ruqqus.com account.
 
-<h2 class="h3">Intellectual Property</h2>
+## Account access
 
-<p>You grant Ruqqus a permanent, worldwide, and irrevocable license to store, modify, copy, and distribute all content that you submit to Ruqqus. Additionally, you grant Ruqqus a permanent, worldwide, and irrevocable license to sublicense these rights to Ruqqus's service providers.</p>
+You will not permit third parties to access ruqqus.com with your account.
 
-<p>You retain all other intellectual property rights, including ownership.</p>
+## Intellectual Property
 
-<p>We need to be able to store, copy, and distribute your content, because that's just how websites like ruqqus.com work. We also need to be able to modify it for security and formatting purposes.</p>
+You grant Ruqqus a permanent, worldwide, and irrevocable license to store, modify, copy, and distribute all content that you submit to Ruqqus. Additionally, you grant Ruqqus a permanent, worldwide, and irrevocable license to sublicense these rights to Ruqqus's service providers.
 
-<h2 class="h3">Enforcement</h2>
+You retain all other intellectual property rights, including ownership.
 
-<p>Ruqqus retains sole discretion in all determinations regarding content policy and terms of service violations.</p>
+> We need to be able to store, copy, and distribute your content, because that's just how websites like ruqqus.com work. We also need to be able to modify it for security and formatting purposes.
 
-<p>Ruqqus reserves the right to remove content that we deem to violate content policy or the terms of service, and to deactivate accounts responsible for such violations.</p>
+## Enforcement
 
+Ruqqus retains sole discretion in all determinations regarding content policy and terms of service violations.
+
+Ruqqus reserves the right to remove content that we deem to violate content policy or the terms of service, and to deactivate accounts responsible for such violations.
+
+{% endfilter %}
 {% endblock %}
 

@@ -31,39 +31,19 @@
 {% endblock %}
 
 {% block title %}
-<title>{{ u.username }}</title>
-<meta name="description" content="[banned]">
+<title>@{{ u.username }}</title>
+<meta name="description" content="Username reserved for: {{ u.reserved }}">
 {% endblock %}
 
-{% block sidebarblock %}{% endblock %}
-
-{% block adminpanel %}
-{% if v.admin_level >=3 and v.admin_level > u.admin_level %}
-{% if u.is_banned %}
-<form action="/api/unban_user/{{ u.id }}" method="post">
-  <input type="hidden" name="formkey", value="{{ v.formkey }}">
-  <input type="submit" class="btn btn-success" value="Unban user">
-</form>
-{% else %}
-<form action="/api/ban_user/{{ u.id }}", method="post">
-  <input type="hidden" name="formkey", value="{{ v.formkey }}">
-  <input type="submit" class="btn btn-warning" value="Ban user">
-</form>
-{% endif %}
-{% endif %}
-{% if v.admin_level >=4 and v.admin_level > u.admin_level %}
-<table>
- <tr>
-  <th>Key</th>
-  <th>Value</th>
-</tr>
-<tr>
-  <td>Account Creation IP</td>
-  <td>{{ u.creation_ip }}</td>
-</tr>
-</table>
-{% endif %}
+{% block sidebarblock %}
+<div class="sidebar-section sidebar-profile-basic">
+  <div class="body">
+    <h1 class="h6 d-inline-block mb-0 mr-2">@{{ u.username }}</h1>
+  </div>
+</div>
 {% endblock %}
+
+{% block adminpanel %}{% endblock %}
 
 {% block content %}
 <!-- Post filters bar visible only on medium devices or larger-->
@@ -74,14 +54,12 @@
 
     <div class="text-center py-7 py-md-8">
 
-      <i class="fad fa-user-slash text-muted mb-5" style="font-size: 5rem;"></i>
+      <i class="fad fa-user text-muted mb-5" style="font-size: 5rem;"></i>
 
 
-      <div class="font-weight-bold text-muted">Banned!</div>
-      <div class="text-small text-muted">@{{ u.username }} was banned.</div>
-	{% if u.ban_reason %}
-	<div class="text-small text-muted">Reason: {{ u.ban_reason }}</div>
-	{% endif %}
+      <div class="font-weight-bold text-muted">Account Reserved</div>
+      <div class="text-muted">The username @{{ u.username }} has been pre-emptively reserved for: {{ u.reserved }}</div>
+	<div class="text-muted">If that's you, or if you are their authorized representative, please contact Ruqqus staff in order to obtain access to this account.</div>
 
     </div>
   </div>

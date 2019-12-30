@@ -5,9 +5,12 @@ from sqlalchemy.orm import relationship, deferred
 import math
 from urllib.parse import urlparse
 import random
+from os import environ
+import requests
 
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
+import ruqqus.helpers.aws as aws
 from ruqqus.__main__ import Base, db, cache
 from .votes import Vote
 from .domains import Domain
@@ -42,10 +45,10 @@ class Submission(Base):
     original_board=relationship("Board", uselist=False, primaryjoin="Board.id==Submission.original_board_id")
     ban_reason=Column(String(128), default="")
     creation_ip=Column(String(64), default="")
-    thumb_id=Column(String(128), default="")
     mod_approved=Column(Integer, default=None)
     is_image=Column(Boolean, default=False)
-    
+    has_thumb=Column(Boolean, default=False)    
+
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
 
@@ -272,3 +275,45 @@ class Submission(Base):
             return 0
         else:
             return self.flags.filter(Flag.created_utc>self.approved_utc).count()
+
+    def save_thumb(self):
+
+        url=f"https://api.apiflash.com/v1/urltoimage"
+        params={'access_key':environ.get("APIFLASH_KEY"),
+                'format':'png',
+                'height':1280,
+                'width':720,
+                'response_type':'image',
+                'thumbnail_width':300,
+                'url':self.url
+                }
+        x=requests.get(url, params=params)
+        print("have thumb from apiflash")
+
+        name=f"posts/{self.base36id}/thumb.png"
+        tempname=name.replace("/","_")
+
+        with open(tempname, "wb") as file:
+            for chunk in x.iter_content(1024):
+                file.write(chunk)
+
+        print("thumb saved")
+
+        aws.upload_from_file(name, tempname)
+        self.has_thumb=True
+        db.add(self)
+        db.commit()
+
+        print("thumb all success")
+        
+
+    @property
+    #@lazy
+    def thumb_url(self):
+    
+        if self.has_thumb:
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/posts/{self.base36id}/thumb.png"
+        elif self.is_image:
+            return self.url
+        else:
+            return None

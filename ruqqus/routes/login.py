@@ -75,6 +75,10 @@ def login_post():
         time.sleep(random.uniform(0,2))
         return render_template("login.html", failed=True, i=random_image())
 
+    #check for reserved username
+    if account.reserved:
+        return redirect(account.permalink)
+
     #test password
 
     if not account.verifyPass(request.form.get("password")):
@@ -254,8 +258,11 @@ def sign_up_post(v):
     if not email:
         email=None
 
-    if (db.query(User).filter(User.username.ilike(request.form.get("username"))).first()
-        or (email and db.query(User).filter(User.email.ilike(email)).first())):
+    existing_account=db.query(User).filter(User.username.ilike(request.form.get("username"))).first()
+    if existing_account and existing_account.reserved:
+        return redirect(existing_account.permalink)
+
+    if existing_account or (email and db.query(User).filter(User.email.ilike(email)).first()):
         print(f"signup fail - {username } - email already exists")
         return new_signup("An account with that username or email already exists.")
     
