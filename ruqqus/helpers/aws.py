@@ -13,8 +13,11 @@ S3=boto3.client("s3",
 
 def upload_from_url(name, url):
 
+    print('upload from url')
     
     x=requests.get(url)
+
+    print('got content')
 
     tempname=name.replace("/","_")
 
@@ -47,6 +50,25 @@ def upload_file(name, file):
     file.save(tempname)
     
     image=Image.open(tempname)
+    raw_image=list(image.getdata())
+    no_exif=Image.new(image.mode, image.size)
+    no_exif.putdata(raw_image)
+    no_exif.save(tempname)
+    
+    S3.upload_file(tempname,
+                      Bucket=BUCKET,
+                      Key=name,
+                      ExtraArgs={'ACL':'public-read',
+                                 "ContentType":"image/png"
+                      }
+                     )
+
+    remove(tempname)
+
+def upload_from_file(name, filename):
+
+    
+    image=Image.open(filename)
     raw_image=list(image.getdata())
     no_exif=Image.new(image.mode, image.size)
     no_exif.putdata(raw_image)

@@ -5,6 +5,7 @@ from sqlalchemy.orm import relationship, deferred
 import math
 from urllib.parse import urlparse
 import random
+from os import environ
 
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
@@ -276,7 +277,23 @@ class Submission(Base):
 
     def save_thumb(self, file):
 
-        aws.upload_from_url(f"posts/{self.base36id}/thumb.png", self.url)
+        url=f"https://api.apiflash.com/v1/urltoimage/cache/{post.thumb_id}.jpeg?access_key={APIFLASH_KEY}"
+        params={'access_key':environ.get("APIFLASH_KEY"),
+                'format'='png',
+                'height'=720,
+                'response_type'='image',
+                'thumbnail_width'=300,
+                'url'=self.url
+                }
+        x=requests.get(url, params=params)
+
+        tempname=name.replace("/","_")
+
+        with open(tempname, "wb") as file:
+            for chunk in r.iter_content(1024):
+                f.write(chunk)
+
+        aws.upload_from_file(f"posts/{self.base36id}/thumb.png", tempname)
         self.has_thumb=True
         db.add(self)
         db.commit()
