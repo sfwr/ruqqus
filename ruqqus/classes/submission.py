@@ -289,6 +289,7 @@ class Submission(Base):
         x=requests.get(url, params=params)
         print("have thumb from apiflash")
 
+        name=f"posts/{self.base36id}/thumb.png"
         tempname=name.replace("/","_")
 
         with open(tempname, "wb") as file:
@@ -297,7 +298,7 @@ class Submission(Base):
 
         print("thumb saved")
 
-        aws.upload_from_file(f"posts/{self.base36id}/thumb.png", tempname)
+        aws.upload_from_file(name, tempname)
         self.has_thumb=True
         db.add(self)
         db.commit()
