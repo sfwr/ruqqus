@@ -286,6 +286,7 @@ class Submission(Base):
                 'url':self.url
                 }
         x=requests.get(url, params=params)
+        print("have thumb from apiflash")
 
         tempname=name.replace("/","_")
 
@@ -293,10 +294,14 @@ class Submission(Base):
             for chunk in r.iter_content(1024):
                 f.write(chunk)
 
+        print("thumb saved")
+
         aws.upload_from_file(f"posts/{self.base36id}/thumb.png", tempname)
         self.has_thumb=True
         db.add(self)
         db.commit()
+
+        print("thumb all success")
         
 
     @property
