@@ -34,7 +34,7 @@ class CustomRenderer(HTMLRenderer):
         target = token.target[1]
 
         user=get_user(target, graceful=True)
-        if not user:
+        if not user or user.reserved:
             return f"{space}@{target}"
         
         return f'{space}<a href="{user.permalink}">@{user.username}</a>'

@@ -6,11 +6,6 @@
 <script src="/assets/js/enlarge_thumb.js"></script>
 {% endblock %}
 
-{% block title %}
-<title>@{{ u.username }}</title>
-<meta name="description" content="This account name is reserved for: {{ u.reserved }}">
-{% endblock %}
-
 {% block fixedMobileBarJS %}
 <script>
   var prevScrollpos = window.pageYOffset;
@@ -36,8 +31,8 @@
 {% endblock %}
 
 {% block title %}
-<title>{{ u.username }}</title>
-<meta name="description" content="[banned]">
+<title>@{{ u.username %}}</title>
+<meta name="description" content="Username reserved for {{ u.reserved }}">
 {% endblock %}
 
 {% block sidebarblock %}
