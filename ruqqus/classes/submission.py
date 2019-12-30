@@ -308,7 +308,7 @@ class Submission(Base):
         
 
     @property
-    @lazy
+    #@lazy
     def thumb_url(self):
     
         if self.has_thumb:
