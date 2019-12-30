@@ -293,7 +293,7 @@ class Submission(Base):
         tempname=name.replace("/","_")
 
         with open(tempname, "wb") as file:
-            for chunk in r.iter_content(1024):
+            for chunk in x.iter_content(1024):
                 f.write(chunk)
 
         print("thumb saved")
