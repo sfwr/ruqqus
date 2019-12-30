@@ -26,7 +26,7 @@
 
         <div id="comment-{{ c.base36id }}-only" class="{% if c.is_banned %} banned{% endif %}{% if c.is_deleted %} deleted{% endif %}">
 
-            <div class="user-info"><span class="mr-2"><a href="{{ c.author.permalink }}"><img src="{{ c.author.profile_url }}" class="profile-pic-25"></a></span>{% if standalone and c.over_18 %}<span class="badge badge-danger">NSFW</span> {% endif %}{% if c.author.title and c.author.title.is_before %}<span style="color:#{{ c.author.title.color }}">{{ c.author.title.text }}</span> {% endif %}<a href="{{ c.author.permalink }}" class="user-name">{{ c.author.username }}</a>{% if c.author.title and not c.author.title.is_before %}<span style="color:#{{ c.author.title.color }}">{{ c.author.title.text }}</span>{% endif %}
+            <div class="user-info">{% if c.author.has_profile %}<span class="mr-2"><a href="{{ c.author.permalink }}"><img src="{{ c.author.profile_url }}" class="profile-pic-25"></a></span>{% endif %}{% if standalone and c.over_18 %}<span class="badge badge-danger">NSFW</span> {% endif %}{% if c.author.title and c.author.title.is_before %}<span style="color:#{{ c.author.title.color }}">{{ c.author.title.text }}</span> {% endif %}<a href="{{ c.author.permalink }}" class="user-name">{{ c.author.username }}</a>{% if c.author.title and not c.author.title.is_before %}<span style="color:#{{ c.author.title.color }}">{{ c.author.title.text }}</span>{% endif %}
 		{% if c.distinguish_level or c.author_id==c.post.author_id %}
 		<span> </span>
 			{% if c.distinguish_level %}
