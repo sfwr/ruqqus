@@ -146,10 +146,10 @@ def guild_ids(sort="subs", page=1, nsfw=False):
     else:
         abort(422)
 
-    posts=[x.id for x in posts.offset(25*(page-1)).limit(26).all()]
+    guilds=[x.id for x in posts.offset(25*(page-1)).limit(26).all()]
     
 
-    return posts
+    return guilds
 
 @app.route("/browse", methods=["GET"])
 @auth_desired
