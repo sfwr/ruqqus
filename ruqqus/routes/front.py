@@ -130,7 +130,7 @@ def user_subs(v):
                                   )
 
 @cache.memoize(60)
-def guild_ids(sort="subs", page=1, nsfw=False)
+def guild_ids(sort="subs", page=1, nsfw=False):
     #cutoff=int(time.time())-(60*60*24*30)
 
     guilds = db.query(Board).filter_by(is_banned=False)
