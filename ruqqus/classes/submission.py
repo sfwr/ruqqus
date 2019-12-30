@@ -6,6 +6,7 @@ import math
 from urllib.parse import urlparse
 import random
 from os import environ
+import requests
 
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
