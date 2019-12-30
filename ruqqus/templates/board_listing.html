@@ -3,7 +3,7 @@
 
 
 
-<div id="board-{{ b.base36id }}" class="card{% if b.is_banned %} banned{% endif %}">
+<div id="board-{{ b.base36id }}" class="card">
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
     <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
 
@@ -34,10 +34,10 @@
   </div>
 </div>
 <div class="card-block text-left x-scroll-parent my-md-auto">
-  <div class="post-meta text-left x-scroll d-block d-md-none mb-2">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ b.created_date }}">{{ b.age_string }}</span> <a href="{{ b.permalink }}" class="user-name">{{ b.creator_id.username }}</a> {% if b.board_id %}<span class="position-relative"><a class="btn btn-secondary btn-tag font-weight-bold ml-2" href="{{ b.permalink }}">+{{ b.name }}</a></span>{% endif %}
+  <div class="post-meta text-left x-scroll d-block d-md-none mb-2"><span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}
   </div>
-  <h5 class="card-title post-title text-left mb-0 mb-md-2"><a href="{{ b.permalink }}" class="stretched-link" onclick="">{{ b.name | safe }}</a></h5>
-  <div class="post-meta text-left d-none d-md-block">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ b.created_date }}">{{ b.age_string }}</span><a href="{{ b.permalink }}" class="user-name">{{ b.name }}</a>{% if b.board_id %}<span class="position-relative"><a class="btn btn-secondary btn-tag font-weight-bold ml-2" href="{{ b.permalink }}">+{{ b.name }}</a></span>{% endif %}
+  <h5 class="card-title post-title text-left mb-0 mb-md-2"><a href="{{ b.permalink }}" class="stretched-link text-primary">+{{ b.name | safe }}</a></h5>
+  <div class="post-meta text-left d-none d-md-block">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}
   </div>
 
   {% if b.body_html %}
