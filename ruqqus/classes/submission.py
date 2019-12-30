@@ -277,7 +277,7 @@ class Submission(Base):
 
     def save_thumb(self):
 
-        url=f"https://api.apiflash.com/v1/urltoimage/cache/{post.thumb_id}.jpeg?access_key={APIFLASH_KEY}"
+        url=f"https://api.apiflash.com/v1/urltoimage"
         params={'access_key':environ.get("APIFLASH_KEY"),
                 'format':'png',
                 'height':720,
