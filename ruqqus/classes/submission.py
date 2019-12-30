@@ -274,10 +274,9 @@ class Submission(Base):
         else:
             return self.flags.filter(Flag.created_utc>self.approved_utc).count()
 
-    @property
-    def set_thumb(self, file):
+    def save_thumb(self, file):
 
-        aws.upload_file(f"posts/{self.base36id}/thumb.png",file)
+        aws.upload_from_url(f"posts/{self.base36id}/thumb.png", self.url)
         self.has_thumb=True
         db.add(self)
         db.commit()

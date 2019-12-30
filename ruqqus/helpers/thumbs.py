@@ -22,19 +22,5 @@ def thumbnail_thread(post, can_show_thumbnail=False):
 
             return
 
-    
-
-    #if it's not an image, hit apiflash
-    params={"access_key":environ.get("APIFLASH_KEY"),
-            "url": post.embed_url if post.embed_url else post.url,
-            "height":720,
-            "width":1280,
-            "format":"png",
-            "response_type":"image",
-            "thumbnail_width":300
-            }
-
-
-    x=requests.get("https://api.apiflash.com/v1/urltoimage", params=params)
-
-    post.set_thumb(x.content)
+    else:
+        post.save_thumb()
