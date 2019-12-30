@@ -16,31 +16,17 @@
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
     <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
 
-      {% if p.is_image and p.domain_obj and p.domain_obj.show_thumbnail %}
+      {% if p.thumb_url %}
       <div class="position-relative d-none d-md-block" style="z-index: 3;">
         <a href="{{ p.url }}">
           <div class="thumb-img-link-overlay">
             <i class="fas fa-external-link-alt text-lg d-block mb-1"></i>View full
           </div>
-          <img src="{{ p.url }}" class="post-img" alt="">
+          <img src="{{ p.thumb_url }}" class="post-img" alt="">
         </a>
       </div>
       <div class="d-block d-md-none" style="z-index: 3;">
-        <img src="{{ p.url }}" class="post-img" alt="" onclick="enlarge_thumb('post-{{ p.base36id }}')">
-      </div>
-
-	{% elif p.thumb_id and not p.over_18 %}
-
-      <div class="position-relative d-none d-md-block" style="z-index: 3;">
-        <a href="{{ p.url }}" rel="nofollow" target="_blank">
-          <div class="thumb-img-link-overlay">
-            <i class="fas fa-external-link-alt text-lg d-block mb-1"></i>View full
-          </div>
-          <img src="/thumbs/{{ p.base36id }}" class="post-img" alt="">
-        </a>
-      </div>
-      <div class="d-block d-md-none" style="z-index: 3;">
-        <a href="{{ p.url }}" rel="nofollow" target="_blank" ><img src="/thumbs/{{ p.base36id }}" class="post-img" alt="" onclick="enlarge_thumb('post-{{ p.base36id }}')"></a>
+        <img src="{{ p.thumb url }}" class="post-img" alt="" onclick="enlarge_thumb('post-{{ p.base36id }}')">
       </div>
 
       {% endif %}
@@ -120,10 +106,10 @@
 
 </div>
 
-{% if p.is_image and p.domain_obj and p.domain_obj.show_thumbnail %}
+{% if p.thumb_url %}
 <div class="row post-img-lg mt-3">
   <div class="col px-0">
-    <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.url }}" class="img-fluid" alt="post image"></a>
+    <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
   </div>
 </div>
 {% endif %}

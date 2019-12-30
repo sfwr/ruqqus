@@ -8,6 +8,7 @@ import random
 
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
+import ruqqus.helpers.aws as aws
 from ruqqus.__main__ import Base, db, cache
 from .votes import Vote
 from .domains import Domain
@@ -42,10 +43,10 @@ class Submission(Base):
     original_board=relationship("Board", uselist=False, primaryjoin="Board.id==Submission.original_board_id")
     ban_reason=Column(String(128), default="")
     creation_ip=Column(String(64), default="")
-    thumb_id=Column(String(128), default="")
     mod_approved=Column(Integer, default=None)
     is_image=Column(Boolean, default=False)
-    
+    has_thumb=Column(Boolean, default=False)    
+
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
 
@@ -272,3 +273,23 @@ class Submission(Base):
             return 0
         else:
             return self.flags.filter(Flag.created_utc>self.approved_utc).count()
+
+    @property
+    def set_thumb(self, file):
+
+        aws.upload_file(f"posts/{self.base36id}/thumb.png",file)
+        self.has_thumb=True
+        db.add(self)
+        db.commit()
+        
+
+    @property
+    @lazy
+    def thumb_url(self)
+    
+        if self.has_thumb:
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/posts/{self.base36id}/thumb.png"
+        elif self.is_image:
+            return self.url
+        else:
+            return none
