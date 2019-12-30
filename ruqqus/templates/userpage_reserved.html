@@ -32,7 +32,7 @@
 
 {% block title %}
 <title>@{{ u.username }}</title>
-<meta name="description" content="Username reserved for {{ u.reserved }}">
+<meta name="description" content="Username reserved for: {{ u.reserved }}">
 {% endblock %}
 
 {% block sidebarblock %}
@@ -58,7 +58,7 @@
 
 
       <div class="font-weight-bold text-muted">Account Reserved</div>
-      <div class="text-muted">The account @{{ u.username }} has been pre-emptively reserved for: {{ u.reserved }}</div>
+      <div class="text-muted">The username @{{ u.username }} has been pre-emptively reserved for: {{ u.reserved }}</div>
 	<div class="text-muted">If that's you, or if you are their authorized representative, please contact Ruqqus staff in order to obtain access to this account.</div>
 
     </div>
