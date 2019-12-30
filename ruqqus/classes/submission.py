@@ -281,7 +281,8 @@ class Submission(Base):
         url=f"https://api.apiflash.com/v1/urltoimage"
         params={'access_key':environ.get("APIFLASH_KEY"),
                 'format':'png',
-                'height':720,
+                'height':1280,
+                'width':720,
                 'response_type':'image',
                 'thumbnail_width':300,
                 'url':self.url
