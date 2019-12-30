@@ -67,12 +67,14 @@ def upload_file(name, file):
 
 def upload_from_file(name, filename):
 
+    tempname=name.replace("/","_")
+
     
     image=Image.open(filename)
     raw_image=list(image.getdata())
     no_exif=Image.new(image.mode, image.size)
     no_exif.putdata(raw_image)
-    no_exif.save(tempname)
+    no_exif.save(filename)
     
     S3.upload_file(tempname,
                       Bucket=BUCKET,
@@ -82,7 +84,7 @@ def upload_from_file(name, filename):
                       }
                      )
 
-    remove(tempname)
+    remove(filename)
 
 def delete_file(name):
 
