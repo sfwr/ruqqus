@@ -29,7 +29,7 @@ app.config['SECRET_KEY']=environ.get('MASTER_KEY')
 app.config["SERVER_NAME"]=environ.get("domain", None)
 app.config["VERSION"]="0.1.0"
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-app.config["UserAgent"]="Ruqqus thu
+app.config["UserAgent"]="Ruqqus webserver ruqqus.com"
 
 if "localhost" in app.config["SERVER_NAME"]:
     app.config["CACHE_TYPE"]="null"
