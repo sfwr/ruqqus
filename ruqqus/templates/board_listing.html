@@ -1,300 +1,94 @@
-{% extends "default.html" %}
+{% for b in boards %}
 
-{% block adminpanel %}
-<div>
-  <p><a href="/flagged/posts">Reported Posts</a></p>
-  <p><a href="/flagged/comments">Reported Comments</a></p>
+
+
+
+<div id="board-{{ b.base36id }}" class="card{% if b.is_banned %} banned{% endif %}">
+  <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
+    <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
+
+      <div class="dropdown show my-auto post-actions ml-4 d-none d-md-block">
+        <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">
+        <i class="fas fa-ellipsis-v"></i>
+      </a>
+
+      <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2"
+      aria-labelledby="dropdownMoreLink">
+      <a href="javascript:void(0);" role="button" class="dropdown-item copy-link" data-clipboard-text="{{ b.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a>
+      <a class="dropdown-item d-none" href="#"><i class="fas fa-save"></i>Save</a>
+      {% if v and not v.id==b.creator_id %}
+      <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ b.base36id }}')"><i class="fas fa-flag"></i>Flag</a>
+      {% endif %}
+      {% if v %}
+      {% if v.admin_level >=1 %}
+      {% if b.is_banned or b.active_flags %}
+      <a class="dropdown-item approveDropdownItem" id="moderate-board-{{ b.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ b.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a>
+      {% endif %}
+      {% if not b.is_banned or b.active_flags %}
+      <a class="dropdown-item removeDropdownItem" id="moderate-board-{{ b.base36id }}" href="javascript:void(0)" onclick="removePost('{{ b.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a>
+      {% endif %}
+      {% endif %}
+      {% endif %}
+    </div>
+  </div>
 </div>
-{% endblock %}
+<div class="card-block text-left x-scroll-parent my-md-auto">
+  <div class="post-meta text-left x-scroll d-block d-md-none mb-2">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ b.created_date }}">{{ b.age_string }}</span> <a href="{{ b.permalink }}" class="user-name">{{ b.creator_id.username }}</a> {% if b.board_id %}<span class="position-relative"><a class="btn btn-secondary btn-tag font-weight-bold ml-2" href="{{ b.permalink }}">+{{ b.name }}</a></span>{% endif %}
+  </div>
+  <h5 class="card-title post-title text-left mb-0 mb-md-2"><a href="{{ b.permalink }}" class="stretched-link" onclick="">{{ b.name | safe }}</a></h5>
+  <div class="post-meta text-left d-none d-md-block">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ b.created_date }}">{{ b.age_string }}</span><a href="{{ b.permalink }}" class="user-name">{{ b.name }}</a>{% if b.board_id %}<span class="position-relative"><a class="btn btn-secondary btn-tag font-weight-bold ml-2" href="{{ b.permalink }}">+{{ b.name }}</a></span>{% endif %}
+  </div>
 
-{% block enlargeThumbJS %}
-<script src="/assets/js/enlarge_thumb.js"></script>
-{% endblock %}
+  {% if b.body_html %}
+  <div class="post-preview-lg">
+    <div class="post-body mt-3"> 
+      {{ b.body | truncate(140, False, '...', 0) }}
+    </div>
+  </div>
+  {% endif %}
 
-{% block toggleView %}
-<script src="/assets/js/toggle_view.js"></script>
-{% endblock %}
-
-{% block fixedMobileBarJS %}
-<script>
-  var prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      document.getElementById("fixed-bar-mobile").style.top = "49px";
-      document.getElementById("navbar").classList.remove("shadow");
-    } 
-    else if (currentScrollPos <= 125) {
-      document.getElementById("fixed-bar-mobile").style.top = "49px";
-      document.getElementById("navbar").classList.remove("shadow");
-    }
-    else {
-      document.getElementById("fixed-bar-mobile").style.top = "-49px";
-      document.getElementById("dropdownMenuSortBy").classList.remove('show');
-      document.getElementById("dropdownMenuFrom").classList.remove('show');
-      document.getElementById("navbar").classList.add("shadow");
-    }
-    prevScrollpos = currentScrollPos;
-  }
-</script>
-{% endblock %}
-
-{% block postNav %}
-<div class="flex-row bg-light sticky d-none d-lg-flex pt-3 mb-3">
-  <ul class="nav post-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link{% if sort_method=="subs" %} active{% endif %}" href="/guilds"><i class="fas fa-fire"></i>Members</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="/guilds?sort=new"><i class="fas fa-arrow-alt-circle-up"></i>New</a>
-    </li>
-  </ul>
 </div>
-{% endblock %}
 
-{% block PseudoSubmitForm %}
-<!-- Link to submission page from homepage, only visible on home -->
 
-<div class="row no-gutters d-none d-lg-flex">
+</div>
 
-  <div class="col">
-    <div class="card pseudo-submit-form">
-      <div class="card-header bg-white">
-        <div class="text-small text-gray mb-0">Create post</div>
-        <ul class="list-inline no-bullets mb-0 d-none">
-          <li class="list-inline-item active mr-4"><i class="fas fa-align-left text-gray-400"></i></li>
-          <li class="list-inline-item"><i class="fas fa-link text-gray-400"></i></li>
+
+
+
+
+<!-- Post Actions Modal -->
+<div class="modal fade d-md-none" id="actionsModal-{{ b.base36id }}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title h6">More options</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="far fa-times"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group post-actions">
+          <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
+          {% if v and not v.id==b.creator_id %}
+          <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ b.base36id }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
+          {% endif %}
+          {% if v %}
+          {% if v.admin_level >=1 %}
+          {% if b.is_banned or b.active_flags %}
+          <li class="list-group-item"><a class="d-block" id="moderate-post-{{ b.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ b.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a></li>
+          {% endif %}
+          {% if not b.is_banned or b.active_flags %}
+          <li class="list-group-item"><a class="d-block" id="moderate-post-{{ b.base36id }}" href="javascript:void(0)" onclick="removePost('{{ b.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a></li>
+          {% endif %}
+          {% endif %}
+          {% endif %}
         </ul>
       </div>
-      <div class="card-body">
-        {% if v %}
-        <a href="/submit">
-          <input type="text" class="form-control"
-          placeholder="Share something with the Ruqqus commmunity..." aria-label="Username"
-          aria-describedby="basic-addon1">
-        </a>
-        {% else %}
-        <a href="/signup">
-          <input type="text" class="form-control"
-          placeholder="Share something with the Ruqqus commmunity..." aria-label="Username"
-          aria-describedby="basic-addon1">
-        </a>
-        {% endif %}
-      </div>
     </div>
-  </div>
-
-</div>
-{% endblock %}
-
-<!-- Right Sidebar (hidden on devices smaller than "large") -->
-
-<div class="col sidebar text-left d-none d-lg-block pt-3">
-  {% block sidebarblock %}
-  <div class="sidebar-section sidebar-about">
-    <div class="body">
-    <div class="title">About Ruqqus</div>
-      <p>Here you'll find the different Guilds across all of Ruqqus.</p>
-      <small><a href="/help/about">Learn more →</a></small>
-      {% if v and not v.is_banned %}
-      <div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
-      {% endif %}
-      {% if not v %}
-      <div class="mt-3"><a class="btn btn-primary btn-block" href="/login">Create post</a></div>
-      {% endif %}
-      {% if v and v.is_activated and v.karma >=100 %}
-      <div class="mt-3"><a href="/create_guild" class="btn btn-secondary btn-block">Start a Guild</a></div>
-      {% endif %}
-    </div>
-  </div>
-  {% if trending_boards %}
-  <div class="sidebar-section sidebar-trending">
-    <div class="body">
-    <div class="title">Rising Guilds</div>
-     {% for entry in trending_boards[0:5] %}
-     <div class="d-flex justify-content-start trending-guild">
-      <div>
-        <a href="{{ entry[0].permalink }}">+{{ entry[0].name }}</a>
-        <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-      </div>
-    </div>
-    {% endfor %}
   </div>
 </div>
-{% endif %}
-{% endblock %}
 
+</div>
 
-{% block content %}
-
-<!-- View toggle visible only on large devices or larger -->
-
-<div class="flex-row p-3 justify-content-end d-none d-lg-flex">
-
-  <div>
-    <ul class="nav toggle-view">
-      <li class="nav-item">
-        <button class="btn nav-link pr-3 active" id="toggle-list-view-btn" onclick="toggle_list_view()">
-          <i class="fas fa-list"></i>List</button>
-        </li>
-        <li class="nav-item" style="">
-          <button class="btn nav-link" id="toggle-card-view-btn" onclick="toggle_card_view()">
-            <i class="fas fa-th-large"></i>Card</button>
-          </li>
-        </ul>
-      </div>
-
-      <div class="post-filter pb-2 d-none">
-        <span>Sort By:</span>
-        <span class="dropdown">
-          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Time
-          </a>
-
-          <span class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Day</a>
-            <a class="dropdown-item" href="#">Month</a>
-            <a class="dropdown-item" href="#">Year</a>
-            <a class="dropdown-item" href="#">All Time</a>
-          </span>
-        </span>
-
-      </div>
-
-    </div>
-
-    <!-- Post filters bar visible only on medium devices or larger-->
-
-    <div class="flex-row tab-bar sticky d-none">
-
-      <ul class="nav post-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link{% if sort_method=="subs" %} active{% endif %}" href="/guilds"><i class="fas fa-fire"></i>Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="/guilds?sort=new"><i class="fas fa-arrow-alt-circle-up"></i>New</a>
-        </li>
-      </ul>
-
-      <div>
-        <ul class="nav toggle-view ml-auto">
-          <li class="nav-item" style="">
-            <button class="btn nav-link active pr-3 pb-0 pl-0" id="toggle-list-view-btn" style="box-shadow: none;" onclick="toggle_list_view()">
-              <i class="fas fa-list"></i>List</button>
-            </li>
-            <li class="nav-item" style="">
-              <button class="btn nav-link p-0" style="box-shadow: none;" id="toggle-card-view-btn" onclick="toggle_card_view()">
-                <i class="fas fa-th-large"></i>Card</button>
-              </li>
-            </ul>
-          </div>
-
-          <div class="post-filter pb-2 d-none">
-            <span>Sort By:</span>
-            <span class="dropdown">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Time
-            </a>
-
-            <span class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Day</a>
-              <a class="dropdown-item" href="#">Month</a>
-              <a class="dropdown-item" href="#">Year</a>
-              <a class="dropdown-item" href="#">All Time</a>
-            </span>
-          </span>
-
-        </div>
-
-      </div>
-
-      <div class="row no-gutters">
-
-        <div class="col-12">
-
-          <div class="posts" id="posts">
-
-            {% include "submission_listing.html" %}
-
-          </div>
-        </div>
-      </div>
-
-      <div class="row fixed-top bg-white border-top d-inline-flex d-lg-none p-3" id="fixed-bar-mobile" style="z-index: 100; top: 49px; transition: top 0.3s;">
-
-        <div class="col">
-
-          <div class="d-flex flex-row flex-nowrap justify-content-between">
-
-            <div class="post-filter">
-              <span>Sort By:</span>
-              <span class="dropdown">
-                <a class="dropdown-toggle" href="#" role="button" id="dropdownSortBy" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">{{ sort_method.capitalize() }}</a>
-
-                <span class="dropdown-menu border-0 shadow" id="dropdownMenuSortBy" aria-labelledby="dropdownSortBy">
-                  <a class="dropdown-item" href="?sort=subs">Members</a>
-                  <a class="dropdown-item" href="?sort=new">New</a>
-                </span>
-              </span>
-
-            </div>
-
-            <div>
-              <ul class="nav toggle-view ml-auto">
-                <li class="nav-item" style="">
-                  <button class="btn nav-link active pr-3 pb-0 pl-0" id="toggle-list-view-btn-sm" style="box-shadow: none;" onclick="toggle_list_view_sm()">
-                    <i class="fas fa-list" data-toggle="tooltip"></i>List</button>
-                  </li>
-                  <li class="nav-item" style="">
-                    <button class="btn nav-link p-0" id="toggle-card-view-btn-sm" style="box-shadow: none;" onclick="toggle_card_view_sm()">
-                      <i class="fas fa-th-large"></i>Card</button>
-                    </li>
-                  </ul>
-                </div>
-
-                <div class="post-filter d-none">
-                  <span>From:</span>
-                  <span class="dropdown">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownFrom" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="false">Time</a>
-
-                    <span class="dropdown-menu border-0 shadow" id="dropdownMenuFrom" aria-labelledby="dropdownFrom">
-                      <a class="dropdown-item" href="#">Past Day</a>
-                      <a class="dropdown-item" href="#">Past Month</a>
-                      <a class="dropdown-item" href="#">Past Year</a>
-                      <a class="dropdown-item" href="#">All Time</a>
-                    </span>
-                  </span>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-          {% endblock %}
-
-          {% block pagenav %}
-          <nav aria-label="Page navigation">
-            <ul class="pagination pagination-sm mb-0">
-              {% if page>1 %}
-              <li class="page-item">
-                <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page-1 }}" tabindex="-1">Prev</a></small>
-              </li>
-              {% else %}
-              <li class="page-item disabled"><span class="page-link">Prev</span></li>
-              {% endif %}
-              {% if next_exists %}
-              <li class="page-item">
-                <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page+1 }}">Next</a></small>
-              </li>
-              {% else %}
-              <li class="page-item disabled"><span class="page-link">Next</span></li>
-              {% endif %}
-            </ul>
-          </nav>
-          {% endblock %}
+{% endfor %}

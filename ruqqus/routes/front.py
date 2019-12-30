@@ -194,7 +194,7 @@ def browse_guilds(v):
     else:
         boards=[]
 
-    return render_template("board_listing.html",
+    return render_template("boards.html",
                            v=v,
                            boards=boards,
                            page=page,
