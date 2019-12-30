@@ -284,7 +284,7 @@ class Submission(Base):
 
     @property
     @lazy
-    def thumb_url(self)
+    def thumb_url(self):
     
         if self.has_thumb:
             return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/posts/{self.base36id}/thumb.png"
