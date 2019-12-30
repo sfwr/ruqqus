@@ -275,7 +275,7 @@ class Submission(Base):
         else:
             return self.flags.filter(Flag.created_utc>self.approved_utc).count()
 
-    def save_thumb(self, file):
+    def save_thumb(self):
 
         url=f"https://api.apiflash.com/v1/urltoimage/cache/{post.thumb_id}.jpeg?access_key={APIFLASH_KEY}"
         params={'access_key':environ.get("APIFLASH_KEY"),
