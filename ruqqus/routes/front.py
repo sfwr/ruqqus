@@ -146,7 +146,7 @@ def guild_ids(sort="subs", page=1, nsfw=False):
     else:
         abort(422)
 
-    guilds=[x.id for x in posts.offset(25*(page-1)).limit(26).all()]
+    guilds=[x.id for x in guilds.offset(25*(page-1)).limit(26).all()]
     
 
     return guilds
@@ -194,9 +194,10 @@ def browse_guilds(v):
     else:
         boards=[]
 
-    return render_template("board_listing.html",
+    return render_template("boards.html",
                            v=v,
                            boards=boards,
                            page=page,
-                           next_exists=next_exists
+                           next_exists=next_exists,
+                           sort_method=sort_method
                             )
