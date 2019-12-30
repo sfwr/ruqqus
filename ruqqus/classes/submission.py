@@ -279,11 +279,11 @@ class Submission(Base):
 
         url=f"https://api.apiflash.com/v1/urltoimage/cache/{post.thumb_id}.jpeg?access_key={APIFLASH_KEY}"
         params={'access_key':environ.get("APIFLASH_KEY"),
-                'format'='png',
-                'height'=720,
-                'response_type'='image',
-                'thumbnail_width'=300,
-                'url'=self.url
+                'format':'png',
+                'height':720,
+                'response_type':'image',
+                'thumbnail_width':300,
+                'url':self.url
                 }
         x=requests.get(url, params=params)
 
