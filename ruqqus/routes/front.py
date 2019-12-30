@@ -198,5 +198,6 @@ def browse_guilds(v):
                            v=v,
                            boards=boards,
                            page=page,
-                           next_exists=next_exists
+                           next_exists=next_exists,
+                           sort_method=sort_method
                             )
