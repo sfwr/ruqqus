@@ -49,6 +49,7 @@ class User(Base):
     title=relationship("Title")
     has_profile=Column(Boolean, default=False)
     has_banner=Column(Boolean, default=False)
+    reserved=Column(String(256), default=None)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
@@ -242,6 +243,9 @@ class User(Base):
         
     def rendered_userpage(self, v=None):
 
+        if self.reserved:
+            return render_template("userpage_reserved.html", u=self, v=v)
+
         if self.is_banned and (not v or v.admin_level < 3):
             return render_template("userpage_banned.html", u=self, v=v)
 
@@ -276,6 +280,8 @@ class User(Base):
                                is_following=is_following)
 
     def rendered_comments_page(self, v=None):
+        if self.reserved:
+            return render_template("userpage_reserved.html", u=self, v=v)
 
         if self.is_banned and (not v or v.admin_level < 3):
             return render_template("userpage_banned.html", u=self, v=v)
