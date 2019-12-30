@@ -29,12 +29,11 @@
       <a class="dropdown-item removeDropdownItem" id="moderate-board-{{ b.base36id }}" href="javascript:void(0)" onclick="removePost('{{ b.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a>
       {% endif %}
       {% endif %}
-      {% endif %}
     </div>
   </div>
 </div>
 <div class="card-block text-left x-scroll-parent my-md-auto">
-  <div class="post-meta text-left x-scroll d-block d-md-none mb-2"><span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}
+  <div class="post-meta text-left x-scroll d-block d-md-none mb-2">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}
   </div>
   <h5 class="card-title post-title text-left mb-0 mb-md-2"><a href="{{ b.permalink }}" class="stretched-link text-primary">+{{ b.name | safe }}</a></h5>
   <div class="post-meta text-left d-none d-md-block">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}
