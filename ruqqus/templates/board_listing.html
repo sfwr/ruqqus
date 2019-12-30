@@ -17,18 +17,6 @@
       aria-labelledby="dropdownMoreLink">
       <a href="javascript:void(0);" role="button" class="dropdown-item copy-link" data-clipboard-text="{{ b.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a>
       <a class="dropdown-item d-none" href="#"><i class="fas fa-save"></i>Save</a>
-      {% if v and not v.id==b.creator_id %}
-      <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ b.base36id }}')"><i class="fas fa-flag"></i>Flag</a>
-      {% endif %}
-      {% if v %}
-      {% if v.admin_level >=1 %}
-      {% if b.is_banned or b.active_flags %}
-      <a class="dropdown-item approveDropdownItem" id="moderate-board-{{ b.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ b.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a>
-      {% endif %}
-      {% if not b.is_banned or b.active_flags %}
-      <a class="dropdown-item removeDropdownItem" id="moderate-board-{{ b.base36id }}" href="javascript:void(0)" onclick="removePost('{{ b.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a>
-      {% endif %}
-      {% endif %}
     </div>
   </div>
 </div>
