@@ -129,3 +129,75 @@ def user_subs(v):
                                   page=max(int(request.args.get("page",1)),0)
                                   )
 
+@cache.memoize(60)
+def guild_ids(sort="subs", page=1, nsfw=False):
+    #cutoff=int(time.time())-(60*60*24*30)
+
+    guilds = db.query(Board).filter_by(is_banned=False)
+
+    if not nsfw:
+        guilds=guilds.filter_by(over_18=False)
+
+    if sort=="subs":
+        guilds=guilds.order_by(text("boards.subscriber_count desc"))
+    elif sort=="new":
+        guilds=guilds.order_by(text("boards.created_utc desc"))
+
+    else:
+        abort(422)
+
+    guilds=[x.id for x in guilds.offset(25*(page-1)).limit(26).all()]
+    
+
+    return guilds
+
+@app.route("/browse", methods=["GET"])
+@auth_desired
+def browse_guilds(v):
+
+    page=int(request.args.get("page",1))
+
+    #prevent invalid paging
+    page=max(page, 1)
+
+    sort_method=request.args.get("sort", "subs")
+
+    #get list of ids
+    ids = guild_ids(sort=sort_method, page=page, nsfw=(v and v.over_18))
+
+    #check existence of next page
+    next_exists=(len(ids)==26)
+    ids=ids[0:25]
+
+    #check if ids exist
+    if ids:
+        #assemble list of tuples
+        i=1
+        tups=[]
+        for x in ids:
+            tups.append((x, i))
+            i+=1
+
+        #tuple string
+        tups = str(tups).lstrip("[").rstrip("]")
+            
+
+        #hit db for entries
+        
+        boards=db.query(Board
+                       ).from_statement(
+                           text(f"""
+                            select *
+                            from boards
+                            join (values {tups}) as x(id, n) on boards.id=x.id order by x.n"""
+                                )).all()
+    else:
+        boards=[]
+
+    return render_template("boards.html",
+                           v=v,
+                           boards=boards,
+                           page=page,
+                           next_exists=next_exists,
+                           sort_method=sort_method
+                            )
