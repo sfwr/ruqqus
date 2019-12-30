@@ -11,6 +11,5 @@ from .posts import *
 from .search import *
 from .settings import *
 from .static import *
-from .thumbs import *
 from .user_pages import *
 from .votes import *
