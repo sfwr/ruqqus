@@ -291,4 +291,4 @@ class Submission(Base):
         elif self.is_image:
             return self.url
         else:
-            return none
+            return None
