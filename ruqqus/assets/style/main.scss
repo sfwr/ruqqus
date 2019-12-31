@@ -2180,7 +2180,6 @@ ul.comment-section {
 
 .comment.collapsed .user-info {
     margin-bottom: 0;
-    padding-top: 0.5rem;
 }
 
 .comment.collapsed .profile-pic-25 {
@@ -2972,6 +2971,10 @@ body, #settings, #notifications, #submit {
 
 .comment .comment-collapse {
     padding-right: 0;
+}
+
+.comment.collapsed .user-info {
+    padding-top: 0.5rem;
 }
 
 .comment .comment-collapse::before {
