@@ -1,6 +1,7 @@
 import boto3
 import requests
 from os import environ, remove
+import piexif
 from PIL import Image
 
 BUCKET="i.ruqqus.com"
@@ -25,11 +26,8 @@ def upload_from_url(name, url):
         for chunk in r.iter_content(1024):
             f.write(chunk)
             
-    image=Image.open(tempname)
-    raw_image=list(image.getdata())
-    no_exif=Image.new(image.mode, image.size)
-    no_exif.putdata(raw_image)
-    no_exif.save(tempname)
+    if tempname.split('.')[-1] in ['jpg','jpeg']:
+        piexif.remove(tempname)
     
     S3.upload_file(tempname,
                       Bucket=BUCKET,
@@ -49,11 +47,8 @@ def upload_file(name, file):
 
     file.save(tempname)
     
-    image=Image.open(tempname)
-    raw_image=list(image.getdata())
-    no_exif=Image.new(image.mode, image.size)
-    no_exif.putdata(raw_image)
-    no_exif.save(tempname)
+    if tempname.split('.')[-1] in ['jpg','jpeg']:
+        piexif.remove(tempname)
     
     S3.upload_file(tempname,
                       Bucket=BUCKET,
@@ -69,12 +64,8 @@ def upload_from_file(name, filename):
 
     tempname=name.replace("/","_")
 
-    
-    image=Image.open(filename)
-    raw_image=list(image.getdata())
-    no_exif=Image.new(image.mode, image.size)
-    no_exif.putdata(raw_image)
-    no_exif.save(filename)
+    if filename.split('.')[-1] in ['jpg','jpeg']:
+        piexif.remove(tempname)
     
     S3.upload_file(tempname,
                       Bucket=BUCKET,
