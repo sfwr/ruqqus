@@ -3033,6 +3033,14 @@ body {
 
 // Comments
 
+.comment-section > .comment {
+    padding-left: 0;
+  }
+
+.comment {
+    padding-left: 15px;
+}
+
 .comment .comment-collapse {
     padding-right: 0;
 }
