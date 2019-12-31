@@ -15563,7 +15563,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     z-index: 3;
   }
 
-  #frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #frontpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg {
+  #frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg, #guild .posts .card.enlarged .post-img-lg {
     display: block;
   }
 
@@ -15571,7 +15571,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     padding-top: 2px;
   }
 
-  #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card {
+  #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
     border-width: 0 0 1px 0;
     border-color: #D8D8D8;
     border-style: solid;
@@ -15580,7 +15580,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     box-shadow: none;
   }
 
-  #frontpage.toggle-card-view .posts .card .post-img-lg img, #userpage.toggle-card-view .posts .card .post-img-lg img, #search.toggle-card-view .posts .card .post-img-lg img {
+  #frontpage.toggle-card-view .posts .card .post-img-lg img, #userpage.toggle-card-view .posts .card .post-img-lg img, #search.toggle-card-view .posts .card .post-img-lg img, #guild.toggle-card-view .posts .card .post-img-lg img {
     max-width: 100%;
     height: auto;
   }
