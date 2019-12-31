@@ -1161,7 +1161,6 @@ color: $dark;
 .sidebar.sidebar-left .sidebar-section .title {
     border-bottom: none;
     background-color: transparent;
-    padding: 0 0 .5rem 0;
 }
 
 .sidebar-section.sidebar-filters .body {
@@ -2964,6 +2963,22 @@ body, #settings, #notifications, #submit {
     font-size: $small-font-size;
 }
 
+// Comments
+
+.comment .comment-collapse {
+    padding-right: 0;
+}
+
+.comment .comment-collapse::before {
+    content: "";
+    position: absolute;
+    font-family: "Font Awesome 5 Pro";
+    font-size: $font-size-base;
+    color: $purple;
+    display: inline-block;
+    cursor: pointer;
+}
+
 // User and Profile (mobile)
 
 .banner-pic-135 {
@@ -3094,36 +3109,30 @@ span.green {
 
 div.banned {
   background-color: $banned;
-}
+}	  
 
 div.deleted {
     background-color: $deleted;
-}
-
+}  
+  
 div.deleted.banned {
     background-color: $deletedandbanned
 }
-
-.distinguish-admin .user-name, .distinguish-mod   .user-name {
-  color: white;
-  padding: 0px 3px 2px 3px;
-  border-radius: 3px;
-}
-.distinguish-admin .user-name {
-  background-color: $admin;
-}
-.distinguish-mod .user-name {
-  background-color: $mod;
-}
-.distinguish-admin .user-name::before {
- content: "[A] "
-}
-.distinguish-mod .user-name::before {
- content: "[M] "
-}
-
-//Easter Egg additions
-.ruckus {
-  transition:182s;
-  transform:translateY(-50%) rotate(36000deg);
+			
+.distinguish-admin .user-name, .distinguish-mod   .user-name {		
+  color: white;		
+  padding: 0px 3px 2px 3px;		
+  border-radius: 3px;		
+}		
+.distinguish-admin .user-name {		
+  background-color: $admin;		
+}		
+.distinguish-mod .user-name {		
+  background-color: $mod;		
+}		
+.distinguish-admin .user-name::before {		
+ content: "[A] "		
+}		
+.distinguish-mod .user-name::before {		
+ content: "[M] "		
 }

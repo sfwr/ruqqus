@@ -1181,7 +1181,6 @@ color: $dark;
 
 .sidebar.sidebar-left .sidebar-section .title {
     border-bottom: none;
-    padding: 0 0 .5rem 0;
 }
 
 .sidebar-section.sidebar-filters .body {
@@ -3026,6 +3025,22 @@ body {
 
 .btn-tag {
     font-size: $small-font-size;
+}
+
+// Comments
+
+.comment .comment-collapse {
+    padding-right: 0;
+}
+
+.comment .comment-collapse::before {
+    content: "";
+    position: absolute;
+    font-family: "Font Awesome 5 Pro";
+    font-size: $font-size-base;
+    color: $purple;
+    display: inline-block;
+    cursor: pointer;
 }
 
 // User and Profile (mobile)

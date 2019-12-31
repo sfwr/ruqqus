@@ -13453,7 +13453,6 @@ a:hover .link-arrow {
 .sidebar.sidebar-left .sidebar-section .title {
   border-bottom: none;
   background-color: transparent;
-  padding: 0 0 0.5rem 0;
 }
 
 .sidebar-section.sidebar-filters .body {
@@ -15629,6 +15628,20 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 12px;
   }
 
+  .comment .comment-collapse {
+    padding-right: 0;
+  }
+
+  .comment .comment-collapse::before {
+    content: "";
+    position: absolute;
+    font-family: "Font Awesome 5 Pro";
+    font-size: 1rem;
+    color: #603abb;
+    display: inline-block;
+    cursor: pointer;
+  }
+
   .banner-pic-135 {
     max-width: 100%;
   }
@@ -15784,11 +15797,6 @@ div.deleted.banned {
 
 .distinguish-mod .user-name::before {
   content: "[M] ";
-}
-
-.ruckus {
-  transition:20s;
-  transform: rotate(3600deg);
 }
 
 /*# sourceMappingURL=main.css.map */
