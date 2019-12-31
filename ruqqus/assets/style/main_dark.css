@@ -13711,6 +13711,14 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   font-size: 12px;
 }
 
+.profile-pic-20 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50rem;
+  text-align: center;
+  object-fit: cover;
+}
+
 .profile-pic-25 {
   width: 25px;
   height: 25px;
