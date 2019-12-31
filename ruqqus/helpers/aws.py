@@ -47,8 +47,8 @@ def upload_file(name, file):
 
     file.save(tempname)
     
-    #if tempname.split('.')[-1] in ['jpg','jpeg']:
-    piexif.remove(tempname)
+    if tempname.split('.')[-1] in ['jpg','jpeg']:
+        piexif.remove(tempname)
     
     S3.upload_file(tempname,
                       Bucket=BUCKET,
