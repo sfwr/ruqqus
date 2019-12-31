@@ -2218,6 +2218,11 @@ ul.comment-section {
 
 .comment.collapsed .user-info {
     margin-bottom: 0;
+    padding-top: 0.5rem;
+}
+
+.comment.collapsed .profile-pic-25 {
+    opacity: .5;
 }
 
 .comment.collapsed .comment-body {
