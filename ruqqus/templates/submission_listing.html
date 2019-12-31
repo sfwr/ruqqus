@@ -86,7 +86,7 @@
 
 <!-- Voting on "medium" devices or larger, hidden on smaller devices -->
 
-<div class="voting d-none d-md-block {% if p.body_html %} mb-auto {% else %} my-auto {% endif %} mr-3">
+<div class="voting d-none d-md-block {% if p.body_html %} mb-auto {% elif p.embed_url %} mb-auto {% else %} my-auto {% endif %} mr-3">
 
   {% if v %}
 
