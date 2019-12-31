@@ -21,7 +21,7 @@
 
     {% if c.author.has_profile %}<span class="mr-2 d-block d-md-none"><a href="{{ c.author.permalink }}"><img src="{{ c.author.profile_url }}" class="profile-pic-25"></a></span>{% endif %}
 
-    <span class="comment-collapse"></span>
+    <span class="comment-collapse d-md-block d-none"></span>
 
     <div class="comment-body">
 
@@ -42,6 +42,9 @@
 		{% if c.edited_timestamp %}
 		<span class="time-edited"><span>&#183;</span> <span class="font-italic">Edited {{ c.edited_string }}</span></span>
 		{% endif %}
+
+        <span class="comment-collapse d-block d-md-none"></span>
+
             </div>
 
 		{% if v and v.admin_level > 3 and c.active_flags %}
