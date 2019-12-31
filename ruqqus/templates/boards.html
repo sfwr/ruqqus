@@ -207,16 +207,13 @@
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
     <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
 
-           <div id="button-sub-{{ b.base36id }}" class="ml-auto{% if b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
-           <div id="button-unsub-{{ b.base36id }}" class="ml-auto{% if not b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
+           <div id="button-sub-{{ b.base36id }}" class="{% if b.has_subscriber(v) %}d-none{% endif %}"><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
+           <div id="button-unsub-{{ b.base36id }}" class="{% if not b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
 
-      <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2"
-      aria-labelledby="dropdownMoreLink">
-      <a href="javascript:void(0);" role="button" class="dropdown-item copy-link" data-clipboard-text="{{ b.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a>
-      <a class="dropdown-item d-none" href="#"><i class="fas fa-save"></i>Save</a>
+
     </div>
   </div>
-</div>
+
 <div class="card-block text-left x-scroll-parent my-md-auto">
   <div class="post-meta text-left x-scroll d-block d-md-none mb-2">{% if b.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}
   </div>
@@ -232,13 +229,6 @@
 
 </div>
 
-
-
-
-
-
-
-</div>
 
 {% endfor %}
 
@@ -301,7 +291,7 @@
 
           </div>
 
-          {% endblock %}
+ {% endblock %}
 
           {% block pagenav %}
           <nav aria-label="Page navigation">
