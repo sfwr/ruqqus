@@ -202,6 +202,9 @@ class Board(Base):
 
     def has_subscriber(self, user):
 
+        if not user:
+            return False
+
         return bool(self.subscribers.filter_by(board_id=self.id, user_id=user.id, is_active=True).first())
 
     @property
