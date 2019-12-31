@@ -3058,6 +3058,10 @@ body {
     margin-left: 0.25rem;
 }
 
+.comment.collapsed .comment-body:hover {
+    opacity: 0.5;
+}
+
 // User and Profile (mobile)
 
 .banner-pic-135 {

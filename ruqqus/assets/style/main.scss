@@ -2977,7 +2977,6 @@ body, #settings, #notifications, #submit {
     padding-left: 15px;
 }
 
-
 .comment .comment-collapse {
     padding-right: 0;
 }
@@ -2993,6 +2992,10 @@ body, #settings, #notifications, #submit {
     font-weight: 900;
     border: none;
     margin-left: 0.25rem;
+}
+
+.comment.collapsed .comment-body:hover {
+    opacity: 0.5;
 }
 
 // User and Profile (mobile)

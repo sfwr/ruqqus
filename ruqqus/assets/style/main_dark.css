@@ -15720,6 +15720,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     margin-left: 0.25rem;
   }
 
+  .comment.collapsed .comment-body:hover {
+    opacity: 0.5;
+  }
+
   .banner-pic-135 {
     max-width: 100%;
   }
