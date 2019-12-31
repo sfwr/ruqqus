@@ -3035,7 +3035,11 @@ body {
 
 .comment .comment-collapse::before {
     content: "\f056";
+    position: static;
+    font-size: 10px;
+    font-weight: 900;
     border: none;
+    margin-left: 0.25rem;
 }
 
 // User and Profile (mobile)

@@ -15697,7 +15697,11 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .comment .comment-collapse::before {
     content: "";
+    position: static;
+    font-size: 10px;
+    font-weight: 900;
     border: none;
+    margin-left: 0.25rem;
   }
 
   .banner-pic-135 {
