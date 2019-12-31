@@ -9,6 +9,7 @@ from ruqqus.helpers.filters import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
 from ruqqus.classes import *
+from .front import guild_ids
 from flask import *
 from ruqqus.__main__ import app, db, limiter, cache
 
@@ -92,7 +93,7 @@ def create_board_post(v):
     db.commit()
 
     #clear cache
-    cache.delete_memoized("guild_ids", sort="new")
+    cache.delete_memoized(guild_ids, sort="new")
 
     return redirect(new_board.permalink)
 
