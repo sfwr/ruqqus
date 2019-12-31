@@ -144,23 +144,6 @@
         </ul>
       </div>
 
-      <div class="post-filter pb-2 d-none">
-        <span>Sort By:</span>
-        <span class="dropdown">
-          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Time
-          </a>
-
-          <span class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMenuLink">
-            <a class="dropdown-item" href="#">Day</a>
-            <a class="dropdown-item" href="#">Month</a>
-            <a class="dropdown-item" href="#">Year</a>
-            <a class="dropdown-item" href="#">All Time</a>
-          </span>
-        </span>
-
-      </div>
-
     </div>
 
     <!-- Post filters bar visible only on medium devices or larger-->
@@ -224,11 +207,8 @@
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
     <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
 
-      <div class="dropdown show my-auto post-actions ml-4 d-none d-md-block">
-        <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        <i class="fas fa-ellipsis-v"></i>
-      </a>
+           <div id="button-sub-{{ b.base36id }}" class="ml-auto{% if b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Join +{{ b.name }}</a></div>
+           <div id="button-unsub-{{ b.base36id }}" class="ml-auto{% if not b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Leave +{{ b.name }}</a></div>
 
       <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2"
       aria-labelledby="dropdownMoreLink">
@@ -256,37 +236,6 @@
 
 
 
-<!-- Post Actions Modal -->
-<div class="modal fade d-md-none" id="actionsModal-{{ b.base36id }}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title h6">More options</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true"><i class="far fa-times"></i></span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <ul class="list-group post-actions">
-          <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
-          {% if v and not v.id==b.creator_id %}
-          <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ b.base36id }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
-          {% endif %}
-          {% if v %}
-          {% if v.admin_level >=1 %}
-          {% if b.is_banned or b.active_flags %}
-          <li class="list-group-item"><a class="d-block" id="moderate-post-{{ b.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ b.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a></li>
-          {% endif %}
-          {% if not b.is_banned or b.active_flags %}
-          <li class="list-group-item"><a class="d-block" id="moderate-post-{{ b.base36id }}" href="javascript:void(0)" onclick="removePost('{{ b.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a></li>
-          {% endif %}
-          {% endif %}
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 </div>
