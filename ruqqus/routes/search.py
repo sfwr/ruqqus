@@ -7,8 +7,9 @@ from flask import *
 from ruqqus.__main__ import app, db
 
 @app.route("/search", methods=["GET"])
+
 @auth_desired
-def search(v, sort="posts"):
+def search(v, type="posts"):
 
     query=request.args.get("q")
     sort=request.args.get("sort", "hot").lower()
@@ -16,11 +17,11 @@ def search(v, sort="posts"):
     page=max(1, int(request.args.get("page", 1)))
 
 
-    if sort == "posts":
+    if type == "posts":
         columns = [Submission.title, Submission.body]
-    elif sort == "users":
+    elif type == "users":
         columns = [User.username]
-    elif sort == "guilds":
+    elif type == "guilds":
         columns = [Board.description, Board.name, Board.submissions]
 
     keywords = query.split()
