@@ -20,7 +20,7 @@ def search(v):
     columns = [Submission.title, Submission.body]
     keywords = query.split(" ")
     conditions = [column.contains(word) for word in keywords for column in columns]
-    posts = db.query(Submission).filter(or_(conditions))
+    posts = db.query(Submission).filter(or_(*conditions))
 
 
     if not (v and v.over_18):
