@@ -13380,8 +13380,8 @@ a:hover .link-arrow {
 }
 
 .sidebar {
-  -ms-flex: 0 0 250px;
-  flex: 0 0 250px;
+  -ms-flex: 0 0 290px;
+  flex: 0 0 290px;
 }
 
 .sidebar h1, h2, h3, h4, h5, h6 {
@@ -13406,6 +13406,7 @@ a:hover .link-arrow {
   margin-bottom: 1rem;
   background-color: #fff;
   border-radius: 0.35rem;
+  overflow: hidden;
 }
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {

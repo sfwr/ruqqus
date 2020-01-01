@@ -1110,8 +1110,8 @@ color: $dark;
 // Sidebar content
 
 .sidebar {
-    -ms-flex: 0 0 250px;
-    flex: 0 0 250px;
+    -ms-flex: 0 0 290px;
+    flex: 0 0 290px;
 }
 
 .sidebar h1, h2, h3, h4, h5, h6 {
@@ -1138,6 +1138,7 @@ color: $dark;
     //border: 1px solid $border-color;
     //box-shadow: $box-shadow-sm;
     border-radius: $border-radius;
+    overflow: hidden;
 }
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
