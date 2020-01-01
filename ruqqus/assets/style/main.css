@@ -12559,8 +12559,8 @@ p {
 }
 
 .custom-gutters {
-  padding-left: 0;
-  padding-right: 0;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .sticky {
@@ -15527,6 +15527,11 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   body, #settings, #notifications, #submit {
     padding-top: 49px;
+  }
+
+  .custom-gutters {
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .shadow-sm-0 {

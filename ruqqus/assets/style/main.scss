@@ -217,8 +217,8 @@ p {
 }
 
 .custom-gutters {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 // Positioning
@@ -2862,6 +2862,11 @@ html {
 
 body, #settings, #notifications, #submit {
     padding-top: 49px;
+}
+
+.custom-gutters {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .shadow-sm-0 {

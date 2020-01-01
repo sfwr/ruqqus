@@ -221,8 +221,8 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .custom-gutters {
-    padding-left: 0;
-    padding-right: 0;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 // Positioning
@@ -2921,6 +2921,11 @@ body {
 
 #notifications body, #settings body {
     background-color: $dark!important;
+}
+
+.custom-gutters {
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .shadow-sm-0 {
