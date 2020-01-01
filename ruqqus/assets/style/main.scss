@@ -310,8 +310,7 @@ ol > li::before {
   }
   
 [data-toggle="collapse"].collapsed .fa:before {
-    transform: rotate(180deg);
-    transition: transform .5s ease-in-out;
+    content: "\f13a";
 }
 
 // Buttons
