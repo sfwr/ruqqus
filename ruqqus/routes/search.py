@@ -7,7 +7,6 @@ from flask import *
 from ruqqus.__main__ import app, db
 
 @app.route("/search", methods=["GET"])
-
 @auth_desired
 def search(v, type="posts"):
 
