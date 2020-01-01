@@ -114,9 +114,12 @@
 <div class="sidebar-section sidebar-rules">
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
   <div class="body">
-    <ul class="mb-0">   
-      <li>Must follow Ruqqus <a href="#">site-wide rules</a></li>   
-    </ul>
+    <ol class="mb-0">   
+      <li><a class="text-black font-weight-bold" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Follow Ruqqus rules<i class="fa"></i></a></li>
+      <div id="ruleCollapse1" class="collapse">
+        <p style="padding: 0 0 0 20px;">Anything you post to this guild, including comments, must follow the site-wide rules of Ruqqus.</p>
+      </div>
+    </ol>
   </div>
 </div>
 
@@ -209,37 +212,37 @@
 
   {% endblock %}
 
-{% block pagetype %}guild{% endblock %}
+  {% block pagetype %}guild{% endblock %}
 
-{% block title %}
-<title>+{{ b.name }} - Ruqqus</title>
-<meta name="description" content="+{{ b.name }}">
-{% endblock %}
+  {% block title %}
+  <title>+{{ b.name }} - Ruqqus</title>
+  <meta name="description" content="+{{ b.name }}">
+  {% endblock %}
 
-{% block enlargeThumbJS %}
-<script src="/assets/js/enlarge_thumb.js"></script>
-{% endblock %}
+  {% block enlargeThumbJS %}
+  <script src="/assets/js/enlarge_thumb.js"></script>
+  {% endblock %}
 
-{% block fixedMobileBarJS %}
-<script>
-  var prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      document.getElementById("fixed-bar-mobile").style.top = "49px";
-      document.getElementById("navbar").classList.remove("shadow");
-    } 
-    else if (currentScrollPos <= 125) {
-      document.getElementById("fixed-bar-mobile").style.top = "49px";
-      document.getElementById("navbar").classList.remove("shadow");
+  {% block fixedMobileBarJS %}
+  <script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function () {
+      var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("fixed-bar-mobile").style.top = "49px";
+        document.getElementById("navbar").classList.remove("shadow");
+      } 
+      else if (currentScrollPos <= 125) {
+        document.getElementById("fixed-bar-mobile").style.top = "49px";
+        document.getElementById("navbar").classList.remove("shadow");
+      }
+      else {
+        document.getElementById("fixed-bar-mobile").style.top = "-49px";
+        document.getElementById("dropdownMenuSortBy").classList.remove('show');
+        document.getElementById("dropdownMenuFrom").classList.remove('show');
+        document.getElementById("navbar").classList.add("shadow");
+      }
+      prevScrollpos = currentScrollPos;
     }
-    else {
-      document.getElementById("fixed-bar-mobile").style.top = "-49px";
-      document.getElementById("dropdownMenuSortBy").classList.remove('show');
-      document.getElementById("dropdownMenuFrom").classList.remove('show');
-      document.getElementById("navbar").classList.add("shadow");
-    }
-    prevScrollpos = currentScrollPos;
-  }
-</script>
-{% endblock %}
+  </script>
+  {% endblock %}
