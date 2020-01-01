@@ -1722,7 +1722,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     color: $black;
 }
 
-.post-actions .fas.fa-ellipsis-h {
+.post-actions .fas.fa-ellipsis-h, .post-actions .far.fa-ellipsis-h {
     font-size: $font-size-lg;
     vertical-align: middle;
 }
@@ -2986,6 +2986,7 @@ body, #settings, #notifications, #submit {
   }
 
 .comment {
+    margin-top: 1.5rem;
     padding-left: 15px;
 }
 
