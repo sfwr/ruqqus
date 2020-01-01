@@ -8,7 +8,7 @@ from ruqqus.__main__ import app, db
 
 @app.route("/search", methods=["GET"])
 @auth_desired
-def search(v, type="posts"):
+def search(v, search_type="posts"):
 
     query=request.args.get("q")
     sort=request.args.get("sort", "hot").lower()
@@ -16,11 +16,11 @@ def search(v, type="posts"):
     page=max(1, int(request.args.get("page", 1)))
 
 
-    if type == "posts":
+    if search_type == "posts":
         columns = [Submission.title, Submission.body]
-    elif type == "users":
+    elif search_type == "users":
         columns = [User.username]
-    elif type == "guilds":
+    elif search_type == "guilds":
         columns = [Board.description, Board.name, Board.submissions]
 
     keywords = query.split()
