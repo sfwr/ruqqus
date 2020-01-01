@@ -1038,9 +1038,9 @@ color: $dark;
     border-radius: $border-radius;
 }
 
-// #guild #main-content-col, #thread #main-content-col {
-//    margin-top: 1rem;
-// }
+#thread #main-content-col {
+    margin: 0 15px;
+}
 
 // Left Sidebar (Terms pages)
 
@@ -2966,6 +2966,10 @@ body, #settings, #notifications, #submit {
     box-shadow: none;
     border-radius: 0;
     border: none;
+}
+
+#thread #main-content-col {
+    margin: 0;
 }
 
 .thumb-img-link-overlay {

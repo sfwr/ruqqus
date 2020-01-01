@@ -13361,6 +13361,10 @@ a:hover .link-arrow {
   border-radius: 0.35rem;
 }
 
+#thread #main-content-col {
+  margin: 0 15px;
+}
+
 .scrollspy.sidebar-sticky {
   position: sticky;
   overflow-y: auto;
@@ -15693,6 +15697,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     box-shadow: none;
     border: none;
     border-radius: 0;
+  }
+
+  #thread #main-content-col {
+    margin: 0;
   }
 
   .thumb-img-link-overlay {
