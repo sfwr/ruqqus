@@ -20,6 +20,7 @@ def search(v):
     columns = [Submission.title, Submission.body]
     keywords = query.split(" ")
     conditions = [column.contains(word) for word in keywords for column in columns]
+    conditions = tuple(conditions)
     posts = db.query(Submission).filter(or_(*conditions))
 
 
