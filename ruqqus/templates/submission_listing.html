@@ -14,7 +14,7 @@
 
 <div id="post-{{ p.base36id }}" class="card{% if p.is_banned %} banned{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
-    <div class="card-header bg-transparent border-0 d-none d-md-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
+    <div class="card-header bg-transparent border-0 d-none d-md-flex flex-row flex-nowrap p-0 mt-4 mb-auto pl-3 ml-auto">
 
       {% if p.thumb_url %}
       <div class="position-relative d-none d-md-block" style="z-index: 3;">
