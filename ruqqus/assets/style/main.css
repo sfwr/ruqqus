@@ -13337,10 +13337,6 @@ a:hover .link-arrow {
   border-radius: 0.35rem;
 }
 
-#guild #main-content-col, #thread #main-content-col {
-  margin-top: 1rem;
-}
-
 .scrollspy.sidebar-sticky {
   position: sticky;
   overflow-y: auto;
