@@ -1784,6 +1784,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 // Guilds
 
+#guild .post-meta-guild {
+    display: none;
+}
+
 .jumbotron-guild {
     position: relative;
     height: 250px;

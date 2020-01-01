@@ -14053,6 +14053,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   font-size: 1.25rem;
 }
 
+#guild .post-meta-guild {
+  display: none;
+}
+
 .jumbotron-guild {
   position: relative;
   height: 250px;
