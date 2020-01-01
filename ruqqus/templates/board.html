@@ -210,44 +210,7 @@
 
   {% endblock %}
 
-  {% block sidebarLeftblock %}
-
-  {% if not v %}
-  <div class="sidebar-section sidebar-alert">
-    <div class="body">
-      {% if b.fa_icon %}
-      <i class="{{ b.fa_icon }} text-primary mb-3" style="font-size: 3rem;"></i>
-      {% endif %}
-      <h4>Jump into the discourse of <span class="text-primary">+{{ b.name }}</span></h4>
-      <p class="text-small">A Ruqqus account lets you be a part of your favorite communities.</p>
-      <a href="/signup" class="btn btn-primary btn-block">Sign up</a>
-    </div>
-  </div>
-  {% endif %}
-
-  {% if v %}
-
-  <div class="sidebar-section sidebar-dashboard">
-    <div class="body">
-      <div class="title">Dashboard</div>
-      <ul class="no-bullets dashboard-list pl-0 mb-0">
-        <li class="dashboard-item">
-          <a class="dashboard-link" href="/"><i class="fas fa-home-alt fa-width-rem"></i>Home</a>
-        </li>
-        <li class="dashboard-item">
-         <a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Guilds</a>
-       </li>
-       <li class="dashboard-item">
-         <a class="dashboard-link" href="/subscriptions"><i class="fas fa-heart fa-width-rem"></i>Subscriptions</a>
-       </li>
-       <li class="dashboard-item">
-        <a class="dashboard-link" href="/browse"><i class="fas fa-binoculars fa-width-rem"></i>Browse</a>
-      </li>
-    </ul>
-  </div>
-</div>
-
-{% endif %}
+{% block sidebarLeftblock %}
 
 {% endblock %}
 
