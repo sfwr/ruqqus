@@ -1252,10 +1252,6 @@ color: $dark;
     border-radius: 0;
 }
 
-.sidebar-section.sidebar-guild-recommendations .body {
-    padding: 0;
-}
-
 .sidebar-guild-recommendations .guild-recommendations-list {
     list-style: none;
 }
@@ -1264,6 +1260,10 @@ color: $dark;
     color: $text-muted;
     text-decoration: none;
     margin-top: 1rem;
+}
+
+.guild-recommendations-list .guild-recommendations-item:first-child {
+    margin-top: 0;
 }
 
 .guild-recommendations-list .guild-recommendations-link {

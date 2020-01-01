@@ -13521,10 +13521,6 @@ a:hover .link-arrow {
   border-radius: 0;
 }
 
-.sidebar-section.sidebar-guild-recommendations .body {
-  padding: 0;
-}
-
 .sidebar-guild-recommendations .guild-recommendations-list {
   list-style: none;
 }
@@ -13533,6 +13529,10 @@ a:hover .link-arrow {
   color: #7F7F8A;
   text-decoration: none;
   margin-top: 1rem;
+}
+
+.guild-recommendations-list .guild-recommendations-item:first-child {
+  margin-top: 0;
 }
 
 .guild-recommendations-list .guild-recommendations-link {
