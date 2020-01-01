@@ -14010,7 +14010,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   color: #dadada;
 }
 
-.post-actions .fas.fa-ellipsis-h {
+.post-actions .fas.fa-ellipsis-h, .post-actions .far.fa-ellipsis-h {
   font-size: 1.25rem;
   vertical-align: middle;
 }
@@ -15712,6 +15712,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .comment {
+    margin-top: 1.5rem;
     padding-left: 15px;
   }
 
