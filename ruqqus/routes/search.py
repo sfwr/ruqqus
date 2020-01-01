@@ -8,17 +8,22 @@ from ruqqus.__main__ import app, db
 
 @app.route("/search", methods=["GET"])
 @auth_desired
-def search(v):
+def search(v, sort="posts"):
 
     query=request.args.get("q")
     sort=request.args.get("sort", "hot").lower()
-    
+
     page=max(1, int(request.args.get("page", 1)))
 
-    #posts = db.query(Submission).filter(func.lower(Submission.title).contains(query.lower()))
 
-    columns = [Submission.title, Submission.body]
-    keywords = query.split(" ")
+    if sort == "posts":
+        columns = [Submission.title, Submission.body]
+    elif sort == "users":
+        columns = [User.username]
+    elif sort == "guilds":
+        columns = [Board.description, Board.name, Board.submissions]
+
+    keywords = query.split()
     conditions = [column.contains(word) for word in keywords for column in columns]
     conditions = tuple(conditions)
     posts = db.query(Submission).filter(or_(*conditions))
