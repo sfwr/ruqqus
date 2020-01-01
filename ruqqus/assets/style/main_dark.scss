@@ -1805,7 +1805,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .jumbotron-guild {
     position: relative;
-    height: 250px;
+    height: 225px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -1814,6 +1814,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     margin-bottom: 0;
     padding: 0;
 
+}
+
+.jumbotron-guild .guild-banner-contents {
+    display: none;
 }
 
 .jumbotron-guild .jumbotron-overlay {
