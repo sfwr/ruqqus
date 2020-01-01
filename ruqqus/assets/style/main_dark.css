@@ -12638,19 +12638,21 @@ ol > li {
 }
 
 ol > li::before {
-  content: counter(count) " ";
-  position: relative;
-  top: -1px;
-  display: inline-block;
-  font-size: 13px;
+  content: counter(count) ".";
   font-weight: 500;
-  color: #3f404a;
-  text-align: center;
   margin-right: 0.5rem;
 }
 
 .footer .list-inline-item:not(:last-child) {
   margin-right: 1.5rem;
+}
+
+[data-toggle=collapse] .fa:before {
+  content: "";
+}
+
+[data-toggle=collapse].collapsed .fa:before {
+  content: "";
 }
 
 .btn {
