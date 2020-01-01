@@ -12652,7 +12652,8 @@ ol > li::before {
 }
 
 [data-toggle=collapse].collapsed .fa:before {
-  content: "";
+  transform: rotate(180deg);
+  transition: transform 0.5s ease-in-out;
 }
 
 .btn {
