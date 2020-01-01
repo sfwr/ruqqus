@@ -146,7 +146,7 @@ def api_comment(v):
     db.add(vote)
     db.commit()
 
-    return redirect(f"{c.permalink}?context=1")
+    return redirect(f"{c.permalink}?context=1#comment-{c.base36id}")
 
 
 @app.route("/edit_comment/<cid>", methods=["POST"])
