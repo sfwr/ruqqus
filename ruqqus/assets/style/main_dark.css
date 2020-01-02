@@ -12940,7 +12940,7 @@ ol > li::before {
   color: #af92de;
 }
 
-input[type=radio] {
+.color-picker input[type=radio] {
   display: none;
 }
 
