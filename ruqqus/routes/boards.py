@@ -677,4 +677,4 @@ def board_css(boardname):
     resp=make_response(sass.compile(string=scss))
     resp.headers["Content-Type"]="text/css"
 
-    return css
+    return resp
