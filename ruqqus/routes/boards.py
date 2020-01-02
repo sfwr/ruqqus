@@ -16,7 +16,6 @@ from ruqqus.__main__ import app, db, limiter, cache
 
 valid_board_regex=re.compile("^\w{3,25}$")
 fa_icon_regex=re.compile("(fas|far|fal|fad) fa-([a-z0-9-]+)")
-css_regex=re.compile("\n +")
 
 @app.route("/create_guild", methods=["GET"])
 @is_not_banned
@@ -671,8 +670,9 @@ def board_css(boardname):
     with open("ruqqus/assets/style/board_main.scss", "r") as file:
         raw=file.read()
 
-    raw=re.sub(css_regex, ' ', raw)
-    scss=raw.format(board.color)
+    #This doesn't use python's string formatting because
+    #of some odd behavior with css files
+    scss=raw.replace("{boardcolor}", board.color)
     
     css=sass.compile(string=scss)
 
