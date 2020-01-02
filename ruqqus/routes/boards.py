@@ -668,7 +668,7 @@ def board_css(boardname):
     board=get_guild(boardname)
 
     namespace=scss.namespace.Namespace()
-    namespace.set_variable('$primary', scss.types.String(b.color))
+    namespace.set_variable('$primary', scss.types.String(board.color))
     
     compiled=scss.Compiler(namespace=namespace).compile_string(open("ruqqus/templates/guild/main.scss", "r+").read())
 
