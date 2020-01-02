@@ -235,56 +235,58 @@
 
           </div>
 
-                  <div id="fa_icon">
-          <h2 class="h5" name="guild_icon">Guild Text Icon</h2>
+          <div id="fa_icon">
+            <h2 class="h5" name="guild_icon">Guild Text Icon</h2>
 
-          <p class="text-small text-muted">Change the inline text icon associated with this guild.</p>
+            <p class="text-small text-muted">Change the inline text icon associated with this guild.</p>
+
+            <div class="settings-section rounded">
+
+              <div class="d-lg-flex">
+
+                <div class="title w-lg-25">
+                  <label for="guild_icon">Icon</label>
+                </div>
+
+                <div class="body w-lg-100">
+
+                  <input type="text" name="fa_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
+
+                  <span class="text-small-extra text-muted">Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</span>
+
+                </div>
+
+              </div>
+
+              <div class="footer">
+
+                <div class="d-flex justify-content-end">
+
+                  {% if error %}
+                  <p class="mb-0">
+                    <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                  </p>
+                  {% endif %}
+
+                  <button class="btn btn-primary ml-auto" id="save-guild-icon" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon', 'save-guild-icon');">Save</button>
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+          <h2 class="h5" name="referral">Guild Color</h2>
+
+          <p class="text-small text-muted">Change your guild's accent color. Affects buttons, links, etc.</p>
 
           <div class="settings-section rounded">
 
             <div class="d-lg-flex">
 
               <div class="title w-lg-25">
-                <label for="guild_icon">Icon</label>
-              </div>
-
-              <div class="body w-lg-100">
-
-                <input type="text" name="fa_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
-
-                <span class="text-small-extra text-muted">Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</span>
-
-              </div>
-
-            </div>
-
-            <div class="footer">
-
-              <div class="d-flex justify-content-end">
-
-                {% if error %}
-                <p class="mb-0">
-                  <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
-                </p>
-                {% endif %}
-
-                <button class="btn btn-primary ml-auto" id="save-guild-icon" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon', 'save-guild-icon');">Save</button>
-
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-
-          <h2 class="h5" name="referral">Guild Icon</h2>
-
-          <div class="settings-section rounded">
-
-            <div class="d-lg-flex">
-
-              <div class="title w-lg-25 text-md-center">
-                <img src="{{ b.profile_url }}" class="profile-pic-75">
+                <label for="guild_icon">Color</label>
               </div>
 
               <div class="body w-lg-100 my-auto">
@@ -293,27 +295,15 @@
 
                   <div>
 
-                   <form action="/mod/{{ b.base36id }}/images/profile" method="post" enctype="multipart/form-data">
+                   <form action="/mod/{{ b.base36id }}/color" method="post">
                     <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                    <label class="btn btn-secondary text-capitalize mr-2 mb-0">
-                      Update<input type="file" hidden name="profile" onchange="form.submit()">
-                    </label>
+                    <input type="color" name="color" value="{{ b.color }}">
+                    <input type="submit">
                   </form>
 
                 </div>
-
-                {% if b.has_profile %}
-                <div>
-                  <form action="/mod/{{ b.base36id }}/delete/profile" method="post">
-                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                    <button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
-                  </form>
-                </div>
-                {% endif %}
 
               </div>
-
-              <div class="text-small-extra text-muted mt-3">JPG, PNG, GIF files supported. Max file size 16MB.</div>
 
             </div>
 
@@ -321,14 +311,14 @@
 
         </div>
 
-        <h2 class="h5" name="referral">Guild Banner</h2>
+        <h2 class="h5" name="referral">Guild Icon</h2>
 
         <div class="settings-section rounded">
 
           <div class="d-lg-flex">
 
-            <div class="title w-lg-75 text-md-center">
-              <img src="{{ b.banner_url }}" class="banner-pic-135">
+            <div class="title w-lg-25 text-md-center">
+              <img src="{{ b.profile_url }}" class="profile-pic-75">
             </div>
 
             <div class="body w-lg-100 my-auto">
@@ -337,18 +327,18 @@
 
                 <div>
 
-                 <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
+                 <form action="/mod/{{ b.base36id }}/images/profile" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="formkey" value="{{ v.formkey }}">
                   <label class="btn btn-secondary text-capitalize mr-2 mb-0">
-                    Update<input type="file" hidden name="banner" onchange="form.submit()">
+                    Update<input type="file" hidden name="profile" onchange="form.submit()">
                   </label>
                 </form>
 
               </div>
 
-              {% if b.has_banner %}
+              {% if b.has_profile %}
               <div>
-                <form action="/mod/{{ b.base36id }}/delete/banner" method="post">
+                <form action="/mod/{{ b.base36id }}/delete/profile" method="post">
                   <input type="hidden" name="formkey" value="{{ v.formkey }}">
                   <button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
                 </form>
@@ -357,9 +347,51 @@
 
             </div>
 
-            <div class="text-small-extra text-muted mt-3">JPG, PNG, GIF files supported. Max file size 16MB. (Recommend 1400x250 pixels)</div>
+            <div class="text-small-extra text-muted mt-3">JPG, PNG, GIF files supported. Max file size 16MB.</div>
 
           </div>
+
+        </div>
+
+      </div>
+
+      <h2 class="h5" name="referral">Guild Banner</h2>
+
+      <div class="settings-section rounded">
+
+        <div class="d-lg-flex">
+
+          <div class="title w-lg-75 text-md-center">
+            <img src="{{ b.banner_url }}" class="banner-pic-135">
+          </div>
+
+          <div class="body w-lg-100 my-auto">
+
+            <div class="d-flex">
+
+              <div>
+
+               <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                <label class="btn btn-secondary text-capitalize mr-2 mb-0">
+                  Update<input type="file" hidden name="banner" onchange="form.submit()">
+                </label>
+              </form>
+
+            </div>
+
+            {% if b.has_banner %}
+            <div>
+              <form action="/mod/{{ b.base36id }}/delete/banner" method="post">
+                <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                <button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
+              </form>
+            </div>
+            {% endif %}
+
+          </div>
+
+          <div class="text-small-extra text-muted mt-3">JPG, PNG, GIF files supported. Max file size 16MB. (Recommend 1400x250 pixels)</div>
 
         </div>
 
@@ -368,6 +400,8 @@
     </div>
 
   </div>
+
+</div>
 
 </div>
 
