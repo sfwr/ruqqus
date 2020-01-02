@@ -298,8 +298,6 @@
                    <form action="/mod/{{ b.base36id }}/color" method="post" class="color-picker" style="line-height: 0">
                     <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
-                    <span style="color: #{{ b.color }}">guild color test</span>
-
                     <input type="radio" name="color" id="purple" value="603ABB" {% if b.color == '603ABB' %}checked{% endif %}/>
                     <label class="color-radio" for="purple"><span class="purple" style="background-color: #603ABB">
                     {% if b.color == '603ABB' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
