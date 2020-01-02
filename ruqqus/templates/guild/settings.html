@@ -5,75 +5,75 @@
 {% block content %}
 <div class="row justify-content-around">
 
-    <div class="col h-100">
+  <div class="col h-100">
 
-        {% if error %}
-        <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
-            <i class="fas fa-exclamation-circle my-auto"></i>
-            <span>
-              {{ error }}
-          </span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="far fa-times"></i></span>
-        </button>
+    {% if error %}
+    <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+      <i class="fas fa-exclamation-circle my-auto"></i>
+      <span>
+        {{ error }}
+      </span>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true"><i class="far fa-times"></i></span>
+      </button>
     </div>
     {% endif %}
     {% if msg %}
     <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
-        <i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
-        <span>
-          {{ msg }}
+      <i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
+      <span>
+        {{ msg }}
       </span>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true"><i class="far fa-times"></i></span>
-    </button>
-</div>
-{% endif %}
+      </button>
+    </div>
+    {% endif %}
 
-<div class="mt-3 mt-md-0">
+    <div class="mt-3 mt-md-0">
 
-    <h1>Guildmaster tools</h1>
+      <h1>Guildmaster tools</h1>
 
-</div>
+    </div>
 
-<!-- Tools tabs -->
+    <!-- Tools tabs -->
 
-<div class="flex-row bg-light box-shadow-bottom sticky d-flex pt-3 mb-3 mb-md-5">
+    <div class="flex-row bg-light box-shadow-bottom sticky d-flex pt-3 mb-3 mb-md-5">
 
-    <ul class="nav settings-nav mr-auto x-scroll">
+      <ul class="nav settings-nav mr-auto x-scroll">
         <li class="nav-item">
-            <a class="nav-link active" href="/settings/profile">Guild settings</a>
+          <a class="nav-link active" href="/settings/profile">Guild settings</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/settings/profile">User management</a>
+          <a class="nav-link" href="/settings/profile">User management</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/settings/security">Content moderation</a>
+          <a class="nav-link" href="/settings/security">Content moderation</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/settings/notifications">Other</a>
+          <a class="nav-link" href="/settings/notifications">Other</a>
         </li>
-    </ul>
+      </ul>
 
-</div>
+    </div>
 
-<script>
-function mod_post(url, type, id) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", url, true);
-      var form = new FormData()
-      form.append("formkey", "{{ v.formkey }}");
-      item=document.getElementById(type);
-      button=document.getElementById(id);
-      if (item.type=="checkbox") {
-        form.append(item.name, item.checked)
-        if (item.checked) {
-	  form.append(item.name, true);
-	} else {
-	  form.append(item.name, false);
-	}
-      }
-      else {
+    <script>
+      function mod_post(url, type, id) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", url, true);
+        var form = new FormData()
+        form.append("formkey", "{{ v.formkey }}");
+        item=document.getElementById(type);
+        button=document.getElementById(id);
+        if (item.type=="checkbox") {
+          form.append(item.name, item.checked)
+          if (item.checked) {
+           form.append(item.name, true);
+         } else {
+           form.append(item.name, false);
+         }
+       }
+       else {
         form.append(item.name, item.value);
       }
       xhr.withCredentials=true;
@@ -93,188 +93,188 @@ function mod_post(url, type, id) {
         button.innerHTML = `<i class="fas fa-times mr-2"></i>Setting not saved. Try again.`;
       }
       xhr.send(form);
-}
+    }
 
-function detect_change(id, button) {
+    function detect_change(id, button) {
 
-var new_val = id.value;
+      var new_val = id.value;
 
-var original_val = id.defaultValue;
+      var original_val = id.defaultValue;
 
-var save_button = document.getElementById(button);
+      var save_button = document.getElementById(button);
 
-  if (original_val !== new_val) {
-    save_button.disabled = false;
-  }
-  else {
-    save_button.disabled = true;
-  }
+      if (original_val !== new_val) {
+        save_button.disabled = false;
+      }
+      else {
+        save_button.disabled = true;
+      }
 
-}
-</script>
+    }
+  </script>
 
-<div class="row">
+  <div class="row">
 
     <div class="col col-md-8">
 
-        <div class="settings">
+      <div class="settings">
 
 
 
-            <div id="name">
+        <div id="name">
 
-                <h2 class="h5" name="guild_name">Guild Name</h2>
+          <h2 class="h5" name="guild_name">Guild Name</h2>
 
-                <p class="text-small text-muted">Change the capitilization of your guild's name.</p>
+          <p class="text-small text-muted">Change the capitilization of your guild's name.</p>
 
-                <div class="settings-section rounded">
+          <div class="settings-section rounded">
 
-                    <div class="d-lg-flex">
+            <div class="d-lg-flex">
 
-                        <div class="title w-lg-25">
-                            <label for="guild_name">Name</label>
-                        </div>
+              <div class="title w-lg-25">
+                <label for="guild_name">Name</label>
+              </div>
 
-                        <div class="body w-lg-100">
+              <div class="body w-lg-100">
 
-                            <input type="text" class="form-control copy-link" id="guild_name" oninput="detect_change('guild_name','save-guild-name')" value="{{ b.name }}">
+                <input type="text" class="form-control copy-link" id="guild_name" oninput="detect_change('guild_name','save-guild-name')" value="{{ b.name }}">
 
-                            <div class="text-small-extra text-muted mt-3">Only the guild name capitalization can be changed.</div>
+                <div class="text-small-extra text-muted mt-3">Only the guild name capitalization can be changed.</div>
 
-                        </div>
+              </div>
 
-                    </div>
-
-                    <div class="footer">
-
-                        <div class="d-flex justify-content-end">
-
-                            {% if error %}
-                            <p class="mb-0">
-                                <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
-                            </p>
-                            {% endif %}
-                            <button class="btn btn-primary ml-auto" id="save-guild-name" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name', 'save-guild-name');">Save</button>
-
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
 
-            <div id="fa_icon">
-                <h2 class="h5" name="guild_icon">Guild Icon</h2>
+            <div class="footer">
 
-                <p class="text-small text-muted">Change the icon associated with this guild.</p>
+              <div class="d-flex justify-content-end">
 
-                <div class="settings-section rounded">
+                {% if error %}
+                <p class="mb-0">
+                  <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                </p>
+                {% endif %}
+                <button class="btn btn-primary ml-auto" id="save-guild-name" onclick="mod_post('/mod/{{ b.base36id }}/settings/name', 'guild_name', 'save-guild-name');">Save</button>
 
-                    <div class="d-lg-flex">
+              </div>
 
-                        <div class="title w-lg-25">
-                            <label for="guild_icon">Icon</label>
-                        </div>
-
-                        <div class="body w-lg-100">
-
-                            <input type="text" name="fa_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
-
-                            <span class="text-small-extra text-muted">Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="footer">
-
-                        <div class="d-flex justify-content-end">
-
-                            {% if error %}
-                            <p class="mb-0">
-                                <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
-                            </p>
-                            {% endif %}
-
-                            <button class="btn btn-primary ml-auto" id="save-guild-icon" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon', 'save-guild-icon');">Save</button>
-
-                        </div>
-
-                    </div>
-
-                </div>
             </div>
+
+          </div>
+        </div>
+
+        <div id="fa_icon">
+          <h2 class="h5" name="guild_icon">Guild Icon</h2>
+
+          <p class="text-small text-muted">Change the icon associated with this guild.</p>
+
+          <div class="settings-section rounded">
+
+            <div class="d-lg-flex">
+
+              <div class="title w-lg-25">
+                <label for="guild_icon">Icon</label>
+              </div>
+
+              <div class="body w-lg-100">
+
+                <input type="text" name="fa_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
+
+                <span class="text-small-extra text-muted">Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</span>
+
+              </div>
+
+            </div>
+
+            <div class="footer">
+
+              <div class="d-flex justify-content-end">
+
+                {% if error %}
+                <p class="mb-0">
+                  <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                </p>
+                {% endif %}
+
+                <button class="btn btn-primary ml-auto" id="save-guild-icon" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon', 'save-guild-icon');">Save</button>
+
+              </div>
+
+            </div>
+
+          </div>
+        </div>
         <div id="description">
-                <h2 class="h5" id="guild_description" name="guild_description">Guild Description</h2>
+          <h2 class="h5" id="guild_description" name="guild_description">Guild Description</h2>
 
-                <p class="text-small text-muted">Edit the guild's public description. All visitors to the guild will see this.</p>
+          <p class="text-small text-muted">Edit the guild's public description. All visitors to the guild will see this.</p>
 
-                <div class="settings-section rounded">
+          <div class="settings-section rounded">
 
 
 
-                    <div class="body d-lg-flex">
+            <div class="body d-lg-flex">
 
-                        <label for="bio" class="text-black w-lg-25">Description</label>
+              <label for="bio" class="text-black w-lg-25">Description</label>
 
-                        <div class="w-lg-100">
-                            <div class="input-group mb-2">
-                                <textarea class="form-control rounded" id="bio" aria-label="With textarea" placeholder="What's this guild all about?" rows="3" name="description" form="profile-settings">{{ b.description }}</textarea>
-                            </div>
-
-                            <small>Limit of 1000 characters</small>
-
-                        </div>
-
-                    </div>
-
-                    <div class="footer">
-
-                        <div class="d-flex justify-content-end">
-
-                            {% if error %}
-                            <p class="mb-0">
-                                <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
-                            </p>
-                            {% endif %}
-
-                            <button class="btn btn-primary ml-auto" id="save-bio" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio', 'save-bio');">Save</button>
-
-                        </div>
-
-                    </div>
-
+              <div class="w-lg-100">
+                <div class="input-group mb-2">
+                  <textarea class="form-control rounded" id="bio" aria-label="With textarea" placeholder="What's this guild all about?" rows="3" name="description" form="profile-settings">{{ b.description }}</textarea>
                 </div>
+
+                <small>Limit of 1000 characters</small>
+
+              </div>
+
+            </div>
+
+            <div class="footer">
+
+              <div class="d-flex justify-content-end">
+
+                {% if error %}
+                <p class="mb-0">
+                  <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+                </p>
+                {% endif %}
+
+                <button class="btn btn-primary ml-auto" id="save-bio" onclick="mod_post('/mod/{{ b.base36id }}/settings/description', 'bio', 'save-bio');">Save</button>
+
+              </div>
+
+            </div>
+
+          </div>
         </div>
         <div id="nsfw">
 
-                <h2 class="h5">Age-Restricted Content</h2>
+          <h2 class="h5">Age-Restricted Content</h2>
 
-                <p class="text-small text-muted">Designate whether your guild contains mature content.</p>
+          <p class="text-small text-muted">Designate whether your guild contains mature content.</p>
 
-                <div class="settings-section rounded">
+          <div class="settings-section rounded">
 
-                    <div class="d-lg-flex">
+            <div class="d-lg-flex">
 
-                        <div class="title w-lg-25">
-                            <label for="over18">NSFW Content</label>
-                        </div>
+              <div class="title w-lg-25">
+                <label for="over18">NSFW Content</label>
+              </div>
 
-                        <div class="body w-lg-100">
+              <div class="body w-lg-100">
 
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="over18" name="over_18"{% if b.over_18 %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/over_18','over18')">
-                                <label class="custom-control-label" for="over18"></label>
-                            </div>
-
-                            <span class="text-small-extra text-muted">Enable if your guild contains NSFW content suitable only for 18+ users.</span>
-
-                        </div>
-
-                    </div>
-
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="over18" name="over_18"{% if b.over_18 %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/over_18','over18')">
+                  <label class="custom-control-label" for="over18"></label>
                 </div>
-<h2 class="h5" name="referral">Guild picture</h2>
+
+                <span class="text-small-extra text-muted">Enable if your guild contains NSFW content suitable only for 18+ users.</span>
+
+              </div>
+
+            </div>
+
+          </div>
+          <h2 class="h5" name="referral">Guild picture</h2>
 
           <div class="settings-section rounded">
 
@@ -290,48 +290,47 @@ var save_button = document.getElementById(button);
                 <input type="hidden" name="formkey" value="{{ v.formkey }}">
                 <input class="form-control-file" type="file" name="profile">
                 <input class="btn btn-primary ml-auto" type="submit" value="Update">
-		
+
               </form>
-		{% if b.has_profile %}<form action="/mod/{{ b.base36id }}/delete/profile" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
-		</div>
-
-            </div>
-
-          </div>
-	  <h2 class="h5" name="referral">Guild banner</h2>
-
-          <div class="settings-section rounded">
-
-            <div class="d-lg-flex">
-
-              <div class="title w-lg-25 text-md-center">
-                <img src="{{ b.banner_url }}" width="75px" height="75px">
-              </div>
-
-              <div class="body w-lg-100 my-auto">
-
-               <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                <input class="form-control-file" type="file" name="banner">
-                <input class="btn btn-primary ml-auto" type="submit" value="Update">
-		
-              </form>
-		{% if b.has_banner %}<form action="/mod/{{ b.base36id }}/delete/banner" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
-		
-
+              {% if b.has_profile %}<form action="/mod/{{ b.base36id }}/delete/profile" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
             </div>
 
           </div>
 
         </div>
+        <h2 class="h5" name="referral">Guild banner</h2>
+
+        <div class="settings-section rounded">
+
+          <div class="d-lg-flex">
+
+            <div class="title w-lg-25 text-md-center">
+              <img src="{{ b.banner_url }}" width="75px" height="75px">
+            </div>
+
+            <div class="body w-lg-100 my-auto">
+
+             <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
+              <input type="hidden" name="formkey" value="{{ v.formkey }}">
+              <input class="form-control-file" type="file" name="banner">
+              <input class="btn btn-primary ml-auto" type="submit" value="Update">
+
+            </form>
+            {% if b.has_banner %}<form action="/mod/{{ b.base36id }}/delete/banner" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
+            
+          </div>
+
         </div>
 
-
-	
-
-        </div>
-
+      </div>
     </div>
+
+
+
+
+  </div>
+
+</div>
 
 </div>
 
