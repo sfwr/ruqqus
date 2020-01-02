@@ -661,7 +661,7 @@ def mod_board_color(bid, board, v):
 
     
 @app.route("/+<boardname>/css.css", methods=["GET"])
-@cache.memoize(3600)
+#@cache.memoize(3600)
 def board_css(boardname):
 
     board=get_guild(boardname)
