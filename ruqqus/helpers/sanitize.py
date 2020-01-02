@@ -108,8 +108,6 @@ def sanitize(text, linkgen=False):
                 new_tag["href"]=tag["src"]
                 new_tag["rel"]="nofollow"
                 tag.replace_with(new_tag)
-                
-            else:
 
 
         sanitized=str(soup)
