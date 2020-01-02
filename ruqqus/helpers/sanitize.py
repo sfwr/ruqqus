@@ -101,7 +101,6 @@ def sanitize(text, linkgen=False):
                     link["rel"]="nofollow"
                     link["target"]="_blank"
                     tag.wrap(link)
-                    
             else:
                 #non-whitelisted images get replaced with links
                 new_tag=soup.new_tag("a")
