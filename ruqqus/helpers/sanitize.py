@@ -83,17 +83,12 @@ def sanitize(text, linkgen=False):
 
         for tag in soup.find_all("img"):
 
+            netloc=urlparse(tag["src"]).netloc
 
-            domain=get_domain(urlparse(tag["src"]).netloc)
-            if not(domain and domain.show_thumbnail):
-                #non-whitelisted images get replaced with links
-                new_tag=soup.new_tag("a")
-                new_tag.string=tag["src"]
-                new_tag["href"]=tag["src"]
-                new_tag["rel"]="nofollow"
-                tag.replace_with(new_tag)
-                
-            else:
+
+            domain=get_domain(netloc)
+            if not(netloc) or (domain and domain.show_thumbnail)):
+
                 #set classes and wrap in link
                 tag["rel"]="nofollow"
                 tag["style"]="max-height: 150px; max-width: 100%;"
@@ -104,6 +99,18 @@ def sanitize(text, linkgen=False):
                 link["rel"]="nofollow"
                 link["target"]="_blank"
                 tag.wrap(link)
+
+            else:
+                
+                #non-whitelisted images get replaced with links
+                new_tag=soup.new_tag("a")
+                new_tag.string=tag["src"]
+                new_tag["href"]=tag["src"]
+                new_tag["rel"]="nofollow"
+                tag.replace_with(new_tag)
+                
+            else:
+
 
         sanitized=str(soup)
     else:
