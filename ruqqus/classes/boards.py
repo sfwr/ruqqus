@@ -26,6 +26,7 @@ class Board(Base):
     has_profile=Column(Boolean, default=False)
     creator_id=Column(Integer, ForeignKey("users.id"))
     ban_reason=Column(String(256), default=None)
+    color=Column(String(8), default="603abb")
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
