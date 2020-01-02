@@ -667,7 +667,9 @@ def board_css(boardname):
 
     board=get_guild(boardname)
 
-    uncompiled_resp=render_template("guild/main.css", b=board)
+    #namespace=scss.namespace.Namespace()
+
+    uncompiled_resp=render_template("guild/main.scss", b=board)
     
     compiled=scss.Compiler().compile_string(uncompiled)
 
