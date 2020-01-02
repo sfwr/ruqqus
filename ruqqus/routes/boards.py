@@ -674,6 +674,7 @@ def board_css(boardname):
     #of some odd behavior with css files
     scss=raw.replace("{boardcolor}", board.color)
     
-    css=sass.compile(string=scss)
+    resp=make_response(sass.compile(string=scss))
+    resp.headers["Content-Type"]="text/css"
 
     return css
