@@ -657,7 +657,7 @@ def mod_board_color(bid, board, v):
     color=str(request.form.get("color",""))
 
     if len(color) !=6:
-        abort(400)
+        color="603abb"
 
     r=color[0:1]
     g=color[2:3]
@@ -665,9 +665,9 @@ def mod_board_color(bid, board, v):
 
     try:
         if any([int(x,16)>255 for x in [r,g,b]]):
-            abort(400)
+            color="603abb"
     except ValueError:
-        abort(400)
+        color="603abb"
 
     board.color=color
     db.add(board)
