@@ -71,7 +71,8 @@
 
   <!-- tabs container -->
   {% block subNav %}
-  <div class="container-fluid bg-white sticky">
+  <!-- Desktop -->
+  <div class="container-fluid bg-white sticky d-none d-md-block">
     <div class="row box-shadow-bottom">
       <div class="col">
         <div class="container">
@@ -92,28 +93,51 @@
                     <a class="nav-link" href="?sort=disputed"><i class="fas fa-sparkles"></i>Other</a>
                   </li>
                 </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-{% endblock %}
+  <!-- Mobile -->
+  <div class="container-fluid bg-white sticky d-block d-md-none">
+    <div class="row box-shadow-bottom">
+      <div class="col">
+        <div class="d-flex flex-row-reverse justify-content-end">
+          <ul class="nav post-nav x-scroll">
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ b.name }}/mod/settings"><i class="fas fa-cog"></i>Settings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="?sort=top"><i class="fas fa-users"></i>User management</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="?sort=new"><i class="fas fa-glasses"></i>Content moderation</a> 
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="?sort=disputed"><i class="fas fa-sparkles"></i>Other</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
 
-<!-- Settings content -->
-<div class="container mt-5">
+  <!-- Settings content -->
+  <div class="container mt-5">
 
- {% block content %}
- {% endblock %}
+   {% block content %}
+   {% endblock %}
 
-</div>
+ </div>
 
-{% include "footer.html" %}
+ {% include "footer.html" %}
 
-<!-- Clipboard Toast -->
+ <!-- Clipboard Toast -->
 
-<div class="toast clipboard" id="toast-success" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
+ <div class="toast clipboard" id="toast-success" style="position: fixed; bottom: 1.5rem; margin: 0 auto; left: 0; right: 0; width: 275px; z-index: 1000" role="alert" aria-live="assertive" aria-atomic="true" data-animation="true" data-autohide="true" data-delay="5000">
   <div class="toast-body bg-success text-center text-white">
     <i class="fas fa-check-circle mr-2"></i>Link copied to clipboard
   </div>
