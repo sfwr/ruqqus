@@ -12948,7 +12948,8 @@ label.color-radio {
   display: inline-block;
   width: 25px;
   height: 25px;
-  margin-right: 10px;
+  margin-right: 1rem;
+  margin-bottom: 0;
   cursor: pointer;
 }
 
