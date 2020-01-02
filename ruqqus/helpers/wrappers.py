@@ -96,6 +96,9 @@ def is_guildmaster(f):
         if not board.has_mod(v):
             abort(403)
 
+        if v.is_banned:
+            abort(403)
+
         return f(*args, board=board, **kwargs)
 
     wrapper.__name__=f.__name__
