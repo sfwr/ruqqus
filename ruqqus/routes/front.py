@@ -59,7 +59,7 @@ def home(v):
                                         page=max(int(request.args.get("page",1)),0)
                                         )
     else:
-        return front_all(v)
+        return front_all()
 
 @app.route("/all", methods=["GET"])
 @auth_desired
