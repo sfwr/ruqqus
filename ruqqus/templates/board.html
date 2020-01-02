@@ -99,7 +99,7 @@
       <i class="far fa-ellipsis-h text-white"></i>
     </a>
     <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-      {% if v and not v.id==c.author_id %}
+      {% if v and not b.has_mod(v) %}
       <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportGuildModal" onclick="report_guildModal('')"><i class="fas fa-flag"></i>Flag</a>
       {% endif %}
       {% if v and b.has_mod(v) %}
