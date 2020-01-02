@@ -48,5 +48,5 @@ class CustomRenderer(HTMLRenderer):
         if not board:
             return f"{space}+{target}"
         else:
-            return f'{space}<a href="{board.permalink}"><img src="{b.profile_url}" class="profile-pic-20 align-middle mr-1">+{board.name}</a>'
+            return f'{space}<a href="{board.permalink}"><img src="{board.profile_url}" class="profile-pic-20 align-middle mr-1">+{board.name}</a>'
         
