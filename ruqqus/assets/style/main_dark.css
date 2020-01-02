@@ -14657,6 +14657,14 @@ ul.comment-section {
   padding: 1rem 0;
 }
 
+#settings-guild {
+  background-color: #FFFFFF;
+}
+
+#settings-guild .settings .settings-section {
+  border: 1px solid #494a4e;
+}
+
 .settings .settings-section {
   margin-bottom: 3rem;
   background: #35363e;

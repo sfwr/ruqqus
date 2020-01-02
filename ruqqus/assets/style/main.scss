@@ -2376,6 +2376,16 @@ ul.comment-section {
     padding: 1rem 0;
 }
 
+// Guild Settings Page
+
+#settings-guild {
+    background-color: $white;
+}
+
+#settings-guild .settings .settings-section {
+    border: 1px solid $border-color;
+}
+
 // Settings Page
 
 .settings .settings-section {
