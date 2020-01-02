@@ -671,7 +671,7 @@ def board_css(boardname):
         raw=file.read()
 
     raw=raw.replace('\n','')
-    scss=raw.format(color=board.color)
+    scss=raw.format(board.color)
     
     css=sass.compile(string=scss)
 
