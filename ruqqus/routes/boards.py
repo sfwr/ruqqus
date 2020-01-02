@@ -647,3 +647,32 @@ def mod_board_images_delete_banner(bid, board, v):
                            b=board,
                            msg="Guild banner successfully updated."
                            )
+
+@app.route("/mod/<bid>/color", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_board_color(bid, board, v):
+
+    color=str(request.form.get("color","")))
+
+    if len(color) !=6:
+        abort(400)
+
+    r=color[0:1]
+    g=color[2:3]
+    b=color[4:5]
+
+    try:
+        if any([int(x,16)>255 for x in [r,g,b]]):
+            abort(400)
+    except ValueError:
+        abort(400)
+
+    board.color=color
+    db.add(board)
+    db.commit()
+
+    return "",204
+
+    
