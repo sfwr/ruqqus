@@ -258,4 +258,8 @@ class Board(Base):
             return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name}/profile.png"
         else:
             return "/assets/images/guilds/default-guild-icon.png"
+
+    @property
+    def css_url(self):
+        return f"{self.permalink}/css.css"
         
