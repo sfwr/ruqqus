@@ -1,6 +1,6 @@
-{% extends "guild/guild_settings.html" %}
+{% extends "settings.html" %}
 
-{% block pagetitle %}+{{ b.name }} Settings - Ruqqus Guildmaster Tools{% endblock %}
+{% block pagetitle %}+{{ b.name }} Guildmasters - Ruqqus Guildmaster Tools{% endblock %}
 
 {% block content %}
 <div class="row justify-content-around">
@@ -30,16 +30,22 @@
     </div>
     {% endif %}
 
+    <div class="mt-3 mt-md-0">
+
+      <h1>Guildmaster tools</h1>
+
+    </div>
+
     <!-- Tools tabs -->
 
     <div class="flex-row bg-light box-shadow-bottom sticky d-flex pt-3 mb-3 mb-md-5">
 
       <ul class="nav settings-nav mr-auto x-scroll">
         <li class="nav-item">
-          <a class="nav-link active" href="/settings/profile">Guild settings</a>
+          <a class="nav-link" href="/settings/profile">Guild settings</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/settings/profile">User management</a>
+          <a class="nav-link active" href="/settings/profile">User management</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/settings/security">Content moderation</a>
