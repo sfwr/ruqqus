@@ -600,11 +600,7 @@ def mod_board_images_profile(bid, board, v):
 
     board.set_profile(request.files["profile"])
 
-    return render_template("guild/settings.html",
-                           v=v,
-                           b=board,
-                           msg="Guild profile successfully updated."
-                           )
+    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
 
 @app.route("/mod/<bid>/images/banner", methods=["POST"])
 @auth_required
@@ -613,12 +609,7 @@ def mod_board_images_profile(bid, board, v):
 def mod_board_images_banner(bid, board, v):
 
     board.set_banner(request.files["banner"])
-
-    return render_template("guild/settings.html",
-                           v=v,
-                           b=board,
-                           msg="Guild banner successfully updated."
-                           )
+    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
 
 @app.route("/mod/<bid>/delete/profile", methods=["POST"])
 @auth_required
@@ -628,11 +619,7 @@ def mod_board_images_delete_profile(bid, board, v):
 
     board.del_profile()
 
-    return render_template("guild/settings.html",
-                           v=v,
-                           b=board,
-                           msg="Guild profile successfully updated."
-                           )
+    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
 
 @app.route("/mod/<bid>/delete/banner", methods=["POST"])
 @auth_required
@@ -642,11 +629,7 @@ def mod_board_images_delete_banner(bid, board, v):
 
     board.del_banner()
 
-    return render_template("guild/settings.html",
-                           v=v,
-                           b=board,
-                           msg="Guild banner successfully updated."
-                           )
+    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
 
 @app.route("/mod/<bid>/color", methods=["POST"])
 @auth_required
@@ -673,6 +656,6 @@ def mod_board_color(bid, board, v):
     db.add(board)
     db.commit()
 
-    return redirect(f"/+{board.name}/mod/settings#color")
+    return redirect(f"/+{board.name}/mod/settings?msg=Success#color")
 
     
