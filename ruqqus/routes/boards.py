@@ -9,6 +9,7 @@ from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.filters import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
+from ruqqus.helpers.alerts import *
 from ruqqus.classes import *
 from .front import guild_ids
 from flask import *
@@ -260,21 +261,7 @@ def mod_invite_username(bid, board, v):
         #notification
 
         text=f"You have been invited to join +{board.name} as a guildmaster. You can [click here]({board.permalink}/mod/mods) and accept this invitation. Or, if you weren't expecting this, you can ignore it."
-        with CustomRenderer() as renderer:
-            text_html=renderer.render(mistletoe.Document(text))
-
-        
-        new_comment=Comment(author_id=1,
-                            body=text,
-                            body_html=text_html,
-                            parent_submission=None,
-                            distinguish_level=6)
-        db.add(new_comment)
-        db.commit()
-        notif=Notification(comment_id=new_comment.id,
-                           user_id=user.id)
-        db.add(notif)
-        db.commit()
+        send_notification(user, text)
 
     new_mod=ModRelationship(user_id=user.id,
                             board_id=board.id,
