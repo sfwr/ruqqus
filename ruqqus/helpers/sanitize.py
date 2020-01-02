@@ -89,9 +89,6 @@ def sanitize(text, linkgen=False):
             domain=get_domain(netloc)
             if not(netloc) or (domain and domain.show_thumbnail):
 
-                
-
-
                 if "profile-pic-20" not in tag["class"]:
                     #set classes and wrap in link
                     
@@ -104,9 +101,8 @@ def sanitize(text, linkgen=False):
                     link["rel"]="nofollow"
                     link["target"]="_blank"
                     tag.wrap(link)
-
+                    
             else:
-                
                 #non-whitelisted images get replaced with links
                 new_tag=soup.new_tag("a")
                 new_tag.string=tag["src"]
