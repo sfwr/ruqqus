@@ -298,6 +298,25 @@
                    <form action="/mod/{{ b.base36id }}/color" method="post">
                     <input type="hidden" name="formkey" value="{{ v.formkey }}">
                     <input type="color" name="color" value="#{{ b.color }}">
+
+                    <input type="radio" name="color" id="red" value="#FF0000"/>
+                    <label for="red"><span class="red" style="background-color: #FF0000"></span></label>
+
+                    <input type="radio" name="color" id="green" value="#4EBD4D"/>
+                    <label for="green"><span class="green" style="background-color: #4EBD4D"></span></label>
+
+                    <input type="radio" name="color" id="yellow" value="#ECD109"/>
+                    <label for="yellow"><span class="yellow" style="background-color: #ECD109"></span></label>
+
+                    <input type="radio" name="color" id="olive" value="#1F5F32"/>
+                    <label for="olive"><span class="olive" style="background-color: #1F5F32"></span></label>
+
+                    <input type="radio" name="color" id="orange" value="#E45020"/>
+                    <label for="orange"><span class="orange" style="background-color: #E45020"></span></label>
+
+                    <input type="radio" name="color" id="pink" value="#D25FF3"/>
+                    <label for="pink"><span class="pink" style="background-color: #D25FF3"></span></label>
+
                     <input type="submit">
                   </form>
 
