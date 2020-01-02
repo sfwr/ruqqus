@@ -216,48 +216,7 @@
 
           </div>
 
-          <div id="fa_icon">
-            <h2 class="h5" name="guild_icon">Guild Text Icon</h2>
-
-            <p class="text-small text-muted">Change the inline text icon associated with this guild.</p>
-
-            <div class="settings-section rounded">
-
-              <div class="d-lg-flex">
-
-                <div class="title w-lg-25">
-                  <label for="guild_icon">Icon</label>
-                </div>
-
-                <div class="body w-lg-100">
-
-                  <input type="text" name="fa_icon" id="guild_icon" value="{{ b.fa_icon }}" class="form-control">
-
-                  <span class="text-small-extra text-muted">Paste the link to any non-brand <a href="https://fontawesome.com/icons?d=gallery" target="_blank">FontAwesome</a> icon, including "pro" icons.</span>
-
-                </div>
-
-              </div>
-
-              <div class="footer">
-
-                <div class="d-flex justify-content-end">
-
-                  {% if error %}
-                  <p class="mb-0">
-                    <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
-                  </p>
-                  {% endif %}
-
-                  <button class="btn btn-primary ml-auto" id="save-guild-icon" onclick="mod_post('/mod/{{ b.base36id }}/settings/fa_icon', 'guild_icon', 'save-guild-icon');">Save</button>
-
-                </div>
-
-              </div>
-
-            </div>
-          </div>
-
+          
           <h2 id="color" class="h5" name="referral">Guild Color</h2>
 
           <p class="text-small text-muted">Change your guild's accent color. Affects buttons, links, etc.</p>

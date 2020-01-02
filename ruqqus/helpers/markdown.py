@@ -40,9 +40,6 @@ class CustomRenderer(HTMLRenderer):
         return f'{space}<a href="{user.permalink}">@{user.username}</a>'
 
     def render_board_mention(self, token):
-
-
-        icon_template='<i class="{icon} fa-width-rem" style="color:{color}"></i>'
         space=token.target[0]
         target=token.target[1]
 
@@ -50,9 +47,6 @@ class CustomRenderer(HTMLRenderer):
 
         if not board:
             return f"{space}+{target}"
-        if board and board.fa_icon:
-            icon=icon_template.format(icon=board.fa_icon, color=board.color)
         else:
-            icon=""
-        return f'{space}<a href="{board.permalink}">{icon}+{board.name}</a>'
+            return f'{space}<a href="{board.permalink}">+{board.name}</a>'
         

@@ -20,7 +20,6 @@ class Board(Base):
     description = Column(String)
     description_html=Column(String)
     over_18=Column(Boolean, default=False)
-    fa_icon=Column(String, default="")
     is_banned=Column(Boolean, default=False)
     has_banner=Column(Boolean, default=False)
     has_profile=Column(Boolean, default=False)
