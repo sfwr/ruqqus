@@ -681,7 +681,7 @@ def board_css(boardname):
 
 @app.route("/+<boardname>/dark.css", methods=["GET"])
 #@cache.memoize(3600)
-def board_css(boardname):
+def board_dark_css(boardname):
 
     board=get_guild(boardname)
 
