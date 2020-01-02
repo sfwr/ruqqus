@@ -444,7 +444,7 @@ ol > li::before {
 }
 
 .navbar-brand, .navbar-light .navbar-brand {
-    color: $primary;
+    color: $purple;
     font-weight: $font-weight-bold;
 }
 
@@ -1882,6 +1882,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions a {
     color: $gray;
     text-decoration: none;
+    text-transform: none;
     font-size: $font-size-base;
 }
 

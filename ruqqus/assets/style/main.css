@@ -14147,6 +14147,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions a {
   color: #5F5F5F;
   text-decoration: none;
+  text-transform: none;
   font-size: 1rem;
 }
 
