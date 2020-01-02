@@ -654,7 +654,7 @@ def mod_board_images_delete_banner(bid, board, v):
 @validate_formkey
 def mod_board_color(bid, board, v):
 
-    color=str(request.form.get("color","")))
+    color=str(request.form.get("color",""))
 
     if len(color) !=6:
         abort(400)
