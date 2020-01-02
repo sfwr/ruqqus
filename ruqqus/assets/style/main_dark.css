@@ -14670,6 +14670,7 @@ ul.comment-section {
   background: #35363e;
   border: 1px solid #494a4e;
   border-radius: 0.35rem;
+  overflow: hidden;
 }
 
 #settings .bg-light {
@@ -14686,8 +14687,6 @@ ul.comment-section {
 
 .settings .settings-section .footer {
   background-color: #3f404a;
-  border-bottom-left-radius: 0.35rem;
-  border-bottom-right-radius: 0.35rem;
 }
 
 .modal .profile-actions .list-group-item {

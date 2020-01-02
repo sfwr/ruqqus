@@ -2394,6 +2394,7 @@ ul.comment-section {
     //border: 1px solid $border-color;
     //box-shadow: $box-shadow-sm;
     border-radius: 0.35rem;
+    overflow: hidden;
 }
 
 .settings .settings-section .title, .settings .settings-section .body, .settings .settings-section .footer {
@@ -2406,8 +2407,6 @@ ul.comment-section {
 
 .settings .settings-section .footer {
     background-color: $gray-200;
-    border-bottom-left-radius: $border-radius;
-    border-bottom-right-radius: $border-radius;
 }
 
 // Modal Profile Actions
