@@ -89,16 +89,21 @@ def sanitize(text, linkgen=False):
             domain=get_domain(netloc)
             if not(netloc) or (domain and domain.show_thumbnail)):
 
-                #set classes and wrap in link
-                tag["rel"]="nofollow"
-                tag["style"]="max-height: 150px; max-width: 100%;"
-                tag["class"]="in-comment-image"
+                
 
-                link=soup.new_tag("a")
-                link["href"]=tag["src"]
-                link["rel"]="nofollow"
-                link["target"]="_blank"
-                tag.wrap(link)
+
+                if "profile-pic-20" not in tag["class"]:
+                    #set classes and wrap in link
+                    
+                    tag["rel"]="nofollow"
+                    tag["style"]="max-height: 150px; max-width: 100%;"
+                    tag["class"]="in-comment-image"
+                            
+                    link=soup.new_tag("a")
+                    link["href"]=tag["src"]
+                    link["rel"]="nofollow"
+                    link["target"]="_blank"
+                    tag.wrap(link)
 
             else:
                 
