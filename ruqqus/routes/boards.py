@@ -670,6 +670,6 @@ def board_css(boardname):
     namespace=scss.namespace.Namespace()
     namespace.set_variable('$primary', scss.types.String(board.color))
     
-    compiled=scss.Compiler(namespace=namespace).compile_string(open("ruqqus/assets/style/board_main.scss", "r+").read())
+    compiled=scss.Compiler(namespace=namespace).compile_string(scss_file="ruqqus/assets/style/board_main.scss")
 
     return compiled
