@@ -274,6 +274,7 @@
             </div>
 
           </div>
+
           <h2 class="h5" name="referral">Guild picture</h2>
 
           <div class="settings-section rounded">
@@ -286,13 +287,30 @@
 
               <div class="body w-lg-100 my-auto">
 
-               <form action="/mod/{{ b.base36id }}/images/profile" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                <input class="form-control-file" type="file" name="profile">
-                <input class="btn btn-primary ml-auto" type="submit" value="Update">
+                <div class="d-flex">
 
-              </form>
-              {% if b.has_profile %}<form action="/mod/{{ b.base36id }}/delete/profile" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
+                  <div>
+
+                   <form action="/mod/{{ b.base36id }}/images/profile" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                    <label class="btn btn-secondary text-capitalize mr-2 mb-0">
+                      Update<input type="file" hidden name="profile" onchange="form.submit()">
+                    </label>
+                  </form>
+
+                </div>
+
+                {% if b.has_profile %}
+                <div>
+                  <form action="/mod/{{ b.base36id }}/delete/profile" method="post">
+                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                    <button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
+                  </form>
+                </div>
+                {% endif %}
+
+              </div>
+
             </div>
 
           </div>
@@ -310,23 +328,37 @@
 
             <div class="body w-lg-100 my-auto">
 
-             <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
-              <input type="hidden" name="formkey" value="{{ v.formkey }}">
-              <input class="form-control-file" type="file" name="banner">
-              <input class="btn btn-primary ml-auto" type="submit" value="Update">
+              <div class="d-flex">
 
-            </form>
-            {% if b.has_banner %}<form action="/mod/{{ b.base36id }}/delete/banner" method="post"><input type="hidden" name="formkey" value="{{ v.formkey }}"><input type="submit" value="Delete" class="btn btn-primary"></form>{% endif %}
-            
+                <div>
+
+                 <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                  <label class="btn btn-secondary text-capitalize mr-2 mb-0">
+                    Update<input type="file" hidden name="banner" onchange="form.submit()">
+                  </label>
+                </form>
+
+              </div>
+
+              {% if b.has_banner %}
+              <div>
+                <form action="/mod/{{ b.base36id }}/delete/banner" method="post">
+                  <input type="hidden" name="formkey" value="{{ v.formkey }}">
+                  <button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
+                </form>
+              </div>
+              {% endif %}
+
+            </div>
+
           </div>
 
         </div>
 
       </div>
+
     </div>
-
-
-
 
   </div>
 
