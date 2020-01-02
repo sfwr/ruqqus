@@ -24,12 +24,16 @@
 	<script src="/assets/js/ios.js"></script>
 
 	<!-- Ruqqus CSS -->
+	
+	{% block stylesheets %}
 
 	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
 	<link id="css-link" rel="stylesheet" href="/assets/style/main_dark.css">
 	{% else %}
 	<link id="css-link" rel="stylesheet" href="/assets/style/main.css">
 	{% endif %}
+
+	{% endblock %}
 
 	<!-- Font Awesome -->
 	<link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
