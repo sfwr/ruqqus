@@ -58,6 +58,12 @@ def home(v):
         return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
                                         page=max(int(request.args.get("page",1)),0)
                                         )
+    else:
+        return front_all(v)
+
+@app.route("/all", methods=["GET"])
+@auth_desired
+def front_all(v):
 
     page=int(request.args.get("page",1))
 
