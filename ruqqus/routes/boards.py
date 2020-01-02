@@ -632,6 +632,45 @@ def mod_board_images_delete_banner(bid, board, v):
 
     return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
 
+    
+@app.route("/+<boardname>/main.css", methods=["GET"])
+@cache.memoize(3600*4)
+def board_css(boardname):
+
+    board=get_guild(boardname)
+
+
+    with open("ruqqus/assets/style/board_main.scss", "r") as file:
+        raw=file.read()
+
+    #This doesn't use python's string formatting because
+    #of some odd behavior with css files
+    scss=raw.replace("{boardcolor}", board.color)
+    
+    resp=make_response(sass.compile(string=scss))
+    resp.headers["Content-Type"]="text/css"
+
+    return resp
+
+@app.route("/+<boardname>/dark.css", methods=["GET"])
+@cache.memoize(3600*4)
+def board_dark_css(boardname):
+
+    board=get_guild(boardname)
+
+
+    with open("ruqqus/assets/style/board_dark.scss", "r") as file:
+        raw=file.read()
+
+    #This doesn't use python's string formatting because
+    #of some odd behavior with css files
+    scss=raw.replace("{boardcolor}", board.color)
+    
+    resp=make_response(sass.compile(string=scss))
+    resp.headers["Content-Type"]="text/css"
+
+    return resp
+
 @app.route("/mod/<bid>/color", methods=["POST"])
 @auth_required
 @is_guildmaster
@@ -657,43 +696,7 @@ def mod_board_color(bid, board, v):
     db.add(board)
     db.commit()
 
+    cache.delete_memoized(board_css, boardname=board.name)
+    cache.delete_memoized(board_dark_css, boardname=board.name)
+
     return redirect(f"/+{board.name}/mod/settings?msg=Success#color")
-
-    
-@app.route("/+<boardname>/main.css", methods=["GET"])
-#@cache.memoize(3600)
-def board_css(boardname):
-
-    board=get_guild(boardname)
-
-
-    with open("ruqqus/assets/style/board_main.scss", "r") as file:
-        raw=file.read()
-
-    #This doesn't use python's string formatting because
-    #of some odd behavior with css files
-    scss=raw.replace("{boardcolor}", board.color)
-    
-    resp=make_response(sass.compile(string=scss))
-    resp.headers["Content-Type"]="text/css"
-
-    return resp
-
-@app.route("/+<boardname>/dark.css", methods=["GET"])
-#@cache.memoize(3600)
-def board_dark_css(boardname):
-
-    board=get_guild(boardname)
-
-
-    with open("ruqqus/assets/style/board_dark.scss", "r") as file:
-        raw=file.read()
-
-    #This doesn't use python's string formatting because
-    #of some odd behavior with css files
-    scss=raw.replace("{boardcolor}", board.color)
-    
-    resp=make_response(sass.compile(string=scss))
-    resp.headers["Content-Type"]="text/css"
-
-    return resp
