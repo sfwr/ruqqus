@@ -4,49 +4,49 @@
 
 <style>
 
-.post-nav > .nav-item > .nav-link.active {
+  .post-nav > .nav-item > .nav-link.active {
     color: #{{ b.color }};
     box-shadow: inset 0 -2px 0 #{{ b.color }};
-}
+  }
 
-.post-nav .nav-link:hover, .post-nav .nav-link:focus, .settings-nav .nav-link:hover, .settings-nav .nav-link:focus {
+  .post-nav .nav-link:hover, .post-nav .nav-link:focus, .settings-nav .nav-link:hover, .settings-nav .nav-link:focus {
     color: #{{ b.color }};
-}
+  }
 
-.btn-primary {
+  .btn-primary {
     background-color: #{{ b.color }};
     border-color: #{{ b.color }};
-}
+  }
 
-.btn-primary:hover {
+  .btn-primary:hover {
     color: #ffffff;
     background-color: #{{ b.color }};
     border-color: #{{ b.color }};
     opacity: 0.5;
-}
+  }
 
-.btn-primary:focus, .btn-primary.focus {
+  .btn-primary:focus, .btn-primary.focus {
     box-shadow: 0 0 0 0.2rem #{{ b.color }}50;
-}
+  }
 
-.btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+  .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
     background-color: #{{ b.color }};
     border-color: #{{ b.color }};
     filter: saturate(0.5);
-}
+  }
 
-.btn-link {
+  .btn-link {
     color: #{{ b.color }};
-}
+  }
 
-.btn-link:hover {
+  .btn-link:hover {
     filter: saturate(0.5);
     text-decoration: underline;
-}
+  }
 
-.sidebar .sidebar-section .title {
+  .sidebar .sidebar-section .title {
     background-color: #{{ b.color }};
-}
+  }
 
 </style>
 
@@ -197,10 +197,11 @@
 <div class="sidebar-section sidebar-guild-tools">
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-tools mr-2"></i>Guildmaster Tools</span></div>
   <div class="body">
-  <div><a href="{{ b.permalink}}/mod/settings"><i class="fad fa-cog fa-width-rem"></i>Settings</a></div>
-  <div><a href="{{ b.permalink}}/mod/mods"><i class="fad fa-user-crown fa-width-rem"></i>Guildmasters</a></div>
-  <div><a href="{{ b.permalink}}/mod/exiled"><i class="fad fa-gavel fa-width-rem"></i>Exiles</a></div>
-  <div><a href="{{ b.permalink}}/mod/queue"><i class="fad fa-flag fa-width-rem"></i>Reports</a></div>
+    <div><a href="{{ b.permalink}}/mod/settings"><i class="fad fa-cog fa-width-rem"></i>Settings</a></div>
+    <div><a href="{{ b.permalink}}/mod/mods"><i class="fad fa-user-crown fa-width-rem"></i>Guildmasters</a></div>
+    <div><a href="{{ b.permalink}}/mod/exiled"><i class="fad fa-gavel fa-width-rem"></i>Exiles</a></div>
+    <div><a href="{{ b.permalink}}/mod/queue"><i class="fad fa-flag fa-width-rem"></i>Reports</a></div>
+  </div>
 </div>
 {% endif %}
 
