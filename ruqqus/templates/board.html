@@ -84,7 +84,7 @@
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-info-circle mr-2"></i>Guild details</span></div>
   <div class="body pb-0">
    <div class="d-flex">
-     {% if b.profile_url %}
+     {% if board.has_profile %}
      <div>
        <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
      </div>
