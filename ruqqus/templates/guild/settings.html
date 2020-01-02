@@ -300,25 +300,25 @@
 
                     <span style="color: #{{ b.color }}">guild color test</span>
 
-                    <input type="radio" name="color" id="purple" value="603ABB"/>
+                    <input type="radio" name="color" id="purple" value="603ABB" {% if b.color == '603ABB' %}checked{% endif %}/>
                     <label class="color-radio" for="purple"><span class="purple" style="background-color: #603ABB"></span></label>
 
-                    <input type="radio" name="color" id="red" value="FF0000"/>
+                    <input type="radio" name="color" id="red" value="FF0000" {% if b.color == 'FF0000' %}checked{% endif %}/>
                     <label class="color-radio" for="red"><span class="red" style="background-color: #FF0000"></span></label>
 
-                    <input type="radio" name="color" id="green" value="4EBD4D"/>
+                    <input type="radio" name="color" id="green" value="4EBD4D" {% if b.color == '4EBD4D' %}checked{% endif %}/>
                     <label class="color-radio" for="green"><span class="green" style="background-color: #4EBD4D"></span></label>
 
-                    <input type="radio" name="color" id="yellow" value="ECD109"/>
+                    <input type="radio" name="color" id="yellow" value="ECD109" {% if b.color == 'ECD109' %}checked{% endif %}/>
                     <label class="color-radio" for="yellow"><span class="yellow" style="background-color: #ECD109"></span></label>
 
-                    <input type="radio" name="color" id="olive" value="1F5F32"/>
+                    <input type="radio" name="color" id="olive" value="1F5F32" {% if b.color == '1F5F32' %}checked{% endif %}/>
                     <label class="color-radio" for="olive"><span class="olive" style="background-color: #1F5F32"></span></label>
 
-                    <input type="radio" name="color" id="orange" value="E45020"/>
+                    <input type="radio" name="color" id="orange" value="E45020" {% if b.color == 'E45020' %}checked{% endif %}/>
                     <label class="color-radio" for="orange"><span class="orange" style="background-color: #E45020"></span></label>
 
-                    <input type="radio" name="color" id="pink" value="D25FF3"/>
+                    <input type="radio" name="color" id="pink" value="D25FF3" {% if b.color == 'D25FF3' %}checked{% endif %}/>
                     <label class="color-radio" for="pink"><span class="pink" style="background-color: #D25FF3"></span></label>
 
                     <input type="submit">
