@@ -673,6 +673,6 @@ def mod_board_color(bid, board, v):
     db.add(board)
     db.commit()
 
-    return "",204
+    return redirect(f"/+{board.name}/mod/settings")
 
     
