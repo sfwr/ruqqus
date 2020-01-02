@@ -1,6 +1,8 @@
 from urllib.parse import urlparse
 import mistletoe
 import re
+import scss
+from bs4 import BeautifulSoup
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -659,3 +661,15 @@ def mod_board_color(bid, board, v):
     return redirect(f"/+{board.name}/mod/settings?msg=Success#color")
 
     
+@app.route("/+<boardname>/css.css", methods=["GET"])
+@cache.memoize(3600)
+def board_css(boardname):
+
+    board=get_guild(boardname)
+
+    namespace=scss.namespace.Namespace()
+    namespace.set_variable('$primary', scss.types.String(board.color))
+    
+    compiled=scss.Compiler(namespace=namespace).compile_string(open("ruqqus/assets/style/board_main.scss", "r+").read())
+
+    return compiled
