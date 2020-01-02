@@ -87,7 +87,7 @@ def sanitize(text, linkgen=False):
 
 
             domain=get_domain(netloc)
-            if not(netloc) or (domain and domain.show_thumbnail)):
+            if not(netloc) or (domain and domain.show_thumbnail):
 
                 
 
