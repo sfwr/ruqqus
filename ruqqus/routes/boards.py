@@ -666,7 +666,10 @@ def board_css(boardname):
 
     board=get_guild(boardname)
 
-    raw=open("ruqqus/assets/style/board_main.scss", "r+").read()
+
+    with open("ruqqus/assets/style/board_main.scss", "r") as file:
+        raw=file.read()
+        
     scss=raw.format(color=board.color)
     
     css=sass.compile(string=scss)
