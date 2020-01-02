@@ -17,7 +17,6 @@ _allowed_tags=tags=['b',
                     'h5',
                     'h6',
                     'i',
-                    'img',
                     'li',
                     'ol',
                     'p',
@@ -26,7 +25,7 @@ _allowed_tags=tags=['b',
                     'ul'
                    ]
 
-_allowed_tags_with_links=_allowed_tags+["a", "hr"]
+_allowed_tags_with_links=_allowed_tags+["a", "hr", "img"]
 
 _allowed_attributes={'a': ['href', 'title', "rel"],
                      "i": ["class"],
@@ -89,7 +88,7 @@ def sanitize(text, linkgen=False):
             domain=get_domain(netloc)
             if not(netloc) or (domain and domain.show_thumbnail):
 
-                if "profile-pic-20" not in tag["class"]:
+                if "profile-pic-20" not in tag.get("class",""):
                     #set classes and wrap in link
                     
                     tag["rel"]="nofollow"
