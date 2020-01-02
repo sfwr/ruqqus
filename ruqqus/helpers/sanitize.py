@@ -28,7 +28,7 @@ _allowed_tags=tags=['b',
 _allowed_tags_with_links=_allowed_tags+["a", "hr", "img"]
 
 _allowed_attributes={'a': ['href', 'title', "rel"],
-                     "i": ["class"],
+                     #"i": ["class"],
                      'img':['src', 'class']
                      }
 
