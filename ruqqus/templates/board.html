@@ -101,8 +101,7 @@
    </div>
  </div>
 </div>
-<div class="body pt-0">
- <hr>
+<div class="body">
  <div>{{ b.description_html | safe }}</div>
  {% if v %}
  <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
