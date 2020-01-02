@@ -88,7 +88,7 @@
      <div>
        <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
      </div>
-     {% elif v and b.has_mod(v) %}
+     {% elif not board.has_profile and v and b.has_mod(v) %}
      <a href="{{ b.permalink}}/mod/settings" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
        <div class="letter" style="line-height: 3;"><i class="fas fa-plus"></i></div>
      </a>
