@@ -669,7 +669,8 @@ def board_css(boardname):
 
     with open("ruqqus/assets/style/board_main.scss", "r") as file:
         raw=file.read()
-        
+
+    raw=raw.replace('\n','')
     scss=raw.format(color=board.color)
     
     css=sass.compile(string=scss)
