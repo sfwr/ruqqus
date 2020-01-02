@@ -1,5 +1,15 @@
 {% extends "default.html" %}
 
+{% block stylesheets %}
+
+{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+<link id="css-link" rel="stylesheet" href="/+{{ p.board.name }}/dark.css">
+{% else %}
+<link id="css-link" rel="stylesheet" href="+{{ p.board.name }}/main.css">
+{% endif %}
+
+{% endblock %}
+
 {% set score=p.score_fuzzed %}
 {% if v %}
 {% set voted=v.vote_status_on_post(p) %}

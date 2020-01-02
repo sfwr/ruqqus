@@ -660,8 +660,8 @@ def mod_board_color(bid, board, v):
     return redirect(f"/+{board.name}/mod/settings?msg=Success#color")
 
     
-@app.route("/+<boardname>/css.css", methods=["GET"])
-@cache.memoize(3600)
+@app.route("/+<boardname>/main.css", methods=["GET"])
+#@cache.memoize(3600)
 def board_css(boardname):
 
     board=get_guild(boardname)
@@ -670,9 +670,30 @@ def board_css(boardname):
     with open("ruqqus/assets/style/board_main.scss", "r") as file:
         raw=file.read()
 
-    raw=raw.replace('\n','')
-    scss=raw.format(color=board.color)
+    #This doesn't use python's string formatting because
+    #of some odd behavior with css files
+    scss=raw.replace("{boardcolor}", board.color)
     
-    css=sass.compile(string=scss)
+    resp=make_response(sass.compile(string=scss))
+    resp.headers["Content-Type"]="text/css"
 
-    return css
+    return resp
+
+@app.route("/+<boardname>/dark.css", methods=["GET"])
+#@cache.memoize(3600)
+def board_dark_css(boardname):
+
+    board=get_guild(boardname)
+
+
+    with open("ruqqus/assets/style/board_dark.scss", "r") as file:
+        raw=file.read()
+
+    #This doesn't use python's string formatting because
+    #of some odd behavior with css files
+    scss=raw.replace("{boardcolor}", board.color)
+    
+    resp=make_response(sass.compile(string=scss))
+    resp.headers["Content-Type"]="text/css"
+
+    return resp
