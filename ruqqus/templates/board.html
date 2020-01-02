@@ -1,5 +1,22 @@
 {% extends "home.html" %}
 
+{% block style %}
+<style>
+a.nav-link.active,
+.text-primary {
+  color: #{{ b.color }};
+}
+
+.btn-primary,
+div.title {
+  background-color: #{{ b.color }};
+  border-color: #{{ b.color }}
+}
+
+</style>
+{% endblock %}
+
+
 {% block PseudoSubmitForm %}
 <!-- Link to submission page from guild -->
 
