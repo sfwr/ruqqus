@@ -297,7 +297,7 @@
 
                    <form action="/mod/{{ b.base36id }}/color" method="post">
                     <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                    <input type="color" name="color" value="{{ b.color }}">
+                    <input type="color" name="color" value="#{{ b.color }}">
                     <button type="submit" value="Save"></button>
                   </form>
 
