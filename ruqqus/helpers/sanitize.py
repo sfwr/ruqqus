@@ -29,7 +29,7 @@ _allowed_tags_with_links=_allowed_tags+["a", "hr", "img"]
 
 _allowed_attributes={'a': ['href', 'title', "rel"],
                      "i": ["class"],
-                     'img':['src']
+                     'img':['src', 'class']
                      }
 
 _allowed_protocols=['http', 'https']
