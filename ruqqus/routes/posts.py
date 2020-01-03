@@ -53,15 +53,16 @@ def submit_get(v):
 @is_not_banned
 @validate_formkey
 def edit_post(pid, v):
-    p = db.query(Submission).filter_by(id=base36decode(pid)).first()
-
-    if not p:
-        abort(404)
+    
+    p = get_post(pid)
 
     if not p.author_id == v.id:
         abort(403)
 
     if p.is_banned:
+        abort(403)
+
+    if p.board.has_ban(v):
         abort(403)
 
     body = request.form.get("body", "")

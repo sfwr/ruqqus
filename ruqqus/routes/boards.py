@@ -156,11 +156,22 @@ def mod_ban_bid_user(bid, username, board, v):
     if board.has_mod(user):
         abort(409)
 
-    new_ban=BanRelationship(user_id=user.id,
+    #check for an existing deactivated ban
+    existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False)
+    if existing_ban:
+        existing_ban.is_active=True
+        existing_ban.banning_mod_id=v.id
+        db.add(existing_ban)
+    else:
+        new_ban=BanRelationship(user_id=user.id,
                             board_id=board.id,
                             banning_mod_id=v.id)
-
-    db.add(new_ban)
+        db.add(new_ban)
+        text=f"""
+             You have been exiled from +{board.name}.
+             None of your existing posts or comments in +{board.name} have been removed, however, you will not be able to make any new posts or comments in +{board.name}.
+             """
+        send_notification(user, text)
     db.commit()
 
     return "", 204
@@ -177,7 +188,9 @@ def mod_unban_bid_user(bid, username, board, v):
     if not x:
         abort(409)
 
-    db.delete(x)
+    x.is_active=False
+
+    db.add(x)
     db.commit()
     
     return "", 204
