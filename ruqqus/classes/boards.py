@@ -66,7 +66,9 @@ class Board(Base):
     @property
     @cache.memoize(timeout=30)
     def invited_mods(self):
-        return self.moderators.filter_by(accepted=False, invite_rescinded=False).order_by(text("id")).all()
+        
+        z=[x.user for x in self.moderators.filter_by(accepted=False, invite_rescinded=False).order_by(text("id")).all()]
+        return z
 
     @property
     def permalink(self):

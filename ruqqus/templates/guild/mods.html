@@ -151,11 +151,11 @@
             </thead>
             <tbody class="text-muted">
 
-              {% for mod in b.mods_list %}
+              {% for mod in b.mods %}
               <tr>
                 <td>
-                  <a href="{{ mod.user.permalink }}">
-                    <img src="{{ mod.user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ mod.user.username }}</a>
+                  <a href="{{ mod.permalink }}">
+                    <img src="{{ mod.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ mod.user.username }}</a>
                   </td>
                   <td>Full</td>
                   <td>
@@ -169,30 +169,15 @@
                       </a>
                       <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
                         {% if mod.user==v %}
-                        <a class="dropdown-item" href="javascript:void(0)" onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})"><i class="fas fa-trash-alt"></i>Remove guildmaster</a>
+                        <a class="dropdown-item" href="javascript:void(0)" onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.username }}', callback=function(){window.location.reload(true)})"><i class="fas fa-trash-alt"></i>Remove guildmaster</a>
                         {% endif %}
                       </div>
                     </div>
                   </td>
                 </tr>
                 {% else %}
-                <td>There no pending invites at this time</td>
+                <td>There no guildmasters</td>
                 {% endfor %}
-
-                {% for mod in b.invited_mods %}
-                <tr>
-                  <td>
-                    <a href="{{ mod.user.permalink }}">
-                      <img src="{{ mod.user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ mod.user.username }}</a>
-                    </td>
-                    <td>Full</td>
-                    <td>
-                      <i class="fas fa-circle text-warning text-small-extra mr-2"></i>
-                      Pending
-                    </td>
-                    <td><i class="fas fa-ellipsis-h"></i></td>
-                  </tr>
-                  {% endfor %}
 
                 </tbody>
               </table>
@@ -216,11 +201,11 @@
               </thead>
               <tbody class="text-muted">
 
-                {% for mod in b.invited_mods %}
+                {% for user in b.invited_mods %}
                 <tr>
                   <td>
-                    <a href="{{ mod.user.permalink }}">
-                      <img src="{{ mod.user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ mod.user.username }}</a>
+                    <a href="{{ user.permalink }}">
+                      <img src="{{ user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ user.username }}</a>
                     </td>
                     <td>Full</td>
                     <td>
@@ -234,7 +219,7 @@
                         </a>
                         <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
                           {% if mod.user==v %}
-                          <a class="dropdown-item" href="javascript:void(0)" onclick="post('/mod/{{ b.base36id }}/rescind/{{ mod.user.username }}', callback=function(){window.location.reload(true)})"><i class="fas fa-redo-alt"></i>Resend invite</a>
+                          <a class="dropdown-item" href="javascript:void(0)" onclick="post('/mod/{{ b.base36id }}/rescind/{{ user.username }}', callback=function(){window.location.reload(true)})"><i class="fas fa-redo-alt"></i>Rescind invite</a>
                           {% endif %}
                         </div>
                       </div>
