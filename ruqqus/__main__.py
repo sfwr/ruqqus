@@ -160,6 +160,8 @@ def badge_monitor():
         print("thread sleeping 1hr")
         time.sleep(3600)
 
-badge_thread=threading.Thread(target=badge_monitor)
-badge_thread.start()
+
+if __name__=="__main__":
+    badge_thread=threading.Thread(target=badge_monitor)
+    badge_thread.start()
     
