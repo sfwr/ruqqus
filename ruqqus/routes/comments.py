@@ -176,7 +176,7 @@ def edit_comment(cid, v):
 
     if bans:
         return render_template("comment_failed.html",
-                               action=f"/edit_comment/{c.base36id}"
+                               action=f"/edit_comment/{c.base36id}",
                                badlinks=[x.domain for x in bans],
                                body=body,
                                v=v
