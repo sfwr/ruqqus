@@ -164,8 +164,9 @@ def mod_ban_bid_user(bid, username, board, v):
         db.add(existing_ban)
     else:
         new_ban=BanRelationship(user_id=user.id,
-                            board_id=board.id,
-                            banning_mod_id=v.id)
+                                board_id=board.id,
+                                banning_mod_id=v.id,
+                                is_active=True)
         db.add(new_ban)
         text=f"""
 You have been exiled from +{board.name}.
