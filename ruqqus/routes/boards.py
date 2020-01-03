@@ -157,7 +157,7 @@ def mod_ban_bid_user(bid, username, board, v):
         abort(409)
 
     #check for an existing deactivated ban
-    existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False)
+    existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False).first()
     if existing_ban:
         existing_ban.is_active=True
         existing_ban.banning_mod_id=v.id
