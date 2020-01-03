@@ -2,7 +2,7 @@ import mistletoe
 
 from ruqqus.classes import *
 from ruqqus.__main__ import db
-from .mistletoe import CustomRenderer
+from .markdown import *
 
 def send_notification(user, text):
 
