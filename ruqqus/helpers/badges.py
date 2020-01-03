@@ -2,7 +2,7 @@ import time
 import threading
 
 from ruqqus.classes import *
-from ruqqus.__main__ import app, db
+from ruqqus.__main__ import db
 
 def badge_monitor():
 
