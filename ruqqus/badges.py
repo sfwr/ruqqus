@@ -9,7 +9,7 @@ import threading
 import requests
 
 #setup db
-_engine = create_engine(environ.get('SQLALCHEMY_DATABASE_URI'))
+_engine = create_engine(environ.get('DATABASE_URL'))
 db = sessionmaker(bind=_engine)()
 Base = declarative_base()
 
