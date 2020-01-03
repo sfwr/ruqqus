@@ -41,6 +41,9 @@ class Board(Base):
 
         super().__init__(**kwargs)
 
+    def __repr__(self):
+        return f"Board(name={self.name})>"
+
     @property
     @lazy
     def base36id(self):
