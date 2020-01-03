@@ -18,7 +18,7 @@ def badge_monitor():
                 
                 if eval(badge.qualification_expr, {}, {'v':user}):
                     
-                    if not account.has_badge(badge.id):
+                    if not user.has_badge(badge.id):
                         new_badge=Badge(user_id=user.id,
                                         badge_id=badge.id,
                                         created_utc=int(time.time())
