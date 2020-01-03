@@ -1,5 +1,5 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import render_template, session, request
+from flask import *
 from time import strftime, time, gmtime
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
