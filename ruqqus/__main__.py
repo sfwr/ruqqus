@@ -134,9 +134,9 @@ def badge_monitor():
 
         print("starting badge check thread")
 
-        badge_types=[x for x in db.query(BadgeDef).filter(BadgeDef.qualification_expr.isnot(None)).all()]
+        badge_types=[x for x in db.query(ruqqus.classes.BadgeDef).filter(ruqqus.classes.BadgeDef.qualification_expr.isnot(None)).all()]
 
-        for user in db.query(User).filter_by(is_banned=0).all():
+        for user in db.query(ruqqus.classes.User).filter_by(is_banned=0).all():
 
             for badge in badge_types:
                 
