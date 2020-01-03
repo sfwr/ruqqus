@@ -422,7 +422,6 @@ CREATE TABLE public.boards (
     description character varying(1500) DEFAULT ''::character varying,
     description_html character varying(2500) DEFAULT ''::character varying,
     over_18 boolean DEFAULT false,
-    fa_icon character varying(64),
     creator_id integer,
     has_banner boolean DEFAULT false NOT NULL,
     has_profile boolean DEFAULT false NOT NULL,
