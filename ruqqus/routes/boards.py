@@ -157,7 +157,7 @@ def mod_ban_bid_user(bid, username, board, v):
         abort(409)
 
     #you can only exile a user who has previously participated in the guild
-    if not (db.query(Submission).filter_by(author_id=user.id, board.id).first() or
+    if not (db.query(Submission).filter_by(author_id=user.id, board_id=board.id).first() or
         db.query(Comment).filter(Comment.author_id==user.id, Comment.board_id=board.id).first()):
         abort(400)
 
