@@ -14,7 +14,8 @@ db = sessionmaker(bind=_engine)()
 Base = declarative_base()
 
 #import and bind all routing functions
-from ruqqus.classes import User, Badge, BadgeDef
+from ruqqus.classes.users import User
+from ruqqus.classes.badges import Badge, BadgeDef
 
 #start the badge monitoring thread
 
