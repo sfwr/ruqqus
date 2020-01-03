@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.sanitize import *
-from ruqqus.helpers.filters import *
 from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
@@ -66,16 +65,16 @@ def api_comment(v):
     body_html=sanitize(body_md, linkgen=True)
 
     #Run safety filter
-    bans=filter_comment_html(body_html)
-
-    if bans:
-        return render_template("comment_failed.html",
-                               parent_submission=request.form.get("submission"),
-                               parent_fullname=request.form.get("parent_fullname"),
-                               badlinks=[x.domain for x in bans],
-                               body=body,
-                               v=v
-                               )
+##    bans=filter_comment_html(body_html)
+##
+##    if bans:
+##        return render_template("comment_failed.html",
+##                               parent_submission=request.form.get("submission"),
+##                               parent_fullname=request.form.get("parent_fullname"),
+##                               badlinks=[x.domain for x in bans],
+##                               body=body,
+##                               v=v
+##                               )
 
     #check existing
     existing=db.query(Comment).filter_by(author_id=v.id,
