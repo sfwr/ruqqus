@@ -1,5 +1,5 @@
 from sqlalchemy import *
-from ruqqus.__main__ import Base
+from ruqqus.__main__ import Base, db, cache
 
 class Domain(Base):
 

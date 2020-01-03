@@ -6,7 +6,12 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy import *
 import threading
+import requests
 
+#setup db
+_engine = create_engine(environ.get('DATABASE_URL'))
+db = sessionmaker(bind=_engine)()
+Base = declarative_base()
 
 #import and bind all routing functions
 from ruqqus.classes.users import User
