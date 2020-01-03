@@ -346,6 +346,11 @@ ol > li::before {
     font-size: $small-font-size;
     padding: 0.25rem 0.5rem;
     line-height: 1;
+    font-size: $small-font-size;
+}
+
+.btn-tag:hover {
+    color: $black;
 }
 
 .btn.disabled, .btn:disabled {
@@ -3107,10 +3112,6 @@ body {
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
     font-size: $font-size-base;
-}
-
-.btn-tag {
-    font-size: $small-font-size;
 }
 
 // Comments
