@@ -13,7 +13,7 @@ from sqlalchemy import *
 import threading
 import requests
 
-from werkzeug.contrib.fixers import ProxyFix
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 _version = "0.5.0"
 
