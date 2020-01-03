@@ -136,7 +136,7 @@ def badge_monitor():
 
         badge_types=[x for x in db.query(BadgeDef).filter(BadgeDef.qualification_expr.isnot(None)).all()]
 
-        for user in db.query(User).filter_by(is_banned=False).all():
+        for user in db.query(User).filter_by(is_banned=0).all():
 
             for badge in badge_types:
                 
