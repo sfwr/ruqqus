@@ -30,14 +30,15 @@ CREATE TABLE public.comments (
     is_banned boolean DEFAULT false,
     body character varying(2000),
     parent_fullname character varying(255),
-    body_html character varying(2000),
+    body_html character varying(3000),
     distinguish_level integer DEFAULT 0,
     edited_timestamp integer DEFAULT 0,
     is_deleted boolean DEFAULT false NOT NULL,
     is_approved integer DEFAULT 0 NOT NULL,
     ip character varying(64),
     approved_utc integer DEFAULT 0,
-    ban_reason character varying(128) DEFAULT ''::character varying
+    ban_reason character varying(128) DEFAULT ''::character varying,
+    creation_ip character varying(64) DEFAULT ''::character varying NOT NULL
 );
 
 
@@ -69,7 +70,7 @@ CREATE TABLE public.submissions (
     stickied boolean DEFAULT false,
     body character varying(5000) DEFAULT ''::character varying,
     body_html character varying(6000) DEFAULT ''::character varying,
-    board_id integer,
+    board_id integer DEFAULT 1,
     embed_url character varying(256) DEFAULT ''::character varying,
     is_deleted boolean DEFAULT false NOT NULL,
     domain_ref integer,
@@ -78,7 +79,11 @@ CREATE TABLE public.submissions (
     approved_utc integer DEFAULT 0,
     original_board_id integer,
     edited_utc integer,
-    ban_reason character varying(128) DEFAULT ''::character varying
+    ban_reason character varying(128) DEFAULT ''::character varying,
+    creation_ip character varying(64) DEFAULT ''::character varying NOT NULL,
+    mod_approved integer,
+    is_image boolean DEFAULT false,
+    has_thumb boolean DEFAULT false
 );
 
 
@@ -115,7 +120,13 @@ CREATE TABLE public.users (
     referred_by integer,
     is_banned integer DEFAULT 0,
     ban_reason character varying(128) DEFAULT ''::character varying,
-    ban_state integer DEFAULT 0
+    ban_state integer DEFAULT 0,
+    login_nonce integer DEFAULT 0,
+    title_id integer,
+    has_banner boolean DEFAULT false NOT NULL,
+    has_profile boolean DEFAULT false NOT NULL,
+    reserved character varying(256) DEFAULT NULL::character varying,
+    is_nsfw boolean DEFAULT false NOT NULL
 );
 
 
@@ -127,6 +138,44 @@ CREATE FUNCTION public.age(public.users) RETURNS integer
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
       SELECT CAST( EXTRACT( EPOCH FROM CURRENT_TIMESTAMP) AS int) - $1.created_utc
+      $_$;
+
+
+--
+-- Name: board_id(public.comments); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.board_id(public.comments) RETURNS integer
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+      SELECT submissions.board_id
+      FROM submissions
+      WHERE submissions.id=$1.parent_submission
+      $_$;
+
+
+--
+-- Name: reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reports (
+    id integer NOT NULL,
+    post_id integer,
+    user_id integer,
+    created_utc integer DEFAULT 0
+);
+
+
+--
+-- Name: board_id(public.reports); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.board_id(public.reports) RETURNS integer
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+      SELECT submissions.board_id
+      FROM submissions
+      WHERE submissions.id=$1.post_id
       $_$;
 
 
@@ -370,11 +419,15 @@ CREATE TABLE public.boards (
     name character varying(64),
     is_banned boolean,
     created_utc integer,
-    description character varying(256) DEFAULT ''::character varying,
-    description_html character varying(256) DEFAULT ''::character varying,
+    description character varying(1500) DEFAULT ''::character varying,
+    description_html character varying(2500) DEFAULT ''::character varying,
     over_18 boolean DEFAULT false,
     fa_icon character varying(64),
-    creator_id integer
+    creator_id integer,
+    has_banner boolean DEFAULT false NOT NULL,
+    has_profile boolean DEFAULT false NOT NULL,
+    ban_reason character varying(256) DEFAULT NULL::character varying,
+    color character varying(8) DEFAULT '603abb'::character varying
 );
 
 
@@ -408,6 +461,21 @@ CREATE FUNCTION public.referral_count(public.users) RETURNS bigint
         WHERE users.is_banned=0
         AND users.referred_by=$1.id
     $_$;
+
+
+--
+-- Name: report_count(public.submissions); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.report_count(public.submissions) RETURNS bigint
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+      SELECT COUNT(*)
+      FROM flags
+      JOIN users ON flags.user_id=users.id
+      WHERE post_id=$1.id
+      AND users.is_banned=0
+      $_$;
 
 
 --
@@ -472,7 +540,6 @@ CREATE FUNCTION public.subscriber_count(public.boards) RETURNS bigint
          on subscriptions.user_id=users.id
          where subscriptions.board_id=$1.id
          and users.is_banned=0
-         and subscriptions.is_active=true
         $_$;
 
 
@@ -486,7 +553,7 @@ CREATE FUNCTION public.trending_rank(public.boards) RETURNS double precision
 select
 	case 
 		when $1.subscriber_count=0 then 0
-		when $1.subscriber_count>0 then cast($1.recent_subscriptions as float) / cast($1.subscriber_count as float)
+		when $1.subscriber_count>0 then cast($1.recent_subscriptions as float) / (cast($1.subscriber_count as float)+10)
 	end
 $_$;
 
@@ -564,7 +631,10 @@ CREATE TABLE public.badge_defs (
     id integer NOT NULL,
     name character varying(64),
     description character varying(256),
-    icon character varying(64)
+    icon character varying(64),
+    kind integer DEFAULT 1,
+    rank integer DEFAULT 1,
+    qualification_expr character varying(128)
 );
 
 
@@ -918,9 +988,9 @@ ALTER SEQUENCE public.images_id_seq OWNED BY public.images.id;
 
 CREATE TABLE public.ips (
     id integer NOT NULL,
-    user_id integer,
-    ip character varying(40) NOT NULL,
-    created_utc integer NOT NULL
+    addr character varying(64),
+    reason character varying(256) DEFAULT ''::character varying,
+    banned_by integer
 );
 
 
@@ -953,7 +1023,8 @@ CREATE TABLE public.mods (
     user_id integer,
     board_id integer,
     created_utc integer,
-    accepted boolean DEFAULT false
+    accepted boolean DEFAULT false,
+    invite_rescinded boolean DEFAULT false
 );
 
 
@@ -1029,6 +1100,26 @@ ALTER SEQUENCE public.postrels_id_seq OWNED BY public.postrels.id;
 
 
 --
+-- Name: reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reports_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reports_id_seq OWNED BY public.reports.id;
+
+
+--
 -- Name: submissions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1079,6 +1170,73 @@ CREATE SEQUENCE public.subscriptions_id_seq
 --
 
 ALTER SEQUENCE public.subscriptions_id_seq OWNED BY public.subscriptions.id;
+
+
+--
+-- Name: titles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.titles (
+    id integer NOT NULL,
+    is_before boolean DEFAULT true NOT NULL,
+    text character varying(64),
+    qualification_expr character varying(256),
+    requirement_string character varying(512),
+    color character varying(6) DEFAULT '000000'::character varying,
+    kind integer DEFAULT 1
+);
+
+
+--
+-- Name: titles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.titles_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: titles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.titles_id_seq OWNED BY public.titles.id;
+
+
+--
+-- Name: useragents; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.useragents (
+    id integer NOT NULL,
+    kwd character varying(128),
+    banned_by integer,
+    reason character varying(256)
+);
+
+
+--
+-- Name: useragents_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.useragents_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: useragents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.useragents_id_seq OWNED BY public.useragents.id;
 
 
 --
@@ -1287,6 +1445,13 @@ ALTER TABLE ONLY public.postrels ALTER COLUMN id SET DEFAULT nextval('public.pos
 
 
 --
+-- Name: reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports ALTER COLUMN id SET DEFAULT nextval('public.reports_id_seq'::regclass);
+
+
+--
 -- Name: submissions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1298,6 +1463,20 @@ ALTER TABLE ONLY public.submissions ALTER COLUMN id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.subscriptions ALTER COLUMN id SET DEFAULT nextval('public.subscriptions_id_seq'::regclass);
+
+
+--
+-- Name: titles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.titles ALTER COLUMN id SET DEFAULT nextval('public.titles_id_seq'::regclass);
+
+
+--
+-- Name: useragents id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.useragents ALTER COLUMN id SET DEFAULT nextval('public.useragents_id_seq'::regclass);
 
 
 --
@@ -1434,6 +1613,14 @@ ALTER TABLE ONLY public.follows
 
 
 --
+-- Name: ips ips_addr_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ips
+    ADD CONSTRAINT ips_addr_key UNIQUE (addr);
+
+
+--
 -- Name: ips ips_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1466,6 +1653,14 @@ ALTER TABLE ONLY public.postrels
 
 
 --
+-- Name: reports reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: submissions submissions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1479,6 +1674,30 @@ ALTER TABLE ONLY public.submissions
 
 ALTER TABLE ONLY public.subscriptions
     ADD CONSTRAINT subscriptions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: titles titles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.titles
+    ADD CONSTRAINT titles_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: useragents useragents_kwd_key; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.useragents
+    ADD CONSTRAINT useragents_kwd_key UNIQUE (kwd);
+
+
+--
+-- Name: useragents useragents_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.useragents
+    ADD CONSTRAINT useragents_pkey PRIMARY KEY (id);
 
 
 --
@@ -1698,11 +1917,11 @@ ALTER TABLE ONLY public.follows
 
 
 --
--- Name: ips ips_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: ips ips_banned_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ips
-    ADD CONSTRAINT ips_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+    ADD CONSTRAINT ips_banned_by_fkey FOREIGN KEY (banned_by) REFERENCES public.users(id);
 
 
 --
@@ -1754,6 +1973,22 @@ ALTER TABLE ONLY public.postrels
 
 
 --
+-- Name: reports reports_post_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT reports_post_id_fkey FOREIGN KEY (post_id) REFERENCES public.submissions(id);
+
+
+--
+-- Name: reports reports_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports
+    ADD CONSTRAINT reports_user_id_fkey FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: submissions submissions_author_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1775,6 +2010,14 @@ ALTER TABLE ONLY public.submissions
 
 ALTER TABLE ONLY public.submissions
     ADD CONSTRAINT submissions_domain_ref_fkey FOREIGN KEY (domain_ref) REFERENCES public.domains(id);
+
+
+--
+-- Name: submissions submissions_mod_approved_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.submissions
+    ADD CONSTRAINT submissions_mod_approved_fkey FOREIGN KEY (mod_approved) REFERENCES public.users(id);
 
 
 --
@@ -1802,6 +2045,14 @@ ALTER TABLE ONLY public.subscriptions
 
 
 --
+-- Name: useragents useragents_banned_by_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.useragents
+    ADD CONSTRAINT useragents_banned_by_fkey FOREIGN KEY (banned_by) REFERENCES public.users(id);
+
+
+--
 -- Name: userflags userflags_target_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1823,6 +2074,14 @@ ALTER TABLE ONLY public.userflags
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_referred_by_fkey FOREIGN KEY (referred_by) REFERENCES public.users(id);
+
+
+--
+-- Name: users users_title_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT users_title_fkey FOREIGN KEY (title_id) REFERENCES public.titles(id);
 
 
 --
