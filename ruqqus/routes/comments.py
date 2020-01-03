@@ -155,15 +155,15 @@ def api_comment(v):
 @validate_formkey
 def edit_comment(cid, v):
 
-    c = db.query(Comment).filter_by(id=base36decode(cid)).first()
-
-    if not c:
-        abort(404)
+    c = get_comment(cid)
 
     if not c.author_id == v.id:
         abort(403)
 
     if c.is_banned or c.is_deleted:
+        abort(403)
+
+    if c.board.has_ban(v):
         abort(403)
         
     body = request.form.get("body", "")

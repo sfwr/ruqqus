@@ -35,6 +35,7 @@ class BanRelationship(Base):
     board_id = Column(Integer, ForeignKey("boards.id"))
     created_utc = Column(BigInteger, default=0)
     banning_mod_id=Column(Integer, ForeignKey("users.id"))
+    is_active=Column(Boolean, default=False)
 
     user=relationship("User", uselist=False, primaryjoin="User.id==BanRelationship.user_id")
     banning_mod=relationship("User", uselist=False, primaryjoin="User.id==BanRelationship.banning_mod_id")

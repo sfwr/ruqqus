@@ -323,7 +323,7 @@
             {% endif %}
 
             {% if v %}
-            {% if v.id==p.author_id and not v.is_banned %}
+            {% if v.id==p.author_id and not v.is_banned and not p.board.has_ban(v) %}
             <a class="dropdown-item" href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a>
             {% endif %}
             {% if v.admin_level >=1 %}
@@ -423,7 +423,7 @@
                             <a class="dropdown-item d-none" href="#"><i class="fas fa-flag"></i>Flag</a>
 
                             {% if v %}
-{% if v.id==p.author_id and not v.is_banned %}
+{% if v.id==p.author_id and not v.is_banned and not p.board.has_ban(v) %}
 	<a class="dropdown-item" href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a>
 {% endif %}
 {% if v.admin_level >=1 %}
