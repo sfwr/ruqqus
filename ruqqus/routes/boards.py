@@ -156,6 +156,11 @@ def mod_ban_bid_user(bid, username, board, v):
     if board.has_mod(user):
         abort(409)
 
+    #you can only exile a user who has previously participated in the guild
+    if not (db.query(Submission).filter_by(author_id=user.id, board.id).first() or
+        db.query(Comment).filter(Comment.author_id==user.id, Comment.board_id=board.id).first()):
+        abort(400)
+
     #check for an existing deactivated ban
     existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False).first()
     if existing_ban:
@@ -168,11 +173,11 @@ def mod_ban_bid_user(bid, username, board, v):
                                 banning_mod_id=v.id,
                                 is_active=True)
         db.add(new_ban)
-        text=f"""
-You have been exiled from +{board.name}.
-\n\nNone of your existing posts or comments in +{board.name} have been removed, however, you will not be able to make any new posts or comments in +{board.name}.
-             """
+
+
+        text=f"You have been exiled from +{board.name}.\n\nNone of your existing posts or comments have been removed, however, you will not be able to make any new posts or comments in +{board.name}."
         send_notification(user, text)
+            
     db.commit()
 
     return "", 204
