@@ -10,6 +10,16 @@
 
 {% endblock %}
 
+{% block darkswitch %}
+              {% if v and v.referral_count and session.get("dark_mode_enabled")%}
+              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ b.name }}')"><i class="fad fa-toggle-on fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+              {% elif v and v.referral_count %}
+              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ b.name }}')"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+              {% else %}
+              <a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Dark mode</span></a>
+              {% endif %}
+{% endblock %}
+
 {% block PseudoSubmitForm %}
 <!-- Link to submission page from guild -->
 
