@@ -70,6 +70,7 @@ def api_comment(v):
 
     if bans:
         return render_template("comment_failed.html",
+                               action="/api/comment"
                                parent_submission=request.form.get("submission"),
                                parent_fullname=request.form.get("parent_fullname"),
                                badlinks=[x.domain for x in bans],
@@ -169,6 +170,17 @@ def edit_comment(cid, v):
     with CustomRenderer() as renderer:
         body_md=renderer.render(mistletoe.Document(body))
     body_html = sanitize(body_md, linkgen=True)
+
+    #Run safety filter
+    bans=filter_comment_html(body_html)
+
+    if bans:
+        return render_template("comment_failed.html",
+                               action=f"/edit_comment/{c.base36id}"
+                               badlinks=[x.domain for x in bans],
+                               body=body,
+                               v=v
+                               )
 
     c.body=body
     c.body_html=body_html
