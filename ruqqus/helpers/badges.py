@@ -31,6 +31,7 @@ def badge_monitor():
                     db.commit()
                     print(f"removed {badge.name} from @{user.username}")
 
+        print("thread sleeping 1hr")
         time.sleep(3600)
 
 badge_thread=threading.Thread(target=badge_monitor)
