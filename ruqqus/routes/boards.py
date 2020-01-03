@@ -168,8 +168,8 @@ def mod_ban_bid_user(bid, username, board, v):
                             banning_mod_id=v.id)
         db.add(new_ban)
         text=f"""
-             You have been exiled from +{board.name}.
-             None of your existing posts or comments in +{board.name} have been removed, however, you will not be able to make any new posts or comments in +{board.name}.
+You have been exiled from +{board.name}.
+\n\nNone of your existing posts or comments in +{board.name} have been removed, however, you will not be able to make any new posts or comments in +{board.name}.
              """
         send_notification(user, text)
     db.commit()
