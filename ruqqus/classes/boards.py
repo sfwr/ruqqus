@@ -60,7 +60,8 @@ class Board(Base):
     @cache.memoize(timeout=30)
     def mods(self):
 
-        return [x.user for x in self.moderators.filter_by(accepted=True).order_by(text("id asc")).all()]
+        z= [x.user for x in self.moderators.filter_by(accepted=True).order_by(text("id asc")).all()]
+        return z
 
     @property
     @cache.memoize(timeout=30)
