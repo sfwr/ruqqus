@@ -1,7 +1,7 @@
 // Colors
 
 $setprimary: #{boardcolor};
-$primary: lighten($primary, 50%);
+$primary: lighten($setprimary, 50%);
 
 $dark: #232327;
 $secondary: #3f404a;
