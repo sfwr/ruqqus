@@ -12922,6 +12922,12 @@ ol > li::before {
   color: #603abb;
 }
 
+.settings-nav .fa, .settings-nav .fas, .settings-nav .far, .settings-nav .fab, .settings-nav .fal {
+  font-size: 12px;
+  margin-right: 0.5rem;
+  color: #7F7F8A;
+}
+
 .color-picker input[type=radio] {
   display: none;
 }
@@ -13919,11 +13925,12 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .post-title a {
-  color: #1F1F1F;
+  color: #603abb;
 }
 
 .post-title a:hover, .post-title a:active, .post-title a:focus {
   text-decoration: none;
+  color: #603abb;
 }
 
 .stretched-link a:hover {
@@ -15675,6 +15682,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .thumb-img-link-overlay {
     display: none;
+  }
+
+  .post-title a {
+    color: #1F1F1F;
   }
 
   .post-title a:hover, .post-title a:active, .post-title a:focus {
