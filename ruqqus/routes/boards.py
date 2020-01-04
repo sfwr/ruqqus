@@ -336,6 +336,7 @@ def mod_remove_username(bid, username, board, v):
     user=get_user(username)
 
     u_mod=board.has_mod(user)
+    v_mod=board.has_mod(v)
 
     if not u_mod:
         abort(422)
