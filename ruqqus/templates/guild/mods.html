@@ -2,6 +2,10 @@
 
 {% block pagetitle %}+{{ b.name }} Settings - Ruqqus Guildmaster Tools{% endblock %}
 
+{% if not b.has_mod(v) %}
+{% block subNav %}{% endblock %}
+{% endif %}
+
 <!-- tabs container -->
 
 {% block content %}
