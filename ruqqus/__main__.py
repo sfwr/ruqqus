@@ -55,7 +55,7 @@ limiter = Limiter(
 
 #setup db
 _engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
-db = sessionmaker(bind=_engine, expire_on_commit=False)()
+db = sessionmaker(bind=_engine)()
 Base = declarative_base()
 
 #import and bind all routing functions
@@ -115,7 +115,7 @@ def log_event(name, link):
 @app.after_request
 def after_request(response):
 
-    db.expire_all()
+    #db.expire_all()
     
     response.headers.add('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth"
                          )
