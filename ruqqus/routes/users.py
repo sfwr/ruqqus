@@ -123,7 +123,7 @@ def unfollow_user(username, v):
 @auth_required
 def api_agree_tos(v):
 
-    v.tos_agree_utc=int(time.time())
+    v.tos_agreed_utc=int(time.time())
 
     db.add(v)
     db.commit()

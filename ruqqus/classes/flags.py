@@ -1,8 +1,9 @@
 from sqlalchemy import *
 from ruqqus.__main__ import Base, db, cache
+from .mix_ins import *
 
 
-class Flag(Base):
+class Flag(Base, Stndrd):
 
     __tablename__="flags"
 
@@ -15,7 +16,7 @@ class Flag(Base):
 
         return f"<Flag(id={self.id})>"
 
-class CommentFlag(Base):
+class CommentFlag(Base, Stndrd):
 
     __tablename__="commentflags"
 

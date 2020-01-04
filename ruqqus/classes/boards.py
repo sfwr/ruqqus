@@ -8,9 +8,10 @@ from ruqqus.helpers.lazy import *
 import ruqqus.helpers.aws as aws
 from .submission import *
 from .board_relationships import *
+from .mix_ins import *
 from ruqqus.__main__ import Base, db, cache
 
-class Board(Base):
+class Board(Base, Stndrd, Age_times):
 
     __tablename__="boards"
 
@@ -48,7 +49,7 @@ class Board(Base):
     @lazy
     def base36id(self):
         return base36encode(self.id)
-
+    
     @property
     @cache.memoize(timeout=30)
     def mods_list(self):
@@ -220,9 +221,6 @@ class Board(Base):
 
         return bool(self.subscribers.filter_by(board_id=self.id, user_id=user.id, is_active=True).first())
 
-    @property
-    def created_date(self):
-        return time.strftime("%d %B %Y", time.gmtime(self.created_utc))
 
     def set_profile(self, file):
 
@@ -274,4 +272,3 @@ class Board(Base):
     @property
     def css_url(self):
         return f"{self.permalink}/css.css"
-        
