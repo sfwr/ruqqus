@@ -143,7 +143,6 @@ class Comment(Base, Stndrd, Age_times, Scores, Fuzzing):
 
         return render_template("single_comment.html", v=v, c=self, replies=self.replies, render_replies=render_replies, standalone=standalone, level=level)
 
-
     @property
     def active_flags(self):
         if self.is_approved:
