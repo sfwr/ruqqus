@@ -3,6 +3,8 @@ import math
 import random
 import time
 
+from ruqqus.__main__ import cache
+
 
 class Stndrd:
     @property
