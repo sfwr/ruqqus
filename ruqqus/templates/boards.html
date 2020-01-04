@@ -40,7 +40,13 @@
 {% endblock %}
 
 {% block postNav %}
-<div class="flex-row bg-light sticky d-none d-lg-flex pt-3 mb-3">
+<div class="container-fluid bg-white sticky">
+  <div class="row box-shadow-bottom">
+    <div class="col">
+      <div class="container">
+        <div class="row box-shadow-bottom bg-white">
+          <div class="col">
+            <div class="d-flex">
   <ul class="nav post-nav mr-auto">
     <li class="nav-item">
       <a class="nav-link{% if sort_method=="subs" %} active{% endif %}" href="/browse"><i class="fas fa-users"></i>Members</a>
@@ -52,6 +58,12 @@
       <a class="nav-link{% if sort_method=="trending" %} active{% endif %}" href="/browse?sort=new"><i class="fas fa-fire"></i>Trending</a>
     </li>
   </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
