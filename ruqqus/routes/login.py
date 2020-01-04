@@ -290,7 +290,8 @@ def sign_up_post(v):
                       email=email,
                       created_utc=int(time.time()),
                       creation_ip=request.remote_addr,
-                      referred_by=ref_id
+                      referred_by=ref_id,
+                      tos_agreed_utc=int(time.time())
                  )
 
     except Exception as e:

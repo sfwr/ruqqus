@@ -78,6 +78,23 @@ def is_not_banned(f):
     wrapper.__name__=f.__name__
     return wrapper
 
+#Require tos agreement
+def tos_agreed(f):
+
+    def wrapper(*args, **kwargs):
+
+        v=kwargs['v']
+
+        if v.tos_agreed_utc > 1578172738:
+            return f(*args, **kwargs)
+        else:
+            return redirect("/help/terms")
+
+    wrapper.__name__=f.__name__
+    return wrapper
+
+        
+
 def is_guildmaster(f):
     #decorator that enforces guildmaster status
     #use under auth_required
@@ -105,8 +122,6 @@ def is_guildmaster(f):
     return wrapper
 
 #this wrapper takes args and is a bit more complicated
-
-
 def admin_level_required(x):
 
     def wrapper_maker(f):
