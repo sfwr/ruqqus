@@ -27,7 +27,7 @@
 
   <div class="col">
 
-{% if b.has_ban(v) %}
+{% if not b.has_ban(v) %}
     <div class="card pseudo-submit-form">
       <div class="card-header bg-white">
         <div class="text-small text-gray mb-0">Create post in +{{ b.name }}</div>
