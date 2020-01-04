@@ -12899,8 +12899,7 @@ ol > li::before {
   color: #8c8d94;
   font-size: 1rem;
   font-weight: 400;
-  padding-top: 0;
-  padding-bottom: 0.75rem;
+  padding: 0.75rem 1rem;
 }
 
 .post-nav > .nav-item > .nav-link.active {
