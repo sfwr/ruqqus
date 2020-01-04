@@ -586,8 +586,7 @@ ol > li::before {
     color: $gray;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
-    padding-top: 0;
-    padding-bottom: 0.75rem;
+    padding: 0.75rem 1rem;
 }
 
 .post-nav > .nav-item > .nav-link.active {
