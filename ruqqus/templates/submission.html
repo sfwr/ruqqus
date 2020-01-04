@@ -555,7 +555,7 @@
               </div>
             </div>
 
-            {% if not p.is_banned %}
+            {% if not p.is_banned and not p.board.has_ban(v) %}
             <div class="comment-write mb-3">
               <form id="reply-to-{{ p.fullname }}" class="input-group" action="/api/comment" method="post">
                 <input type="hidden" name="formkey" value="{{ v.formkey }}">
