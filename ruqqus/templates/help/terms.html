@@ -76,5 +76,10 @@ Ruqqus retains sole discretion in all determinations regarding content policy an
 Ruqqus reserves the right to remove content that we deem to violate content policy or the terms of service, and to deactivate accounts responsible for such violations.
 
 {% endfilter %}
+
+{% if v and v.tos_agreed_utc < cutoff %}
+<a id="agreebox" href="javascript:void(0)" class="btn btn-primary" onclick="post('/api/agree_tos', callback=function(){window.history.back()})">I agree.</a>
+
+{% endif %}
 {% endblock %}
 

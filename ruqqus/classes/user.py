@@ -51,6 +51,7 @@ class User(Base):
     has_banner=Column(Boolean, default=False)
     reserved=Column(String(256), default=None)
     is_nsfw=Column(Boolean, default=False)
+    tos_agreed_utc=Column(Integer, default=None)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")

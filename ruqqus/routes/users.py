@@ -118,3 +118,17 @@ def unfollow_user(username, v):
 
     return "", 204
 
+
+@app.route("/api/agree_tos", methods=["POST"])
+@auth_required
+def api_agree_tos(v):
+
+    v.tos_agree_utc=int(time.time())
+
+    db.add(v)
+    db.commit()
+
+    return redirect("/help/terms")
+
+    
+
