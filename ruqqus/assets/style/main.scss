@@ -2033,7 +2033,7 @@ blockquote {
     color: $primary;
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
-    background-color: #f4effa;
+    background-color: rgba($primary, 0.15);
     padding: 0.5rem 1rem;
     margin: 0.5rem 0rem 1rem 0.5rem;
 }

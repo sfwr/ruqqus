@@ -14292,7 +14292,7 @@ blockquote {
   color: #603abb;
   font-size: 1rem;
   font-weight: 500;
-  background-color: #f4effa;
+  background-color: rgba(96, 58, 187, 0.15);
   padding: 0.5rem 1rem;
   margin: 0.5rem 0rem 1rem 0.5rem;
 }
