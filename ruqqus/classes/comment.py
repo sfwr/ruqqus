@@ -4,7 +4,7 @@ from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
 from random import randint
 import math
-
+from .mix_ins import *
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base, db, cache
@@ -14,7 +14,7 @@ from .votes import CommentVote
 from .flags import CommentFlag
 from .boards import Board
 
-class Comment(Base):
+class Comment(Base, Stndrd, Age_times, Scores, Fuzzing):
 
     __tablename__="comments"
 
@@ -24,7 +24,7 @@ class Comment(Base):
     parent_submission = Column(BigInteger, ForeignKey(Submission.id))
     parent_fullname = Column(BigInteger) #this column is foreignkeyed to comment(id) but we can't do that yet as "comment" class isn't yet defined
     created_utc = Column(BigInteger, default=0)
-    edited_timestamp = Column(BigInteger, default=0)
+    edited_utc = Column(BigInteger, default=0)
     is_banned = Column(Boolean, default=False)
     body_html = Column(String)
     distinguish_level=Column(Integer, default=0)
@@ -60,28 +60,8 @@ class Comment(Base):
         super().__init__(*args, **kwargs)
                 
     def __repr__(self):
-        return f"<Comment(id={self.id})>"
-        
 
-    @property
-    @cache.memoize(timeout=60)
-    def rank_hot(self):
-        return (self.ups-self.down)/(((self.age+100000)/6)**(1/3))
-
-    @property
-    @cache.memoize(timeout=60)
-    def rank_fiery(self):
-        return (math.sqrt(self.ups * self.downs))/(((self.age+100000)/6)**(1/3))
-
-    @property
-    @cache.memoize(timeout=60)
-    def score(self):
-        return self.ups-self.downs
-                
-
-    @property
-    def base36id(self):
-        return base36encode(self.id)
+        return f"<Comment(id={self.id})"
 
     @property
     def fullname(self):
@@ -162,71 +142,7 @@ class Comment(Base):
                 return ""
 
         return render_template("single_comment.html", v=v, c=self, replies=self.replies, render_replies=render_replies, standalone=standalone, level=level)
-    
-    @property
-    @cache.memoize(timeout=60)
-    def score_fuzzed(self, k=0.01):
-        real=self.score
-        a=math.floor(real*(1-k))
-        b=math.ceil(real*(1+k))
-        return randint(a,b)
-    
-    @property
-    def age_string(self):
 
-        age=self.age
-
-        if age<60:
-            return "just now"
-        elif age<3600:
-            minutes=int(age/60)
-            return f"{minutes} minute{'s' if minutes>1 else ''} ago"
-        elif age<86400:
-            hours=int(age/3600)
-            return f"{hours} hour{'s' if hours>1 else ''} ago"
-        elif age<2592000:
-            days=int(age/86400)
-            return f"{days} day{'s' if days>1 else ''} ago"
-
-        now=time.gmtime()
-        ctd=time.gmtime(self.created_utc)
-        months=now.tm_mon-ctd.tm_mon+12*(now.tm_year-ctd.tm_year)
-
-        if months < 12:
-            return f"{months} month{'s' if months>1 else ''} ago"
-        else:
-            years=int(months/12)
-            return f"{years} year{'s' if years>1 else ''} ago"
-
-    @property
-    def edited_string(self):
-
-        if not self.edited_timestamp:
-            return None
-
-        age=int(time.time()-self.edited_timestamp)
-
-        if age<60:
-            return "just now"
-        elif age<3600:
-            minutes=int(age/60)
-            return f"{minutes} minute{'s' if minutes>1 else ''} ago"
-        elif age<86400:
-            hours=int(age/3600)
-            return f"{hours} hour{'s' if hours>1 else ''} ago"
-        elif age<2592000:
-            days=int(age/86400)
-            return f"{days} day{'s' if days>1 else ''} ago"
-
-        now=time.gmtime()
-        ctd=time.gmtime(self.created_utc)
-        months=now.tm_mon-ctd.tm_mon+12*(now.tm_year-ctd.tm_year)
-
-        if months < 12:
-            return f"{months} month{'s' if months>1 else ''} ago"
-        else:
-            years=int(months/12)
-            return f"{years} year{'s' if years>1 else ''} ago"
 
     @property
     def active_flags(self):
