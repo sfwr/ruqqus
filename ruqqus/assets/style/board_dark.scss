@@ -2423,6 +2423,14 @@ ul.comment-section {
     padding: 1rem 0;
 }
 
+// Tables
+
+.table .thead-dark th {
+    color: $muted;
+    background-color: $light;
+    border: none;
+}
+
 // Guild Settings Page
 
 #settings-guild {

@@ -14623,6 +14623,12 @@ ul.comment-section {
   padding: 1rem 0;
 }
 
+.table .thead-dark th {
+  color: #7F7F8A;
+  background-color: #E6E9F0;
+  border: none;
+}
+
 #settings-guild {
   background-color: #ffffff;
 }

@@ -14658,6 +14658,12 @@ ul.comment-section {
   padding: 1rem 0;
 }
 
+.table .thead-dark th {
+  color: #8c8d94;
+  background-color: #35363e;
+  border: none;
+}
+
 #settings-guild {
   background-color: #232327;
 }
