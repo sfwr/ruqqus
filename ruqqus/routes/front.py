@@ -148,6 +148,8 @@ def guild_ids(sort="subs", page=1, nsfw=False):
         guilds=guilds.order_by(text("boards.subscriber_count desc"))
     elif sort=="new":
         guilds=guilds.order_by(text("boards.created_utc desc"))
+    elif sort=="trending":
+        guilds=guilds.order_by(text("boards.trending_rank desc"))
 
     else:
         abort(422)
