@@ -67,30 +67,20 @@
 
 {% block banner %}
 <div class="jumbotron jumbotron-fluid jumbotron-guild text-white" style="background-image: url({{ b.banner_url }})">
-  <div class="guild-banner-contents w-100 p-3" style="bottom: 0;">
+  <div class="w-100 p-3" style="bottom: 0;">
     <div class="container">
-      <div class="d-md-flex text-center text-md-left">
+      <div class="d-md-flex align-items-center">
         <div>
-          <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="guild-icon-square-lg"></a>
+          <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-75"></a>
         </div>
         <div class="ml-3 w-100">
-         <a href="{{ b.permalink }}" class="text-white"><h1 class="h3 d-inline-block mr-2">+{{ b.name }}
+        <a href="{{ b.permalink }}" class="text-white">
+          <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
            {% if b.over_18 %}
            <span class="badge badge-danger text-small align-middle">NSFW</span>
            {% endif %}
-         </h1></a>
-         <div><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
-           <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
-         </div>
-         <div class="mt-1">{{ b.description_html | safe }}</div>
-         <div class="d-flex">
-           <div class="w-100">
-             {% for mod in b.mods %}
-             <a href="{{ mod.permalink }}" class="profile-pic-overlap"><img src="{{ mod.profile_url }}" class="profile-pic-30"></a>
-             {% else %}
-             No guildmasters
-             {% endfor %}
-           </div>
+         </h1>
+         </a>
          </div>
        </div>
      </div>
@@ -207,7 +197,7 @@
       <a href="{{ entry[0].permalink }}">
         <div class="d-flex">
           <div class="mr-2">
-            <img src="{{ entry.profile_url }}" class="guild-icon-square-35"></div>
+            <img src="{{ entry.profile_url }}" class="profile-pic-35"></div>
             <div>
               <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
               <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
@@ -232,7 +222,7 @@
         <a href="{{ board.permalink }}">
           <div class="d-flex">
             <div class="mr-2">
-              <img src="{{ board.profile_url }}" class="guild-icon-square-35"></div>
+              <img src="{{ board.profile_url }}" class="profile-pic-35"></div>
               <div class="my-auto">
                 <div class="text-black font-weight-normal">+{{ board.name }}</div>
               </div>
