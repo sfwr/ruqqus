@@ -43,10 +43,13 @@
 <div class="flex-row bg-light sticky d-none d-lg-flex pt-3 mb-3">
   <ul class="nav post-nav mr-auto">
     <li class="nav-item">
-      <a class="nav-link{% if sort_method=="subs" %} active{% endif %}" href="/browse"><i class="fas fa-fire"></i>Members</a>
+      <a class="nav-link{% if sort_method=="subs" %} active{% endif %}" href="/browse"><i class="fas fa-users"></i>Members</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="/browse?sort=new"><i class="fas fa-arrow-alt-circle-up"></i>New</a>
+      <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="/browse?sort=new"><i class="fas fa-sparkles"></i>New</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link{% if sort_method=="trending" %} active{% endif %}" href="/browse?sort=new"><i class="fas fa-fire"></i>Trending</a>
     </li>
   </ul>
 </div>
