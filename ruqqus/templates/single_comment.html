@@ -10,7 +10,7 @@
 {% if standalone %}
 <div class="post-info font-weight-bold">
 	{% if c.parent %}
-    <span class="align-top"><a href="{{ c.permalink }}">{{ c.post.title | safe }}</a></span>
+    <span class="align-top"><a href="{{ c.permalink }}?context=1">{{ c.post.title | safe }}</a></span>
 	{% else %}
     <span class="align-top">Notification</span>
 	{% endif %}
