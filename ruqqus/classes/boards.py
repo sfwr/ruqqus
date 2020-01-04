@@ -226,7 +226,7 @@ class Board(Base):
 
     def set_profile(self, file):
 
-        aws.upload_file(name=f"board/{self.name}/profile.png",
+        aws.upload_file(name=f"board/{self.name.lower()}/profile.png",
                         file=file)
         self.has_profile=True
         db.add(self)
@@ -234,7 +234,7 @@ class Board(Base):
         
     def set_banner(self, file):
 
-        aws.upload_file(name=f"board/{self.name}/banner.png",
+        aws.upload_file(name=f"board/{self.name.lower()}/banner.png",
                         file=file)
 
         self.has_banner=True
@@ -243,14 +243,14 @@ class Board(Base):
 
     def del_profile(self):
 
-        aws.delete_file(name=f"board/{self.name}/profile.png")
+        aws.delete_file(name=f"board/{self.name.lower()}/profile.png")
         self.has_profile=False
         db.add(self)
         db.commit()
 
     def del_banner(self):
 
-        aws.delete_file(name=f"board/{self.name}/banner.png")
+        aws.delete_file(name=f"board/{self.name.lower()}/banner.png")
         self.has_banner=False
         db.add(self)
         db.commit()
@@ -259,7 +259,7 @@ class Board(Base):
     def banner_url(self):
 
         if self.has_banner:
-            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name}/banner.png"
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name.lower()}/banner.png"
         else:
             return "/assets/images/guilds/default-guild-banner.png"
 
@@ -267,7 +267,7 @@ class Board(Base):
     def profile_url(self):
 
         if self.has_profile:
-            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name}/profile.png"
+            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name.lower()}/profile.png"
         else:
             return "/assets/images/guilds/default-guild-icon.png"
 
