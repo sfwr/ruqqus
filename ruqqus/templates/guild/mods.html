@@ -191,7 +191,8 @@
               </table>
             </div>
 
-            <h2 class="h5" name="guild_name">Pending guildmasters</h2>
+	{% if b.has_mod(v) %}
+            <h2 class="h5 mt-2" name="guild_name">Invited guildmasters</h2>
 
             <p class="text-small text-muted">These users have been invited to moderate +{{ b.name }}.</p>
 
@@ -238,6 +239,7 @@
                 </tbody>
               </table>
             </div>
+	{% endif %}
 
           </div>
 
@@ -288,7 +290,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
-          <button id="stepDownButton" class="btn btn-danger">Step down</button>
+          <a id="stepDownButton" class="btn btn-danger" onclick="post('/mod/{{ b.base36id }}/remove/{{ user.username }}', callback=function(){window.location.reload(true)})">Step down</a>
         </div>
       </div>
     </div>
