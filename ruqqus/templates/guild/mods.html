@@ -62,11 +62,7 @@
          <p>You have been invited to be a Guildmaster of +{{ b.name }}. <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/mod/accept/{{ b.base36id }}', callback=function(){window.location.reload(true)})">Accept Invitation</a></p>
          {% endif %}
 
-         <h2 class="h5" name="guild_name">Guildmasters of +{{ b.name }}</h2>
-
-         <p class="text-small text-muted">Note: all guildmasters share the same permissions.</p>
-
-         <div class="d-flex justify-content-end mb-3">
+         <div class="d-md-flex justify-content-bewteen mb-3">
 
 	<!-- Removed
           <form class="form-inline search flex-nowrap" action="/search" method="get">
@@ -81,7 +77,12 @@
           </form>
 -->
 
-          <div class="my-auto">
+         <div>
+           <h2 class="h5" name="guild_name">Guildmasters of +{{ b.name }}</h2>
+           <p class="text-small text-muted mb-md-0">Note: all guildmasters share the same permissions.</p>
+         </div>
+
+          <div class="mt-auto">
             {% if me %}
             <a href="javascript:void(0)" class="btn btn-outline-primary mr-2" data-toggle="modal" data-target="#stepDownModal" onclick="step_downModal('{{ v.username }}')">Dethrone yourself</a>
             {% endif %}
