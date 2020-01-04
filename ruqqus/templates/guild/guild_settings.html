@@ -71,6 +71,7 @@
 
   <!-- tabs container -->
   {% block subNav %}
+{% if b.has_mod(v) %}
   <!-- Desktop -->
   <div class="container-fluid bg-white sticky d-none d-md-block">
     <div class="row box-shadow-bottom">
@@ -81,16 +82,13 @@
               <div class="d-flex flex-row-reverse justify-content-end">
                 <ul class="nav settings-nav" style="margin-left: -15px;">
                   <li class="nav-item">
-                    <a class="nav-link active" href="{{ b.name }}/mod/settings"><i class="fas fa-cog"></i>Settings</a>
+                    <a class="nav-link{% if request.path.endswith("/mod/settings") %} active{% endif %}" href="/+{{ b.name }}/mod/settings"><i class="fas fa-cog mr-1"></i>Settings</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="?sort=top"><i class="fas fa-users"></i>User management</a>
+                    <a class="nav-link{% if request.path.endswith("/mod/mods") %} active{% endif %}" href="/+{{ b.name }}/mod/mods"><i class="fas fa-crown mr-1"></i>Guildmasters</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="?sort=new"><i class="fas fa-glasses"></i>Content moderation</a> 
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="?sort=disputed"><i class="fas fa-sparkles"></i>Other</a>
+                    <a class="nav-link{% if request.path.endswith("/mod/exiled") %} active{% endif %}" href="/+{{ b.name }}/mod/exiled"><i class="fas fa-user-slash mr-1"></i>Exiled Users</a> 
                   </li>
                 </ul>
               </div>
@@ -107,22 +105,20 @@
         <div class="d-flex flex-row-reverse justify-content-end">
           <ul class="nav settings-nav x-scroll">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ b.name }}/mod/settings"><i class="fas fa-cog"></i>Settings</a>
+              <a class="nav-link{% if request.path.endswith("/mod/settings") %} active{% endif %}" href="/+{{ b.name }}/mod/settings"><i class="fas fa-cog mr-1"></i>Settings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="?sort=top"><i class="fas fa-users"></i>User management</a>
+              <a class="nav-link{% if request.path.endswith("/mod/mods") %} active{% endif %}" href="/+{{ b.name }}/mod/mods"><i class="fas fa-crown mr-1"></i>Guildmasters</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="?sort=new"><i class="fas fa-glasses"></i>Content moderation</a> 
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="?sort=disputed"><i class="fas fa-sparkles"></i>Other</a>
+              <a class="nav-link{% if request.path.endswith("/mod/exiled") %} active{% endif %}" href="/+{{ b.name }}/mod/exiled"><i class="fas fa-user-slash mr-1"></i>Exiled Users</a>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+{% endif %}
   {% endblock %}
 
   <!-- Settings content -->

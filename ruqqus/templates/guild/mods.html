@@ -3,60 +3,6 @@
 {% block pagetitle %}+{{ b.name }} Settings - Ruqqus Guildmaster Tools{% endblock %}
 
 <!-- tabs container -->
-{% block subNav %}
-<!-- Desktop -->
-<div class="container-fluid bg-white sticky d-none d-md-block">
-  <div class="row box-shadow-bottom">
-    <div class="col">
-      <div class="container">
-        <div class="row box-shadow-bottom bg-white">
-          <div class="col">
-            <div class="d-flex flex-row-reverse justify-content-end">
-            <ul class="nav settings-nav" style="margin-left: -15px;">
-                <li class="nav-item">
-                  <a class="nav-link" href="{{ b.name }}/mod/settings"><i class="fas fa-cog"></i>Settings</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link active" href="?sort=top"><i class="fas fa-users"></i>User management</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="?sort=new"><i class="fas fa-glasses"></i>Content moderation</a> 
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="?sort=disputed"><i class="fas fa-sparkles"></i>Other</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Mobile -->
-<div class="container-fluid bg-white sticky d-block d-md-none">
-  <div class="row box-shadow-bottom">
-    <div class="col">
-      <div class="d-flex flex-row-reverse justify-content-end">
-        <ul class="nav settings-nav x-scroll">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ b.name }}/mod/settings"><i class="fas fa-cog"></i>Settings</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" href="?sort=top"><i class="fas fa-users"></i>User management</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="?sort=new"><i class="fas fa-glasses"></i>Content moderation</a> 
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="?sort=disputed"><i class="fas fa-sparkles"></i>Other</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
 
 {% block content %}
 <div class="row justify-content-around">
@@ -113,7 +59,7 @@
         <div class="settings">
 
          {% if b.has_invite(v) %}
-         <p>You have been invited to be a Guilmaster of +{{ b.name }}. <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/mod/accept/{{ b.base36id }}', callback=function(){window.location.reload(true)})">Accept Invitation</a></p>
+         <p>You have been invited to be a Guildmaster of +{{ b.name }}. <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/mod/accept/{{ b.base36id }}', callback=function(){window.location.reload(true)})">Accept Invitation</a></p>
          {% endif %}
 
          <h2 class="h5" name="guild_name">Guildmasters of +{{ b.name }}</h2>
@@ -122,6 +68,7 @@
 
          <div class="d-flex justify-content-between mb-3">
 
+	<!---Removed
           <form class="form-inline search flex-nowrap" action="/search" method="get">
             <input class="form-control" type="search" placeholder="Search guildmasters" aria-label="Search" name="q" style="
             width: 250px;
@@ -132,7 +79,8 @@
               </span>
             </span>
           </form>
-
+--->
+	  <div></div>
           <div class="my-auto">
             {% if me %}
             <a href="javascript:void(0)" class="btn btn-outline-primary mr-2" data-toggle="modal" data-target="#stepDownModal" onclick="step_downModal('{{ v.username }}')">Dethrone yourself</a>

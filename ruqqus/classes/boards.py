@@ -201,6 +201,9 @@ class Board(Base):
 
     def has_invite(self, user):
 
+        if user is None:
+            return None
+
         return self.moderators.filter_by(user_id=user.id, accepted=False, invite_rescinded=False).first()
         
     def has_ban(self, user):
