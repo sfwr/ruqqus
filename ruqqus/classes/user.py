@@ -1,6 +1,6 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import *
-from time import strftime, time, gmtime
+import time
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
 from os import environ
@@ -78,7 +78,7 @@ class User(Base, Stndrd):
             kwargs["passhash"]=self.hash_password(kwargs["password"])
             kwargs.pop("password")
 
-        kwargs["created_utc"]=int(time())
+        kwargs["created_utc"]=int(time.time())
 
         super().__init__(**kwargs)
 
@@ -90,7 +90,7 @@ class User(Base, Stndrd):
 
     @property
     def age(self):
-        return int(time())-self.created_utc
+        return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=600)
     def idlist(self, sort="hot", page=1, kind="board"):
@@ -344,7 +344,7 @@ class User(Base, Stndrd):
     @lazy
     def created_date(self):
 
-        return strftime("%d %B %Y", gmtime(self.created_utc))
+        return time.strftime("%d %B %Y", time.gmtime(self.created_utc))
 
     def __repr__(self):
         return f"<User(username={self.username})>"
