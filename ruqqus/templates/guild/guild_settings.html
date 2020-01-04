@@ -71,6 +71,7 @@
 
   <!-- tabs container -->
   {% block subNav %}
+{% if b.has_mod(v) %}
   <!-- Desktop -->
   <div class="container-fluid bg-white sticky d-none d-md-block">
     <div class="row box-shadow-bottom">
@@ -123,6 +124,7 @@
       </div>
     </div>
   </div>
+{% endif %}
   {% endblock %}
 
   <!-- Settings content -->
