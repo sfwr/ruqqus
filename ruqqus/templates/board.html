@@ -166,7 +166,11 @@
   <div class="body">
     <ul class="no-bullets pl-0">
       {% for mod in b.mods %}
-      <a href="{{ mod.permalink }}" class="profile-pic-overlap"><img src="{{ mod.profile_url }}" class="profile-pic-35 border-3 border-white"></a>
+      <li class="mb-2">
+      <a href="{{ mod.permalink }}" class="font-weight-bold"><img src="{{ mod.profile_url }}" class="profile-pic-20 mr-2">
+      <span class="align-middle">{{ mod.username }}</span>
+      </a>
+      </li>
       {% else %}
       <li>
         <div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
