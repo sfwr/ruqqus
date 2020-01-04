@@ -74,6 +74,7 @@
       </button>
     </div>
     {% endif %}
+
     {% if request.args.get('msg') or msg %}
     <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
       <i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
@@ -110,6 +111,10 @@
       <div class="col">
 
         <div class="settings">
+
+	{% if b.has_invite(v) %}
+	<p>You have been invited to be a Guilmaster of +{{ b.name }}. <a class="btn btn-primary" href="javascript:void(0)" onclick="post('/mod/accept/{{ b.base36id }}', callback=function(){window.location.reload(true)})">Accept Invitation</a></p>
+	{% endif %}
 
           <h2 class="h5" name="guild_name">Guildmasters of +{{ b.name }}</h2>
 
@@ -163,16 +168,19 @@
                     Active
                   </td>
                   <td>
+{% if me and me.id < mod.id %}
+                    <div class="dropdown my-auto post-actions float-right d-inline-block">
                     <div class="dropdown my-auto float-right d-inline-block">
                       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;">
                         <i class="fas fa-ellipsis-h text-muted"></i>
                       </a>
                       <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-                        {% if mod.id==v.id %}
                         <a class="dropdown-item" href="javascript:void(0)" onclick="post('/mod/{{ b.base36id }}/remove/{{ mod.user.username }}', callback=function(){window.location.reload(true)})"><i class="fas fa-trash-alt"></i>Remove guildmaster</a>
-                        {% endif %}
                       </div>
                     </div>
+{% endif %}
+
+
                   </td>
                 </tr>
                 {% else %}
