@@ -90,7 +90,7 @@ def tos_agreed(f):
         if v.tos_agreed_utc > cutoff:
             return f(*args, **kwargs)
         else:
-            return redirect("/help/terms#agreebox", cutoff=cutoff)
+            return redirect("/help/terms#agreebox")
 
     wrapper.__name__=f.__name__
     return wrapper
