@@ -49,10 +49,10 @@
     <div class="container">
       <div class="d-md-flex align-items-center">
         <div>
-          <a href="{{ b.permalink }}"><img src="{{ p.board.profile_url }}" class="guild-icon-square-lg"></a>
+          <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="guild-icon-square-lg"></a>
         </div>
         <div class="ml-3 w-100">
-        <a href="{{ b.permalink }}" class="text-white">
+        <a href="{{ p.board.permalink }}" class="text-white">
           <h1 class="h3 d-inline-block mr-2">+{{ p.board.name }}
            {% if p.board.over_18 %}
            <span class="badge badge-danger text-small align-middle">NSFW</span>
