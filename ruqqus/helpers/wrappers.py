@@ -85,10 +85,12 @@ def tos_agreed(f):
 
         v=kwargs['v']
 
-        if v.tos_agreed_utc > 1578172738:
+        cutoff=int(environ.get("tos_cutoff",0))
+
+        if v.tos_agreed_utc > cutoff:
             return f(*args, **kwargs)
         else:
-            return redirect("/help/terms")
+            return redirect("/help/terms#agreebox", cutoff=cutoff)
 
     wrapper.__name__=f.__name__
     return wrapper

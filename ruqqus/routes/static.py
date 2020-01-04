@@ -36,6 +36,16 @@ def titles(v):
                            v=v,
                            titles=titles)
 
+@app.route("/help/terms", methods=["GET"])
+@auth_desired
+def help_terms(v):
+    
+    cutoff=int(environ.get("tos_cutoff",0))
+
+    return render_template("/help/terms.html",
+                           v=v,
+                           cutoff=cutoff)
+
 @app.route("/badges", methods=["GET"])
 @auth_desired
 def badges(v):

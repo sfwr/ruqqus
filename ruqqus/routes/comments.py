@@ -53,6 +53,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
 @app.route("/api/comment", methods=["POST"])
 @limiter.limit("10/minute")
 @is_not_banned
+@tos_agreed
 @validate_formkey
 def api_comment(v):
 

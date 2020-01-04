@@ -128,7 +128,7 @@ def api_agree_tos(v):
     db.add(v)
     db.commit()
 
-    return "", 204
+    return redirect("/help/terms")
 
     
 

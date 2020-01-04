@@ -82,6 +82,7 @@ def edit_post(pid, v):
 @app.route("/submit", methods=['POST'])
 @limiter.limit("6/minute")
 @is_not_banned
+@tos_agreed
 @validate_formkey
 def submit_post(v):
 
