@@ -102,7 +102,7 @@ class User(Base, Stndrd):
                                              stickied=False
                                              )
         if kind=="board":
-            board_ids=[x.board_id for x in self.subscriptions]
+            board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
             posts=posts.filter(Submission.board_id.in_(board_ids))
         elif kind=="user":
             user_ids=[x.target_id for x in self.following.all()]
