@@ -155,7 +155,8 @@
     </div>
     <div class="submission-date mt-3">Submitted on:<span class="date"> {{ p.created_date }}</span></div>
     <div class="shortlink mt-2">
-      <input type="text" class="form-control form-control-sm copy-link d-md-inline-block" readonly="" value="https://ruqq.us/{{ p.base36id }}" data-clipboard-text="https://ruqq.us/{{ p.base36id }}">
+    Shortlink
+      <input type="text" class="form-control form-control-sm copy-link d-md-inline-block mt-1" readonly="" value="https://ruqq.us/{{ p.base36id }}" data-clipboard-text="https://ruqq.us/{{ p.base36id }}">
     </div>
     {% if p.board_id and p.board_id != p.original_board_id %}
     <div class="mt-3">
