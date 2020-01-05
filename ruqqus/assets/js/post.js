@@ -2,7 +2,7 @@ function post(url, callback, errortext) {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
   var form = new FormData()
-  form.append("formkey", "{{ v.formkey }}");
+  form.append("formkey", formkey());
   xhr.withCredentials=true;
   xhr.onload=callback
   xhr.onerror=function(){alert(errortext)}
