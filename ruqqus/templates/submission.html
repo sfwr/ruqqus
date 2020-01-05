@@ -161,7 +161,7 @@
     {% if p.board_id and p.board_id != p.original_board_id %}
     <div class="mt-3">
       <a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.original_board.permalink }}">+{{ p.original_board.name }}</a> <i class="fal fa-long-arrow-right px-2" data-toggle="tooltip" data-placement="bottom" title="Moved from +{{ p.original_board.name }} to +{{ p.board.name }}"></i>  
-      <a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.board.permalink }}"><+{{ p.board.name }}/a>
+      <a class="btn btn-secondary btn-tag font-weight-bold" href="{{ p.board.permalink }}">+{{ p.board.name }}</a>
     </div>
     {% endif %}  
   </div>
