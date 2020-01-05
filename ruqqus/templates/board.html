@@ -89,16 +89,16 @@
 </div>
 </div>
 <!-- Mobile -->
-<div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-flex d-md-none" style="background-image: url({{ p.board.banner_url }});">
+<div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-flex d-md-none" style="background-image: url({{ b.banner_url }});">
   <div class="w-100 position-absolute text-center bg-white" style="bottom: 0;">
     <div class="container">
       <div style="margin-top: -34px;">
-        <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
+        <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
       </div>
       <div>
-        <a href="{{ p.board.permalink }}" class="text-black">
-          <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
-            {% if p.board.over_18 %}
+        <a href="{{ b.permalink }}" class="text-black">
+          <h1 class="h5 d-inline-block mb-0">+{{ b.name }}
+            {% if b.over_18 %}
             <span class="badge badge-danger text-small align-middle">NSFW</span>
             {% endif %}
           </h1>
