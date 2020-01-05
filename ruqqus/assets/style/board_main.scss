@@ -2030,7 +2030,8 @@ div:hover .thumb-img-link-overlay {
     color: $primary;
 }
 
-.comment .comment-body .comment-text{
+.comment .comment-body .comment-text,
+.post-body {
     margin-bottom: 1rem;
     word-break: break-word;
     color: $black;
