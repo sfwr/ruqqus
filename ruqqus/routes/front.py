@@ -54,7 +54,7 @@ def frontlist(sort="hot", page=1, nsfw=False):
 @auth_desired
 def home(v):
 
-    if v and not request.args.get("all", None):
+    if v and v.subscriptions.count():
         return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
                                         page=max(int(request.args.get("page",1)),0)
                                         )
