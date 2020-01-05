@@ -169,21 +169,23 @@
 <div class="sidebar-section sidebar-info-basic">
   <div class="title">
     <span style="vertical-align: sub;"><i class="fas fa-info-circle mr-2"></i>Guild details</span>
+     {% if v %}
     <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
       ">
       <i class="far fa-ellipsis-h text-white"></i>
     </a>
     <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-      {% if v and not p.board.has_mod(v) %}
+      {% if not p.board.has_mod(v) %}
       <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportGuildModal" onclick="report_guildModal('')"><i class="fas fa-flag"></i>Report guild</a>
       {% endif %}
-      {% if v and p.board.has_mod(v) %}
+      {% if p.board.has_mod(v) %}
       <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-cog align-middle"></i><span class="align-middle">Guild settings</span>
       </a>
       {% endif %}
     </div>
   </div>
+  {% endif %}
 </div>
 <div class="body pb-0">
  <div class="d-flex">
