@@ -33,6 +33,7 @@
   --muted: #7F7F8A;
   --downvote: #48A9A6;
   --upvote: #603abb;
+  --purple: #603abb;
   --gold: #ddbd37;
   --admin: #F05D5E;
   --gray: #5F5F5F;
@@ -1827,6 +1828,26 @@ pre code {
   background-color: #c2b5e5;
 }
 
+.table-purple,
+.table-purple > th,
+.table-purple > td {
+  background-color: #d2c8ec;
+}
+.table-purple th,
+.table-purple td,
+.table-purple thead th,
+.table-purple tbody + tbody {
+  border-color: #ac99dc;
+}
+
+.table-hover .table-purple:hover {
+  background-color: #c2b5e5;
+}
+.table-hover .table-purple:hover > td,
+.table-hover .table-purple:hover > th {
+  background-color: #c2b5e5;
+}
+
 .table-gold,
 .table-gold > th,
 .table-gold > td {
@@ -2919,6 +2940,33 @@ fieldset:disabled a.btn {
   box-shadow: 0 0 0 0.2rem rgba(120, 88, 197, 0.5);
 }
 
+.btn-purple {
+  color: #ffffff;
+  background-color: #603abb;
+  border-color: #603abb;
+}
+.btn-purple:hover {
+  color: #ffffff;
+  background-color: #51319e;
+  border-color: #4c2e94;
+}
+.btn-purple:focus, .btn-purple.focus {
+  box-shadow: 0 0 0 0.2rem rgba(120, 88, 197, 0.5);
+}
+.btn-purple.disabled, .btn-purple:disabled {
+  color: #ffffff;
+  background-color: #603abb;
+  border-color: #603abb;
+}
+.btn-purple:not(:disabled):not(.disabled):active, .btn-purple:not(:disabled):not(.disabled).active, .show > .btn-purple.dropdown-toggle {
+  color: #ffffff;
+  background-color: #4c2e94;
+  border-color: #472b8a;
+}
+.btn-purple:not(:disabled):not(.disabled):active:focus, .btn-purple:not(:disabled):not(.disabled).active:focus, .show > .btn-purple.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(120, 88, 197, 0.5);
+}
+
 .btn-gold {
   color: #212529;
   background-color: #ddbd37;
@@ -3457,6 +3505,31 @@ fieldset:disabled a.btn {
   border-color: #603abb;
 }
 .btn-outline-upvote:not(:disabled):not(.disabled):active:focus, .btn-outline-upvote:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-upvote.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(96, 58, 187, 0.5);
+}
+
+.btn-outline-purple {
+  color: #603abb;
+  border-color: #603abb;
+}
+.btn-outline-purple:hover {
+  color: #ffffff;
+  background-color: #603abb;
+  border-color: #603abb;
+}
+.btn-outline-purple:focus, .btn-outline-purple.focus {
+  box-shadow: 0 0 0 0.2rem rgba(96, 58, 187, 0.5);
+}
+.btn-outline-purple.disabled, .btn-outline-purple:disabled {
+  color: #603abb;
+  background-color: transparent;
+}
+.btn-outline-purple:not(:disabled):not(.disabled):active, .btn-outline-purple:not(:disabled):not(.disabled).active, .show > .btn-outline-purple.dropdown-toggle {
+  color: #ffffff;
+  background-color: #603abb;
+  border-color: #603abb;
+}
+.btn-outline-purple:not(:disabled):not(.disabled):active:focus, .btn-outline-purple:not(:disabled):not(.disabled).active:focus, .show > .btn-outline-purple.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(96, 58, 187, 0.5);
 }
 
@@ -5562,6 +5635,19 @@ a.badge-upvote:focus, a.badge-upvote.focus {
   box-shadow: 0 0 0 0.2rem rgba(96, 58, 187, 0.5);
 }
 
+.badge-purple {
+  color: #ffffff;
+  background-color: #603abb;
+}
+a.badge-purple:hover, a.badge-purple:focus {
+  color: #ffffff;
+  background-color: #4c2e94;
+}
+a.badge-purple:focus, a.badge-purple.focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(96, 58, 187, 0.5);
+}
+
 .badge-gold {
   color: #212529;
   background-color: #ddbd37;
@@ -5864,6 +5950,18 @@ a.badge-reddit:focus, a.badge-reddit.focus {
   border-top-color: #c2b5e5;
 }
 .alert-upvote .alert-link {
+  color: #2c1e4c;
+}
+
+.alert-purple {
+  color: #412d70;
+  background-color: #dfd8f1;
+  border-color: #d2c8ec;
+}
+.alert-purple hr {
+  border-top-color: #c2b5e5;
+}
+.alert-purple .alert-link {
   color: #2c1e4c;
 }
 
@@ -6363,6 +6461,20 @@ a.badge-reddit:focus, a.badge-reddit.focus {
   background-color: #c2b5e5;
 }
 .list-group-item-upvote.list-group-item-action.active {
+  color: #ffffff;
+  background-color: #412d70;
+  border-color: #412d70;
+}
+
+.list-group-item-purple {
+  color: #412d70;
+  background-color: #d2c8ec;
+}
+.list-group-item-purple.list-group-item-action:hover, .list-group-item-purple.list-group-item-action:focus {
+  color: #412d70;
+  background-color: #c2b5e5;
+}
+.list-group-item-purple.list-group-item-action.active {
   color: #ffffff;
   background-color: #412d70;
   border-color: #412d70;
@@ -7361,6 +7473,16 @@ button.bg-upvote:focus {
   background-color: #4c2e94 !important;
 }
 
+.bg-purple {
+  background-color: #603abb !important;
+}
+
+a.bg-purple:hover, a.bg-purple:focus,
+button.bg-purple:hover,
+button.bg-purple:focus {
+  background-color: #4c2e94 !important;
+}
+
 .bg-gold {
   background-color: #ddbd37 !important;
 }
@@ -7538,6 +7660,10 @@ button.bg-reddit:focus {
 }
 
 .border-upvote {
+  border-color: #603abb !important;
+}
+
+.border-purple {
   border-color: #603abb !important;
 }
 
@@ -12280,6 +12406,14 @@ a.text-downvote:hover, a.text-downvote:focus {
 }
 
 a.text-upvote:hover, a.text-upvote:focus {
+  color: #422881 !important;
+}
+
+.text-purple {
+  color: #603abb !important;
+}
+
+a.text-purple:hover, a.text-purple:focus {
   color: #422881 !important;
 }
 
