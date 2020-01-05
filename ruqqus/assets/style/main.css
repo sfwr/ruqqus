@@ -13912,6 +13912,14 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   object-fit: cover;
 }
 
+.profile-pic-65 {
+  width: 65px;
+  height: 65px;
+  border-radius: 50rem;
+  text-align: center;
+  object-fit: cover;
+}
+
 .profile-pic-75 {
   width: 75px;
   height: 75px;
