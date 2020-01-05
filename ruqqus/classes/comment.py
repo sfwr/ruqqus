@@ -14,7 +14,7 @@ from .votes import CommentVote
 from .flags import CommentFlag
 from .boards import Board
 
-class Comment(Base, Stndrd, Age_times, Scores, Fuzzing):
+class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
 
     __tablename__="comments"
 
