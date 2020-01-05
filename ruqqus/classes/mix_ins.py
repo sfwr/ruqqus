@@ -72,9 +72,9 @@ class Age_times:
             years = now.tm_year - ctd.tm_year
             return f"{years} year{'s' if years > 1 else ''} ago"
 
-        @property
-        def edited_date(self):
-            return time.strftime("%d %B %Y", time.gmtime(self.edited_utc))
+    @property
+    def edited_date(self):
+        return time.strftime("%d %B %Y", time.gmtime(self.edited_utc))
 
 class Scores:
 
