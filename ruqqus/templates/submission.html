@@ -220,7 +220,20 @@
 </div>
 
 <div class="sidebar-section sidebar-rules">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
+  <div class="title">
+  <span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
+  {% if v and not p.board.has_mod(v) %}
+      <div class="dropdown my-auto post-actions float-right d-inline-block">
+      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
+      ">
+      <i class="far fa-ellipsis-h text-white"></i>
+    </a>
+    <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
+      <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-edit"></i>Edit rules</a>
+    </div>
+  </div>
+  {% endif %}
+  </div>
   <div class="body">
     <ol class="pl-0 mb-0">   
       <li><a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Follow Ruqqus rules<span class="float-right"><i class="fa"></i></span></a></li>
@@ -232,7 +245,19 @@
 </div>
 
 <div class="sidebar-section sidebar-mods">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-crown mr-2"></i>Guildmasters</span></div>
+  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-crown mr-2"></i>Guildmasters</span>
+  {% if v and not p.board.has_mod(v) %}
+      <div class="dropdown my-auto post-actions float-right d-inline-block">
+      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
+      ">
+      <i class="far fa-ellipsis-h text-white"></i>
+    </a>
+    <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
+      <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-cog"></i>Manage guildmasters</a>
+    </div>
+  </div>
+  {% endif %}
+  </div>
   <div class="body">
     <ul class="no-bullets pl-0">
       {% for mod in p.board.mods %}
