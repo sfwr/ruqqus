@@ -222,7 +222,7 @@
 <div class="sidebar-section sidebar-rules">
   <div class="title">
   <span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
-  {% if v and not p.board.has_mod(v) %}
+  {% if v and p.board.has_mod(v) %}
       <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
       ">
@@ -246,7 +246,7 @@
 
 <div class="sidebar-section sidebar-mods">
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-crown mr-2"></i>Guildmasters</span>
-  {% if v and not p.board.has_mod(v) %}
+  {% if v and p.board.has_mod(v) %}
       <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
       ">
