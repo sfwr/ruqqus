@@ -11,13 +11,13 @@
 {% endblock %}
 
 {% block darkswitch %}
-              {% if v and v.referral_count and session.get("dark_mode_enabled")%}
-              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ b.name }}')"><i class="fad fa-toggle-on fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
-              {% elif v and v.referral_count %}
-              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ b.name }}')"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
-              {% else %}
-              <a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Dark mode</span></a>
-              {% endif %}
+{% if v and v.referral_count and session.get("dark_mode_enabled")%}
+<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ b.name }}')"><i class="fad fa-toggle-on fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+{% elif v and v.referral_count %}
+<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ b.name }}')"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+{% else %}
+<a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Dark mode</span></a>
+{% endif %}
 {% endblock %}
 
 {% block PseudoSubmitForm %}
@@ -27,7 +27,7 @@
 
   <div class="col">
 
-{% if not b.has_ban(v) %}
+    {% if not b.has_ban(v) %}
     <div class="card pseudo-submit-form">
       <div class="card-header bg-white">
         <div class="text-small text-gray mb-0">Create post in +{{ b.name }}</div>
@@ -58,7 +58,7 @@
         {% endif %}
       </div>
     </div>
-{% endif %}
+    {% endif %}
 
   </div>
 
@@ -66,7 +66,8 @@
 {% endblock %}
 
 {% block banner %}
-<div class="jumbotron jumbotron-fluid jumbotron-guild text-white" style="background-image: url({{ b.banner_url }})">
+<!-- Mobile -->
+<div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-flex" style="background-image: url({{ b.banner_url }})">
   <div class="w-100 p-3" style="bottom: 0;">
     <div class="container">
       <div class="d-md-flex align-items-center">
@@ -74,18 +75,49 @@
           <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-75"></a>
         </div>
         <div class="ml-3 w-100">
-        <a href="{{ b.permalink }}" class="text-white">
-          <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
-           {% if b.over_18 %}
-           <span class="badge badge-danger text-small align-middle">NSFW</span>
-           {% endif %}
-         </h1>
+          <a href="{{ b.permalink }}" class="text-white">
+            <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
+             {% if b.over_18 %}
+             <span class="badge badge-danger text-small align-middle">NSFW</span>
+             {% endif %}
+           </h1>
          </a>
-         </div>
        </div>
      </div>
    </div>
  </div>
+</div>
+</div>
+<!-- Mobile -->
+<div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-flex d-md-none" style="background-image: url({{ p.board.banner_url }});">
+  <div class="w-100 position-absolute text-center bg-white" style="bottom: 0;">
+    <div class="container">
+      <div style="margin-top: -34px;">
+        <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
+      </div>
+      <div>
+        <a href="{{ p.board.permalink }}" class="text-black">
+          <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
+            {% if p.board.over_18 %}
+            <span class="badge badge-danger text-small align-middle">NSFW</span>
+            {% endif %}
+          </h1>
+        </a>
+      </div>
+      <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
+       <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
+     </div>
+     <div>
+      <div>{{ b.description_html | safe }}</div>
+      {% if v %}
+      <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
+      <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
+      {% elif not v %}
+      <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
 </div>
 {% endblock %}
 
@@ -148,8 +180,8 @@
 
 <div class="sidebar-section sidebar-rules">
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
-  {% if v and b.has_mod(v) %}
-      <div class="dropdown my-auto post-actions float-right d-inline-block">
+    {% if v and b.has_mod(v) %}
+    <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
       ">
       <i class="far fa-ellipsis-h text-white"></i>
@@ -160,21 +192,21 @@
     </div>
   </div>
   {% endif %}
-  </div>
-  <div class="body">
-    <ol class="pl-0 mb-0">   
-      <li><a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Follow Ruqqus rules<span class="float-right"><i class="fa"></i></span></a></li>
-      <div id="ruleCollapse1" class="collapse">
-        <p style="padding: 0 0 0 20px;">Anything you post to this guild, including comments, must follow the site-wide rules of Ruqqus.</p>
-      </div>
-    </ol>
-  </div>
+</div>
+<div class="body">
+  <ol class="pl-0 mb-0">   
+    <li><a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Follow Ruqqus rules<span class="float-right"><i class="fa"></i></span></a></li>
+    <div id="ruleCollapse1" class="collapse">
+      <p style="padding: 0 0 0 20px;">Anything you post to this guild, including comments, must follow the site-wide rules of Ruqqus.</p>
+    </div>
+  </ol>
+</div>
 </div>
 
 <div class="sidebar-section sidebar-mods">
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-crown mr-2"></i>Guildmasters</span>
     {% if v and b.has_mod(v) %}
-      <div class="dropdown my-auto post-actions float-right d-inline-block">
+    <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
       ">
       <i class="far fa-ellipsis-h text-white"></i>
@@ -185,23 +217,23 @@
     </div>
   </div>
   {% endif %}
-  </div>
-  <div class="body">
-    <ul class="no-bullets pl-0">
-      {% for mod in b.mods %}
-      <li class="mb-2">
+</div>
+<div class="body">
+  <ul class="no-bullets pl-0">
+    {% for mod in b.mods %}
+    <li class="mb-2">
       <a href="{{ mod.permalink }}" class="font-weight-bold">
-      <span class="align-middle">{{ mod.username }}</span>
+        <span class="align-middle">{{ mod.username }}</span>
       </a>
-      </li>
-      {% else %}
-      <li>
-        <div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
-        <p class="text-center text-small text-muted mb-0">+{{ b.name }} has no guildmasters</p>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
+    </li>
+    {% else %}
+    <li>
+      <div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
+      <p class="text-center text-small text-muted mb-0">+{{ b.name }} has no guildmasters</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 </div>
 
 {% if v and b.has_mod(v) %}
@@ -267,7 +299,7 @@
   </div>
   {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
   <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+    <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
     <div class="body">
       <div class="my-3" style="">
         <i class="fad fa-telescope text-primary" style="font-size:3rem"></i>
