@@ -208,8 +208,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         url=f"https://api.apiflash.com/v1/urltoimage"
         params={'access_key':environ.get("APIFLASH_KEY"),
                 'format':'png',
-                'height':1280,
-                'width':720,
+                'height':720,
+                'width':1280,
                 'response_type':'image',
                 'thumbnail_width':300,
                 'url':self.url
