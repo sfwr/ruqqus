@@ -15870,6 +15870,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     height: auto;
   }
 
+  .jumbotron-guild {
+    height: 115px;
+  }
+
   .posts, #thread #main-content-col {
     box-shadow: none;
     border: none;
