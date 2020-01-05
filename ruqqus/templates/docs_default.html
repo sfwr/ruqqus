@@ -33,6 +33,11 @@
   <link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
 
   <script src="/assets/js/post.js"></script>
+	<script>
+		function formkey() {
+			return '{{ v.formkey }}';
+		}
+	</script>
 </head>
 
 <body id="{% block pagetype %}article{% endblock %}">
