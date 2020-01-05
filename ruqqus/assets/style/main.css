@@ -13439,8 +13439,8 @@ a:hover .link-arrow {
 }
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
-  margin-bottom: 0.25rem;
-  padding-bottom: 0.25rem;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
   color: #7F7F8A;
   font-weight: 500;
   border-bottom: 1px solid rgba(225, 225, 225, 0.25);
