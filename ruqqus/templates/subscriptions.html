@@ -18,28 +18,21 @@
 </div>
 
 {% if not v and trending_boards %}
-<div class="sidebar-section sidebar-guild-recommendations">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>Rising guilds</span></div>
-  <div class="body">
-    <ul class="no-bullets guild-recommendations-list pl-0">
-     {% for entry in trending_boards[0:5] %}
-     <li class="guild-recommendations-item">
-      <a href="{{ entry[0].permalink }}">
-        <div class="d-flex">
-          <div class="mr-2">
-            <img src="{{ entry[0].profile_url }}" class="guild-icon-square-40"></div>
-            <div>
-              <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
-              <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-            </div>
-          </div>
-        </a>
-      </li>
-      {% endfor %}
-    </ul>
-    <div class="text-center">
-      <a href="#" class="btn btn-link">View more</a>
+  <div class="sidebar-section sidebar-trending">
+    <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Guilds</div>
+    <div class="body">
+      {% for entry in trending_boards[0:5] %}
+      <div class="d-flex justify-content-start trending-guild">
+        <div>
+        <a href="{{ entry[0].permalink }}"><img src="{{ entry[0].profile_url }}" class="profile-pic-40 mr-2"></a>
+       </div>
+       <div>
+        <a href="{{ entry[0].permalink }}">+{{ entry[0].name }}</a>
+        <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
+      </div>
     </div>
+    {% endfor %}
+    <a href="/browse" class="btn btn-primary btn-block">View more</a>
   </div>
 </div>
 {% elif v and v.subscriptions.filter_by(is_active=True).count() %}
