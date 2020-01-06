@@ -30,7 +30,7 @@
     {% if not b.has_ban(v) %}
     <div class="card pseudo-submit-form">
       <div class="card-header bg-white">
-        <div class="text-small text-gray mb-0">Create post in +{{ b.name }}</div>
+        <div class="mb-0">Create post in +{{ b.name }}</div>
         <ul class="list-inline no-bullets mb-0 d-none">
           <li class="list-inline-item active mr-4"><i class="fas fa-align-left text-gray-400"></i></li>
           <li class="list-inline-item"><i class="fas fa-link text-gray-400"></i></li>
@@ -126,7 +126,7 @@
 
 <div class="sidebar-section sidebar-info-basic">
   <div class="title">
-    <span style="vertical-align: sub;"><i class="fas fa-info-circle mr-2"></i>Guild details</span>
+    <span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
     {% if v %}
     <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
@@ -153,7 +153,7 @@
    </div>
    {% elif not b.has_profile and v and b.has_mod(v) %}
    <a href="{{ b.permalink}}/mod/settings" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
-     <div class="letter" style="line-height: 3;"><i class="fas fa-plus"></i></div>
+     <div class="letter" style="line-height: 3;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
    </a>
    {% endif %}
    <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
@@ -180,7 +180,7 @@
 </div>
 
 <div class="sidebar-section sidebar-rules">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
+  <div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
     {% if v and b.has_mod(v) %}
     <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
@@ -230,7 +230,7 @@
 </div>
 
 <div class="sidebar-section sidebar-mods">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-crown mr-2"></i>Guildmasters</span>
+  <div class="title"><span><i class="fas fa-crown mr-2"></i>Guildmasters</span>
     {% if v and b.has_mod(v) %}
     <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
@@ -264,7 +264,7 @@
 
 {% if v and b.has_mod(v) %}
 <div class="sidebar-section sidebar-guild-tools">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-tools mr-2"></i>Guildmaster Tools</span></div>
+  <div class="title"><span><i class="fas fa-tools mr-2"></i>Guildmaster Tools</span></div>
   <div class="body">
     <div><a href="{{ b.permalink}}/mod/settings"><i class="fad fa-cog fa-width-rem"></i>Settings</a></div>
     <div><a href="{{ b.permalink}}/mod/mods"><i class="fad fa-user-crown fa-width-rem"></i>Guildmasters</a></div>
@@ -276,7 +276,7 @@
 
 {% if not v and trending_boards %}
 <div class="sidebar-section sidebar-guild-recommendations">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>Rising guilds</span></div>
+  <div class="title"><span><i class="fas fa-university mr-2"></i>Rising guilds</span></div>
   <div class="body">
     <ul class="no-bullets guild-recommendations-list pl-0">
      {% for entry in trending_boards[0:5] %}
@@ -301,7 +301,7 @@
 </div>
 {% elif v and v.subscriptions.filter_by(is_active=True).count() %}
 <div class="sidebar-section sidebar-guild-recommendations">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+  <div class="title"><span><i class="fas fa-university mr-2"></i>My guilds</span></div>
   <div class="body">
     <ul class="no-bullets guild-recommendations-list pl-0">
       {% for board in v.boards_subscribed[0:5] %}
@@ -325,7 +325,7 @@
   </div>
   {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
   <div class="sidebar-section sidebar-guild-recommendations sticky-105">
-    <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+    <div class="title"><span><i class="fas fa-university mr-2"></i>My guilds</span></div>
     <div class="body">
       <div class="my-3" style="">
         <i class="fad fa-telescope text-primary" style="font-size:3rem"></i>

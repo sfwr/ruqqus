@@ -13562,12 +13562,15 @@ a:hover .link-arrow {
 }
 
 .sidebar .sidebar-section .title {
-  font-size: 11px;
+  font-size: 1rem;
   font-weight: 500;
   color: #ffffff;
   background-color: #603abb;
   padding: 0.5rem 1rem;
-  text-transform: uppercase;
+}
+
+.sidebar .sidebar-section .title span {
+  vertical-align: middle;
 }
 
 .sidebar .sidebar-section .body {
@@ -14035,7 +14038,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .card-header {
-  font-size: 12px;
+  font-size: 1rem;
   font-weight: 500;
   color: #5F5F5F;
   padding: 0.5rem 1rem;

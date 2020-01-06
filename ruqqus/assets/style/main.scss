@@ -1136,12 +1136,15 @@ color: $dark;
 }
 
 .sidebar .sidebar-section .title {
-    font-size: $extra-small-font-size;
+    font-size: $font-size-base;
     font-weight: $font-weight-bold;
     color: $white;
     background-color: $primary;
     padding: 0.5rem 1rem;
-    text-transform: uppercase;
+}
+
+.sidebar .sidebar-section .title span {
+    vertical-align: middle;
 }
 
 .sidebar .sidebar-section .body {
@@ -1629,7 +1632,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .card-header {
-    font-size: $small-font-size;
+    font-size: $font-size-base;
     font-weight: $font-weight-bold;
     color: $gray;
     padding: 0.5rem 1rem;
