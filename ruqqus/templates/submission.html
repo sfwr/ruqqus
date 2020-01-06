@@ -71,18 +71,18 @@
 <div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-block d-md-none" style="background-image: url({{ p.board.banner_url }});">
   <div class="w-100 position-absolute text-center bg-white" style="bottom: 0;">
     <div class="container">
-        <div style="margin-top: -34px;">
-          <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
-        </div>
-          <a href="{{ p.board.permalink }}" class="text-black">
-            <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
-            {% if p.board.over_18 %}
-             <span class="badge badge-danger text-small align-middle">NSFW</span>
-             {% endif %}
-           </h1>
-         </a>
-   </div>
- </div>
+      <div style="margin-top: -34px;">
+        <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
+      </div>
+      <a href="{{ p.board.permalink }}" class="text-black">
+        <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
+          {% if p.board.over_18 %}
+          <span class="badge badge-danger text-small align-middle">NSFW</span>
+          {% endif %}
+        </h1>
+      </a>
+    </div>
+  </div>
 </div>
 {% endif %}
 {% endblock %}
@@ -175,7 +175,7 @@
     </div>
     <div class="submission-date mt-3">Submitted on:<span class="date"> {{ p.created_date }}</span></div>
     <div class="shortlink mt-2">
-    Shortlink:
+      Shortlink:
       <input type="text" class="form-control form-control-sm copy-link d-md-inline-block mt-1" readonly="" value="https://ruqq.us/{{ p.base36id }}" data-clipboard-text="https://ruqq.us/{{ p.base36id }}">
     </div>
     {% if p.board_id and p.board_id != p.original_board_id %}
@@ -190,7 +190,7 @@
 <div class="sidebar-section sidebar-info-basic">
   <div class="title">
     <span style="vertical-align: sub;"><i class="fas fa-info-circle mr-2"></i>Guild details</span>
-     {% if v %}
+    {% if v %}
     <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
       ">
@@ -244,25 +244,49 @@
 
 <div class="sidebar-section sidebar-rules">
   <div class="title">
-  <span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
-  {% if v and p.board.has_mod(v) %}
-      <div class="dropdown my-auto post-actions float-right d-inline-block">
-      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
-      ">
-      <i class="far fa-ellipsis-h text-white"></i>
-    </a>
-    <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-      <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-edit align-middle"></i><span class="align-middle">Edit rules</span>
+    <span style="vertical-align: sub;"><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
+    {% if v and p.board.has_mod(v) %}
+    <div class="dropdown my-auto post-actions float-right d-inline-block">
+      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;">
+        <i class="far fa-ellipsis-h text-white"></i>
       </a>
+      <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
+        <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-edit align-middle"></i><span class="align-middle">Edit rules</span>
+        </a>
+      </div>
     </div>
-  </div>
-  {% endif %}
+    {% endif %}
   </div>
   <div class="body">
     <ol class="pl-0 mb-0">   
-      <li><a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Follow Ruqqus rules<span class="float-right"><i class="fa"></i></span></a></li>
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Comply with US law<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
       <div id="ruleCollapse1" class="collapse">
-        <p style="padding: 0 0 0 20px;">Anything you post to this guild, including comments, must follow the site-wide rules of Ruqqus.</p>
+        <p style="padding: 0 0 0 20px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
+      </div>
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse2" role="button" aria-expanded="false" aria-controls="ruleCollapse2">Do not harass other users<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse2" class="collapse">
+        <p style="padding: 0 0 0 20px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
+      </div>
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse3" role="button" aria-expanded="false" aria-controls="ruleCollapse3">No inciting unlawful or violent activity<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse3" class="collapse">
+        <p style="padding: 0 0 0 20px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
+      </div>
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse4" role="button" aria-expanded="false" aria-controls="ruleCollapse4">Check for duplicates before posting
+<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse4" class="collapse">
+        <p style="padding: 0 0 0 20px;">Nobody likes reposts. Please make sure the content your posting hasn't been posted on Ruqqus before.</p>
       </div>
     </ol>
   </div>
@@ -270,8 +294,8 @@
 
 <div class="sidebar-section sidebar-mods">
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-crown mr-2"></i>Guildmasters</span>
-  {% if v and p.board.has_mod(v) %}
-      <div class="dropdown my-auto post-actions float-right d-inline-block">
+    {% if v and p.board.has_mod(v) %}
+    <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
       ">
       <i class="far fa-ellipsis-h text-white"></i>
@@ -282,23 +306,23 @@
     </div>
   </div>
   {% endif %}
-  </div>
-  <div class="body">
-    <ul class="no-bullets pl-0">
-      {% for mod in p.board.mods %}
-      <li class="mb-2">
-        <a href="{{ mod.permalink }}" class="font-weight-bold">
-          <span class="align-middle">{{ mod.username }}</span>
-        </a>
-      </li>
-      {% else %}
-      <li>
-        <div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
-        <p class="text-center text-small text-muted mb-0">+{{ p.board.name }} has no guildmasters</p>
-      </li>
-      {% endfor %}
-    </ul>
-  </div>
+</div>
+<div class="body">
+  <ul class="no-bullets pl-0">
+    {% for mod in p.board.mods %}
+    <li class="mb-2">
+      <a href="{{ mod.permalink }}" class="font-weight-bold">
+        <span class="align-middle">{{ mod.username }}</span>
+      </a>
+    </li>
+    {% else %}
+    <li>
+      <div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
+      <p class="text-center text-small text-muted mb-0">+{{ p.board.name }} has no guildmasters</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
 </div>
 
 {% if v and p.board.has_mod(v) %}
@@ -343,7 +367,7 @@
   <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
   <div class="body">
     <ul class="no-bullets guild-recommendations-list pl-0">
-    {% for board in v.boards_subscribed[0:5] %}
+      {% for board in v.boards_subscribed[0:5] %}
       <li class="guild-recommendations-item">
         <a href="{{ board.permalink }}">
           <div class="d-flex">
