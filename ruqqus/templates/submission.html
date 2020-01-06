@@ -44,16 +44,16 @@
 {% block banner %}
 <!-- Desktop -->
 {% if p.board_id %}
-<div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-flex" style="background-image: url({{ p.board.banner_url }})">
+<div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-flex" style="background-image: url({{ p.board.banner_url }}); height: 75px;">
   <div class="w-100 p-3">
     <div class="container">
       <div class="d-md-flex align-items-center">
         <div>
-          <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-75"></a>
+          <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-40 border-2 border-white"></a>
         </div>
         <div class="ml-3 w-100">
           <a href="{{ p.board.permalink }}" class="text-white">
-            <h1 class="h3 d-inline-block mr-2">+{{ p.board.name }}
+            <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
              {% if p.board.over_18 %}
              <span class="badge badge-danger text-small align-middle">NSFW</span>
              {% endif %}
