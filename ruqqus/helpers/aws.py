@@ -2,7 +2,6 @@ import boto3
 import requests
 from os import environ, remove
 import piexif
-from PIL import Image
 
 BUCKET="i.ruqqus.com"
 
