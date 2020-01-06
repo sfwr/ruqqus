@@ -13586,12 +13586,11 @@ a:hover .link-arrow {
 }
 
 .sidebar .sidebar-section .title {
-  font-size: 11px;
+  font-size: 1rem;
   font-weight: 500;
   color: #FFFFFF;
   background-color: #af92de;
   padding: 0.5rem 1rem;
-  text-transform: uppercase;
 }
 
 .sidebar .sidebar-section .body {
