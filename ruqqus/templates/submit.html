@@ -163,30 +163,109 @@
 
 <!-- Right Sidebar (hidden on devices smaller than "large") -->
 
-<div class="col sidebar text-left d-none ml-3">
-    <div class="sidebar-section sidebar-rules">
-        <div class="title">Ruqqus Rules</div>
-        <div class="body">
-            <ol class="pl-0">
-                <li>No racism</li>
-                <li>No doxxing, threats, or calls to violence</li>
-                <li>No trolling</li>
-                <li>No solicitation</li>
-                <li>Patriots only</li>
-            </ol>
-        </div>
+<div class="sidebar-section sidebar-info-basic">
+  <div class="title">
+    <span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
+    {% if v %}
+    <div class="dropdown my-auto post-actions float-right d-inline-block">
+      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
+      ">
+      <i class="far fa-ellipsis-h text-white"></i>
+    </a>
+    <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
+      {% if not b.has_mod(v) %}
+      <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportGuildModal" onclick="report_guildModal('')"><i class="fas fa-flag"></i>Report guild</a>
+      {% endif %}
+      {% if b.has_mod(v) %}
+      <a class="dropdown-item" href="{{ b.permalink }}/mod/settings"><i class="fas fa-cog align-middle"></i><span class="align-middle">Guild settings</span>
+      </a>
+      {% endif %}
     </div>
-    <div class="sidebar-section sidebar-stats">
-        <div class="title">Stats</div>
-        <div class="body">
-            <div class="d-inline-block w-25">
-                <span style="font-size: 13px;font-weight: bold;">{{ 1 | total_users }}</span>
-                <small style="display: block;">users</small>
-            </div>
+  </div>
+  {% endif %}
+</div>
+<div class="body pb-0">
+ <div class="d-flex">
+   {% if b.has_profile %}
+   <div>
+     <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
+   </div>
+   {% elif not b.has_profile and v and b.has_mod(v) %}
+   <a href="{{ b.permalink}}/mod/settings" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
+     <div class="letter" style="line-height: 3;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
+   </a>
+   {% endif %}
+   <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+    <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
+     <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
+   </div>
+ </div>
+</div>
+</div>
+<div class="body">
+ <div>{{ b.description_html | safe }}</div>
+ {% if v %}
+ <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
+ <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
+ {% elif not v %}
+ <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
+ {% endif %}
+ {% if v and not b.has_ban(v) %}
+ <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
+ {% elif not v %}
+ <a href="/signup" class="btn btn-secondary btn-block mt-3">Create post</a>
+ {% endif %}
+</div>
+</div>
 
-        </div>
+<div class="sidebar-section sidebar-rules">
+  <div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
+    {% if v and b.has_mod(v) %}
+    <div class="dropdown my-auto post-actions float-right d-inline-block">
+      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
+      ">
+      <i class="far fa-ellipsis-h text-white"></i>
+    </a>
+    <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
+      <a class="dropdown-item" href="{{ b.permalink }}/mod/settings"><i class="fas fa-edit align-middle"></i><span class="align-middle">Edit rules</span>
+      </a>
     </div>
-    
+  </div>
+  {% endif %}
+</div>
+<div class="body">
+    <ol class="pl-0 mb-0">   
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Comply with US law<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse1" class="collapse">
+        <p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
+      </div>
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse2" role="button" aria-expanded="false" aria-controls="ruleCollapse2">Do not harass other users<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse2" class="collapse">
+        <p style="padding: 0 0 0 22px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
+      </div>
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse3" role="button" aria-expanded="false" aria-controls="ruleCollapse3">No inciting violence<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse3" class="collapse">
+        <p style="padding: 0 0 0 22px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
+      </div>
+      <li>
+      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse4" role="button" aria-expanded="false" aria-controls="ruleCollapse4">Check for duplicates
+<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse4" class="collapse">
+        <p style="padding: 0 0 0 22px;">Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.</p>
+      </div>
+    </ol>
+</div>
 </div>
 
 </div>
