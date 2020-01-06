@@ -185,7 +185,7 @@ def edit_comment(cid, v):
 
     c.body=body
     c.body_html=body_html
-    c.edited_timestamp = int(time.time())
+    c.edited_utc = int(time.time())
 
     db.add(c)
     db.commit()
