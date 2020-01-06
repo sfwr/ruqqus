@@ -111,6 +111,39 @@
 </div>
 </div>
 </div>
+<!-- Mobile -->
+<div class="container-fluid text-center bg-white d-md-none">
+  <div class="row">
+    <div class="col px-0">
+      <img src="{{ u.banner_url }}" style="width: 100%; height: 65px; object-fit: cover;">
+    </div>
+  </div>
+  <div class="row border-bottom">
+    <div class="col">
+      <div style="margin-top: -34px;">
+        <a href="{{ u.permalink }}"><img src="{{ u.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
+      </div>
+      <div class="mt-n3 py-3">
+        <a href="{{ u.permalink }}" class="text-black">
+        <h1 class="h5 d-inline-block">{{ u.username }}
+            {% if u.over_18 %}
+            <span class="badge badge-danger text-small align-middle">NSFW</span>
+            {% endif %}
+          </h1>
+        </a>
+        {% if u.bio_html %}
+        <div class="text-muted">{{ u.bio_html | safe }}</div>
+        {% endif %}
+        <p class="font-weight-bold">{{ u.follower_count }} member{{ 's' if u.follower_count != 1 else '' }}
+       </p>
+       {% if v and v.id != u.id %}
+       <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe</a></div>
+       <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe</a></div>
+       {% endif %}
+     </div>
+   </div>
+ </div>
+</div>
 {% endblock %}
 
 {% block sidebarblock %}
