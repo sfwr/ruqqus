@@ -3116,6 +3116,10 @@ body, #settings, #notifications, #submit {
     opacity: 0.5;
 }
 
+.comment-actions .fa, .comment-actions .fas, .comment-actions .far {
+    color: $gray-400;
+}
+
 // User and Profile (mobile)
 
 .banner-pic-135 {

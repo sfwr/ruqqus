@@ -15901,6 +15901,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     opacity: 0.5;
   }
 
+  .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
+    color: #C2C2C2;
+  }
+
   .banner-pic-135 {
     max-width: 100%;
   }
