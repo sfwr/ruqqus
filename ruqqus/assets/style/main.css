@@ -15715,6 +15715,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     padding-top: 49px;
   }
 
+  #guild {
+    padding-top: 99px;
+  }
+
   .custom-gutters {
     padding-left: 0;
     padding-right: 0;

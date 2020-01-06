@@ -15769,6 +15769,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     padding-top: 49px;
   }
 
+  #guild {
+    padding-top: 99px;
+  }
+
   #notifications body, #settings body {
     background-color: #232327 !important;
   }
