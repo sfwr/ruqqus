@@ -77,7 +77,7 @@
             <div class="col-12">
 
               <div class="submission">
-               
+
                {% block form %}
                <form id="submitform" action="/submit" method="post">
 
@@ -162,27 +162,9 @@
 
   <div class="col sidebar text-left d-none d-lg-block pt-3">
 
-
     <div class="sidebar-section sidebar-info-basic">
       <div class="title">
         <span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
-        {% if v %}
-        <div class="dropdown my-auto post-actions float-right d-inline-block">
-          <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
-          ">
-          <i class="far fa-ellipsis-h text-white"></i>
-        </a>
-        <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-          {% if not b.has_mod(v) %}
-          <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportGuildModal" onclick="report_guildModal('')"><i class="fas fa-flag"></i>Report guild</a>
-          {% endif %}
-          {% if b.has_mod(v) %}
-          <a class="dropdown-item" href="{{ b.permalink }}/mod/settings"><i class="fas fa-cog align-middle"></i><span class="align-middle">Guild settings</span>
-          </a>
-          {% endif %}
-        </div>
-      </div>
-      {% endif %}
     </div>
     <div class="body pb-0">
      <div class="d-flex">
@@ -204,35 +186,11 @@
  </div>
  <div class="body">
    <div>{{ b.description_html | safe }}</div>
-   {% if v %}
-   <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
-   <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
-   {% elif not v %}
-   <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
-   {% endif %}
-   {% if v and not b.has_ban(v) %}
-   <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
-   {% elif not v %}
-   <a href="/signup" class="btn btn-secondary btn-block mt-3">Create post</a>
-   {% endif %}
  </div>
 </div>
 
 <div class="sidebar-section sidebar-rules">
-  <div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span>
-    {% if v and b.has_mod(v) %}
-    <div class="dropdown my-auto post-actions float-right d-inline-block">
-      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
-      ">
-      <i class="far fa-ellipsis-h text-white"></i>
-    </a>
-    <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-      <a class="dropdown-item" href="{{ b.permalink }}/mod/settings"><i class="fas fa-edit align-middle"></i><span class="align-middle">Edit rules</span>
-      </a>
-    </div>
-  </div>
-  {% endif %}
-</div>
+  <div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
 <div class="body">
   <ol class="pl-0 mb-0">   
     <li>
