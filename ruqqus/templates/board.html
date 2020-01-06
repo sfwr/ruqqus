@@ -102,19 +102,24 @@
       </div>
       <div class="mt-n3 py-3">
         <a href="{{ b.permalink }}" class="text-black">
-        <h1 class="h5 d-inline-block mb-0">+{{ b.name }}
-        {% if b.over_18 %}
-          <span class="badge badge-danger text-small align-middle">NSFW</span>
-        {% endif %}
-        </h1>
+        <h1 class="h5 d-inline-block">+{{ b.name }}
+            {% if b.over_18 %}
+            <span class="badge badge-danger text-small align-middle">NSFW</span>
+            {% endif %}
+          </h1>
         </a>
-         <div>{{ b.description_html | safe }}</div>
-         {% if v %}
-         <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
-         <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
-         {% elif not v %}
-         <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
-         {% endif %}
+        <div class="text-muted">{{ b.description_html | safe }}</div>
+        <div class="font-weight-bold">
+        </span>{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
+        <span> · </span>
+        <span>{{ b.created_date }}</span>
+       </div>
+       {% if v %}
+       <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
+       <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
+       {% elif not v %}
+       <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
+       {% endif %}
      </div>
    </div>
  </div>
