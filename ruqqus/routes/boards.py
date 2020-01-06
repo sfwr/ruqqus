@@ -31,7 +31,7 @@ def create_board_get(v):
         return render_template("message.html",
                                title="You need to wait a bit.",
                                message="You can only create up to 2 guilds per day. Try again later."
-                               )
+                               ), 429
 
         
     return render_template("make_board.html", v=v)
@@ -72,7 +72,7 @@ def create_board_post(v):
         return render_template("message.html",
                                title="You need to wait a bit.",
                                message="You can only create up to 2 guilds per day. Try again later."
-                               )
+                               ), 429
 
     description = request.form.get("description")
 
