@@ -29,7 +29,7 @@ def create_board_get(v):
     recent=db.query(Board).filter(Board.creator_id==v.id, Board.created_utc >= cutoff).all()
     if len([x for x in recent])>=2:
         return render_template("message.html",
-                               title="You need to wait a bit."
+                               title="You need to wait a bit.",
                                message="You can only create up to 2 guilds per day. Try again later."
                                )
 
@@ -70,7 +70,7 @@ def create_board_post(v):
     recent=db.query(Board).filter(Board.creator_id==v.id, Board.created_utc >= cutoff).all()
     if len([x for x in recent])>=2:
         return render_template("message.html",
-                               title="You need to wait a bit."
+                               title="You need to wait a bit.",
                                message="You can only create up to 2 guilds per day. Try again later."
                                )
 
