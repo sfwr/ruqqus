@@ -109,11 +109,8 @@
           </h1>
         </a>
         <div class="text-muted">{{ b.description_html | safe }}</div>
-        <div class="font-weight-bold mb-3">
-        </span>{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
-        <span> · </span>
-        <span>{{ b.created_date }}</span>
-       </div>
+        <p class="font-weight-bold">{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
+       </p>
        {% if v %}
        <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
        <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
