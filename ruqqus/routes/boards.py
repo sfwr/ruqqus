@@ -24,6 +24,15 @@ def create_board_get(v):
     if v.karma<100:
         return render_template("message.html", title="Unable to make board", text="You need more rep to do that.")
 
+    #check # recent boards made by user
+    cutoff=int(time.time())-60*60*24
+    recent=db.query(Board).filter(Board.creator_id==v.id, Board.created_utc >= cutoff).all()
+    if len([x for x in recent])>=2:
+        return render_template("message.html",
+                               title="You need to wait a bit."
+                               message="You can only create up to 2 guilds per day. Try again later."
+                               )
+
         
     return render_template("make_board.html", v=v)
 
@@ -60,7 +69,10 @@ def create_board_post(v):
     cutoff=int(time.time())-60*60*24
     recent=db.query(Board).filter(Board.creator_id==v.id, Board.created_utc >= cutoff).all()
     if len([x for x in recent])>=2:
-        abort(429)
+        return render_template("message.html",
+                               title="You need to wait a bit."
+                               message="You can only create up to 2 guilds per day. Try again later."
+                               )
 
     description = request.form.get("description")
 
