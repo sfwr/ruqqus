@@ -147,6 +147,25 @@
   </div>
   {% endif %}
 
+
+  <div class="sidebar-section sidebar-filter">
+    <div class="title"><i class="fas fa-filter mr-2"></i>Filter</div>
+    <div class="body">
+
+      {% if only is not None %}
+        <a href="?sort={{ sort_method }}" class="btn btn-primary btn-block mt-3"><i class="fas fa-home"></i>All</a>
+      {% endif %}
+      {% if only != "guilds" %}
+        <a href="?sort={{ sort_method }}" class="btn btn-primary btn-block mt-3"><i class="fas fa-university"></i>Guilds Only</a>
+      {% endif %}
+      {% if only != "users" %}
+        <a href="?sort={{ sort_method }}" class="btn btn-primary btn-block mt-3"><i class="fas fa-user-friends"></i>Users Only</a>
+      {% endif %}
+
+    </div>
+  </div>
+
+
   {% if v and not v.subscriptions.filter_by(is_active=True).count() %}
   <div class="sidebar-section sidebar-guild-recommendations sticky-105">
     <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
