@@ -412,7 +412,7 @@ def mod_bid_settings_downdisable(bid,  board, v):
 @auth_required
 @is_guildmaster
 @validate_formkey
-def mod_bid_settings_downdisable(bid,  board, v):
+def mod_bid_settings_downdisable(bid, board, v):
 
     # disable downvoting
     board.restricted_posting = bool(request.form.get("restrictswitch", False)=='true')
