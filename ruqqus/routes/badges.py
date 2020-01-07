@@ -17,4 +17,7 @@ def badge_grant_get(v):
 
     badge_types=db.query(BadgeDef).filter_by(kind=3).order_by(BadgeDef.rank).all()
 
-    return render_template("badge_grant.html", v=v)
+    return render_template("badge_grant.html",
+                           v=v,
+                           badge_types=badge_types
+                           )
