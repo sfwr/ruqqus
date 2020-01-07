@@ -7,7 +7,7 @@ from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base, db, cache
 
-class Rules(Base, Stndrd):
+class Rules(Base, Stndrd, Age_times):
 
     __tablename__="rules"
     id = Column(BigInteger, primary_key=True)
@@ -15,6 +15,7 @@ class Rules(Base, Stndrd):
     rule_body = Column(String(256))
     rule_html = Column(String)
     created_utc = Column(BigInteger, default=0)
+    edited_utc = Column(BigInteger, default=0)
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
