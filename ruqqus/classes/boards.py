@@ -27,6 +27,7 @@ class Board(Base, Stndrd, Age_times):
     creator_id=Column(Integer, ForeignKey("users.id"))
     ban_reason=Column(String(256), default=None)
     color=Column(String(8), default="603abb")
+    downvotes_disabled=Column(Boolean, default=False)
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
