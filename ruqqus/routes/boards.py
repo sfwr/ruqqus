@@ -459,6 +459,37 @@ def mod_add_rule(bid, board, v):
 
     return "", 204
 
+@app.route("/mod/<bid>/settings/edit_rule", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_edit_rule(bid, board, v):
+    r = base36decode(request.form.get("rid"))
+    r = db.query(Rules).filter_by(id=r)
+
+    if not r:
+        abort(500)
+
+    if board.is_banned:
+        abort(403)
+
+    if board.has_ban(v):
+        abort(403)
+
+    body = request.form.get("body", "")
+    with CustomRenderer() as renderer:
+        body_md = renderer.render(mistletoe.Document(body))
+    body_html = sanitize(body_md, linkgen=True)
+
+
+    r.rule_body = body
+    r.rule_html = body_html
+    r.edited_utc = int(time.time())
+
+    db.add(r)
+    db.commit()
+    return "", 204
+
 @app.route("/+<boardname>/mod/settings", methods=["GET"])
 @auth_required
 @is_guildmaster
