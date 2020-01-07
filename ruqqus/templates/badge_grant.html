@@ -44,15 +44,15 @@
 
 {% for badge in badge_types %}
 <div class="row">
-  <label>
   <div class="column">
-    <input type="radio" name="badge_id" value="{{ badge.id }}"> 
+    <input type="radio" id="badge-{{ badge.id }}" name="badge_id" value="{{ badge.id }}"> 
   </div>
   <div class="column">
-    <img class="d-block" src="{{ badge.path }}" width="70px" height="70px">
-    <p>{{ badge.name }}</p>
+    <label for="badge-{{ badge.id }}">
+      <img class="d-block" src="{{ badge.path }}" width="70px" height="70px">
+      <p>{{ badge.name }}</p>
+    </label>
   </div>
-  </label>
 </div>
 {% endfor %}
 
