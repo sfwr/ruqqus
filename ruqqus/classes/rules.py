@@ -14,6 +14,7 @@ class Rules(Base, Stndrd):
     board_id = Column(Integer, ForeignKey("boards.id"))
     rule_body = Column(String(256))
     rule_html = Column(String)
+    created_utc = Column(BigInteger, default=0)
 
     def __repr__(self):
         return f"<Rule(id={self.id}, board_id={self.board_id})>"
