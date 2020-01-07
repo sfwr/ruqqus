@@ -234,7 +234,7 @@
 
                 <div class="custom-control custom-switch">
                   <input type="checkbox" class="custom-control-input" id="downdisable" name="downdisable"{% if b.downvotes_disabled %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/downdisable','downdisable')">
-                  <label class="custom-control-label" for="over18"></label>
+                  <label class="custom-control-label" for="downdisable"></label>
                 </div>
 
                 <span class="text-small-extra text-muted">Activating this will not neutralize previously-cast downvotes.</span>
