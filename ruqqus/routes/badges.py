@@ -8,7 +8,7 @@ from ruqqus.helpers.get import *
 from ruqqus.classes import *
 
 from flask import *
-from ruqqus.__main import app, db
+from ruqqus.__main__ import app, db
 
 
 @app.route("/badge_grant", methods=["GET"])
