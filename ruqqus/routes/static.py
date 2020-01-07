@@ -50,7 +50,7 @@ def help_terms(v):
 @auth_desired
 def badges(v):
     badges=[x for x in db.query(BadgeDef).order_by(text("rank asc, id asc")).all()]
-    return render_template("badges.html",
+    return render_template("help/badges.html",
                            v=v,
                            badges=badges)
 
