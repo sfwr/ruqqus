@@ -11,6 +11,7 @@ from ruqqus.helpers.get import *
 from ruqqus.helpers.alerts import *
 from ruqqus.classes import *
 from .front import guild_ids
+from ruqqus.classes.rules import *
 from flask import *
 from ruqqus.__main__ import app, db, limiter, cache
 
@@ -428,6 +429,33 @@ def mod_bid_settings_description(bid, board, v):
 
     db.add(board)
     db.commit()
+
+    return "", 204
+
+@app.route("/mod/<bid>/settings/add_rule", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_add_rule(bid, board, v):
+    #board description
+    rule = request.form.get("rule1")
+    rule2 = request.form.get("rule2")
+    if not rule2:
+        with CustomRenderer() as renderer:
+            rule_md=renderer.render(mistletoe.Document(rule))
+        rule_html=sanitize(rule_md, linkgen=True)
+
+
+        new_rule = Rules(rule_body=rule_md, rule_html=rule_html)
+        db.add(new_rule)
+        db.commit()
+    else:
+        """
+        im guessing here we should 
+        do a loop for
+        adding multiple rules
+        """
+        pass
 
     return "", 204
 
