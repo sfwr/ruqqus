@@ -18,8 +18,7 @@ def auth_desired(f):
             nonce=session.get("login_nonce",0)
             if nonce<v.login_nonce:
                 v=None
-            #if v:
-                #v.update_ip(request.remote_addr)
+
         else:
             v=None
             
@@ -41,7 +40,6 @@ def auth_required(f):
             
             if not v:
                 abort(401)
-            #v.update_ip(request.remote_addr)
 
         else:
             abort(401)
@@ -64,8 +62,6 @@ def is_not_banned(f):
             
             if not v:
                 abort(401)
-
-            #v.update_ip(request.remote_addr)
 
             if v.is_banned:
                 abort(403)

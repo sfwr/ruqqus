@@ -124,17 +124,6 @@ def front_all(v):
                            trending_boards = boards_list
                            )
 
-
-
-
-@app.route("/subscriptions", methods=["GET"])
-@auth_required
-def user_subs(v):
-
-    return v.rendered_follow_page(sort=request.args.get("sort","hot"),
-                                  page=max(int(request.args.get("page",1)),0)
-                                  )
-
 @cache.memoize(600)
 def guild_ids(sort="subs", page=1, nsfw=False):
     #cutoff=int(time.time())-(60*60*24*30)

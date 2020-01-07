@@ -49,13 +49,13 @@
             <div class="d-flex">
               <ul class="nav post-nav mr-auto">
                 <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="?sort=hot"><i class="fas fa-fire"></i>Hot</a>
+                  <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="?sort=hot{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-fire"></i>Hot</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="?sort=top"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
+                  <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="?sort=top{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="?sort=new"><i class="fas fa-sparkles"></i>New</a> 
+                  <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="?sort=new{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-sparkles"></i>New</a> 
                 </li>
                 <li class="nav-item">
                   <a class="nav-link{% if sort_method=="disputed" %} active{% endif %}" href="?sort=disputed"><i class="fas fa-bullhorn"></i>Disputed</a>
@@ -277,14 +277,14 @@
               <ul class="pagination pagination-sm mb-0">
                 {% if page>1 %}
                 <li class="page-item">
-                  <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page-1 }}" tabindex="-1">Prev</a></small>
+                  <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page-1 }}{% if only %}&only={{ only }}{% endif %}" tabindex="-1">Prev</a></small>
                 </li>
                 {% else %}
                 <li class="page-item disabled"><span class="page-link">Prev</span></li>
                 {% endif %}
                 {% if next_exists %}
                 <li class="page-item">
-                  <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page+1 }}">Next</a></small>
+                  <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page+1 }}{% if only %}&only={{ only }}{% endif %}">Next</a></small>
                 </li>
                 {% else %}
                 <li class="page-item disabled"><span class="page-link">Next</span></li>

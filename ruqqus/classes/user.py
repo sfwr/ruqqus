@@ -93,7 +93,7 @@ class User(Base, Stndrd):
         return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=600)
-    def idlist(self, sort="hot", page=1, kind="board"):
+    def idlist(self, sort="hot", page=1, only=None):
 
         
 
@@ -101,18 +101,23 @@ class User(Base, Stndrd):
                                              is_deleted=False,
                                              stickied=False
                                              )
-        if kind=="board":
+
+
+        if not self.over_18:
+            posts=posts.filter_by(over_18=False)
+
+        if only in [None, "none"]:
+            board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
+            user_ids=[x.target_id for x in self.following.all()]
+            posts=posts.filter(or_(Submission.board_id.in_(board_ids), Submission.author_id.in_(user_ids)))
+        elif only=="guilds":
             board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
             posts=posts.filter(Submission.board_id.in_(board_ids))
-        elif kind=="user":
+        elif only=="users":
             user_ids=[x.target_id for x in self.following.all()]
             posts=posts.filter(Submission.author_id.in_(user_ids))
         else:
             abort(422)
-
-        if not self.over_18:
-            posts=posts.filter_by(over_18=False)
-            
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.rank_hot desc"))
@@ -121,7 +126,7 @@ class User(Base, Stndrd):
         elif sort=="disputed":
             posts=posts.order_by(text("submissions.rank_fiery desc"))
         elif sort=="top":
-            posts=posts.order_by(text("submissions.score desc"))
+            posts=posts.order_by(Submissions.score.desc())
         elif sort=="activity":
             posts=posts.order_by(text("submissions.rank_activity desc"))
         else:
@@ -162,21 +167,23 @@ class User(Base, Stndrd):
 
         return posts, next_exists
 
-    def rendered_follow_page(self, sort="hot", page=1):
-
-        ids=self.idlist(sort=sort, page=page, kind="user")
-
-        posts, next_exists = self.list_of_posts(ids)
-
-        return render_template("follows.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)
-
     def rendered_subscription_page(self, sort="hot", page=1):
 
-        ids=self.idlist(sort=sort, page=page, kind="board")
+        only=request.args.get("only",None)        
+
+        ids=self.idlist(sort=sort,
+                        page=page,
+                        only=only)
 
         posts, next_exists = self.list_of_posts(ids)
 
-        return render_template("subscriptions.html", v=self, listing=posts, next_exists=next_exists, sort_method=sort, page=page)        
+        return render_template("subscriptions.html",
+                               v=self,
+                               listing=posts,
+                               next_exists=next_exists,
+                               sort_method=sort,
+                               page=page,
+                               only=only)        
 
     @property
     def mods_anything(self):
@@ -348,20 +355,6 @@ class User(Base, Stndrd):
 
     def __repr__(self):
         return f"<User(username={self.username})>"
-
-
-    @property
-    @lazy
-    def color(self):
-
-        random.seed(f"{self.id}+{self.username}")
-
-        R=random.randint(32, 223)
-        G=random.randint(32, 223)
-        B=random.randint(32, 223)
-        
-
-        return str(base_encode(R, 16))+str(base_encode(G, 16))+str(base_encode(B, 16))
 
     def notifications_page(self, page=1, include_read=False):
 

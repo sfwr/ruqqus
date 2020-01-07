@@ -93,6 +93,7 @@
                         <span class="points"><span id="comment-{{ c.base36id }}-score-up"{% if voted!=1 %} class="d-none text-upvote"{% endif %}>{{ score+1-adjust }}</span><span id="comment-{{ c.base36id }}-score-none"{% if voted not in [-2,0] %} class="d-none text-black"{% endif %}>{{ score-adjust }}</span><span id="comment-{{ c.base36id }}-score-down"{% if voted!=-1 %} class="d-none text-downvote"{% endif %}>{{ score-1-adjust }}</span></span>
                     </li>
 
+{% if not c.board.downvotes_disabled %}
                     {% if v %}
                     <li id="comment-{{ c.base36id }}-down" class="list-inline-item arrow-down d-none d-md-inline-block" {% if voted==-1 %}onclick="vote_comment('{{ c.base36id }}','0')"{% elif voted > -2 %}onclick="vote_comment('{{ c.base36id }}','-1')"{% endif %}>
                     </li>
@@ -103,6 +104,7 @@
                     </li>
 
                     {% endif %}
+{% endif %}
 
                     {% if v %}
                     {% if not v.is_banned and not c.board.has_ban(v) %}
