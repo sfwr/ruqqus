@@ -211,13 +211,13 @@
 {% endif %}
 
   {% if v and v.id != u.id %}
+  <div class="my-2"></div>
   <div id="button-unsub-side" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Unsubscribe from @{{ u.username }}</a></div>
   <div id="button-sub-side" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Subscribe to @{{ u.username }}</a></div>
   {% endif %}
 </div>
 </div>
 
-{% if u.badges %}
 <div class="sidebar-section sidebar-profile-badges">
   <div class="title">Badges</div>
   <div class="body">
@@ -229,7 +229,6 @@
     {% endfor %}
   </div>
 </div>
-{% endif %}
 
 {% endblock %}
 
