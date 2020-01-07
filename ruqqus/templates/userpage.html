@@ -205,7 +205,7 @@
    <div class="text-muted text-small mt-2"><i class="fas fa-birthday-cake fa-width-rem text-muted mr-2"></i>User since {{ u.created_date }}
   </div>
 
-{% if v.has_follower(u) %}
+{% if v and v.has_follower(u) %}
     <div class="text-info text-small mt-2"><i class="fas fa-user-friends fa-width-rem text-info mr-2"></i>Follows you
     </div>
 {% endif %}
