@@ -127,102 +127,102 @@
       {% endif %}
     </div>
   </div>
-  {% if trending_boards %}
+  
+{% if not v and trending_boards %}
   <div class="sidebar-section sidebar-trending">
     <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Guilds</div>
     <div class="body">
       {% for entry in trending_boards[0:5] %}
       <div class="d-flex justify-content-start trending-guild">
         <div>
-          <a href="{{ entry[0].permalink }}"><img src="{{ entry[0].profile_url }}" class="profile-pic-40 mr-2"></a>
-        </div>
-        <div>
-          <a href="{{ entry[0].permalink }}">+{{ entry[0].name }}</a>
-          <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-        </div>
+        <a href="{{ entry[0].permalink }}"><img src="{{ entry[0].profile_url }}" class="profile-pic-40 mr-2"></a>
+       </div>
+       <div>
+        <a href="{{ entry[0].permalink }}">+{{ entry[0].name }}</a>
+        <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
       </div>
-      {% endfor %}
-      <a href="/browse" class="btn btn-primary btn-block mt-3">View more</a>
+    </div>
+    {% endfor %}
+    <a href="/browse" class="btn btn-primary btn-block mt-3">View more</a>
+  </div>
+</div>
+{% elif v and v.subscriptions.filter_by(is_active=True).count() %}
+<div class="sidebar-section sidebar-guild-recommendations">
+  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+  <div class="body">
+    <ul class="no-bullets guild-recommendations-list pl-0">
+      {% for board in v.boards_subscribed[0:5] %}
+      <li class="guild-recommendations-item">
+        <a href="{{ board.permalink }}">
+          <div class="d-flex">
+            <div class="mr-2">
+              <img src="{{ board.profile_url }}" class="profile-pic-40 mr-2"></div>
+              <div class="my-auto">
+                <div class="text-black font-weight-normal">+{{ board.name }}</div>
+              </div>
+            </div>
+          </a>
+        </li>
+        {% endfor %}
+      </ul>
+      <div class="text-center">
+        <a href="#" class="btn btn-link">View all</a>
+      </div>
+    </div>
+  </div>
+  {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
+  <div class="sidebar-section sidebar-guild-recommendations sticky-63">
+    <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+    <div class="body">
+      <div class="my-3" style="">
+        <i class="fad fa-telescope text-primary" style="font-size:3rem"></i>
+      </div>
+      <h5>Discover amazing communities across Ruqqus.</h5>
+      <p class="text-small">You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
+      <a href="/browse" class="btn btn-primary btn-block">Discover guilds</a>
     </div>
   </div>
   {% endif %}
-  {% elif v and v.subscriptions.filter_by(is_active=True).count() %}
-  <div class="sidebar-section sidebar-guild-recommendations">
-    <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
-    <div class="body">
-      <ul class="no-bullets guild-recommendations-list pl-0">
-        {% for board in v.boards_subscribed[0:5] %}
-        <li class="guild-recommendations-item">
-          <a href="{{ board.permalink }}">
-            <div class="d-flex">
-              <div class="mr-2">
-                <img src="{{ board.profile_url }}" class="profile-pic-40 mr-2"></div>
-                <div class="my-auto">
-                  <div class="text-black font-weight-normal">+{{ board.name }}</div>
-                </div>
-              </div>
-            </a>
+
+  {% endblock %}
+
+  {% block content %}
+
+  <!-- View toggle visible only on large devices or larger -->
+
+  <div class="flex-row p-3 justify-content-end d-none d-lg-flex">
+
+    <div>
+      <ul class="nav toggle-view">
+        <li class="nav-item">
+          <button class="btn nav-link pr-3 active" id="toggle-list-view-btn" onclick="toggle_list_view()">
+            <i class="fas fa-list"></i>List</button>
           </li>
-          {% endfor %}
-        </ul>
-        <div class="text-center">
-          <a href="#" class="btn btn-link">View all</a>
-        </div>
-      </div>
-    </div>
-    {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
-    <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-      <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
-      <div class="body">
-        <div class="my-3" style="">
-          <i class="fad fa-telescope text-primary" style="font-size:3rem"></i>
-        </div>
-        <h5>Discover amazing communities across Ruqqus.</h5>
-        <p class="text-small">You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
-        <a href="/browse" class="btn btn-primary btn-block">Discover guilds</a>
-      </div>
-    </div>
-    {% endif %}
-
-    {% endblock %}
-
-    {% block content %}
-
-    <!-- View toggle visible only on large devices or larger -->
-
-    <div class="flex-row p-3 justify-content-end d-none d-lg-flex">
-
-      <div>
-        <ul class="nav toggle-view">
-          <li class="nav-item">
-            <button class="btn nav-link pr-3 active" id="toggle-list-view-btn" onclick="toggle_list_view()">
-              <i class="fas fa-list"></i>List</button>
+          <li class="nav-item" style="">
+            <button class="btn nav-link" id="toggle-card-view-btn" onclick="toggle_card_view()">
+              <i class="fas fa-th-large"></i>Card</button>
             </li>
-            <li class="nav-item" style="">
-              <button class="btn nav-link" id="toggle-card-view-btn" onclick="toggle_card_view()">
-                <i class="fas fa-th-large"></i>Card</button>
-              </li>
-            </ul>
-          </div>
+          </ul>
+        </div>
 
-          <div class="post-filter pb-2 d-none">
-            <span>Sort By:</span>
-            <span class="dropdown">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Time
-              </a>
+        <div class="post-filter pb-2 d-none">
+          <span>Sort By:</span>
+          <span class="dropdown">
+            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Time
+            </a>
 
-              <span class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMenuLink">
-                <a class="dropdown-item" href="#">Day</a>
-                <a class="dropdown-item" href="#">Month</a>
-                <a class="dropdown-item" href="#">Year</a>
-                <a class="dropdown-item" href="#">All Time</a>
-              </span>
+            <span class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item" href="#">Day</a>
+              <a class="dropdown-item" href="#">Month</a>
+              <a class="dropdown-item" href="#">Year</a>
+              <a class="dropdown-item" href="#">All Time</a>
             </span>
-
-          </div>
+          </span>
 
         </div>
+
+      </div>
 
         <div class="row no-gutters">
 
