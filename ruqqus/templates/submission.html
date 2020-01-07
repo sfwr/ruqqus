@@ -12,11 +12,11 @@
 
 {% block darkswitch %}
 {% if v and v.referral_count and session.get("dark_mode_enabled")%}
-<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ p.board.name }}')"><i class="fad fa-toggle-on fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ p.board.name }}')"><i class="fad fa-toggle-on fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
 {% elif v and v.referral_count %}
-<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ p.board.name }}')"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ p.board.name }}')"><i class="fad fa-toggle-off fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
 {% else %}
-<a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Dark mode</span></a>
+<a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left mr-3"></i>Dark mode</a>
 {% endif %}
 {% endblock %}
 
@@ -200,8 +200,7 @@
       <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportGuildModal" onclick="report_guildModal('')"><i class="fas fa-flag"></i>Report guild</a>
       {% endif %}
       {% if p.board.has_mod(v) %}
-      <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-cog align-middle"></i><span class="align-middle">Guild settings</span>
-      </a>
+      <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-cog"></i>Guild settings</a>
       {% endif %}
     </div>
   </div>
@@ -248,8 +247,7 @@
         <i class="far fa-ellipsis-h text-white"></i>
       </a>
       <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-        <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-edit align-middle"></i><span class="align-middle">Edit rules</span>
-        </a>
+        <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-edit"></i>Edit rules</a>
       </div>
     </div>
     {% endif %}
@@ -298,8 +296,7 @@
       <i class="far fa-ellipsis-h text-white"></i>
     </a>
     <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-      <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-cog align-middle"></i><span class="align-middle">Manage guildmasters</span>
-      </a>
+      <a class="dropdown-item" href="{{ p.board.permalink }}/mod/settings"><i class="fas fa-cog"></i>Manage guildmasters</a>
     </div>
   </div>
   {% endif %}
