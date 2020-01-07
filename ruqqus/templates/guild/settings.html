@@ -245,6 +245,35 @@
 
           </div>
 
+        <div id="restricted">
+
+          <h2 class="h5">Restricted Posting</h2>
+
+          <p class="text-small text-muted">Restrict submission posting in +{{ b.name }}.</p>
+
+          <div class="settings-section rounded">
+
+            <div class="d-lg-flex">
+
+              <div class="title w-lg-25">
+                <label for="downdisable">Restricted Posting</label>
+              </div>
+
+              <div class="body w-lg-100">
+
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="restrictswitch" name="restrictswitch"{% if b.downvotes_disabled %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/restricted','restrictswitch')">
+                  <label class="custom-control-label" for="restrictswitch"></label>
+                </div>
+
+                <span class="text-small-extra text-muted">Restrict posting in +{{ b.name }} to approved users only. (Anyone will still be able to comment).</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
 
           <h2 id="color" class="h5" name="referral">Guild Color</h2>
 

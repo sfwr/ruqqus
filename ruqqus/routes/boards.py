@@ -408,6 +408,20 @@ def mod_bid_settings_downdisable(bid,  board, v):
 
     return "",204
 
+@app.route("/mod/<bid>/settings/restricted", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_bid_settings_downdisable(bid,  board, v):
+
+    # disable downvoting
+    board.restricted_posting = bool(request.form.get("restrictswitch", False)=='true')
+
+    db.add(board)
+    db.commit()
+
+    return "",204
+
 @app.route("/mod/<bid>/settings/name", methods=["POST"])
 @auth_required
 @is_guildmaster
