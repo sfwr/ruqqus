@@ -1,5 +1,5 @@
 from urllib.parse import urlparse
-from time import time
+import time
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -17,7 +17,52 @@ def badge_grant_get(v):
 
     badge_types=db.query(BadgeDef).filter_by(kind=3).order_by(BadgeDef.rank).all()
 
+    errors={"already_owned":"That user already has that badge.",
+            "no_user":"That user doesn't exist."
+            }
+
+    return render_template("badge_grant.html",
+                           v=v,
+                           badge_types=badge_types,
+                           error=errors.get(request.args.get("error"),None) if request.args.get('error') else None,
+                           msg="Badge successfully assigned" if request.args.get("msg") else None
+                           )
+@app.route("/badge_grant", methods=["POST"])
+@admin_level_required(4)
+@validate_formkey
+def badge_grant_get(v):
+
+    user=get_user(request.form.get("username"), graceful=True)
+    if not user:
+        return redirect("/badge_grant?error=no_user")
+
+    badge_id=int(request.form.get("badge_id"))
+
+    if user.has_badge(badge_id):
+        return redirect("/badge_grant?error=already_owned")
+
+    new_badge=Badge(badge_id=badge_id,
+                    user_id=user.id,
+                    created_utc=int(time.time())
+                    )
+
+    desc=request.form.get("description")
+    if desc:
+        new_badge.description=desc
+
+    
+    url=request.form.get("url")
+    if url:
+        new_badge.url=url
+
+    db.add(new_badge)
+    db.commit()
+
+
+    badge_types=db.query(BadgeDef).filter_by(kind=3).order_by(BadgeDef.rank).all()
+
     return render_template("badge_grant.html",
                            v=v,
                            badge_types=badge_types
                            )
+                 
