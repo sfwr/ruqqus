@@ -27,7 +27,7 @@
 
   <div class="col">
 
-    {% if not b.has_ban(v) %}
+    {% if (not b.has_ban(v)) and ( board.restricted_posting and not (board.has_contributor(v) or board.has_mod(v))) %}
     <div class="card pseudo-submit-form">
       <div class="card-header bg-white">
         <div class="mb-0">Create post in +{{ b.name }}</div>

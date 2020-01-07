@@ -33,7 +33,7 @@ class Board(Base, Stndrd, Age_times):
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
-    contributors=reqlationship("ContributorRelationship", lazy="dynamic")
+    contributors=relationship("ContributorRelationship", lazy="dynamic")
     trending_rank=deferred(Column(Float, server_default=FetchedValue()))
 
     #db side functions
