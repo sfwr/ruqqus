@@ -1691,6 +1691,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     color: $primary;
 }
 
+#frontpage .post-title a {
+    color: $black;
+}
+
+#frontpage .post-title a:hover, #frontpage .post-title a:active, #frontpage .post-title a:focus  {
+    text-decoration: none;
+    color: $black;
+}
+
 .stretched-link a:hover {
     color: $purple
 }
