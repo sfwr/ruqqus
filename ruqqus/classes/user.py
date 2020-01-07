@@ -349,20 +349,6 @@ class User(Base, Stndrd):
     def __repr__(self):
         return f"<User(username={self.username})>"
 
-
-    @property
-    @lazy
-    def color(self):
-
-        random.seed(f"{self.id}+{self.username}")
-
-        R=random.randint(32, 223)
-        G=random.randint(32, 223)
-        B=random.randint(32, 223)
-        
-
-        return str(base_encode(R, 16))+str(base_encode(G, 16))+str(base_encode(B, 16))
-
     def notifications_page(self, page=1, include_read=False):
 
         page=int(page)

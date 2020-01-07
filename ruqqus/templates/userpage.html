@@ -150,7 +150,7 @@
 {% block sidebarblock %}
 <div class="sidebar-section sidebar-profile-basic">
   <div class="body">
-    <h1 class="h6 d-inline-block mb-0" style="color:#{{ u.color }}">@{{ u.username }}</h1>
+    <h1 class="h6 d-inline-block mb-0">@{{ u.username }}</h1>
     <span>
       {% if u.admin_level %}<i class="fad fa-shield text-admin ml-1" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>{% endif %}
       {% if u.real_id %}<span class="badge badge-pill text-white badge-info">{{ u.real_id }}</span>{% endif %}
