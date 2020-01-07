@@ -46,11 +46,11 @@ def help_terms(v):
                            v=v,
                            cutoff=cutoff)
 
-@app.route("/badges", methods=["GET"])
+@app.route("/help/badges", methods=["GET"])
 @auth_desired
 def badges(v):
     badges=[x for x in db.query(BadgeDef).order_by(text("rank asc, id asc")).all()]
-    return render_template("badges.html",
+    return render_template("help/badges.html",
                            v=v,
                            badges=badges)
 
