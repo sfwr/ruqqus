@@ -13,7 +13,6 @@ from ruqqus.__main__ import app, db
 
 @app.route("/badge_grant", methods=["GET"])
 @admin_level_required(4)
-@validate_formkey
 def badge_grant_get(v):
 
     return render_template("badge_grant.html", v=v)
