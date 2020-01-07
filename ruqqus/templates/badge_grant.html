@@ -40,7 +40,7 @@
 
 
 <label for="input-username">Username</label><br>
-<input id="input-username" class="form-control" type="text" name="username">
+<input id="input-username" class="form-control" type="text" name="username" required>
 
 {% for badge in badge_types %}
 <div class="row">
@@ -57,7 +57,7 @@
 {% endfor %}
 
 <label for="input-url">URL</label><br>
-<input id="input-url" class="form-control" type="text" name="url">
+<input id="input-url" class="form-control" type="text" name="url" placeholder="Optional">
 
 <label for="input-description">Custom description</label><br>
 <input id="input-description" class="form-control" type="text" name="description" placeholder="Leave blank for badge default">
