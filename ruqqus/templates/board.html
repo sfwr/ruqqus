@@ -27,7 +27,7 @@
 
   <div class="col">
 
-    {% if (not b.has_ban(v)) and ( b.restricted_posting and not (b.has_contributor(v) or b.has_mod(v))) %}
+    {% if (not b.has_ban(v)) and not (b.restricted_posting and not (b.has_contributor(v) or b.has_mod(v))) %}
     <div class="card pseudo-submit-form">
       <div class="card-header bg-white">
         <div class="mb-0">Create post in +{{ b.name }}</div>
@@ -169,7 +169,7 @@
  {% elif not v %}
  <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
  {% endif %}
- {% if v and (not b.has_ban(v)) and ( b.restricted_posting and not (b.has_contributor(v) or b.has_mod(v))) %}
+ {% if and (not b.has_ban(v)) and not (b.restricted_posting and not (b.has_contributor(v) or b.has_mod(v))) %}
  <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
  {% elif not v %}
  <a href="/signup" class="btn btn-secondary btn-block mt-2">Create post</a>
