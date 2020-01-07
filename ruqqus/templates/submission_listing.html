@@ -222,12 +222,22 @@
   </div>  
 </div>
 {% elif u %}
-<div class="row no-gutters">   
-  <div class="col">      
-    <div class="text-center py-7"><h4>{{ u.username }} hasn't posted anything yet...</h4>
-    </div>       
-  </div>  
-</div>
+  {% if v and v.id == u.id %}
+  <div class="row no-gutters">   
+    <div class="col">      
+      <div class="text-center py-7"><h4>You haven't posted anything yet...</h4>
+        <a href="/submit" class="btn btn-primary">Create post now</a>
+      </div>       
+    </div>  
+  </div>
+  {% else %}
+  <div class="row no-gutters">   
+    <div class="col">      
+      <div class="text-center py-7"><h4>{{ u.username }} hasn't posted anything yet...</h4>
+      </div>       
+    </div>  
+  </div>
+  {% endif %}
 {% endif %}
 
 {% endfor %}
