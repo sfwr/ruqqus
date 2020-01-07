@@ -165,65 +165,63 @@
     <div class="sidebar-section sidebar-info-basic">
       <div class="title">
         <span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
-    </div>
-    <div class="body pb-0">
-     <div class="d-flex">
-       {% if b.has_profile %}
-       <div>
-         <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
-       </div>
-       {% elif not b.has_profile and v and b.has_mod(v) %}
-       <a href="{{ b.permalink}}/mod/settings" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
-         <div class="letter" style="line-height: 3;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
-       </a>
-       {% endif %}
-       <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
-        <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
-         <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
+      </div>
+      <div class="body">
+        <div class="d-flex mb-3">
+         {% if b.has_profile %}
+         <div>
+           <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
+         </div>
+         {% elif not b.has_profile and v and b.has_mod(v) %}
+         <a href="{{ b.permalink}}/mod/settings" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
+           <div class="letter" style="line-height: 3;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
+         </a>
+         {% endif %}
+         <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+          <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
+           <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="{{ b.created_date }}">{{ b.age_string }}</span> est.
+         </div>
        </div>
      </div>
+     <div>{{ b.description_html | safe }}</div>
    </div>
  </div>
- <div class="body">
-   <div>{{ b.description_html | safe }}</div>
- </div>
-</div>
 
-<div class="sidebar-section sidebar-rules">
+ <div class="sidebar-section sidebar-rules">
   <div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
-<div class="body">
-  <ol class="pl-0 mb-0">   
-    <li>
-      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Comply with US law<span class="float-right"><i class="fa"></i></span>
-      </a>
-    </li>
-    <div id="ruleCollapse1" class="collapse">
-      <p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
-    </div>
-    <li>
-      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse2" role="button" aria-expanded="false" aria-controls="ruleCollapse2">Do not harass other users<span class="float-right"><i class="fa"></i></span>
-      </a>
-    </li>
-    <div id="ruleCollapse2" class="collapse">
-      <p style="padding: 0 0 0 22px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
-    </div>
-    <li>
-      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse3" role="button" aria-expanded="false" aria-controls="ruleCollapse3">No inciting violence<span class="float-right"><i class="fa"></i></span>
-      </a>
-    </li>
-    <div id="ruleCollapse3" class="collapse">
-      <p style="padding: 0 0 0 22px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
-    </div>
-    <li>
-      <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse4" role="button" aria-expanded="false" aria-controls="ruleCollapse4">Check for duplicates
-        <span class="float-right"><i class="fa"></i></span>
-      </a>
-    </li>
-    <div id="ruleCollapse4" class="collapse">
-      <p style="padding: 0 0 0 22px;">Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.</p>
-    </div>
-  </ol>
-</div>
+  <div class="body">
+    <ol class="pl-0 mb-0">   
+      <li>
+        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Comply with US law<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse1" class="collapse">
+        <p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
+      </div>
+      <li>
+        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse2" role="button" aria-expanded="false" aria-controls="ruleCollapse2">Do not harass other users<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse2" class="collapse">
+        <p style="padding: 0 0 0 22px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
+      </div>
+      <li>
+        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse3" role="button" aria-expanded="false" aria-controls="ruleCollapse3">No inciting violence<span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse3" class="collapse">
+        <p style="padding: 0 0 0 22px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
+      </div>
+      <li>
+        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse4" role="button" aria-expanded="false" aria-controls="ruleCollapse4">Check for duplicates
+          <span class="float-right"><i class="fa"></i></span>
+        </a>
+      </li>
+      <div id="ruleCollapse4" class="collapse">
+        <p style="padding: 0 0 0 22px;">Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.</p>
+      </div>
+    </ol>
+  </div>
 </div>
 
 </div>
