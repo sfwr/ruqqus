@@ -16,5 +16,10 @@ class Rules(Base, Stndrd):
     rule_html = Column(String)
     created_utc = Column(BigInteger, default=0)
 
+    def __init__(self, *args, **kwargs):
+        if "created_utc" not in kwargs:
+            kwargs["created_utc"] = int(time.time())
+        super().__init__(*args, **kwargs)
+
     def __repr__(self):
         return f"<Rule(id={self.id}, board_id={self.board_id})>"
