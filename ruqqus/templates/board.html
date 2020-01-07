@@ -302,12 +302,12 @@
     <ul class="no-bullets guild-recommendations-list pl-0">
       {% for board in v.boards_subscribed[0:5] %}
       <li class="guild-recommendations-item">
-        <a href="{{ b.permalink }}">
+        <a href="{{ board.permalink }}">
           <div class="d-flex">
             <div class="mr-2">
-              <img src="{{ b.profile_url }}" class="profile-pic-35"></div>
+              <img src="{{ board.profile_url }}" class="profile-pic-35"></div>
               <div class="my-auto">
-                <div class="text-black font-weight-normal">+{{ b.name }}</div>
+                <div class="text-black font-weight-normal">+{{ board.name }}</div>
               </div>
             </div>
           </a>
