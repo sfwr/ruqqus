@@ -216,8 +216,9 @@
 {% if b %}
 <div class="row no-gutters">   
   <div class="col">      
-    <div class="text-center py-7"><h2 class="h4">+{{ b.name }} is empty and needs posts!</h2>
-      <a href="/submit?guild={{ b.name }}" class="btn btn-primary">Be the first to post</a>
+    <div class="text-center py-7">
+      <div class="h4 p-2">+{{ b.name }} is barren and needs posts!</div>
+      <div class="p-2"><a href="/submit?guild={{ b.name }}" class="btn btn-primary">Be the first to post</a></div>
     </div>       
   </div>  
 </div>
@@ -225,15 +226,17 @@
   {% if v and v.id == u.id %}
   <div class="row no-gutters">   
     <div class="col">      
-      <div class="text-center py-7"><h2 class="h4">You haven't posted anything yet...</h2>
-        <a href="/submit" class="btn btn-primary">Create post now</a>
+      <div class="text-center py-7">
+      <div class="h4 p-2">You haven't posted anything yet...</div>
+      <div class="p-2"><a href="/submit" class="btn btn-primary">Create post now</a></div>
       </div>       
     </div>  
   </div>
   {% else %}
   <div class="row no-gutters">   
     <div class="col">      
-      <div class="text-center py-7"><h2 class="h4">@{{ u.username }} hasn't posted anything yet...</h2>
+      <div class="text-center py-7">
+      <div class="h4 p-2">@{{ u.username }} hasn't posted anything yet...</div>
       </div>       
     </div>  
   </div>

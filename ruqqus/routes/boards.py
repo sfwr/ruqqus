@@ -11,6 +11,7 @@ from ruqqus.helpers.get import *
 from ruqqus.helpers.alerts import *
 from ruqqus.classes import *
 from .front import guild_ids
+from ruqqus.classes.rules import *
 from flask import *
 from ruqqus.__main__ import app, db, limiter, cache
 
@@ -429,6 +430,64 @@ def mod_bid_settings_description(bid, board, v):
     db.add(board)
     db.commit()
 
+    return "", 204
+
+@app.route("/mod/<bid>/settings/add_rule", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_add_rule(bid, board, v):
+    #board description
+    rule = request.form.get("rule1")
+    rule2 = request.form.get("rule2")
+    if not rule2:
+        with CustomRenderer() as renderer:
+            rule_md=renderer.render(mistletoe.Document(rule))
+        rule_html=sanitize(rule_md, linkgen=True)
+
+
+        new_rule = Rules(board_id=bid, rule_body=rule, rule_html=rule_html)
+        db.add(new_rule)
+        db.commit()
+    else:
+        """
+        im guessing here we should 
+        do a loop for
+        adding multiple rules
+        """
+        pass
+
+    return "", 204
+
+@app.route("/mod/<bid>/settings/edit_rule", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_edit_rule(bid, board, v):
+    r = base36decode(request.form.get("rid"))
+    r = db.query(Rules).filter_by(id=r)
+
+    if not r:
+        abort(500)
+
+    if board.is_banned:
+        abort(403)
+
+    if board.has_ban(v):
+        abort(403)
+
+    body = request.form.get("body", "")
+    with CustomRenderer() as renderer:
+        body_md = renderer.render(mistletoe.Document(body))
+    body_html = sanitize(body_md, linkgen=True)
+
+
+    r.rule_body = body
+    r.rule_html = body_html
+    r.edited_utc = int(time.time())
+
+    db.add(r)
+    db.commit()
     return "", 204
 
 @app.route("/+<boardname>/mod/settings", methods=["GET"])
