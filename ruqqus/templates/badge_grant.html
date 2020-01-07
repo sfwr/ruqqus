@@ -48,7 +48,7 @@
     <input type="radio" id="badge-{{ badge.id }}" name="badge_id" value="{{ badge.id }}"> 
   </div>
   <div class="column">
-    <label for="badge-{{ badge.id }}">
+    <label for="badge-{{ badge.id }}" title="{{ badge.description }}">
       <img class="d-block" src="{{ badge.path }}" width="70px" height="70px">
       <p>{{ badge.name }}</p>
     </label>
