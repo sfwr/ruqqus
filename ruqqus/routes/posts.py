@@ -132,13 +132,17 @@ def submit_post(v):
     board_name=request.form.get("board","general")
     board_name=board_name.lstrip("+")
     
-    board=db.query(Board).filter(Board.name.ilike(board_name)).first()
+    board=get_guild(board_name, graceful=True)
     if not board:
         board=get_guild('general')
     
     if board.has_ban(v):
-        return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""))
-            
+        return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body","")), 403
+
+    if board.restricted_posting and not (board.has_contributor(v) or board.has_mod(v)):
+        return render_template("submit.html",v=v, error=f"You are not an approved contributor for +{board.name}.", title=title, url=url, body=request.form.get("body",""))
+
+        
     #Huffman-Ohanian growth method
     if v.admin_level >=2:
 

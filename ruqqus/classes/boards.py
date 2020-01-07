@@ -33,6 +33,7 @@ class Board(Base, Stndrd, Age_times):
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
+    contributors=reqlationship("ContributorRelationship", lazy="dynamic")
     trending_rank=deferred(Column(Float, server_default=FetchedValue()))
 
     #db side functions
@@ -192,6 +193,9 @@ class Board(Base, Stndrd, Age_times):
 
         return bool(self.subscribers.filter_by(board_id=self.id, user_id=user.id, is_active=True).first())
 
+    def has_contributor(self, user):
+
+        return self.contributors.filter_by(user_id=user.id).first()
 
     def set_profile(self, file):
 
