@@ -414,7 +414,7 @@ def mod_bid_settings_downdisable(bid,  board, v):
 @validate_formkey
 def mod_bid_settings_restricted(bid, board, v):
 
-    # disable downvoting
+    # toggle restricted setting
     board.restricted_posting = bool(request.form.get("restrictswitch", False)=='true')
 
     db.add(board)
