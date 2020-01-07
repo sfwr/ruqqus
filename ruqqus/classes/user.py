@@ -66,6 +66,7 @@ class User(Base, Stndrd):
     
     #properties defined as SQL server-side functions
     energy = deferred(Column(Integer, server_default=FetchedValue()))
+    comment_energy = deferred(Column(Integer, server_default=FetchedValue()))
     referral_count=deferred(Column(Integer, server_default=FetchedValue()))
     follower_count=deferred(Column(Integer, server_default=FetchedValue()))
 
@@ -200,6 +201,11 @@ class User(Base, Stndrd):
     @cache.memoize(timeout=3600) #1hr cache time for user rep
     def karma(self):
         return self.energy
+
+    @property
+    @cache.memoize(timeout=3600)
+    def comment_karma(self):
+        return self.comment_energy
 
 
     @property
