@@ -29,10 +29,10 @@
         <a href="?sort={{ sort_method }}" class="btn btn-primary btn-block mt-3"><i class="fas fa-home"></i>All</a>
       {% endif %}
       {% if only != "guilds" %}
-        <a href="?sort={{ sort_method }}" class="btn btn-primary btn-block mt-3"><i class="fas fa-university"></i>Guilds Only</a>
+        <a href="?sort={{ sort_method }}&only=guilds" class="btn btn-primary btn-block mt-3"><i class="fas fa-university"></i>Guilds Only</a>
       {% endif %}
       {% if only != "users" %}
-        <a href="?sort={{ sort_method }}" class="btn btn-primary btn-block mt-3"><i class="fas fa-user-friends"></i>Users Only</a>
+        <a href="?sort={{ sort_method }}&only=users" class="btn btn-primary btn-block mt-3"><i class="fas fa-user-friends"></i>Users Only</a>
       {% endif %}
 
     </div>
