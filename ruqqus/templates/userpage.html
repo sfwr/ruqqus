@@ -202,9 +202,13 @@
    </div>
    <div class="text-muted text-small mt-2"><i class="fas fa-user-friends fa-width-rem text-muted mr-2"></i>{{ u.follower_count }} Subscriber{{ 's' if u.follower_count !=1 else '' }}
    </div>
-   <div class="text-muted text-small mt-2"><i class="fas fa-birthday-cake fa-width-rem text-muted mr-2"></i>User
-    since {{ u.created_date }}
+   <div class="text-muted text-small mt-2"><i class="fas fa-birthday-cake fa-width-rem text-muted mr-2"></i>User since {{ u.created_date }}
   </div>
+
+{% if v.has_follower(u) %}
+    <div class="text-info text-small mt-2"><i class="fas fa-user-friends fa-width-rem text-info mr-2"></i>Follows you
+    </div>
+{% endif %}
 
   {% if v and v.id != u.id %}
   <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe from @{{ u.username }}</a></div>
