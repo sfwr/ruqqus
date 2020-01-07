@@ -207,8 +207,8 @@
   </div>
   {% endif %}
 </div>
-<div class="body pb-0">
- <div class="d-flex">
+<div class="body">
+ <div class="d-flex mb-3">
    {% if p.board.has_profile %}
    <div>
      <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-50 mr-2"></a>
@@ -224,8 +224,6 @@
    </div>
  </div>
 </div>
-</div>
-<div class="body">
  <div>{{ p.board.description_html | safe }}</div>
  {% if v %}
  <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ p.board.name }}', callback=function(){document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
