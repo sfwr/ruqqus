@@ -446,7 +446,7 @@ def mod_add_rule(bid, board, v):
         rule_html=sanitize(rule_md, linkgen=True)
 
 
-        new_rule = Rules(rule_body=rule, rule_html=rule_html)
+        new_rule = Rules(board_id=bid, rule_body=rule, rule_html=rule_html)
         db.add(new_rule)
         db.commit()
     else:
