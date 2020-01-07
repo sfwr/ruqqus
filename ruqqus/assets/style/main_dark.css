@@ -13591,6 +13591,7 @@ a:hover .link-arrow {
   color: #FFFFFF;
   background-color: #af92de;
   padding: 0.5rem 1rem;
+  text-transform: capitalize;
 }
 
 .sidebar .sidebar-section .body {
