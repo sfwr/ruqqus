@@ -54,12 +54,10 @@
 	<tbody>
 {% for badge in badge_types %}
 <tr>
-<label for="badge-{{ badge.id }}">
 	<td><input type="radio" id="badge-{{ badge.id }}" name="badge_id" value="{{ badge.id }}"></td>
-	<td><img class="d-block" src="{{ badge.path }}" width="70px" height="70px"></td>
+	<td><label for="badge-{{ badge.id }}"><img class="d-block" src="{{ badge.path }}" width="70px" height="70px"></label></td>
 	<td>{{ badge.name }}</td>
 	<td>{{ badge.description }}</td>
-</label>
 </tr>
 {% endfor %}
 </table>
