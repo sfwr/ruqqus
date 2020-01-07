@@ -172,7 +172,7 @@
  {% if v and not b.has_ban(v) %}
  <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
  {% elif not v %}
- <a href="/signup" class="btn btn-secondary btn-block mt-3">Create post</a>
+ <a href="/signup" class="btn btn-secondary btn-block mt-2">Create post</a>
  {% endif %}
 </div>
 </div>
