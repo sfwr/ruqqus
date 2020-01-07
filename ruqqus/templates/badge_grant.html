@@ -1,0 +1,44 @@
+{% extends "default.html" %}
+
+{% block title %}
+<title>Badge Grant</title>
+{% endblock %}
+
+{% block pagetype %}message{% endblock %}
+
+{% block sidebarblock %}{% endblock %}
+
+{% block content %}
+<h1>Badge Grant</h2>
+
+<form action="/badge_grant", method="post">
+<input type="hidden" name="formkey" value="{{ v.formkey }}">
+
+
+<label for="input-username">Username</label><br>
+<input id="input-username" class="form-control" type="text" name="username">
+
+{% for badge in badge_types %}
+<div class="row">
+  <label>
+  <div class="column">
+    <input type="radiobutton" name="badge_id" value="{{ badge.id }}"> 
+  </div>
+  <div class="column">
+    <img class="d-block" src="{{ badge.path }}" width="70px" height="70px">
+    <p>{{ badge.name }}</p>
+  </div>
+  </label>
+</div>
+{% endfor %}
+
+<label for="input-url">URL</label><br>
+<input id="input-url" class="form-control" type="text" name="url">
+
+<label for="input-description">Custom description</label><br>
+<input id="input-description" class="form-control" type="text" name="description" placeholder="Leave blank for badge default">
+
+<input type="submit">
+
+</form>
+{% endblock %}
