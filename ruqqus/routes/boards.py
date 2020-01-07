@@ -386,10 +386,22 @@ def mod_is_banned_board_username(bid, username, board, v):
 @validate_formkey
 def mod_bid_settings_nsfw(bid,  board, v):
 
-    print(request.form)
-
     # nsfw
     board.over_18 = bool(request.form.get("over_18", False)=='true')
+
+    db.add(board)
+    db.commit()
+
+    return "",204
+
+@app.route("/mod/<bid>/settings/downdisable", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_bid_settings_downdisable(bid,  board, v):
+
+    # disable downvoting
+    board.downvotes_disabled = bool(request.form.get("downdisable", False)=='true')
 
     db.add(board)
     db.commit()

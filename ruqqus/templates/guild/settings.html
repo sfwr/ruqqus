@@ -216,6 +216,36 @@
 
           </div>
 
+        <div id="downvotes">
+
+          <h2 class="h5">Disable Downvotes</h2>
+
+          <p class="text-small text-muted">Disable downvoting in +{{ b.name }}. Activating this will not neutralize previously-cast downvotes.</p>
+
+          <div class="settings-section rounded">
+
+            <div class="d-lg-flex">
+
+              <div class="title w-lg-25">
+                <label for="downdisable">Disable Downvotes</label>
+              </div>
+
+              <div class="body w-lg-100">
+
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="downdisable" name="downdisable"{% if b.downvotes_disabled %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/downdisable','downdisable')">
+                  <label class="custom-control-label" for="over18"></label>
+                </div>
+
+                <span class="text-small-extra text-muted">Activating this will not neutralize previously-cast downvotes.</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
           <h2 id="color" class="h5" name="referral">Guild Color</h2>
 
           <p class="text-small text-muted">Change your guild's accent color. Affects buttons, links, etc.</p>
