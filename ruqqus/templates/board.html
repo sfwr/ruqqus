@@ -153,7 +153,7 @@
    </div>
    {% elif not b.has_profile and v and b.has_mod(v) %}
    <a href="{{ b.permalink}}/mod/settings" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
-     <div class="letter" style="line-height: 3;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
+     <div class="letter" style="line-height: 2.5;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
    </a>
    {% endif %}
    <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
