@@ -13289,7 +13289,7 @@ th {
 }
 
 .sidebar-section .title .fa, .sidebar-section .title .fas, .sidebar-section .title .far, .sidebar-section .title .fab, .sidebar-section .title .fal, .sidebar-section .title .fad {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .icon::before {
@@ -13567,6 +13567,7 @@ a:hover .link-arrow {
   color: #ffffff;
   background-color: #603abb;
   padding: 0.5rem 1rem;
+  text-transform: capitalize;
 }
 
 .sidebar .sidebar-section .body {

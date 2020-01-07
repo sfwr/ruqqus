@@ -868,7 +868,7 @@ th {
 }
 
 .sidebar-section .title .fa, .sidebar-section .title .fas, .sidebar-section .title .far, .sidebar-section .title .fab, .sidebar-section .title .fal, .sidebar-section .title .fad {
-    font-size: $extra-small-font-size;
+    font-size: $small-font-size;
 }
 
 .icon::before {
@@ -1166,6 +1166,7 @@ color: $dark;
     color: $white;
     background-color: $primary;
     padding: 0.5rem 1rem;
+    text-transform: capitalize;
 }
 
 .sidebar .sidebar-section .body {
