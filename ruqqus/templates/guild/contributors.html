@@ -11,8 +11,8 @@
                                 <div class="body">
 
 
-                                <label for="title">Exiles</label>
-                                <div class="form-text">Users who are exiled from +{{ b.name }}</div>
+                                <label for="title">Approved Contributors</label>
+                                <div class="form-text">Users who are approved contributors in +{{ b.name }}</div>
 
 				<form action="/+{{ b.name }}/mod/contributors" method="get">
 				<input class="form-input" name="user" type="text" value="{{ request.args.get('user','') }}">
