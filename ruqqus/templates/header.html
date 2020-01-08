@@ -65,9 +65,11 @@
         <div class="dropdown">
           <a class="nav-link bg-transparent py-0 pr-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          <div class="d-inline-block"><img src="{{ v.profile_url }}" class="profile-pic-30"></div>
-          <div class="d-inline-block my-auto text-right pl-2">
-            <span class="text-small font-weight-bold">Hi, {{ v.username }}</span>
+          <div class="d-flex">
+          <div><img src="{{ v.profile_url }}" class="profile-pic-30"></div>
+          <div class="my-auto text-left pl-2">
+            <span class="text-small font-weight-bold">{{ v.username }}</span>
+          </div>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left border-0 shadow fade px-0 mt-2"
