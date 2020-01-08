@@ -1577,7 +1577,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card{
     border: 1px solid $border-color;
     border-radius: $border-radius;
-    padding: 15px;
     margin-top: 1rem;
     //box-shadow: $box-shadow-sm;
 }
@@ -1788,7 +1787,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions {
     position: relative;
     color: $text-muted;
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-bold;
     font-size: $small-font-size;
     z-index: 3;
 }
@@ -1960,7 +1959,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     color: $gray;
     text-decoration: none;
     text-transform: none;
-    font-size: $font-size-base;
 }
 
 .post-actions a:hover {
@@ -3173,6 +3171,10 @@ body {
 
 .post-meta {
     font-size: 1rem;
+}
+
+.post-actions {
+    font-weight: $font-weight-normal;
 }
 
 .post-actions a {

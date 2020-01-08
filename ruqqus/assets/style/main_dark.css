@@ -13976,7 +13976,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
   border: 1px solid #494a4e;
   border-radius: 0.35rem;
-  padding: 15px;
   margin-top: 1rem;
 }
 
@@ -14182,7 +14181,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions {
   position: relative;
   color: #8c8d94;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   z-index: 3;
 }
@@ -14347,7 +14346,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   color: #8c8d94;
   text-decoration: none;
   text-transform: none;
-  font-size: 1rem;
 }
 
 .post-actions a:hover {
@@ -15950,6 +15948,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .post-meta {
     font-size: 1rem;
+  }
+
+  .post-actions {
+    font-weight: 400;
   }
 
   .post-actions a {

@@ -13959,7 +13959,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
   border: none;
   border-radius: 0.35rem;
-  padding: 15px;
   margin-top: 1rem;
 }
 
@@ -14168,7 +14167,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-actions {
   position: relative;
   color: #7F7F8A;
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   z-index: 3;
 }
@@ -14320,7 +14319,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   color: #5F5F5F;
   text-decoration: none;
   text-transform: none;
-  font-size: 1rem;
 }
 
 .post-actions a:hover {
