@@ -52,36 +52,36 @@ Abuse of this form may lead to the termination of your Ruqqus account, at the di
 	
 	<input type="hidden" name="formkey" value="{{ v.formkey }}">
 
-	<label for="input-links">Links to infringing content</label>
+	<label class="mt-5" for="input-links">Links to infringing content</label>
 	<textarea id="input-links" class="form-control" for="dmca-form" name="infringing_links" required></textarea>
 
 	<label>Who is the copyright owner?</label><br>
-	<input id="owner-me" type="radio" name="owner" value="me"><label for="owner-me"> Me</label><br>
-	<input id="owner-rep" type="radio" name="owner" value="someone_i_represent"><label for="owner-rep"> A company, client, or organization that I am authorized to represent</label><br>
-	<input id="owner-other" type="radio" name="owner" value="other"><label for="owner-other"> Someone else</label><br>
+	<input id="owner-me" type="radio" name="owner" value="me"> Me<br>
+	<input id="owner-rep" type="radio" name="owner" value="someone_i_represent"> A company, client, or organization that I am authorized to represent<br>
+	<input id="owner-other" type="radio" name="owner" value="other"> Someone else<br>
 
 	
-	<label for="input-details">If you selected "A company, client, or organization that I am authorized to represent" above, provide additional information about the copyright owner and your relationship to them.</label>
+	<label class="mt-5" for="input-details">If you selected "A company, client, or organization that I am authorized to represent" above, provide additional information about the copyright owner and your relationship to them.</label>
 	<textarea id="input-details" class="form-control" for="dmca-form" name="relationship_details"></textarea>
 	
 
-	<label for="your-name" class="mt-3">Your name</label>
+	<label class="mt-5" for="your-name" class="mt-3">Your name</label>
 	<div>You must use your full legal name. Nicknames, usernames, stage names, abbreviations, etc. are not accepted.</div>
 	<input type="text" id="your-name" class="form-control" name="name" required>
 
-	<label for="input-address">Your address</label>
+	<label class="mt-5" for="input-address">Your address</label>
 	<div>You must use your full legal permanent street or military address. PO boxes, C/O, etc. are not accepted.</div>
 	<textarea id="input-address" class="form-control" for="dmca-form" name="your_address" required></textarea>
 
-	<label for="input-describe-work">Describe the copyrighted work</label>
+	<label class="mt-5" for="input-describe-work">Describe the copyrighted work</label>
 	<div>Include title and original date of publication at minimum.</div>
 	<textarea id="input-describe-work" class="form-control" for="dmca-form" name="describe-work" required></textarea>
 
-	<label for="input-corrob">Provide evidence needed to corroborate your copyright ownership claim (optional)</label>
+	<label for="input-corrob" class="mt-5">Provide evidence needed to corroborate your copyright ownership claim (optional)</label>
 	<div>This is not required, but will help if the allegedly infringing user files a counter-notice.</div>
 	<textarea id="input-corrob" class="form-control" for="dmca-form" name="corrob-evidence"></textarea>
 
-	<div class="h6 mt-5">Required statements</div>
+	<label class="mt-5">Required statements</label>
 	<input id="ack_abuse" type="checkbox" name="ack_abuse" value="true" required> I understand and agree that abuse of this form may lead to the termination of my Ruqqus account, at the sole discretion of Ruqqus staff.<br>
 	<input id="accept_email" type="checkbox" name="accept_email" value="true" required> I will accept correspondence related to this Request at the email address: {{ v.email }}.<br>
 	<input id="swear_perjury" type="checkbox" name="swear_perjury" value="true" required> I swear, under penalty of perjury, that the information in this Request is accurate, that the linked content is not protected by Fair Use, and that I am authorized to act on behalf of the copyright owner.<br>
