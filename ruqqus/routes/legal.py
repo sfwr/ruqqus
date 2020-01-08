@@ -73,7 +73,7 @@ def legal_final(v):
 @app.route("/help/dmca", methods=["POST"])
 @is_not_banned
 @validate_formkey
-def legal_final(v):
+def dmca_post(v):
 
     data=[(x, request.form[x]) for x in request.form if x !="formkey"]
     data.append(("username", v.username))
