@@ -1,8 +1,10 @@
 {% extends "guild/guild_settings.html" %}
 
-{% block title %}<title>+{{ b.name }} Exiles</title>{% endblock %}
+{% block title %}
+<title>+{{ b.name }} Contributors</title>
+{% endblock %}
 
-{% block pagetitle %}<a href="{{ b.permalink }}">+{{ b.name }}</a> Exiles{% endblock %}
+{% block pagetitle %}+{{ b.name }} Contributors{% endblock %}
 {% block subtitle %}Exile or pardon users from +{{ b.name }}{% endblock %}
 
 {% block content %}
