@@ -83,13 +83,18 @@ def notifications(v):
 def about_path(path):
     return redirect(f"/help/{path}")
 
-@app.route("/help/<path:path>")
+@app.route("/help/<path:path>", methods=["GET"])
 @auth_desired
 def help_path(path, v):
     try:
         return render_template(safe_join("help", path+".html"), v=v)
     except jinja2.exceptions.TemplateNotFound:
         abort(404)
+
+@app.route("/help", methods=["GET"])
+@auth_desired
+def help_home(v):
+    return render_template("help.html", v=v)
 
 
 @app.route("/press", methods=["POST"])
