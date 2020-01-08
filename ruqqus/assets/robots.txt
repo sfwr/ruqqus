@@ -6,3 +6,6 @@ Disallow: /settings
 
 User-Agent: DotBot
 Disallow: *
+
+User-Agent: TurnitinBot
+Disallow: *
