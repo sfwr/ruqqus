@@ -94,7 +94,7 @@
 </div>
 {% endif %}
 
-  <div class="post-actions {% if p.thumb_url %}mt-3{% els e%}mt-2{% endif %}">
+  <div class="post-actions {% if p.thumb_url %}mt-3{% else %}mt-2{% endif %}">
     <ul class="list-inline text-right d-flex">
 
       <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
