@@ -450,17 +450,41 @@
       <div class="card-block my-md-auto">
 
         <div class="post-meta text-left d-block d-md-none mb-2">{% if p.stickied %}<i class="fas fa-thumbtack text-success fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Sticky post"></i> <span>&#183;</span> {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.created_date }}">{{ p.age_string }}</span> by {% if p.author.title and p.author.title.is_before %}<span style="color:#{{ p.author.title.color }}">{{ p.author.title.text }}</span> {% endif %}<a href="{{ p.author.permalink }}" class="user-name">{{ p.author.username }}</a>{% if p.author.title and not p.author.title.is_before %}<span style="color:#{{ p.author.title.color }}">{{ p.author.title.text }}</span>{% endif %}{% if p.distinguish_level %} <i class="fas fa-shield text-admin" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ruqqus Administrator, speaking officially"></i>{% endif %} <span>&#183;</span> ({{ p.domain }}){% if p.edited_utc %} &#183; Edited <span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ edited_date }}">{{ p.edited_string }}</span>{% endif %}</div>
+        <div class="post-meta text-left d-none d-md-block">{% if p.stickied %}<i class="fas fa-thumbtack text-success fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Sticky post"></i> <span>&#183;</span> {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.created_date }}">{{ p.age_string }}</span> by {% if p.author.title and p.author.title.is_before %}<span style="color:#{{ p.author.title.color }}">{{ p.author.title.text }}</span> {% endif %}<a href="{{ p.author.permalink }}" class="user-name">{{ p.author.username }}</a>{% if p.author.title and not p.author.title.is_before %}<span style="color:#{{ p.author.title.color }}">{{ p.author.title.text }}</span>{% endif %}{% if p.distinguish_level %} <i class="fas fa-shield text-admin" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ruqqus Administrator, speaking officially"></i>{% endif %} <span>&#183;</span> ({{ p.domain }}){% if p.edited_utc %} &#183; Edited <span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ edited_date }}">{{ p.edited_string }}</span>{% endif %}</div>
         {% if p.url %}
         <h1 class="card-title post-title text-left mb-2"><a target="_blank" href="{{ p.url }}">{{ p.title | safe }}</a></h1>
         {% else %}
         <h1 class="card-title post-title text-left mb-2">{{ p.title | safe }}</h1>
         {% endif %}
-        <div class="post-meta text-left d-none d-md-block">{% if p.stickied %}<i class="fas fa-thumbtack text-success fa-rotate--45" data-toggle="tooltip" data-placement="bottom" title="Sticky post"></i> <span>&#183;</span> {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.created_date }}">{{ p.age_string }}</span> by {% if p.author.title and p.author.title.is_before %}<span style="color:#{{ p.author.title.color }}">{{ p.author.title.text }}</span> {% endif %}<a href="{{ p.author.permalink }}" class="user-name">{{ p.author.username }}</a>{% if p.author.title and not p.author.title.is_before %}<span style="color:#{{ p.author.title.color }}">{{ p.author.title.text }}</span>{% endif %}{% if p.distinguish_level %} <i class="fas fa-shield text-admin" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Ruqqus Administrator, speaking officially"></i>{% endif %} <span>&#183;</span> ({{ p.domain }}){% if p.edited_utc %} &#183; Edited <span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ edited_date }}">{{ p.edited_string }}</span>{% endif %}</div>
-
 
         <div id="post-body" {% if p.body_html %}class="post-body mt-3"{% endif %}> 
           {{ p.body_html | safe }}
         </div>
+
+      <div class="post-actions mt-2 d-none d-md-block">
+      <ul class="list-inline text-right d-flex">
+
+        <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
+
+        <li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{ p.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a></li>
+
+        {% if v and not v.id==p.author_id %}
+        <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')"><i class="fas fa-flag"></i>Flag</a></li>
+        {% endif %}
+
+        {% if v %}
+        {% if v.admin_level >=1 %}
+        {% if p.is_banned or p.active_flags %}
+        <li class="list-inline-item"><a id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a></li>
+        {% endif %}
+        {% if not p.is_banned or p.active_flags %}
+        <li class="list-inline-item"><a id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="removePost('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a></li>
+        {% endif %}
+        {% endif %}
+        {% endif %}
+
+      </ul>
+    </div>
 
       </div>
 
