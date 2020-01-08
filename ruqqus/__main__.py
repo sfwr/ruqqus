@@ -74,9 +74,9 @@ def before_request():
         abort(403)
 
     #check useragent ban
-    # Banned crawler useragents are deliberately fed a misleading 200 status code
+    # Banned crawler useragents are deliberately mocked
     if db.query(ruqqus.classes.Agent).filter(ruqqus.classes.Agent.kwd.in_(request.headers.get('User-Agent','No Agent').split())).first() and request.path != "/robots.txt":
-        return "'Murica", 200
+        return "Follow the robots.txt, dumbass"
         
     if request.url.startswith('http://') and "localhost" not in app.config["SERVER_NAME"]:
         url = request.url.replace('http://', 'https://', 1)
