@@ -794,10 +794,6 @@ def mod_approve_bid_user(bid, username, board, v):
     if board.has_contributor(user):
         abort(409)
 
-    if board.has_mod(user):
-        abort(409)
-
-
     new_contrib=ContributorRelationship(user_id=user.id,
                                         board_id=board.id)
     db.add(new_contrib)
