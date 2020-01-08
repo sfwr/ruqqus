@@ -58,7 +58,7 @@
 </div>
 {% elif v and v.subscriptions.filter_by(is_active=True).count() %}
 <div class="sidebar-section sidebar-guild-recommendations">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+  <div class="title"><i class="fas fa-university mr-2"></i>My guilds</div>
   <div class="body">
     <ul class="no-bullets guild-recommendations-list pl-0">
       {% for board in v.boards_subscribed[0:5] %}
@@ -82,7 +82,7 @@
   </div>
   {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
   <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-    <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+    <div class="title"><i class="fas fa-university mr-2"></i>My guilds</div>
     <div class="body">
       <div class="my-3" style="">
         <i class="fad fa-telescope text-primary" style="font-size:3rem"></i>

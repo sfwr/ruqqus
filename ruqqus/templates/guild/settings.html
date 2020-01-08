@@ -145,13 +145,12 @@
         </div>
 
         <div id="description">
+
           <h2 class="h5" id="guild_description" name="guild_description">Guild Description</h2>
 
           <p class="text-small text-muted">Edit the guild's public description. All visitors to the guild will see this.</p>
 
           <div class="settings-section rounded">
-
-
 
             <div class="body d-lg-flex">
 
@@ -216,11 +215,13 @@
 
           </div>
 
+        </div>
+
         <div id="downvotes">
 
-          <h2 class="h5">Disable Downvotes</h2>
+          <h2 class="h5">Disable Submission Downvoting</h2>
 
-          <p class="text-small text-muted">Disable downvoting in +{{ b.name }}.</p>
+          <p class="text-small text-muted">Disables user's ability to downvote submissions in +{{ b.name }}.</p>
 
           <div class="settings-section rounded">
 
@@ -245,18 +246,20 @@
 
           </div>
 
+        </div>
+
         <div id="restricted">
 
           <h2 class="h5">Restricted Posting</h2>
 
-          <p class="text-small text-muted">Restrict submission posting in +{{ b.name }}.</p>
+          <p class="text-small text-muted">Restrict submission posting in +{{ b.name }} to <a href="/+{{ b.name }}/mod/contributors">approved contributors</a> only.</p>
 
           <div class="settings-section rounded">
 
             <div class="d-lg-flex">
 
               <div class="title w-lg-25">
-                <label for="downdisable">Restricted Posting</label>
+                <label for="restrictswitch">Restrict Posting</label>
               </div>
 
               <div class="body w-lg-100">
@@ -274,155 +277,9 @@
 
           </div>
 
-
-          <h2 id="color" class="h5" name="referral">Guild Color</h2>
-
-          <p class="text-small text-muted">Change your guild's accent color. Affects buttons, links, etc.</p>
-
-          <div class="settings-section rounded">
-
-            <div class="d-lg-flex">
-
-              <div class="title w-lg-25">
-                <label for="guild_icon">Color</label>
-              </div>
-
-              <div class="body w-lg-100 my-auto">
-
-                <div class="d-flex">
-
-                  <div>
-
-                   <form action="/mod/{{ b.base36id }}/color" id="color-form" method="post" class="color-picker" style="line-height: 0">
-                    <input type="hidden" name="formkey" value="{{ v.formkey }}">
-
-                    <input type="radio" name="color" id="purple" value="603ABB" {% if b.color == '603ABB' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-                    <label class="color-radio" for="purple"><span class="purple" style="background-color: #603ABB">
-                    {% if b.color == '603ABB' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
-
-                    <input type="radio" name="color" id="red" value="FF0000" {% if b.color == 'FF0000' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-                    <label class="color-radio" for="red"><span class="red" style="background-color: #FF0000">{% if b.color == 'FF0000' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
-
-                    <input type="radio" name="color" id="green" value="4EBD4D" {% if b.color == '4EBD4D' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-                    <label class="color-radio" for="green"><span class="green" style="background-color: #4EBD4D">{% if b.color == '4EBD4D' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
-
-                    <input type="radio" name="color" id="yellow" value="ddc508" {% if b.color == 'ECD109' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-                    <label class="color-radio" for="yellow"><span class="yellow" style="background-color: #ddc508">{% if b.color == 'ddc508' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
-
-                    <input type="radio" name="color" id="olive" value="1F5F32" {% if b.color == '1F5F32' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-                    <label class="color-radio" for="olive"><span class="olive" style="background-color: #1F5F32">{% if b.color == '1F5F32' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
-
-                    <input type="radio" name="color" id="orange" value="E45020" {% if b.color == 'E45020' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-                    <label class="color-radio" for="orange"><span class="orange" style="background-color: #E45020">{% if b.color == 'E45020' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
-
-                    <input type="radio" name="color" id="pink" value="D25FF3" {% if b.color == 'D25FF3' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
-                    <label class="color-radio" for="pink"><span class="pink" style="background-color: #D25FF3">{% if b.color == 'D25FF3' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
-
-                  </form>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
         </div>
-
-        <h2 class="h5" id="images" name="referral">Guild Icon</h2>
-
-        <div class="settings-section rounded">
-
-          <div class="d-lg-flex">
-
-            <div class="title w-lg-25 text-md-center">
-              <img src="{{ b.profile_url }}" class="profile-pic-75">
-            </div>
-
-            <div class="body w-lg-100 my-auto">
-
-              <div class="d-flex">
-
-                <div>
-
-                 <form action="/mod/{{ b.base36id }}/images/profile" method="post" enctype="multipart/form-data">
-                  <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                  <label class="btn btn-secondary text-capitalize mr-2 mb-0">
-                    Update<input type="file" hidden name="profile" onchange="form.submit()">
-                  </label>
-                </form>
-
-              </div>
-
-              {% if b.has_profile %}
-              <div>
-                <form action="/mod/{{ b.base36id }}/delete/profile" method="post">
-                  <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                  <button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
-                </form>
-              </div>
-              {% endif %}
-
-            </div>
-
-            <div class="text-small-extra text-muted mt-3">JPG, PNG, GIF files supported. Max file size 16MB.</div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <h2 class="h5" name="referral">Guild Banner</h2>
-
-      <div class="settings-section rounded">
-
-        <div class="d-lg-flex">
-
-          <div class="title w-lg-75 text-md-center">
-            <img src="{{ b.banner_url }}" class="banner-pic-135">
-          </div>
-
-          <div class="body w-lg-100 my-auto">
-
-            <div class="d-flex">
-
-              <div>
-
-               <form action="/mod/{{ b.base36id }}/images/banner" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                <label class="btn btn-secondary text-capitalize mr-2 mb-0">
-                  Update<input type="file" hidden name="banner" onchange="form.submit()">
-                </label>
-              </form>
-
-            </div>
-
-            {% if b.has_banner %}
-            <div>
-              <form action="/mod/{{ b.base36id }}/delete/banner" method="post">
-                <input type="hidden" name="formkey" value="{{ v.formkey }}">
-                <button type="submit" value="Delete" class="btn btn-link fa-lg"><i class="far fa-trash-alt text-danger"></i></button>
-              </form>
-            </div>
-            {% endif %}
-
-          </div>
-
-          <div class="text-small-extra text-muted mt-3">JPG, PNG, GIF files supported. Max file size 16MB. (Recommend 1400x250 pixels)</div>
-
-        </div>
-
-      </div>
-
-    </div>
 
   </div>
-
-</div>
-
-</div>
 
 </div>
 

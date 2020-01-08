@@ -523,6 +523,13 @@ def board_about_settings(boardname, board, v):
 
     return render_template("guild/settings.html", v=v, b=board)
 
+@app.route("/+<boardname>/mod/appearance", methods=["GET"])
+@auth_required
+@is_guildmaster
+def board_about_appearance(boardname, board, v):
+
+    return render_template("guild/appearance.html", v=v, b=board)
+
 @app.route("/+<boardname>/mod/mods", methods=["GET"])
 @auth_desired
 def board_about_mods(boardname, v):
@@ -532,7 +539,6 @@ def board_about_mods(boardname, v):
     me=board.has_mod(v)
 
     return render_template("guild/mods.html", v=v, b=board, me=me)
-
 
 @app.route("/+<boardname>/mod/exiled", methods=["GET"])
 @auth_required
