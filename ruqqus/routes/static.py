@@ -59,11 +59,6 @@ def badges(v):
 def settings_security(v):
     return render_template("settings_security.html", v=v)
 
-@app.route("/help", methods=["GET"])
-@auth_desired
-def help(v):
-    return redirect("/help/terms")
-
 @app.route("/favicon.ico", methods=["GET"])
 def favicon():
     return send_file("./assets/images/logo/favicon.png")
