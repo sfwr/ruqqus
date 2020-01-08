@@ -69,4 +69,30 @@ def legal_final(v):
     return render_template("legal/legal_done.html",
                            success=True,
                            v=v)
+
+@app.route("/help/dmca", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def legal_final(v):
+
+    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
+    data.append(("username", v.username))
+    data.append(("email", v.email))
+
+    data=sorted(data, key=lambda x: x[0])
+    try:
+        send_mail(environ.get("admin_email"),
+              "DMCA Takedown Request",
+              render_template("email/dmca.html",
+                                     data=data),
+                  plaintext=str(data)
+              )
+    except:
+            return render_template("/help/dmca.html",
+                           error="Unable to save your inquiry. Please try again later.",
+                           v=v)
+
+    return render_template("/help/press.html",
+                           msg="Your inquiry has been saved.",
+                           v=v)
     
