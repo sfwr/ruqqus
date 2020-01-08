@@ -113,7 +113,8 @@
 <div class="col sidebar text-left d-none d-lg-block pt-3">
   {% block sidebarblock %}
   <div class="sidebar-section sidebar-about">
-    <div class="title"><i class="fas fa-home-alt mr-2"></i>Ruqqus Frontpage</div>
+    <div class="title"><i class="fas fa-home-alt mr-2"></i><span class="align-middle">Ruqqus Frontpage</span>
+    </div>
     <div class="body">
       <p>The frontpage of Ruqqus. Check here to see the most upvoted and commented on content across all of Ruqqus.</p>
       {% if v and not v.is_banned %}
@@ -130,7 +131,8 @@
   
 {% if not v and trending_boards %}
   <div class="sidebar-section sidebar-trending">
-    <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Guilds</div>
+    <div class="title"><i class="fas fa-sparkles mr-2"></i><span class="align-middle">Rising Guilds</span>
+    </div>
     <div class="body">
       {% for entry in trending_boards[0:5] %}
       <div class="d-flex justify-content-start trending-guild">
@@ -148,7 +150,8 @@
 </div>
 {% elif v and v.subscriptions.filter_by(is_active=True).count() %}
 <div class="sidebar-section sidebar-guild-recommendations">
-  <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+  <div class="title"><i class="fas fa-university mr-2"></i><span class="align-middle">My guilds</span>
+  </div>
   <div class="body">
     <ul class="no-bullets guild-recommendations-list pl-0">
       {% for board in v.boards_subscribed[0:5] %}
@@ -172,7 +175,7 @@
   </div>
   {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
   <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-    <div class="title"><span style="vertical-align: sub;"><i class="fas fa-university mr-2"></i>My guilds</span></div>
+    <div class="title"><i class="fas fa-university mr-2"></i><span class="align-middle">My guilds</span></div>
     <div class="body">
       <div class="my-3" style="">
         <i class="fad fa-telescope text-primary" style="font-size:3rem"></i>
