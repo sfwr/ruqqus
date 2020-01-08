@@ -32,8 +32,9 @@ class Board(Base, Stndrd, Age_times):
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
-    submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
+    submissions=relationship("Submission", lazy="subquery", backref="board", primaryjoin="Board.id==Submission.board_id")
     contributors=relationship("ContributorRelationship", lazy="dynamic")
+    bans=relationship("BanRelationship", lazy="dynamic")
     trending_rank=deferred(Column(Float, server_default=FetchedValue()))
 
     #db side functions
@@ -47,7 +48,6 @@ class Board(Base, Stndrd, Age_times):
 
     def __repr__(self):
         return f"Board(name={self.name})>"
-
     
     @property
     @cache.memoize(timeout=30)

@@ -19,6 +19,13 @@ class Stndrd:
 class Age_times:
 
     @property
+    def age(self):
+
+        now=int(time.time())
+
+        return now-self.created_utc
+
+    @property
     def age_string(self):
 
         age = self.age

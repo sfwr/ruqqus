@@ -540,6 +540,7 @@ def board_about_mods(boardname, v):
 
     return render_template("guild/mods.html", v=v, b=board, me=me)
 
+
 @app.route("/+<boardname>/mod/exiled", methods=["GET"])
 @auth_required
 @is_guildmaster
@@ -688,7 +689,7 @@ def mod_board_images_profile(bid, board, v):
 
     board.set_profile(request.files["profile"])
 
-    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
+    return redirect(f"/+{board.name}/mod/appearance?msg=Success#images")
 
 @app.route("/mod/<bid>/images/banner", methods=["POST"])
 @auth_required
@@ -697,7 +698,7 @@ def mod_board_images_profile(bid, board, v):
 def mod_board_images_banner(bid, board, v):
 
     board.set_banner(request.files["banner"])
-    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
+    return redirect(f"/+{board.name}/mod/appearance?msg=Success#images")
 
 @app.route("/mod/<bid>/delete/profile", methods=["POST"])
 @auth_required
@@ -707,7 +708,7 @@ def mod_board_images_delete_profile(bid, board, v):
 
     board.del_profile()
 
-    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
+    return redirect(f"/+{board.name}/mod/appearance?msg=Success#images")
 
 @app.route("/mod/<bid>/delete/banner", methods=["POST"])
 @auth_required
@@ -717,7 +718,7 @@ def mod_board_images_delete_banner(bid, board, v):
 
     board.del_banner()
 
-    return redirect(f"/+{board.name}/mod/settings?msg=Success#images")
+    return redirect(f"/+{board.name}/mod/appearance?msg=Success#images")
 
     
 @app.route("/+<boardname>/main.css", methods=["GET"])
