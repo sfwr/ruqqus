@@ -97,7 +97,7 @@ def help_home(v):
 @validate_formkey
 def press_inquiry(v):
 
-    raw_data=dict(request.form)
+    raw_data={x: request.form[x] for x in request.form}
     raw_data["username"]=v.username
     raw_data["email"]=v.email
 
