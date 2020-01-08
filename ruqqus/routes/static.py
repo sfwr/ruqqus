@@ -109,7 +109,9 @@ def press_inquiry(v):
               "Press Submission",
               render_template("email/press.html",
                               data=data
-                              )
+                              ),
+                  plaintext=str(data)
+                
               )
     except:
             return render_template("/help/press.html",
