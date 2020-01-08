@@ -1,8 +1,10 @@
 {% extends "guild/guild_settings.html" %}
 
-{% block title %}+{{ b.name }} Exiles{% endblock %}
+{% block title %}
+<title>+{{ b.name }} Contributors</title>
+{% endblock %}
 
-{% block pagetitle %}+{{ b.name }}Exiles{% endblock %}
+{% block pagetitle %}+{{ b.name }} Contributors{% endblock %}
 {% block subtitle %}Exile or pardon users from +{{ b.name }}{% endblock %}
 
 {% block content %}
@@ -11,19 +13,19 @@
                                 <div class="body">
 
 
-                                <label for="title">Exiles</label>
-                                <div class="form-text">Users who are exiled from +{{ b.name }}</div>
+                                <label for="title">Approved Contributors</label>
+                                <div class="form-text">Users who are approved contributors in +{{ b.name }}</div>
 
-				<form action="/+{{ b.name }}/mod/exiled" method="get">
+				<form action="/+{{ b.name }}/mod/contributors" method="get">
 				<input class="form-input" name="user" type="text" value="{{ request.args.get('user','') }}">
 				<input type="submit" class="btn btn-primary" value="Find Users">
 				</form>
 
 				{% for user in users %}
-				<div class="body"><a href="{{ user.permalink }}">@{{ user.username }}</a> - {% if b.has_ban(user) %}exiled - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Pardon User</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary{% if b.has_mod(user) %} disabled{% endif %}" onclick="post('/mod/ban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Exile User</a>{% endif %}
+				<div class="body"><a href="{{ user.permalink }}">@{{ user.username }}</a> - {% if b.has_contributor(user) %}approved - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unapprove/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Remove Contributor</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/approve/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Add Contributor</a>{% endif %}
 				</div>
 				{% else %}
-				<div class="body">Search for a user to see if they are banned.</div>
+				<div class="body">Search for a user to see if they are an approved user.</div>
 				{% endfor %}
 
 				
