@@ -97,7 +97,7 @@ def help_home(v):
 @validate_formkey
 def press_inquiry(v):
 
-    data=[(x, request.form[x]) for x in raw_data if x !="formkey"]
+    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
     data.append(("username",v.username))
     data.append(("email",v.email))
 
