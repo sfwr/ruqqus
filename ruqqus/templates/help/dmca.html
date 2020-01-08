@@ -55,7 +55,7 @@ Abuse of this form may lead to the termination of your Ruqqus account, at the di
 	<label for="input-links">Links to infringing content</label>
 	<textarea id="input-links" class="form-control" for="dmca-form" name="infringing_links" required></textarea>
 
-	<label>Who is the copyright owner?</label>
+	<label>Who is the copyright owner?</label><br>
 	<input id="owner-me" type="radio" name="owner" value="me"><label for="owner-me"> Me</label><br>
 	<input id="owner-rep" type="radio" name="owner" value="someone_i_represent"><label for="owner-rep"> A company, client, or organization that I am authorized to represent</label><br>
 	<input id="owner-other" type="radio" name="owner" value="other"><label for="owner-other"> Someone else</label><br>
@@ -71,7 +71,7 @@ Abuse of this form may lead to the termination of your Ruqqus account, at the di
 
 	<label for="input-address">Your address</label>
 	<div>You must use your full legal permanent street or military address. PO boxes, C/O, etc. are not accepted.</div>
-	<textarea id="input-address" for="dmca-form" name="your_address" required></textarea>
+	<textarea id="input-address" class="form-control" for="dmca-form" name="your_address" required></textarea>
 
 	<label for="input-describe-work">Describe the copyrighted work</label>
 	<div>Include title and original date of publication at minimum.</div>
@@ -82,9 +82,9 @@ Abuse of this form may lead to the termination of your Ruqqus account, at the di
 	<textarea id="input-corrob" class="form-control" for="dmca-form" name="corrob-evidence"></textarea>
 
 	<div class="h6 mt-5">Required statements</div>
-	<input id="ack_abuse" type="checkbox" name="ack_abuse" value="true" required><label for="ack_abuse"> I understand and agree that abuse of this form may lead to the termination of my Ruqqus account, at the sole discretion of Ruqqus staff.</label><br>
-	<input id="accept_email" type="checkbox" name="accept_email" value="true" required><label for="accept_email"> I will accept correspondence related to this Request at the email address: {{ v.email }}.</label<br>
-	<input id="swear_perjury" type="checkbox" name="swear_perjury" value="true" required><label for="swear_perjury"> I swear, under penalty of perjury, that the information in this Request is accurate, that the linked content is not protected by Fair Use, and that I am authorized to act on behalf of the copyright owner.</label<br>
+	<input id="ack_abuse" type="checkbox" name="ack_abuse" value="true" required> I understand and agree that abuse of this form may lead to the termination of my Ruqqus account, at the sole discretion of Ruqqus staff.<br>
+	<input id="accept_email" type="checkbox" name="accept_email" value="true" required> I will accept correspondence related to this Request at the email address: {{ v.email }}.<br>
+	<input id="swear_perjury" type="checkbox" name="swear_perjury" value="true" required> I swear, under penalty of perjury, that the information in this Request is accurate, that the linked content is not protected by Fair Use, and that I am authorized to act on behalf of the copyright owner.<br>
 
 	<input class="btn btn-primary mt-5" type="submit" value="Submit">
 </form>
