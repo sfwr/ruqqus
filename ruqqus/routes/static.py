@@ -107,8 +107,8 @@ def press_inquiry(v):
 
     try:
         send_mail(environ.get("admin_email"),
-              "Legal request submission",
-              render_template("email/legal.html",
+              "Press Submission",
+              render_template("email/press.html",
                                      data=data)
               )
     except:
