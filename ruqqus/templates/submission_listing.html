@@ -15,7 +15,7 @@
 <div id="post-{{ p.base36id }}" class="card{% if p.is_banned %} banned{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
 
-    <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap pl-3 pl-md-0 p-0 my-auto ml-auto">
+    <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap py-0 pr-0">
 
       {% if p.thumb_url %}
 
@@ -71,7 +71,7 @@
     </div>
     {% endif %}
 
-    <div class="post-actions mt-2">
+    <div class="post-actions mt-2 d-none d-md-block">
       <ul class="list-inline text-right d-flex">
 
         <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
