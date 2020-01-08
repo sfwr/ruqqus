@@ -157,8 +157,7 @@
    </a>
    {% endif %}
    <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
-    <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }}<span> · </span>
-     <span class="font-weight-bold">{{ b.created_date }}</span> founded.
+    <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} · Founded <span data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
    </div>
  </div>
 </div>
