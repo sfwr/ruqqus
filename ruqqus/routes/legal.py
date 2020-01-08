@@ -89,10 +89,35 @@ def dmca_post(v):
               )
     except:
             return render_template("/help/dmca.html",
-                           error="Unable to save your inquiry. Please try again later.",
+                           error="Unable to save your request. Please try again later.",
                            v=v)
 
-    return render_template("/help/press.html",
-                           msg="Your inquiry has been saved.",
+    return render_template("/help/dmca.html",
+                           msg="Your request has been saved.",
                            v=v)
     
+@app.route("/help/counter-dmca", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def counter_dmca_post(v):
+
+    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
+    data.append(("username", v.username))
+    data.append(("email", v.email))
+
+    data=sorted(data, key=lambda x: x[0])
+    try:
+        send_mail(environ.get("admin_email"),
+              "DMCA Counter Notice",
+              render_template("email/counter_dmca.html",
+                                     data=data),
+                  plaintext=str(data)
+              )
+    except:
+            return render_template("/help/counter_dmca.html",
+                           error="Unable to save your request. Please try again later.",
+                           v=v)
+
+    return render_template("/help/counter_dmca.html",
+                           msg="Your request has been saved.",
+                           v=v)
