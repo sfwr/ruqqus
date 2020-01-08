@@ -19,7 +19,7 @@ class Stndrd:
 class Age_times:
 
     @property
-    def age:
+    def age(self):
 
         now=int(time.time())
 
