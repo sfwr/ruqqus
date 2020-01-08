@@ -1666,7 +1666,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-color: $border-color;
     border-style: solid;
     border-radius: 0;
-    padding: 15px;
+    padding: 0.5rem;
 }
 
 #frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover, #guild .posts .card:hover {
@@ -3020,6 +3020,10 @@ body, #settings, #notifications, #submit {
     border-bottom: 1px solid #e3e3e3;
     border-width: 0 0 1px 0;
     border-radius: 0;
+}
+
+#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
+    padding: 15px;
 }
 
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type {
