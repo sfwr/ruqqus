@@ -5,6 +5,7 @@ from flask import *
 from ruqqus.helpers.wrappers import *
 import ruqqus.classes
 from ruqqus.classes import *
+from ruqqus.mail import *
 from ruqqus.__main__ import app, db, limiter
 
 #take care of misc pages that never really change (much)
@@ -97,7 +98,7 @@ def help_home(v):
 @validate_formkey
 def press_inquiry(v):
 
-    data=[(x, request.form[x]) for x in raw_data if x !="formkey"]
+    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
     data.append(("username",v.username))
     data.append(("email",v.email))
 
@@ -107,7 +108,10 @@ def press_inquiry(v):
         send_mail(environ.get("admin_email"),
               "Press Submission",
               render_template("email/press.html",
-                                     data=data)
+                              data=data
+                              ),
+                  plaintext=str(data)
+                
               )
     except:
             return render_template("/help/press.html",
