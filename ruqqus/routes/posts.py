@@ -97,11 +97,11 @@ def submit_post(v):
     url=request.form.get("url","")
 
     if len(title)<10:
-        return render_template("submit.html", v=v, error="Please enter a better title.", title=title, url=url, body=request.form.get("body",""), b=request.form.get("board",""))
+        return render_template("submit.html", v=v, error="Please enter a better title.", title=title, url=url, body=request.form.get("body",""), board=get_guild(request.form.get("board","")))
 
     parsed_url=urlparse(url)
     if not (parsed_url.scheme and parsed_url.netloc) and not request.form.get("body"):
-        return render_template("submit.html", v=v, error="Please enter a URL or some text.", title=title, url=url, body=request.form.get("body",""), b=request.form.get("board",""))
+        return render_template("submit.html", v=v, error="Please enter a URL or some text.", title=title, url=url, body=request.form.get("body",""), board=get_guild(request.form.get("board","")))
 
     #sanitize title
     title=sanitize(title, linkgen=False)
@@ -126,7 +126,7 @@ def submit_post(v):
     domain_obj=get_domain(domain)
     if domain_obj:
         if not domain_obj.can_submit:
-            return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason], title=title, url=url, body=request.form.get("body",""), b=request.form.get("board","general"))
+            return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason], title=title, url=url, body=request.form.get("body",""), board=get_guild(request.form.get("board","general")))
 
     #board
     board_name=request.form.get("board","general")
@@ -140,7 +140,7 @@ def submit_post(v):
         return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body","")), 403
 
     if board.restricted_posting and not (board.has_contributor(v) or board.has_mod(v)):
-        return render_template("submit.html",v=v, error=f"You are not an approved contributor for +{board.name}.", title=title, url=url, body=request.form.get("body",""), b=request.form.get("board","general"))
+        return render_template("submit.html",v=v, error=f"You are not an approved contributor for +{board.name}.", title=title, url=url, body=request.form.get("body",""), board=get_guild(request.form.get("board","general")))
 
         
     #Huffman-Ohanian growth method
