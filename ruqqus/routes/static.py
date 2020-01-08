@@ -97,11 +97,9 @@ def help_home(v):
 @validate_formkey
 def press_inquiry(v):
 
-    raw_data={x: request.form[x] for x in request.form}
-    raw_data["username"]=v.username
-    raw_data["email"]=v.email
-
     data=[(x, request.form[x]) for x in raw_data if x !="formkey"]
+    data.append(("username",v.username))
+    data.append(("email",v.email))
 
     data=sorted(data, key=lambda x: x[0])
 
