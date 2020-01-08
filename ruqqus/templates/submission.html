@@ -35,7 +35,7 @@
 <meta name="description" content="{{ comment_info.body }}">
 {% else %}
 <title>{{ p.title | safe}}</title>
-<meta name="description" content="posted by @{{ p.author.username }} in +{{ p.board.name }}">
+<meta name="description" content="posted {{ p.age_string }} by @{{ p.author.username }} in +{{ p.board.name }}">
 {% endif %}
 {% endblock %}
 

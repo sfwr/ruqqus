@@ -10,7 +10,7 @@
 	
 {% block content %}
 
-<h1 class="article-title">Press/h1>
+<h1 class="article-title">Press</h1>
 
 {% filter markdown %}
 
@@ -32,7 +32,9 @@ Both of these images are released under [Creative Commons Attribution-NoDerivati
 
 {% endfilter %}
 
-{% if v and v.is_activated %}
+{% if v and v.is_activated and not v.is_banned %}
+
+<p>Use this form to submit a press inquiry</p>
 
 <form id="pressform" action="/press" method="post">
 <input type="hidden" name="formkey" value="{{ v.formkey }}">
@@ -46,9 +48,17 @@ Both of these images are released under [Creative Commons Attribution-NoDerivati
 <label for="input-title">Your title</label>
 <input type="text" id="input-title" class="form-control" name="title" required>
 
-<textarea for="pressform" name="inquiry" class="form-control"></textarea>
+<label for="input-inquiry">Your inquiry</label>
+<textarea id="input-inquiry" for="pressform" name="inquiry" class="form-control"></textarea>
+
+<input type="submit" value="Submit inquiry."
 
 </form>
+
+{% elif v and v.is_banned %}
+
+<p>Your account has been suspended. You are not permitted to submit press inquiries at this time.</p>
+
 
 {% elif v %}
 
