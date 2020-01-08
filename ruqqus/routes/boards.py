@@ -526,7 +526,7 @@ def board_about_settings(boardname, board, v):
 @app.route("/+<boardname>/mod/appearance", methods=["GET"])
 @auth_required
 @is_guildmaster
-def board_about_settings(boardname, board, v):
+def board_about_appearance(boardname, board, v):
 
     return render_template("guild/appearance.html", v=v, b=board)
 
