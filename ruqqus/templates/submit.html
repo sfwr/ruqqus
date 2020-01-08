@@ -162,6 +162,7 @@
 
   <div class="col sidebar text-left d-none d-lg-block pt-3">
 
+{% block sidebarblock %}
     <div class="sidebar-section sidebar-info-basic">
       <div class="title">
         <span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
@@ -186,6 +187,7 @@
      <div>{{ b.description_html | safe }}</div>
    </div>
  </div>
+{% endblock %}
 
  <div class="sidebar-section sidebar-rules">
   <div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
