@@ -5,7 +5,7 @@ Disallow: /submit
 Disallow: /settings
 
 User-Agent: DotBot
-Disallow: *
+Disallow: /
 
 User-Agent: TurnitinBot
-Disallow: *
+Disallow: /
