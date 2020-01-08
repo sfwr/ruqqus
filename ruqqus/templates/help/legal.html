@@ -1,0 +1,54 @@
+{% extends "docs_default.html" %}
+
+{% block title %}
+<title>Ruqqus - Press</title>
+<meta name="description" content="Ruqqus Press Resources">
+<script src="/assets/js/comment_replies.js"></script>
+{% endblock %}
+
+<!-- Left Sidebar -->
+
+	
+{% block content %}
+
+<h1 class="article-title">Legal Policies</h1>
+
+{% filter markdown %}
+
+## Jurisdiction
+
+Ruqqus LLC is a US-based entity registered in the state of Delaware. All of our assets, personnel, data, and operations are kept within the United States.
+
+## DMCA
+
+It is Ruqqus LLC policy to comply with valid DMCA takedown requests.
+
+## Legal Process
+
+The Delaware registered agent for Ruqqus LLC accepts service of legal process on our behalf at:
+
+300 Delaware Ave.
+Suite 210-A
+Wilmington, DE 19801
+
+For the sake of convenience, legal process may be submitted via [the legal requests portal](/legal).
+
+## Foreign Legal Process
+
+It is Ruqqus LLC policy to reject all foreign legal process for lack of jurisdiction. This includes demands for user information, content takedown demands, and all other legal process from any court or agency outside the United States.
+
+Any foreign legal process must first be recognized by a United States court with jurisdiction in the state of Delaware. The resulting United States legal process may then be served to our registered agent or submitted via the requests portal.
+
+## Notification of Users
+
+It is Ruqqus LLC policy to make reasonable attempts to notify users when they are the subject of a legal demand made to Ruqqus, unless:
+
+* The demand includes a non-disclosure provision pursuant to 18 USC 2705(b), or
+* The demand involves exigent circumstances such as terrorism, human trafficking, or imminent threats to life, and a reasonable person would consider such notification to be immoral or unethical.
+
+It is Ruqqus LLC policy to make reasonable attempts to notify users when they are the subject of a legal demand made to Ruqqus by any foreign government, which has been rejected for lack of jurisdiction, unless:
+
+* The demand involves exigent circumstances such as terrorism, human trafficking, or imminent threats to life, and a reasonable person would consider such notification to be immoral or unethical.
+
+{% endfilter %}
+{% endblock %}
