@@ -5,6 +5,7 @@ from flask import *
 from ruqqus.helpers.wrappers import *
 import ruqqus.classes
 from ruqqus.classes import *
+from ruqqus.mail import *
 from ruqqus.__main__ import app, db, limiter
 
 #take care of misc pages that never really change (much)
@@ -103,17 +104,17 @@ def press_inquiry(v):
 
     data=sorted(data, key=lambda x: x[0])
 
-    #try:
-    send_mail(environ.get("admin_email"),
+    try:
+        send_mail(environ.get("admin_email"),
               "Press Submission",
               render_template("email/press.html",
                               data=data
                               )
               )
-    #except:
-    #        return render_template("/help/press.html",
-    #                       error="Unable to save your inquiry. Please try again later.",
-    #                       v=v)
+    except:
+            return render_template("/help/press.html",
+                           error="Unable to save your inquiry. Please try again later.",
+                           v=v)
 
     return render_template("/help/press.html",
                            msg="Your inquiry has been saved.",
