@@ -548,6 +548,20 @@ def board_about_exiled(boardname, board, v):
 
     return render_template("guild/bans.html", v=v, b=board, users=users)
 
+@app.route("/+<boardname>/mod/contributors", methods=["GET"])
+@auth_required
+@is_guildmaster
+def board_about_exiled(boardname, board, v):
+
+    username=request.args.get("user","")
+    if username:
+        users=db.query(User).filter_by(is_banned=0).filter(func.lower(User.username).contains(username.lower())).limit(25)
+    else:
+        users=[]
+                                    
+
+    return render_template("guild/contributors.html", v=v, b=board, users=users)
+
 @app.route("/api/subscribe/<boardname>", methods=["POST"])
 @auth_required
 def subscribe_board(boardname, v):
