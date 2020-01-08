@@ -90,3 +90,30 @@ def help_path(path, v):
         return render_template(safe_join("help", path+".html"), v=v)
     except jinja2.exceptions.TemplateNotFound:
         abort(404)
+
+
+@app.route("/press", methods=["POST"])
+@is_not_banned
+@validate_formkey
+@def press_inquiry(v):
+    if request.form.get("username") != v.username:
+        abort(422)
+
+    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
+
+    data=sorted(data, key=lambda x: x[0])
+
+    try:
+        send_mail(environ.get("admin_email"),
+              "Legal request submission",
+              render_template("email/legal.html",
+                                     data=data)
+              )
+    except:
+            return render_template("legal/legal_done.html",
+                           success=False,
+                           v=v)
+
+    return render_template("legal/legal_done.html",
+                           success=True,
+                           v=v)

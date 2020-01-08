@@ -1,0 +1,63 @@
+{% extends "docs_default.html" %}
+
+{% block title %}
+<title>Ruqqus - The independent social platform</title>
+<meta name="description" content="Rules.">
+{% endblock %}
+
+<!-- Left Sidebar -->
+
+	
+{% block content %}
+
+<h1 class="article-title">Press/h1>
+
+{% filter markdown %}
+
+Welcome to the Ruqqus press portal.
+
+## Press Releases
+
+Official Ruqqus press releases are posted in [+RuqqusPress](/+RuqqusPress).
+
+## Assets
+
+The primary Ruqqus logo for use on light backgrounds is available [here](/assets/images/logo/ruqqus_logo_square_white_fill.png). It may be uniformly resized, but should not be redrawn, rotated, distorted, or otherwise altered.
+
+Against a dark background, the [alternate Ruqqus logo](/assets/images/logo/ruqqus_logo_square_white_fill.png) should be used. The "r" character is deliberately transparent, in order to make it match the surrounding background. As with the primary logo, it may be uniformly resized, but not redrawn, rotated, or distorted.
+
+Both of these images are released under [Creative Commons Attribution-NoDerivatives 4.0 International License](http://creativecommons.org/licenses/by-nd/4.0/)
+
+## Contact
+
+{% endfilter %}
+
+{% if v and v.is_activated %}
+
+<form id="pressform" action="/press" method="post">
+<input type="hidden" name="formkey" value="{{ v.formkey }}">
+
+<label for="input-name">Your name</label>
+<input type="text" id="input-name" class="form-control" name="name" required>
+
+<label for="input-org">Your organization</label>
+<input type="text" id="input-org" class="form-control" name="organization" required>
+
+<label for="input-title">Your title</label>
+<input type="text" id="input-title" class="form-control" name="title" required>
+
+<textarea for="pressform" name="inquiry" class="form-control"></textarea>
+
+</form>
+
+{% elif v %}
+
+<p>Please <a target="_blank" href="/settings/security">verify your email address</a> in order to ensure we can respond to your inquiry. Then, refresh this page.</p>
+
+{% else %}
+
+<p>In order to ensure that we can respond to your inquiry, please first <a href="/signup" target="_blank">sign up</a> or <a href="/login" target="_blank">log in</a> and make sure you have <a target="_blank" href="/settings/security">verified your email address</a>. Then, refresh this page.</p>
+
+{% endif %}
+
+{% endblock %}
