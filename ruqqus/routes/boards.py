@@ -551,7 +551,7 @@ def board_about_exiled(boardname, board, v):
 @app.route("/+<boardname>/mod/contributors", methods=["GET"])
 @auth_required
 @is_guildmaster
-def board_about_exiled(boardname, board, v):
+def board_about_contributors(boardname, board, v):
 
     username=request.args.get("user","")
     if username:
