@@ -9,3 +9,15 @@ Disallow: /
 
 User-Agent: TurnitinBot
 Disallow: /
+
+User-Agent: Huaweisymantecspider
+Disallow: /
+
+User-Agent: SiteSnagger
+Disallow: /
+
+User-Agent: TeleportPro
+Disallow: /
+
+User-Agent: Xaldon_WebSpider
+Disallow: /
