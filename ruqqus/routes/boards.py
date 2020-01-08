@@ -767,3 +767,43 @@ def mod_board_color(bid, board, v):
     cache.delete_memoized(board_dark_css, boardname=board.name)
 
     return redirect(f"/+{board.name}/mod/settings?msg=Success#color")
+
+@app.route("/mod/approve/<bid>/<username>", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_approve_bid_user(bid, username, board, v):
+
+    user=get_user(username)
+
+
+    if board.has_contributor(user):
+        abort(409)
+
+    if board.has_mod(user):
+        abort(409)
+
+
+    new_contrib=ContributorRelationship(user_id=user.id,
+                                        board_id=board.id)
+    db.add(new_contrib)
+    db.commit()
+
+    return "", 204
+    
+@app.route("/mod/unapprove/<bid>/<username>", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_unapprove_bid_user(bid, username, board, v):
+
+    user=get_user(username)
+
+    x= board.has_contributor(user)
+    if not x:
+        abort(409)
+
+    db.delete(x)
+    db.commit()
+    
+    return "", 204
