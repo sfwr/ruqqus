@@ -86,10 +86,18 @@
 </div>
 {% endif %}
 
-  <div class="post-actions">
+{% if p.thumb_url %}
+<div class="row post-img-lg mt-3">
+  <div class="col px-0">
+    <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
+  </div>
+</div>
+{% endif %}
+
+  <div class="post-actions {% if p.thumb_url %}mt-3{% els e%}mt-2{% endif %}">
     <ul class="list-inline text-right d-flex">
 
-      <li class="list-inline-item mr-auto"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
+      <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
 
       <li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{ p.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a></li>
 
@@ -144,14 +152,6 @@
 </div>
 
 </div>
-
-{% if p.thumb_url %}
-<div class="row post-img-lg mt-3">
-  <div class="col px-0">
-    <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
-  </div>
-</div>
-{% endif %}
 
 <div class="card-footer d-block d-md-none mt-3">
   <div class="post-actions">
