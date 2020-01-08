@@ -61,10 +61,10 @@ Abuse of this service may lead to the termination of your Ruqqus account, at the
 </form>
 
 {% elif v %}
-<p>Please <a href="/settings/profile">verify your email address</a>. Once you have done so, refresh this page to use the Legal Request form.</p>
+<p>Please <a href="/settings/profile">verify your email address</a>. Then, refresh this page.</p>
 {% else %}
 {% filter markdown %}
-<p>Please sign up or log in and verify your email address in order to use this form.</p>
+<p>In order to ensure that we can respond to your request, please first <a href="/signup" target="_blank">sign up</a> or <a href="/login" target="_blank">log in</a> and make sure you have <a target="_blank" href="/settings/security">verified your official email address</a>. Then, refresh this page.</p>
 {% endfilter %}
 {% endif %}
 
