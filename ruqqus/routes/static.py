@@ -95,7 +95,8 @@ def help_path(path, v):
 @app.route("/press", methods=["POST"])
 @is_not_banned
 @validate_formkey
-@def press_inquiry(v):
+def press_inquiry(v):
+    
     if request.form.get("username") != v.username:
         abort(422)
 
