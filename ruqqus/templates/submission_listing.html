@@ -14,9 +14,11 @@
 
 <div id="post-{{ p.base36id }}" class="card{% if p.is_banned %} banned{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
-    <div class="card-header bg-transparent border-0 d-none d-md-flex flex-row flex-nowrap p-0 {% if p.body_html %}mt-4 mb-auto {% elif p.embed_url %} mt-4 mb-auto {% elif p.thumb_url %} my-auto {% else %} my-auto {% endif %} pl-3 ml-auto">
+
+    <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap my-auto ml-auto">
 
       {% if p.thumb_url %}
+
       <div class="position-relative d-none d-md-block" style="z-index: 3;">
         <a href="{{ p.url }}" target="_blank">
           <div class="thumb-img-link-overlay">
@@ -25,37 +27,12 @@
           <img src="{{ p.thumb_url }}" class="post-img" alt="">
         </a>
       </div>
+
       <div class="d-block d-md-none" style="z-index: 3;">
         <img src="{{ p.thumb_url }}" class="post-img" alt="" onclick="enlarge_thumb('post-{{ p.base36id }}')">
       </div>
 
       {% endif %}
-
-      <div class="dropdown show my-auto post-actions ml-4 d-none d-md-block">
-        <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">
-        <i class="fas fa-ellipsis-v"></i>
-      </a>
-
-      <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2"
-      aria-labelledby="dropdownMoreLink">
-      <a href="javascript:void(0);" role="button" class="dropdown-item copy-link" data-clipboard-text="{{ p.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a>
-      <a class="dropdown-item d-none" href="#"><i class="fas fa-save"></i>Save</a>
-      {% if v and not v.id==p.author_id %}
-      <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')"><i class="fas fa-flag"></i>Flag</a>
-      {% endif %}
-      {% if v %}
-      {% if v.admin_level >=1 %}
-      {% if p.is_banned or p.active_flags %}
-      <a class="dropdown-item approveDropdownItem" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a>
-      {% endif %}
-      {% if not p.is_banned or p.active_flags %}
-      <a class="dropdown-item removeDropdownItem" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="removePost('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a>
-      {% endif %}
-      {% endif %}
-      {% endif %}
-    </div>
-  </div>
 </div>
 <div class="card-block text-left x-scroll-parent my-md-auto w-100">
 
@@ -86,10 +63,18 @@
 </div>
 {% endif %}
 
-  <div class="post-actions">
+{% if p.thumb_url %}
+<div class="row post-img-lg mt-3">
+  <div class="col px-0">
+    <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
+  </div>
+</div>
+{% endif %}
+
+  <div class="post-actions mt-2">
     <ul class="list-inline text-right d-flex">
 
-      <li class="list-inline-item mr-auto"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
+      <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
 
       <li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{ p.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a></li>
 
@@ -115,7 +100,7 @@
 
 <!-- Voting on "medium" devices or larger, hidden on smaller devices -->
 
-<div class="voting d-none d-md-block {% if p.body_html %} mb-auto {% elif p.embed_url %} mb-auto {% else %} my-auto {% endif %} mr-3">
+<div class="voting d-none d-md-block my-auto mr-3">
 
   {% if v %}
 
@@ -144,14 +129,6 @@
 </div>
 
 </div>
-
-{% if p.thumb_url %}
-<div class="row post-img-lg mt-3">
-  <div class="col px-0">
-    <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
-  </div>
-</div>
-{% endif %}
 
 <div class="card-footer d-block d-md-none mt-3">
   <div class="post-actions">
