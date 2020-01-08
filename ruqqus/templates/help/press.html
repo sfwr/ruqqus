@@ -37,7 +37,7 @@ Both of these images are released under [Creative Commons Attribution-NoDerivati
 <p>Use this form to submit a press inquiry. You must have a press email address set on your account. If you have a generic, non-press email address, please <a target="_blank" href="/settings/security">update it</a> before submitting this form.</p>
 
 <label>Your Email</label>
-<input value="{{ v.email }}" readonly="readonly" disabled>
+<input class="form-control" value="{{ v.email }}" readonly="readonly" disabled>
 
 <form id="pressform" action="/press" method="post">
 <input type="hidden" name="formkey" value="{{ v.formkey }}">
