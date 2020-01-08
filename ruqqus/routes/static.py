@@ -96,9 +96,6 @@ def help_home(v):
 @is_not_banned
 @validate_formkey
 def press_inquiry(v):
-    
-    if request.form.get("username") != v.username:
-        abort(422)
 
     raw_data=request.form
     raw_data["username"]=v.username
