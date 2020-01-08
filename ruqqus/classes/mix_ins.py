@@ -23,7 +23,7 @@ class Age_times:
 
         now=int(time.time())
 
-        return now=self.created_utc
+        return now-self.created_utc
 
     @property
     def age_string(self):
