@@ -92,7 +92,7 @@ def help_home(v):
     return render_template("help.html", v=v)
 
 
-@app.route("/press", methods=["POST"])
+@app.route("/help/press", methods=["POST"])
 @is_not_banned
 @validate_formkey
 def press_inquiry(v):
@@ -112,10 +112,10 @@ def press_inquiry(v):
                                      data=data)
               )
     except:
-            return render_template("legal/legal_done.html",
-                           success=False,
+            return render_template("/help/press.html",
+                           error="Unable to save your inquiry. Please try again later.",
                            v=v)
 
-    return render_template("legal/legal_done.html",
-                           success=True,
+    return render_template("/help/press.html",
+                           msg="Your inquiry has been saved.",
                            v=v)
