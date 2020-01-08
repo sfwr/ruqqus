@@ -96,7 +96,7 @@ def dmca_post(v):
                            msg="Your request has been saved.",
                            v=v)
     
-@app.route("/help/counter-dmca", methods=["POST"])
+@app.route("/help/counter_dmca", methods=["POST"])
 @is_not_banned
 @validate_formkey
 def counter_dmca_post(v):
