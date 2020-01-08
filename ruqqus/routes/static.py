@@ -100,7 +100,11 @@ def press_inquiry(v):
     if request.form.get("username") != v.username:
         abort(422)
 
-    data=[(x, request.form[x]) for x in request.form if x !="formkey"]
+    raw_data=request.form
+    raw_data["username"]=v.username
+    raw_data["email"]=v.email
+
+    data=[(x, request.form[x]) for x in raw_data if x !="formkey"]
 
     data=sorted(data, key=lambda x: x[0])
 
