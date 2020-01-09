@@ -1,6 +1,7 @@
 import time
 from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
+from ruqqus.helpers.get import *
 from ruqqus.helpers.base36 import *
 
 from ruqqus.__main__ import app, db
@@ -9,14 +10,9 @@ from ruqqus.__main__ import app, db
 @is_not_banned
 def api_flag_post(pid, v):
 
-    pid=base36decode(pid)
+    post=get_post(pid)
 
-    existing=db.query(Flag).filter_by(user_id=v.id, post_id=pid).first()
-
-    if existing:
-        abort(409)
-
-    flag=Flag(post_id=pid,
+    flag=Flag(post_id=post.id,
               user_id=v.id,
               created_utc=int(time.time())
               )
