@@ -14078,7 +14078,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-color: #F5F6FA;
 }
 
-#frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg, #guild .posts .card.enlarged .post-img-lg {
+#frontpage .posts .card.enlarged .mobile-thumb-enlarged, #userpage .posts .card.enlarged .mobile-thumb-enlarged, #search .posts .card.enlarged .mobile-thumb-enlarged, #guild .posts .card.enlarged .mobile-thumb-enlarged {
   display: block;
 }
 
@@ -15829,7 +15829,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     z-index: 3;
   }
 
-  #frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg, #guild .posts .card.enlarged .post-img-lg {
+  #frontpage .posts .card.enlarged .mobile-thumb-enlarged, #userpage .posts .card.enlarged .mobile-thumb-enlarged, #search .posts .card.enlarged .mobile-thumb-enlarged, #guild .posts .card.enlarged .mobile-thumb-enlarged {
     display: block;
   }
 
