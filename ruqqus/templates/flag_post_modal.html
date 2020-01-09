@@ -16,9 +16,9 @@
               <div class="modal-body">
                 <div class="h6">We're sorry something here is wrong.</div>
                 <small class="form-text text-muted">Please select a reason for flagging below.</small>
-                <select class="custom-select mt-3" name="reportReason">
-                  <option value="breaks policy">This post is spam</option>
-                  <option value="off topic">This post is off-topic in +{{ board.name }}</option>
+                <select class="custom-select mt-3" id="reportPostDropdown" name="reportReason">
+                  <option value="breaks policy">Post breaks Ruqqus site-wide policy</option>
+                  <option value="off topic">Post is off-topic and does not belong in +{{ board.name }}</option>
               </select>
           </div>
           <div class="modal-footer">
