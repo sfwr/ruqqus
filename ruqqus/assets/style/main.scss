@@ -627,8 +627,7 @@ label.color-radio {
     display: inline-block;
     width: 25px;
     height: 25px;
-    margin-right: 1rem;
-    margin-bottom: 0;
+    margin: 0.5rem 1rem 0.5rem 0;
     cursor: pointer;
 }
 
@@ -890,6 +889,14 @@ th {
     font-weight: $font-weight-bold;
     text-align: center;
     min-width: 40px;
+}
+
+#frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
+    margin: auto 0;
+}
+
+#frontpage.toggle-card-view .voting, #search.toggle-card-view .voting, #userpage.toggle-card-view .voting, #guild.toggle-card-view .voting {
+    margin: 0;
 }
 
 .voting div:focus {
@@ -1578,7 +1585,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     height: auto;
 }
 
-#frontpage.toggle-card-view .posts .card .embed-lg, #userpage.toggle-card-view .posts .card .embed-lg, #search.toggle-card-view .posts .card .embed-lg { 
+#frontpage.toggle-card-view .posts .card .embed-lg, #userpage.toggle-card-view .posts .card .embed-lg, #search.toggle-card-view .posts .card .embed-lg, #guild.toggle-card-view .posts .card .embed-lg { 
     display: flex;
     z-index: 2;
 }
@@ -1932,9 +1939,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 .post-img {
-    width: 115px;
-    height: 80px;
+    width: 100px;
+    height: 70px;
     object-fit: cover;
+    border-radius: $border-radius;
     z-index: 2;
 }
 
@@ -3085,6 +3093,10 @@ body, #settings, #notifications, #submit {
 .voting {
     font-weight: $font-weight-normal;
     font-size: $font-size-base;
+}
+
+#frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
+    margin: 0;
 }
 
 .post-title {

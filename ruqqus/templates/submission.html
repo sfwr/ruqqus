@@ -76,7 +76,7 @@
       <a href="{{ p.board.permalink }}" class="text-black">
         <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
           {% if p.board.over_18 %}
-          <span class="badge badge-danger text-small align-middle">NSFW</span>
+          <span class="badge badge-danger text-small align-top">NSFW</span>
           {% endif %}
         </h1>
       </a>
@@ -570,7 +570,7 @@
             </div>
 
             {% if p.embed_url %}
-            <div class="post-body mt-3"> 
+            <div class="post-body mb-3"> 
               <div class="embed-responsive embed-responsive-16by9">
                 <iframe src="{{ p.embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
               </div>
@@ -579,7 +579,7 @@
 
           </div>
 
-          <div class="row no-gutters mt-3 d-block d-md-none">
+          <div class="row no-gutters mb-3 d-block d-md-none">
             <div class="col">
              <a target="_blank" href="{{ p.url }}">{% if p.is_image and p.domain_obj and p.domain_obj.show_thumbnail %}<img src="{{ p.url }}" class="img-fluid" alt="Unable to anonymously load image">
                <div class="post-img-overlay d-block d-md-none">{{ p.domain|truncate(30, True) }}<i class="fas fa-external-link-alt text-small ml-2"></i></div>
