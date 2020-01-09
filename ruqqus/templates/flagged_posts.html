@@ -137,15 +137,6 @@
 
   <div class="col">
 
-    {% if listing | length ==0 %}    <div class="text-center py-5">
-
-      <img src="/assets/images/illustrations/searching.png" class="empty-state-img mb-3" alt="empty state">
-
-      <div class="font-weight-bold text-muted">Queue is empty.</div>
-	</div>
-
-    {% endif %}
-
 	{% block listing %}
     <div class="posts">
       {% include "submission_listing.html" %}
