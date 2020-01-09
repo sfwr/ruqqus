@@ -199,13 +199,13 @@ def submit_post(v):
     body=request.form.get("body","")
 
     #catch too-long body
-    if len(body)>2000:
+    if len(body)>6000:
 
         return render_template("submit.html",
                                v=v,
                                error="2000 character limit for text body",
                                title=title,
-                               text=body[0:2000],
+                               text=body[0:6000],
                                url=url,
                                b=get_guild(request.form.get("board","general"))
                                ), 400
