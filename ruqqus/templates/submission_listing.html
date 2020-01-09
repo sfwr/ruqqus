@@ -83,6 +83,9 @@
         {% endif %}
 
         {% if v %}
+	  {% if p.board.has_mod(v) %}
+          <li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="fas fa-boot"></i>Kick</a></li>
+	  {% endif %}
         {% if v.admin_level >=1 %}
         {% if p.is_banned or p.active_flags %}
         <li class="list-inline-item"><a id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a></li>
