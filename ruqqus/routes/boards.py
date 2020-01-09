@@ -458,6 +458,21 @@ def mod_bid_settings_description(bid, board, v):
 
     return "", 204
 
+@app.route("/mod/<bid>/settings/banner", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_settings_toggle_banner(bid, board, v):
+    if board.hide_banner_data == True:
+        board.hide_banner_data = False
+    else:
+        board.hide_banner_data = True
+
+    db.add(board)
+    db.commit()
+
+    return "", 204
+
 @app.route("/mod/<bid>/settings/add_rule", methods=["POST"])
 @auth_required
 @is_guildmaster
