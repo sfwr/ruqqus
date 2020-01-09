@@ -2104,7 +2104,7 @@ blockquote p {
 // Comments
 
 .comment-actions {
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-bold;
     font-size: $small-font-size;
     margin-bottom: 0;
 }
@@ -2112,7 +2112,7 @@ blockquote p {
 .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
     font-size: 12px;
     margin-right: .5rem;
-    color: $gray-600;
+    color: $muted;
 }
 
 .comment-actions .dropdown-item:active .fa, .comment-actions .dropdown-item:active .fas, .comment-actions .dropdown-item:active .far {
@@ -3199,6 +3199,7 @@ body, #settings, #notifications, #submit {
 }
 
 .comment-actions {
+    font-weight: $font-weight-normal;
     font-size: $font-size-base;
 }
 

@@ -14523,7 +14523,7 @@ blockquote p {
 }
 
 .comment-actions {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   margin-bottom: 0;
 }
@@ -16050,6 +16050,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .comment-actions {
+    font-weight: 400;
     font-size: 1rem;
   }
 

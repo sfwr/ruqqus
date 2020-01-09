@@ -14492,7 +14492,7 @@ blockquote p {
 }
 
 .comment-actions {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 12px;
   margin-bottom: 0;
 }
@@ -14500,7 +14500,7 @@ blockquote p {
 .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
   font-size: 12px;
   margin-right: 0.5rem;
-  color: #ACACAC;
+  color: #7F7F8A;
 }
 
 .comment-actions .dropdown-item:active .fa, .comment-actions .dropdown-item:active .fas, .comment-actions .dropdown-item:active .far {
@@ -15983,6 +15983,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .comment-actions {
+    font-weight: 400;
     font-size: 1rem;
   }
 

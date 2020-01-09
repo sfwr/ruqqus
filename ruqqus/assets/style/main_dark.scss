@@ -2137,7 +2137,7 @@ blockquote p {
 }
 
 .comment-actions {
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-bold;
     font-size: $small-font-size;
     margin-bottom: 0;
 }
@@ -3267,6 +3267,7 @@ body {
 }
 
 .comment-actions {
+    font-weight: $font-weight-normal;
     font-size: $font-size-base;
 }
 
