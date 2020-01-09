@@ -23,7 +23,7 @@ report_commentModal = function(id) {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
       this.disabled = true;
-      post('/api/report/post/' + id,
+      post('/api/report/comment/' + id,
         callback = function() {
 
           document.getElementById("reportCommentFormBefore").classList.add('d-none');
@@ -58,17 +58,38 @@ $('#reportCommentModal').on('hidden.bs.modal', function () {
 
 report_postModal = function(id) {
 
-  document.getElementById("reportPostButton").onclick = function() {
+  var dropdown = document.getElementById("reportPostDropdown");
+  var reason = dropdown.options[dropdown.selectedIndex].value;
 
-    this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
-    this.disabled = true;
-    post('/api/flag/post/' + id,
-      callback = function() {
 
-        document.getElementById("reportPostFormBefore").classList.add('d-none');
-        document.getElementById("reportPostFormAfter").classList.remove('d-none');
-      }
-      )
+  if (reason == "breaks policy") {
+
+    document.getElementById("reportPostButton").onclick = function() {
+
+      this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
+      this.disabled = true;
+      post('/api/flag/post/' + id,
+        callback = function() {
+
+          document.getElementById("reportPostFormBefore").classList.add('d-none');
+          document.getElementById("reportPostFormAfter").classList.remove('d-none');
+        }
+        )
+    }
+  }
+  else {
+    document.getElementById("reportPostButton").onclick = function() {
+
+      this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
+      this.disabled = true;
+      post('/api/report/post/' + id,
+        callback = function() {
+
+          document.getElementById("reportPostFormBefore").classList.add('d-none');
+          document.getElementById("reportPostFormAfter").classList.remove('d-none');
+        }
+        )
+    }
   }
 };
 
