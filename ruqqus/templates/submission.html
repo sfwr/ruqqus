@@ -149,9 +149,9 @@
           <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
           {% endif %}
           {% if v %}
-	  {% if p.board.has_mod(v) %}
+          {% if p.board.has_mod(v) %}
           <li class="list-group-item"><a class="d-block" id="kick-post-{{ p.base36id }}" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="fas fa-boot"></i>Kick</a></li>
-	  {% endif %}
+          {% endif %}
           {% if v.admin_level >=3 %}
           {% if p.is_banned %}
           <li class="list-group-item"><a class="d-block" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-clipboard-check"></i>Approve</a></li>
@@ -429,6 +429,12 @@
 
             <div id="post-body" {% if p.body_html %}class="post-body mt-3"{% endif %}> 
               {{ p.body_html | safe }}
+
+              {% if p.embed_url %}
+              <div class="embed-responsive embed-responsive-16by9 mb-3">
+                <iframe src="{{ p.embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              </div>
+              {% endif %}
             </div>
 
             {% if v and v.id==p.author_id and not v.is_banned %}
@@ -463,9 +469,9 @@
                     {% endif %}
 
                     {% if v %}
-	  {% if p.board.has_mod(v) %}
-          <li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="fas fa-boot"></i>Kick</a></li>
-	  {% endif %}
+                    {% if p.board.has_mod(v) %}
+                    <li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="fas fa-boot"></i>Kick</a></li>
+                    {% endif %}
 
                     {% if v.admin_level >=1 %}
                     {% if p.is_banned or p.active_flags %}
@@ -575,14 +581,6 @@
 
 
             </div>
-
-            {% if p.embed_url %}
-            <div class="post-body mb-3"> 
-              <div class="embed-responsive embed-responsive-16by9">
-                <iframe src="{{ p.embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-              </div>
-            </div>
-            {% endif %}
 
           </div>
 
