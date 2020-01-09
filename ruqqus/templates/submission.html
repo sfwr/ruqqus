@@ -213,7 +213,7 @@
      <a href="{{ p.board.permalink }}"><img src="{{ p.board.profile_url }}" class="profile-pic-50 mr-2"></a>
    </div>
    {% elif not p.board.has_profile and v and p.board.has_mod(v) %}
-   <a href="{{ p.board.permalink}}/mod/settings#images" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
+   <a href="{{ p.board.permalink}}/mod/appearance" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
      <div class="letter" style="line-height: 2.5;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
    </a>
    {% endif %}
