@@ -32,7 +32,7 @@ CREATE TABLE public.comments (
     parent_fullname character varying(255),
     body_html character varying(3000),
     distinguish_level integer DEFAULT 0,
-    edited_timestamp integer DEFAULT 0,
+    edited_utc integer DEFAULT 0,
     is_deleted boolean DEFAULT false NOT NULL,
     is_approved integer DEFAULT 0 NOT NULL,
     ip character varying(64),
@@ -126,7 +126,8 @@ CREATE TABLE public.users (
     has_banner boolean DEFAULT false NOT NULL,
     has_profile boolean DEFAULT false NOT NULL,
     reserved character varying(256) DEFAULT NULL::character varying,
-    is_nsfw boolean DEFAULT false NOT NULL
+    is_nsfw boolean DEFAULT false NOT NULL,
+    tos_agreed_utc integer DEFAULT 0
 );
 
 
@@ -192,6 +193,26 @@ CREATE FUNCTION public.comment_count(public.submissions) RETURNS bigint
         AND is_deleted=false
         AND parent_submission = $1.id
       $_$;
+
+
+--
+-- Name: comment_energy(public.users); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.comment_energy(public.users) RETURNS numeric
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+     SELECT COALESCE(
+     (
+      SELECT SUM(comments.score)
+      FROM comments
+      WHERE comments.author_id=$1.id
+        AND comments.is_banned=false
+        AND comments.is_deleted=false
+      ),
+      0
+      )
+    $_$;
 
 
 --
@@ -426,7 +447,10 @@ CREATE TABLE public.boards (
     has_banner boolean DEFAULT false NOT NULL,
     has_profile boolean DEFAULT false NOT NULL,
     ban_reason character varying(256) DEFAULT NULL::character varying,
-    color character varying(8) DEFAULT '603abb'::character varying
+    color character varying(8) DEFAULT '603abb'::character varying,
+    downvotes_disabled boolean DEFAULT false,
+    restricted_posting boolean DEFAULT false,
+    hide_banner_data boolean DEFAULT false
 );
 
 
@@ -700,7 +724,8 @@ CREATE TABLE public.bans (
     user_id integer,
     board_id integer,
     created_utc integer,
-    banning_mod_id integer
+    banning_mod_id integer,
+    is_active boolean DEFAULT true NOT NULL
 );
 
 
@@ -827,6 +852,38 @@ CREATE SEQUENCE public.commentvotes_id_seq
 --
 
 ALTER SEQUENCE public.commentvotes_id_seq OWNED BY public.commentvotes.id;
+
+
+--
+-- Name: contributors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.contributors (
+    id integer NOT NULL,
+    user_id integer,
+    board_id integer,
+    created_utc integer
+);
+
+
+--
+-- Name: contributors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.contributors_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: contributors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.contributors_id_seq OWNED BY public.contributors.id;
 
 
 --
@@ -1214,7 +1271,8 @@ CREATE TABLE public.useragents (
     id integer NOT NULL,
     kwd character varying(128),
     banned_by integer,
-    reason character varying(256)
+    reason character varying(256),
+    mock character varying(256) DEFAULT ''::character varying
 );
 
 
@@ -1299,8 +1357,7 @@ CREATE TABLE public.votes (
     user_id integer NOT NULL,
     submission_id integer,
     created_utc integer DEFAULT 0 NOT NULL,
-    vote_type integer DEFAULT 0,
-    target_fullname character varying(32)
+    vote_type integer DEFAULT 0
 );
 
 
@@ -1378,6 +1435,13 @@ ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.com
 --
 
 ALTER TABLE ONLY public.commentvotes ALTER COLUMN id SET DEFAULT nextval('public.commentvotes_id_seq'::regclass);
+
+
+--
+-- Name: contributors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.contributors ALTER COLUMN id SET DEFAULT nextval('public.contributors_id_seq'::regclass);
 
 
 --
