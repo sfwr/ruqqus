@@ -802,7 +802,7 @@ def mod_board_color(bid, board, v):
     cache.delete_memoized(board_css, boardname=board.name)
     cache.delete_memoized(board_dark_css, boardname=board.name)
 
-    return redirect(f"/+{board.name}/mod/settings?msg=Success")
+    return redirect(f"/+{board.name}/mod/appearance?msg=Success")
 
 @app.route("/mod/approve/<bid>/<username>", methods=["POST"])
 @auth_required
