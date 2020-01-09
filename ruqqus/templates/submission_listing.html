@@ -64,10 +64,12 @@
     {% endif %}
 
     {% if p.thumb_url %}
+    <div class="d-none d-md-block">
     <div class="row post-img-lg mb-3">
       <div class="col px-0">
         <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
       </div>
+    </div>
     </div>
     {% endif %}
 
@@ -129,6 +131,16 @@
   </div>
 
 </div>
+
+{% if p.thumb_url %}
+<div class="d-block d-md-none">
+    <div class="row post-img-lg mb-3">
+      <div class="col px-0">
+        <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
+      </div>
+    </div>
+ </div>
+ {% endif %}
 
 <div class="card-footer d-block d-md-none mt-3">
   <div class="post-actions">
