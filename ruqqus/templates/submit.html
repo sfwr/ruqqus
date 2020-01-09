@@ -3,232 +3,232 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-  {% block title %}
-  <title>Ruqqus - the open, free-speech social platform</title>
-  {% endblock %}
+	{% block title %}
+	<title>Ruqqus - the open, free-speech social platform</title>
+	{% endblock %}
 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 
-  <!-- Bootstrap core CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <!-- Ruqqus CSS -->
+	<!-- Ruqqus Board CSS -->
 
-  {% if v and v.referral_count and session.get("dark_mode_enabled") %}
-  <link id="css-link" rel="stylesheet" href="/assets/style/main_dark.css">
-  {% else %}
-  <link id="css-link" rel="stylesheet" href="/assets/style/main.css">
-  {% endif %}
+	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/dark.css">
+	{% else %}
+	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/main.css">
+	{% endif %}
 
-  <!-- Font Awesome -->
-  <link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+	<!-- Font Awesome -->
+	<link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
 
-  {% if v %}
+	{% if v %}
 
-  <script>
-    function post(url, callback, errortext) {
-      var xhr = new XMLHttpRequest();
-      xhr.open("POST", url, true);
-      var form = new FormData()
-      form.append("formkey", "{{ v.formkey }}");
-      xhr.withCredentials=true;
-      xhr.onload=callback
-      xhr.onerror=function(){alert(errortext)}
-      xhr.send(form);
-    }
-    function formkey() {
-      return '{{ v.formkey }}';
-    }
-  </script>
+	<script>
+		function post(url, callback, errortext) {
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", url, true);
+			var form = new FormData()
+			form.append("formkey", "{{ v.formkey }}");
+			xhr.withCredentials=true;
+			xhr.onload=callback
+			xhr.onerror=function(){alert(errortext)}
+			xhr.send(form);
+		}
+		function formkey() {
+			return '{{ v.formkey }}';
+		}
+	</script>
 
-  {% endif %}
+	{% endif %}
 
 </head>
 
 <body id="submit">
 
-  <!-- Navigation -->
-  {% include "header.html" %}
+	<!-- Navigation -->
+	{% include "header.html" %}
 
-  <!-- Page Content -->
+	<!-- Page Content -->
 
-  <div class="container">
+	<div class="container">
 
-    <div class="row justify-content-around">
+		<div class="row justify-content-around">
 
-      <div class="col h-100">
+			<div class="col h-100">
 
-        <div class="mt-3 mt-md-0">
-          <h1 class="h3">{% block pagetitle %}Create a post{% endblock %}</h1>
-        </div>
+				<div class="mt-3 mt-md-0">
+					<h1 class="h3">{% block pagetitle %}Create a post{% endblock %}</h1>
+				</div>
 
-        <p class="text-muted">{% block subtitle %}The first step to making a quality post is choosing an interesting title!{% endblock %}</p>
+				<p class="text-muted">{% block subtitle %}The first step to making a quality post is choosing an interesting title!{% endblock %}</p>
 
-        <div class="bg-white border-md rounded">
+				<div class="bg-white border-md rounded">
 
-          <div class="row no-gutters">
+					<div class="row no-gutters">
 
-            <div class="col-12">
+						<div class="col-12">
 
-              <div class="submission">
+							<div class="submission">
 
-               {% block form %}
-               <form id="submitform" action="/submit" method="post">
+								{% block form %}
+								<form id="submitform" action="/submit" method="post">
 
-                <div class="body">
+									<div class="body">
 
-                  <input type="hidden" name="formkey" value="{{ v.formkey }}">
+										<input type="hidden" name="formkey" value="{{ v.formkey }}">
 
-                  <label for="title">Post Title</label>
+										<label for="title">Post Title</label>
 
-                  <input class="form-control" id="title-register"
-                  aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="{{ title if title else request.args.get('title','') }}" required>
+										<input class="form-control" id="title-register"
+										aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="{{ title if title else request.args.get('title','') }}" required>
 
-                  <small class="form-text text-muted">Title must be at least 10 characters long</small>
-                  <small id="titleHelpRegister"
-                  class="form-text font-weight-bold text-muted d-none mt-1">Minimum of 10
-                  characters
-                  required.</small>
-                  <small id="titleHelpSuccess"
-                  class="form-text font-weight-bold text-success d-none mt-1">That title is set to
-                  jet!
-                </small>
+										<small class="form-text text-muted">Title must be at least 10 characters long</small>
+										<small id="titleHelpRegister"
+										class="form-text font-weight-bold text-muted d-none mt-1">Minimum of 10
+										characters
+										required.</small>
+										<small id="titleHelpSuccess"
+										class="form-text font-weight-bold text-success d-none mt-1">That title is set to
+										jet!
+									</small>
 
-                <label for="URL" class="mt-3">URL</label>
+									<label for="URL" class="mt-3">URL</label>
 
-                <input class="form-control" id="URL" aria-describedby="URLHelp" type="url"
+									<input class="form-control" id="URL" aria-describedby="URLHelp" type="url"
 
-                name="url" id="URL" placeholder="Optional if you have text" value="{{ url if url else request.args.get('url','') }}">
+									name="url" id="URL" placeholder="Optional if you have text" value="{{ url if url else request.args.get('url','') }}">
 
-                <small class="form-text text-muted">If posting an image, please include .jpg, .png, etc at the end of the URL</small>
+									<small class="form-text text-muted">If posting an image, please include .jpg, .png, etc at the end of the URL</small>
 
-                <label for="body" class="mt-3">Text</label>
+									<label for="body" class="mt-3">Text</label>
 
-                <div class="input-group">
-                  <textarea form="submitform" class="form-control rounded" aria-label="With textarea"
+									<div class="input-group">
+										<textarea form="submitform" class="form-control rounded" aria-label="With textarea"
 
-                  placeholder="Optional if you have a link. 2000 character maximum." rows="7" name="body">{{ text if text else request.args.get('text','') }}</textarea>
-                  <div class="bg-light text-format d-none">
-                    <small class="format"><i class="fas fa-bold"></i></small>
-                    <small class="format"><i class="fas fa-italic"></i></small>
-                    <small class="format"><i class="fas fa-quote-right"></i></small>
-                    <small class="format"><i class="fas fa-link"></i></small>
-                  </div>
-                </div>
-                <label for="board" class="mt-3">Post in guild</label>
-                <input class="form-control" name="board" placeholder="+general" value="{{ b.name if b else '' }}">
-                {% if v.admin_level >=2 %}
-                <label for="username" class="mt-3">Post as</label>
-                <input type="text" class="form-control" name="username">
-                {% endif %}
+										placeholder="Optional if you have a link. 2000 character maximum." rows="7" name="body">{{ text if text else request.args.get('text','') }}</textarea>
+										<div class="bg-light text-format d-none">
+											<small class="format"><i class="fas fa-bold"></i></small>
+											<small class="format"><i class="fas fa-italic"></i></small>
+											<small class="format"><i class="fas fa-quote-right"></i></small>
+											<small class="format"><i class="fas fa-link"></i></small>
+										</div>
+									</div>
+									<label for="board" class="mt-3">Post in guild</label>
+									<input class="form-control" name="board" placeholder="+general" value="{{ b.name if b else '' }}">
+									{% if v.admin_level >=2 %}
+									<label for="username" class="mt-3">Post as</label>
+									<input type="text" class="form-control" name="username">
+									{% endif %}
 
-                <label for="over_18" class="mt-3">NSFW?</label><br>
-                <input type="checkbox" name="over_18" value="true"> This post contains adult material.<br>
-              </div>
+									<label for="over_18" class="mt-3">NSFW?</label><br>
+									<input type="checkbox" name="over_18" value="true"> This post contains adult material.<br>
+								</div>
 
-              <div class="footer">
+								<div class="footer">
 
-                <div class="d-flex">
+									<div class="d-flex">
 
-                  {% if error %}
-                  <p class="mb-0">
-                    <span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
-                  </p>
-                  {% endif %}
+										{% if error %}
+										<p class="mb-0">
+											<span class="text-danger text-small" style="vertical-align: sub;">{{ error }}</span>
+										</p>
+										{% endif %}
 
-                  <button class="btn btn-primary ml-auto" id="create_button">Create post</button>
+										<button class="btn btn-primary ml-auto" id="create_button">Create post</button>
 
-                </div>
+									</div>
 
-              </div>
+								</div>
 
-            </form>
-            {% endblock %}
+							</form>
+							{% endblock %}
 
-          </div>
+						</div>
 
-        </div>
-      </div>
-    </div>
-  </div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-  <!-- Right Sidebar (hidden on devices smaller than "large") -->
+		<!-- Right Sidebar (hidden on devices smaller than "large") -->
 
-  <div class="col sidebar text-left d-none d-lg-block pt-3">
+		<div class="col sidebar text-left d-none d-lg-block pt-3">
 
-{% block sidebarblock %}
-    <div class="sidebar-section sidebar-info-basic">
-      <div class="title">
-        <span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
-      </div>
-      <div class="body">
-        <div class="d-flex mb-3">
-         {% if b.has_profile %}
-         <div>
-           <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
-         </div>
-         {% elif not b.has_profile %}
-          <div>
-           <a href="{{ b.permalink }}"><img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-50 mr-2"></a>
-         </div>
-         {% endif %}
-         <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
-          <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span>
-          Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
-         </div>
-       </div>
-     </div>
-     <div>{{ b.description_html | safe }}</div>
-   </div>
- </div>
-{% endblock %}
+			{% block sidebarblock %}
+			<div class="sidebar-section sidebar-info-basic">
+				<div class="title">
+					<span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
+				</div>
+				<div class="body">
+					<div class="d-flex mb-3">
+						{% if b.has_profile %}
+						<div>
+							<a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
+						</div>
+						{% elif not b.has_profile %}
+						<div>
+							<a href="{{ b.permalink }}"><img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-50 mr-2"></a>
+						</div>
+						{% endif %}
+						<div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+							<div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span>
+								Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
+							</div>
+						</div>
+					</div>
+					<div>{{ b.description_html | safe }}</div>
+				</div>
+			</div>
+			{% endblock %}
 
- <div class="sidebar-section sidebar-rules">
-  <div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
-  <div class="body">
-    <ol class="pl-0 mb-0">   
-      <li>
-        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Comply with US law<span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse1" class="collapse">
-        <p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
-      </div>
-      <li>
-        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse2" role="button" aria-expanded="false" aria-controls="ruleCollapse2">Do not harass other users<span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse2" class="collapse">
-        <p style="padding: 0 0 0 22px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
-      </div>
-      <li>
-        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse3" role="button" aria-expanded="false" aria-controls="ruleCollapse3">No inciting violence<span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse3" class="collapse">
-        <p style="padding: 0 0 0 22px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
-      </div>
-      <li>
-        <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse4" role="button" aria-expanded="false" aria-controls="ruleCollapse4">Check for duplicates
-          <span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse4" class="collapse">
-        <p style="padding: 0 0 0 22px;">Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.</p>
-      </div>
-    </ol>
-  </div>
-</div>
+			<div class="sidebar-section sidebar-rules">
+				<div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
+				<div class="body">
+					<ol class="pl-0 mb-0">   
+						<li>
+							<a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Comply with US law<span class="float-right"><i class="fa"></i></span>
+							</a>
+						</li>
+						<div id="ruleCollapse1" class="collapse">
+							<p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
+						</div>
+						<li>
+							<a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse2" role="button" aria-expanded="false" aria-controls="ruleCollapse2">Do not harass other users<span class="float-right"><i class="fa"></i></span>
+							</a>
+						</li>
+						<div id="ruleCollapse2" class="collapse">
+							<p style="padding: 0 0 0 22px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
+						</div>
+						<li>
+							<a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse3" role="button" aria-expanded="false" aria-controls="ruleCollapse3">No inciting violence<span class="float-right"><i class="fa"></i></span>
+							</a>
+						</li>
+						<div id="ruleCollapse3" class="collapse">
+							<p style="padding: 0 0 0 22px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
+						</div>
+						<li>
+							<a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse4" role="button" aria-expanded="false" aria-controls="ruleCollapse4">Check for duplicates
+								<span class="float-right"><i class="fa"></i></span>
+							</a>
+						</li>
+						<div id="ruleCollapse4" class="collapse">
+							<p style="padding: 0 0 0 22px;">Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.</p>
+						</div>
+					</ol>
+				</div>
+			</div>
 
-</div>
+		</div>
 
-</div>
+	</div>
 
 </div>
 
@@ -253,21 +253,21 @@
 
 <!-- Instantiate clipboard by passing a string selector -->
 <script type="text/javascript">
-  var clipboard = new ClipboardJS('.copy-link');
-  clipboard.on('success', function(e) {
+	var clipboard = new ClipboardJS('.copy-link');
+	clipboard.on('success', function(e) {
 
-    jQuery(function($) {
-      $('#toast-success').toast('show');
-    })
-    console.log(e);
-  });
-  clipboard.on('error', function(e) {
+		jQuery(function($) {
+			$('#toast-success').toast('show');
+		})
+		console.log(e);
+	});
+	clipboard.on('error', function(e) {
 
-    jQuery(function($) {
-      $('#toast-error').toast('show');
-    })
-    console.log(e);
-  });
+		jQuery(function($) {
+			$('#toast-error').toast('show');
+		})
+		console.log(e);
+	});
 </script>
 
 {% if v and v.referral_count %}
