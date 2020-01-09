@@ -413,7 +413,7 @@
             <a href="{{ p.url }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="post-img d-none d-md-block" alt="Unable to anonymously load image"></a>
 
             {% endif %}
-            
+
       </div>
       <div class="card-block my-md-auto">
 
@@ -439,6 +439,10 @@
 
         {% if v and not v.id==p.author_id %}
         <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')"><i class="fas fa-flag"></i>Flag</a></li>
+        {% endif %}
+
+        {% if v and v.id==p.author_id %}
+        <li class="list-inline-item"><a href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a></li>
         {% endif %}
 
         {% if v %}
