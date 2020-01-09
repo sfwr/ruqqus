@@ -15,7 +15,7 @@
 <div id="post-{{ p.base36id }}" class="card{% if p.is_banned %} banned{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
 
-    <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap py-0 pr-0">
+    <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap pl-md-0 py-0 pr-0">
 
       {% if p.thumb_url %}
 
@@ -129,6 +129,14 @@
   </div>
 
 </div>
+
+{% if p.thumb_url %}
+    <div class="row mobile-thumb-enlarged text-center mt-3">
+      <div class="col px-0">
+        <a target="_blank" href="{{ p.permalink }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="img-fluid" alt="post image"></a>
+      </div>
+    </div>
+ {% endif %}
 
 <div class="card-footer d-block d-md-none mt-3">
   <div class="post-actions">

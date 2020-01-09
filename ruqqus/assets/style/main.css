@@ -14078,10 +14078,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-color: #F5F6FA;
 }
 
-#frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg, #guild .posts .card.enlarged .post-img-lg {
-  display: block;
-}
-
 .post-title {
   font-size: 16px;
   font-weight: 500;
@@ -14344,7 +14340,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   z-index: 2;
 }
 
-.post-img-lg {
+.post-img-lg, .mobile-thumb-enlarged {
   display: none;
 }
 
@@ -15829,7 +15825,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     z-index: 3;
   }
 
-  #frontpage .posts .card.enlarged .post-img-lg, #userpage .posts .card.enlarged .post-img-lg, #search .posts .card.enlarged .post-img-lg, #guild .posts .card.enlarged .post-img-lg {
+  #frontpage .posts .card.enlarged .mobile-thumb-enlarged, #userpage .posts .card.enlarged .mobile-thumb-enlarged, #search .posts .card.enlarged .mobile-thumb-enlarged, #guild .posts .card.enlarged .mobile-thumb-enlarged {
     display: block;
   }
 
