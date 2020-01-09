@@ -234,25 +234,40 @@
     </div>       
   </div>  
 </div>
+
+
 {% elif u %}
-{% if v and v.id == u.id %}
-<div class="row no-gutters">   
-  <div class="col">      
-    <div class="text-center py-7">
-      <div class="h4 p-2">You haven't posted anything yet...</div>
-      <div class="p-2"><a href="/submit" class="btn btn-primary">Create post now</a></div>
-    </div>       
-  </div>  
-</div>
+  {% if v and v.id == u.id %}
+  <div class="row no-gutters">   
+    <div class="col">      
+      <div class="text-center py-7">
+        <div class="h4 p-2">You haven't made a ruckus yet...</div>
+        <div class="p-2"><a href="/submit" class="btn btn-primary">Create post now</a></div>
+      </div>       
+    </div>  
+  </div>
+
+
+  {% else %}
+  <div class="row no-gutters">   
+    <div class="col">      
+      <div class="text-center py-7">
+        <div class="h4 p-2">@{{ u.username }} hasn't made a ruckus yet...</div>
+      </div>       
+    </div>  
+  </div>
+  {% endif %}
+
 {% else %}
 <div class="row no-gutters">   
   <div class="col">      
     <div class="text-center py-7">
-      <div class="h4 p-2">@{{ u.username }} hasn't posted anything yet...</div>
+      <div class="h4 p-2">There are no posts here (yet).</div>
     </div>       
   </div>  
 </div>
-{% endif %}
+
+
 {% endif %}
 
 {% endfor %}
