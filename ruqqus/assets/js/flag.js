@@ -1,6 +1,8 @@
 // Flag Comment
 
-report_commentModal = function(id) {
+report_commentModal = function(id, guild) {
+
+  document.getElementById("comment-origin-guild").textContent = guild;
 
   var dropdown = document.getElementById("reportCommentDropdown");
   var reason = dropdown.options[dropdown.selectedIndex].value;
@@ -56,7 +58,9 @@ $('#reportCommentModal').on('hidden.bs.modal', function () {
 
 // Flag Submission
 
-report_postModal = function(id) {
+report_postModal = function(id, guild) {
+
+  document.getElementById("post-origin-guild").textContent = guild;
 
   var dropdown = document.getElementById("reportPostDropdown");
   var reason = dropdown.options[dropdown.selectedIndex].value;
