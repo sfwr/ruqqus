@@ -1,5 +1,3 @@
-{% set board = b if b else p.board %}
-
 <!-- Report Post Modal -->
 <div class="modal fade" id="reportPostModal" tabindex="-1" role="dialog" aria-labelledby="reportPostModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -18,7 +16,7 @@
                 <small class="form-text text-muted">Please select a reason for flagging below.</small>
                 <select class="custom-select mt-3" id="reportPostDropdown" name="reportReason">
                   <option value="breaks policy">Post breaks Ruqqus site-wide policy</option>
-                  <option value="off topic">Post is off-topic and does not belong in +{{ board.name }}</option>
+                  <option value="off topic">Post is off-topic and does not belong in +<span id="post-origin-guild"></span></option>
               </select>
           </div>
           <div class="modal-footer">
