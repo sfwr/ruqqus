@@ -22,7 +22,7 @@ valid_board_regex=re.compile("^\w{3,25}$")
 def create_board_get(v):
     if not v.is_activated:
         return render_template("message.html", title="Unable to make board", text="You need to verify your email adress first.")
-    if v.karma<100:
+    if v.karma+v.comment_karma<100:
         return render_template("message.html", title="Unable to make board", text="You need more rep to do that.")
 
     #check # recent boards made by user
@@ -58,7 +58,7 @@ def create_board_post(v):
     if not v.is_activated:
         return render_template("message.html", title="Unable to make board", text="Please verify your email first")
 
-    if v.karma<100:
+    if v.karma+v.comment_karma<100:
         return render_template("message.html", title="Unable to make board", text="You need more rep to do that")
 
 

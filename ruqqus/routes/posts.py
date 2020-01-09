@@ -206,7 +206,9 @@ def submit_post(v):
                                error="2000 character limit for text body",
                                title=title,
                                text=body[0:2000],
-                               url=url), 400
+                               url=url,
+                               b=get_guild(request.form.get("board","general"))
+                               ), 400
 
     if len(url)>2048:
 
@@ -214,7 +216,8 @@ def submit_post(v):
                                v=v,
                                error="URLs cannot be over 2048 characters",
                                title=title,
-                               text=body[0:2000]
+                               text=body[0:2000],
+                               b=get_guild(request.form.get("board","general"))
                                ), 400
 
     with CustomRenderer() as renderer:
