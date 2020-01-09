@@ -1,3 +1,4 @@
+{% set board = b if b else p.board %}
 
 <!-- Report Comment Modal -->
 <div class="modal fade" id="reportCommentModal" tabindex="-1" role="dialog" aria-labelledby="reportCommentModalTitle" aria-hidden="true">
@@ -15,13 +16,9 @@
               <div class="modal-body">
                 <div class="h6">We're sorry something here is wrong.</div>
                 <small class="form-text text-muted">Please select a reason for flagging below.</small>
-                <select class="custom-select mt-3" name="reportReason">
-                  <option value="Spam">This comment is spam</option>
-                  <option value="Contains copyrighted material">Contains copyrighted material</option>
-                  <option value="Contains personal information or harassment">Contains personal information or harassment</option>
-                  <option value="Contains or links to pornographic material">Contains or links to pornographic material</option>
-                  <option value="Contains a threat or involves minors">Contains a threat or involves minors</option>
-                  <option value="Promotes sale of illicit substances">Promotes sale of illicit substances</option>
+                <select class="custom-select mt-3" id="reportCommentDropdown" name="reportReason">
+                  <option value="breaks policy">This comment breaks Ruqqus site-wide policy</option>
+                  <option value="off topic">This comment is off-topic in +{{ board.name }}</option>
               </select>
           </div>
           <div class="modal-footer">

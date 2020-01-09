@@ -1,3 +1,4 @@
+{% set board = b if b else p.board %}
 
 <!-- Report Post Modal -->
 <div class="modal fade" id="reportPostModal" tabindex="-1" role="dialog" aria-labelledby="reportPostModalTitle" aria-hidden="true">
@@ -16,12 +17,8 @@
                 <div class="h6">We're sorry something here is wrong.</div>
                 <small class="form-text text-muted">Please select a reason for flagging below.</small>
                 <select class="custom-select mt-3" name="reportReason">
-                  <option value="Spam">This post is spam</option>
-                  <option value="Contains copyrighted material">Contains copyrighted material</option>
-                  <option value="Contains personal information or harassment">Contains personal information or harassment</option>
-                  <option value="Contains or links to pornographic material">Contains or links to pornographic material</option>
-                  <option value="Contains a threat or involves minors">Contains a threat or involves minors</option>
-                  <option value="Promotes sale of illicit substances">Promotes sale of illicit substances</option>
+                  <option value="breaks policy">This post is spam</option>
+                  <option value="off topic">This post is off-topic in +{{ board.name }}</option>
               </select>
           </div>
           <div class="modal-footer">

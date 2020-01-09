@@ -2,35 +2,54 @@
 
 report_commentModal = function(id) {
 
-  document.getElementById("reportCommentButton").onclick = function() {
+  var dropdown = document.getElementById("reportCommentDropdown");
+  var reason = dropdown.options[dropdown.selectedIndex].value;
 
-    this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
-    this.disabled = true;
-    post('/api/flag/comment/' + id,
-      callback = function() {
+  if (reason == "breaks policy") {
+    document.getElementById("reportCommentButton").onclick = function() {
 
-        document.getElementById("reportCommentFormBefore").classList.add('d-none');
-        document.getElementById("reportCommentFormAfter").classList.remove('d-none');
-      }
-      )
+      this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
+      this.disabled = true;
+      post('/api/flag/comment/' + id,
+        callback = function() {
+
+          document.getElementById("reportCommentFormBefore").classList.add('d-none');
+          document.getElementById("reportCommentFormAfter").classList.remove('d-none');
+        }
+        )
+    }
+  } else {
+    document.getElementById("reportCommentButton").onclick = function() {
+
+      this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
+      this.disabled = true;
+      post('/api/report/post/' + id,
+        callback = function() {
+
+          document.getElementById("reportCommentFormBefore").classList.add('d-none');
+          document.getElementById("reportCommentFormAfter").classList.remove('d-none');
+        }
+        )
+    }
   }
+
 };
 
 $('#reportCommentModal').on('hidden.bs.modal', function () {
 
   var button = document.getElementById("reportCommentButton");
 
-	var beforeModal = document.getElementById("reportCommentFormBefore");
-	var afterModal = document.getElementById("reportCommentFormAfter");
+  var beforeModal = document.getElementById("reportCommentFormBefore");
+  var afterModal = document.getElementById("reportCommentFormAfter");
 
   button.innerHTML='Report comment';
   button.disabled= false;
 
-	afterModal.classList.add('d-none');
+  afterModal.classList.add('d-none');
 
-	if ( beforeModal.classList.contains('d-none') ) {
-		beforeModal.classList.remove('d-none');
-	}
+  if ( beforeModal.classList.contains('d-none') ) {
+    beforeModal.classList.remove('d-none');
+  }
 
 });
 
