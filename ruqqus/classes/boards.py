@@ -84,7 +84,6 @@ class Board(Base, Stndrd, Age_times):
 
         posts=db.query(Submission).filter_by(is_banned=False,
                                              is_deleted=False,
-                                             stickied=False,
                                              board_id=self.id
                                              )
 
