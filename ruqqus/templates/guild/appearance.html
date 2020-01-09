@@ -118,8 +118,6 @@
 
               <div class="d-flex">
 
-                <div>
-
                  <form action="/mod/{{ b.base36id }}/color" id="color-form" method="post" class="color-picker" style="line-height: 0">
                   <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
@@ -160,8 +158,6 @@
                     <input type="radio" name="color" id="gray" value="7F8FA6" {% if b.color == '7F8FA6' %}checked{% endif %} onclick="document.getElementById('color-form').submit()"/>
                     <label class="color-radio" for="gray"><span class="gray" style="background-color: #7F8FA6">{% if b.color == '7F8FA6' %}<i class="fas fa-check text-white"></i>{% else %}&nbsp;{% endif %}</span></label>
 
-                  </div>
-
                 </form>
 
               </div>
@@ -171,8 +167,6 @@
           </div>
 
         </div>
-
-      </div>
 
       <h2 class="h5" id="images" name="referral">Guild Icon</h2>
 
