@@ -9,6 +9,7 @@
      {% for c in listing %}
      {{ c.rendered_comment(v=v, render_replies=False, standalone=True) | safe }}
      {% endfor%}
+    </div>
 
 {% endblock %}
 
