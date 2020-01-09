@@ -22,6 +22,36 @@
 </div>
 {% endblock %}
 
+  {% block postNav %}
+  <div class="container-fluid bg-white sticky">
+    <div class="row border-bottom">
+      <div class="col">
+        <div class="container">
+          <div class="row bg-white">
+            <div class="col">
+              <div class="d-flex">
+                <ul class="nav post-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link text-center{% if request.path=="/flagged" %} active{% endif %}" href="/flagged">
+                      <div class="text-small text-muted">Posts</div>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link text-center{% if request.path=="/flagged/comments" %} active{% endif %}" href="/flagged/comments">
+                      <div class="text-small text-muted">Comments</div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
+
+
 
 
 {% block enlargeThumbJS %}
