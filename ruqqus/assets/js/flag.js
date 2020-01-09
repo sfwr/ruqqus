@@ -2,7 +2,7 @@
 
 report_commentModal = function(id, guild) {
 
-  document.getElementById("comment-origin-guild").innerHTML = guild;
+  document.getElementById("comment-origin-guild").textContent = guild;
 
   var dropdown = document.getElementById("reportCommentDropdown");
   var reason = dropdown.options[dropdown.selectedIndex].value;
@@ -60,7 +60,7 @@ $('#reportCommentModal').on('hidden.bs.modal', function () {
 
 report_postModal = function(id, guild) {
 
-  document.getElementById("post-origin-guild").innerHTML = guild;
+  document.getElementById("post-origin-guild").textContent = guild;
 
   var dropdown = document.getElementById("reportPostDropdown");
   var reason = dropdown.options[dropdown.selectedIndex].value;
