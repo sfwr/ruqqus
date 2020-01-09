@@ -896,6 +896,14 @@ th {
     min-width: 40px;
 }
 
+#frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
+    margin: auto 0;
+}
+
+#frontpage.toggle-card-view .voting, #search.toggle-card-view .voting, #userpage.toggle-card-view .voting, #guild.toggle-card-view .voting  {
+    margin: 0;
+}
+
 .voting div:focus {
     outline: 0;
 }
@@ -3094,6 +3102,10 @@ body, #settings, #notifications, #submit {
 .voting {
     font-weight: $font-weight-normal;
     font-size: $font-size-base;
+}
+
+#frontpage .voting, #search .voting, #userpage .voting, #guild .voting{
+    margin: 0;
 }
 
 .post-title {

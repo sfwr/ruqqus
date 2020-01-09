@@ -13358,6 +13358,14 @@ th {
   min-width: 40px;
 }
 
+#frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
+  margin: auto 0;
+}
+
+#frontpage.toggle-card-view .voting, #search.toggle-card-view .voting, #userpage.toggle-card-view .voting, #guild.toggle-card-view .voting {
+  margin: 0;
+}
+
 .voting div:focus {
   outline: 0;
 }
@@ -15937,6 +15945,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   .voting {
     font-weight: 400;
     font-size: 1rem;
+  }
+
+  #frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
+    margin: 0;
   }
 
   .post-title {
