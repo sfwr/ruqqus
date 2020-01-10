@@ -24,7 +24,7 @@
         <div class="ml-3 w-100">
           <h1 class="h3 align-middle d-inline-block m-0">{{ u.username }}
                <!--{% if u.over_18 %}
-               <span class="badge badge-danger">NSFW</span>
+               <span class="badge badge-danger">nsfw</span>
                {% endif %}-->
              </h1>
              <span>
@@ -107,7 +107,7 @@
         <a href="{{ u.permalink }}" class="text-black">
           <h1 class="h5 d-inline-block">{{ u.username }}
             {% if u.over_18 %}
-            <span class="badge badge-danger text-small align-middle mx-1">NSFW</span>
+            <span class="badge badge-danger text-small align-middle mx-1">nsfw</span>
             {% endif %}
             {% if v and v.has_follower(u) %}
             <span class="badge badge-secondary text-small align-middle mx-1">Follows you</span>

@@ -55,7 +55,7 @@
           <a href="{{ p.board.permalink }}" class="text-white">
             <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
              {% if p.board.over_18 %}
-             <span class="badge badge-danger text-small align-middle">NSFW</span>
+             <span class="badge badge-danger text-small align-middle">nsfw</span>
              {% endif %}
            </h1>
          </a>
@@ -76,7 +76,7 @@
       <a href="{{ p.board.permalink }}" class="text-black">
         <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
           {% if p.board.over_18 %}
-          <span class="badge badge-danger text-small align-top">NSFW</span>
+          <span class="badge badge-danger text-small align-top">nsfw</span>
           {% endif %}
         </h1>
       </a>
@@ -216,7 +216,7 @@
      <div class="letter" style="line-height: 2.5;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
    </a>
    {% endif %}
-   <div class="my-auto"><a href="{{ p.board.permalink }}"><h1 class="h5 mb-0">+{{ p.board.name }} {% if p.board.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if p.board.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+   <div class="my-auto"><a href="{{ p.board.permalink }}"><h1 class="h5 mb-0">+{{ p.board.name }} {% if p.board.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %} {% if p.board.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
     <div class="text-small mt-1"><span class="font-weight-bold">{{ p.board.subscriber_count }}</span> member{{ 's' if p.board.subscriber_count != 1 else '' }} <span>&#183;</span>
      Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ p.board.created_date }}">{{ p.board.age_string }}</span>
    </div>
