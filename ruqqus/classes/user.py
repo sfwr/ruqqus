@@ -465,7 +465,7 @@ class User(Base, Stndrd):
     def banner_url(self):
 
         if self.has_banner:
-            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/users/{self.username}/banner.png"
+            return f"https://i.ruqqus.com/users/{self.username}/banner.png"
         else:
             return "/assets/images/profiles/default_bg.png"
 
@@ -473,7 +473,7 @@ class User(Base, Stndrd):
     def profile_url(self):
 
         if self.has_profile:
-            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/users/{self.username}/profile.png"
+            return f"https://i.ruqqus.com/users/{self.username}/profile.png"
         else:
             return "/assets/images/profiles/default-profile-pic.png"
 

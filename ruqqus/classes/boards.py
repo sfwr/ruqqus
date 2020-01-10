@@ -232,7 +232,7 @@ class Board(Base, Stndrd, Age_times):
     def banner_url(self):
 
         if self.has_banner:
-            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name.lower()}/banner.png"
+            return f"https://i.ruqqus.com/board/{self.name.lower()}/banner.png"
         else:
             return "/assets/images/guilds/default-guild-banner.png"
 
@@ -240,7 +240,7 @@ class Board(Base, Stndrd, Age_times):
     def profile_url(self):
 
         if self.has_profile:
-            return f"https://s3.us-east-2.amazonaws.com/i.ruqqus.com/board/{self.name.lower()}/profile.png"
+            return f"https://i.ruqqus.com/board/{self.name.lower()}/profile.png"
         else:
             return "/assets/images/guilds/default-guild-icon.png"
 
