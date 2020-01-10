@@ -55,7 +55,7 @@
           <a href="{{ p.board.permalink }}" class="text-white">
             <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
              {% if p.board.over_18 %}
-             <span class="badge badge-danger text-small align-middle">NSFW</span>
+             <span class="badge badge-danger text-small align-middle">nsfw</span>
              {% endif %}
            </h1>
          </a>
@@ -76,7 +76,7 @@
       <a href="{{ p.board.permalink }}" class="text-black">
         <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
           {% if p.board.over_18 %}
-          <span class="badge badge-danger text-small align-top">NSFW</span>
+          <span class="badge badge-danger text-small align-top">nsfw</span>
           {% endif %}
         </h1>
       </a>
@@ -119,10 +119,6 @@
 <script src="/assets/js/comment_modding.js"></script>
 {% endblock %}
 
-{% block progressbarJS %}
-<script src="/assets/js/progressbar.js" defer></script>
-{% endblock %}
-
 {% block embedJS %}
 <script src="/assets/js/yt_embed.js"></script>
 {% endblock %}
@@ -146,7 +142,7 @@
         <ul class="list-group post-actions">
           <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
           {% if v and not v.id==p.author_id %}
-          <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
+          <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
           {% endif %}
           {% if v %}
           {% if p.board.has_mod(v) %}
@@ -220,7 +216,7 @@
      <div class="letter" style="line-height: 2.5;"><i class="far fa-upload" style="font-size: 1.25rem"></i></div>
    </a>
    {% endif %}
-   <div class="my-auto"><a href="{{ p.board.permalink }}"><h1 class="h5 mb-0">+{{ p.board.name }} {% if p.board.over_18 %}<span class="badge badge-danger text-small align-middle">NSFW</span>{% endif %} {% if p.board.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+   <div class="my-auto"><a href="{{ p.board.permalink }}"><h1 class="h5 mb-0">+{{ p.board.name }} {% if p.board.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %} {% if p.board.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
     <div class="text-small mt-1"><span class="font-weight-bold">{{ p.board.subscriber_count }}</span> member{{ 's' if p.board.subscriber_count != 1 else '' }} <span>&#183;</span>
      Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ p.board.created_date }}">{{ p.board.age_string }}</span>
    </div>
@@ -346,7 +342,7 @@
       <a href="{{ entry[0].permalink }}">
         <div class="d-flex">
           <div class="mr-2">
-            <img src="{{ entry.profile_url }}" class="guild-icon-square-35"></div>
+            <img src="{{ entry.profile_url }}" class="profile-pic-35"></div>
             <div>
               <div class="text-black font-weight-normal">+{{ entry[0].name }}</div>
               <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
@@ -372,7 +368,7 @@
         <a href="{{ board.permalink }}">
           <div class="d-flex">
             <div class="mr-2">
-              <img src="{{ board.profile_url }}" class="guild-icon-square-35"></div>
+              <img src="{{ board.profile_url }}" class="profile-pic-35"></div>
               <div class="my-auto">
                 <div class="text-black font-weight-normal">+{{ board.name }}</div>
               </div>
@@ -387,7 +383,7 @@
     </div>
   </div>
   {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
-  <div class="sidebar-section sidebar-guild-recommendations sticky-105">
+  <div class="sidebar-section sidebar-guild-recommendations sticky-63">
     <div class="title"><i class="fas fa-university mr-2"></i>My guilds
     </div>
     <div class="body">
@@ -461,7 +457,7 @@
                     <li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{ p.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a></li>
 
                     {% if v and not v.id==p.author_id %}
-                    <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}')"><i class="fas fa-flag"></i>Flag</a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}', '{{ p.author.username }}')"><i class="fas fa-flag"></i>Flag</a></li>
                     {% endif %}
 
                     {% if v and v.id==p.author_id %}

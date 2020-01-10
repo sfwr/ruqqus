@@ -2,39 +2,45 @@
 <div class="modal fade" id="reportPostModal" tabindex="-1" role="dialog" aria-labelledby="reportPostModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-        <div class="modal-header">
-            <h5 class="modal-title">Report post</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true"><i class="far fa-times"></i></span>
-          </button>
+      <div class="modal-header">
+        <h5 class="modal-title">Report <span id="post-author"></span>'s post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="far fa-times"></i></span>
+        </button>
       </div>
       <!-- Before report is made, show this -->
       <div class="" id="reportPostFormBefore">
-      <form>
-              <div class="modal-body">
-                <div class="h6">We're sorry something here is wrong.</div>
-                <small class="form-text text-muted">Please select a reason for flagging below.</small>
-                <select class="custom-select mt-3" id="reportPostDropdown" name="reportReason">
-                  <option value="breaks policy">Post breaks Ruqqus site-wide policy</option>
-                  <option value="off topic">Post is off-topic and does not belong in this guild</option>
-              </select>
+        <form>
+          <div class="modal-body">
+            <div class="h6">We're sorry something here is wrong.</div>
+            <small class="form-text text-muted">Please select a reason for flagging below.</small>
+            <div class="mt-2">
+              <div class="form-check mb-1">
+                <input class="form-check-input" type="radio" name="report" id="policy-post" value="admin">
+                <label class="form-check-label" for="policy-post">The post violates Ruqqus policy</label>
+              </div>
+              <div class="form-check mb-1">
+                <input class="form-check-input" type="radio" name="report" id="offtopic-post" value="guild">
+                <label class="form-check-label" for="offtopic-post">The post is off-topic and does not belong in this guild</label>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
             <button id="reportPostButton" class="btn btn-danger">Report post</button>
-        </div>
+          </div>
         </form>
-</div>
-<!-- After report is made, show this -->
-<div class="d-none" id="reportPostFormAfter">
-  <div class="modal-body">
-    <div class="h6">Thank you for reporting this post!</div>
-    <small class="form-text text-muted">We'll take it from here.</small>
-</div>
-<div class="modal-footer">
-    <button type="button" class="btn btn-link text-secondary" data-dismiss="modal">Close</button>
-</div>
-</div>
-</div>
-</div>
+      </div>
+      <!-- After report is made, show this -->
+      <div class="d-none" id="reportPostFormAfter">
+        <div class="modal-body">
+          <div class="h6">Thank you for reporting this post!</div>
+          <small class="form-text text-muted">We'll take it from here.</small>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-link text-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

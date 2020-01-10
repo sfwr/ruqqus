@@ -1,11 +1,10 @@
 // Flag Comment
 
-report_commentModal = function(id) {
+report_commentModal = function(id, author) {
 
-  var dropdown = document.getElementById("reportCommentDropdown");
-  var reason = dropdown.options[dropdown.selectedIndex].value;
+  document.getElementById("comment-author").textContent = author;
 
-  if (reason == "breaks policy") {
+  if (document.getElementById('policy-comment').checked = true) {
     document.getElementById("reportCommentButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
@@ -18,7 +17,7 @@ report_commentModal = function(id) {
         }
         )
     }
-  } else {
+  } else if (document.getElementById('offtopic-comment').checked = true) {
     document.getElementById("reportCommentButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
@@ -56,14 +55,11 @@ $('#reportCommentModal').on('hidden.bs.modal', function () {
 
 // Flag Submission
 
-report_postModal = function(id) {
+report_postModal = function(id, author) {
 
-  var dropdown = document.getElementById("reportPostDropdown");
-  var reason = dropdown.options[dropdown.selectedIndex].value;
+  document.getElementById("post-author").textContent = author;
 
-
-  if (reason == "breaks policy") {
-
+  if (document.getElementById('policy-post').checked = true) {
     document.getElementById("reportPostButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
@@ -76,8 +72,7 @@ report_postModal = function(id) {
         }
         )
     }
-  }
-  else {
+  } else if (document.getElementById('offtopic-post').checked = true) {
     document.getElementById("reportPostButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';

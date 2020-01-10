@@ -13234,6 +13234,14 @@ label.color-radio span {
   box-shadow: none;
 }
 
+.form-check-label {
+  margin-bottom: 0;
+  text-transform: none;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0;
+}
+
 label {
   text-transform: uppercase;
   font-weight: 500;
