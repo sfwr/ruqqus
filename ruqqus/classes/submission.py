@@ -203,36 +203,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         else:
             return self.flags.filter(Flag.created_utc>self.approved_utc).count()
 
-    def save_thumb(self):
-
-        url=f"https://api.apiflash.com/v1/urltoimage"
-        params={'access_key':environ.get("APIFLASH_KEY"),
-                'format':'png',
-                'height':720,
-                'width':1280,
-                'response_type':'image',
-                'thumbnail_width':300,
-                'url':self.url
-                }
-        x=requests.get(url, params=params)
-        print("have thumb from apiflash")
-
-        name=f"posts/{self.base36id}/thumb.png"
-        tempname=name.replace("/","_")
-
-        with open(tempname, "wb") as file:
-            for chunk in x.iter_content(1024):
-                file.write(chunk)
-
-        print("thumb saved")
-
-        aws.upload_from_file(name, tempname)
-        self.has_thumb=True
-        db.add(self)
-        db.commit()
-
-        print("thumb all success")
-        
 
     @property
     #@lazy

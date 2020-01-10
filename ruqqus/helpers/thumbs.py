@@ -23,4 +23,31 @@ def thumbnail_thread(post, can_show_thumbnail=False):
             return
 
     else:
-        post.save_thumb()
+        url=f"https://api.apiflash.com/v1/urltoimage"
+        params={'access_key':environ.get("APIFLASH_KEY"),
+                'format':'png',
+                'height':720,
+                'width':1280,
+                'response_type':'image',
+                'thumbnail_width':300,
+                'url':self.url,
+                'css':"iframe {display:none;}"
+                }
+        x=requests.get(url, params=params)
+        print("have thumb from apiflash")
+
+        name=f"posts/{self.base36id}/thumb.png"
+        tempname=name.replace("/","_")
+
+        with open(tempname, "wb") as file:
+            for chunk in x.iter_content(1024):
+                file.write(chunk)
+
+        print("thumb saved")
+
+        aws.upload_from_file(name, tempname)
+        post.has_thumb=True
+        db.add(post)
+        db.commit()
+
+        print("thumb all success")
