@@ -197,6 +197,8 @@ def no_cors(f):
         resp.headers.add("Access-Control-Allow-Origin",
                          app.config["SERVER_NAME"]
                          )
+        resp.headers.add("X-Frame-Options",
+                         "deny")
         return resp
 
     wrapper.__name__=f.__name__
