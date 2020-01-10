@@ -25,7 +25,7 @@ def api_flag_post(pid, v):
                   created_utc=int(time.time())
                   )
         
-    elif kind=="guild"
+    elif kind=="guild":
         existing=db.query(Report).filter_by(user_id=v.id, post_id=pid).first()
 
         if existing:
