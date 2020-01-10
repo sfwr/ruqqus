@@ -177,3 +177,22 @@ def validate_formkey(f):
 
     wrapper.__name__=f.__name__
     return wrapper
+
+def no_cors(f):
+
+    """
+    Decorator prevents content being iframe'd
+    """
+
+    def wrapper(*args, **kwargs):
+
+        origin = request.headers.get("Origin",None)
+
+        if origin and origin != app.config[SERVER_NAME]:
+
+            return "This page may not be embedded in other webpages.", 403
+
+        return f(*args, **kwargs)
+
+    wrapper.__name__=f.__name__
+    return wrapper

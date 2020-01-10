@@ -119,7 +119,8 @@ def after_request(response):
 
     #db.expire_all()
     
-    response.headers.add('Access-Control-Allow-Headers', "Origin, X-Requested-With, Content-Type, Accept, x-auth"
+    response.headers.add('Access-Control-Allow-Headers',
+                         "Origin, X-Requested-With, Content-Type, Accept, x-auth"
                          )
 
     #signups - hit discord webhook

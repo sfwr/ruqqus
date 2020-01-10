@@ -24,6 +24,7 @@ valid_password_regex=re.compile("^.{8,}$")
 
 #login form
 @app.route("/login", methods=["GET"])
+@no_cors
 @auth_desired
 def login_get(v):
 
@@ -61,6 +62,7 @@ def check_for_alts(current_id):
             db.commit()
 
 #login post procedure
+@no_cors
 @app.route("/login", methods=["POST"])
 @limiter.limit("6/minute")
 def login_post():
@@ -136,6 +138,7 @@ def logout(v):
 
 #signing up
 @app.route("/signup", methods=["GET"])
+@no_cors
 @auth_desired
 def sign_up_get(v):
     if v:
@@ -190,6 +193,7 @@ def sign_up_get(v):
 
 #signup api
 @app.route("/signup", methods=["POST"])
+@no_cors
 @auth_desired
 def sign_up_post(v):
     if v:
