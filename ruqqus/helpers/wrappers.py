@@ -193,10 +193,11 @@ def no_cors(f):
 
             return "This page may not be embedded in other webpages.", 403
 
-        resp = f(*args, **kwargs)
+        resp = make_response(f(*args, **kwargs))
         resp.headers.add("Access-Control-Allow-Origin",
                          app.config["SERVER_NAME"]
                          )
+        return resp
 
     wrapper.__name__=f.__name__
     return wrapper
