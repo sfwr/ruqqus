@@ -2984,7 +2984,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
-    #frontpage, #userpage, #search {
+    #frontpage, #search {
         padding-top: 110px;
     }
 }
@@ -3069,7 +3069,7 @@ body {
     background-color: $light;
 }
 
-#frontpage, #userpage, #search {
+#frontpage, #search {
     padding-top: 95px;
     background-color: $light;
 }

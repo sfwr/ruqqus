@@ -15778,7 +15778,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 }
 
 @media (max-width: 991.98px) {
-  #frontpage, #userpage, #search {
+  #frontpage, #search {
     padding-top: 110px;
   }
 }
@@ -15860,7 +15860,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     background-color: #35363e;
   }
 
-  #frontpage, #userpage, #search {
+  #frontpage, #search {
     padding-top: 95px;
     background-color: #35363e;
   }
