@@ -107,10 +107,10 @@
         <a href="{{ u.permalink }}" class="text-black">
           <h1 class="h5 d-inline-block">{{ u.username }}
             {% if u.over_18 %}
-            <span class="badge badge-danger text-small align-middle">NSFW</span>
+            <span class="badge badge-danger text-small align-middle mx-1">NSFW</span>
             {% endif %}
             {% if v and v.has_follower(u) %}
-            <span class="badge badge-secondary text-small align-middle">Follows you</span>
+            <span class="badge badge-secondary text-small align-middle mx-1">Follows you</span>
             {% endif %}
           </h1>
         </a>
