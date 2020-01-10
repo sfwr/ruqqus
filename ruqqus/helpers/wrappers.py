@@ -2,9 +2,10 @@ from flask import *
 from os import environ
 import requests
 
-from ruqqus.__main__ import Base, db, app
+
 from ruqqus.classes import *
 from .get import *
+from ruqqus.__main__ import Base, db, app
 
 
 #Wrappers
