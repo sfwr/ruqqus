@@ -106,6 +106,14 @@
       <div class="mt-n3 py-3">
         <a href="{{ u.permalink }}" class="text-black">
           <h1 class="h5 d-inline-block">{{ u.username }}
+            {% if u.admin_level %}
+            <span>
+            <i class="fad fa-shield text-admin align-middle ml-1" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>
+            </span>
+            {% endif %}
+            {% if u.real_id %}
+            <span class="badge badge-pill text-white badge-info">{{ u.real_id }}</span>
+            {% endif %}
             {% if u.over_18 %}
             <span class="badge badge-danger text-small align-middle mx-1">nsfw</span>
             {% endif %}
