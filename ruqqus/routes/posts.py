@@ -307,3 +307,11 @@ def delete_post_pid(pid, v):
     db.commit()
 
     return "",204
+
+
+@app.route("/embed/post/<pid>", methods=["GET"])
+def embed_post_pid(pid):
+
+    post=get_post(pid)
+
+    return render_template("embeds/submission.html", p=post)
