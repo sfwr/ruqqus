@@ -4,7 +4,7 @@ report_commentModal = function(id, author) {
 
   document.getElementById("comment-author").textContent = author;
 
-  if(document.getElementById('policy-comment').checked) {
+  if(document.getElementById('policy-comment').checked = true) {
     document.getElementById("reportCommentButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
@@ -17,7 +17,7 @@ report_commentModal = function(id, author) {
         }
         )
     }
-  }else if(document.getElementById('offtopic-comment').checked) {
+  }else if(document.getElementById('offtopic-comment').checked = true) {
     document.getElementById("reportCommentButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
@@ -59,7 +59,7 @@ report_postModal = function(id, author) {
 
   document.getElementById("post-author").textContent = author;
 
-  if(document.getElementById('policy-post').checked) {
+  if(document.getElementById('policy-post').checked = true) {
     document.getElementById("reportPostButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
@@ -72,7 +72,7 @@ report_postModal = function(id, author) {
         }
         )
     }
-  } else if(document.getElementById('offtopic-post').checked) {
+  } else if(document.getElementById('offtopic-post' = true).checked) {
     document.getElementById("reportPostButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
