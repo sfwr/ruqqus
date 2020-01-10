@@ -12792,6 +12792,7 @@ ol > li::before {
 
 .btn {
   font-weight: 500;
+  font-size: 12px;
   border-radius: 0.25rem;
 }
 
