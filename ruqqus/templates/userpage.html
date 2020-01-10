@@ -115,7 +115,7 @@
           </h1>
         </a>
         {% if u.bio_html %}
-        <div class="text-muted">{{ u.bio_html | safe }}</div>
+        <p class="text-muted">{{ u.bio_html | safe }}</p>
         {% endif %}
         <p class="font-weight-bold">{{ u.follower_count }} subscriber{{ 's' if u.follower_count != 1 else '' }}</p>
         {% if v and v.id != u.id %}
