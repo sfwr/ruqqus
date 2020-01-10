@@ -47,8 +47,6 @@ report_postModal = function(id, author, board) {
 
   document.getElementById('report-post-to-guild-dropdown-option').innerHTML= 'This post is off-topic for +' + board;
 
-  document.getElementById('report-post-form').action = "/api/flag/post/" + id;
-
     document.getElementById("reportPostButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
