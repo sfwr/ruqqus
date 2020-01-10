@@ -21,13 +21,7 @@
 	
 	{% block stylesheets %}
 
-	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
-	<link id="css-link" rel="stylesheet" href="/assets/style/main_dark.css">
-	{% else %}
 	<link id="css-link" rel="stylesheet" href="/assets/style/main.css">
-	{% endif %}
-
-	{% endblock %}
 
 	<!-- Font Awesome -->
 	<link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -66,20 +60,11 @@
 	</div>
 </div>
 
-{% include "flag_post_modal.html" %}
-{% include "flag_comment_modal.html" %}
-
-{% include "kick_post_modal.html" %}
-
 {% include "bootstrap.html" %}
 
 <script src="/assets/js/collapse.js"></script>
 <script src="/assets/js/comment_form.js"></script>
 
-{% if v %}
-<script src="/assets/js/comment_form.js"></script>
-<script src="/assets/js/voting.js"></script>
-{% endif %}
 
 <!-- ClipboardJS -->
 
@@ -118,21 +103,6 @@
 
 <!-- Activate K-Code -->
 <script src="/assets/js/kc.js"></script>
-
-{% if v and v.referral_count %}
-<!-- Ruqqus Dark Mode Toggle -->
-<script src="/assets/js/dark_mode.js"></script>
-{% endif %}
-
-{% if v %}
-<!-- Ruqqus Flag Comment & Submission -->
-<script src="/assets/js/flag.js"></script>
-{% endif %}
-
-{% if v and v.mods_anything %}
-<!-- Ruqqus Flag Comment & Submission -->
-<script src="/assets/js/kick.js"></script>
-{% endif %}
 
 {% block enlargeThumbJS %}
 {% endblock %}
