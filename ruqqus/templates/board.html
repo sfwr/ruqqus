@@ -20,6 +20,46 @@
 {% endif %}
 {% endblock %}
 
+{% block postNav %}
+<div class="container-fluid bg-white sticky d-none d-lg-block">
+  <div class="row box-shadow-bottom">
+    <div class="col">
+      <div class="container">
+        <div class="row box-shadow-bottom bg-white">
+          <div class="col">
+            <div class="d-flex">
+              <ul class="nav post-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="?sort=hot{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-fire"></i>Hot</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="?sort=top{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="?sort=new{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-sparkles"></i>New</a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="disputed" %} active{% endif %}" href="?sort=disputed"><i class="fas fa-bullhorn"></i>Disputed</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link {% if sort_method=="activity" %} active{% endif %}" href="?sort=activity"><i class="fas fa-comments"></i>Activity</a>
+                </li>
+              </ul>
+              {% if v %}
+              <div class="my-auto" id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
+              <div class="my-auto" id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
+              {% elif not v %}
+              <div class="my-auto"><a class="btn btn-primary btn-block" href="/signup">Join guild</a></div>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
 {% block PseudoSubmitForm %}
 <!-- Link to submission page from guild -->
 
@@ -101,7 +141,7 @@
       </div>
       <div class="mt-n3 py-3">
         <a href="{{ b.permalink }}" class="text-black">
-        <h1 class="h5 d-inline-block">+{{ b.name }}
+          <h1 class="h5 d-inline-block">+{{ b.name }}
             {% if b.over_18 %}
             <span class="badge badge-danger text-small align-top">nsfw</span>
             {% endif %}
@@ -109,16 +149,16 @@
         </a>
         <div class="text-muted">{{ b.description_html | safe }}</div>
         <p class="font-weight-bold">{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
-       </p>
-       {% if v %}
-       <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
-       <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
-       {% elif not v %}
-       <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
-       {% endif %}
-     </div>
-   </div>
- </div>
+        </p>
+        {% if v %}
+        <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
+        <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
+        {% elif not v %}
+        <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -126,7 +166,7 @@
 
 <div class="sidebar-section sidebar-info-basic">
   <div class="title">
-  <i class="fas fa-info-circle mr-2"></i>Guild details
+    <i class="fas fa-info-circle mr-2"></i>Guild details
     {% if v %}
     <div class="dropdown my-auto post-actions float-right d-inline-block">
       <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
@@ -158,21 +198,15 @@
    {% endif %}
    <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
     <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span> Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
-   </div>
- </div>
+    </div>
+  </div>
 </div>
- <div>{{ b.description_html | safe }}</div>
- {% if v %}
- <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
- <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
- {% elif not v %}
- <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
- {% endif %}
- {% if v and (not b.has_ban(v)) and not (b.restricted_posting and not (b.has_contributor(v) or b.has_mod(v))) %}
- <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
- {% elif not v %}
- <a href="/signup" class="btn btn-secondary btn-block mt-2">Create post</a>
- {% endif %}
+<div>{{ b.description_html | safe }}</div>
+{% if v and (not b.has_ban(v)) and not (b.restricted_posting and not (b.has_contributor(v) or b.has_mod(v))) %}
+<a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
+{% elif not v %}
+<a href="/signup" class="btn btn-secondary btn-block mt-2">Create post</a>
+{% endif %}
 </div>
 </div>
 
@@ -191,37 +225,37 @@
   {% endif %}
 </div>
 <div class="body">
-    <ol class="pl-0 mb-0">   
-      <li>
+  <ol class="pl-0 mb-0">   
+    <li>
       <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse1" role="button" aria-expanded="false" aria-controls="ruleCollapse1">Comply with US law<span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse1" class="collapse">
-        <p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
-      </div>
-      <li>
+      </a>
+    </li>
+    <div id="ruleCollapse1" class="collapse">
+      <p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.</p>
+    </div>
+    <li>
       <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse2" role="button" aria-expanded="false" aria-controls="ruleCollapse2">Do not harass other users<span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse2" class="collapse">
-        <p style="padding: 0 0 0 22px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
-      </div>
-      <li>
+      </a>
+    </li>
+    <div id="ruleCollapse2" class="collapse">
+      <p style="padding: 0 0 0 22px;">Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.</p>
+    </div>
+    <li>
       <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse3" role="button" aria-expanded="false" aria-controls="ruleCollapse3">No inciting violence<span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse3" class="collapse">
-        <p style="padding: 0 0 0 22px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
-      </div>
-      <li>
+      </a>
+    </li>
+    <div id="ruleCollapse3" class="collapse">
+      <p style="padding: 0 0 0 22px;">No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.</p>
+    </div>
+    <li>
       <a class="text-black font-weight-bold collapsed" data-toggle="collapse" href="#ruleCollapse4" role="button" aria-expanded="false" aria-controls="ruleCollapse4">Check for duplicates
-<span class="float-right"><i class="fa"></i></span>
-        </a>
-      </li>
-      <div id="ruleCollapse4" class="collapse">
-        <p style="padding: 0 0 0 22px;">Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.</p>
-      </div>
-    </ol>
+        <span class="float-right"><i class="fa"></i></span>
+      </a>
+    </li>
+    <div id="ruleCollapse4" class="collapse">
+      <p style="padding: 0 0 0 22px;">Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.</p>
+    </div>
+  </ol>
 </div>
 </div>
 
