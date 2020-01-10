@@ -69,7 +69,7 @@
       {% if u.bio_html %}
       <p>{{ u.bio_html | safe }}</p>
       {% endif %}
-      {% if v %}
+      {% if u.bio_html and v %}
       {% if v.id == u.id %}
       <div><a class="btn btn-secondary btn-sm" href="/settings/profile#bio">Update bio</a></div>
       {% endif %}
@@ -124,50 +124,13 @@
 {% endblock %}
 
 {% block sidebarblock %}
-<div class="sidebar-section sidebar-profile-basic">
-  <div class="body">
-    <h1 class="h6 d-inline-block mb-0">@{{ u.username }}</h1>
-    <span>
-      {% if u.admin_level %}<i class="fad fa-shield text-admin ml-1" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>{% endif %}
-      {% if u.real_id %}<span class="badge badge-pill text-white badge-info">{{ u.real_id }}</span>{% endif %}
-    </span>
-    <div class="profile-actions d-inline-block float-right">
-     {% if v and v.id != u.id %}
-     <div class="dropdown show">
-      <a href="#" role="button" id="dropdownProfileActionsLink" data-toggle="dropdown"
-      aria-haspopup="true" aria-expanded="false">
-      <i class="fas fa-ellipsis-h"></i>
-    </a>
-
-    <div class="dropdown-menu dropdown-menu-right border-0 shadow" aria-labelledby="dropdownMoreLink">
-      <a class="dropdown-item" href="#"><i class="fas fa-paper-plane"></i>Message</a>
-      <a class="dropdown-item" href="#"><i class="fas fa-flag"></i>Report</a>
-    </div>
-  </div>
-  {% endif %}
-  {% if v and v.id == u.id %}
-  <div class="dropdown show">
-    <a href="#" role="button" id="dropdownProfileActionsLink" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    <i class="fas fa-ellipsis-h"></i>
-  </a>
-
-  <div class="dropdown-menu dropdown-menu-right border-0 shadow" aria-labelledby="dropdownMoreLink">
-    <a class="dropdown-item" href="/settings/profile#bio"><i class="fas fa-edit"></i>Edit profile</a>
-    <a class="dropdown-item" href="/settings/security"><i class="fas fa-cog"></i>Account details</a>
-  </div>
-</div>
-{% endif %}   
-</div>
-</div>
-</div>
 <div class="sidebar-section sidebar-profile-stats">
  <div class="title">Profile</div>
  <div class="body">
    {% if u.bio_html %}
    {{ u.bio_html | safe }}
    {% endif %}
-   {% if v %}
+   {% if v and u.bio_html %}
    {% if v.id == u.id %}
    <div><a class="btn btn-secondary btn-sm mb-3" href="/settings/profile#bio">Update bio</a></div>
    {% endif %}
