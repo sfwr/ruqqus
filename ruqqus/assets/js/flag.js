@@ -1,10 +1,11 @@
 // Flag Comment
 
-report_commentModal = function(id, author) {
+report_commentModal = function(id, author, board) {
 
   document.getElementById("comment-author").textContent = author;
 
-  if (document.getElementById('policy-comment').checked = true) {
+  document.getElementById('report-comment-to-guild-dropdown-option').innerHTML= 'This comment is off-topic for +' + board;
+
     document.getElementById("reportCommentButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
@@ -17,20 +18,6 @@ report_commentModal = function(id, author) {
         }
         )
     }
-  } else if (document.getElementById('offtopic-comment').checked = true) {
-    document.getElementById("reportCommentButton").onclick = function() {
-
-      this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting comment';
-      this.disabled = true;
-      post('/api/report/comment/' + id,
-        callback = function() {
-
-          document.getElementById("reportCommentFormBefore").classList.add('d-none');
-          document.getElementById("reportCommentFormAfter").classList.remove('d-none');
-        }
-        )
-    }
-  }
 
 };
 
@@ -43,7 +30,6 @@ $('#reportCommentModal').on('hidden.bs.modal', function () {
 
   button.innerHTML='Report comment';
   button.disabled= false;
-
   afterModal.classList.add('d-none');
 
   if ( beforeModal.classList.contains('d-none') ) {
@@ -55,11 +41,14 @@ $('#reportCommentModal').on('hidden.bs.modal', function () {
 
 // Flag Submission
 
-report_postModal = function(id, author) {
+report_postModal = function(id, author, board) {
 
   document.getElementById("post-author").textContent = author;
 
-  if (document.getElementById('policy-post').checked = true) {
+  document.getElementById('report-post-to-guild-dropdown-option').innerHTML= 'This post is off-topic for +' + board;
+
+  document.getElementById('report-post-form').action = "/api/flag/post/" + id;
+
     document.getElementById("reportPostButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
@@ -72,20 +61,6 @@ report_postModal = function(id, author) {
         }
         )
     }
-  } else if (document.getElementById('offtopic-post').checked = true) {
-    document.getElementById("reportPostButton").onclick = function() {
-
-      this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
-      this.disabled = true;
-      post('/api/report/post/' + id,
-        callback = function() {
-
-          document.getElementById("reportPostFormBefore").classList.add('d-none');
-          document.getElementById("reportPostFormAfter").classList.remove('d-none');
-        }
-        )
-    }
-  }
 };
 
 $('#reportPostModal').on('hidden.bs.modal', function () {

@@ -14,16 +14,17 @@
           <div class="modal-body">
             <div class="h6">We're sorry something here is wrong.</div>
             <small class="form-text text-muted">Please select a reason for flagging below.</small>
-            <div class="mt-2">
-              <div class="form-check mb-1">
-                <input class="form-check-input" type="radio" name="report" id="policy-post" value="admin">
-                <label class="form-check-label" for="policy-post">The post violates Ruqqus policy</label>
-              </div>
-              <div class="form-check mb-1">
-                <input class="form-check-input" type="radio" name="report" id="offtopic-post" value="guild">
-                <label class="form-check-label" for="offtopic-post">The post is off-topic and does not belong in this guild</label>
-              </div>
-            </div>
+              <input type="hidden" name="formkey" value="{{ v.formkey }}">
+              <select name="report_type">
+                <option>
+                  Reason for flagging?
+                </option>
+                <option value="admin">
+                  This breaks Ruqqus policy
+                </option>
+                <option id="report-post-to-guild-dropdown-option" value="guild">
+                </option>
+              </select>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
