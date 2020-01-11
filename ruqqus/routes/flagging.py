@@ -15,7 +15,7 @@ def api_flag_post(pid, v):
     kind = request.form.get("report_type")
     
     if kind=="admin":
-        existing=db.query(Flag).filter_by(user_id=v.id, post_id=pid).first()
+        existing=db.query(Flag).filter_by(user_id=v.id, post_id=post.id).first()
 
         if existing:
             return "",409
@@ -26,7 +26,7 @@ def api_flag_post(pid, v):
                   )
         
     elif kind=="guild":
-        existing=db.query(Report).filter_by(user_id=v.id, post_id=pid).first()
+        existing=db.query(Report).filter_by(user_id=v.id, post_id=post.id).first()
 
         if existing:
             return "",409
