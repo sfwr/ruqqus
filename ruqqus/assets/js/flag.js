@@ -53,7 +53,7 @@ report_postModal = function(id, author, board) {
       this.disabled = true;
 
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", url, true);
+      xhr.open("POST", '/api/flag/post/'+id, true);
       var form = new FormData()
       form.append("formkey", formkey());
 
