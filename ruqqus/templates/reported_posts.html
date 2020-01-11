@@ -1,3 +1,23 @@
 {% extends "flagged_posts.html" %}
 
 {% block postNav %}{% endblock %}
+
+{% block sidebarblock %}
+{% if b %}
+<div class="sidebar-section sidebar-profile-basic">
+  <div class="body">
+    <h1 class="h6 d-inline-block mb-0" style="color:black">+{{ b.name }} Reported Posts</h1>
+	<p>Posts in +{{ b.name }} that users have reported as being off-topic.</p>
+
+</div>
+</div>
+{% else %}
+<div class="sidebar-section sidebar-profile-basic">
+  <div class="body">
+    <h1 class="h6 d-inline-block mb-0" style="color:black">Reported Posts</h1>
+
+	<p>Posts in your guilds that users have reported as being off-topic.</p>
+</div>
+</div>
+{% endif %}
+{% endblock %}
