@@ -31,7 +31,7 @@ def api_flag_post(pid, v):
         if existing:
             return "",409
 
-        flag=Report(post_id=pid,
+        flag=Report(post_id=post.id,
                   user_id=v.id,
                   created_utc=int(time.time())
                   )
