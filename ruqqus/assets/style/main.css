@@ -14262,6 +14262,88 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   font-size: 1.25rem;
 }
 
+.dropdown-actions {
+  position: relative;
+  color: #7F7F8A;
+  font-weight: 500;
+  font-size: 12px;
+  z-index: 3;
+}
+
+.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
+  font-size: 12px;
+  color: #7F7F8A;
+  margin-right: 0.5rem;
+  width: 1rem;
+}
+
+.dropdown-actions .voting .fa, .dropdown-actions .voting .fas, .dropdown-actions .voting .far {
+  color: inherit;
+}
+
+.dropdown-actions .fa-ellipsis-v {
+  font-size: 1.25rem;
+}
+
+.dropdown-actions .dropdown-item:active .fa, .dropdown-actions .dropdown-item:active .fas {
+  color: #1F1F1F;
+}
+
+.dropdown-actions .dropdown-item:hover .fa, .dropdown-actions .dropdown-item:hover .fas {
+  color: #1F1F1F;
+}
+
+.dropdown-actions a:hover .fa, .dropdown-actions a:hover .fas {
+  color: #1F1F1F;
+}
+
+.dropdown-actions:hover, .dropdown-actions:focus {
+  z-index: 4;
+}
+
+.dropdown-actions .copy-link:hover {
+  color: #1F1F1F;
+}
+
+.dropdown-actions .fas.fa-ellipsis-h, .dropdown-actions .far.fa-ellipsis-h {
+  font-size: 1.25rem;
+  vertical-align: middle;
+}
+
+.dropdown-actions .removeDropdownItem.dropdown-item:hover, .dropdown-actions .removeDropdownItem.dropdown-item:focus, .dropdown-actions .removeDropdownItem.dropdown-item.active {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #ffc107;
+}
+
+.dropdown-actions .removeDropdownItem.dropdown-item:hover .fas, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fas, .dropdown-actions .removeDropdownItem.dropdown-item.active .fas, .dropdown-actions .removeDropdownItem.dropdown-item:hover .far, .dropdown-actions .removeDropdownItem.dropdown-item:focus .far, .dropdown-actions .removeDropdownItem.dropdown-item.active .far .dropdown-actions .removeDropdownItem.dropdown-item:hover .fa,
+.dropdown-actions .removeDropdownItem.dropdown-item:focus .fa, .dropdown-actions .removeDropdownItem.dropdown-item.active .fa {
+  color: #ffffff;
+}
+
+.dropdown-actions .approveDropdownItem.dropdown-item:hover, .dropdown-actions .approveDropdownItem.dropdown-item:focus, .dropdown-actions .approveDropdownItem.dropdown-item.active {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: #23CE6B;
+}
+
+.dropdown-actions .approveDropdownItem.dropdown-item:hover .fas, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fas, .dropdown-actions .approveDropdownItem.dropdown-item.active .fas, .dropdown-actions .approveDropdownItem.dropdown-item:hover .far, .dropdown-actions .approveDropdownItem.dropdown-item:focus .far, .dropdown-actions .approveDropdownItem.dropdown-item.active .far .dropdown-actions .approveDropdownItem.dropdown-item:hover .fa,
+.dropdown-actions .approveDropdownItem.dropdown-item:focus .fa, .dropdown-actions .approveDropdownItem.dropdown-item.active .fa {
+  color: #ffffff;
+}
+
+.dropdown-actions .list-inline {
+  margin-bottom: 0;
+}
+
+.dropdown-actions .list-inline .list-inline-item {
+  margin-right: 1rem;
+}
+
+.dropdown-actions .list-inline .list-inline-item:last-child {
+  margin-right: 0;
+}
+
 #guild .post-meta-guild {
   display: none;
 }
@@ -15908,6 +15990,16 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .post-actions .fa, .post-actions .fas, .post-actions .far {
+    font-size: 1rem;
+    color: #C2C2C2;
+  }
+
+  .dropdown-actions a {
+    color: #ACACAC;
+    font-size: 1rem;
+  }
+
+  .dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
     font-size: 1rem;
     color: #C2C2C2;
   }

@@ -1865,6 +1865,90 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     font-size: 1.25rem;
 }
 
+// Dropdown actions
+
+.dropdown-actions {
+    position: relative;
+    color: $text-muted;
+    font-weight: $font-weight-bold;
+    font-size: $small-font-size;
+    z-index: 3;
+}
+
+.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
+    font-size: $small-font-size;
+    color: $muted;
+    margin-right: .5rem;
+    width: 1rem;
+}
+
+.dropdown-actions .voting .fa, .dropdown-actions .voting .fas, .dropdown-actions .voting .far {
+    color: inherit;
+}
+
+.dropdown-actions .fa-ellipsis-v {
+    font-size: $font-size-lg;
+}
+
+.dropdown-actions .dropdown-item:active .fa, .dropdown-actions .dropdown-item:active .fas {
+    color: $black;
+}
+
+.dropdown-actions .dropdown-item:hover .fa, .dropdown-actions .dropdown-item:hover .fas {
+    color: $black;
+}
+
+.dropdown-actions a:hover .fa, .dropdown-actions a:hover .fas {
+    color: $black;
+}
+
+.dropdown-actions:hover, .dropdown-actions:focus {
+    z-index: 4;
+}
+
+.dropdown-actions .copy-link:hover  {
+    color: $black;
+}
+
+.dropdown-actions .fas.fa-ellipsis-h, .dropdown-actions .far.fa-ellipsis-h {
+    font-size: $font-size-lg;
+    vertical-align: middle;
+}
+
+.dropdown-actions .removeDropdownItem.dropdown-item:hover, .dropdown-actions .removeDropdownItem.dropdown-item:focus, .dropdown-actions .removeDropdownItem.dropdown-item.active {
+    color: $white;
+    text-decoration: none;
+    background-color: $warning;
+}
+
+.dropdown-actions .removeDropdownItem.dropdown-item:hover .fas, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fas, .dropdown-actions .removeDropdownItem.dropdown-item.active .fas, .dropdown-actions .removeDropdownItem.dropdown-item:hover .far, .dropdown-actions .removeDropdownItem.dropdown-item:focus .far, .dropdown-actions .removeDropdownItem.dropdown-item.active .far
+.dropdown-actions .removeDropdownItem.dropdown-item:hover .fa, .dropdown-actions .removeDropdownItem.dropdown-item:focus .fa, .dropdown-actions .removeDropdownItem.dropdown-item.active .fa {
+    color: $white;
+}
+
+.dropdown-actions .approveDropdownItem.dropdown-item:hover, .dropdown-actions .approveDropdownItem.dropdown-item:focus, .dropdown-actions .approveDropdownItem.dropdown-item.active {
+    color: $white;
+    text-decoration: none;
+    background-color: $success;
+}
+
+.dropdown-actions .approveDropdownItem.dropdown-item:hover .fas, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fas, .dropdown-actions .approveDropdownItem.dropdown-item.active .fas, .dropdown-actions .approveDropdownItem.dropdown-item:hover .far, .dropdown-actions .approveDropdownItem.dropdown-item:focus .far, .dropdown-actions .approveDropdownItem.dropdown-item.active .far
+.dropdown-actions .approveDropdownItem.dropdown-item:hover .fa, .dropdown-actions .approveDropdownItem.dropdown-item:focus .fa, .dropdown-actions .approveDropdownItem.dropdown-item.active .fa {
+    color: $white;
+}
+
+.dropdown-actions .list-inline {
+    margin-bottom: 0;
+}
+
+.dropdown-actions .list-inline .list-inline-item {
+    margin-right: 1rem;
+}
+
+.dropdown-actions .list-inline .list-inline-item:last-child {
+    margin-right: 0;
+}
+
 // Guilds
 
 #guild .post-meta-guild {
@@ -3135,6 +3219,26 @@ body, #settings, #notifications, #submit {
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
+    font-size: $font-size-base;
+    color: $gray-400;
+}
+
+.dropdown-actions a {
+    color: $gray-600;
+    font-size: $font-size-base;
+}
+
+.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
+    font-size: $font-size-base;
+    color: $gray-400;
+}
+
+.dropdown-actions a {
+    color: $gray-600;
+    font-size: $font-size-base;
+}
+
+.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
     font-size: $font-size-base;
     color: $gray-400;
 }
