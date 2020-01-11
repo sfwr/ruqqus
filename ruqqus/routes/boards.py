@@ -141,9 +141,6 @@ def mod_kick_bid_pid(bid,pid, board, v):
     if not post.board_id==board.id:
         abort(422)
 
-    if not board.has_mod(v):
-        abort(403)
-
     post.board_id=1
     db.add(post)
     db.commit()
@@ -151,6 +148,22 @@ def mod_kick_bid_pid(bid,pid, board, v):
     cache.delete_memoized(Board.idlist, board)
 
     return "", 204
+
+@app.route("/mod/accept/<bid>/<pid>", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_accept_bid_pid(bid, pid, board, v):
+
+    post=get_post(pid)
+    if not post.board_id==board.id:
+        abort(422)
+
+    post.mod_approved=v.id
+    db.add(post)
+    db.commit()
+    return "", 204
+    
 
 @app.route("/mod/ban/<bid>/<username>", methods=["POST"])
 @auth_required
