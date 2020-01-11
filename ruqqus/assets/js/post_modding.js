@@ -31,6 +31,6 @@ post(url, callback, "Unable to approve post at this time. Please try again later
 
 function deleteElement(eid) {
 	x=document.getElementById(eid)
-	x.parentNode.removeChild(x)
+	x.parentElement.removeChild(x)
 
 }

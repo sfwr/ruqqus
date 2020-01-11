@@ -237,7 +237,18 @@
 
 {% else %}
 
-{% if b %}
+{% if request.path.endswith('/mod/queue') %}
+
+<div class="row no-gutters">   
+  <div class="col">      
+    <div class="text-center py-7">
+      <div class="h4 p-2">This queue is empty. (That's a good thing.)</div>
+    </div>       
+  </div>  
+</div>
+
+
+{% elif b %}
 <div class="row no-gutters">   
   <div class="col">      
     <div class="text-center py-7">
