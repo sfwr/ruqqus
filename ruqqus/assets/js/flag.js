@@ -58,7 +58,7 @@ report_postModal = function(id, author, board) {
         var form = new FormData()
         form.append("formkey", formkey());
 
-	dropdown=document.getElementById("report-type-dropdown")
+	dropdown=document.getElementById("report-type-dropdown");
 	
 	form.append("report_type", dropdown.options[dropdown.selectedIndex].value);
         xhr.withCredentials=true;
