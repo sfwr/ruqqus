@@ -10,12 +10,12 @@
       </div>
       <!-- Before report is made, show this -->
       <div class="" id="reportPostFormBefore">
-        <form id="report-post-form">
+        <form id="report-post-form" method="post">
           <div class="modal-body">
             <div class="h6">We're sorry something here is wrong.</div>
             <small class="form-text text-muted">Please select a reason for flagging below.</small>
               <input type="hidden" name="formkey" value="{{ v.formkey }}">
-              <select name="report_type" form="report-post-form" class="custom-select mt-3">
+              <select id="report-type-dropdown" name="report_type" form="report-post-form" class="custom-select mt-3">
                 <option disabled selected>
                   Reason for flagging?
                 </option>
