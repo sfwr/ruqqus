@@ -676,6 +676,7 @@ def all_mod_queue(v):
     page=int(request.args.get("page",1))
 
     board_ids=[x.board_id for x in v.moderates.filter_by(accepted=True).all()]
+    print(board_ids)
 
     posts = db.query(Submission).filter(Submission.board_id.in_(board_ids),
                                         Submission.mod_approved==0,
