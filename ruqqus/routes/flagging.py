@@ -15,7 +15,7 @@ def api_flag_post(pid, v):
     kind = request.form.get("report_type")
     
     if kind=="admin":
-        existing=db.query(Flag).filter_by(user_id=v.id, post_id=post.id).first()
+        existing=db.query(Flag).filter_by(user_id=v.id, post_id=post.id).filter(Flag.created_utc >= post.edited_utc).first()
 
         if existing:
             return "",409
@@ -26,7 +26,7 @@ def api_flag_post(pid, v):
                   )
         
     elif kind=="guild":
-        existing=db.query(Report).filter_by(user_id=v.id, post_id=post.id).first()
+        existing=db.query(Report).filter_by(user_id=v.id, post_id=post.id).filter(Report.created_utc >= post.edited_utc).first()
 
         if existing:
             return "",409
@@ -49,14 +49,14 @@ def api_flag_post(pid, v):
 @is_not_banned
 def api_flag_comment(cid, v):
 
-    cid=base36decode(cid)
+    comment=get_comment(cid)
 
-    existing=db.query(CommentFlag).filter_by(user_id=v.id, comment_id=cid).first()
+    existing=db.query(CommentFlag).filter_by(user_id=v.id, comment_id=cid).filter(CommentFlag.created_utc >= comment.edited_utc)first()
 
     if existing:
         return "",409
 
-    flag=CommentFlag(comment_id=cid,
+    flag=CommentFlag(comment_id=comment.id,
               user_id=v.id,
               created_utc=int(time.time())
               )
