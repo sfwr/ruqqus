@@ -52,23 +52,23 @@ report_postModal = function(id, author, board) {
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';
       this.disabled = true;
 
-      function post(url, callback, errortext) {
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", url, true);
-        var form = new FormData()
-        form.append("formkey", formkey());
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", url, true);
+      var form = new FormData()
+      form.append("formkey", formkey());
 
-	dropdown=document.getElementById("report-type-dropdown");
-	
-	form.append("report_type", dropdown.options[dropdown.selectedIndex].value);
-        xhr.withCredentials=true;
-        xhr.onload=function() {
-          document.getElementById("reportPostFormBefore").classList.add('d-none');
-          document.getElementById("reportPostFormAfter").classList.remove('d-none');
-        };
-        xhr.onerror=function(){alert(errortext)};
-        xhr.send(form);
-      }
+      dropdown=document.getElementById("report-type-dropdown");
+      form.append("report_type", dropdown.options[dropdown.selectedIndex].value);
+
+      xhr.withCredentials=true;
+
+      xhr.onload=function() {
+        document.getElementById("reportPostFormBefore").classList.add('d-none');
+        document.getElementById("reportPostFormAfter").classList.remove('d-none');
+      };
+
+      xhr.onerror=function(){alert(errortext)};
+      xhr.send(form);
 
     }
 };
