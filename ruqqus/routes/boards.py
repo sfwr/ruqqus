@@ -648,7 +648,7 @@ def board_mod_queue(boardname, board, v):
 
     posts = db.query(Submission).filter_by(board_id=board.id,
                                            is_banned=False,
-                                          # mod_approved=None
+                                           mod_approved=None
                                            ).filter(Submission.report_count>=1)
 
     if not v.over_18:
