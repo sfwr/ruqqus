@@ -69,11 +69,11 @@
 
 
               <div id="voting" class="voting d-none d-md-block {% if p.body_html %} mb-auto {% else %} my-auto {% endif %} mr-3">
-                <div id="post-{{ p.base36id }}-up" class="arrow-up mx-auto" onclick="location.href='/login';">
+                <div id="post-{{ p.base36id }}-up" class="arrow-up mx-auto">
                 </div>
-                <span id="post-{{ p.base36id }}-score-none" class="score text-muted">{{ score-adjust }}</span>
+                <span id="post-{{ p.base36id }}-score-none" class="score text-muted">{{ score}}</span>
                 {% if not p.board.downvotes_disabled %}
-                <div id="post-{{ p.base36id }}-down" class="arrow-down mx-auto" onclick="location.href='/login';">
+                <div id="post-{{ p.base36id }}-down" class="arrow-down mx-auto">
                 </div>
 
               </div>
