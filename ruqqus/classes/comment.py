@@ -81,8 +81,8 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     def post(self):
 
         return db.query(Submission).filter_by(id=self.parent_submission).first()
+
     @property
-    @lazy
     def board(self):
         return self.post.board
     
