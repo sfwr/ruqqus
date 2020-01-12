@@ -4,7 +4,15 @@ report_commentModal = function(id, author, board) {
 
   document.getElementById("comment-author").textContent = author;
 
-  document.getElementById('report-comment-to-guild-dropdown-option').innerHTML= 'This comment is off-topic for +' + board;
+  var offtopic = document.getElementById('report-comment-to-guild-dropdown-option')
+  offtopic.innerHTML= 'This comment is off-topic for +' + board;
+
+  if (board=='general') {
+    offtopic.disabled=true;
+  }
+  else {
+    offtopic.disabled=false;
+  }
 
     document.getElementById("reportCommentButton").onclick = function() {
 
