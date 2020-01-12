@@ -34,6 +34,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     ban_reason=Column(String(256), default='')
     creation_ip=Column(String(64), default='')
 
+    post=relationship("Submission", lazy="subquery")
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
 
     #These are virtual properties handled as postgres functions server-side
@@ -76,13 +77,14 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     def author(self):
         return db.query(User).filter_by(id=self.author_id).first()
 
+##    @property
+##    @lazy
+##    def post(self):
+##
+##        return db.query(Submission).filter_by(id=self.parent_submission).first()
+
     @property
     @lazy
-    def post(self):
-
-        return db.query(Submission).filter_by(id=self.parent_submission).first()
-
-    @property
     def board(self):
         return self.post.board
     
