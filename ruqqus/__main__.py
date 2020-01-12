@@ -122,7 +122,7 @@ def after_request(response):
     response.headers.add('Access-Control-Allow-Headers',
                          "Origin, X-Requested-With, Content-Type, Accept, x-auth"
                          )
-    resposne.headers.add("Cache-Control",
+    response.headers.add("Cache-Control",
                          "maxage=120")
 
     #signups - hit discord webhook
