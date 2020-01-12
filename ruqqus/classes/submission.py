@@ -46,7 +46,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     ban_reason=Column(String(128), default="")
     creation_ip=Column(String(64), default="")
     mod_approved=Column(Integer, default=None)
-    accepted_utc=Column(integer, default=0)
+    accepted_utc=Column(Integer, default=0)
     is_image=Column(Boolean, default=False)
     has_thumb=Column(Boolean, default=False)    
 
