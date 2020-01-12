@@ -46,6 +46,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     ban_reason=Column(String(128), default="")
     creation_ip=Column(String(64), default="")
     mod_approved=Column(Integer, default=None)
+    accepted_utc=Column(Integer, default=0)
     is_image=Column(Boolean, default=False)
     has_thumb=Column(Boolean, default=False)    
 
@@ -202,6 +203,13 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             return 0
         else:
             return self.flags.filter(Flag.created_utc>self.approved_utc).count()
+
+    @property
+    def active_reports(self):
+        if self.mod_approved:
+            return 0
+        else:
+            return self.reports.filter(Report.created_utc>self.accepted_utc).count()
 
 
     @property
