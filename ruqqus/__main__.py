@@ -123,7 +123,7 @@ def after_request(response):
                          "Origin, X-Requested-With, Content-Type, Accept, x-auth"
                          )
     resposne.headers.add("Cache-Control",
-                         "maxage=120)
+                         "maxage=120")
 
     #signups - hit discord webhook
     if request.method=="POST" and response.status_code in [301, 302] and request.path=="/signup":
