@@ -6,13 +6,7 @@ report_commentModal = function(id, author, board) {
 
   var offtopic = document.getElementById('report-comment-to-guild-dropdown-option')
   offtopic.innerHTML= 'This comment is off-topic for +' + board;
-
-  if (board=='general') {
-    offtopic.disabled=true;
-  }
-  else {
-    offtopic.disabled=false;
-  }
+  offtopic.disabled=true;
 
     document.getElementById("reportCommentButton").onclick = function() {
 
@@ -53,7 +47,15 @@ report_postModal = function(id, author, board) {
 
   document.getElementById("post-author").textContent = author;
 
-  document.getElementById('report-post-to-guild-dropdown-option').innerHTML= 'This post is off-topic for +' + board;
+  offtopic=document.getElementById('report-post-to-guild-dropdown-option');
+  offtopic.innerHTML= 'This post is off-topic for +' + board;
+
+  if (board=='general') {
+    offtopic.disabled=true;
+  }
+  else {
+    offtopic.disabled=false;
+  }
 
     document.getElementById("reportPostButton").onclick = function() {
 
