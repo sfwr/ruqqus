@@ -80,7 +80,11 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     @property
     @lazy
     def board(self):
-        return self.post.board
+
+        if self.post:
+            return self.post.board
+        else:
+            return None
     
     @property
     @lazy
