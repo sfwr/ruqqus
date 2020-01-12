@@ -34,7 +34,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     ban_reason=Column(String(256), default='')
     creation_ip=Column(String(64), default='')
 
-    post=relationship("Submission", lazy="dynamic")
+    post=relationship("Submission", lazy="subquery")
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
 
     #These are virtual properties handled as postgres functions server-side
