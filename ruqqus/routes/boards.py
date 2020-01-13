@@ -675,7 +675,7 @@ def board_mod_queue(boardname, board, v):
 
     posts=posts[0:25]
 
-    return render_template("reported_posts.html",
+    return render_template("guild/reported_posts.html",
                            listing=posts,
                            next_exists=next_exists,
                            page=page,
