@@ -15,6 +15,7 @@ from .votes import Vote
 from .alts import Alt
 from .titles import Title
 from .submission import Submission
+from .comment import Comment
 from .boards import Board
 from .mix_ins import *
 from ruqqus.__main__ import Base, db, cache

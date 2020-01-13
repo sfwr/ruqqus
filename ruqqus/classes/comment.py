@@ -8,7 +8,6 @@ from .mix_ins import *
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base, db, cache
-from .user import User
 from .submission import Submission
 from .votes import CommentVote
 from .flags import CommentFlag
@@ -19,7 +18,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     __tablename__="comments"
 
     id = Column(BigInteger, primary_key=True)
-    author_id = Column(BigInteger, ForeignKey(User.id))
+    author_id = Column(BigInteger, ForeignKey("User.id"))
     body = Column(String(2000), default=None)
     parent_submission = Column(BigInteger, ForeignKey(Submission.id))
     parent_fullname = Column(BigInteger) #this column is foreignkeyed to comment(id) but we can't do that yet as "comment" class isn't yet defined
@@ -36,6 +35,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
 
     post=relationship("Submission", lazy="subquery")
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
+    author=relationship("User", lazy="subquery")
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
@@ -72,10 +72,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     def is_top_level(self):
         return self.parent_fullname.startswith("t2_")
 
-    @property
-    @lazy
-    def author(self):
-        return db.query(User).filter_by(id=self.author_id).first()
+
 
     @property
     @lazy
