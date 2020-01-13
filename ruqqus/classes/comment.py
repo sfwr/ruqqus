@@ -18,7 +18,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     __tablename__="comments"
 
     id = Column(BigInteger, primary_key=True)
-    author_id = Column(BigInteger, ForeignKey("User.id"))
+    author_id = Column(BigInteger, ForeignKey("users.id"))
     body = Column(String(2000), default=None)
     parent_submission = Column(BigInteger, ForeignKey(Submission.id))
     parent_fullname = Column(BigInteger) #this column is foreignkeyed to comment(id) but we can't do that yet as "comment" class isn't yet defined
