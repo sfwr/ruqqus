@@ -20,7 +20,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     id = Column(Integer, primary_key=True)
     author_id = Column(Integer, ForeignKey("users.id"))
     body = Column(String(2000), default=None)
-    parent_submission = Column(Integer, ForeignKey(Submission.id))
+    parent_submission = Column(Integer, ForeignKey("submissions.id"))
     parent_fullname = Column(Integer) #this column is foreignkeyed to comment(id) but we can't do that yet as "comment" class isn't yet defined
     created_utc = Column(Integer, default=0)
     edited_utc = Column(Integer, default=0)

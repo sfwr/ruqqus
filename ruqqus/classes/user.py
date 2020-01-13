@@ -305,7 +305,7 @@ class User(Base, Stndrd):
         
         page=int(request.args.get("page","1"))
 
-        comments=db.query(Comment).filter_by(author_id=self.id).filter(text("parent_submission is not null"))
+        comments=self.comments.filter(text("parent_submission is not null"))
 
         if not (v and v.over_18):
             comments=comments.filter_by(over_18=False)
@@ -315,9 +315,12 @@ class User(Base, Stndrd):
             
         if not (v and (v.admin_level >=3 or v.id==self.id)):
             comments=comments.filter_by(is_banned=False)
+
+        comments=comments.order_by(Comment.created_utc.desc())
+        comments=comments.offset(25*(page-1)).limit(26)
         
 
-        listing=[ c for c in comments.order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
+        listing=[c for c in comments]
         #we got 26 items just to see if a next page exists
         next_exists=(len(listing)==26)
         listing=listing[0:25]
