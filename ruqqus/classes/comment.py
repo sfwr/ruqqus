@@ -35,7 +35,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
 
     post=relationship("Submission", lazy="subquery")
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
-    author=relationship("User", lazy="subquery", primaryjoin="User.id=Comment.author_id")
+    author=relationship("User", lazy="subquery", primaryjoin="User.id==Comment.author_id")
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
