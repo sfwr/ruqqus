@@ -54,6 +54,8 @@ class User(Base, Stndrd):
     reserved=Column(String(256), default=None)
     is_nsfw=Column(Boolean, default=False)
     tos_agreed_utc=Column(Integer, default=None)
+    profile_nonce=Column(Integer, default=0)
+    banner_nonce=Column(Integer, default=0)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
@@ -436,7 +438,10 @@ class User(Base, Stndrd):
 
     def set_profile(self, file):
 
-        aws.upload_file(name=f"users/{self.username}/profile.png",
+        self.del_profile()
+        self.profile_nonce+=1
+
+        aws.upload_file(name=f"users/{self.username}/profile-{self.profile_nonce}.png",
                         file=file)
         self.has_profile=True
         db.add(self)
@@ -444,7 +449,10 @@ class User(Base, Stndrd):
         
     def set_banner(self, file):
 
-        aws.upload_file(name=f"users/{self.username}/banner.png",
+        self.del_banner()
+        self.banner_nonce+=1
+
+        aws.upload_file(name=f"users/{self.username}/banner-{self.banner_nonce}.png",
                         file=file)
 
         self.has_banner=True
@@ -453,14 +461,14 @@ class User(Base, Stndrd):
 
     def del_profile(self):
 
-        aws.delete_file(name=f"users/{self.username}/profile.png")
+        aws.delete_file(name=f"users/{self.username}/profile-{self.profile_nonce}.png")
         self.has_profile=False
         db.add(self)
         db.commit()
 
     def del_banner(self):
 
-        aws.delete_file(name=f"users/{self.username}/banner.png")
+        aws.delete_file(name=f"users/{self.username}/banner-{self.banner_nonce}.png")
         self.has_banner=False
         db.add(self)
         db.commit()
@@ -469,7 +477,7 @@ class User(Base, Stndrd):
     def banner_url(self):
 
         if self.has_banner:
-            return f"https://i.ruqqus.com/users/{self.username}/banner.png"
+            return f"https://i.ruqqus.com/users/{self.username}/banner-{self.banner_nonce}.png"
         else:
             return "/assets/images/profiles/default_bg.png"
 
@@ -477,7 +485,7 @@ class User(Base, Stndrd):
     def profile_url(self):
 
         if self.has_profile:
-            return f"https://i.ruqqus.com/users/{self.username}/profile.png"
+            return f"https://i.ruqqus.com/users/{self.username}/profile-{self.profile-nonce}.png"
         else:
             return "/assets/images/profiles/default-profile-pic.png"
 
