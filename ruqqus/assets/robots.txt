@@ -21,3 +21,6 @@ Disallow: /
 
 User-Agent: Xaldon_WebSpider
 Disallow: /
+
+User-Agent: MJ12bot
+Disallow: /
