@@ -17,13 +17,13 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
 
     __tablename__="comments"
 
-    id = Column(BigInteger, primary_key=True)
-    author_id = Column(BigInteger, ForeignKey("users.id"))
+    id = Column(Integer, primary_key=True)
+    author_id = Column(Integer, ForeignKey("users.id"))
     body = Column(String(2000), default=None)
-    parent_submission = Column(BigInteger, ForeignKey(Submission.id))
-    parent_fullname = Column(BigInteger) #this column is foreignkeyed to comment(id) but we can't do that yet as "comment" class isn't yet defined
-    created_utc = Column(BigInteger, default=0)
-    edited_utc = Column(BigInteger, default=0)
+    parent_submission = Column(Integer, ForeignKey(Submission.id))
+    parent_fullname = Column(Integer) #this column is foreignkeyed to comment(id) but we can't do that yet as "comment" class isn't yet defined
+    created_utc = Column(Integer, default=0)
+    edited_utc = Column(Integer, default=0)
     is_banned = Column(Boolean, default=False)
     body_html = Column(String)
     distinguish_level=Column(Integer, default=0)

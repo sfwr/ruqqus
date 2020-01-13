@@ -27,7 +27,7 @@ class User(Base, Stndrd):
     username = Column(String, default=None)
     email = Column(String, default=None)
     passhash = Column(String, default=None)
-    created_utc = Column(BigInteger, default=0)
+    created_utc = Column(Integer, default=0)
     admin_level = Column(Integer, default=0)
     is_activated = Column(Boolean, default=False)
     reddit_username = Column(String, default=None)
