@@ -298,6 +298,7 @@
 
 			<!-- Right Sidebar (hidden on devices smaller than "large") -->
 
+			{% block sidebar %}
 			<div class="col sidebar text-left d-none d-lg-block pt-3">
 				{% block sidebarblock %}
 				
@@ -354,6 +355,8 @@
 				{% endif %}
 				{% endif %}
 			</div>
+
+			{% endblock %}
 		</div>
 	</div>
 
