@@ -485,7 +485,7 @@ class User(Base, Stndrd):
     def profile_url(self):
 
         if self.has_profile:
-            return f"https://i.ruqqus.com/users/{self.username}/profile-{self.profile-nonce}.png"
+            return f"https://i.ruqqus.com/users/{self.username}/profile-{self.profile_nonce}.png"
         else:
             return "/assets/images/profiles/default-profile-pic.png"
 
