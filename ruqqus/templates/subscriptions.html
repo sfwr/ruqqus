@@ -61,12 +61,12 @@
   <div class="title"><i class="fas fa-university mr-2"></i>My guilds</div>
   <div class="body">
     <ul class="no-bullets guild-recommendations-list pl-0">
-      {% for board in v.boards_subscribed[0:5] %}
+      {% for board in v.boards_subscribed[0:10] %}
       <li class="guild-recommendations-item">
         <a href="{{ board.permalink }}">
           <div class="d-flex">
             <div class="mr-2">
-              <img src="{{ board.profile_url }}" class="profile-pic-40 mr-2"></div>
+              <img src="{{ board.profile_url }}" class="profile-pic-25 mr-2"></div>
               <div class="my-auto">
                 <div class="text-black font-weight-normal">+{{ board.name }}</div>
               </div>
@@ -76,7 +76,7 @@
         {% endfor %}
       </ul>
       <div class="text-center">
-        <a href="#" class="btn btn-link">View all</a>
+        <a href="/browse" class="btn btn-link">View all</a>
       </div>
     </div>
   </div>
