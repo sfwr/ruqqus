@@ -20,11 +20,13 @@
 
 	<!-- Ruqqus Board CSS -->
 
+{% block stylesheets %}
 	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
 	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/dark.css">
 	{% else %}
 	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/main.css">
 	{% endif %}
+{% endblock %}
 
 	<!-- Font Awesome -->
 	<link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->

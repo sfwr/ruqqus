@@ -316,7 +316,7 @@ class User(Base, Stndrd):
             comments=comments.filter_by(is_banned=False)
         
 
-        listing=[ c for c in comments.order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
+        listing=[ c for c in comments.order_by(Comment.created_utc.desc()).offset(25*(page-1)).limit(26)]
         #we got 26 items just to see if a next page exists
         next_exists=(len(listing)==26)
         listing=listing[0:25]
