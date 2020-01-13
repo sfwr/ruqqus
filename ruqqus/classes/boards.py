@@ -30,6 +30,8 @@ class Board(Base, Stndrd, Age_times):
     downvotes_disabled=Column(Boolean, default=False)
     restricted_posting=Column(Boolean, default=False)
     hide_banner_data=Column(Boolean, default=False)
+    profile_nonce=Column(Integer, default=0)
+    banner_nonce=Column(Integer, default=0)
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
@@ -199,7 +201,10 @@ class Board(Base, Stndrd, Age_times):
 
     def set_profile(self, file):
 
-        aws.upload_file(name=f"board/{self.name.lower()}/profile.png",
+        self.del_profile()
+        self.profile_nonce+=1
+
+        aws.upload_file(name=f"board/{self.name.lower()}/profile-{self.profile_nonce}.png",
                         file=file)
         self.has_profile=True
         db.add(self)
@@ -207,7 +212,10 @@ class Board(Base, Stndrd, Age_times):
         
     def set_banner(self, file):
 
-        aws.upload_file(name=f"board/{self.name.lower()}/banner.png",
+        self.del_banner()
+        self.banner_nonce+=1
+
+        aws.upload_file(name=f"board/{self.name.lower()}/banner-{self.banner_nonce}.png",
                         file=file)
 
         self.has_banner=True
@@ -216,14 +224,14 @@ class Board(Base, Stndrd, Age_times):
 
     def del_profile(self):
 
-        aws.delete_file(name=f"board/{self.name.lower()}/profile.png")
+        aws.delete_file(name=f"board/{self.name.lower()}/profile-{self.profile_nonce}.png")
         self.has_profile=False
         db.add(self)
         db.commit()
 
     def del_banner(self):
 
-        aws.delete_file(name=f"board/{self.name.lower()}/banner.png")
+        aws.delete_file(name=f"board/{self.name.lower()}/banner-{self.banner_nonce}.png")
         self.has_banner=False
         db.add(self)
         db.commit()
@@ -232,7 +240,7 @@ class Board(Base, Stndrd, Age_times):
     def banner_url(self):
 
         if self.has_banner:
-            return f"https://i.ruqqus.com/board/{self.name.lower()}/banner.png"
+            return f"https://i.ruqqus.com/board/{self.name.lower()}/banner-{self.banner_nonce}.png"
         else:
             return "/assets/images/guilds/default-guild-banner.png"
 
@@ -240,7 +248,7 @@ class Board(Base, Stndrd, Age_times):
     def profile_url(self):
 
         if self.has_profile:
-            return f"https://i.ruqqus.com/board/{self.name.lower()}/profile.png"
+            return f"https://i.ruqqus.com/board/{self.name.lower()}/profile-{self.profile_nonce}.png"
         else:
             return "/assets/images/guilds/default-guild-icon.png"
 
