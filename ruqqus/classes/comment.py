@@ -42,6 +42,7 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     ups = Column(Integer, server_default=FetchedValue())
     downs=Column(Integer, server_default=FetchedValue())
     age=Column(Integer, server_default=FetchedValue())
+    is_public=Column(Boolean, server_default=FetchedValue())
 
     flag_count=deferred(Column(Integer, server_default=FetchedValue()))
     over_18=Column(Boolean, server_default=FetchedValue())
