@@ -26,6 +26,6 @@ def ruqqus_embed(url):
     if comment_id:
         return f"https://beta.ruqqus.com/embed/comment/{comment_id}"
     else:
-        return f"https://beta.ruqqus.com/embed/post/{post_id}
+        return f"https://beta.ruqqus.com/embed/post/{post_id}:
 
     
