@@ -8,6 +8,11 @@ from ruqqus.__main__ import app, db, cache
 from ruqqus.classes.submission import Submission
 
 
+@app.route("/post/", methods=["GET"])
+def slash_post():
+    return redirect("/")
+
+
 @cache.memoize(timeout=3600)
 def trending_boards(n=5):
 
