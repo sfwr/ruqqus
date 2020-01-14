@@ -57,6 +57,8 @@ report_postModal = function(id, author, board) {
     offtopic.disabled=false;
   }
 
+  document.getElementById('report-type-dropdown').value='reason_not_selected'
+
     document.getElementById("reportPostButton").onclick = function() {
 
       this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Reporting post';

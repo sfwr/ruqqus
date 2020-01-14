@@ -16,7 +16,7 @@
             <small class="form-text text-muted">Please select a reason for flagging below.</small>
               <input type="hidden" name="formkey" value="{{ v.formkey }}">
               <select id="report-type-dropdown" name="report_type" form="report-post-form" class="custom-select mt-3" onchange="document.getElementById('reportPostButton').disabled=false;">
-                <option disabled selected>
+                <option disabled selected value="reason_not_selected">
                   Reason for flagging?
                 </option>
                 <option value="admin">
