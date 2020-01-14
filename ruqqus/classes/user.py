@@ -129,9 +129,9 @@ class User(Base, Stndrd):
                 cutoff=now-86400
             elif t=='week':
                 cutoff=now-604800
-            elif t='month':
+            elif t=='month':
                 cutoff=now-2592000
-            elif t='year':
+            elif t=='year':
                 cutoff=now-31536000
             else:
                 cutoff=0
