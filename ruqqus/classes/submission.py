@@ -48,7 +48,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     mod_approved=Column(Integer, default=None)
     accepted_utc=Column(Integer, default=0)
     is_image=Column(Boolean, default=False)
-    has_thumb=Column(Boolean, default=False)    
+    has_thumb=Column(Boolean, default=False)
+    is_public=Column(Boolean, default=True)
 
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
@@ -116,9 +117,15 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         else:
             template="submission.html"
 
-        #load and tree comments
-        #calling this function with a comment object will do a comment permalink thing
-        self.tree_comments(comment=comment)
+        private=not self.is_public and not self.board.has_contributor(v)
+        if private and not self.author_id==v.id:
+            abort(403)
+        elif private:
+            self.comments=[]
+        else:
+            #load and tree comments
+            #calling this function with a comment object will do a comment permalink thing
+            self.tree_comments(comment=comment)
         
         #return template
         return render_template(template,
@@ -144,6 +151,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         if domain.startswith("www."):
             domain=domain.split("www.")[1]
         return domain
+
+
 
     def tree_comments(self, comment=None):
 

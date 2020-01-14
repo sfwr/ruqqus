@@ -253,7 +253,8 @@ def submit_post(v):
                         domain_ref=domain_obj.id if domain_obj else None,
                         board_id=board.id,
                         original_board_id=board.id,
-                        over_18=(bool(request.form.get("over_18","")) or board.over_18)
+                        over_18=(bool(request.form.get("over_18","")) or board.over_18),
+                        is_public=not board.is_private
                         )
 
     db.add(new_post)

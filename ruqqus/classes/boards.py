@@ -32,6 +32,7 @@ class Board(Base, Stndrd, Age_times):
     hide_banner_data=Column(Boolean, default=False)
     profile_nonce=Column(Integer, default=0)
     banner_nonce=Column(Integer, default=0)
+    is_private=Column(Boolean, default=False)
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
@@ -196,6 +197,9 @@ class Board(Base, Stndrd, Age_times):
         return bool(self.subscribers.filter_by(board_id=self.id, user_id=user.id, is_active=True).first())
 
     def has_contributor(self, user):
+
+        if user is None:
+            return False
 
         return self.contributors.filter_by(user_id=user.id).first()
 
