@@ -247,3 +247,16 @@ def feeds(sort=None):
                  updated=datetime.fromtimestamp(post.created_utc),
                  published=datetime.fromtimestamp(post.created_utc))
     return feed.get_response()
+
+@app.route("/embed/comment/<cid>", methods=["GET"])
+def embed_comment_cid(cid):
+
+    comment=get_comment(cid)
+
+    if not comment.parent:
+        abort(403)
+
+    if comment.is_banned or comment.is_deleted:
+        return render_template("embed/comment_removed.html", c=comment)
+
+    return render_template("embed/comment.html", c=comment)
