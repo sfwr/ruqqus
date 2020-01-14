@@ -57,7 +57,8 @@ report_postModal = function(id, author, board) {
     offtopic.disabled=false;
   }
 
-  document.getElementById('report-type-dropdown').value='reason_not_selected';
+  selectbox=document.getElementById('report-type-dropdown')
+  selectbox.value='reason_not_selected';
 
     document.getElementById("reportPostButton").onclick = function() {
 
