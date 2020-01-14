@@ -257,6 +257,6 @@ def embed_comment_cid(cid):
         abort(403)
 
     if comment.is_banned or comment.is_deleted:
-        return render_template("embed/comment_removed.html", c=comment)
+        return render_template("embeds/comment_removed.html", c=comment)
 
-    return render_template("embed/comment.html", c=comment)
+    return render_template("embeds/comment.html", c=comment)
