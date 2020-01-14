@@ -97,7 +97,7 @@ class User(Base, Stndrd):
         return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=600)
-    def idlist(self, sort="hot", page=1, only=None):
+    def idlist(self, sort="hot", page=1, only=None, t=None):
 
         
 
@@ -122,6 +122,23 @@ class User(Base, Stndrd):
             posts=posts.filter(Submission.author_id.in_(user_ids))
         else:
             abort(422)
+
+        if t:
+            now=int(time.time())
+            if t=='day':
+                cutoff=now-86400
+            elif t=='week':
+                cutoff=now-604800
+            elif t='month':
+                cutoff=now-2592000
+            elif t='year':
+                cutoff=now-31536000
+            else:
+                cutoff=0
+                
+            posts=posts.filter(Submission.created_utc >= cutoff)
+                
+            
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.rank_hot desc"))
@@ -177,7 +194,9 @@ class User(Base, Stndrd):
 
         ids=self.idlist(sort=sort,
                         page=page,
-                        only=only)
+                        only=only,
+                        t=request.args.get('t', None)
+                        )
 
         posts, next_exists = self.list_of_posts(ids)
 
