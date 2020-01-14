@@ -130,7 +130,7 @@ class User(Base, Stndrd):
         elif sort=="disputed":
             posts=posts.order_by(text("submissions.rank_fiery desc"))
         elif sort=="top":
-            posts=posts.order_by(Submissions.score.desc())
+            posts=posts.order_by(text("submissions.score desc"))
         elif sort=="activity":
             posts=posts.order_by(text("submissions.rank_activity desc"))
         else:
