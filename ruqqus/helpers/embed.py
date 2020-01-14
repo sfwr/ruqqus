@@ -1,4 +1,5 @@
 import re
+from __main__ import app
 
 youtube_regex=re.compile("^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*")
 
@@ -15,7 +16,7 @@ def youtube_embed(url):
         return "error"
 
 
-ruqqus_regex=re.compile("post/(\w+)(/comment/(\w+))?")
+ruqqus_regex=re.compile("^.*ruqqus.com/post/(\w+)(/comment/(\w+))?")
 def ruqqus_embed(url):
 
     matches=re.match(ruqqus_regex, url)
@@ -24,8 +25,8 @@ def ruqqus_embed(url):
     comment_id=matches.group(3)
 
     if comment_id:
-        return f"https://beta.ruqqus.com/embed/comment/{comment_id}"
+        return f"https://{app.config['SERVER_NAME']}/embed/comment/{comment_id}"
     else:
-        return f"https://beta.ruqqus.com/embed/post/{post_id}"
+        return f"https://{app.config['SERVER_NAME']}/embed/post/{post_id}"
 
     
