@@ -13,3 +13,19 @@ def youtube_embed(url):
         return f"https://youtube.com/embed/{yt_id}"
     else:
         return "error"
+
+
+ruqqus_regex=re.compile("post/(\w+)(/comment/(\w+))?")
+def ruqqus_embed(url):
+
+    matches=re.match(ruqqus_regex, url)
+
+    post_id=matches.group(2)
+    comment_id=matches.group(3)
+
+    if comment_id:
+        return f"https://beta.ruqqus.com/embed/comment/{comment_id}"
+    else:
+        return f"https://beta.ruqqus.com/embed/post/{post_id}
+
+    

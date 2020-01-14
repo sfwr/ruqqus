@@ -122,11 +122,26 @@ def submit_post(v):
 
     domain=parsed_url.netloc
 
-    ##all possible subdomains
+    # check ban status
     domain_obj=get_domain(domain)
     if domain_obj:
         if not domain_obj.can_submit:
-            return render_template("submit.html",v=v, error=BAN_REASONS[domain_obj.reason], title=title, url=url, body=request.form.get("body",""), b=get_guild(request.form.get("board","general")))
+            return render_template("submit.html",
+                                   v=v,
+                                   error=BAN_REASONS[domain_obj.reason],
+                                   title=title,
+                                   url=url,
+                                   body=request.form.get("body",""),
+                                   b=get_guild(request.form.get("board","general"))
+                                   )
+
+        #check for embeds
+        if domain_obj.embed_function:
+
+            embed=eval(domain_obj.embed_function)(url)
+        else:
+            embed=""
+        
 
     #board
     board_name=request.form.get("board","general")
@@ -226,9 +241,6 @@ def submit_post(v):
 
     #check for embeddable video
     domain=parsed_url.netloc
-    embed=""
-    if domain.endswith(("youtube.com","youtu.be")):
-        embed=youtube_embed(url)
 
     
     
