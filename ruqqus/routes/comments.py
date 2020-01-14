@@ -249,7 +249,8 @@ def feeds(sort=None):
     return feed.get_response()
 
 @app.route("/embed/comment/<cid>", methods=["GET"])
-def embed_comment_cid(cid):
+@app.route("/embed/post/<pid>/comment/<cid>", methods=["GET"])
+def embed_comment_cid(cid, pid=None):
 
     comment=get_comment(cid)
 
