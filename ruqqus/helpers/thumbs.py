@@ -30,7 +30,7 @@ def thumbnail_thread(post, can_show_thumbnail=False):
                 'width':1280,
                 'response_type':'image',
                 'thumbnail_width':300,
-                'url':self.url,
+                'url': post.embed_url if post.embed_url else post.url,
                 'css':"iframe {display:none;}"
                 }
         x=requests.get(url, params=params)
