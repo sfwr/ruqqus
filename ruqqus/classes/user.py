@@ -299,7 +299,7 @@ class User(Base, Stndrd):
             submissions=submissions.filter_by(is_deleted=False)
 
         if not (v and (v.admin_level >=3 or v.id==self.id)):
-            submissions=submissions.filter_by(is_banned=False)
+            submissions=submissions.filter_by(is_banned=False, is_public=True)
 
         listing = [x for x in submissions.order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
         
