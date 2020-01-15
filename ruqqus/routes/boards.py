@@ -854,3 +854,9 @@ def mod_unapprove_bid_user(bid, username, board, v):
     db.commit()
     
     return "", 204
+
+@app.route("/+<guild>/pic/profile")
+def guild_profile(guild):
+    x=get_guild(guild)
+    return redirect(x.profile_url)
+

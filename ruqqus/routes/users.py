@@ -130,5 +130,9 @@ def api_agree_tos(v):
 
     return redirect("/help/terms")
 
-    
+
+@app.route("/@<username>/pic/profile")
+def user_profile(username):
+    x=get_user(username)
+    return redirect(x.profile_url)
 
