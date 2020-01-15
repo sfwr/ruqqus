@@ -1,7 +1,7 @@
 import time
 import threading
 
-from ruqqus.classes.submission import *
+import ruqqus.classes
 from ruqqus.__main__ import db
 
 def recompute():
