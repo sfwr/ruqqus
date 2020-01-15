@@ -61,6 +61,7 @@ class User(Base, Stndrd):
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
     subscriptions=relationship("Subscription", lazy="dynamic")
     boards_created=relationship("Board", lazy="dynamic")
+    contributes=relationship("ContributorRelationship", lazy="dynamic")
 
     following=relationship("Follow", lazy="dynamic", primaryjoin="Follow.user_id==User.id")
     followers=relationship("Follow", lazy="dynamic", primaryjoin="Follow.target_id==User.id")

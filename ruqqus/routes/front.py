@@ -25,14 +25,26 @@ def trending_boards(n=5):
 
     return [(x, x.subscriber_count) for x in boards]
 
-@cache.memoize(timeout=600)
-def frontlist(sort="hot", page=1, nsfw=False, t=None):
+#@cache.memoize(timeout=600)
+def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None):
 
     #cutoff=int(time.time())-(60*60*24*30)
 
     posts = db.query(Submission).filter_by(is_banned=False,
                                            is_deleted=False,
                                            stickied=False)
+
+    if v:
+        posts=posts.join(v.moderates.filter_by(invite_rescinded=False),
+                         ModRelationship.board_id==Submission.board_id
+                         ).join(v.contributes,
+                                ContributorRelationship.board_id==Submission.board_id
+                                )
+        posts=posts.filter(or_(Submission.is_public==True,
+                               ModRelationship.board_id != None,
+                               ContributorRelationship.board_id !=None))
+    else:
+        posts=posts.filter_by(is_public=True)
 
     if not nsfw:
         posts=posts.filter_by(over_18=False)
@@ -96,7 +108,8 @@ def front_all(v):
     ids = frontlist(sort=sort_method,
                     page=page,
                     nsfw=(v and v.over_18),
-                    t=request.args.get('t',None)
+                    t=request.args.get('t',None),
+                    v=v
                     )
 
     #check existence of next page
