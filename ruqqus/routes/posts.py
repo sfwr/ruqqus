@@ -141,6 +141,8 @@ def submit_post(v):
             embed=eval(domain_obj.embed_function)(url)
         else:
             embed=""
+    else:
+        embed=""
         
 
     #board
