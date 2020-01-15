@@ -376,6 +376,24 @@ class User(Base, Stndrd):
         if not (v and (v.admin_level >=3 or v.id==self.id)):
             comments=comments.filter_by(is_banned=False)
 
+        if v:
+            m=v.moderates.filter_by(invite_rescinded=False).subquery()
+            c=v.contributes.subquery()
+            
+            comments=comments.join(m,
+                                   m.c.board_id==Comment.board_id,
+                                   isouter=True
+                         ).join(c,
+                                c.c.board_id==Comment.board_id,
+                                isouter=True
+                                )
+            comments=comments.filter(or_(Comment.author_id==v.id,
+                                   Comment.is_public==True,
+                               m.c.board_id != None,
+                               c.c.board_id !=None))
+        else:
+            comments=comments.filter_by(is_public=True)
+
         comments=comments.order_by(Comment.created_utc.desc())
         comments=comments.offset(25*(page-1)).limit(26)
         
