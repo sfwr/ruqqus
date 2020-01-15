@@ -317,9 +317,9 @@ class User(Base, Stndrd):
 
         if v:
             submissions=submissions.join(v.moderates.filter_by(invite_rescinded=False),
-                         ModRelationship.board_id==Submission.board_id
+                         "ModRelationship.board_id==Submission.board_id"
                          ).join(v.contributes,
-                                ContributorRelationship.board_id==Submission.board_id
+                                "ContributorRelationship.board_id==Submission.board_id"
                                 )
             submissions=submissions.filter(or_(Submission.author_id==v.id,
                                    Submission.is_public==True,
