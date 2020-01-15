@@ -92,13 +92,8 @@ class Board(Base, Stndrd, Age_times):
         if not nsfw:
             posts=posts.filter_by(over_18=False)
 
-        if self.is_private and v:
-            posts=posts.filter(or_(Submission.is_public==True,
-                                   Submission.author_id==v.id)
-                               )
-        elif self.is_private:
+        if self.is_private and not self.can_view(v):
             posts=posts.filter_by(is_public=True)
-
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.score_hot desc"))

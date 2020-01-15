@@ -129,10 +129,10 @@ class User(Base, Stndrd):
         c=self.contributes.subquery()
         posts=posts.join(m,
                          m.c.board_id==Submission.board_id,
-                         is_outer=True
+                         isouter=True
                          ).join(c,
                                 c.c.board_id==Submission.board_id,
-                                is_outer=True
+                                isouter=True
                                 )
         posts=posts.filter(or_(Submission.author_id==self.id,
                                Submission.is_public==True,
