@@ -37,7 +37,7 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None):
         posts=posts.filter_by(over_18=False)
 
     if v:
-        posts=posts.join(v.moderates.filter_by(invite_rescinded=False),
+        posts=posts.join(v.moderates.filter_by(invite_rescinded=False).subquery(),
                          ModRelationship.board_id==Submission.board_id
                          ).join(v.contributes,
                                 ContributorRelationship.board_id==Submission.board_id
