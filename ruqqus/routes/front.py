@@ -40,9 +40,11 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None):
         m=v.moderates.filter_by(invite_rescinded=False).subquery()
         c=v.contributes.subquery()
         posts=posts.join(m,
-                         m.c.board_id==Submission.board_id
+                         m.c.board_id==Submission.board_id,
+                         is_outer=True
                          ).join(c,
-                                c.c.board_id==Submission.board_id
+                                c.c.board_id==Submission.board_id,
+                                is_outer=True
                                 )
         posts=posts.filter(or_(Submission.author_id==v.id,
                                Submission.is_public==True,
