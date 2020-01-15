@@ -124,6 +124,16 @@ class User(Base, Stndrd):
         else:
             abort(422)
 
+
+        posts=posts.join(v.moderates.filter_by(invite_rescinded=False),
+                         ModRelationship.board_id==Submission.board_id
+                         ).join(v.contributes,
+                                ContributorRelationship.board_id==Submission.board_id
+                                )
+        posts=posts.filter(or_(Submission.is_public==True,
+                               ModRelationship.board_id != None,
+                               ContributorRelationship.board_id !=None))
+
         if t:
             now=int(time.time())
             if t=='day':
@@ -301,6 +311,23 @@ class User(Base, Stndrd):
 
         if not (v and (v.admin_level >=3 or v.id==self.id)):
             submissions=submissions.filter_by(is_banned=False, is_public=True)
+
+
+
+        if v:
+            posts=posts.join(v.moderates.filter_by(invite_rescinded=False),
+                         ModRelationship.board_id==Submission.board_id
+                         ).join(v.contributes,
+                                ContributorRelationship.board_id==Submission.board_id
+                                )
+            posts=posts.filter(or_(Submission.author_id==v.id,
+                                   Submission.is_public==True,
+                               ModRelationship.board_id != None,
+                               ContributorRelationship.board_id !=None))
+        else:
+            posts=posts.filter_by(is_public=True)
+
+            
 
         listing = [x for x in submissions.order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
         

@@ -93,7 +93,9 @@ class Board(Base, Stndrd, Age_times):
             posts=posts.filter_by(over_18=False)
 
         if public_only:
-            posts=posts.filter_by(is_public=True)
+            posts=posts.filter(or_(Submission.is_public==True,
+                                   Submission.author_id==v.id)
+                               )
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.score_hot desc"))
