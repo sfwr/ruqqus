@@ -97,7 +97,7 @@ class User(Base, Stndrd):
     def age(self):
         return int(time.time())-self.created_utc
         
-    @cache.memoize(timeout=600)
+    @cache.memoize(timeout=60)
     def idlist(self, sort="hot", page=1, only=None, t=None):
 
         
@@ -130,7 +130,8 @@ class User(Base, Stndrd):
                          ).join(v.contributes,
                                 ContributorRelationship.board_id==Submission.board_id
                                 )
-        posts=posts.filter(or_(Submission.is_public==True,
+        posts=posts.filter(or_(Submission.author_id==self.id,
+                               Submission.is_public==True,
                                ModRelationship.board_id != None,
                                ContributorRelationship.board_id !=None))
 
