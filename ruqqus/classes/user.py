@@ -316,17 +316,17 @@ class User(Base, Stndrd):
 
 
         if v:
-            posts=posts.join(v.moderates.filter_by(invite_rescinded=False),
+            submissions=submissions.join(v.moderates.filter_by(invite_rescinded=False),
                          ModRelationship.board_id==Submission.board_id
                          ).join(v.contributes,
                                 ContributorRelationship.board_id==Submission.board_id
                                 )
-            posts=posts.filter(or_(Submission.author_id==v.id,
+            submissions=submissions.filter(or_(Submission.author_id==v.id,
                                    Submission.is_public==True,
                                ModRelationship.board_id != None,
                                ContributorRelationship.board_id !=None))
         else:
-            posts=posts.filter_by(is_public=True)
+            submissions=submissions.filter_by(is_public=True)
 
             
 
