@@ -203,6 +203,10 @@ class Board(Base, Stndrd, Age_times):
 
         return self.contributors.filter_by(user_id=user.id).first()
 
+    def can_view(self, user):
+
+        return not self.is_private or self.has_contributor(user) or self.has_mod(user) or self.has_invite(user)
+
     def set_profile(self, file):
 
         self.del_profile()
