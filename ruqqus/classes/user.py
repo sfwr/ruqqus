@@ -336,7 +336,7 @@ class User(Base, Stndrd):
 
             
 
-        listing = [x for x in submissions.order_by(text("created_utc desc")).offset(25*(page-1)).limit(26)]
+        listing = [x for x in submissions.order_by(text("User.created_utc desc")).offset(25*(page-1)).limit(26)]
         
         #we got 26 items just to see if a next page exists
         next_exists=(len(listing)==26)
