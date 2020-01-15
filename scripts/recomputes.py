@@ -9,13 +9,13 @@ def recompute():
 
     while True:
 
-        print("Beginning score recompute")
+        #print("Beginning score recompute")
 
         x=db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False)
 
         total=x.count()
 
-        print(f"{total} submissions to score")
+        #print(f"{total} submissions to score")
 
         i=0
         for post in x.all():
@@ -30,9 +30,9 @@ def recompute():
             db.add(post)
             db.commit()
 
-            print(f"{i}/{total} - {post.base36id}")
+            #print(f"{i}/{total} - {post.base36id}")
 
-        println("Done. Sleeping 10min")
+        #print("Done. Sleeping 10min")
 
         time.sleep(600)
 
