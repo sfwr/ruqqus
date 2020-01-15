@@ -4,17 +4,18 @@ $setprimary: #{boardcolor};
 $primary: lighten($setprimary, 20%);
 $dark: #232327;
 $secondary: #3f404a;
-$danger: #F05D5E;
+$danger: #E53E3E;
 $white: #000000;
 $black: #cfcfcf;
 $light: #35363e;
-$success: #23CE6B;
+$success: #38A169;
 $muted: #8c8d94;
+$info: #4299E1;
 
 $purple: #af92de;
-$red:  #F05D5E;
+$red:  #E53E3E;
 $gray: #8c8d94;
-$green: #23CE6B;
+$green: #38A169;
 
 $gray-100: #3f404a;
 $gray-200: #EBE9EF;
@@ -24,14 +25,14 @@ $gray-500: #8c8d94;
 $gray-600: #ACACAC;
 
 $upvote: #af92de;
-$downvote: #48A9A6;
-$admin: #F05D5E;
-$banned: #FF9999;
-$deleted: #ffff99;
+$downvote: #38B2AC;
+$admin: #E53E3E;
+$banned: #FEB2B2;
+$deleted: #FEFCBF;
 $deletedandbanned: #ffcc99;
 $mod: #07c20c;
 
-$gold: #ddbd37;
+$gold: #ECC94B;
 $reddit: #ED4630;
 
 $theme-colors: (
@@ -63,10 +64,6 @@ $input-border-color: #56575a;
 $border-color: #494a4e;
 
 $border-radius: .35rem;
-
-// Text styling
-
-$text-muted: #8c8d94;
 
 $text-white: $white;
 
@@ -122,7 +119,7 @@ $sizes: map-merge(
 
 // Box Shadow
 
-$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !default;
+$box-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
 
@@ -348,7 +345,7 @@ ol > li::before {
 }
 
 .btn-secondary {
-    color: $text-muted;
+    color: $muted;
 }
 
 .btn-tag {
@@ -673,7 +670,7 @@ label.color-radio span {
     border-radius: 0;
     font-size: 1rem;
     font-weight: $font-weight-bold;
-    color: $text-muted;
+    color: $muted;
     border-bottom: 2px solid transparent;
     padding: 1rem 1.5rem;
 }
@@ -754,7 +751,7 @@ label.color-radio span {
 // Inputs
 
 .form-control {
-    color: $text-muted;
+    color: $muted;
     border-color: transparent;
     border-width: 2px;
     background: $gray-100;
@@ -1108,7 +1105,7 @@ color: $dark;
     display: inline-block;
     font-size: $small-font-size;
     font-weight: $font-weight-bold;
-    color: $text-muted;
+    color: $muted;
 }
 
 .post-filter .fa, .post-filter .fas {
@@ -1148,7 +1145,7 @@ color: $dark;
     background-color: transparent;
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
-    color: $text-muted;
+    color: $muted;
     padding: 0.5rem 1rem;
     border: none;
     border-left: 2px solid transparent;
@@ -1185,6 +1182,7 @@ color: $dark;
 .sidebar .sidebar-section .title {
     font-size: $small-font-size;
     font-weight: $font-weight-bold;
+    letter-spacing: 0.025rem;
     color: $white;
     background-color: $primary;
     padding: 0.75rem 1rem;
@@ -1207,7 +1205,7 @@ color: $dark;
 .sidebar-section {
     margin-bottom: 1rem;
     background-color: $light;
-    //border: 1px solid $border-color;
+    border: 1px solid $border-color;
     //box-shadow: $box-shadow-sm;
     border-radius: $border-radius;
     overflow: hidden;
@@ -1216,7 +1214,7 @@ color: $dark;
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-bold;
     border-bottom: 1px solid $border-color;
 }
@@ -1271,14 +1269,14 @@ color: $dark;
 }
 
 .filter-list .filter-item {
-    color: $text-muted;
+    color: $muted;
     text-decoration: none;
 }
 
 .filter-list .filter-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: $text-muted;
+    color: $muted;
     font-size: $small-font-size;
     font-weight: $font-weight-bold;
     margin-bottom: 0.25rem;
@@ -1329,7 +1327,7 @@ color: $dark;
 }
 
 .guild-recommendations-list .guild-recommendations-item {
-    color: $text-muted;
+    color: $muted;
     text-decoration: none;
     margin-top: 1rem;
 }
@@ -1395,14 +1393,14 @@ color: $dark;
 
 
 .dashboard-list .dashboard-item {
-    color: $text-muted;
+    color: $muted;
     text-decoration: none;
 }
 
 .dashboard-list .dashboard-link {
     display: block;
     padding: 0.5rem 0;
-    color: $text-muted;
+    color: $muted;
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
     margin-bottom: 0.25rem;
@@ -1738,7 +1736,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-meta {
     position: relative;
     z-index: 2;
-    color: $text-muted;
+    color: $muted;
     font-size: $small-font-size;
     width: fit-content;
 }
@@ -1802,7 +1800,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .post-actions {
     position: relative;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-bold;
     font-size: $small-font-size;
     z-index: 3;
@@ -1890,7 +1888,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .dropdown-actions {
     position: relative;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-bold;
     font-size: $small-font-size;
     z-index: 3;
@@ -2142,7 +2140,7 @@ div:hover .thumb-img-link-overlay {
 }
 
 .time-stamp, .points {
-    color: $text-muted;
+    color: $muted;
 }
 
 // Thread Comments
@@ -2154,7 +2152,7 @@ div:hover .thumb-img-link-overlay {
 .comments-count .total {
     font-weight: $font-weight-bold;
     font-size: $small-font-size;
-    color: $text-muted;
+    color: $muted;
 }
 
 .comment {
@@ -2183,7 +2181,7 @@ div:hover .thumb-img-link-overlay {
 
 .comment .comment-body .user-info {
     font-size: $small-font-size;
-    color: $text-muted;
+    color: $muted;
     margin-bottom: .25rem;
     margin-top: -0.25rem;
 }
@@ -2501,7 +2499,7 @@ ul.comment-section {
 
 .sidebar-post-meta .shortlink, .sidebar-post-meta .submission-date {
     font-size: $small-font-size;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-normal;
     text-transform: lowercase;
 }
@@ -2685,7 +2683,7 @@ ul.comment-section {
 
 .footer a {
     text-decoration: none;
-    color: $text-muted;
+    color: $muted;
 }
 
 .footer a:hover, .footer a:focus, .footer a:active {
