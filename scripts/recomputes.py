@@ -9,6 +9,8 @@ def recompute():
 
     while True:
 
+        print("Beginning score recompute")
+
         for post in db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False).all():
 
             post.score_hot = post.rank_hot
@@ -19,6 +21,7 @@ def recompute():
             db.add(post)
             db.commit()
 
+        print("Done. Sleeping 10min")
 
         time.sleep(600)
 
