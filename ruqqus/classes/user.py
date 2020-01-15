@@ -17,6 +17,7 @@ from .titles import Title
 from .submission import Submission
 from .comment import Comment
 from .boards import Board
+from .board_relationships import *
 from .mix_ins import *
 from ruqqus.__main__ import Base, db, cache
 
