@@ -125,9 +125,9 @@ class User(Base, Stndrd):
         else:
             abort(422)
 
-
-        posts=posts.join(self.moderates.filter_by(invite_rescinded=False).subquery(),
-                         ModRelationship.board_id==Submission.board_id
+        m=self.moderates.filter_by(invite_rescinded=False).subquery()
+        posts=posts.join(m,
+                         m.c.board_id==Submission.board_id
                          ).join(self.contributes,
                                 ContributorRelationship.board_id==Submission.board_id
                                 )
