@@ -72,7 +72,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     rank_hot=deferred(Column(Float, server_default=FetchedValue()))
     rank_fiery=deferred(Column(Float, server_default=FetchedValue()))
     rank_activity=deferred(Column(Float, server_default=FetchedValue()))    
-    rank_top=deferred(Column(Integer, server_default=FetchedValue()))
 
     def __init__(self, *args, **kwargs):
 
