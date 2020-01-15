@@ -83,7 +83,7 @@ class Board(Base, Stndrd, Age_times):
         return self.postrels.filter_by(post_id=post.id).first()
 
     @cache.memoize(timeout=600)
-    def idlist(self, sort="hot", page=1, nsfw=False, public_only=False):
+    def idlist(self, sort="hot", page=1, nsfw=False, public_only=False, v=None):
 
         posts=self.submissions.filter_by(is_banned=False,
                                              is_deleted=False
@@ -92,10 +92,13 @@ class Board(Base, Stndrd, Age_times):
         if not nsfw:
             posts=posts.filter_by(over_18=False)
 
-        if public_only:
+        if public_only and v:
             posts=posts.filter(or_(Submission.is_public==True,
                                    Submission.author_id==v.id)
                                )
+        elif public_only:
+            posts=posts.filter_by(is_public=True)
+
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.score_hot desc"))
