@@ -313,20 +313,24 @@ class User(Base, Stndrd):
             submissions=submissions.filter_by(is_deleted=False)
 
         if not (v and (v.admin_level >=3 or v.id==self.id)):
-            submissions=submissions.filter_by(is_banned=False, is_public=True)
+            submissions=submissions.filter_by(is_banned=False)
+
 
 
 
         if v:
-            submissions=submissions.join(v.moderates.filter_by(invite_rescinded=False),
-                         ModRelationship.board_id==Submission.board_id
-                         ).join(v.contributes,
-                                ContributorRelationship.board_id==Submission.board_id
+            m=v.moderates.filter_by(invite_rescinded=False).subquery()
+            c=v.contributes.subquery()
+            
+            submissions=submissions.join(m,
+                         m.c.board_id==Submission.board_id
+                         ).join(c,
+                                c.c.board_id==Submission.board_id
                                 )
             submissions=submissions.filter(or_(Submission.author_id==v.id,
                                    Submission.is_public==True,
-                               ModRelationship.board_id != None,
-                               ContributorRelationship.board_id !=None))
+                               m.c.board_id != None,
+                               c.c.board_id !=None))
         else:
             submissions=submissions.filter_by(is_public=True)
 
