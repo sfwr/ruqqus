@@ -86,8 +86,7 @@ class Board(Base, Stndrd, Age_times):
     def idlist(self, sort="hot", page=1, nsfw=False, public_only=False):
 
         posts=self.submissions.filter_by(is_banned=False,
-                                             is_deleted=False,
-                                             board_id=self.id
+                                             is_deleted=False
                                              )
 
         if not nsfw:
