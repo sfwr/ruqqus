@@ -38,15 +38,16 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None):
 
     if v:
         m=v.moderates.filter_by(invite_rescinded=False).subquery()
+        c=v.contributes.subquery()
         posts=posts.join(m,
                          m.c.board_id==Submission.board_id
-                         ).join(v.contributes,
-                                ContributorRelationship.board_id==Submission.board_id
+                         ).join(c,
+                                c.c.board_id==Submission.board_id
                                 )
         posts=posts.filter(or_(Submission.author_id==v.id,
                                Submission.is_public==True,
-                               ModRelationship.board_id != None,
-                               ContributorRelationship.board_id !=None))
+                               m.c.board_id != None,
+                               c.c.board_id !=None))
     else:
         posts=posts.filter_by(is_public=True)
 

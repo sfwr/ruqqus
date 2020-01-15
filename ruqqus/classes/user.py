@@ -126,15 +126,16 @@ class User(Base, Stndrd):
             abort(422)
 
         m=self.moderates.filter_by(invite_rescinded=False).subquery()
+        c=self.contributes.subquery()
         posts=posts.join(m,
                          m.c.board_id==Submission.board_id
-                         ).join(self.contributes,
-                                ContributorRelationship.board_id==Submission.board_id
+                         ).join(c,
+                                c.c.board_id==Submission.board_id
                                 )
         posts=posts.filter(or_(Submission.author_id==self.id,
                                Submission.is_public==True,
-                               ModRelationship.board_id != None,
-                               ContributorRelationship.board_id !=None))
+                               m.c.board_id != None,
+                               c.c.board_id !=None))
 
         if t:
             now=int(time.time())
