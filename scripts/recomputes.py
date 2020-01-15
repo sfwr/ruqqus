@@ -11,7 +11,16 @@ def recompute():
 
         print("Beginning score recompute")
 
-        for post in db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False).all():
+        x=db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False)
+
+        total=x.count()
+
+        print(f"{total} submissions to score")
+
+        i=0
+        for post in x.all():
+
+            i+=1
 
             post.score_hot = post.rank_hot
             post.score_disputed=post.rank_fiery
@@ -21,7 +30,9 @@ def recompute():
             db.add(post)
             db.commit()
 
-        print("Done. Sleeping 10min")
+            print(f"{i}/{total} - {post.base36id}")
+
+        println("Done. Sleeping 10min")
 
         time.sleep(600)
 
