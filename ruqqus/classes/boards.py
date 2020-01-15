@@ -83,7 +83,7 @@ class Board(Base, Stndrd, Age_times):
         return self.postrels.filter_by(post_id=post.id).first()
 
     @cache.memoize(timeout=600)
-    def idlist(self, sort="hot", page=1, nsfw=False, public_only=False, v=None):
+    def idlist(self, sort="hot", page=1, nsfw=False, v=None):
 
         posts=self.submissions.filter_by(is_banned=False,
                                              is_deleted=False
@@ -92,11 +92,11 @@ class Board(Base, Stndrd, Age_times):
         if not nsfw:
             posts=posts.filter_by(over_18=False)
 
-        if public_only and v:
+        if self.is_private and v:
             posts=posts.filter(or_(Submission.is_public==True,
                                    Submission.author_id==v.id)
                                )
-        elif public_only:
+        elif self.is_private:
             posts=posts.filter_by(is_public=True)
 
 
@@ -126,7 +126,7 @@ class Board(Base, Stndrd, Age_times):
         ids=self.idlist(sort=sort,
                         page=page,
                         nsfw=(v and v.over_18),
-                        public_only=self.can_view(v)
+                        v=v
                         )
 
         next_exists=(len(ids)==26)
