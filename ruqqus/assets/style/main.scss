@@ -1,37 +1,38 @@
 // Colors
 
-$primary: #603abb;
+$primary: #805AD5;
 $dark: #23183E;
-$secondary: #EAEAEA;
-$danger: #F05D5E;
+$secondary: #E2E8F0;
+$danger: #E53E3E;
 $white: #ffffff;
-$black: #1F1F1F;
+$black: #121213;
 $light: #E6E9F0;
-$success: #23CE6B;
-$muted: #7F7F8A;
+$success: #38A169;
+$muted: #718096;
+$info: #4299E1;
 
 
-$purple: #603abb;
-$red:  #F05D5E;
-$gray: #5F5F5F;
-$green: #23CE6B;
+$purple: #805AD5;
+$red:  #E53E3E;
+$gray: #718096;
+$green: #38A169;
 
-$gray-100: #F5F6FA;
-$gray-200: #EBE9EF;
-$gray-300: #E0E4E9;
-$gray-400: #C2C2C2;
-$gray-500: #adb5bd;
-$gray-600: #ACACAC;
+$gray-100: #F5F7FA;
+$gray-200: #EDF2F7;
+$gray-300: #E2E8F0;
+$gray-400: #CBD5E0;
+$gray-500: #A0AEC0;
+$gray-600: #718096;
 
-$upvote: #603abb;
-$downvote: #48A9A6;
-$admin: #F05D5E;
-$banned: #FF9999;
-$deleted: #ffff99;
+$upvote: #805AD5;
+$downvote: #38B2AC;
+$admin: #E53E3E;
+$banned: #FEB2B2;
+$deleted: #FEFCBF;
 $deletedandbanned: #ffcc99;
 $mod: #07c20c;
 
-$gold: #ddbd37;
+$gold: #ECC94B;
 $reddit: #ED4630;
 
 $theme-colors: (
@@ -64,10 +65,6 @@ $border-color: #DDDDDD;
 
 $border-radius: .35rem;
 $border-radius-sm: .25rem;
-
-// Text styling
-
-$text-muted: #7F7F8A;
 
 // Fonts
 
@@ -121,7 +118,7 @@ $sizes: map-merge(
 
 // Box Shadow
 
-$box-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.03) !default;
+$box-shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 
 $box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
 
@@ -148,7 +145,7 @@ html {
 body {
     color: $black;
     padding-top: 49px;
-    background-color: $light;
+    background-color: $gray-300;
 }
 
 @media (min-width: 1200px) {
@@ -498,9 +495,9 @@ ol > li::before {
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    color: $black;
+    color: $gray-500;
     text-align: center;
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
 }
 
 .navbar-light .navbar-nav .btn-primary.nav-link {
@@ -598,7 +595,7 @@ ol > li::before {
 .post-nav .fa, .post-nav .fas, .post-nav .far, .post-nav .fab, .post-nav .fal {
     font-size: $small-font-size;
     margin-right: .5rem;
-    color: $muted;
+    color: $gray-500;
 }
 
 // Settings navigation
@@ -648,7 +645,7 @@ label.color-radio span {
     border-radius: 0;
     font-size: 1rem;
     font-weight: $font-weight-bold;
-    color: $text-muted;
+    color: $muted;
     border-bottom: 2px solid transparent;
     padding: 1rem 1.5rem;
 }
@@ -729,7 +726,7 @@ label.color-radio span {
 // Inputs
 
 .form-control {
-    color: $text-muted;
+    color: $muted;
     border-color: transparent;
     border-width: 2px;
     background: $gray-100;
@@ -1053,7 +1050,7 @@ color: $dark;
     background-color: $white;
     border-radius: $border-radius;
     border: none;
-    //box-shadow: $box-shadow-sm;
+    box-shadow: $box-shadow-sm;
 }
 
 #frontpage .pseudo-submit-form.card .card-body, #search .search-results.card .card-body, #guild .pseudo-submit-form.card .card-body {
@@ -1077,7 +1074,7 @@ color: $dark;
     display: inline-block;
     font-size: $small-font-size;
     font-weight: $font-weight-bold;
-    color: $text-muted;
+    color: $muted;
 }
 
 .post-filter .fa, .post-filter .fas {
@@ -1091,7 +1088,7 @@ color: $dark;
 .posts, #thread #main-content-col {
     background-color: $white;
     //border: 1px solid $border-color;
-    //box-shadow: $box-shadow-sm;
+    box-shadow: $box-shadow-sm;
     border-radius: $border-radius;
 }
 
@@ -1117,7 +1114,7 @@ color: $dark;
     background-color: transparent;
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
-    color: $text-muted;
+    color: $muted;
     padding: 0.5rem 1rem;
     border: none;
     border-left: 2px solid transparent;
@@ -1153,6 +1150,7 @@ color: $dark;
 .sidebar .sidebar-section .title {
     font-size: $small-font-size;
     font-weight: $font-weight-bold;
+    letter-spacing: 0.025rem;
     color: $white;
     background-color: $primary;
     padding: 0.75rem 1rem;
@@ -1162,7 +1160,7 @@ color: $dark;
 #frontpage .sidebar .sidebar-section .title, 
 #search .sidebar .sidebar-section .title,
 #userpage .sidebar .sidebar-section .title {
-    color: $muted;
+    color: $gray-600;
     background-color: transparent;
     border-bottom: 1px solid $border-color;
 }
@@ -1175,7 +1173,7 @@ color: $dark;
     margin-bottom: 1rem;
     background-color: $gray-100;
     //border: 1px solid $border-color;
-    //box-shadow: $box-shadow-sm;
+    box-shadow: $box-shadow-sm;
     border-radius: 0.35rem;
     overflow: hidden;
 }
@@ -1183,7 +1181,7 @@ color: $dark;
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-bold;
     border-bottom: 1px solid rgba(225, 225, 225, 0.25);
 }
@@ -1244,14 +1242,14 @@ color: $dark;
 }
 
 .filter-list .filter-item {
-    color: $text-muted;
+    color: $muted;
     text-decoration: none;
 }
 
 .filter-list .filter-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: $text-muted;
+    color: $muted;
     font-size: $small-font-size;
     font-weight: $font-weight-bold;
     margin-bottom: 0.25rem;
@@ -1302,7 +1300,7 @@ color: $dark;
 }
 
 .guild-recommendations-list .guild-recommendations-item {
-    color: $text-muted;
+    color: $muted;
     text-decoration: none;
     margin-top: 1rem;
 }
@@ -1367,14 +1365,14 @@ color: $dark;
 }
 
 .dashboard-list .dashboard-item {
-    color: $text-muted;
+    color: $muted;
     text-decoration: none;
 }
 
 .dashboard-list .dashboard-link {
     display: block;
     padding: 0.5rem 0;
-    color: $text-muted;
+    color: $muted;
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
     margin-bottom: 0.25rem;
@@ -1566,7 +1564,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border: none;
     border-radius: $border-radius;
     margin-top: 1rem;
-    //box-shadow: $box-shadow-sm;
+    box-shadow: $box-shadow-sm;
 }
 
 #frontpage.toggle-card-view .posts .card:last-of-type, #userpage.toggle-card-view .posts .card:last-of-type, #search.toggle-card-view .posts .card:last-of-type, #guild.toggle-card-view .posts .card:last-of-type {
@@ -1712,7 +1710,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .post-meta {
     position: relative;
     z-index: 2;
-    color: $text-muted;
+    color: $muted;
     font-size: $small-font-size;
     width: fit-content;
 }
@@ -1774,7 +1772,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .post-actions {
     position: relative;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-bold;
     font-size: $small-font-size;
     z-index: 3;
@@ -1782,7 +1780,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
     font-size: $small-font-size;
-    color: $muted;
+    color: $gray-500;
     margin-right: .5rem;
     width: 1rem;
 }
@@ -1862,7 +1860,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .dropdown-actions {
     position: relative;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-bold;
     font-size: $small-font-size;
     z-index: 3;
@@ -2101,7 +2099,7 @@ div:hover .thumb-img-link-overlay {
 }
 
 .time-stamp, .points {
-    color: $text-muted;
+    color: $muted;
 }
 
 // Thread Comments
@@ -2113,7 +2111,7 @@ div:hover .thumb-img-link-overlay {
 .comments-count .total {
     font-weight: $font-weight-bold;
     font-size: $small-font-size;
-    color: $text-muted;
+    color: $muted;
 }
 
 .comment {
@@ -2143,7 +2141,7 @@ div:hover .thumb-img-link-overlay {
 
 .comment .comment-body .user-info {
     font-size: $small-font-size;
-    color: $text-muted;
+    color: $muted;
     margin-bottom: .25rem;
     margin-top: -0.25rem;
 }
@@ -2209,7 +2207,7 @@ blockquote p {
 .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
     font-size: 12px;
     margin-right: .5rem;
-    color: $muted;
+    color: $gray-500;
 }
 
 .comment-actions .dropdown-item:active .fa, .comment-actions .dropdown-item:active .fas, .comment-actions .dropdown-item:active .far {
@@ -2450,7 +2448,7 @@ ul.comment-section {
 
 .sidebar-post-meta .shortlink, .sidebar-post-meta .submission-date {
     font-size: $small-font-size;
-    color: $text-muted;
+    color: $muted;
     font-weight: $font-weight-normal;
     text-transform: lowercase;
 }
@@ -2535,7 +2533,7 @@ ul.comment-section {
     margin-bottom: 3rem;
     background: $white;
     //border: 1px solid $border-color;
-    //box-shadow: $box-shadow-sm;
+    box-shadow: $box-shadow-sm;
     border-radius: 0.35rem;
     overflow: hidden;
 }
@@ -2630,7 +2628,7 @@ ul.comment-section {
 
 .footer a {
     text-decoration: none;
-    color: $text-muted;
+    color: $muted;
 }
 
 .footer a:hover, .footer a:focus, .footer a:active {

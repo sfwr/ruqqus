@@ -267,7 +267,7 @@
               <div class="body w-lg-100">
 
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="hideswitch" name="hideswitch"{% if b.hide_banner_data %} checked{% endif %} onchange="mod_post('mod/<bid>/settings/banner','checkbox')">
+                  <input type="checkbox" class="custom-control-input" id="hideswitch" name="hideswitch"{% if b.hide_banner_data %} checked{% endif %} onchange="mod_post('/mod/{{b.id}}/settings/banner','checkbox')">
                   <label class="custom-control-label" for="hideswitch"></label>
                 </div>
 

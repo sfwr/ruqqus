@@ -480,7 +480,7 @@ def mod_settings_toggle_banner(bid, board, v):
         board.hide_banner_data = False
     else:
         board.hide_banner_data = True
-
+    print(board.hide_banner_data)
     db.add(board)
     db.commit()
 
