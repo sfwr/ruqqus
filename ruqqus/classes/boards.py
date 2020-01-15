@@ -83,15 +83,18 @@ class Board(Base, Stndrd, Age_times):
         return self.postrels.filter_by(post_id=post.id).first()
 
     @cache.memoize(timeout=600)
-    def idlist(self, sort="hot", page=1, nsfw=False):
+    def idlist(self, sort="hot", page=1, nsfw=False, public_only=False):
 
-        posts=db.query(Submission).filter_by(is_banned=False,
+        posts=self.submissions.filter_by(is_banned=False,
                                              is_deleted=False,
                                              board_id=self.id
                                              )
 
         if not nsfw:
             posts=posts.filter_by(over_18=False)
+
+        if public_only:
+            posts=posts.filter_by(is_public=True)
 
         if sort=="hot":
             posts=posts.order_by(text("submissions.rank_hot desc"))
@@ -116,7 +119,11 @@ class Board(Base, Stndrd, Age_times):
             if not (v and v.admin_level>=3):
                 return render_template("board_banned.html", v=v, b=self)
         
-        ids=self.idlist(sort=sort, page=page, nsfw=(v and v.over_18))
+        ids=self.idlist(sort=sort,
+                        page=page,
+                        nsfw=(v and v.over_18),
+                        public_only=self.can_view(v)
+                        )
 
         next_exists=(len(ids)==26)
         ids=ids[0:25]
@@ -204,6 +211,9 @@ class Board(Base, Stndrd, Age_times):
         return self.contributors.filter_by(user_id=user.id).first()
 
     def can_view(self, user):
+
+        if user is None:
+            return False
 
         return not self.is_private or self.has_contributor(user) or self.has_mod(user) or self.has_invite(user)
 
