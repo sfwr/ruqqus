@@ -71,7 +71,7 @@ def before_request():
     
     #check ip ban
     if db.query(ruqqus.classes.IP).filter_by(addr=request.remote_addr).first():
-        abort(403)
+        return '', 403
 
     #check useragent ban
     # Banned crawler useragents are deliberately mocked
