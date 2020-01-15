@@ -495,9 +495,9 @@ ol > li::before {
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    color: $black;
+    color: $gray-500;
     text-align: center;
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
 }
 
 .navbar-light .navbar-nav .btn-primary.nav-link {
@@ -595,7 +595,7 @@ ol > li::before {
 .post-nav .fa, .post-nav .fas, .post-nav .far, .post-nav .fab, .post-nav .fal {
     font-size: $small-font-size;
     margin-right: .5rem;
-    color: $muted;
+    color: $gray-500;
 }
 
 // Settings navigation

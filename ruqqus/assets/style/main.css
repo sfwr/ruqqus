@@ -12953,9 +12953,9 @@ ol > li::before {
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-  color: #121213;
+  color: #A0AEC0;
   text-align: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 
 .navbar-light .navbar-nav .btn-primary.nav-link {
@@ -13053,7 +13053,7 @@ ol > li::before {
 .post-nav .fa, .post-nav .fas, .post-nav .far, .post-nav .fab, .post-nav .fal {
   font-size: 12px;
   margin-right: 0.5rem;
-  color: #718096;
+  color: #A0AEC0;
 }
 
 .settings-nav > .nav-item > .nav-link.active {
