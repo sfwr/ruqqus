@@ -50,6 +50,10 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     is_image=Column(Boolean, default=False)
     has_thumb=Column(Boolean, default=False)
     is_public=Column(Boolean, default=True)
+    score_hot=Column(Float, default=0)
+    score_disputed=Column(Float, default=0)
+    score_top=Column(Float, default=0)
+    score_activity=Column(Float, default=0)
 
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
@@ -64,7 +68,11 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     flag_count=deferred(Column(Integer, server_default=FetchedValue()))
     report_count=deferred(Column(Integer, server_default=FetchedValue()))
     score=Column(Float, server_default=FetchedValue())
-    
+
+    rank_hot=deferred(Column(Float, server_default=FetchedValue()))
+    rank_disputed=deferred(Column(Float, server_default=FetchedValue()))
+    rank_activity=deferred(Column(Float, server_default=FetchedValue()))    
+    rank_top=deferred(Column(Integer, server_default=FetchedValue()))
 
     def __init__(self, *args, **kwargs):
 
