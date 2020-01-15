@@ -126,9 +126,9 @@ class User(Base, Stndrd):
             abort(422)
 
 
-        posts=posts.join(v.moderates.filter_by(invite_rescinded=False),
+        posts=posts.join(self.moderates.filter_by(invite_rescinded=False),
                          ModRelationship.board_id==Submission.board_id
-                         ).join(v.contributes,
+                         ).join(self.contributes,
                                 ContributorRelationship.board_id==Submission.board_id
                                 )
         posts=posts.filter(or_(Submission.author_id==self.id,
