@@ -22,4 +22,4 @@ def recompute():
 
 
 recompute_thread=threading.Thread(target=recompute)
-recompute_threat.start()
+recompute_thread.start()
