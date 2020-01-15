@@ -2,7 +2,7 @@
 
 $primary: #805AD5;
 $dark: #23183E;
-$secondary: #CBD5E0;
+$secondary: #E2E8F0;
 $danger: #E53E3E;
 $white: #ffffff;
 $black: #121213;
@@ -1088,7 +1088,7 @@ color: $dark;
 .posts, #thread #main-content-col {
     background-color: $white;
     //border: 1px solid $border-color;
-    //box-shadow: $box-shadow-sm;
+    box-shadow: $box-shadow-sm;
     border-radius: $border-radius;
 }
 
@@ -1780,7 +1780,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
     font-size: $small-font-size;
-    color: $muted;
+    color: $gray-500;
     margin-right: .5rem;
     width: 1rem;
 }
@@ -2207,7 +2207,7 @@ blockquote p {
 .comment-actions .fa, .comment-actions .fas, .comment-actions .far {
     font-size: 12px;
     margin-right: .5rem;
-    color: $muted;
+    color: $gray-500;
 }
 
 .comment-actions .dropdown-item:active .fa, .comment-actions .dropdown-item:active .fas, .comment-actions .dropdown-item:active .far {
