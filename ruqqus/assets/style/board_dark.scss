@@ -2926,6 +2926,10 @@ ul.comment-section {
     color: #adb5bd;
 }
 
+.submit-form {
+    border: 1px solid $border-color;
+}
+
 .submission .body {
     padding: 1rem;
 }
@@ -3362,6 +3366,10 @@ body {
 
 #thread .post-title {
     font-size: 16px;
+}
+
+#submit .submit-form {
+    border: none;
 }
 
 #submit .submission .body {

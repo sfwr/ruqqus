@@ -15725,6 +15725,10 @@ ul.comment-section {
   color: #adb5bd;
 }
 
+.submit-form {
+  border: 1px solid #494a4e;
+}
+
 .submission .body {
   padding: 1rem;
 }
@@ -16142,6 +16146,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   #thread .post-title {
     font-size: 16px;
+  }
+
+  #submit .submit-form {
+    border: none;
   }
 
   #submit .submission .body {

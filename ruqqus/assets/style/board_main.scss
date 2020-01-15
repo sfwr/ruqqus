@@ -2889,6 +2889,10 @@ ul.comment-section {
     color: #adb5bd;
 }
 
+.submit-form {
+    box-shadow: $box-shadow-sm;
+}
+
 .submission .body {
     padding: 1rem;
 }
@@ -3307,6 +3311,10 @@ body, #settings, #notifications, #submit {
 
 #thread .post-title {
     font-size: 16px;
+}
+
+#submit .submit-form {
+    box-shadow: none;
 }
 
 #submit .submission .body {
