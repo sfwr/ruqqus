@@ -262,7 +262,7 @@ def user_kick_pid(pid, v):
     
     return "", 204
 
-@app.route("/mod/take/<pid>", methods=["POST"])
+@app.route("/mod/take/<bid>/<pid>", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey
