@@ -804,7 +804,7 @@ label {
     text-transform: uppercase;
     font-weight: $font-weight-bold;
     font-size: 12px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.025rem;
     color: $black;
 }
 
@@ -2949,6 +2949,16 @@ ul.comment-section {
     transition: width .15s;
 }
 
+// Custom Checkboxes and Radio Buttons
+
+.custom-control-label {
+    text-transform: none;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-base;
+    letter-spacing: 0;
+    color: $black;
+}
+
 // Custom Switch (iOS-like toggle)
 
 .custom-switch {
@@ -2956,7 +2966,7 @@ ul.comment-section {
   padding-bottom: 1rem; // added for positioning
 }
 
-.custom-control-label { // added for alignment with the switch
+.custom-switch .custom-control-label { // added for alignment with the switch
   padding-top: 0.5rem;
   padding-left: 2rem;
   padding-bottom: 0.1rem;

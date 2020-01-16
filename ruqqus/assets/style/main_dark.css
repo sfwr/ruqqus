@@ -13514,7 +13514,7 @@ label {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 12px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.025rem;
   color: #dadada;
 }
 
@@ -16012,12 +16012,20 @@ ul.comment-section {
   transition: width 0.15s;
 }
 
+.custom-control-label {
+  text-transform: none;
+  font-weight: 400;
+  font-size: 1rem;
+  letter-spacing: 0;
+  color: #dadada;
+}
+
 .custom-switch {
   padding-left: 2.25rem;
   padding-bottom: 1rem;
 }
 
-.custom-control-label {
+.custom-switch .custom-control-label {
   padding-top: 0.5rem;
   padding-left: 2rem;
   padding-bottom: 0.1rem;
