@@ -147,6 +147,9 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
             return 0
         else:
             return self.flag_count
+
+    def visibility_reason(self, v):
+        return self.post.visibility_reason(v)
         
 class Notification(Base):
 
@@ -175,6 +178,3 @@ class Notification(Base):
     def board(self):
 
         return db.query(Board).filter_by(id=self.board_id).first()
-
-    def visibility_reason(self, v):
-        return self.post.visibility_reason(v)
