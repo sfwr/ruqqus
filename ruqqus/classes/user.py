@@ -125,19 +125,21 @@ class User(Base, Stndrd):
         else:
             abort(422)
 
-        m=self.moderates.filter_by(invite_rescinded=False).subquery()
-        c=self.contributes.subquery()
-        posts=posts.join(m,
-                         m.c.board_id==Submission.board_id,
-                         isouter=True
-                         ).join(c,
-                                c.c.board_id==Submission.board_id,
-                                isouter=True
-                                )
-        posts=posts.filter(or_(Submission.author_id==self.id,
-                               Submission.is_public==True,
-                               m.c.board_id != None,
-                               c.c.board_id !=None))
+        if not self.admin_level >=4:
+            #admins can see everything
+            m=self.moderates.filter_by(invite_rescinded=False).subquery()
+            c=self.contributes.subquery()
+            posts=posts.join(m,
+                             m.c.board_id==Submission.board_id,
+                             isouter=True
+                             ).join(c,
+                                    c.c.board_id==Submission.board_id,
+                                    isouter=True
+                                    )
+            posts=posts.filter(or_(Submission.author_id==self.id,
+                                   Submission.is_public==True,
+                                   m.c.board_id != None,
+                                   c.c.board_id !=None))
 
         if t:
             now=int(time.time())
@@ -320,7 +322,9 @@ class User(Base, Stndrd):
 
 
 
-        if v:
+        if v and v.admin_level >=4:
+            pass
+        elif v:
             m=v.moderates.filter_by(invite_rescinded=False).subquery()
             c=v.contributes.subquery()
             

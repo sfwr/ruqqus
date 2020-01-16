@@ -36,7 +36,9 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None):
     if not nsfw:
         posts=posts.filter_by(over_18=False)
 
-    if v:
+    if v and v.admin_level >= 4:
+        pass
+    elif v:
         m=v.moderates.filter_by(invite_rescinded=False).subquery()
         c=v.contributes.subquery()
         posts=posts.join(m,
