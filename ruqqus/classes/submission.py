@@ -49,7 +49,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     accepted_utc=Column(Integer, default=0)
     is_image=Column(Boolean, default=False)
     has_thumb=Column(Boolean, default=False)
-    is_public=Column(Boolean, default=True)
+    post_public=Column(Boolean, default=True)
     score_hot=Column(Float, default=0)
     score_disputed=Column(Float, default=0)
     score_top=Column(Float, default=0)
@@ -68,6 +68,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     flag_count=deferred(Column(Integer, server_default=FetchedValue()))
     report_count=deferred(Column(Integer, server_default=FetchedValue()))
     score=Column(Float, server_default=FetchedValue())
+    is_public=Column(Boolean, server_default=FetchedValue())
 
     rank_hot=deferred(Column(Float, server_default=FetchedValue()))
     rank_fiery=deferred(Column(Float, server_default=FetchedValue()))

@@ -331,10 +331,10 @@ class User(Base, Stndrd):
             submissions=submissions.join(m,
                                          m.c.board_id==Submission.board_id,
                                          isouter=True
-                         ).join(c,
-                                c.c.board_id==Submission.board_id,
-                                isouter=True
-                                )
+                                    ).join(c,
+                                           c.c.board_id==Submission.board_id,
+                                           isouter=True
+                                    )
             submissions=submissions.filter(or_(Submission.author_id==v.id,
                                    Submission.is_public==True,
                                m.c.board_id != None,
