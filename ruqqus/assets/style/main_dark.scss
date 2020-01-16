@@ -52,7 +52,9 @@ $theme-colors: (
   "gray": $gray,
   "gray-100": $gray-100,
   "gray-200": $gray-200,
+  "gray-300": $gray-300,
   "gray-400": $gray-400,
+  "gray-500": $gray-500,
   "gray-600": $gray-600,
   "reddit": $reddit
 );
@@ -2578,7 +2580,7 @@ ul.comment-section {
     overflow: hidden;
 }
 
-#settings .bg-light {
+#settings .bg-gray-300 {
     background-color: $dark!important;
 }
 
