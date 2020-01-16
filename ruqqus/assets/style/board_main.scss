@@ -553,10 +553,9 @@ ol > li::before {
     position: absolute;
     color: $white;
     font-size: 10px;
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-bold;
     top: -6px;
     left: 14px;
-    line-height: 1.25rem;
     border: 2px solid $white;
     padding: 0 2px 2px 2px;
 }

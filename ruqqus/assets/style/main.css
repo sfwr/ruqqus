@@ -13006,10 +13006,9 @@ ol > li::before {
   position: absolute;
   color: #ffffff;
   font-size: 10px;
-  font-weight: 400;
+  font-weight: 500;
   top: -6px;
   left: 14px;
-  line-height: 1.25rem;
   border: 2px solid #ffffff;
   padding: 0 2px 2px 2px;
 }
