@@ -216,6 +216,12 @@
 {% if b.is_private %}
 <div class="sidebar-section sidebar-info-basic">
   <div class="title"><i class="fas fa-eye-slash"></i> Private Mode</div>
+
+  {% if b.can_view(v) %}
+    <div class="body"> This guild is in private mode. New posts and comments submitted here are not visible to the general public.</div>
+  {% endif %}
+    <div class="body"> This guild is in private mode. Although you can't participate in +{{ b.name }}, you can still see content submitted while this guild was public.</div>
+  {% endif %}
 </div>
 {% endif %}
 
