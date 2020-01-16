@@ -2959,6 +2959,11 @@ ul.comment-section {
     color: $black;
 }
 
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: $purple;
+    border: 1px solid $purple;
+}
+
 // Custom Switch (iOS-like toggle)
 
 .custom-switch {
