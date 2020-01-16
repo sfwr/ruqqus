@@ -219,10 +219,16 @@
 
   <div class="body">
     <p>This guild is in private mode. New posts and comments submitted here are not visible to the general public.</p>
-    {% if b.can_view(v) %}
-      <p>You can participate fully in +{{ b.name }}.</p>
+    {% if b.has_mod(v) %}
+      <p>You are a guildmaster, and can participate fully here.</p>
+    {% elif b.has_contributor(v) %}
+      <p>You are an approved user, and can participate fully here.</p>
+    {% elif b.has_invite(v) %}
+      <p>You have been invited to a guildmaster here, and so you can participate fully.</p>
+    {% elif v.admin_level >=4 %}
+      <p>You are only able to view everything here because you are an admin.</p>
     {% else %}
-      <p>You cannot participate in +{{ b.name }}, but you can still see any public content saved while +{{ b.name }} was not private.</p>
+      <p>You cannot participate in +{{ b.name }}, but you can still see anything saved while +{{ b.name }} was not private.</p>
     {% endif %}
   </div>
 </div>
