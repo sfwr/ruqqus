@@ -93,7 +93,9 @@ class Board(Base, Stndrd, Age_times):
             posts=posts.filter_by(over_18=False)
 
         if self.is_private:
-            if v and not self.can_view(v):
+            if v and (self.can_view(v) or v.admin_level >= 4):
+                pass
+            elif v:
                 posts=posts.filter(or_(Submission.is_public==True,
                                        Submission.author_id==v.id
                                        )
