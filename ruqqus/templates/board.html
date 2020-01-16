@@ -221,7 +221,7 @@
     <div>This guild is in private mode. New posts and comments submitted here are not visible to the general public.</div>
     {% if b.can_view(v) %}
       <div>You can participate fully in +{{ b.name }}.</div>
-    {% if b.can_view(v) %}
+    {% else %}
       <div>You cannot participate in +{{ b.name }}, but you can still see public content saved while +{{ b.name }} was not private.</div>
     {% endif %}
   </div>
