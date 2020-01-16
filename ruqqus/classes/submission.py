@@ -240,7 +240,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         else:
             return None
 
-    def visibility_reason(v):
+    def visibility_reason(self, v):
 
         if self.author_id==v.id:
             return "this is your content."
