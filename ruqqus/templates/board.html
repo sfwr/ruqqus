@@ -219,7 +219,7 @@
 
   {% if b.can_view(v) %}
     <div class="body"> This guild is in private mode. New posts and comments submitted here are not visible to the general public.</div>
-  {% endif %}
+  {% else %}
     <div class="body"> This guild is in private mode. Although you can't participate in +{{ b.name }}, you can still see content submitted while this guild was public.</div>
   {% endif %}
 </div>
