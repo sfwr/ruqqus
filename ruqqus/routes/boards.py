@@ -312,6 +312,9 @@ def mod_invite_username(bid, board, v):
                             accepted=False)
     db.add(new_mod)
     db.commit()
+
+    cache.delete_memoized(Board.invited_mods, board)
+    
     return redirect(f"/+{board.name}/mod/mods")
 
 @app.route("/mod/<bid>/rescind/<username>", methods=["POST"])
@@ -333,6 +336,8 @@ def mod_rescind_bid_username(bid, username, board, v):
     db.add(invitation)
     db.commit()
 
+    cache.delete_memoized(Board.invited_mods, board)
+
     return "", 204
     
 
@@ -350,6 +355,11 @@ def mod_accept_board(bid, v):
     x.accepted=True
     db.add(x)
     db.commit()
+
+    cache.delete_memoized(Board.mods_list, board)
+    cache.delete_memoized(Board.mods, board)
+    cache.delete_memoized(Board.invited_mods, board)    
+    
     return "", 204
     
 
@@ -372,6 +382,10 @@ def mod_remove_username(bid, username, board, v):
     del v_mod
     db.delete(u_mod)
     db.commit()
+
+    cache.delete_memoized(Board.mods_list, board)
+    cache.delete_memoized(Board.mods, board)
+    
     return "", 204
 
 @app.route("/mod/is_banned/<bid>/<username>", methods=["GET"])
