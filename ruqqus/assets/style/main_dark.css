@@ -15725,7 +15725,7 @@ ul.comment-section {
   color: #adb5bd;
 }
 
-.submit-form {
+.submission {
   border: 1px solid #494a4e;
 }
 
@@ -16148,7 +16148,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 16px;
   }
 
-  #submit .submit-form {
+  #submit .submission {
     border: none;
   }
 

@@ -15690,7 +15690,7 @@ ul.comment-section {
   color: #adb5bd;
 }
 
-.submit-form {
+.submission {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
 }
 
@@ -16083,7 +16083,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 16px;
   }
 
-  #submit .submit-form {
+  #submit .submission {
     box-shadow: none;
   }
 
