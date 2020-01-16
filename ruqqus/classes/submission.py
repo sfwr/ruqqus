@@ -239,3 +239,16 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             return self.url
         else:
             return None
+
+    def visibility_reason(v):
+
+        if self.author_id==v.id:
+            return "this is your content."
+        elif self.board.has_contributor(v):
+            return "you are an approved contributor in +{self.board.name}."
+        elif self.board.has_mod(v):
+            return f"you are a guildmaster of +{self.board.name}."
+        elif v.admin_level >= 4:
+            return "you are a Ruqqus admin."
+
+        

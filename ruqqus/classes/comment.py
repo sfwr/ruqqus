@@ -175,3 +175,6 @@ class Notification(Base):
     def board(self):
 
         return db.query(Board).filter_by(id=self.board_id).first()
+
+    def visibility_reason(self, v):
+        return self.post.visibility_reason(v)
