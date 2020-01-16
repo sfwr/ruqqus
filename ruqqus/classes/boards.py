@@ -214,7 +214,7 @@ class Board(Base, Stndrd, Age_times):
         if user is None:
             return False
 
-        return not self.is_private or self.has_contributor(user) or self.has_mod(user) or self.has_invite(user)
+        return not self.is_private or self.has_contributor(user) or self.has_mod(user) or self.has_invite(user) or user.admin_level >=4
 
     def set_profile(self, file):
 
