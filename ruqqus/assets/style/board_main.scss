@@ -53,7 +53,9 @@ $theme-colors: (
   "gray": $gray,
   "gray-100": $gray-100,
   "gray-200": $gray-200,
+  "gray-300": $gray-300,
   "gray-400": $gray-400,
+  "gray-500": $gray-500,
   "gray-600": $gray-600,
   "reddit": $reddit
 );
@@ -553,10 +555,9 @@ ol > li::before {
     position: absolute;
     color: $white;
     font-size: 10px;
-    font-weight: $font-weight-normal;
+    font-weight: $font-weight-bold;
     top: -6px;
     left: 14px;
-    line-height: 1.25rem;
     border: 2px solid $white;
     padding: 0 2px 2px 2px;
 }
@@ -779,7 +780,7 @@ label {
     text-transform: uppercase;
     font-weight: $font-weight-bold;
     font-size: 12px;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.025rem;
     color: $black;
 }
 
@@ -2911,6 +2912,21 @@ ul.comment-section {
     transition: width .15s;
 }
 
+// Custom Checkboxes and Radio Buttons
+
+.custom-control-label {
+    text-transform: none;
+    font-weight: $font-weight-normal;
+    font-size: $font-size-base;
+    letter-spacing: 0;
+    color: $black;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: $purple;
+    border: 1px solid $purple;
+}
+
 // Custom Switch (iOS-like toggle)
 
 .custom-switch {
@@ -2918,7 +2934,7 @@ ul.comment-section {
   padding-bottom: 1rem; // added for positioning
 }
 
-.custom-control-label { // added for alignment with the switch
+.custom-switch .custom-control-label { // added for alignment with the switch
   padding-top: 0.5rem;
   padding-left: 2rem;
   padding-bottom: 0.1rem;

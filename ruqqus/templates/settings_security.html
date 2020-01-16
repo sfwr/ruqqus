@@ -37,9 +37,9 @@
 
 </div>
 
-<!-- Submission type toggle -->
+<!-- Settings tabs -->
 
-<div class="flex-row bg-light box-shadow-bottom sticky d-flex pt-3 mb-3 mb-md-5">
+<div class="flex-row bg-gray-300 box-shadow-bottom sticky d-flex pt-3 mb-3 mb-md-5">
 
     <ul class="nav settings-nav mr-auto">
         <li class="nav-item">
@@ -155,10 +155,12 @@
 
                     <div class="w-lg-100">
 
-                        <input class="form-control" id="new_email" placeholder="{{ v.email }}"
+                        <input class="form-control" id="new_email" {% if v.email %}placeholder="{{ v.email }}"{% else %}placeholder="Your email"{% endif %}
                         aria-describedby="new_email" type="email" name="new_email" required>
-                        {% if not v.is_activated %}
+                        {% if v.email and not v.is_activated %}
                         <div class="text-danger text-small-extra mt-1" id="email-verify-text">Email not verified. You will not be able to recover your account with this email until you verify it. <u><a href="javascript:void(0)" onclick="post('/api/verify_email');emailVerifyText();" class="text-danger">Verify now.</a></u></div>
+                        {% elif not v.email %}
+                        <div class="text-danger text-small-extra mt-1" id="email-verify-text">Add an email to secure your account in case you forget your password.</div>
                         {% endif %}
 
                     </div>
@@ -198,7 +200,7 @@
 
 </div>
 
-<h2 class="h5">Log out of other sessions</h2>
+<h2 class="h5">Log Out Everywhere</h2>
 
 <p class="text-small text-muted">Log all other devices out of your Ruqqus account.</p>
 
