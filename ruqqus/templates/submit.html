@@ -20,13 +20,13 @@
 
 	<!-- Ruqqus Board CSS -->
 
-{% block stylesheets %}
+	{% block stylesheets %}
 	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
 	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/dark.css">
 	{% else %}
 	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/main.css">
 	{% endif %}
-{% endblock %}
+	{% endblock %}
 
 	<!-- Font Awesome -->
 	<link href="/assets/fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
@@ -130,8 +130,13 @@
 									<input type="text" class="form-control" name="username">
 									{% endif %}
 
-									<label for="over_18" class="mt-3">NSFW?</label><br>
-									<input type="checkbox" name="over_18" value="true"> This post contains adult material.<br>
+
+									<label for="over_18" class="text-danger mt-3">NSFW?</label>
+									<div class="custom-control custom-checkbox">
+									<input type="checkbox" class="custom-control-input" id="nsfwCheck" name="over_18" value="true">
+									<label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+									</div>
+
 								</div>
 
 								<div class="footer">
