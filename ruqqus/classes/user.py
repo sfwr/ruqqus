@@ -380,7 +380,9 @@ class User(Base, Stndrd):
         if not (v and (v.admin_level >=3 or v.id==self.id)):
             comments=comments.filter_by(is_banned=False)
 
-        if v:
+        if v and v.admin_level >= 4:
+            pass
+        elif v:
             m=v.moderates.filter_by(invite_rescinded=False).subquery()
             c=v.contributes.subquery()
             
