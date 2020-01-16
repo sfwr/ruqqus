@@ -215,10 +215,10 @@
 
 {% if b.is_private %}
 <div class="sidebar-section sidebar-info-basic">
-  <div class="title"><i class="fas fa-eye-slash"></i> Private Mode</div>
+  <div class="title"><i class="fas fa-eye-slash"></i> Private Guild</div>
 
   <div class="body">
-    <p>This guild is in private mode. New posts and comments submitted here are not visible to the general public.</p>
+    <p>This guild is private. New posts and comments submitted here are not visible to the general public.</p>
     {% if b.has_mod(v) %}
       <p>You are a guildmaster, and can participate fully here.</p>
     {% elif b.has_contributor(v) %}
