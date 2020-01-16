@@ -47,13 +47,11 @@
               </ul>
               {% if v %}
               <div class="my-auto">
-              <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
+                <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
               </div>
               <div class="my-auto">
-              <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
+                <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
               </div>
-              {% elif not v %}
-              <div class="my-auto"><a class="btn btn-primary btn-block" href="/signup">Join guild</a></div>
               {% endif %}
             </div>
           </div>
@@ -210,6 +208,7 @@
 <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
 {% elif not v %}
 <a href="/signup" class="btn btn-secondary btn-block mt-2">Create post</a>
+<a class="btn btn-primary btn-block mt-2" href="/signup">Join guild</a>
 {% endif %}
 </div>
 </div>
@@ -304,25 +303,25 @@
     <div><a href="{{ b.permalink}}/mod/mods"><i class="fad fa-crown fa-width-rem"></i>Guildmasters</a></div>
     <div><a href="{{ b.permalink}}/mod/exiled"><i class="fad fa-user-slash fa-width-rem"></i>Exiles</a></div>
     <div><a href="{{ b.permalink}}/mod/queue"><i class="fad fa-flag fa-width-rem"></i>Reports</a></div>
-  {% if b.restricted_posting %}
+    {% if b.restricted_posting %}
     <div><a href="{{ b.permalink}}/mod/contributors"><i class="fad fa-user-check fa-width-rem"></i>Contributors</a></div>
-  {% endif %}
+    {% endif %}
   </div>
 
 </div>
 {% endif %}
 
 {% if not v and trending_boards %}
-  <div class="sidebar-section sidebar-trending">
-    <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Guilds
-    </div>
-    <div class="body">
-      {% for entry in trending_boards[0:5] %}
-      <div class="d-flex justify-content-start trending-guild">
-        <div>
+<div class="sidebar-section sidebar-trending">
+  <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Guilds
+  </div>
+  <div class="body">
+    {% for entry in trending_boards[0:5] %}
+    <div class="d-flex justify-content-start trending-guild">
+      <div>
         <a href="{{ entry[0].permalink }}"><img src="{{ entry[0].profile_url }}" class="profile-pic-40 mr-2"></a>
-       </div>
-       <div>
+      </div>
+      <div>
         <a href="{{ entry[0].permalink }}">+{{ entry[0].name }}</a>
         <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
       </div>
