@@ -25,7 +25,7 @@
 					<form action="/allow_nsfw_logged_out" method="post">
 						<input type="hidden" name="formkey" value="{{ lo_formkey }}">
 						<input type="hidden" name="redir" value="{{ request.path }}">
-						<input type="hidden" name="time" value="{{ t }}>
+						<input type="hidden" name="time" value="{{ t }}">
 						<input type="submit" class="btn btn-danger mr-2" value="Yes">
 					</form>
 				{% endif %}
