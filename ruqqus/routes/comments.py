@@ -139,7 +139,6 @@ def api_comment(v):
 
 
     for id in notify_users:
-        if not c.board.has_ban(
         n=Notification(comment_id=c.id,
                        user_id=id)
         db.add(n)
