@@ -1,0 +1,27 @@
+{% extends "errors/default.html" %}
+
+{% block title %}
+<title>451 Unavailable For Legal Reasons</title>
+{% endblock %}
+
+{% block pagetype %}error-451{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+	<div class="col col-md-5">
+		<div class="text-center px-3 my-8">
+			<i class="fas fa-eye-evil text-danger mb-4" style="font-size: 3.5rem;"></i>
+			<h1 class="h5">Are you over 18?</h1>
+			<p class="mb-5">The guild you are trying to view is rated NSFW (Not Safe for Work). The content may not be suitable for some users and situations. Are you sure you want to proceed?</p>
+			<div class="btn-toolbar justify-content-center mb-4">
+				<div class=""><a href="/signup" class="btn btn-danger mr-2">Yes</a></div>
+				<div><a href="/" class="btn btn-secondary">No</a></div>
+			</div>
+			{% if v %}
+			<div><a href="/settings/profile" class="text-muted text-small opacity-25">Toggle NSFW settings</a></div>
+			{% endif %}
+
+		</div>
+	</div>
+</div>
+{% endblock %}
