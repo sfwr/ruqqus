@@ -98,6 +98,11 @@ def settings_security_post(v):
         if new_email == v.email:
             return render_template("settings_security.html", v=v, error="That's already your email!")
 
+        #check to see if email is in use
+        existing=db.query(User).filter(User.id != v.id,
+                                       User.email.lower() == new_email.lower()).first()
+        if existing:
+            return render_template("settings_security.html", v=v, error="That email address is already in use.")
 
         url=f"https://{environ.get('domain')}/activate"
             
