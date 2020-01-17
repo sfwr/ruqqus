@@ -54,21 +54,18 @@ class Board(Base, Stndrd, Age_times):
         return f"Board(name={self.name})>"
     
     @property
-    @cache.memoize(timeout=3600)
     def mods_list(self):
 
         z= [x for x in self.moderators.filter_by(accepted=True).order_by(text("id asc")).all()]
         return z
 
     @property
-    @cache.memoize(timeout=3600)
     def mods(self):
 
         z= [x.user for x in self.moderators.filter_by(accepted=True).order_by(text("id asc")).all()]
         return z
 
     @property
-    @cache.memoize(timeout=3600)
     def invited_mods(self):
         
         z=[x.user for x in self.moderators.filter_by(accepted=False, invite_rescinded=False).order_by(text("id")).all()]
