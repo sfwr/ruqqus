@@ -56,7 +56,7 @@ def error_500(e, v):
     return render_template('errors/500.html', e=e, v=v), 500
 
 
-@app.route("/allow_nsfw_logged_in/bid", methods=["POST"])
+@app.route("/allow_nsfw_logged_in/<bid>", methods=["POST"])
 @auth_required
 @validate_formkey
 def allow_nsfw_logged_in(bid, v):
@@ -70,7 +70,7 @@ def allow_nsfw_logged_in(bid, v):
 
     return redirect(request.form.get("redir"))
 
-@app.route("/allow_nsfw_logged_out/bid", methods=["POST"])
+@app.route("/allow_nsfw_logged_out/<bid>", methods=["POST"])
 @auth_desired
 def allow_nsfw_logged_out(bid, v):
 
