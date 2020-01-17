@@ -1,5 +1,6 @@
 from ruqqus.helpers.wrappers import *
 from flask import *
+import time
 from ruqqus.__main__ import app
 
 #Errors
@@ -52,3 +53,31 @@ def error_451(e, v):
 @auth_desired
 def error_500(e, v):
     return render_template('errors/500.html', e=e, v=v), 500
+
+
+@app.route("/allow_nsfw_logged_in", methods=["POST"])
+@auth_required
+@validate_formkey
+def allow_nsfw(v):
+
+    cutoff=int(time.time())+3600
+
+    session["over18"]=cutoff
+
+    return redirect(request.form.get("redir"))
+
+@app.route("/allow_nsfw_logged_out", methods=["POST"])
+@auth_desired
+def allow_nsfw(v):
+
+    if v:
+        return redirect('/')
+
+    t=int(request.form.get('time'))
+
+    if not validate_logged_out_formkey(t):
+        abort(403)
+
+    session["over18"]=cutoff
+
+    return redirect(request.form.get("redir"))

@@ -10,6 +10,7 @@ from ruqqus.helpers.filters import *
 from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
+from ruqqus.helpers.session import *
 from ruqqus.classes import *
 from flask import *
 from ruqqus.__main__ import app, db, limiter
@@ -34,8 +35,13 @@ def post_pid_comment_cid(p_id, c_id, v=None):
     if comment.parent_submission != post.id:
         abort(404)
 
-    if post.over_18 and not (v and v.over_18):
-        abort(451)
+    if post.over_18 and not (v and v.over_18) and not session_over18():
+        t=int(time.time())
+        return render_template("errors/nsfw.html",
+                               v=v,
+                               t=t,
+                               lo_formkey=make_logged_out_formkey(t)
+                               )
 
     #context improver
     context=int(request.args.get("context", 0))
@@ -133,6 +139,7 @@ def api_comment(v):
 
 
     for id in notify_users:
+        if not c.board.has_ban(
         n=Notification(comment_id=c.id,
                        user_id=id)
         db.add(n)
