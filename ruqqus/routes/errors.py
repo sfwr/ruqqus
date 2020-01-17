@@ -63,7 +63,7 @@ def allow_nsfw_logged_in(bid, v):
 
     cutoff=int(time.time())+3600
 
-    if not session["over_18"]:
+    if not session.get("over_18",None):
         session["over_18"]={}
 
     session["over_18"][bid]=cutoff
@@ -84,7 +84,7 @@ def allow_nsfw_logged_out(bid, v):
                                        ):
         abort(403)
 
-    if not session["over_18"]:
+    if not session.get("over_18",None):
         session["over_18"]={}
 
     session["over_18"][bid]=cutoff
