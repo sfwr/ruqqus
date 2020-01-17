@@ -36,12 +36,13 @@ def post_base36id(base36id, v=None):
     
     post=get_post(base36id)
 
-    if post.over_18 and not (v and v.over_18) and not session_over18():
+    if post.over_18 and not (v and v.over_18) and not session_over18(post.board):
         t=int(time.time())
         return render_template("errors/nsfw.html",
                                v=v,
                                t=t,
-                               lo_formkey=make_logged_out_formkey(t)
+                               lo_formkey=make_logged_out_formkey(t),
+                               board=post.board
                                )
         
     return post.rendered_page(v=v)

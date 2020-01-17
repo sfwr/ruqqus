@@ -121,12 +121,13 @@ def board_name(name, v):
     if not board.name==name:
         return redirect(board.permalink)
 
-    if board.over_18 and not (v and v.over_18) and not session_over18():
+    if board.over_18 and not (v and v.over_18) and not session_over18(board):
         t=int(time.time())
         return render_template("errors/nsfw.html",
                                v=v,
                                t=t,
-                               lo_formkey=make_logged_out_formkey(t)
+                               lo_formkey=make_logged_out_formkey(t),
+                               board=board
                                )
 
     sort=request.args.get("sort","hot")

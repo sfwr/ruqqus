@@ -35,12 +35,13 @@ def post_pid_comment_cid(p_id, c_id, v=None):
     if comment.parent_submission != post.id:
         abort(404)
 
-    if post.over_18 and not (v and v.over_18) and not session_over18():
+    if post.over_18 and not (v and v.over_18) and not session_over18(comment.board):
         t=int(time.time())
         return render_template("errors/nsfw.html",
                                v=v,
                                t=t,
-                               lo_formkey=make_logged_out_formkey(t)
+                               lo_formkey=make_logged_out_formkey(t),
+                               board=comment.board
                                )
 
     #context improver
