@@ -6,7 +6,7 @@ def session_over18():
 
     now=int(time.time())
 
-    return session.get('over18',0) >= now:
+    return session.get('over18',0) >= now
 
 def make_logged_out_formkey(t):
     
