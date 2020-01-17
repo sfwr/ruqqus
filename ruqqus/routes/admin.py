@@ -56,7 +56,7 @@ def admin_home(v):
     return render_template("admin/admin_home.html")
 
 
-@app.route("/badge_grant", methods=["GET"])
+@app.route("/admin/badge_grant", methods=["GET"])
 @admin_level_required(4)
 def badge_grant_get(v):
 
