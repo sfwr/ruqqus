@@ -10,7 +10,7 @@
 {% if standalone %}
 <div class="post-info font-weight-bold">
 	{% if c.parent %}
-    <span class="align-top"><a href="{{ c.permalink }}?context=1">{{ c.post.title | safe }}</a>{% if not c.is_public %} · <i class="fas fa-eye-slash text-muted" data-toggle="tooltip" data-placement="bottom" title="Private content, visible because {{ c.visibility_reason(v) }}"></i>{% endif %}</span>
+    <span class="align-top"><a href="{{ c.permalink }}?context=1">{{ c.post.title | safe }}</a></span>
 	{% else %}
     <span class="align-top">Notification</span>
 	{% endif %}
@@ -38,7 +38,7 @@
 			{% endif %}
 			<span> </span>
 		{% endif %}
-                <span class="time-stamp"><span>&#183;</span> {{ c.age_string }}</span>
+                <span class="time-stamp">· {{ c.age_string }}</span>{% if standalone and not c.is_public %} · <i class="fas fa-eye-slash text-muted" data-toggle="tooltip" data-placement="bottom" title="Private content, visible because {{ c.visibility_reason(v) }}"></i>{% endif %}
 		{% if c.edited_utc %}
 		<span class="time-edited"><span>&#183;</span> <span class="font-italic">Edited {{ c.edited_string }}</span></span>
 		{% endif %}

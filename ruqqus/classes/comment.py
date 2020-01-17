@@ -149,7 +149,16 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
             return self.flag_count
 
     def visibility_reason(self, v):
-        return self.post.visibility_reason(v)
+        if self.author_id==v.id:
+            return "this is your content."
+        elif self.board.has_mod(v):
+            return f"you are a guildmaster of +{self.board.name}."
+        elif self.board.has_contributor(v):
+            return f"you are an approved contributor in +{self.board.name}."
+        elif self.parent.author_id==v.id:
+            return "this is a reply to your content."
+        elif v.admin_level >= 4:
+            return "you are a Ruqqus admin."
         
 class Notification(Base):
 
