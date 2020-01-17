@@ -58,7 +58,7 @@ def error_500(e, v):
 @app.route("/allow_nsfw_logged_in", methods=["POST"])
 @auth_required
 @validate_formkey
-def allow_nsfw(v):
+def allow_nsfw_logged_in(v):
 
     cutoff=int(time.time())+3600
 
@@ -68,7 +68,7 @@ def allow_nsfw(v):
 
 @app.route("/allow_nsfw_logged_out", methods=["POST"])
 @auth_desired
-def allow_nsfw(v):
+def allow_nsfw_logged_out(v):
 
     if v:
         return redirect('/')
