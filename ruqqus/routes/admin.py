@@ -9,7 +9,7 @@ def flagged_posts(v):
 
     page=max(1, int(request.args.get("page", 1)))
 
-    posts = db.query(Submission).filter_by(is_approved=0, is_banned=False).filter(Submission.flag_count>=1).order_by(text("submissions.flag_count desc")).offset(25*(page-1)).limit(26)
+    posts = db.query(Submission).filter_by(is_approved=0, is_banned=False).filter(Submission.flag_count>=1).order_by(text(Submission.flag_count.desc())).offset(25*(page-1)).limit(26)
 
     listing=[p for p in posts]
     next_exists=(len(listing)==26)
@@ -24,7 +24,7 @@ def flagged_comments(v):
 
     page=max(1, int(request.args.get("page", 1)))
 
-    posts = db.query(Comment).filter_by(is_approved=0, is_banned=False).filter(Comment.flag_count>=1).order_by(text("comments.flag_count desc")).offset(25*(page-1)).limit(26)
+    posts = db.query(Comment).filter_by(is_approved=0, is_banned=False).filter(Comment.flag_count>=1).order_by(Comment.flag_count.desc()).offset(25*(page-1)).limit(26)
 
     listing=[p for p in posts]
     next_exists=(len(listing)==26)
