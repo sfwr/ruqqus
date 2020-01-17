@@ -9,6 +9,7 @@ from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
 from ruqqus.helpers.alerts import *
+from ruqqus.helpers.session import *
 from ruqqus.classes import *
 from .front import guild_ids
 from ruqqus.classes.rules import *
@@ -120,8 +121,13 @@ def board_name(name, v):
     if not board.name==name:
         return redirect(board.permalink)
 
-    if board.over_18 and not (v and v.over_18):
-        abort(451)
+    if board.over_18 and not (v and v.over_18) and not session_over18():
+        t=int(time.time())
+        return render_template("errors/nsfw.html",
+                               v=v,
+                               t=t,
+                               lo_formkey=make_logged_out_formkey(t)
+                               )
 
     sort=request.args.get("sort","hot")
     page=int(request.args.get("page", 1))

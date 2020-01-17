@@ -13,6 +13,7 @@ from ruqqus.helpers.embed import *
 from ruqqus.helpers.markdown import *
 from ruqqus.helpers.get import *
 from ruqqus.helpers.thumbs import *
+from ruqqus.helpers.session import *
 from ruqqus.classes import *
 from .front import frontlist
 from flask import *
@@ -35,8 +36,13 @@ def post_base36id(base36id, v=None):
     
     post=get_post(base36id)
 
-    if post.over_18 and not (v and v.over_18):
-        abort(451)
+    if post.over_18 and not (v and v.over_18) and not session_over18():
+        t=int(time.time())
+        return render_template("errors/nsfw.html",
+                               v=v,
+                               t=t,
+                               lo_formkey=make_logged_out_formkey(t)
+                               )
         
     return post.rendered_page(v=v)
 
