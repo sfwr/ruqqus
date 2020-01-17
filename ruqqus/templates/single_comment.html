@@ -8,11 +8,11 @@
 {% endif %}
 
 {% if standalone %}
-<div class="post-info font-weight-bold">
+<div class="post-info">
 	{% if c.parent %}
-    <span class="align-top"><a href="{{ c.permalink }}?context=1">{{ c.post.title | safe }}</a> in <a href="{{ c.board.permalink }}">+{{ c.board.name }}</a></span>
+    <span class="align-top"><span class="font-weight-bold"><a href="{{ c.permalink }}?context=1">{{ c.post.title | safe }}</a></span> in <a href="{{ c.board.permalink }}">+{{ c.board.name }}</a></span>
 	{% else %}
-    <span class="align-top">Notification</span>
+    <span class="align-top font-weight-bold">Notification</span>
 	{% endif %}
 </div>
 {% endif %}
