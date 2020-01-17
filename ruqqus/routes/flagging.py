@@ -51,7 +51,7 @@ def api_flag_comment(cid, v):
 
     comment=get_comment(cid)
 
-    existing=db.query(CommentFlag).filter_by(user_id=v.id, comment_id=cid).filter(CommentFlag.created_utc >= comment.edited_utc).first()
+    existing=db.query(CommentFlag).filter_by(user_id=v.id, comment_id=comment.id).filter(CommentFlag.created_utc >= comment.edited_utc).first()
 
     if existing:
         return "",409

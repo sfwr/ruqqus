@@ -1,6 +1,5 @@
 from .admin import *
 from .admin_api import *
-from .badges import *
 from .boards import *
 from .comments import *
 from .errors import *
