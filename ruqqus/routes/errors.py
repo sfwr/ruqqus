@@ -1,4 +1,5 @@
 from ruqqus.helpers.wrappers import *
+from ruqqus.helpers.session import *
 from flask import *
 import time
 from ruqqus.__main__ import app
@@ -75,7 +76,9 @@ def allow_nsfw_logged_out(v):
 
     t=int(request.form.get('time'))
 
-    if not validate_logged_out_formkey(t):
+    if not validate_logged_out_formkey(t,
+                                       request.form.get("formkey")
+                                       ):
         abort(403)
 
     session["over18"]=cutoff
