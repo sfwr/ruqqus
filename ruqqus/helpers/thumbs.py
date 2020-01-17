@@ -15,7 +15,7 @@ def thumbnail_thread(post, can_show_thumbnail=False):
         print("image post")
         x=requests.head(post.url)
 
-        if x.headers["Content-Type"].split("/")[0]=="image":
+        if x.headers.get("Content-Type","/").split("/")[0]=="image":
             post.is_image=True
             db.add(post)
             db.commit()
