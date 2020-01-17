@@ -219,7 +219,9 @@
 
   <div class="body">
     <p>This guild is private. New posts and comments submitted here are not visible to the general public.</p>
-    {% if b.has_mod(v) %}
+    {% if not v %}
+       <p>You are not logged in, and you can only see anything saved while +{{ b.name }} was not private.</p>
+    {% elif b.has_mod(v) %}
       <p>You are a guildmaster, and can participate fully here.</p>
     {% elif b.has_contributor(v) %}
       <p>You are an approved user, and can participate fully here.</p>
