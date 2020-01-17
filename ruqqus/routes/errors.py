@@ -81,6 +81,6 @@ def allow_nsfw_logged_out(v):
                                        ):
         abort(403)
 
-    session["over18"]=cutoff
+    session["over18"]=int(time.time())+3600
 
     return redirect(request.form.get("redir"))
