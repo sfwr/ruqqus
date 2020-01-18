@@ -77,7 +77,9 @@ def before_request():
     # Banned crawler useragents are deliberately mocked
     x=db.query(ruqqus.classes.Agent).filter(ruqqus.classes.Agent.kwd.in_(request.headers.get('User-Agent','NoAgent').split())).first()
     if x and request.path != "/robots.txt":
-        return f"Follow the robots.txt, dumbass. {x.mock}", 418
+        text=x.mock if x.mock else "Follow the robots.txt, dumbass"
+        status=x.status_code if x.status_code else 418
+        return text, status
         
     if request.url.startswith('http://') and "localhost" not in app.config["SERVER_NAME"]:
         url = request.url.replace('http://', 'https://', 1)
