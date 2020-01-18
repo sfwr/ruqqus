@@ -452,7 +452,7 @@ def mod_bid_settings_restricted(bid, board, v):
 def mod_bid_settings_private(bid, board, v):
 
     # toggle privacy setting
-    board.is_private = bool(request.form.get("boardprivacy", False)=='true')
+    board.is_private = bool(request.form.get("guildprivacy", False)=='true')
 
     db.add(board)
     db.commit()

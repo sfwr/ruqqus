@@ -279,6 +279,37 @@
 
         </div>
 
+        <div id="privacy">
+
+          <h2 class="h5">Guild Privacy</h2>
+
+          <p class="text-small text-muted">Make submissions to +{{ b.name }} private. Posts will only be visible to approved Guild Members.</p>
+
+          <div class="settings-section rounded">
+
+            <div class="d-lg-flex">
+
+              <div class="title w-lg-25">
+                <label for="guildprivacy">Toggle Privacy</label>
+              </div>
+
+              <div class="body w-lg-100">
+
+                <div class="custom-control custom-switch">
+                  <input type="checkbox" class="custom-control-input" id="guildprivacy" name="guildprivacy"{% if b.is_private %} checked{% endif %} onchange="mod_post('/mod/{{ b.base36id }}/settings/private','guildprivacy')">
+                  <label class="custom-control-label" for="guildprivacy"></label>
+                </div>
+
+                <span class="text-small-extra text-muted">Restrict posting and viewing in +{{ b.name }} to approved members only. (Only approved members will be able to interact).</span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
   </div>
 
 </div>
