@@ -85,7 +85,7 @@
                     <a class="nav-link{% if request.path.endswith("/mod/exiled") %} active{% endif %}" href="/+{{ b.name }}/mod/exiled"><i class="fas fa-user-slash"></i>Exiled Users</a> 
                   </li>
 
-{% if b.restricted_posting %}
+{% if b.restricted_posting or b.is_private %}
                   <li class="nav-item">
                     <a class="nav-link{% if request.path.endswith("/mod/contributors") %} active{% endif %}" href="/+{{ b.name }}/mod/contributors"><i class="fas fa-user-check"></i>Approved Contributors</a> 
                   </li>
