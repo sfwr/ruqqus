@@ -259,13 +259,13 @@ def my_subs(v):
         m=v.moderates.filter_by(accepted=True).subquery()
         
         content=v.subscriptions.join(b,
-                                     b.c.id=Subscription.board_id,
+                                     b.c.id==Subscription.board_id,
                                      isouter=True
                               ).join(contribs,
-                                     contribs.c.board_id=b.c.id,
+                                     contribs.c.board_id==b.c.id,
                                      isouter=True
                               ).join(m,
-                                     m.c.board_id=b.c.id,
+                                     m.c.board_id==b.c.id,
                                      isouter=True)
 
         content=content.filter_by(or_(b.c.is_private==False,
