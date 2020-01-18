@@ -20,8 +20,9 @@ def trending_boards(n=5):
     cutoff=now-60*60*24
 
     boards=db.query(Board).filter_by(is_banned=False,
-                                     over_18=False).filter(
-                                     Board.created_utc<cutoff).order_by(text("boards.trending_rank desc")).limit(n)
+                                     over_18=False,
+                                     is_private=False).filter(
+                                     Board.created_utc<cutoff).order_by(Board.trending_rank.desc()).limit(n)
 
     return [(x, x.subscriber_count) for x in boards]
 
