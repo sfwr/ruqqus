@@ -22,17 +22,17 @@
 
 	{% block stylesheets %}
 	{% if b %}
-		{% if v and v.referral_count and session.get("dark_mode_enabled") %}
-			<link id="css-link" rel="stylesheet" href="{{ b.css_dark_url }}">
-		{% else %}
-			<link id="css-link" rel="stylesheet" href="{{ b.css_url }}">
-		{% endif %}
+	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+	<link id="css-link" rel="stylesheet" href="{{ b.css_dark_url }}">
 	{% else %}
-		{% if v and v.referral_count and session.get("dark_mode_enabled") %}
-			<link id="css-link" rel="stylesheet" href="/assets/style/main_dark.css">
-		{% else %}
-			<link id="css-link" rel="stylesheet" href="/assets/style/main.css">
-		{% endif %}
+	<link id="css-link" rel="stylesheet" href="{{ b.css_url }}">
+	{% endif %}
+	{% else %}
+	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+	<link id="css-link" rel="stylesheet" href="/assets/style/main_dark.css">
+	{% else %}
+	<link id="css-link" rel="stylesheet" href="/assets/style/main.css">
+	{% endif %}
 	{% endif %}
 	{% endblock %}
 
@@ -140,10 +140,14 @@
 
 
 									<label for="over_18" class="text-danger mt-3">NSFW?</label>
+									{% if b.over_18 %}
+									<small class="text-danger">Posting to NSFW guilds will label your post NSFW.</small>
+									{% else %}
 									<div class="custom-control custom-checkbox">
 										<input type="checkbox" class="custom-control-input" id="nsfwCheck" name="over_18" value="true">
 										<label class="custom-control-label" for="nsfwCheck">This post contains adult material.</label>
 									</div>
+									{% endif %}
 
 								</div>
 
@@ -193,13 +197,23 @@
 							<a href="{{ b.permalink }}"><img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-50 mr-2"></a>
 						</div>
 						{% endif %}
-						<div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %} {% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+						<div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }}</h1></a>
 							<div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span>
 								Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
 							</div>
 						</div>
 					</div>
 					<div>{{ b.description_html | safe }}</div>
+					<div class="text-small mb-3">
+						{% if b.over_18 %}
+						<span class="badge badge-danger text-small-extra mr-1">nsfw</span>
+						<span class="text-danger align-middle">This guild contains adult content</span>
+						{% endif %}
+						{% if b.is_banned %}
+						<span class="badge badge-danger text-small-extra mr-1">Banned</span>
+						<span class="text-danger">This guild has been banned</span>
+						{% endif %}
+					</div>
 				</div>
 			</div>
 			{% endblock %}

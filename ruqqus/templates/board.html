@@ -13,23 +13,23 @@
 {% block darkswitch %}
 
 <script>
-function switch_css_board() {
-  css = document.getElementById("css-link");
-  dswitch = document.getElementById("dark-switch");
+  function switch_css_board() {
+    css = document.getElementById("css-link");
+    dswitch = document.getElementById("dark-switch");
 
-  if (css.href.endsWith("{{ b.css_url }}")) {
-    css.href="{{ b.css_dark_url }}";
-    post("/settings/dark_mode/1");
-    dswitch.classList.remove("fa-toggle-off");
-    dswitch.classList.add("fa-toggle-on");
+    if (css.href.endsWith("{{ b.css_url }}")) {
+      css.href="{{ b.css_dark_url }}";
+      post("/settings/dark_mode/1");
+      dswitch.classList.remove("fa-toggle-off");
+      dswitch.classList.add("fa-toggle-on");
+    }
+    else {
+      css.href="{{ b.css_url }}";
+      post("/settings/dark_mode/0");
+      dswitch.classList.remove("fa-toggle-on");
+      dswitch.classList.add("fa-toggle-off");
+    }
   }
-  else {
-    css.href="{{ b.css_url }}";
-    post("/settings/dark_mode/0");
-    dswitch.classList.remove("fa-toggle-on");
-    dswitch.classList.add("fa-toggle-off");
-  }
-}
 </script>
 {% if v and v.referral_count and session.get("dark_mode_enabled")%}
 <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-on fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
@@ -139,15 +139,12 @@ function switch_css_board() {
         <div class="ml-3 w-100">
           <a href="{{ b.permalink }}" class="text-white">
             <h1 class="h3 d-inline-block mr-2">+{{ b.name }}
-             {% if b.over_18 %}
-             <span class="badge badge-danger text-small align-middle">nsfw</span>
-             {% endif %}
-           </h1>
-         </a>
-       </div>
-     </div>
-   </div>
- </div>
+            </h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Mobile -->
 <div class="container-fluid text-center bg-white d-md-none">
@@ -218,12 +215,22 @@ function switch_css_board() {
      <div class="letter" style="line-height: 3;"><i class="far fa-cloud-upload" style="font-size: 1.25rem"></i></div>
    </a>
    {% endif %}
-   <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }}{% if b.over_18 %} <span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %}{% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+   <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }}</h1></a>
     <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span> Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
     </div>
   </div>
 </div>
 <div>{{ b.description_html | safe }}</div>
+<div class="text-small mb-3">
+  {% if b.over_18 %}
+  <span class="badge badge-danger text-small-extra mr-1">nsfw</span>
+  <span class="text-danger">This guild contains adult content</span>
+  {% endif %}
+  {% if b.is_banned %}
+  <span class="badge badge-danger text-small-extra mr-1">Banned</span>
+  <span class="text-danger">This guild has been banned</span>
+  {% endif %}
+</div>
 {% if b.can_submit(v) %}
 <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
 {% endif %}
@@ -237,17 +244,17 @@ function switch_css_board() {
   <div class="body">
     <p>This guild is private. New posts submitted here (and the comments on them) are not visible to the general public.</p>
     {% if not v %}
-       <p>You are not logged in, and you can only see anything saved while +{{ b.name }} was not private.</p>
+    <p>You are not logged in, and you can only see anything saved while +{{ b.name }} was not private.</p>
     {% elif b.has_mod(v) %}
-      <p>You are a guildmaster, and can participate fully here.</p>
+    <p>You are a guildmaster, and can participate fully here.</p>
     {% elif b.has_contributor(v) %}
-      <p>You are an approved user, and can participate fully here.</p>
+    <p>You are an approved user, and can participate fully here.</p>
     {% elif b.has_invite(v) %}
-      <p>You have been invited to be a guildmaster here. You can view everything, but you can't participate until you accept your invitation.</p>
+    <p>You have been invited to be a guildmaster here. You can view everything, but you can't participate until you accept your invitation.</p>
     {% elif v.admin_level >=4 %}
-      <p>You are only able to view everything here because you are an admin.</p>
+    <p>You are only able to view everything here because you are an admin.</p>
     {% else %}
-      <p>You cannot participate in +{{ b.name }}, but you can still see anything saved while +{{ b.name }} was not private.</p>
+    <p>You cannot participate in +{{ b.name }}, but you can still see anything saved while +{{ b.name }} was not private.</p>
     {% endif %}
   </div>
 </div>
