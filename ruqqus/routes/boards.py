@@ -838,6 +838,8 @@ def mod_board_color(bid, board, v):
         color="603abb"
 
     board.color=color
+    board.color_nonce+=1
+    
     db.add(board)
     db.commit()
 
