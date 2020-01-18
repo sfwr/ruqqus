@@ -1,0 +1,97 @@
+{% extends "default.html" %}
+
+
+{% block enlargeThumbJS %}
+<script src="/assets/js/enlarge_thumb.js"></script>
+{% endblock %}
+
+{% block toggleView %}
+<script src="/assets/js/toggle_view.js"></script>
+{% endblock %}
+
+{% block fixedMobileBarJS %}
+<script>
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("fixed-bar-mobile").style.top = "49px";
+      document.getElementById("navbar").classList.remove("shadow");
+    } 
+    else if (currentScrollPos <= 125) {
+      document.getElementById("fixed-bar-mobile").style.top = "49px";
+      document.getElementById("navbar").classList.remove("shadow");
+    }
+    else {
+      document.getElementById("fixed-bar-mobile").style.top = "-49px";
+      document.getElementById("dropdownMenuSortBy").classList.remove('show');
+      document.getElementById("dropdownMenuFrom").classList.remove('show');
+      document.getElementById("navbar").classList.add("shadow");
+    }
+    prevScrollpos = currentScrollPos;
+  }
+</script>
+{% endblock %}
+
+{% block postNav %}
+<div class="container-fluid bg-white sticky">
+  <div class="row box-shadow-bottom">
+    <div class="col">
+      <div class="container">
+        <div class="row box-shadow-bottom bg-white">
+          <div class="col">
+            <div class="d-flex">
+  <ul class="nav post-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link{% if kind=="guilds" %} active{% endif %}" href="?kind=guilds"><i class="fas fa-users"></i>Members</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link{% if kind=="users" %} active{% endif %}" href="?kind=users"><i class="fas fa-sparkles"></i>New</a>
+    </li>
+  </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+
+      <div class="row no-gutters">
+
+        <div class="col-12">
+
+          <div class="posts" id="posts">
+
+{% block maincontent %}
+{% endblock %}
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+          {% block pagenav %}
+          <nav aria-label="Page navigation">
+            <ul class="pagination pagination-sm mb-0">
+              {% if page>1 %}
+              <li class="page-item">
+                <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page-1 }}" tabindex="-1">Prev</a></small>
+              </li>
+              {% else %}
+              <li class="page-item disabled"><span class="page-link">Prev</span></li>
+              {% endif %}
+              {% if next_exists %}
+              <li class="page-item">
+                <small><a class="page-link" href="?sort={{ sort_method }}&page={{ page+1 }}">Next</a></small>
+              </li>
+              {% else %}
+              <li class="page-item disabled"><span class="page-link">Next</span></li>
+              {% endif %}
+            </ul>
+          </nav>
+          {% endblock %}

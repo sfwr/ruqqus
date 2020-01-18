@@ -97,7 +97,7 @@ def home(v):
 
     if v and v.subscriptions.filter_by(is_active=True).count():
         return v.rendered_subscription_page(sort=request.args.get("sort","hot"),
-                                        page=max(int(request.args.get("page",1)),0)
+                                            page=max(int(request.args.get("page",1)),0)
                                         )
     else:
         return front_all()
@@ -244,3 +244,45 @@ def browse_guilds(v):
                            next_exists=next_exists,
                            sort_method=sort_method
                             )
+
+@app.route('/mine', methods=["GET"])
+@auth_required
+def my_subs(v):
+
+    kind=request.args.get("kind", "guilds")
+    page=max(int(request.args.get("page", 1)),1)
+
+    if kind=="guilds":
+
+        b=db.query(Board).subquery()
+        contribs=v.contributors.subquery()
+        m=v.moderates.filter_by(accepted=True).subquery()
+        
+        content=v.subscriptions.join(b,
+                                     b.c.id=Subscription.board_id,
+                                     isouter=True,
+                              ).join(contribs,
+                                     contribs.c.board_id=b.c.id,
+                                     isouter=True)
+                              ).join(m,
+                                     m.c.board_id=b.c.id,
+                                     isouter=True)
+
+        content=content.filter_by(or_(b.c.is_private==False,
+                                      contribs.c.id != None,
+                                      m.c.id != None
+                                      )
+                                  )
+        content=content.order_by(Board.subscriber_count.desc())
+        content=[x for x in content.offset(25*(page-1)).limit(26)]
+        next_exists=(len(content)==26)
+        content=content[0:25]
+
+        return render_template("mine/boards.html",
+                               v=v,
+                               boards=content,
+                               next_exists=next_exists,
+                               page=page)
+    else:
+        abort(422)
+
