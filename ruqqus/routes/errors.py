@@ -86,7 +86,8 @@ def allow_nsfw_logged_out(bid, v):
 
     if not session.get("over_18",None):
         session["over_18"]={}
-
+        
+    cutoff=int(time.time())+3600
     session["over_18"][bid]=cutoff
 
     return redirect(request.form.get("redir"))
