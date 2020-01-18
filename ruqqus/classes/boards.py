@@ -127,7 +127,7 @@ class Board(Base, Stndrd, Age_times):
         
         ids=self.idlist(sort=sort,
                         page=page,
-                        nsfw=(v and v.over_18),
+                        nsfw=(v and v.over_18) and not session_over18(self),
                         v=v
                         )
 
