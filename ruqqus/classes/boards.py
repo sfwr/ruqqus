@@ -216,6 +216,20 @@ class Board(Base, Stndrd, Age_times):
 
         return self.contributors.filter_by(user_id=user.id).first()
 
+    def can_submit(self, user):
+
+        if user is None:
+            return False
+
+        if self.has_ban(user):
+            return False
+
+        if self.has_mod(user) or self.has_contributor(user):
+            return True
+
+        if self.is_private:
+            return False
+
     def can_view(self, user):
 
         if user is None:
