@@ -779,7 +779,7 @@ def board_css(boardname, x):
 
     board=get_guild(boardname)
 
-    if x != board.color_nonce:
+    if int(x) != board.color_nonce:
         return redirect(board.css_url)
 
 
@@ -801,7 +801,7 @@ def board_dark_css(boardname, x):
 
     board=get_guild(boardname)
 
-    if x != board.color_nonce:
+    if int(x) != board.color_nonce:
         return redirect(board.css_dark_url)
 
     with open("ruqqus/assets/style/board_dark.scss", "r") as file:
