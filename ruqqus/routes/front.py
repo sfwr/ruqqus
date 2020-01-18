@@ -254,12 +254,12 @@ def my_subs(v):
 
     if kind=="guilds":
 
-        b=db.query(Board).subquery()
         contribs=v.contributes.subquery()
         m=v.moderates.filter_by(accepted=True).subquery()
+        s=v.subscriptions.subquery
         
-        content=v.subscriptions.join(b,
-                                     b.c.id==Subscription.board_id,
+        content=db.query(Board).join(s,
+                                     Board.id==s.board_id,
                                      isouter=True
                               ).join(contribs,
                                      contribs.c.board_id==b.c.id,
@@ -267,13 +267,14 @@ def my_subs(v):
                               ).join(m,
                                      m.c.board_id==b.c.id,
                                      isouter=True)
+        content=content.filter(s.id != None)
 
         content=content.filter(or_(b.c.is_private==False,
                                    contribs.c.id != None,
                                    m.c.id != None
                                    )
                                )
-        content=content.order_by(text("b.subscriber_count desc"))
+        content=content.order_by(Board.subscriber_count.desc())
         
         content=[x for x in content.offset(25*(page-1)).limit(26)]
         next_exists=(len(content)==26)
