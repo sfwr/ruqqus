@@ -273,7 +273,8 @@ def my_subs(v):
                                    m.c.id != None
                                    )
                                )
-        content=content.order_by(Board.subscriber_count.desc())
+        content=content.order_by(b.c.subscriber_count.desc())
+        
         content=[x for x in content.offset(25*(page-1)).limit(26)]
         next_exists=(len(content)==26)
         content=content[0:25]
