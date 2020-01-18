@@ -268,7 +268,7 @@ def my_subs(v):
                               ).join(m,
                                      m.c.board_id==b.c.id,
                                      isouter=True)
-        content=content.filter(s.id != None)
+        content=content.filter(s.c.id != None)
 
         content=content.filter(or_(b.c.is_private==False,
                                    contribs.c.id != None,
