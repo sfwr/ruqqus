@@ -500,11 +500,9 @@ def mod_bid_settings_description(bid, board, v):
 @is_guildmaster
 @validate_formkey
 def mod_settings_toggle_banner(bid, board, v):
-    if board.hide_banner_data == True:
-        board.hide_banner_data = False
-    else:
-        board.hide_banner_data = True
-    print(board.hide_banner_data)
+    #toggle show/hide banner
+    board.hide_banner_data = bool(request.form.get("hidebanner", False) == 'true')
+
     db.add(board)
     db.commit()
 
