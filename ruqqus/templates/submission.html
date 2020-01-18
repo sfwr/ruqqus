@@ -13,23 +13,23 @@
 {% block darkswitch %}
 
 <script>
-function switch_css_board() {
-  css = document.getElementById("css-link");
-  dswitch = document.getElementById("dark-switch");
+  function switch_css_board() {
+    css = document.getElementById("css-link");
+    dswitch = document.getElementById("dark-switch");
 
-  if (css.href.endsWith("{{ p.board.css_url }}")) {
-    css.href="{{ p.board.css_dark_url }}";
-    post("/settings/dark_mode/1");
-    dswitch.classList.remove("fa-toggle-off");
-    dswitch.classList.add("fa-toggle-on");
+    if (css.href.endsWith("{{ p.board.css_url }}")) {
+      css.href="{{ p.board.css_dark_url }}";
+      post("/settings/dark_mode/1");
+      dswitch.classList.remove("fa-toggle-off");
+      dswitch.classList.add("fa-toggle-on");
+    }
+    else {
+      css.href="{{ p.board.css_url }}";
+      post("/settings/dark_mode/0");
+      dswitch.classList.remove("fa-toggle-on");
+      dswitch.classList.add("fa-toggle-off");
+    }
   }
-  else {
-    css.href="{{ p.board.css_url }}";
-    post("/settings/dark_mode/0");
-    dswitch.classList.remove("fa-toggle-on");
-    dswitch.classList.add("fa-toggle-off");
-  }
-}
 </script>
 {% if v and v.referral_count and session.get("dark_mode_enabled")%}
 <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-on fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
@@ -74,12 +74,12 @@ function switch_css_board() {
         <div class="ml-3 w-100">
           <a href="{{ p.board.permalink }}" class="text-white">
             <h1 class="h5 d-inline-block mb-0">+{{ p.board.name }}
-           </h1>
-         </a>
-       </div>
-     </div>
-   </div>
- </div>
+            </h1>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endif %}
 <!-- Mobile -->
@@ -233,11 +233,14 @@ function switch_css_board() {
      <div class="letter" style="line-height: 3;"><i class="far fa-cloud-upload" style="font-size: 1.25rem"></i></div>
    </a>
    {% endif %}
-   <div class="my-auto"><a href="{{ p.board.permalink }}"><h1 class="h5 mb-0">+{{ p.board.name }} {% if p.board.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %} {% if p.board.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}</h1></a>
+   <div class="my-auto"><a href="{{ p.board.permalink }}"><h1 class="h5 mb-0">+{{ p.board.name }}</h1></a>
     <div class="text-small mt-1"><span class="font-weight-bold">{{ p.board.subscriber_count }}</span> member{{ 's' if p.board.subscriber_count != 1 else '' }} ·
      Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ p.board.created_date }}">{{ p.board.age_string }}</span>
    </div>
  </div>
+</div>
+<div class="text-small mt-1">
+  {% if p.board.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %}{% if p.board.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}
 </div>
 <div>{{ p.board.description_html | safe }}</div>
 {% if v %}
