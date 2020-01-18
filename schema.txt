@@ -83,7 +83,13 @@ CREATE TABLE public.submissions (
     creation_ip character varying(64) DEFAULT ''::character varying NOT NULL,
     mod_approved integer,
     is_image boolean DEFAULT false,
-    has_thumb boolean DEFAULT false
+    has_thumb boolean DEFAULT false,
+    accepted_utc integer DEFAULT 0,
+    post_public boolean DEFAULT true,
+    score_hot double precision DEFAULT 0,
+    score_top integer DEFAULT 0,
+    score_activity double precision DEFAULT 0,
+    score_disputed double precision DEFAULT 0
 );
 
 
@@ -127,7 +133,9 @@ CREATE TABLE public.users (
     has_profile boolean DEFAULT false NOT NULL,
     reserved character varying(256) DEFAULT NULL::character varying,
     is_nsfw boolean DEFAULT false NOT NULL,
-    tos_agreed_utc integer DEFAULT 0
+    tos_agreed_utc integer DEFAULT 0,
+    profile_nonce integer DEFAULT 0 NOT NULL,
+    banner_nonce integer DEFAULT 0 NOT NULL
 );
 
 
@@ -364,6 +372,43 @@ $_$;
 
 
 --
+-- Name: is_public(public.comments); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.is_public(public.comments) RETURNS boolean
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+      SELECT submissions.is_public
+      FROM submissions
+      WHERE submissions.id=$1.parent_submission
+      $_$;
+
+
+--
+-- Name: is_public(public.submissions); Type: FUNCTION; Schema: public; Owner: -
+--
+
+CREATE FUNCTION public.is_public(public.submissions) RETURNS boolean
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+select
+	case
+		when $1.post_public=true
+			then true
+		when (select (is_private)
+			from boards
+			where id=$1.board_id
+			)=true
+			then false
+		else
+			true
+	end
+      
+      
+      $_$;
+
+
+--
 -- Name: over_18(public.comments); Type: FUNCTION; Schema: public; Owner: -
 --
 
@@ -450,7 +495,10 @@ CREATE TABLE public.boards (
     color character varying(8) DEFAULT '603abb'::character varying,
     downvotes_disabled boolean DEFAULT false,
     restricted_posting boolean DEFAULT false,
-    hide_banner_data boolean DEFAULT false
+    hide_banner_data boolean DEFAULT false,
+    profile_nonce integer DEFAULT 0 NOT NULL,
+    banner_nonce integer DEFAULT 0 NOT NULL,
+    is_private boolean DEFAULT false
 );
 
 
@@ -494,10 +542,11 @@ CREATE FUNCTION public.report_count(public.submissions) RETURNS bigint
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
       SELECT COUNT(*)
-      FROM flags
-      JOIN users ON flags.user_id=users.id
+      FROM reports
+      JOIN users ON reports.user_id=users.id
       WHERE post_id=$1.id
       AND users.is_banned=0
+      and reports.created_utc >= $1.edited_utc
       $_$;
 
 
@@ -557,13 +606,35 @@ CREATE FUNCTION public.splash(text) RETURNS SETOF public.images
 CREATE FUNCTION public.subscriber_count(public.boards) RETURNS bigint
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-         select count(*)
-         from subscriptions
-         left join users
-         on subscriptions.user_id=users.id
-         where subscriptions.board_id=$1.id
-         and users.is_banned=0
-        $_$;
+
+	select
+		case 
+		when $1.is_private=false
+		then
+	         (select count(*)
+	         from subscriptions
+	         left join users
+	         on subscriptions.user_id=users.id
+	         where subscriptions.board_id=$1.id
+	         and users.is_banned=0)
+	    when $1.is_private=true
+	    then
+	         (select count(*)
+	         from subscriptions
+	         left join users
+	         	on subscriptions.user_id=users.id
+	         left join (
+	         	select * from contributors
+	         	where contributors.board_id=$1.id
+	         )as contribs
+	         	on contribs.user_id=users.id
+	         where subscriptions.board_id=$1.id
+	         and users.is_banned=0
+	         and contribs.user_id is not null)
+	    end
+         
+         
+$_$;
 
 
 --
@@ -930,7 +1001,8 @@ CREATE TABLE public.domains (
     can_submit boolean DEFAULT false,
     can_comment boolean DEFAULT false,
     reason integer,
-    show_thumbnail boolean DEFAULT false
+    show_thumbnail boolean DEFAULT false,
+    embed_function character varying(64) DEFAULT NULL::character varying
 );
 
 
@@ -1272,7 +1344,8 @@ CREATE TABLE public.useragents (
     kwd character varying(128),
     banned_by integer,
     reason character varying(256),
-    mock character varying(256) DEFAULT ''::character varying
+    mock character varying(256) DEFAULT ''::character varying,
+    status_code integer DEFAULT 418
 );
 
 
@@ -1379,6 +1452,77 @@ CREATE SEQUENCE public.votes_id_seq
 --
 
 ALTER SEQUENCE public.votes_id_seq OWNED BY public.votes.id;
+
+
+--
+-- Name: x; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.x (
+    id integer,
+    username character varying(255),
+    email character varying(255),
+    passhash character varying(255),
+    created_utc integer,
+    admin_level integer,
+    over_18 boolean,
+    creation_ip character varying(255),
+    most_recent_ip character varying(255),
+    is_activated boolean,
+    reddit_username character varying(64),
+    bio character varying(256),
+    bio_html character varying(300),
+    real_id character varying,
+    referred_by integer,
+    is_banned integer,
+    ban_reason character varying(128),
+    ban_state integer,
+    login_nonce integer,
+    title_id integer,
+    has_banner boolean,
+    has_profile boolean,
+    reserved character varying(256),
+    is_nsfw boolean,
+    tos_agreed_utc integer,
+    profile_nonce integer,
+    banner_nonce integer
+);
+
+
+--
+-- Name: y; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.y (
+    id integer,
+    author_id integer,
+    title character varying(255),
+    url character varying(255),
+    created_utc integer,
+    is_banned boolean,
+    over_18 boolean,
+    distinguish_level integer,
+    created_str character varying(255),
+    stickied boolean,
+    body character varying(5000),
+    body_html character varying(6000),
+    board_id integer,
+    embed_url character varying(256),
+    is_deleted boolean,
+    domain_ref integer,
+    is_approved integer,
+    ip character varying(64),
+    approved_utc integer,
+    original_board_id integer,
+    edited_utc integer,
+    ban_reason character varying(128),
+    creation_ip character varying(64),
+    mod_approved integer,
+    is_image boolean,
+    has_thumb boolean,
+    accepted_utc integer,
+    is_public boolean
+);
 
 
 --

@@ -108,8 +108,7 @@ def api_comment(v):
 
     #check for ban state
     post = get_post(request.form.get("submission"))
-    ban = post.board.has_ban(v)
-    if ban:
+    if not post.board.can_comment(v):
         abort(403)
         
     #create comment

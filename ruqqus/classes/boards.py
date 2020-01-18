@@ -233,6 +233,27 @@ class Board(Base, Stndrd, Age_times):
         if self.is_private or self.restricted_posting:
             return False
 
+        return True
+
+    def can_comment(self, user):
+
+        if user is None:
+            return False
+
+        if user.admin_level >= 4:
+            return True
+
+        if self.has_ban(user):
+            return False
+
+        if self.has_contributor(user) or self.has_mod(user):
+            return True
+
+        if self.is_private:
+            return False
+
+        return True
+
     def can_view(self, user):
 
         if user is None:
