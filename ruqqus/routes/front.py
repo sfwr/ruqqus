@@ -254,7 +254,7 @@ def my_subs(v):
 
     if kind=="guilds":
 
-        b=db.query(Board).subquery()
+        b=db.query(Board)
         contribs=v.contributes.subquery()
         m=v.moderates.filter_by(accepted=True).subquery()
         s=v.subscriptions.subquery()
