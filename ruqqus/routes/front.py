@@ -257,7 +257,7 @@ def my_subs(v):
         b=db.query(Board).subquery()
         contribs=v.contributes.subquery()
         m=v.moderates.filter_by(accepted=True).subquery()
-        s=v.subscriptions.subquery
+        s=v.subscriptions.subquery()
         
         content=b.join(s,
                                      b.c.id==s.c.board_id,
