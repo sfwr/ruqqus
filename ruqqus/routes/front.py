@@ -260,17 +260,17 @@ def my_subs(v):
         s=v.subscriptions.subquery()
         
         content=b.join(s,
-                                     b.c.id==s.c.board_id,
+                                     Board.id==s.c.board_id,
                                      isouter=True
                               ).join(contribs,
-                                     contribs.c.board_id==b.c.id,
+                                     contribs.c.board_id==Board.id,
                                      isouter=True
                               ).join(m,
-                                     m.c.board_id==b.c.id,
+                                     m.c.board_id==board.id,
                                      isouter=True)
         content=content.filter(s.c.id != None)
 
-        content=content.filter(or_(b.c.is_private==False,
+        content=content.filter(or_(Board.is_private==False,
                                    contribs.c.id != None,
                                    m.c.id != None
                                    )
