@@ -5,6 +5,7 @@ import time
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import *
+from ruqqus.helpers.session import *
 import ruqqus.helpers.aws as aws
 from .submission import *
 from .board_relationships import *
