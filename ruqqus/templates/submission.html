@@ -3,18 +3,38 @@
 {% block stylesheets %}
 
 {% if v and v.referral_count and session.get("dark_mode_enabled") %}
-<link id="css-link" rel="stylesheet" href="/+{{ p.board.name }}/dark.css">
+<link id="css-link" rel="stylesheet" href="{{ b.css_dark_url }}">
 {% else %}
-<link id="css-link" rel="stylesheet" href="/+{{ p.board.name }}/main.css">
+<link id="css-link" rel="stylesheet" href="{{ b.css_url }}">
 {% endif %}
 
 {% endblock %}
 
 {% block darkswitch %}
+
+<script>
+function switch_css_board() {
+  css = document.getElementById("css-link");
+  dswitch = document.getElementById("dark-switch");
+
+  if (css.href.endsWith("{{ b.css_url }}")) {
+    css.href="{{ b.css_dark_url }}";
+    post("/settings/dark_mode/1");
+    dswitch.classList.remove("fa-toggle-off");
+    dswitch.classList.add("fa-toggle-on");
+  }
+  else {
+    css.href="{{ b.css_url }}";
+    post("/settings/dark_mode/0");
+    dswitch.classList.remove("fa-toggle-on");
+    dswitch.classList.add("fa-toggle-off");
+  }
+}
+</script>
 {% if v and v.referral_count and session.get("dark_mode_enabled")%}
-<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ p.board.name }}')"><i class="fad fa-toggle-on fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
+<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-on fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
 {% elif v and v.referral_count %}
-<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board('{{ p.board.name }}')"><i class="fad fa-toggle-off fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
+<a class="dropdown-item" href="javascript:void(0)" onclick="switch_css_board()"><i class="fad fa-toggle-off fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
 {% else %}
 <a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left mr-3"></i>Dark mode</a>
 {% endif %}
