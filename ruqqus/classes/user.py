@@ -115,12 +115,14 @@ class User(Base, Stndrd):
         if only in [None, "none"]:
             board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
             user_ids=[x.target_id for x in self.following.all()]
+            user_ids.append(self.id)
             posts=posts.filter(or_(Submission.board_id.in_(board_ids), Submission.author_id.in_(user_ids)))
         elif only=="guilds":
             board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
             posts=posts.filter(Submission.board_id.in_(board_ids))
         elif only=="users":
             user_ids=[x.target_id for x in self.following.all()]
+            user_ids.append(self.id)
             posts=posts.filter(Submission.author_id.in_(user_ids))
         else:
             abort(422)
