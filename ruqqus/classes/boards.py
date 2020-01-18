@@ -221,13 +221,16 @@ class Board(Base, Stndrd, Age_times):
         if user is None:
             return False
 
+        if user.admin_level >= 4:
+            return True
+
         if self.has_ban(user):
             return False
 
         if self.has_mod(user) or self.has_contributor(user):
             return True
 
-        if self.is_private:
+        if self.is_private or self.restricted_posting:
             return False
 
     def can_view(self, user):
@@ -235,7 +238,16 @@ class Board(Base, Stndrd, Age_times):
         if user is None:
             return False
 
-        return not self.is_private or self.has_contributor(user) or self.has_mod(user) or self.has_invite(user) or user.admin_level >=4
+        if user.admin_level >=4:
+            return True
+
+        if self.has_contributor(user) or self.has_mod(user) or self.has_invite(user):
+            return True
+
+        if self.is_private:
+            return False
+
+        
 
     def set_profile(self, file):
 
