@@ -774,7 +774,7 @@ def mod_board_images_delete_banner(bid, board, v):
 
     
 @app.route("/+<boardname>/main.css", methods=["GET"])
-@cache.memoize(3600*4)
+#@cache.memoize(3600*4)
 def board_css(boardname):
 
     board=get_guild(boardname)
@@ -793,7 +793,7 @@ def board_css(boardname):
     return resp
 
 @app.route("/+<boardname>/dark.css", methods=["GET"])
-@cache.memoize(3600*4)
+#@cache.memoize(3600*4)
 def board_dark_css(boardname):
 
     board=get_guild(boardname)
