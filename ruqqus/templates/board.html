@@ -223,11 +223,11 @@
 <div>{{ b.description_html | safe }}</div>
 <div class="text-small mt-1">
   {% if b.over_18 %}
-  <span class="badge badge-danger text-small align-middle">nsfw</span>
+  <span class="badge badge-danger text-small mr-2">nsfw</span>
   <span class="text-danger">This guild contains adult content</span>
   {% endif %}
   {% if b.is_banned %}
-  <span class="badge badge-danger">Banned</span>
+  <span class="badge badge-danger text-small mr-2">Banned</span>
   <span class="text-danger">This guild has been banned</span>
   {% endif %}
 </div>
