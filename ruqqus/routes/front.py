@@ -260,10 +260,10 @@ def my_subs(v):
         
         content=v.subscriptions.join(b,
                                      b.c.id=Subscription.board_id,
-                                     isouter=True,
+                                     isouter=True
                               ).join(contribs,
                                      contribs.c.board_id=b.c.id,
-                                     isouter=True)
+                                     isouter=True
                               ).join(m,
                                      m.c.board_id=b.c.id,
                                      isouter=True)
