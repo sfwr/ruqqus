@@ -21,10 +21,18 @@
 	<!-- Ruqqus Board CSS -->
 
 	{% block stylesheets %}
-	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
-	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/dark.css">
+	{% if b %}
+		{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+			<link id="css-link" rel="stylesheet" href="{{ b.css_dark_url }}">
+		{% else %}
+			<link id="css-link" rel="stylesheet" href="{{ b.css_url }}">
+		{% endif %}
 	{% else %}
-	<link id="css-link" rel="stylesheet" href="/+{{ b.name }}/main.css">
+		{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+			<link id="css-link" rel="stylesheet" href="/assets/style/main_dark.css">
+		{% else %}
+			<link id="css-link" rel="stylesheet" href="/assets/style/main.css">
+		{% endif %}
 	{% endif %}
 	{% endblock %}
 
