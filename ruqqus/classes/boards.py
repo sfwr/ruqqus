@@ -34,6 +34,7 @@ class Board(Base, Stndrd, Age_times):
     profile_nonce=Column(Integer, default=0)
     banner_nonce=Column(Integer, default=0)
     is_private=Column(Boolean, default=False)
+    color_nonce=Column(integer, default=0)
 
     moderators=relationship("ModRelationship", lazy="dynamic")
     subscribers=relationship("Subscription", lazy="dynamic")
@@ -325,4 +326,9 @@ class Board(Base, Stndrd, Age_times):
 
     @property
     def css_url(self):
-        return f"{self.permalink}/css.css"
+        return f"{self.permalink}/main/{self.color_nonce}.css"
+
+    @property
+    def css_dark_url(self):
+        return f"{self.permalink}/dark/{self.color_nonce}.css"
+    

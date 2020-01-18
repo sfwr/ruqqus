@@ -773,11 +773,14 @@ def mod_board_images_delete_banner(bid, board, v):
     return redirect(f"/+{board.name}/mod/appearance?msg=Success#images")
 
     
-@app.route("/+<boardname>/main.css", methods=["GET"])
-#@cache.memoize(3600*4)
-def board_css(boardname):
+@app.route("/+<boardname>/main/<x>.css", methods=["GET"])
+@cache.memoize(None)
+def board_css(boardname, x):
 
     board=get_guild(boardname)
+
+    if x != board.color_nonce:
+        return redirect(board.css_url)
 
 
     with open("ruqqus/assets/style/board_main.scss", "r") as file:
@@ -792,12 +795,14 @@ def board_css(boardname):
 
     return resp
 
-@app.route("/+<boardname>/dark.css", methods=["GET"])
-#@cache.memoize(3600*4)
-def board_dark_css(boardname):
+@app.route("/+<boardname>/dark/<x>.css", methods=["GET"])
+@cache.memoize(None)
+def board_dark_css(boardname, x):
 
     board=get_guild(boardname)
 
+    if x != board.color_nonce:
+        return redirect(board.css_dark_url)
 
     with open("ruqqus/assets/style/board_dark.scss", "r") as file:
         raw=file.read()
