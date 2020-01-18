@@ -836,8 +836,8 @@ def mod_board_color(bid, board, v):
     db.add(board)
     db.commit()
 
-    cache.delete_memoized(board_css, boardname=board.name)
-    cache.delete_memoized(board_dark_css, boardname=board.name)
+    cache.delete_memoized(board_css, board.name)
+    cache.delete_memoized(board_dark_css, board.name)
 
     return redirect(f"/+{board.name}/mod/appearance?msg=Success")
 
