@@ -227,7 +227,7 @@ class Board(Base, Stndrd, Age_times):
         if self.has_ban(user):
             return False
 
-        if self.has_mod(user) or self.has_contributor(user):
+        if self.has_contributor(user) or self.has_mod(user):
             return True
 
         if self.is_private or self.restricted_posting:

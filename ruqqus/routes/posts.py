@@ -163,7 +163,7 @@ def submit_post(v):
     if board.has_ban(v):
         return render_template("submit.html",v=v, error=f"You are exiled from +{board.name}.", title=title, url=url, body=request.form.get("body",""), b=get_guild("general")), 403
 
-    if (board.restricted_posting or board.is_private) and not (board.can_view(v)):
+    if (board.restricted_posting or board.is_private) and not (board.can_submit(v)):
         return render_template("submit.html",v=v, error=f"You are not an approved contributor for +{board.name}.", title=title, url=url, body=request.form.get("body",""), b=get_guild(request.form.get("board","general")))
 
         
