@@ -239,10 +239,17 @@
    </div>
  </div>
 </div>
-<div class="text-small mt-1">
-  {% if p.board.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %}{% if p.board.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}
-</div>
 <div>{{ p.board.description_html | safe }}</div>
+<div class="text-small mt-1">
+  {% if p.board.over_18 %}
+  <span class="badge badge-danger text-small align-middle">nsfw</span>
+  <span class="text-danger">This guild contains adult content</span>
+  {% endif %}
+  {% if p.board.is_banned %}
+  <span class="badge badge-danger">Banned</span>
+  <span class="text-danger">This guild has been banned</span>
+  {% endif %}
+</div>
 {% if v %}
 <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ p.board.name }}', callback=function(){document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
 <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ p.board.name }}', callback=function(){document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>

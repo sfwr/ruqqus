@@ -220,10 +220,17 @@
     </div>
   </div>
 </div>
-<div class="text-small mt-1">
-  {% if b.over_18 %}<span class="badge badge-danger text-small align-middle">nsfw</span>{% endif %}{% if b.is_banned %} <span class="badge badge-danger">Banned</span>{% endif %}
-</div>
 <div>{{ b.description_html | safe }}</div>
+<div class="text-small mt-1">
+  {% if b.over_18 %}
+  <span class="badge badge-danger text-small align-middle">nsfw</span>
+  <span class="text-danger">This guild contains adult content</span>
+  {% endif %}
+  {% if b.is_banned %}
+  <span class="badge badge-danger">Banned</span>
+  <span class="text-danger">This guild has been banned</span>
+  {% endif %}
+</div>
 {% if b.can_submit(v) %}
 <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
 {% endif %}
