@@ -293,7 +293,7 @@ def my_subs(v):
         follows=v.following.subquery()
 
         content=u.join(follows,
-                       u.c.id==follows.target_id,
+                       User.id==follows.c.target_id,
                        isouter=False)
 
         content=[x for x in content.offset(25*(page-1)).limit(26)]
