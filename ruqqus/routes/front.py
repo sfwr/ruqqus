@@ -301,7 +301,7 @@ def my_subs(v):
         next_exists=(len(content)==26)
         content=content[0:25]
 
-        return render_template("mine/boards.html",
+        return render_template("mine/users.html",
                                v=v,
                                users=content,
                                next_exists=next_exists,
