@@ -285,7 +285,8 @@ def my_subs(v):
                                v=v,
                                boards=content,
                                next_exists=next_exists,
-                               page=page)
+                               page=page,
+                               kind="guilds")
 
     elif kind=="users":
 
@@ -304,7 +305,8 @@ def my_subs(v):
                                v=v,
                                users=content,
                                next_exists=next_exists,
-                               page=page)
+                               page=page,
+                               kind="users")
         
     else:
         abort(422)
