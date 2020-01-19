@@ -583,3 +583,14 @@ class User(Base, Stndrd):
 
         titles=[i for i in db.query(Title).order_by(text("id asc")).all() if eval(i.qualification_expr,{}, locs)]
         return titles
+
+    @property
+    def can_make_guild(self):
+
+        if not self.is_activated:
+            return False
+
+        if self.karma + self.comment_karma < 100:
+            return False
+
+        return True

@@ -256,23 +256,23 @@ def my_subs(v):
 
         b=db.query(Board)
         contribs=v.contributes.subquery()
-        m=v.moderates.filter_by(accepted=True).subquery()
-        s=v.subscriptions.subquery()
+#        m=v.moderates.filter_by(accepted=True).subquery()
+        s=v.subscriptions.filter_by(is_active=True).subquery()
         
         content=b.join(s,
-                                     Board.id==s.c.board_id,
-                                     isouter=True
-                              ).join(contribs,
-                                     contribs.c.board_id==Board.id,
-                                     isouter=True
-                              ).join(m,
-                                     m.c.board_id==Board.id,
-                                     isouter=True)
+                     Board.id==s.c.board_id,
+                     isouter=True
+              ).join(contribs,
+                     contribs.c.board_id==Board.id,
+                     isouter=True
+              ) #.join(m,
+                #     m.c.board_id==Board.id,
+                #     isouter=True)
         content=content.filter(s.c.id != None)
 
         content=content.filter(or_(Board.is_private==False,
-                                   contribs.c.id != None,
-                                   m.c.id != None
+                                   contribs.c.id != None  #,
+                              #     m.c.id != None
                                    )
                                )
         content=content.order_by(Board.subscriber_count.desc())
@@ -286,6 +286,26 @@ def my_subs(v):
                                boards=content,
                                next_exists=next_exists,
                                page=page)
+
+    elif kind=="users":
+
+        u=db.query(User)
+        follows=v.following.subquery()
+
+        content=u.join(follows,
+                       u.c.id==follows.target_id,
+                       isouter=False)
+
+        content=[x for x in content.offset(25*(page-1)).limit(26)]
+        next_exists=(len(content)==26)
+        content=content[0:25]
+
+        return render_template("mine/boards.html",
+                               v=v,
+                               users=content,
+                               next_exists=next_exists,
+                               page=page)
+        
     else:
         abort(422)
 
