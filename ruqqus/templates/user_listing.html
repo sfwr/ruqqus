@@ -4,8 +4,8 @@
   <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
     <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
 
-           <div id="button-sub-{{ u.base36id }}" style="z-index: 2" class="{% if u.has_follower(v) %}d-none{% endif %}"><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Join</a></div>
-           <div id="button-unsub-{{ u.base36id }}" style="z-index: 2" class="{% if not u.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Leave</a></div>
+           <div id="button-sub-{{ u.base36id }}" style="z-index: 2" class="{% if u.has_follower(v) %}d-none{% endif %}"><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Subscribe</a></div>
+           <div id="button-unsub-{{ u.base36id }}" style="z-index: 2" class="{% if not u.has_follower(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Unsubscribe</a></div>
 
 
     </div>

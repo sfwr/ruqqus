@@ -285,7 +285,8 @@ def my_subs(v):
                                v=v,
                                boards=content,
                                next_exists=next_exists,
-                               page=page)
+                               page=page,
+                               kind="guilds")
 
     elif kind=="users":
 
@@ -296,15 +297,18 @@ def my_subs(v):
                        User.id==follows.c.target_id,
                        isouter=False)
 
+        content=content.order_by(User.follower_count.desc())
+
         content=[x for x in content.offset(25*(page-1)).limit(26)]
         next_exists=(len(content)==26)
         content=content[0:25]
 
-        return render_template("mine/boards.html",
+        return render_template("mine/users.html",
                                v=v,
                                users=content,
                                next_exists=next_exists,
-                               page=page)
+                               page=page,
+                               kind="users")
         
     else:
         abort(422)
