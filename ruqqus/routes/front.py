@@ -297,6 +297,8 @@ def my_subs(v):
                        User.id==follows.c.target_id,
                        isouter=False)
 
+        content=content.order_by(User.follower_count.desc())
+
         content=[x for x in content.offset(25*(page-1)).limit(26)]
         next_exists=(len(content)==26)
         content=content[0:25]
