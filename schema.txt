@@ -428,7 +428,7 @@ CREATE FUNCTION public.over_18(public.comments) RETURNS boolean
 CREATE FUNCTION public.rank_activity(public.submissions) RETURNS double precision
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-      SELECT CAST($1.comment_count AS float)/((CAST(($1.age+5000) AS FLOAT)/100.0)^(0.7))
+      SELECT CAST($1.comment_count AS float)/((CAST(($1.age+5000) AS FLOAT)/100.0)^(1.1))
     $_$;
 
 
@@ -450,7 +450,7 @@ CREATE FUNCTION public.rank_fiery(public.comments) RETURNS double precision
 CREATE FUNCTION public.rank_fiery(public.submissions) RETURNS double precision
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-      SELECT SQRT(CAST(($1.ups * $1.downs) AS float))/((CAST(($1.age+5000) AS FLOAT)/100.0)^(0.7))
+      SELECT SQRT(CAST(($1.ups * $1.downs) AS float))/((CAST(($1.age+5000) AS FLOAT)/100.0)^(1.1))
       $_$;
 
 
@@ -472,7 +472,7 @@ CREATE FUNCTION public.rank_hot(public.comments) RETURNS double precision
 CREATE FUNCTION public.rank_hot(public.submissions) RETURNS double precision
     LANGUAGE sql IMMUTABLE STRICT
     AS $_$
-      SELECT CAST(($1.ups - $1.downs) AS float)/((CAST(($1.age+5000) AS FLOAT)/100.0)^(0.7))
+      SELECT CAST(($1.ups - $1.downs) AS float)/((CAST(($1.age+5000) AS FLOAT)/100.0)^(1.1))
       $_$;
 
 
@@ -498,7 +498,8 @@ CREATE TABLE public.boards (
     hide_banner_data boolean DEFAULT false,
     profile_nonce integer DEFAULT 0 NOT NULL,
     banner_nonce integer DEFAULT 0 NOT NULL,
-    is_private boolean DEFAULT false
+    is_private boolean DEFAULT false,
+    color_nonce integer DEFAULT 0
 );
 
 
