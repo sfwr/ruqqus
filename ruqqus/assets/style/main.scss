@@ -3218,8 +3218,9 @@ body, #settings, #notifications, #submit {
 }
 
 .post-actions a {
-    color: $gray-600;
+    color: $gray-500;
     font-size: $font-size-base;
+    font-weight: $font-weight-normal;
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {

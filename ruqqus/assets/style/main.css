@@ -16275,8 +16275,9 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .post-actions a {
-    color: #718096;
+    color: #A0AEC0;
     font-size: 1rem;
+    font-weight: 400;
   }
 
   .post-actions .fa, .post-actions .fas, .post-actions .far {
