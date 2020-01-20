@@ -16351,6 +16351,14 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 1rem;
   }
 
+  .post-actions .voting .fa, .post-actions .voting .fas, .post-actions .voting .far {
+    font-size: 1.25rem;
+  }
+
+  .arrow-up::before, .arrow-down::before {
+    font-size: 1.25rem;
+  }
+
   .dropdown-actions a {
     font-size: 1rem;
   }

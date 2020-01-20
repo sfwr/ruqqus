@@ -3299,6 +3299,14 @@ body {
     font-size: $font-size-base;
 }
 
+.post-actions .voting .fa, .post-actions .voting .fas, .post-actions .voting .far {
+    font-size: $font-size-lg;
+}
+
+.arrow-up::before, .arrow-down::before {
+    font-size: $font-size-lg;
+}
+
 .dropdown-actions a {
     font-size: $font-size-base;
 }
