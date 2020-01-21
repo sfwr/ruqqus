@@ -116,6 +116,7 @@
   </div>
   <div class="body">
 
+    <div class="mb-4">
     <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Ruqqus Feeds</small></div>
     <ul class="no-bullets guild-recommendations-list pl-0">
       <li class="guild-recommendations-item">
@@ -152,8 +153,10 @@
               </a>
             </li>
           </ul>
+          </div>
 
           {% if v and v.subscriptions.filter_by(is_active=True).count() %}
+          <div class="mb-4">
           <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">My guilds</small></div>
           <ul class="no-bullets guild-recommendations-list pl-0">
             {% for board in v.boards_subscribed[0:5] %}
@@ -172,6 +175,7 @@
             </ul>
             <div class="text-center">
               <a href="/mine">View all</a>
+            </div>
             </div>
             {% endif %}
 
