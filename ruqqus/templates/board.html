@@ -40,52 +40,6 @@
 {% endif %}
 {% endblock %}
 
-{% block postNav %}
-<div class="container-fluid bg-white sticky d-none d-lg-block">
-  <div class="row box-shadow-bottom">
-    <div class="col">
-      <div class="container">
-        <div class="row box-shadow-bottom bg-white">
-          <div class="col">
-            <div class="d-flex">
-              <ul class="nav post-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="?sort=hot{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-fire"></i>Hot</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="?sort=top{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="?sort=new{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-sparkles"></i>New</a> 
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="disputed" %} active{% endif %}" href="?sort=disputed"><i class="fas fa-bullhorn"></i>Disputed</a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link {% if sort_method=="activity" %} active{% endif %}" href="?sort=activity"><i class="fas fa-comments"></i>Activity</a>
-                </li>
-              </ul>
-              {% if v %}
-              <div class="my-auto">
-                <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
-              </div>
-              <div class="my-auto">
-                <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
-              </div>
-              {% elif not v%}
-               <div class="my-auto">
-                <a class="btn btn-secondary btn-block" href="/login">Join guild</a>
-              </div>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
-
 {% block PseudoSubmitForm %}
 <!-- Link to submission page from guild -->
 
@@ -237,6 +191,12 @@
   <span class="text-danger">This guild has been banned</span>
   {% endif %}
 </div>
+{% if v %}
+<div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
+<div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
+{% elif not v%}
+<a class="btn btn-secondary btn-block" href="/login">Join guild</a>
+{% endif %}
 {% if b.can_submit(v) %}
 <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
 {% endif %}
