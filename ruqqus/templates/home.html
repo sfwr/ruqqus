@@ -113,7 +113,7 @@
 
 {% if not v and trending_boards %}
 <div class="sidebar-section sidebar-trending sticky-63">
-  <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Guilds
+  <div class="title"><i class="fas fa-newspaper mr-2"></i>Feeds
   </div>
   <div class="body">
 
@@ -133,6 +133,7 @@
       </ul>
 
       <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Rising Communities</small></div>
+      <ul class="no-bullets guild-recommendations-list pl-0">
       {% for entry in trending_boards[0:5] %}
       <li class="guild-recommendations-item">
         <a href="{{ entry[0].permalink }}">
@@ -146,6 +147,7 @@
           </a>
         </li>
         {% endfor %}
+        </ul>
         <a href="/browse" class="btn btn-primary btn-block mt-3">View more</a>
       </div>
     </div>
