@@ -171,7 +171,7 @@
               {% endfor %}
             </ul>
             <div class="text-center">
-              <a href="/mine" class="btn btn-link">View all</a>
+              <a href="/mine">View all</a>
             </div>
             {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
             <div class="my-3">
