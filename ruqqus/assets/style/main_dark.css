@@ -13929,6 +13929,8 @@ a:hover .link-arrow {
 .sidebar.sidebar-left {
   -ms-flex: 0 0 220px;
   flex: 0 0 220px;
+  padding-left: 0;
+  padding-right: 15px;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {
@@ -13992,13 +13994,6 @@ a:hover .link-arrow {
 
 .filter-link:hover, .filter-link:focus {
   color: #805AD5;
-}
-
-.sidebar-left .sidebar-section.sidebar-guild-recommendations {
-  margin-bottom: 1rem;
-  background-color: transparent;
-  box-shadow: none;
-  border-radius: 0;
 }
 
 .sidebar-guild-recommendations .guild-recommendations-list {

@@ -1240,6 +1240,8 @@ color: $dark;
 .sidebar.sidebar-left {
     -ms-flex: 0 0 220px;
     flex: 0 0 220px;
+    padding-left: 0;
+    padding-right: 15px;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {
@@ -1308,12 +1310,12 @@ color: $dark;
 
 // Guild recommendations section
 
-.sidebar-left .sidebar-section.sidebar-guild-recommendations {
-    margin-bottom: 1rem;
-    background-color: transparent;
-    box-shadow: none;
-    border-radius: 0;
-}
+//.sidebar-left .sidebar-section.sidebar-guild-recommendations {
+//    margin-bottom: 1rem;
+//   background-color: transparent;
+//    box-shadow: none;
+//    border-radius: 0;
+//}
 
 .sidebar-guild-recommendations .guild-recommendations-list {
     list-style: none;
