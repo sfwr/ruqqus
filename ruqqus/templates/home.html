@@ -109,9 +109,7 @@
 
 <!-- Left Sidebar (navigation-purposes, hidden on devices smaller than "large") -->
 
-{% block leftsidebar %}
-
-<div class="col sidebar sidebar-left d-none d-lg-block pt-3">
+{% block leftSidebarBlock %}
 
   {% if not v and trending_boards %}
   <div class="sidebar-section sidebar-trending sticky-63">
@@ -187,8 +185,6 @@
         </div>
       </div>
       {% endif %}
-
-    </div>
 
     {% endblock %}
 
