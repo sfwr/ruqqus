@@ -13928,6 +13928,7 @@ a:hover .link-arrow {
 .sidebar.sidebar-left .sidebar-section .title {
   border-bottom: none;
   background-color: transparent;
+  color: #718096;
 }
 
 .sidebar-section.sidebar-filters .body {
