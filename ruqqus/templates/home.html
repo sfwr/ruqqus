@@ -38,40 +38,6 @@
 </script>
 {% endblock %}
 
-{% block postNav %}
-<div class="container-fluid bg-white sticky d-none d-lg-block">
-  <div class="row box-shadow-bottom">
-    <div class="col">
-      <div class="container">
-        <div class="row box-shadow-bottom bg-white">
-          <div class="col">
-            <div class="d-flex">
-              <ul class="nav post-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="?sort=hot{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-fire"></i>Hot</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="?sort=top{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="?sort=new{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-sparkles"></i>New</a> 
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link{% if sort_method=="disputed" %} active{% endif %}" href="?sort=disputed"><i class="fas fa-bullhorn"></i>Disputed</a>
-                </li>
-                <li class="nav-item ">
-                  <a class="nav-link {% if sort_method=="activity" %} active{% endif %}" href="?sort=activity"><i class="fas fa-comments"></i>Activity</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
-
 {% block PseudoSubmitForm %}
 <!-- Link to submission page from homepage, only visible on home -->
 
@@ -117,65 +83,65 @@
   <div class="body">
 
     <div class="mb-4">
-    <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Ruqqus Feeds</small></div>
-    <ul class="no-bullets guild-recommendations-list pl-0">
-      <li class="guild-recommendations-item">
-        <a href="/">
-          <div class="d-flex">
-            <div class="mr-2">
-              <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-25 mr-2"></div>
-              <div class="my-auto">
-                <div class="text-black font-weight-normal">Home</div>
-              </div>
-            </div>
-          </a>
-        </li>
+      <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Ruqqus Feeds</small></div>
+      <ul class="no-bullets guild-recommendations-list pl-0">
         <li class="guild-recommendations-item">
-          <a href="/+general?sort=new">
+          <a href="/">
             <div class="d-flex">
               <div class="mr-2">
                 <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-25 mr-2"></div>
                 <div class="my-auto">
-                  <div class="text-black font-weight-normal">All</div>
+                  <div class="text-black font-weight-normal">Home</div>
                 </div>
               </div>
             </a>
           </li>
           <li class="guild-recommendations-item">
-            <a href="/+general">
+            <a href="/+general?sort=new">
               <div class="d-flex">
                 <div class="mr-2">
                   <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-25 mr-2"></div>
                   <div class="my-auto">
-                    <div class="text-black font-weight-normal">Trending</div>
+                    <div class="text-black font-weight-normal">All</div>
                   </div>
                 </div>
               </a>
             </li>
-          </ul>
-          </div>
-
-          {% if v and v.subscriptions.filter_by(is_active=True).count() %}
-          <div class="mb-4">
-          <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">My guilds</small></div>
-          <ul class="no-bullets guild-recommendations-list pl-0">
-            {% for board in v.boards_subscribed[0:5] %}
             <li class="guild-recommendations-item">
-              <a href="{{ board.permalink }}">
+              <a href="/+general">
                 <div class="d-flex">
                   <div class="mr-2">
-                    <img src="{{ board.profile_url }}" class="profile-pic-25 mr-2"></div>
+                    <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-25 mr-2"></div>
                     <div class="my-auto">
-                      <div class="text-black font-weight-normal">+{{ board.name }}</div>
+                      <div class="text-black font-weight-normal">Trending</div>
                     </div>
                   </div>
                 </a>
               </li>
-              {% endfor %}
             </ul>
-            <div class="text-center">
-              <a href="/mine">View all</a>
-            </div>
+          </div>
+
+          {% if v and v.subscriptions.filter_by(is_active=True).count() %}
+          <div class="mb-4">
+            <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">My guilds</small></div>
+            <ul class="no-bullets guild-recommendations-list pl-0">
+              {% for board in v.boards_subscribed[0:5] %}
+              <li class="guild-recommendations-item">
+                <a href="{{ board.permalink }}">
+                  <div class="d-flex">
+                    <div class="mr-2">
+                      <img src="{{ board.profile_url }}" class="profile-pic-25 mr-2"></div>
+                      <div class="my-auto">
+                        <div class="text-black font-weight-normal">+{{ board.name }}</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              <div class="text-center">
+                <a href="/mine">View all</a>
+              </div>
             </div>
             {% endif %}
 
@@ -276,9 +242,29 @@
 
           <!-- View toggle visible only on large devices or larger -->
 
-          <div class="flex-row p-3 justify-content-end d-none d-lg-flex">
+          <div class="flex-row bg-white rounded justify-content-between my-3 p-3 d-none d-lg-flex">
 
             <div>
+              <ul class="nav post-nav">
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="?sort=hot{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-fire"></i>Hot</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="?sort=top{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="?sort=new{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-sparkles"></i>New</a> 
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link{% if sort_method=="disputed" %} active{% endif %}" href="?sort=disputed"><i class="fas fa-bullhorn"></i>Disputed</a>
+                </li>
+                <li class="nav-item ">
+                  <a class="nav-link {% if sort_method=="activity" %} active{% endif %}" href="?sort=activity"><i class="fas fa-comments"></i>Activity</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="p-3">
               <ul class="nav toggle-view">
                 <li class="nav-item">
                   <button class="btn nav-link pr-3 active" id="toggle-list-view-btn" onclick="toggle_list_view()">
