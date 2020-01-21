@@ -111,7 +111,7 @@
 
 {% block leftSidebarBlock %}
 
-<div class="sidebar-section sidebar-trending sticky-63">
+<div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}">
   <div class="title"><i class="fas fa-university mr-2"></i>Guilds
   </div>
   <div class="body">
@@ -186,7 +186,7 @@
         </div>
 
         {% if not v and trending_boards %}
-        <div class="sidebar-section sidebar-guild-recommendations sticky-105">
+        <div class="sidebar-section sidebar-guild-recommendations sticky-63">
           <div class="body">
             <div class="my-3" style="">
               <i class="fad fa-telescope text-purple" style="font-size:3rem"></i>
