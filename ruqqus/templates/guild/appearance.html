@@ -55,8 +55,8 @@
          } else {
            form.append(item.name, false);
          }
-       }
-       else {
+        }
+        else {
         form.append(item.name, item.value);
       }
       xhr.withCredentials=true;
@@ -267,7 +267,7 @@
               <div class="body w-lg-100">
 
                 <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="hideswitch" name="hideswitch"{% if b.hide_banner_data %} checked{% endif %} onchange="mod_post('/mod/{{b.id}}/settings/banner','hidebanner')">
+                  <input type="checkbox" class="custom-control-input" id="hideswitch" name="hideswitch"{% if b.hide_banner_data %} checked{% endif %} onchange="mod_post('/mod/{{b.id}}/settings/banner','checkbox','hidebanner')">
                   <label class="custom-control-label" for="hideswitch"></label>
                 </div>
 
