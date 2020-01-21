@@ -1248,8 +1248,8 @@ color: $dark;
 .sidebar.sidebar-left {
     -ms-flex: 0 0 220px;
     flex: 0 0 220px;
-    padding-left: 0;
-    padding-right: 15px;
+    padding-left: 15px;
+    padding-right: 0;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {
