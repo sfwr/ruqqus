@@ -113,7 +113,7 @@
 
 {% if not v and trending_boards %}
 <div class="sidebar-section sidebar-trending sticky-63">
-  <div class="title"><i class="fas fa-newspaper mr-2"></i>Feeds
+  <div class="title"><i class="fas fa-university mr-2"></i>Guilds
   </div>
   <div class="body">
 
@@ -188,7 +188,7 @@
 
             <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">My guilds</small></div>
             <ul class="no-bullets guild-recommendations-list pl-0">
-              {% for board in v.boards_subscribed[0:8] %}
+              {% for board in v.boards_subscribed[0:5] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">
                   <div class="d-flex">
@@ -205,11 +205,32 @@
               <div class="text-center">
                 <a href="/mine" class="btn btn-link">View all</a>
               </div>
+
+              <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Guilds you moderate</small></div>
+            <ul class="no-bullets guild-recommendations-list pl-0">
+              {% for board in v.boards_modded[0:5] %}
+              <li class="guild-recommendations-item">
+                <a href="{{ board.permalink }}">
+                  <div class="d-flex">
+                    <div class="mr-2">
+                      <img src="{{ board.profile_url }}" class="profile-pic-25 mr-2"></div>
+                      <div class="my-auto">
+                        <div class="text-black font-weight-normal">+{{ board.name }}</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              <div class="text-center">
+                <a href="/mine" class="btn btn-link">View all</a>
+              </div>
+
             </div>
           </div>
           {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
           <div class="sidebar-section sidebar-guild-recommendations sticky-63">
-            <div class="title"><i class="fas fa-newspaper mr-2"></i>Feeds</div>
+            <div class="title"><i class="fas fa-university mr-2"></i>Guilds</div>
             <div class="body">
 
               <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Ruqqus Feeds</small></div>
