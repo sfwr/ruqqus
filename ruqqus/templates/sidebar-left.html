@@ -8,7 +8,7 @@
     <div class="body">
 
       <div class="mb-4">
-        <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Ruqqus Feeds</small></div>
+        <div class="mb-3"><small class="font-weight-bold text-muted text-uppercase">Ruqqus Feeds</small></div>
         <ul class="no-bullets guild-recommendations-list pl-0">
           <li class="guild-recommendations-item">
             <a href="/">
@@ -48,7 +48,7 @@
 
             {% if v and v.subscriptions.filter_by(is_active=True).count() %}
             <div class="mb-4">
-              <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="d-flex justify-content-between align-items-center mb-3">
                 <small class="font-weight-bold text-muted text-uppercase">My guilds</small>
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
@@ -79,7 +79,7 @@
               {% endif %}
 
               {% if v and v.mods_anything %}
-              <div class="d-flex justify-content-between align-items-center mb-2">
+              <div class="d-flex justify-content-between align-items-center mb-3">
                 <small class="font-weight-bold text-muted text-uppercase">Guildmaster of</small>
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
