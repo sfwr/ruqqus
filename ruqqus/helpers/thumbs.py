@@ -5,13 +5,17 @@ from urllib.parse import urlparse
 from .get import *
 from ruqqus.__main__ import db
 
-def thumbnail_thread(post, can_show_thumbnail=False):
+def thumbnail_thread(pid):
+
+    post=get_post(pid)
 
     #step 1: see if post is image
 
     print("thumbnail thread")
 
-    if can_show_thumbnail:
+    domain_obj=post.domain_obj
+
+    if domain_obj and domain_obj.show_thumbnail:
         print("image post")
         x=requests.head(post.url)
 
