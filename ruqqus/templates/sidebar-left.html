@@ -1,7 +1,10 @@
 <div class="col sidebar sidebar-left text-left d-none d-lg-block pt-3">
   <div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}">
-    <div class="title"><i class="fas fa-university mr-2"></i>{% if v %}Guilds{% else %}Feeds{% endif %}
-    </div>
+    {% if v %}
+    <div class="title"><i class="fas fa-university mr-2"></i>Guilds</div>
+    {% else %}
+    <div class="title"><i class="fas fa-newspaper mr-2"></i>Feeds</div>
+    {% endif %}
     <div class="body">
 
       <div class="mb-4">
