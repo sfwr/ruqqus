@@ -429,7 +429,7 @@
   </div>
 
   {% if v and b.has_mod(v) %}
-  <div class="sidebar-section sidebar-guild-tools">
+  <div class="sidebar-section sidebar-guild-tools d-none">
     <div class="title"><i class="fas fa-tools mr-2"></i>Guildmaster Tools</div>
     <div class="body">
       <div><a href="{{ b.permalink}}/mod/settings"><i class="fad fa-cog fa-width-rem"></i>Settings</a></div>
@@ -441,7 +441,6 @@
       <div><a href="{{ b.permalink}}/mod/contributors"><i class="fad fa-user-check fa-width-rem"></i>Contributors</a></div>
       {% endif %}
     </div>
-
   </div>
   {% endif %}
 
