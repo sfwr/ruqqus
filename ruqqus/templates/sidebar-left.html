@@ -1,5 +1,5 @@
 <div class="col sidebar sidebar-left text-left d-none d-lg-block pt-3">
-  <div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}">
+  <div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}" style="word-break: break-word">
     {% if v %}
     <div class="title"><i class="fas fa-university mr-2"></i>Guilds</div>
     {% else %}
@@ -84,7 +84,7 @@
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
               <ul class="no-bullets guild-recommendations-list pl-0">
-                {% for board in v.boards_modded[0:5] %}
+                {% for board in v.boards_modded[0:3] %}
                 <li class="guild-recommendations-item">
                   <a href="{{ board.permalink }}">
                     <div class="d-flex">
