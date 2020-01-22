@@ -281,10 +281,7 @@ def submit_post(v):
     #spin off thumbnail generation as  new thread
     if new_post.url and not embed:
         new_thread=threading.Thread(target=thumbnail_thread,
-                                    args=(new_post,),
-                                    kwargs={
-                                        "can_show_thumbnail": domain_obj and domain_obj.show_thumbnail
-                                        }
+                                    args=(new_post.base36id,)
                                     )
         new_thread.start()
 
