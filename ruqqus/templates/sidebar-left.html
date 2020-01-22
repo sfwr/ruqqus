@@ -1,14 +1,9 @@
 <div class="col sidebar sidebar-left text-left d-none d-lg-block pt-3">
   <div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}" style="word-break: break-word">
-    {% if v %}
-    <div class="title"><i class="fas fa-university mr-2"></i>Guilds</div>
-    {% else %}
-    <div class="title"><i class="fas fa-newspaper mr-2"></i>Feeds</div>
-    {% endif %}
     <div class="body">
 
-      <div class="mb-4">
-        <div class="mb-3"><small class="font-weight-bold text-muted text-uppercase">Ruqqus Feeds</small></div>
+      <div class="mb-4 mt-n3">
+        <div class="mb-3"><div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Ruqqus Feeds</small></div>
         <ul class="no-bullets guild-recommendations-list pl-0">
           <li class="guild-recommendations-item">
             <a href="/">
@@ -49,7 +44,7 @@
             {% if v and v.subscriptions.filter_by(is_active=True).count() %}
             <div class="mb-4">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <small class="font-weight-bold text-muted text-uppercase">My guilds</small>
+                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</small>
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
               <ul class="no-bullets guild-recommendations-list pl-0">
@@ -72,7 +67,7 @@
 
               {% if v and not v.subscriptions.filter_by(is_active=True).count() %}
               <div class="mb-4-3">
-                <small class="font-weight-bold text-muted text-uppercase">My guilds</small>
+                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</small>
               </div>
               <p>You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
               <a href="/browse" class="btn btn-secondary btn-block">Discover guilds</a>
@@ -80,7 +75,7 @@
 
               {% if v and v.mods_anything %}
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <small class="font-weight-bold text-muted text-uppercase">Guildmaster of</small>
+                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Guildmaster of</small>
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
               <ul class="no-bullets guild-recommendations-list pl-0">
