@@ -13292,8 +13292,8 @@ ol > li::before {
   color: #FFFFFF;
   font-size: 10px;
   font-weight: 500;
-  top: -6px;
-  left: 14px;
+  top: -4px;
+  left: 12px;
   border: 2px solid #35363e;
   padding: 0 2px 2px 2px;
 }
