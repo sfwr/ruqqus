@@ -180,6 +180,14 @@
 </div>
 {% endblock %}
 
+<!-- Left Sidebar (navigation-purposes, hidden on devices smaller than "large") -->
+
+{% block leftSidebarBlock %}
+  {% include "sidebar-left.html" %}
+{% endblock %}
+
+<!-- Right Sidebar (hidden on devices smaller than "large") -->
+
 {% block sidebarblock %}
 <div class="sidebar-section sidebar-post-meta">
   <div class="body">
