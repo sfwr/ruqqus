@@ -671,7 +671,7 @@
           <div class="comments-count py-3">
           {% if linked_comment and p.comment_count >= 2%}
             <div class="total"><a href="{{ p.permalink }}">View entire discussion</a></div>
-          {% elif %}
+          {% else %}
           <div class="total">Comments <span class="d-none d-md-inline-block">({{ p.comment_count }})</span></div>
           {% endif %}
             <div class="post-filter ml-auto"><span>Sort By:</span>
