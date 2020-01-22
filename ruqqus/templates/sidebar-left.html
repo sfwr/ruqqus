@@ -3,7 +3,7 @@
     <div class="body">
 
       <div class="mb-4 mt-n3">
-        <div class="mb-3"><div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Ruqqus Feeds</small></div>
+        <div class="mb-3"><div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Ruqqus Feeds</div></div>
         <ul class="no-bullets guild-recommendations-list pl-0">
           <li class="guild-recommendations-item">
             <a href="/">
@@ -44,7 +44,7 @@
             {% if v and v.subscriptions.filter_by(is_active=True).count() %}
             <div class="mb-4">
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</small>
+                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</div>
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
               <ul class="no-bullets guild-recommendations-list pl-0">
@@ -67,7 +67,7 @@
 
               {% if v and not v.subscriptions.filter_by(is_active=True).count() %}
               <div class="mb-4-3">
-                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</small>
+                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</div>
               </div>
               <p>You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
               <a href="/browse" class="btn btn-secondary btn-block">Discover guilds</a>
@@ -75,7 +75,7 @@
 
               {% if v and v.mods_anything %}
               <div class="d-flex justify-content-between align-items-center mb-3">
-                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Guildmaster of</small>
+                <div class="font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Guildmaster of</div>
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
               <ul class="no-bullets guild-recommendations-list pl-0">
