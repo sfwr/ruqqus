@@ -123,7 +123,10 @@
 
           {% if v and v.subscriptions.filter_by(is_active=True).count() %}
           <div class="mb-4">
-            <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">My guilds</small></div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="font-weight-bold text-muted text-uppercase">My guilds</small>
+            <a href="/mine" class="text-small-extra">View all</a>
+            </div>
             <ul class="no-bullets guild-recommendations-list pl-0">
               {% for board in v.boards_subscribed[0:5] %}
               <li class="guild-recommendations-item">
@@ -139,15 +142,14 @@
                 </li>
                 {% endfor %}
               </ul>
-              <div class="text-center">
-                <a href="/mine">View all</a>
-              </div>
             </div>
             {% endif %}
 
-
             {% if v and v.mods_anything %}
-            <div class="mb-2"><small class="font-weight-bold text-muted text-uppercase">Guildmaster of</small></div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+            <small class="font-weight-bold text-muted text-uppercase">Guildmaster of</small>
+            <a href="/mine" class="text-small-extra">View all</a>
+            </div>
             <ul class="no-bullets guild-recommendations-list pl-0">
               {% for board in v.boards_modded[0:5] %}
               <li class="guild-recommendations-item">
@@ -163,9 +165,6 @@
                 </li>
                 {% endfor %}
               </ul>
-              <div class="text-center">
-                <a href="/mine" class="btn btn-link">View all</a>
-              </div>
               {% endif %}
 
             </div>
