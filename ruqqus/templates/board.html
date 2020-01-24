@@ -88,9 +88,9 @@
 {% block desktopBanner %}
 <!-- Desktop -->
 <div class="row d-none d-md-block">
-    <div class="col px-0">
-        <img src="{{ b.banner_url }}" style="width: 100%; height: 175px; object-fit: cover;">
-    </div>
+  <div class="col px-0">
+    <img src="{{ b.banner_url }}" style="width: 100%; height: 175px; object-fit: cover;">
+  </div>
 </div>
 <div class="row border-bottom bg-white sticky d-none d-md-block">
   <div class="col">
@@ -110,138 +110,149 @@
         Member{{ 's' if b.subscriber_count != 1 else '' }}<span class="text-primary"> {{ b.subscriber_count }}</span>
       </div>
       <div class="d-flex align-items-center p-3">
-        <i class="far fa-ellipsis-h text-muted" style="font-size: 1rem;"></i>
+        <div class="dropdown my-auto post-actions float-right d-inline-block">
+          <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
+          ">
+          <i class="far fa-ellipsis-h text-white" style="font-size: 1rem"></i>
+        </a>
+        <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end"
+        style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
+        {% if b.has_mod(v) %}
+        <a class="dropdown-item" href="{{ b.permalink }}/mod/settings"><i class="fas fa-cog"></i>Guild settings</a>
+        {% endif %}
+        <button class="dropdown-item" data-toggle="modal" data-target="#guildRulesModal"><i class="fas fa-scroll-old"></i>Rules</button>
       </div>
-      <div class="ml-auto">
-        <div class="d-flex align-items-center">
-          <div class="text-small font-weight-bold mr-2">Sort by</div>
-          <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-bullhorn mr-2"></i>{{ sort_method }}</button>
-              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-                {% if not sort_method=="hot" %}<a class="dropdown-item" href="#">Hot</a>{% endif %}
-                {% if not sort_method=="top" %}<a class="dropdown-item" href="#">Top</a>{% endif %}
-                {% if not sort_method=="new" %}<a class="dropdown-item" href="#">New</a>{% endif %}
-                {% if not sort_method=="disputed" %}<a class="dropdown-item" href="#">Disputed</a>{% endif %}
-                {% if not sort_method=="activity" %}<a class="dropdown-item" href="#">Activity</a>{% endif %}
-              </div>
-            </div>
-            {% if v %}
-            <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
-            <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
-            {% elif not v %}
-            <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
-            {% endif %}
+    </div>
+  </div>
+  <div class="ml-auto">
+    <div class="d-flex align-items-center">
+      <div class="text-small font-weight-bold mr-2">Sort by</div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bullhorn mr-2"></i>{{ sort_method }}</button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+            {% if not sort_method=="hot" %}<a class="dropdown-item" href="#">Hot</a>{% endif %}
+            {% if not sort_method=="top" %}<a class="dropdown-item" href="#">Top</a>{% endif %}
+            {% if not sort_method=="new" %}<a class="dropdown-item" href="#">New</a>{% endif %}
+            {% if not sort_method=="disputed" %}<a class="dropdown-item" href="#">Disputed</a>{% endif %}
+            {% if not sort_method=="activity" %}<a class="dropdown-item" href="#">Activity</a>{% endif %}
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-  {% endblock %}
-
-  {% block mobileBanner %}
-  <!-- Mobile -->
-  <div class="container-fluid text-center bg-white d-md-none">
-    <div class="row">
-      <div class="col px-0">
-        <img src="{{ b.banner_url }}" style="width: 100%; height: 65px; object-fit: cover;">
-      </div>
-    </div>
-    <div class="row border-bottom">
-      <div class="col">
-        <div style="margin-top: -34px;">
-          <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
-        </div>
-        <div class="mt-n3 py-3">
-          <a href="{{ b.permalink }}" class="text-black">
-            <h1 class="h5 d-inline-block">+{{ b.name }}
-              {% if b.over_18 %}
-              <span class="badge badge-danger text-small align-top">nsfw</span>
-              {% endif %}
-            </h1>
-          </a>
-          <div class="text-muted">{{ b.description_html | safe }}</div>
-          <p class="font-weight-bold">{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
-          </p>
-          {% if v %}
-          <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
-          <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
-          {% elif not v %}
-          <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endblock %}
-
-  <!-- Left Sidebar (navigation-purposes, hidden on devices smaller than "large") -->
-
-  {% block leftSidebarBlock %}
-  {% include "sidebar-left.html" %}
-  {% endblock %}
-
-  <!-- Right Sidebar (hidden on devices smaller than "large") -->
-
-  {% block sidebarblock %}
-
-  <div class="sidebar-section sidebar-info-basic">
-    <div class="title">
-      <i class="fas fa-info-circle mr-2"></i>Guild details
-      {% if v %}
-      <div class="dropdown my-auto post-actions float-right d-inline-block">
-        <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
-        ">
-        <i class="far fa-ellipsis-h text-white"></i>
-      </a>
-      <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
-        {% if not b.has_mod(v) %}
-        <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportGuildModal" onclick="report_guildModal('')"><i class="fas fa-flag"></i>Report guild</a>
+        {% if v %}
+        <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
+        <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
+        {% elif not v %}
+        <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
         {% endif %}
-        {% if b.has_mod(v) %}
-        <a class="dropdown-item" href="{{ b.permalink }}/mod/settings"><i class="fas fa-cog"></i>Guild settings</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock %}
+
+{% block mobileBanner %}
+<!-- Mobile -->
+<div class="container-fluid text-center bg-white d-md-none">
+  <div class="row">
+    <div class="col px-0">
+      <img src="{{ b.banner_url }}" style="width: 100%; height: 65px; object-fit: cover;">
+    </div>
+  </div>
+  <div class="row border-bottom">
+    <div class="col">
+      <div style="margin-top: -34px;">
+        <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-65 border-2 border-white mb-2"></a>
+      </div>
+      <div class="mt-n3 py-3">
+        <a href="{{ b.permalink }}" class="text-black">
+          <h1 class="h5 d-inline-block">+{{ b.name }}
+            {% if b.over_18 %}
+            <span class="badge badge-danger text-small align-top">nsfw</span>
+            {% endif %}
+          </h1>
         </a>
+        <div class="text-muted">{{ b.description_html | safe }}</div>
+        <p class="font-weight-bold">{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
+        </p>
+        {% if v %}
+        <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
+        <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
+        {% elif not v %}
+        <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
         {% endif %}
       </div>
     </div>
-    {% endif %}
   </div>
-  <div class="body">
-   <div class="d-flex mb-3">
-     {% if b.has_profile %}
-     <div>
-       <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
-     </div>
-     {% elif not b.has_profile and v and b.has_mod(v) %}
-     <a href="{{ b.permalink}}/mod/appearance" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
-       <div class="letter" style="line-height: 3;"><i class="far fa-cloud-upload" style="font-size: 1.25rem"></i></div>
-     </a>
-     {% endif %}
-     <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }}</h1></a>
-      <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span> Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
-      </div>
+</div>
+{% endblock %}
+
+<!-- Left Sidebar (navigation-purposes, hidden on devices smaller than "large") -->
+
+{% block leftSidebarBlock %}
+{% include "sidebar-left.html" %}
+{% endblock %}
+
+<!-- Right Sidebar (hidden on devices smaller than "large") -->
+
+{% block sidebarblock %}
+
+<div class="sidebar-section sidebar-info-basic">
+  <div class="title">
+    <i class="fas fa-info-circle mr-2"></i>Guild details
+    {% if v %}
+    <div class="dropdown my-auto post-actions float-right d-inline-block">
+      <a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;
+      ">
+      <i class="far fa-ellipsis-h text-white"></i>
+    </a>
+    <div class="dropdown-menu border-0 shadow dropdown-menu-right mt-2" aria-labelledby="dropdownMoreLink" x-placement="bottom-end" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(21px, 18px, 0px);">
+      {% if not b.has_mod(v) %}
+      <a class="dropdown-item" href="javascript:void(0)" data-toggle="modal" data-target="#reportGuildModal" onclick="report_guildModal('')"><i class="fas fa-flag"></i>Report guild</a>
+      {% endif %}
+      {% if b.has_mod(v) %}
+      <a class="dropdown-item" href="{{ b.permalink }}/mod/settings"><i class="fas fa-cog"></i>Guild settings</a>
+      {% endif %}
     </div>
   </div>
-  <div>{{ b.description_html | safe }}</div>
-  <div class="text-small mb-3">
-    {% if b.over_18 %}
-    <span class="badge badge-danger text-small-extra mr-1">nsfw</span>
-    <span class="text-danger">This guild contains adult content</span>
-    {% endif %}
-    {% if b.is_banned %}
-    <span class="badge badge-danger text-small-extra mr-1">Banned</span>
-    <span class="text-danger">This guild has been banned</span>
-    {% endif %}
+  {% endif %}
+</div>
+<div class="body">
+ <div class="d-flex mb-3">
+   {% if b.has_profile %}
+   <div>
+     <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
+   </div>
+   {% elif not b.has_profile and v and b.has_mod(v) %}
+   <a href="{{ b.permalink}}/mod/appearance" class="profile-pic-50 btn btn-outline-primary border-3 btn-rounded mr-2" style="border-style: dotted;">
+     <div class="letter" style="line-height: 3;"><i class="far fa-cloud-upload" style="font-size: 1.25rem"></i></div>
+   </a>
+   {% endif %}
+   <div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }}</h1></a>
+    <div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span> Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
+    </div>
   </div>
-  {% if v %}
-  <div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
-  <div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
-  {% elif not v%}
-  <a class="btn btn-secondary btn-block" href="/login">Join guild</a>
+</div>
+<div>{{ b.description_html | safe }}</div>
+<div class="text-small mb-3">
+  {% if b.over_18 %}
+  <span class="badge badge-danger text-small-extra mr-1">nsfw</span>
+  <span class="text-danger">This guild contains adult content</span>
   {% endif %}
-  {% if b.can_submit(v) %}
-  <a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
+  {% if b.is_banned %}
+  <span class="badge badge-danger text-small-extra mr-1">Banned</span>
+  <span class="text-danger">This guild has been banned</span>
   {% endif %}
+</div>
+{% if v %}
+<div id="button-sub-side" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Join guild</a></div>
+<div id="button-unsub-side" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub-side').classList.toggle('d-none');document.getElementById('button-sub-side').classList.toggle('d-none');})">Leave</a></div>
+{% elif not v%}
+<a class="btn btn-secondary btn-block" href="/login">Join guild</a>
+{% endif %}
+{% if b.can_submit(v) %}
+<a href="/submit?guild={{ b.name | urlencode }}" class="btn {% if is_subscribed %}btn-primary{% else %}btn-secondary{% endif %} btn-block mt-2">Create post</a>
+{% endif %}
 </div>
 </div>
 
@@ -437,3 +448,5 @@
   }
 </script>
 {% endblock %}
+
+{% include "guild_rules_modal.html" %}
