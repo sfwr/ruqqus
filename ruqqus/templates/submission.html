@@ -61,7 +61,7 @@
 
 {% block pagetype %}thread{% endblock %}
 
-{% block banner %}
+{% block desktopBanner %}
 <!-- Desktop -->
 {% if p.board_id %}
 <div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-flex" style="background-image: url({{ p.board.banner_url }}); height: 75px;">
@@ -82,6 +82,9 @@
   </div>
 </div>
 {% endif %}
+{% endblock %}
+
+{% block mobileBanner %}
 <!-- Mobile -->
 {% if p.board_id %}
 <div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-block d-md-none" style="background-image: url({{ p.board.banner_url }});">

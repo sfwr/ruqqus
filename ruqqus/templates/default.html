@@ -272,7 +272,7 @@
 
 	<!-- Page Content -->
 
-	{% block banner %}
+	{% block mobileBanner %}
 	{% endblock %}
 
 	{% block postNav %}
@@ -287,6 +287,9 @@
     {% endblock %}
 
 			<div class="col h-100 custom-gutters" id="main-content-col">
+
+        {% block desktopBanner %}
+        {% endblock %}
 
 				{% block PseudoSubmitForm %}
 				{% endblock %}
