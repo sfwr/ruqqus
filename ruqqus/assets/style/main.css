@@ -13788,8 +13788,6 @@ a:hover .link-arrow {
 
 .posts, #thread #main-content-col {
   background-color: #ffffff;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  border-radius: 0.35rem;
 }
 
 #thread #main-content-col {
@@ -13914,8 +13912,11 @@ a:hover .link-arrow {
 .sidebar.sidebar-left {
   -ms-flex: 0 0 220px;
   flex: 0 0 220px;
-  padding-left: 15px;
-  padding-right: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 49px;
+  z-index: 1000;
+  height: 100vh;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {

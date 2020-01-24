@@ -13811,7 +13811,6 @@ a:hover .link-arrow {
 
 .posts, #thread #main-content-col {
   background-color: #35363e;
-  border-radius: 0.35rem;
 }
 
 #thread #main-content-col {
@@ -13929,8 +13928,11 @@ a:hover .link-arrow {
 .sidebar.sidebar-left {
   -ms-flex: 0 0 220px;
   flex: 0 0 220px;
-  padding-left: 15px;
-  padding-right: 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 49px;
+  z-index: 1000;
+  height: 100vh;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {

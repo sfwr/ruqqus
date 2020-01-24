@@ -1115,7 +1115,7 @@ color: $dark;
     background-color: $light;
     //border: 1px solid $border-color;
     //box-shadow: $box-shadow-sm;
-    border-radius: $border-radius;
+    //border-radius: $border-radius;
 }
 
 #thread #main-content-col {
@@ -1241,8 +1241,11 @@ color: $dark;
 .sidebar.sidebar-left {
     -ms-flex: 0 0 220px;
     flex: 0 0 220px;
-    padding-left: 15px;
-    padding-right: 0;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 49px;
+    z-index: 1000;
+    height: 100vh;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {
