@@ -13809,10 +13809,6 @@ a:hover .link-arrow {
   width: 1rem;
 }
 
-.posts, #thread #main-content-col {
-  background-color: #35363e;
-}
-
 .scrollspy.sidebar-sticky {
   position: sticky;
   overflow-y: auto;
