@@ -13813,10 +13813,6 @@ a:hover .link-arrow {
   background-color: #35363e;
 }
 
-#thread #main-content-col {
-  margin: 0 15px;
-}
-
 .scrollspy.sidebar-sticky {
   position: sticky;
   overflow-y: auto;
