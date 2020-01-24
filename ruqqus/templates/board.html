@@ -131,11 +131,11 @@
         <button class="btn btn-secondary dropdown-toggle mr-2" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-bullhorn mr-2"></i>{{ sort_method }}</button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-            {% if not sort_method=="hot" %}<a class="dropdown-item" href="#">Hot</a>{% endif %}
-            {% if not sort_method=="top" %}<a class="dropdown-item" href="#">Top</a>{% endif %}
-            {% if not sort_method=="new" %}<a class="dropdown-item" href="#">New</a>{% endif %}
-            {% if not sort_method=="disputed" %}<a class="dropdown-item" href="#">Disputed</a>{% endif %}
-            {% if not sort_method=="activity" %}<a class="dropdown-item" href="#">Activity</a>{% endif %}
+            {% if not sort_method=="hot" %}<a class="dropdown-item" href="?sort=hot">Hot</a>{% endif %}
+            {% if not sort_method=="top" %}<a class="dropdown-item" href="?sort=top">Top</a>{% endif %}
+            {% if not sort_method=="new" %}<a class="dropdown-item" href="?sort=new">New</a>{% endif %}
+            {% if not sort_method=="disputed" %}<a class="dropdown-item" href="?sort=disputed">Disputed</a>{% endif %}
+            {% if not sort_method=="activity" %}<a class="dropdown-item" href="?sort=activity">Activity</a>{% endif %}
           </div>
         </div>
         {% if v %}
