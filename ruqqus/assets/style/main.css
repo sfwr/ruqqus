@@ -12901,6 +12901,8 @@ body {
   color: #121213;
   padding-top: 49px;
   background-color: #F5F7FA;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 1200px) {
@@ -13060,7 +13062,7 @@ ol > li::before {
 
 .btn {
   font-weight: 500;
-  font-size: 12px;
+  font-size: 1rem;
   border-radius: 0.25rem;
 }
 

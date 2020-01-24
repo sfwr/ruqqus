@@ -148,6 +148,8 @@ body {
     color: $white;
     padding-top: 49px;
     background-color: $dark;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @media (min-width: 1200px) {
@@ -337,7 +339,7 @@ ol > li::before {
 
 .btn {
     font-weight: $font-weight-bold;
-    font-size: $small-font-size;
+    font-size: $font-size-base;
     border-radius: $border-radius-sm;
 }
 
