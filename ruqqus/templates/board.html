@@ -100,7 +100,11 @@
           <a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-35 mr-2"></a>
         </div>
         <div>
-          <a href="{{ b.permalink }}"><span class="h6 text-black mb-0">+{{ b.name }}</span></a>
+          <a href="{{ b.permalink }}"><span class="h6 text-black mb-0">+{{ b.name }}</span>
+            {% if b.over_18 %}
+            <span class="badge badge-danger text-small ml-2" data-toggle="tooltip" data-placement="bottom" title="This guild contains adult content">nsfw</span>
+            {% endif %}
+          </a>
         </div>
       </div>
       <div class="border-right py-3 px-3">
@@ -136,24 +140,24 @@
           {% if sort_method=="disputed" %}<i class="fas fa-bullhorn mr-1"></i>{% endif %}
           {% if sort_method=="activity" %}<i class="fas fa-comments mr-1"></i>{% endif %}
           {{ sort_method }}
-          </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-            {% if not sort_method=="hot" %}<a class="dropdown-item" href="?sort=hot"><i class="fas fa-fire mr-2"></i>Hot</a>{% endif %}
-            {% if not sort_method=="top" %}<a class="dropdown-item" href="?sort=top"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
-            {% if not sort_method=="new" %}<a class="dropdown-item" href="?sort=new"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
-            {% if not sort_method=="disputed" %}<a class="dropdown-item" href="?sort=disputed"><i class="fas fa-bullhorn mr-2"></i>Disputed</a>{% endif %}
-            {% if not sort_method=="activity" %}<a class="dropdown-item" href="?sort=activity"><i class="fas fa-comments mr-2"></i>Activity</a>{% endif %}
-          </div>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+          {% if not sort_method=="hot" %}<a class="dropdown-item" href="?sort=hot"><i class="fas fa-fire mr-2"></i>Hot</a>{% endif %}
+          {% if not sort_method=="top" %}<a class="dropdown-item" href="?sort=top"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
+          {% if not sort_method=="new" %}<a class="dropdown-item" href="?sort=new"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
+          {% if not sort_method=="disputed" %}<a class="dropdown-item" href="?sort=disputed"><i class="fas fa-bullhorn mr-2"></i>Disputed</a>{% endif %}
+          {% if not sort_method=="activity" %}<a class="dropdown-item" href="?sort=activity"><i class="fas fa-comments mr-2"></i>Activity</a>{% endif %}
         </div>
-        {% if v %}
-        <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
-        <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
-        {% elif not v %}
-        <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
-        {% endif %}
       </div>
+      {% if v %}
+      <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Join guild</a></div>
+      <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Leave</a></div>
+      {% elif not v %}
+      <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
+      {% endif %}
     </div>
   </div>
+</div>
 </div>
 </div>
 {% endblock %}
