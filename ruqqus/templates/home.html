@@ -141,27 +141,7 @@
 
 <!-- View toggle visible only on large devices or larger -->
 
-<div class="flex-row bg-white shadow-sm rounded justify-content-between {% if v %}mb-3 mt-lg-3{% else %}mb-3{% endif %} d-none d-md-flex">
-
-  <div>
-    <ul class="nav post-nav">
-      <li class="nav-item">
-        <a class="nav-link{% if sort_method=="hot" %} active{% endif %}" href="?sort=hot{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-fire"></i>Hot</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if sort_method=="top" %} active{% endif %}" href="?sort=top{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-arrow-alt-circle-up"></i>Top</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="?sort=new{% if only %}&only={{ only }}{% endif %}"><i class="fas fa-sparkles"></i>New</a> 
-      </li>
-      <li class="nav-item">
-        <a class="nav-link{% if sort_method=="disputed" %} active{% endif %}" href="?sort=disputed"><i class="fas fa-bullhorn"></i>Disputed</a>
-      </li>
-      <li class="nav-item ">
-        <a class="nav-link {% if sort_method=="activity" %} active{% endif %}" href="?sort=activity"><i class="fas fa-comments"></i>Activity</a>
-      </li>
-    </ul>
-  </div>
+<div class="flex-row justify-content-end d-none d-md-flex">
 
   <div class="p-3">
     <ul class="nav toggle-view">
