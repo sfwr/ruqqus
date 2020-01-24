@@ -74,6 +74,11 @@ class Board(Base, Stndrd, Age_times):
         return z
 
     @property
+    def mods_count(self):
+
+        return self.moderators.filter_by(accepted=True).count()
+
+    @property
     def permalink(self):
 
         return f"/+{self.name}"
