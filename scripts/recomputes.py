@@ -15,12 +15,7 @@ def recompute():
 
         cutoff=now-(60860*24*180)
 
-        print("Beginning score recompute")
-
-        total=db.query(classes.submission.Submission
-                       ).filter_by(is_banned=False, is_deleted=False
-                                   ).filter(classes.submission.Submission.created_utc>cutoff
-                                            ).count()
+        print("Beginning post recompute")
 
         print(f"{total} submissions to score")
 
@@ -41,7 +36,32 @@ def recompute():
 
             #print(f"{i}/{total} - {post.base36id}")
 
-        print("Done. Sleeping 1min")
+        print(f"Scored {i} posts. Beginning comment recompute")
+
+
+        i=0
+        p=db.query(classes.submission.Submission
+                   ).filter(classes.submission.Submission.created_utc>cutoff
+                            ).subquery()
+        
+        for comment in db.query(classes.comment.Comment
+                             ).join(p,
+                                    classes.comment.Comment.parent_submission==p.c.id
+                                    ).filter(p.c.id != none,
+                                             classes.comment.Comment.is_deleted==False,
+                                             classes.comment.comment.is_banned==False
+                                             ).all():
+            i+=1
+            
+            comment.score_disputed=comment.rank_fiery
+            comment.score_hot=comment.rank_hot
+            comment.score_top=comment.score
+
+            db.add(comment)
+            db.commit()
+        
+
+        print(f"Scored {i} comments. Sleeping 1min")
 
         time.sleep(60)
 

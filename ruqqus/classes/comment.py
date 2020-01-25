@@ -13,7 +13,7 @@ from .votes import CommentVote
 from .flags import CommentFlag
 from .boards import Board
 
-class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
+class Comment(Base, Age_times, Scores, Stndrd):
 
     __tablename__="comments"
 
@@ -32,6 +32,9 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
     approved_utc=Column(Integer, default=0)
     ban_reason=Column(String(256), default='')
     creation_ip=Column(String(64), default='')
+    score_disputed=Column(Float, default=0)
+    score_hot=Column(Float, default=0)
+    score_top=Column(Integer, default=0)
 
     post=relationship("Submission", lazy="subquery")
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
@@ -39,10 +42,16 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
-    ups = Column(Integer, server_default=FetchedValue())
-    downs=Column(Integer, server_default=FetchedValue())
+    ups = deferred(Column(Integer, server_default=FetchedValue()))
+    downs=(Column(Integer, server_default=FetchedValue()))
     age=Column(Integer, server_default=FetchedValue())
     is_public=Column(Boolean, server_default=FetchedValue())
+
+    score=deferred(Column(Integer, server_default=FetchedValue()))
+    
+
+    rank_fiery=deferred(Column(Float, server_default=FetchedValue()))
+    rank_hot=deferred(Column(Float, server_default=FetchedValue()))
 
     flag_count=deferred(Column(Integer, server_default=FetchedValue()))
     over_18=Column(Boolean, server_default=FetchedValue())
@@ -159,6 +168,14 @@ class Comment(Base, Age_times, Scores, Fuzzing, Stndrd):
             return "this is a reply to your content."
         elif v.admin_level >= 4:
             return "you are a Ruqqus admin."
+
+    @property
+    @cache.memoize(timeout=60)
+    def score_fuzzed(self, k=0.01):
+        real = self.rank_top
+        a = math.floor(real * (1 - k))
+        b = math.ceil(real * (1 + k))
+        return random.randint(a, b)
         
 class Notification(Base):
 
