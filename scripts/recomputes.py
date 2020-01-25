@@ -9,6 +9,8 @@ def recompute():
 
     while True:
 
+        db.begin()
+
         print("Beginning score recompute")
 
         #x=db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False)
