@@ -13835,7 +13835,6 @@ a:hover .link-arrow {
 .sidebar {
   -ms-flex: 0 0 290px;
   flex: 0 0 290px;
-  padding-left: 0;
 }
 
 .sidebar h1, h2, h3, h4, h5, h6 {
@@ -13910,8 +13909,8 @@ a:hover .link-arrow {
 }
 
 .sidebar.sidebar-left {
-  -ms-flex: 0 0 220px;
-  flex: 0 0 220px;
+  -ms-flex: 0 0 240px;
+  flex: 0 0 240px;
   position: -webkit-sticky;
   position: sticky;
   top: 49px;
