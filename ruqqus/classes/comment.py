@@ -43,7 +43,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
     ups = deferred(Column(Integer, server_default=FetchedValue()))
-    downs=(Column(Integer, server_default=FetchedValue()))
+    downs=deferred(Column(Integer, server_default=FetchedValue()))
     age=Column(Integer, server_default=FetchedValue())
     is_public=Column(Boolean, server_default=FetchedValue())
 
