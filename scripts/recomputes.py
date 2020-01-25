@@ -37,5 +37,4 @@ def recompute():
         time.sleep(60)
 
 
-recompute_thread=threading.Thread(target=recompute, daemon=True)
-recompute_thread.start()
+recompute()
