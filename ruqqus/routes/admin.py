@@ -24,7 +24,7 @@ def flagged_posts(v):
     next_exists=(len(listing)==26)
     listing=listing[0:25]
 
-    return render_template("flagged_posts.html", next_exists=next_exists, listing=listing, page=page, v=v)
+    return render_template("admin/flagged_posts.html", next_exists=next_exists, listing=listing, page=page, v=v)
 
 
 @app.route("/admin/flagged/comments", methods=["GET"])
@@ -39,7 +39,7 @@ def flagged_comments(v):
     next_exists=(len(listing)==26)
     listing=listing[0:25]
 
-    return render_template("flagged_comments.html", next_exists=next_exists, listing=listing, page=page, v=v)
+    return render_template("admin/flagged_comments.html", next_exists=next_exists, listing=listing, page=page, v=v)
 
 
 ##@app.route("/admin/<path>", methods=["GET"])
