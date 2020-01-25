@@ -256,7 +256,7 @@ def my_subs(v):
 
         b=db.query(Board)
         contribs=v.contributes.subquery()
-#        m=v.moderates.filter_by(accepted=True).subquery()
+        m=v.moderates.filter_by(accepted=True).subquery()
         s=v.subscriptions.filter_by(is_active=True).subquery()
         
         content=b.join(s,
@@ -265,14 +265,15 @@ def my_subs(v):
               ).join(contribs,
                      contribs.c.board_id==Board.id,
                      isouter=True
-              ) #.join(m,
-                #     m.c.board_id==Board.id,
-                #     isouter=True)
-        content=content.filter(s.c.id != None)
+              ).join(m,
+                     m.c.board_id==Board.id,
+                     isouter=True)
+        #content=content.filter(s.c.id != None)
+        
 
-        content=content.filter(or_(Board.is_private==False,
-                                   contribs.c.id != None  #,
-                              #     m.c.id != None
+        content=content.filter(or_(s.c.id!=None,
+                                   contribs.c.id != None,
+                                   m.c.id != None
                                    )
                                )
         content=content.order_by(Board.subscriber_count.desc())
