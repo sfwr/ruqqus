@@ -29,8 +29,7 @@
     }
     else {
       document.getElementById("fixed-bar-mobile").style.top = "-49px";
-      document.getElementById("dropdownMenuSortBy").classList.remove('show');
-      document.getElementById("dropdownMenuFrom").classList.remove('show');
+      document.getElementById("mobileSortDropdown").classList.remove('show');
       document.getElementById("navbar").classList.add("shadow");
     }
     prevScrollpos = currentScrollPos;
@@ -208,7 +207,7 @@
                   {% if sort_method=="activity" %}<i class="fas fa-comments mr-1"></i>{% endif %}
                   {{ sort_method }}
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+                <div class="dropdown-menu" id="mobileSortDropdown" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
                   {% if not sort_method=="hot" %}<a class="dropdown-item" href="?sort=hot"><i class="fas fa-fire mr-2"></i>Hot</a>{% endif %}
                   {% if not sort_method=="top" %}<a class="dropdown-item" href="?sort=top"><i class="fas fa-arrow-alt-circle-up mr-2"></i>Top</a>{% endif %}
                   {% if not sort_method=="new" %}<a class="dropdown-item" href="?sort=new"><i class="fas fa-sparkles mr-2"></i>New</a>{% endif %}
