@@ -9,15 +9,26 @@ def recompute():
 
     while True:
 
-        #print("Beginning score recompute")
+        db.begin(subtransactions=True)
 
-        #x=db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False)
+        now=int(time.time())
 
-        #print(f"{total} submissions to score")
+        cutoff=now-(60860*24*180)
+
+        print("Beginning score recompute")
+
+        total=db.query(classes.submission.Submission
+                       ).filter_by(is_banned=False, is_deleted=False
+                                   ).filter(classes.submission.Submission.created_utc>cutoff
+                                            ).count()
+
+        print(f"{total} submissions to score")
 
         i=0
-        for post in db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False).all():
-
+        for post in db.query(classes.submission.Submission
+                       ).filter_by(is_banned=False, is_deleted=False
+                                   ).filter(classes.submission.Submission.created_utc>cutoff
+                                            ).all():
             i+=1
 
             post.score_hot = post.rank_hot
@@ -30,10 +41,9 @@ def recompute():
 
             #print(f"{i}/{total} - {post.base36id}")
 
-        #print("Done. Sleeping 10min")
+        print("Done. Sleeping 1min")
 
-        time.sleep(600)
+        time.sleep(60)
 
 
-recompute_thread=threading.Thread(target=recompute, daemon=True)
-recompute_thread.start()
+recompute()

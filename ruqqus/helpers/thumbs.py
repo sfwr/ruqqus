@@ -39,7 +39,7 @@ def thumbnail_thread(pid):
     x=requests.get(url, params=params)
     print("have thumb from apiflash")
 
-    name=f"posts/{self.base36id}/thumb.png"
+    name=f"posts/{post.base36id}/thumb.png"
     tempname=name.replace("/","_")
 
     with open(tempname, "wb") as file:

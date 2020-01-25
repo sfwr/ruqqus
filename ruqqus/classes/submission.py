@@ -113,6 +113,15 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     @property
     def permalink(self):
         return f"/post/{self.base36id}"
+
+    @property
+    def is_archived(self):
+
+        now=int(time.time())
+
+        cutoff=now-(60860*24*180)
+
+        return self.created_utc < cutoff
                                       
     def rendered_page(self, comment=None, comment_info=None, v=None):
 
