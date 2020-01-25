@@ -41,9 +41,9 @@ def recompute():
 
             #print(f"{i}/{total} - {post.base36id}")
 
-        print("Done. Sleeping 10min")
+        print("Done. Sleeping 1min")
 
-        time.sleep(600)
+        time.sleep(60)
 
 
 recompute()
