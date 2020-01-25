@@ -9,7 +9,7 @@ def recompute():
 
     while True:
 
-        db.begin()
+        db.begin(subtransactions=True)
 
         print("Beginning score recompute")
 
