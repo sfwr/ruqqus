@@ -1,0 +1,91 @@
+{% set board = b if b else p.board %}
+
+<div class="modal fade" id="guildDetailsModal" tabindex="-1" role="dialog" aria-labelledby="guildDetailsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header position-relative border-0" style="background-image: url(); height: 100px; overflow: hidden; object-fit: cover; background-size: cover;">
+        <div class="white-overlay position-absolute w-100 h-100" style="left: 0; top: 0; background-color: rgba(255, 255, 255, 0.75);"></div>
+        <div style="z-index: 1" class="d-flex align-items-center my-auto">
+          <img src="https://styles.redditmedia.com/t5_3oeyf/styles/communityIcon_zvfqxyrhh2131.png" class="profile-pic-65 bg-white mr-3"><h5 class="modal-title">+{{ board.name }}
+          {% if board.over_18 %}
+          <span class="badge badge-danger text-small ml-2" data-toggle="tooltip" data-placement="bottom" title="This guild contains adult content">nsfw</span>
+          {% endif %}
+        </h5>
+      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true"><i class="far fa-times"></i></span>
+      </button>
+    </div>      
+    <div class="modal-body p-0">
+      <div class="d-flex justify-content-between align-items-center border-bottom p-3">
+
+        <div class="">
+          <div class="font-weight-bold text-small text-uppercase text-muted">Founded</div>
+          <div data-toggle="tooltip" data-placement="bottom" title="{{ p.board.created_date }}">{{ board.age_string }}</div>
+        </div>
+
+        <div class="">
+          <div class="font-weight-bold text-small text-uppercase text-muted">Guildmasters</div>
+          <div>{{ board.mods_count }}</div>
+        </div>
+
+        <div class="">
+          <div class="font-weight-bold text-small text-uppercase text-muted">Members</div>
+          <div>{{ board.subscriber_count }}</div>
+        </div>
+
+        <div>
+          <a href="#" class="btn btn-primary">Join guild</a>
+        </div>
+
+      </div>
+      <div class="p-3 border-bottom">
+
+        <div class="h6">About</div>
+
+        <p class="mb-0">{{ board.description_html | safe }}</p>
+
+      </div>
+
+      <div class="p-3">
+
+        <div class="h6 text-danger">Guild rules</div>
+
+        <ol class="pl-0 mb-0">   
+          <li>
+            <span class="h6">Comply with US law</span>
+            <p style="padding: 0 0 0 22px;">Do not post copyrighted material that you are not authorized to distribute. Do not post anything not legal to publish within, or export from, the United States of America.
+            </p>
+          </li>
+          <li>
+            <span class="text-black font-weight-bold">Do not harass other users</span>
+            <p style="padding: 0 0 0 22px;">
+              Do not harass or threaten others on Ruqqus. You are not allowed to share or publish personal information, either yours or another person.
+            </p>
+          </li>
+          <li>
+            <span class="text-black font-weight-bold">No inciting violence</span>
+            <p style="padding: 0 0 0 22px;">
+              No incitement, planning or execution of unlawful or violent activity. This does not include the exercise of human rights that may be considered unlawful in a user's home country but protected in the United States.
+            </p>
+          </li>
+          <li>
+            <span class="text-black font-weight-bold">Check for duplicates</span>
+            <p style="padding: 0 0 0 22px;">
+              Nobody likes reposts. Please make sure the content you're posting hasn't been posted on Ruqqus before.
+            </p>
+          </li>
+        </ol>
+
+      </div>
+
+
+    </div>
+
+    <div class="modal-footer" style="background-color: transparent; background-image: linear-gradient(180deg, #ffffff00 25%, #ffffff 100%);">
+
+    </div>
+
+  </div>
+</div>
+</div>
