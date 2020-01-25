@@ -487,7 +487,7 @@
                 <div>
                   <span class="text-small-extra text-muted ml-2" id="score-percent">{{ p.score_percent }}% upvoted</span>
                 </div>
-                
+
               </div>
 
             </div>
@@ -496,7 +496,7 @@
 
             {% if v %}
 
-            <div id="voting" class="voting d-none d-md-block {% if p.body_html or p.embed_url %} mb-auto {% else %} my-auto {% endif %} mr-2">
+            <div id="voting" class="voting d-none d-md-block {% if p.body_html or p.embed_url %} mb-auto {% else %} my-auto {% endif %}" style="margin-right: 15px; min-width: 0px">
               <div id="post-{{ p.base36id }}-up" class="arrow-up mx-auto" {% if voted==1 %}onclick="vote('{{ p.base36id }}','0')"{% elif voted>-2 %}onclick="vote('{{ p.base36id }}','1')"{% endif %}>
               </div>
               <span id="post-{{ p.base36id }}-score-up" class="score-up text-muted{% if voted!=1 %} d-none{% endif %}">{{ score+1-adjust }}</span>
@@ -511,7 +511,7 @@
 
             {% else %}
 
-            <div id="voting" class="voting d-none d-md-block {% if p.body_html %} mb-auto {% else %} my-auto {% endif %} mr-2">
+            <div id="voting" class="voting d-none d-md-block {% if p.body_html %} mb-auto {% else %} my-auto {% endif %}" style="margin-right: 15px; min-width: 0px">
               <div id="post-{{ p.base36id }}-up" class="arrow-up mx-auto" onclick="location.href='/login';">
               </div>
               <span id="post-{{ p.base36id }}-score-none" class="score text-muted">{{ score-adjust }}</span>
