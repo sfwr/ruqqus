@@ -13,7 +13,7 @@ def recompute():
 
         print("Beginning score recompute")
 
-        #x=db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False)
+        total=db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False).count()
 
         print(f"{total} submissions to score")
 
