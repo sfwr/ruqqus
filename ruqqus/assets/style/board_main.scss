@@ -906,6 +906,11 @@ th {
     min-width: 40px;
 }
 
+#thread .voting {
+    min-width: 0px;
+    margin-right: 15px;
+}
+
 #frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
     margin: auto 0;
 }
