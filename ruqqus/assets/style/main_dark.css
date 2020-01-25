@@ -14410,6 +14410,11 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   word-break: break-word;
 }
 
+.modal-backdrop.show {
+  opacity: 1;
+  background-color: rgba(30, 30, 30, 0.9);
+}
+
 .modal-header {
   border-bottom: none;
   background-color: #35363e;
@@ -14424,6 +14429,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-content {
   border: none;
+  border-radius: 0.35rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
   background-color: #232327;
 }

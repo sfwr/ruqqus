@@ -1742,7 +1742,12 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     word-break: break-word;
 }
 
-// Modals (post actions, delete confirmations)
+// Modals (post actions, delete confirmations, etc)
+
+.modal-backdrop.show {
+    opacity: 1;
+    background-color:rgba(30,30,30,0.9);
+}
 
 .modal-header {
     border-bottom: 1px solid $border-color;
