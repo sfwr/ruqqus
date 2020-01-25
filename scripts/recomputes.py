@@ -18,7 +18,7 @@ def recompute():
         print(f"{total} submissions to score")
 
         i=0
-        for post in db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False).all():
+        for post in db.query(classes.submission.Submission).filter_by(is_banned=False, is_deleted=False).order_by(classes.submission.Submission.id).all():
 
             i+=1
 
