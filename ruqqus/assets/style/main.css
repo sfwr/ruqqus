@@ -12960,6 +12960,7 @@ p {
 
 #thread .custom-gutters {
   padding: 0 15px;
+  background-color: #ffffff;
 }
 
 .custom-gutters {
@@ -14965,7 +14966,7 @@ ul.comment-section {
 }
 
 .comment-write textarea {
-  background: #F5F7FA;
+  background: #ffffff;
 }
 
 .comment-write .comment-format {
@@ -14996,7 +14997,7 @@ ul.comment-section {
   content: "";
   position: absolute;
   font-family: "Font Awesome 5 Pro";
-  border-left: 2px solid #F5F7FA;
+  border-left: 2px solid #CBD5E0;
   font-size: 1rem;
   color: #805AD5;
   display: inline-block;

@@ -154,14 +154,12 @@
         </div>
       </div>
 
-<!----
       {% if v %}
-      <div id="button-sub-modal" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=toggleSub)">Join guild</a></div>
-      <div id="button-unsub-modal" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=toggleSub)">Leave</a></div>
+      <div id="button-sub" {% if b.has_subscriber(v) %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=toggleSub)">Join guild</a></div>
+      <div id="button-unsub" {% if not b.has_subscriber(v) %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=toggleSub)">Leave</a></div>
       {% elif not v %}
       <a class="btn btn-primary" href="/signup">Join guild</a>
       {% endif %}
------->
     </div>
   </div>
 </div>
@@ -194,8 +192,8 @@
         <p class="font-weight-bold">{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
         </p>
         {% if v %}
-        <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=toggleSub)">Join guild</a></div>
-        <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=toggleSub)">Leave</a></div>
+        <div id="button-sub-mobile" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=toggleSub)">Join guild</a></div>
+        <div id="button-unsub-mobile" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=toggleSub)">Leave</a></div>
         {% elif not v %}
         <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
         {% endif %}
@@ -469,5 +467,5 @@
 
 
 {% block guildModal %}
-  {% include "guild_details_modal.html" %}}
+  {% include "guild_details_modal.html" %}
 {% endblock %}

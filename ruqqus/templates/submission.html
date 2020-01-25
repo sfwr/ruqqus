@@ -450,37 +450,44 @@
               </div>
               {% endif %}
 
-              <div class="post-actions mt-2 d-none d-md-block">
-                <ul class="list-inline text-right d-flex">
+              <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="post-actions mt-2 d-none d-md-block">
+                  <ul class="list-inline text-right d-flex">
 
-                  <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
+                    <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>
 
-                  <li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{ p.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0);" role="button" class="copy-link" data-clipboard-text="{{ p.permalink | full_link }}"><i class="fas fa-link"></i>Copy link</a></li>
 
-                  {% if v and not v.id==p.author_id %}
-                  <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}', '{{ p.author.username }}','{{ p.board.name }}')"><i class="fas fa-flag"></i>Flag</a></li>
-                  {% endif %}
+                    {% if v and not v.id==p.author_id %}
+                    <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}', '{{ p.author.username }}','{{ p.board.name }}')"><i class="fas fa-flag"></i>Flag</a></li>
+                    {% endif %}
 
-                  {% if v and v.id==p.author_id %}
-                  <li class="list-inline-item"><a href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a></li>
-                  {% endif %}
+                    {% if v and v.id==p.author_id %}
+                    <li class="list-inline-item"><a href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a></li>
+                    {% endif %}
 
-                  {% if v %}
-                  {% if p.board.has_mod(v) %}
-                  <li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="fas fa-times text-danger"></i>Kick</a></li>
-                  {% endif %}
+                    {% if v %}
+                    {% if p.board.has_mod(v) %}
+                    <li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="fas fa-times text-danger"></i>Kick</a></li>
+                    {% endif %}
 
-                  {% if v.admin_level >=1 %}
-                  {% if p.is_banned or p.active_flags %}
-                  <li class="list-inline-item"><a class="text-success" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-check text-success"></i>Approve</a></li>
-                  {% endif %}
-                  {% if not p.is_banned or p.active_flags %}
-                  <li class="list-inline-item"><a id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="removePost('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a></li>
-                  {% endif %}
-                  {% endif %}
-                  {% endif %}
+                    {% if v.admin_level >=1 %}
+                    {% if p.is_banned or p.active_flags %}
+                    <li class="list-inline-item"><a class="text-success" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="fas fa-check text-success"></i>Approve</a></li>
+                    {% endif %}
+                    {% if not p.is_banned or p.active_flags %}
+                    <li class="list-inline-item"><a id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="removePost('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Remove</a></li>
+                    {% endif %}
+                    {% endif %}
+                    {% endif %}
 
-                </ul>
+                  </ul>
+                </div>
+
+                <div>
+                  <span class="text-small-extra text-muted ml-2" id="score-percent">{{ p.score_percent }}% upvoted</span>
+                </div>
+                
               </div>
 
             </div>
@@ -641,7 +648,7 @@
         </div>
 
       </div>
-      <div class="row border-md-0 pb-3">
+      <div class="row border-md-0 pb-3 bg-gray-100">
         <div class="col border-top">
           <div class="comments-count py-3">
             {% if linked_comment and p.comment_count >= 2%}
@@ -712,6 +719,6 @@
 
    {% endblock %}
 
-{% block guildModal %}
-  {% include "guild_details_modal.html" %}}
-{% endblock %}
+   {% block guildModal %}
+   {% include "guild_details_modal.html" %}
+   {% endblock %}
