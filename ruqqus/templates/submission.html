@@ -402,7 +402,7 @@
 {% block content %}
 <div class="row mb-3">
 
-  <div class="col-12 px-md-2">
+  <div class="col-12">
 
     <div id="post-{{ p.base36id }}" class="card border-0 mt-3{% if p.is_banned %} banned{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
       <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
