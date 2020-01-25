@@ -1,16 +1,16 @@
 {% extends "userpage.html" %}
 
 {% block adminpanel %}{% endblock %}
-
 {% block pagetype %}userpage{% endblock %}
-
 {% block banner %}{% endblock %}
+{% block mobileBanner %}{% endblock %}
+{% block desktopBanner %}{% endblock %}
+{% block sidebarLeftblock %}{% endblock %}
 
 {% block adminscripts %}
 <script src="/assets/js/comment_modding.js"></script>
 {% endblock %}
 
-{% block sidebarLeftblock %}{% endblock %}
 
   {% block postNav %}
   <div class="container-fluid bg-white sticky">
@@ -22,12 +22,12 @@
               <div class="d-flex">
                 <ul class="nav post-nav mr-auto">
                   <li class="nav-item">
-                    <a class="nav-link text-center{% if request.path=="/flagged/posts" %} active{% endif %}" href="/flagged/posts">
+                    <a class="nav-link text-center{% if request.path=="/admin/flagged/posts" %} active{% endif %}" href="/admin/flagged/posts">
                       <div class="text-small text-muted">Posts</div>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link text-center{% if request.path=="/flagged/comments" %} active{% endif %}" href="/flagged/comments">
+                    <a class="nav-link text-center{% if request.path=="/admin/flagged/comments" %} active{% endif %}" href="/admin/flagged/comments">
                       <div class="text-small text-muted">Comments</div>
                     </a>
                   </li>
