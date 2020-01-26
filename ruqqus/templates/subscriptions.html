@@ -1,50 +1,25 @@
 {% extends "home.html" %}
 
 {% block sidebarblock %}
-<div class="sidebar-section sidebar-about">
-	<div class="title"><i class="fas fa-home-alt mr-2"></i>Your homepage</div>
-	<div class="body">
-   {% if v and v.subscriptions.filter_by(is_active=True).count() %}
-   <p>This is your Ruqqus homepage. Check here to see the most upvoted and commented on content from the guilds you've joined and the users you've subscribed to.</p>
-   {% elif v and not v.subscriptions.filter_by(is_active=True).count() %}
-   <p>This is the Ruqqus homepage. The most upvoted and commented on content from guilds you join will be served here.</p>
-   {% endif %}
-   {% if v and not v.is_banned %}
-   <div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
-   {% endif %}
-   {% if not v %}
-   <div class="mt-3"><a class="btn btn-primary btn-block" href="/login">Create post</a></div>
-   {% endif %}
-   {% if v and v.is_activated and v.karma+v.comment_karma >=100 %}
-   <div class="mt-2"><a href="/create_guild" class="btn btn-secondary btn-block">Start a Guild</a></div>
-   {% endif %}
-
-   {% if v and v.subscriptions.filter_by(is_active=True).count() %}
-   <div class="mt-2 text-center"><a href="/mine" class="text-small-extra text-gray-500">Manage your guilds and subscriptions</a></div>
-   {% endif %}
-
- </div>
+<div class="text-center my-4">
+  <i class="fad fa-comment-alt-smile text-gray-400 mb-3" style="
+  font-size: 3.5rem;
+  "></i>
+  <div class="h5 text-gray-500">Cool features coming here soon!</div>
 </div>
 
-{% if trending_boards %}
-<div class="sidebar-section sidebar-trending">
-  <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Communities
-  </div>
-  <div class="body">
-    {% for entry in trending_boards[0:5] %}
-    <div class="d-flex justify-content-start trending-guild">
-      <div>
-        <a href="{{ entry[0].permalink }}"><img src="{{ entry[0].profile_url }}" class="profile-pic-40 mr-2"></a>
-      </div>
-      <div>
-        <a href="{{ entry[0].permalink }}">+{{ entry[0].name }}</a>
-        <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-      </div>
-    </div>
-    {% endfor %}
-    <a href="/browse" class="btn btn-primary btn-block mt-3">View more</a>
-  </div>
+<div>
+  <ul class="list-inline text-center text-small-extra mb-0">
+    <li class="list-inline-item"><a href="/help/about" class="text-gray-500">About</a></li>
+    <li class="list-inline-item d-none"><a href="mailto:hello@ruqqus.com" class="text-gray-500">Contact</a></li>
+    <li class="list-inline-item"><a href="/help/terms" class="text-gray-500">Terms</a></li>
+    <li class="list-inline-item"><a href="/help/privacy" class="text-gray-500">Privacy Policy</a></li>
+    <li class="list-inline-item"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LXJULS6HWDKQG&amp;source=url" class="text-gray-500">Donate</a></li>
+    <li class="list-inline-item"><a href="/help/press" class="text-gray-500">Press</a></li>
+    <li class="list-inline-item"><a href="/help" class="text-gray-500">Help</a></li>
+    <li class="list-inline-item"><a href="https://www.twitter.com/ruqqus" class="text-gray-500">Twitter</a></li>
+    <li class="list-inline-item"><a href="https://ruqqus.org/contribute" class="text-gray-500">Github</a></li>
+    <li class="list-inline-item"><span class="text-muted">© 2020 Ruqqus, LLC</span></li>
+  </ul>
 </div>
-{% endif %}
-
 {% endblock %}
