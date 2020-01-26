@@ -913,7 +913,6 @@ def siege_guild(v):
     #update siege date
     v.last_siege_utc=now
     db.add(v)
-    db.commit()
 
 
     #Cannot siege +general, +ruqqus, or +ruqquspress
