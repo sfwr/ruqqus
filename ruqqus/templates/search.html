@@ -30,8 +30,7 @@
     }
     else {
       document.getElementById("fixed-bar-mobile").style.top = "-49px";
-      document.getElementById("dropdownMenuSortBy").classList.remove('show');
-      document.getElementById("dropdownMenuFrom").classList.remove('show');
+      document.getElementById("mobileSortDropdown").classList.remove('show');
       document.getElementById("navbar").classList.add("shadow");
     }
     prevScrollpos = currentScrollPos;
@@ -39,50 +38,10 @@
 </script>
 {% endblock %}
 
-{% block sidebarblock %}
-
-{% if trending_boards %}
-<div class="sidebar-section sidebar-trending">
-  <div class="title"><i class="fas fa-sparkles mr-2"></i>Rising Communities
-  </div>
-  <div class="body">
-    {% for entry in trending_boards[0:5] %}
-    <div class="d-flex justify-content-start trending-guild">
-      <div>
-        <a href="{{ entry[0].permalink }}"><img src="{{ entry[0].profile_url }}" class="profile-pic-40 mr-2"></a>
-      </div>
-      <div>
-        <a href="{{ entry[0].permalink }}">+{{ entry[0].name }}</a>
-        <div class="text-muted text-small font-weight-normal">{{ entry[1] }} Member{{ '' if entry[1]==1 else 's' }}</div>
-      </div>
-    </div>
-    {% endfor %}
-    <a href="/browse" class="btn btn-primary btn-block mt-3">View more</a>
-  </div>
-</div>
-{% endif %}
-
-<div>
-  <ul class="list-inline text-center text-small mb-0">
-    <li class="list-inline-item"><a href="/help/about" class="text-gray-500">About</a></li>
-    <li class="list-inline-item d-none"><a href="mailto:hello@ruqqus.com" class="text-gray-500">Contact</a></li>
-    <li class="list-inline-item"><a href="/help/terms" class="text-gray-500">Terms</a></li>
-    <li class="list-inline-item"><a href="/help/privacy" class="text-gray-500">Privacy Policy</a></li>
-    <li class="list-inline-item"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LXJULS6HWDKQG&amp;source=url" class="text-gray-500">Donate</a></li>
-    <li class="list-inline-item"><a href="/help/press" class="text-gray-500">Press</a></li>
-    <li class="list-inline-item"><a href="/help" class="text-gray-500">Help</a></li>
-    <li class="list-inline-item"><a href="https://www.twitter.com/ruqqus" class="text-gray-500">Twitter</a></li>
-    <li class="list-inline-item"><a href="https://ruqqus.org/contribute" class="text-gray-500">Github</a></li>
-    <li class="list-inline-item"><span class="text-muted">© 2020 Ruqqus, LLC</span></li>
-  </ul>
-</div>
-
-{% endblock %}
-
 {% block content %}
 <!-- Search text -->
 
-<div class="row no-gutters">
+<div class="row no-gutters mt-md-3">
 
   <div class="col">
 
