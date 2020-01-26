@@ -920,7 +920,7 @@ def siege_guild(v):
         return render_template("message.html",
                                v=v,
                                title=f"Siege against +{guild.name} Failed",
-                               error="You are not allowed to siege that guild. You may try again in 30 days."
+                               error="You are not allowed to siege +{guild.name}. You may try again in 30 days."
                                ), 403
 
     #check user activity
@@ -1024,5 +1024,5 @@ def siege_guild(v):
         db.add(new_mod)
         db.commit()
 
-    return redirect(f"/+{guild.name}/mod/mods", msg="Siege Successful")
+    return redirect(f"/+{guild.name}/mod/mods")
     
