@@ -921,18 +921,18 @@ def siege_guild(v):
         return render_template("message.html",
                                v=v,
                                title=f"Siege against +{guild.name} Failed",
-                               text="You are not allowed to siege that guild. You may try again in 30 days."
+                               error="You are not allowed to siege that guild. You may try again in 30 days."
                                ), 403
 
     #check user activity
     karma=sum([x.score_top for x in v.submissions.filter_by(board_id=guild.id)])
     karma+=sum([x.score_top for x in v.comments.filter_by(board_id=guild.id)])
-    if karma < 100:
-        return render_template("message.html",
-                               v=v,
-                               title=f"Siege against +{guild.name} Failed",
-                               text=f"You do not have enough Reputation in +{guild.name} to siege it. You may try again in 30 days."
-                               ), 403
+##    if karma < 100:
+##        return render_template("message.html",
+##                               v=v,
+##                               title=f"Siege against +{guild.name} Failed",
+##                               error=f"You do not have enough Reputation in +{guild.name} to siege it. You may try again in 30 days."
+##                               ), 403
     
 
     #Assemble list of mod ids to check
