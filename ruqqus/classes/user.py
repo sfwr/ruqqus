@@ -57,6 +57,7 @@ class User(Base, Stndrd):
     tos_agreed_utc=Column(Integer, default=None)
     profile_nonce=Column(Integer, default=0)
     banner_nonce=Column(Integer, default=0)
+    last_siege_utc=Column(Integer, default=0)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
@@ -594,3 +595,13 @@ class User(Base, Stndrd):
             return False
 
         return True
+
+    @property
+    def can_siege(self):
+
+        if self.is_banned:
+            return False
+
+        now=int(time.time())
+
+        return now-self.last_siege_utc > 60*60*24*30

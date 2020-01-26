@@ -889,3 +889,148 @@ def guild_profile(guild):
     x=get_guild(guild)
     return redirect(x.profile_url)
 
+@app.route("/siege_guild", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def siege_guild(v):
+
+    now=int(time.time())
+    guild=request.form.get("guild",None)
+
+    if not guild:
+        abort(400)
+
+    guild=get_guild(guild)
+
+    #check time
+    if v.last_siege_utc > now-(60*60*24*30):
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                                error="You need to wait 30 days between siege attempts."
+                                ), 403
+
+    #update siege date
+    v.last_siege_utc=now
+    db.add(v)
+    db.commit()
+
+
+    #Cannot siege +general, +ruqqus, or +ruqquspress
+    if guild.id in [1,2,10]:
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               error="You are not allowed to siege +{guild.name}. You may try again in 30 days."
+                               ), 403
+
+    #check user activity
+    karma=sum([x.score_top for x in v.submissions.filter_by(board_id=guild.id)])
+    karma+=sum([x.score_top for x in v.comments.filter_by(board_id=guild.id)])
+##    if karma < 100:
+##        return render_template("message.html",
+##                               v=v,
+##                               title=f"Siege against +{guild.name} Failed",
+##                               error=f"You do not have enough Reputation in +{guild.name} to siege it. You may try again in 30 days."
+##                               ), 403
+    
+
+    #Assemble list of mod ids to check
+    #skip any user with a site-wide ban
+    mods=[]
+    for user in guild.mods:
+        if user.id==v.id:
+            break
+        if not user.is_banned:
+            mods.append(user)
+
+    #if no mods, skip straight to success
+    if mods:
+
+        ids=[x.id for x in mods]
+
+        #cutoff
+        cutoff = now-60*60*24*60
+
+        #check submissions
+
+        if db.query(Submission).filter(Submission.author_id.in_(ids), Submission.created_utc>cutoff ).first():
+            return render_template("message.html",
+                                   v=v,
+                                   title=f"Siege against +{guild.name} Failed",
+                                   error="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. You may try again in 30 days."
+                                   ), 403
+
+        #check comments
+        if db.query(Comment).filter(Comment.author_id.in_(ids), Comment.created_utc>cutoff).first():
+            return render_template("message.html",
+                                   v=v,
+                                   title=f"Siege against +{guild.name} Failed",
+                                   error="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   ), 403
+
+        #check post votes
+        if db.query(Vote).filter(Vote.user_id.in_(ids), Vote.created_utc>cutoff).first():
+            return render_template("message.html",
+                                   v=v,
+                                   title=f"Siege against +{guild.name} Failed",
+                                   error="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   ), 403
+        
+        #check comment votes
+        if db.query(CommentVote).filter(CommentVote.user_id.in_(ids), CommentVote.created_utc>cutoff).first():
+            return render_template("message.html",
+                                   v=v,
+                                   title=f"Siege against +{guild.name} Failed",
+                                   error="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   ), 403    
+
+
+        #check flags
+        if db.query(Flag).filter(Flag.user_id.in_(ids), Flag.created_utc>cutoff).first():
+            return render_template("message.html",
+                                   v=v,
+                                   title=f"Siege against +{guild.name} Failed",
+                                   error="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   ), 403
+        #check reports
+        if db.query(Report).filter(Report.user_id.in_(ids), Report.created_utc>cutoff).first():
+            return render_template("message.html",
+                                   v=v,
+                                   title=f"Siege against +{guild.name} Failed",
+                                   error="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   ), 403
+
+        #check exiles
+        if db.query(BanRelationship).filter(BanRelationship.banning_mod_id.in_(ids), BanRelationship.created_utc>cutoff).first():
+            return render_template("message.html",
+                                   v=v,
+                                   title=f"Siege against +{guild.name} Failed",
+                                   error="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   ), 403
+
+    
+    #Siege is successful
+
+    #delete and notify mods
+    for x in mods:
+
+        send_notification(x.user,
+                          f"You have been overthrown from +{guild.name}. 
+        db.delete(x)
+        
+    db.commit()
+
+    #add new mod if user is not already
+    if not guild.has_mod(v):
+        new_mod=ModRelationship(user_id=v.id,
+                                board_id=guild.id,
+                                created_utc=now,
+                                accepted=True
+                                )
+
+        db.add(new_mod)
+        db.commit()
+
+    return redirect(f"/+{guild.name}/mod/mods")
+    

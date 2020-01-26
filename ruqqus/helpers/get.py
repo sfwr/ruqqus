@@ -35,6 +35,8 @@ def get_board(bid):
 
 def get_guild(name, graceful=False):
 
+    name=name.lstrip('+')
+
     x=db.query(Board).filter(Board.name.ilike(name)).first()
     if not x:
         if not graceful:
