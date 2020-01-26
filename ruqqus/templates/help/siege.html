@@ -56,7 +56,7 @@ Additionally, the siege will fail if made against [+general](/+general), [+Ruqqu
 
 {% endfilter %}
 
-
+{% if v %}
 {% if v.can_siege %}
 
 <label>Your name:</label>
@@ -73,6 +73,9 @@ Additionally, the siege will fail if made against [+general](/+general), [+Ruqqu
 
 {% else %}
 
-<p>You cannot siege any Guilds right now. You can only make one siege every 30 days.</p>
+<p>You cannot siege any Guilds right now. You can only make one siege attempt every 30 days.</p>
+{% endif %}
+{% else %}
+<p>You need to be logged in to siege a Guild.</p>
 {% endif %}
 {% endblock %}
