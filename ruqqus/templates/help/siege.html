@@ -1,9 +1,8 @@
 {% extends "docs_default.html" %}
 
 {% block title %}
-<title>Ruqqus - Press</title>
-<meta name="description" content="Ruqqus Press Resources">
-<script src="/assets/js/comment_replies.js"></script>
+<title>Ruqqus - Siege Guild</title>
+<meta name="description" content="Lay siege to a Ruqqus guild">
 {% endblock %}
 
 	
@@ -32,11 +31,9 @@
     </div>
     {% endif %}
 
-<h1 class="article-title">Press</h1>
-
 {% filter markdown %}
 
-## Guild Siege
+# Guild Siege
 
 In order to ensure that Ruqqus Guilds can be curated and managed, users may use this page to try to "lay siege" to, and take over, a guild with inactive Guildmasters.
 
@@ -69,7 +66,7 @@ Additionally, the siege will fail if made against [+general](/+general), [+Ruqqu
   <input type="hidden" name="formkey" value="{{ v.formkey }}">
 
   <label for="text-guild">Guild to siege:</label>
-  <input id="text-guild" type="text" name="guild">
+  <input class="form-control" id="text-guild" type="text" name="guild">
 
   <input type="submit" value="Siege Guild">
 </form>
