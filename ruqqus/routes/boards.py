@@ -895,6 +895,12 @@ def guild_profile(guild):
 def siege_guild(v):
 
     now=int(time.time())
+    guild=request.form.get("guild",None)
+
+    if not guild:
+        abort(400)
+
+    guild=get_guild(guild)
 
     #check time
     if v.last_siege_utc > now-(60*60*24*30):
@@ -908,13 +914,7 @@ def siege_guild(v):
     v.last_siege_utc=now
     db.add(v)
     db.commit()
-    
-    guild=request.form.get("guild",None)
 
-    if not guild:
-        abort(400)
-
-    guild=get_guild(guild)
 
     #Cannot siege +general, +ruqqus, or +ruqquspress
     if guild.id in [1,2,10]:
