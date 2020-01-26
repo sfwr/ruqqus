@@ -889,3 +889,123 @@ def guild_profile(guild):
     x=get_guild(guild)
     return redirect(x.profile_url)
 
+@app.route("/siege_guild", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def siege_guild(v):
+
+    now=int(time.time())
+
+    #check time
+    if v.last_siege_utc > now-(60*60*24*30):
+        abort(403)
+
+    #update siege date
+    v.last_siege_utc=now
+    db.add(v)
+    db.commit()
+    
+    guild=request.form.get("guild",None)
+
+    if not guild:
+        abort(400)
+
+    guild=get_guild(guild)
+
+    #Cannot siege +general, +ruqqus, or +ruqquspress
+    if guild.id in [1,2,10]:
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. You may try again in 30 days."
+                               ), 403
+
+    #Assemble list of mod ids to check
+    mods=[]
+    for user in board.mods:
+        if user.id==v.id:
+            break
+        mods.append(mods)
+
+    ids=[x.id for x in mods]
+
+    #cutoff
+    cutoff = now-60*60*24*60
+
+    #check submissions
+
+    if db.query(Submission).filter(Submission.author_id.in_(ids), Submission.created_utc>cutoff ).first():
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. You may try again in 30 days."
+                               ), 403
+
+    #check comments
+    if db.query(Comment).filter(Comment.author_id.in_(ids), Comment.created_utc>cutoff).first():
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                               ), 403
+
+    #check post votes
+    if db.query(Vote).filter(Vote.user_id.in_(ids), Vote.created_utc>cutoff).first()
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                               ), 403
+    
+    #check comment votes
+    if db.query(CommentVote).filter(CommentVote.user_id.in_(ids), CommentVote.created_utc>cutoff).first()
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                               ), 403    
+
+
+    #check flags
+    if db.query(Flag).filter(Flag.user_id.in_(ids), Flag.created_utc>cutoff).first()
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                               ), 403
+    #check reports
+    if db.query(Report).filter(Report.user_id.in_(ids), Report.created_utc>cutoff).first()
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                               ), 403
+
+    #check exiles
+    if db.query(BanRelationship).filter(BanRelationship.banning_mod_id.in_(ids), BanRelationship.created_utc>cutoff).first()
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                               message="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                               ), 403
+
+    
+    #Siege is successful
+
+    #delete mods
+    for x in mods:
+        db.delete(x)
+
+    #add new mod if user is not already
+    if not guild.has_mod(v):
+        new_mod=ModRelationship(user_id=v.id,
+                                board_id=guild.id,
+                                created_utc=now,
+                                accepted=True
+                                )
+
+        db.add(new_mod)
+        db.commit()
+
+    return redirect(f"/+{guild.name}/mod/mods", msg="Siege Successful")
+    

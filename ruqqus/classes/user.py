@@ -57,6 +57,7 @@ class User(Base, Stndrd):
     tos_agreed_utc=Column(Integer, default=None)
     profile_nonce=Column(Integer, default=0)
     banner_nonce=Column(Integer, default=0)
+    last_siege_utc=Column(Integer, default=0)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
