@@ -1,18 +1,5 @@
 <div class="col sidebar sidebar-left text-left bg-light d-none d-xl-block pt-3" id="sidebar-left">
 
-  {% if not v %}
-  <div class="sidebar-section sidebar-guild-recommendations bg-gray-100 sidebar-collapsed-hidden">
-    <div class="body">
-      <div class="my-3" style="">
-        <i class="fad fa-telescope text-purple" style="font-size:3rem"></i>
-      </div>
-      <h5>Discover amazing communities across <span class="text-purple">Ruqqus</span>.</h5>
-      <p class="text-small">Create a Ruqqus account and join your favorite communities, no email address required.</p>
-      <a href="/signup" class="btn btn-purple btn-block">Sign up</a>
-    </div>
-  </div>
-  {% endif %}
-
   <div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}" style="word-break: break-word">
     <div class="body text-center p-0">
 
@@ -173,4 +160,18 @@
             {% endif %}
           </div>
         </div>
+
+        {% if not v %}
+        <div class="sidebar-section sidebar-guild-recommendations bg-gray-100 sidebar-collapsed-hidden">
+          <div class="body">
+            <div class="my-3" style="">
+              <i class="fad fa-telescope text-purple" style="font-size:3rem"></i>
+            </div>
+            <h5>Discover amazing communities across <span class="text-purple">Ruqqus</span>.</h5>
+            <p class="text-small">Create a Ruqqus account and join your favorite communities, no email address required.</p>
+            <a href="/signup" class="btn btn-purple btn-block">Sign up</a>
+          </div>
+        </div>
+        {% endif %}
+        
       </div>
