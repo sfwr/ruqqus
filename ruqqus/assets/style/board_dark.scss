@@ -399,6 +399,10 @@ ol > li::before {
 
 // Tooltips
 
+.tooltip {
+    font-weight: $font-weight-bold;
+}
+
 .tooltip-inner {
     background-color: $white;
     color: $dark;

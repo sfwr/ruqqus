@@ -13122,6 +13122,10 @@ ol > li::before {
   vertical-align: middle;
 }
 
+.tooltip {
+  font-weight: 500;
+}
+
 .tooltip-inner {
   background-color: #FFFFFF;
   color: #232327;
