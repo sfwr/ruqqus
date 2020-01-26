@@ -940,7 +940,7 @@ def siege_guild(v):
     for user in guild.mods:
         if user.id==v.id:
             break
-        mods.append(mods)
+        mods.append(user)
 
     #if no mods, skip straight to success
     if mods:
