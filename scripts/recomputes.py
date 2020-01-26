@@ -44,7 +44,7 @@ def recompute():
         for comment in db.query(classes.comment.Comment
                              ).join(p,
                                     classes.comment.Comment.parent_submission==p.c.id
-                                    ).filter(p.c.id != none,
+                                    ).filter(p.c.id != None,
                                              classes.comment.Comment.is_deleted==False,
                                              classes.comment.comment.is_banned==False
                                              ).all():
