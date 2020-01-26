@@ -1224,6 +1224,42 @@ color: $dark;
     border-color: $gray-100;
 }
 
+// Sidebar Left Collapsed
+
+.sidebar-left.sidebar-collapsed {
+    flex: 0 0 65px;
+}
+
+.sidebar-left.sidebar-collapsed .sidebar-collapsed-hidden {
+    display: none;
+}
+
+.sidebar-left.sidebar-collapsed .sidebar-collapsed-visible {
+    display: block;
+}
+
+.sidebar-left .sidebar-collapsed-visible {
+    display: none;
+}
+
+.sidebar-left .collapsed-toggle::before {
+    cursor: pointer;
+    font-size: 1rem;
+    color: $muted;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    content: "\f34b";
+}
+
+.sidebar-left.sidebar-collapsed .collapsed-toggle::before {
+    cursor: pointer;
+    font-size: 1rem;
+    color: $black;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    content: "\f34c";
+}
+
 // Sidebar Left
 
 .sidebar-left .sidebar-section {

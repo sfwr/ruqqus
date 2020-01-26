@@ -13902,6 +13902,40 @@ a:hover .link-arrow {
   border-color: #F5F7FA;
 }
 
+.sidebar-left.sidebar-collapsed {
+  flex: 0 0 65px;
+}
+
+.sidebar-left.sidebar-collapsed .sidebar-collapsed-hidden {
+  display: none;
+}
+
+.sidebar-left.sidebar-collapsed .sidebar-collapsed-visible {
+  display: block;
+}
+
+.sidebar-left .sidebar-collapsed-visible {
+  display: none;
+}
+
+.sidebar-left .collapsed-toggle::before {
+  cursor: pointer;
+  font-size: 1rem;
+  color: #718096;
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  content: "";
+}
+
+.sidebar-left.sidebar-collapsed .collapsed-toggle::before {
+  cursor: pointer;
+  font-size: 1rem;
+  color: #121213;
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  content: "";
+}
+
 .sidebar-left .sidebar-section {
   border: 0;
   box-shadow: none;
