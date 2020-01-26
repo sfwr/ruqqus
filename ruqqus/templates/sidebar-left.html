@@ -20,11 +20,11 @@
         <div class="mb-3">
           <div class="text-small font-weight-bold text-muted text-uppercase sidebar-collapsed-hidden" style="letter-spacing: 0.025rem;">Ruqqus Feeds</div>
           <div class="sidebar-collapsed-visible">
-                <i class="fas fa-newspaper text-muted" style="font-size: 1rem;"></i>
+            <i class="fas fa-newspaper text-muted" style="font-size: 1rem;"></i>
           </div>
           <button onclick="document.getElementById('sidebar-left').classList.toggle('sidebar-collapsed');"><span class="collapsed-toggle"></span></button>
         </div>
-        <ul class="no-bullets guild-recommendations-list pl-0">
+        <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
           <li class="guild-recommendations-item">
             <a href="/">
               <div class="d-flex">
@@ -59,6 +59,24 @@
                   </a>
                 </li>
               </ul>
+              <!-- Show this list when sidebar is collapsed-->
+              <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-visible">
+                <li class="guild-recommendations-item">
+                  <a href="/">
+                    <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-35" data-toggle="tooltip" data-placement="right" title="Popular">
+                  </a>
+                </li>
+                <li class="guild-recommendations-item">
+                  <a href="/+general?sort=new">
+                    <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-35" data-toggle="tooltip" data-placement="right" title="New">
+                  </a>
+                </li>
+                <li class="guild-recommendations-item">
+                  <a href="/+general">
+                    <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-35" data-toggle="tooltip" data-placement="right" title="All">
+                  </a>
+                </li>
+              </ul>
             </div>
 
             {% if v and v.subscriptions.filter_by(is_active=True).count() %}
@@ -72,61 +90,82 @@
               <div class="sidebar-collapsed-visible">
                 <i class="fas fa-users text-muted" style="font-size: 1rem;"></i>
               </div>
-              <ul class="no-bullets guild-recommendations-list pl-0">
+              <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
                 {% for board in v.boards_subscribed[0:5] %}
                 <li class="guild-recommendations-item">
                   <a href="{{ board.permalink }}">
                     <div class="d-flex">
                       <div>
-                        <img src="{{ board.profile_url }}" class="profile-pic-35 mr-2"></div>
-                        <div class="my-auto sidebar-collapsed-hidden">
-                          <div class="text-black font-weight-normal">+{{ board.name }}</div>
-                        </div>
+                        <img src="{{ board.profile_url }}" class="profile-pic-35 mr-2">
                       </div>
-                    </a>
-                  </li>
-                  {% endfor %}
-                </ul>
-              </div>
-              {% endif %}
-
-              {% if v and not v.subscriptions.filter_by(is_active=True).count() %}
-              <div class="sidebar-collapsed-hidden">
-                <div class="mb-4">
-                  <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</div>
-                </div>
-                <p>You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
-                <a href="/browse" class="btn btn-secondary btn-block">Discover guilds</a>
-              </div>
-              {% endif %}
-
-              {% if v and v.mods_anything %}
-              <div class="sidebar-collapsed-hidden">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Guildmaster of</div>
-                  <a href="/mine" class="text-small-extra">View all</a>
-                </div>
-              </div>
-              <div class="sidebar-collapsed-visible">
-                <i class="fas fa-crown text-muted" style="font-size: 1rem;"></i>
-              </div>
-              <ul class="no-bullets guild-recommendations-list pl-0">
-                {% for board in v.boards_modded[0:3] %}
+                      <div class="my-auto">
+                        <div class="text-black font-weight-normal">+{{ board.name }}</div>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+              <!-- Show this list when sidebar is collapsed -->
+              <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-visible">
+                {% for board in v.boards_subscribed[0:5] %}
                 <li class="guild-recommendations-item">
                   <a href="{{ board.permalink }}">
-                    <div class="d-flex">
-                      <div>
-                        <img src="{{ board.profile_url }}" class="profile-pic-35 mr-2"></div>
-                        <div class="my-auto sidebar-collapsed-hidden">
-                          <div class="text-black font-weight-normal">+{{ board.name }}</div>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  {% endfor %}
-                </ul>
-                {% endif %}
+                  <img src="{{ board.profile_url }}" class="profile-pic-35" data-toggle="tooltip" data-placement="right" title="+{{ board.name }}">
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
 
+            {% if v and not v.subscriptions.filter_by(is_active=True).count() %}
+            <div class="sidebar-collapsed-hidden">
+              <div class="mb-4">
+                <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</div>
+              </div>
+              <p>You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
+              <a href="/browse" class="btn btn-secondary btn-block">Discover guilds</a>
+            </div>
+            {% endif %}
+
+            {% if v and v.mods_anything %}
+            <div class="sidebar-collapsed-hidden">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Guildmaster of</div>
+                <a href="/mine" class="text-small-extra">View all</a>
               </div>
             </div>
+            <div class="sidebar-collapsed-visible">
+              <i class="fas fa-crown text-warning" style="font-size: 1rem;"></i>
+            </div>
+            <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
+              {% for board in v.boards_modded[0:3] %}
+              <li class="guild-recommendations-item">
+                <a href="{{ board.permalink }}">
+                  <div class="d-flex">
+                    <div>
+                      <img src="{{ board.profile_url }}" class="profile-pic-35 mr-2">
+                    </div>
+                    <div class="my-auto">
+                      <div class="text-black font-weight-normal">+{{ board.name }}</div>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            <!-- Show this list when sidebar is collapsed -->
+            <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-visible">
+              {% for board in v.boards_modded[0:3] %}
+              <li class="guild-recommendations-item">
+                <a href="{{ board.permalink }}">
+                  <img src="{{ board.profile_url }}" class="profile-pic-35" data-toggle="tooltip" data-placement="right" title="+{{ board.name }}">
+                </a>
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
           </div>
+        </div>
+      </div>
