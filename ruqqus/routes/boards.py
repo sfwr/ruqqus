@@ -917,7 +917,7 @@ def siege_guild(v):
         return render_template("message.html",
                                v=v,
                                title=f"Siege against +{guild.name} Failed",
-                               message="You are not allowed to siege that guild. You may try again in 30 days."
+                               text="You are not allowed to siege that guild. You may try again in 30 days."
                                ), 403
 
     #check user activity
@@ -927,7 +927,7 @@ def siege_guild(v):
         return render_template("message.html",
                                v=v,
                                title=f"Siege against +{guild.name} Failed",
-                               message=f"You do not have enough Reputation in +{guild.name} to siege it. You may try again in 30 days."
+                               text=f"You do not have enough Reputation in +{guild.name} to siege it. You may try again in 30 days."
                                ), 403
     
 
@@ -952,7 +952,7 @@ def siege_guild(v):
             return render_template("message.html",
                                    v=v,
                                    title=f"Siege against +{guild.name} Failed",
-                                   message="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. You may try again in 30 days."
+                                   error="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. You may try again in 30 days."
                                    ), 403
 
         #check comments
@@ -960,7 +960,7 @@ def siege_guild(v):
             return render_template("message.html",
                                    v=v,
                                    title=f"Siege against +{guild.name} Failed",
-                                   message="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   error="Your siege failed. One of the guildmasters has post or comment activity in the last 60 days. Your siege failed. You may try again in 30 days."
                                    ), 403
 
         #check post votes
@@ -968,7 +968,7 @@ def siege_guild(v):
             return render_template("message.html",
                                    v=v,
                                    title=f"Siege against +{guild.name} Failed",
-                                   message="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   error="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
                                    ), 403
         
         #check comment votes
@@ -976,7 +976,7 @@ def siege_guild(v):
             return render_template("message.html",
                                    v=v,
                                    title=f"Siege against +{guild.name} Failed",
-                                   message="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   error="Your siege failed. One of the guildmasters has voting activity in the last 60 days. Your siege failed. You may try again in 30 days."
                                    ), 403    
 
 
@@ -985,14 +985,14 @@ def siege_guild(v):
             return render_template("message.html",
                                    v=v,
                                    title=f"Siege against +{guild.name} Failed",
-                                   message="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   error="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
                                    ), 403
         #check reports
         if db.query(Report).filter(Report.user_id.in_(ids), Report.created_utc>cutoff).first():
             return render_template("message.html",
                                    v=v,
                                    title=f"Siege against +{guild.name} Failed",
-                                   message="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   error="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
                                    ), 403
 
         #check exiles
@@ -1000,7 +1000,7 @@ def siege_guild(v):
             return render_template("message.html",
                                    v=v,
                                    title=f"Siege against +{guild.name} Failed",
-                                   message="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
+                                   error="Your siege failed. One of the guildmasters has private activity in the last 60 days. Your siege failed. You may try again in 30 days."
                                    ), 403
 
     
