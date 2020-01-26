@@ -1016,7 +1016,7 @@ def siege_guild(v):
     for x in mods:
 
         send_notification(x.user,
-                          f"You have been overthrown from +{guild.name}. 
+                          f"You have been overthrown from +{guild.name}.")
         db.delete(x)
         
     db.commit()
