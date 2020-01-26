@@ -898,7 +898,11 @@ def siege_guild(v):
 
     #check time
     if v.last_siege_utc > now-(60*60*24*30):
-        abort(403)
+        return render_template("message.html",
+                               v=v,
+                               title=f"Siege against +{guild.name} Failed",
+                                error="You need to wait 30 days between siege attempts."
+                                ), 403
 
     #update siege date
     v.last_siege_utc=now
