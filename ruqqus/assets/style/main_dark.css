@@ -13914,7 +13914,7 @@ a:hover .link-arrow {
   border: none;
 }
 
-.sidebar-left.sidebar-collapsed {
+.sidebar.sidebar-left.sidebar-collapsed {
   flex: 0 0 65px;
 }
 

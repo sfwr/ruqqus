@@ -13902,7 +13902,7 @@ a:hover .link-arrow {
   border-color: #F5F7FA;
 }
 
-.sidebar-left.sidebar-collapsed {
+.sidebar.sidebar-left.sidebar-collapsed {
   flex: 0 0 65px;
 }
 

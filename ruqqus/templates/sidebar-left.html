@@ -26,8 +26,8 @@
             <a href="/">
               <div class="d-flex">
                 <div>
-                  <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-25 mr-2"></div>
-                  <div class="my-auto">
+                  <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-35"></div>
+                  <div class="my-auto ml-2">
                     <div class="text-black font-weight-normal">Home</div>
                   </div>
                 </div>
@@ -37,8 +37,8 @@
               <a href="/+general?sort=new">
                 <div class="d-flex">
                   <div>
-                    <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-25 mr-2"></div>
-                    <div class="my-auto">
+                    <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-35"></div>
+                    <div class="my-auto ml-2">
                       <div class="text-black font-weight-normal">All</div>
                     </div>
                   </div>
@@ -48,8 +48,8 @@
                 <a href="/+general">
                   <div class="d-flex">
                     <div>
-                      <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-25 mr-2"></div>
-                      <div class="my-auto">
+                      <img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-35"></div>
+                      <div class="my-auto ml-2">
                         <div class="text-black font-weight-normal">Trending</div>
                       </div>
                     </div>
@@ -60,7 +60,7 @@
 
             {% if v and v.subscriptions.filter_by(is_active=True).count() %}
             <div class="mb-4">
-              <div class="d-flex justify-content-between align-items-center mb-3">
+              <div class="d-flex justify-content-between align-items-center mb-3 sidebar-collapsed-hidden">
                 <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</div>
                 <a href="/mine" class="text-small-extra">View all</a>
               </div>
@@ -83,11 +83,13 @@
               {% endif %}
 
               {% if v and not v.subscriptions.filter_by(is_active=True).count() %}
-              <div class="mb-4-3">
+              <div class="sidebar-collapsed-hidden">
+              <div class="mb-4">
                 <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</div>
               </div>
               <p>You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
               <a href="/browse" class="btn btn-secondary btn-block">Discover guilds</a>
+              </div>
               {% endif %}
 
               {% if v and v.mods_anything %}
