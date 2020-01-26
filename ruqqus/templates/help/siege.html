@@ -60,7 +60,7 @@ Additionally, the siege will fail if made against [+general](/+general), [+Ruqqu
 {% if v.can_siege %}
 
 <label>Your name:</label>
-<input class="form-control" type="text" name="username" value="{{ v.username }}">
+<input class="form-control" type="text" name="username" value="{{ v.username }}" readonly="readonly">
 
 <form action="/siege_guild" method="post">
   <input type="hidden" name="formkey" value="{{ v.formkey }}">
