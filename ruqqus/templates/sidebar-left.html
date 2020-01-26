@@ -27,7 +27,7 @@
           <button class="btn mb-3" data-toggle="tooltip" data-placement="right" title="Expand" onclick="document.getElementById('sidebar-left').classList.toggle('sidebar-collapsed');"><span class="collapsed-toggle"></span></button>
         </div>
         <div class="sidebar-collapsed-visible">
-          <i class="fas fa-newspaper text-muted mb-3" style="font-size: 1rem;"></i>
+          <i class="fas fa-newspaper text-muted mb-3" data-toggle="tooltip" data-placement="right" title="Ruqqus feeds" style="font-size: 1rem;"></i>
         </div>
         <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
           <li class="guild-recommendations-item">
@@ -93,7 +93,7 @@
                 </div>
               </div>
               <div class="sidebar-collapsed-visible">
-                <i class="fas fa-users text-muted mb-3" style="font-size: 1rem;"></i>
+                <i class="fas fa-users text-muted mb-3" data-toggle="tooltip" data-placement="right" title="Your guilds" style="font-size: 1rem;"></i>
               </div>
               <ul class="no-bullets guild-recommendations-list text-left pl-0 sidebar-collapsed-hidden">
                 {% for board in v.boards_subscribed[0:5] %}
@@ -142,7 +142,7 @@
               </div>
             </div>
             <div class="sidebar-collapsed-visible">
-              <i class="fas fa-crown text-warning mb-3" style="font-size: 1rem;"></i>
+              <i class="fas fa-crown text-warning mb-3" data-toggle="tooltip" data-placement="right" title="Guildmaster of" style="font-size: 1rem;"></i>
             </div>
             <ul class="no-bullets guild-recommendations-list text-left pl-0 sidebar-collapsed-hidden">
               {% for board in v.boards_modded[0:3] %}
@@ -165,7 +165,7 @@
               {% for board in v.boards_modded[0:3] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">
-                  <img src="{{ board.profile_url }}" class="profile-pic-35" data-toggle="tooltip" data-placement="right" title="+{{ board.name }} (guildmaster of)">
+                  <img src="{{ board.profile_url }}" class="profile-pic-35" data-toggle="tooltip" data-placement="right" title="+{{ board.name }}">
                 </a>
               </li>
               {% endfor %}
