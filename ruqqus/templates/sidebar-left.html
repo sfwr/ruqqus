@@ -19,6 +19,9 @@
       <div class="mb-4 mt-n3">
         <div class="mb-3">
           <div class="text-small font-weight-bold text-muted text-uppercase sidebar-collapsed-hidden" style="letter-spacing: 0.025rem;">Ruqqus Feeds</div>
+          <div class="sidebar-collapsed-visible">
+                <i class="fas fa-newspaper text-muted" style="font-size: 1rem;"></i>
+          </div>
           <button onclick="document.getElementById('sidebar-left').classList.toggle('sidebar-collapsed');"><span class="collapsed-toggle"></span></button>
         </div>
         <ul class="no-bullets guild-recommendations-list pl-0">
@@ -66,6 +69,9 @@
                   <a href="/mine" class="text-small-extra">View all</a>
                 </div>
               </div>
+              <div class="sidebar-collapsed-visible">
+                <i class="fas fa-users text-muted" style="font-size: 1rem;"></i>
+              </div>
               <ul class="no-bullets guild-recommendations-list pl-0">
                 {% for board in v.boards_subscribed[0:5] %}
                 <li class="guild-recommendations-item">
@@ -100,6 +106,9 @@
                   <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">Guildmaster of</div>
                   <a href="/mine" class="text-small-extra">View all</a>
                 </div>
+              </div>
+              <div class="sidebar-collapsed-visible">
+                <i class="fas fa-crown text-muted" style="font-size: 1rem;"></i>
               </div>
               <ul class="no-bullets guild-recommendations-list pl-0">
                 {% for board in v.boards_modded[0:3] %}
