@@ -917,7 +917,7 @@ def siege_guild(v):
         return render_template("message.html",
                                v=v,
                                title=f"Siege against +{guild.name} Failed",
-                               message="You are not allowed to siege that guild."
+                               message="You are not allowed to siege that guild. You may try again in 30 days."
                                ), 403
 
     #check user activity
