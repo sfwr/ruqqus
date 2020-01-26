@@ -14586,6 +14586,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   color: #718096;
   margin-right: 0.5rem;
   width: 1rem;
+  text-align: center;
 }
 
 .dropdown-actions .voting .fa, .dropdown-actions .voting .fas, .dropdown-actions .voting .far {
@@ -15276,6 +15277,7 @@ ul.comment-section {
   color: #718096;
   width: 1rem;
   margin-right: 0.5rem;
+  text-align: center;
 }
 
 .profile-actions .dropdown-item:active .fa, .profile-actions .dropdown-item:active .fas, .profile-actions .dropdown-item:active .far {
