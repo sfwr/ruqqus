@@ -937,7 +937,7 @@ def siege_guild(v):
 
     #Assemble list of mod ids to check
     mods=[]
-    for user in board.mods:
+    for user in guild.mods:
         if user.id==v.id:
             break
         mods.append(mods)
