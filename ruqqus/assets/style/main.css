@@ -13927,7 +13927,7 @@ a:hover .link-arrow {
   color: #718096;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
-  content: "";
+  content: "";
 }
 
 .sidebar-left.sidebar-collapsed .collapsed-toggle::before {
@@ -13936,7 +13936,7 @@ a:hover .link-arrow {
   color: #121213;
   font-family: "Font Awesome 5 Pro";
   font-weight: 900;
-  content: "";
+  content: "";
 }
 
 .sidebar-left .sidebar-section {
