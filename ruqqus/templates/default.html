@@ -49,323 +49,328 @@
 			return '{{ v.formkey }}';
 		}
 	</script>
-  	<script src="/assets/js/post.js"></script>
+ <script src="/assets/js/post.js"></script>
 
-	<script src="/assets/js/voting.js"></script>
-	<script src="/assets/js/comment_replies.js"></script>
+ <script src="/assets/js/voting.js"></script>
+ <script src="/assets/js/comment_replies.js"></script>
 
-	{% if v.admin_level %}
-	<script src="/assets/js/comment_modding.js"></script>
-	<script src="/assets/js/post_modding.js"></script>
-	{% endif %}
+ {% if v.admin_level %}
+ <script src="/assets/js/comment_modding.js"></script>
+ <script src="/assets/js/post_modding.js"></script>
+ {% endif %}
 
-	{% endif %}
+ {% endif %}
 
 </head>
 
 <body id="{% block pagetype %}frontpage{% endblock %}" class="">
 
 
-<!--Header -->
-<!-- Navigation -->
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow shadow-md fixed-top" id="navbar">
-  <div class="container-fluid">
-    <div class="flex-grow-1"><a href="/" class="navbar-brand">ruqqus</a></div>
-    <div class="flex-grow-1 d-fl d-none d-md-block">
-      <form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search" method="get">
-        <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search" name="q">
-        <span class="input-group-append">
-          <span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
-            <i class="fa fa-search" aria-hidden="true"></i>
+  <!--Header -->
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-md navbar-light bg-white shadow shadow-md fixed-top" id="navbar">
+    <div class="container-fluid">
+      <div class="flex-grow-1"><a href="/" class="navbar-brand">ruqqus</a></div>
+      <div class="flex-grow-1 d-fl d-none d-md-block">
+        <form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search" method="get">
+          <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search" name="q">
+          <span class="input-group-append">
+            <span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
           </span>
-        </span>
-      </form>
-    </div>
-    {% if v %}
-    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/submit{{ '?guild='+b.name if b else '' }}"><i class="fas fa-feather-alt align-middle text-gray-400"></i></a>
-    {% else %}
-    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/login"><i class="fas fa-feather-alt align-middle text-gray-400"></i></a>
-    {% endif %}
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-    aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"><i class="fal fa-bars text-gray-400" style="font-size: 2rem;"></i></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarResponsive">
-    <ul class="navbar-nav ml-auto d-none d-md-flex">
-
+        </form>
+      </div>
       {% if v %}
-      <li class="nav-item d-flex align-items-center justify-content-center text-center mx-1" data-toggle="modal" data-target="#announcementsModalScrollable" >
-      <div class="nav-link" role="button" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Announcements"><i class="fas fa-sparkles text-purple"></i></div>
-      </li>
-      {% endif %}
-
-      {% if v and v.mods_anything %}
-      <li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-        <a class="nav-link" href="{{ '/+'+b.name if b and b.has_mod(v) else '' }}/mod/queue" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Guildmaster tools"><i class="fas fa-crown{% if v.has_report_queue %} text-success{% endif %}"></i></a>
-      </li>
-      {% endif %}
-
-      {% if v %}
-      <li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
-        <a class="nav-link" href="/submit{{ '?guild='+b.name if b else '' }}" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Create post"><i class="fas fa-feather-alt"></i></a>
-      </li>
-
-      {% if v.notifications_count %}
-
-      <li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
-        <a class="nav-link position-relative" href="/notifications" data-toggle="tooltip" data-placement="bottom" title="Notifications"><i class="fas fa-bell" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="{{ v.notifications_count }} notifications"></i><span class="badge-count">{{ v.notifications_count }}</span></a>
-      </li>
-
-      {% elif v.notifications_count > 9 %}
-
-      <li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
-        <a class="nav-link position-relative" href="/notifications" data-toggle="tooltip" data-placement="bottom" title="Notifications"><i class="fas fa-bell" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="9+ notifications"></i><span class="badge-count" style="width: 26px;">9+</span></a>
-      </li>
-
+      <a class="mobile-nav-icon text-lg d-block d-md-none" href="/submit{{ '?guild='+b.name if b else '' }}"><i class="fas fa-feather-alt align-middle text-gray-400"></i></a>
       {% else %}
-
-      <li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
-        <a class="nav-link" href="/notifications?all=true" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Notifications"><i class="fas fa-bell"></i></a>
-      </li>
-
+      <a class="mobile-nav-icon text-lg d-block d-md-none" href="/login"><i class="fas fa-feather-alt align-middle text-gray-400"></i></a>
       {% endif %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+      aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"><i class="fal fa-bars text-gray-400" style="font-size: 2rem;"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto d-none d-md-flex">
 
-      <li class="nav-item d-flex align-items-center justify-content-center text-center">
-        <div class="dropdown">
-          <a class="nav-link bg-transparent py-0 pr-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
-          <div class="d-flex">
-          <div><img src="{{ v.profile_url }}" class="profile-pic-30"></div>
-          <div class="my-auto text-left pl-2">
-            <span class="text-small font-weight-bold">{{ v.username }}</span>
-          </div>
-          </div>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left border-0 shadow fade px-0 mt-2"
-        aria-labelledby="dropdownMenuButton">
-        <div class="px-2">
-          <div class="dropdown-meta">
-            <div class="font-weight-bold mb-2">{{ v.username }}</div>
-            <div class="text-small text-purple"><i class="fad fa-medal mr-2"></i>{{ v.energy }} Rep</div>
-          </div>
-        </div>
-        <hr class="my-2">
-        <div class="px-2">
-          <a class="dropdown-item" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">My
-            profile</span></a>
-            {% if v.notifications_count %}
-            <a class="dropdown-item" href="/notifications"><i class="fas fa-inbox fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Inbox</span><span
-              class="badge badge-danger align-top ml-1">{{ v.notifications_count }}</span></a>
-              {% else %}
-              <a class="dropdown-item" href="/notifications?all=true"><i class="fas fa-inbox fa-width-rem text-left mr-3"></i>Inbox</a>
-              {% endif %}
-              <a class="dropdown-item" href="/settings"><i class="fas fa-cog fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Settings</span></a>
+        {% if v %}
+        <li class="nav-item d-flex align-items-center justify-content-center text-center mx-1" data-toggle="modal" data-target="#announcementsModalScrollable" >
+          <div class="nav-link" role="button" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Announcements"><i class="fas fa-sparkles text-purple"></i></div>
+        </li>
+        {% endif %}
 
-{% block darkswitch %}
-              {% if v and v.referral_count and session.get("dark_mode_enabled")%}
-              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
-              {% elif v and v.referral_count %}
-              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
-              {% else %}
-              <a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Dark mode</span></a>
-              {% endif %}
-{% endblock %}
+        {% if v and v.mods_anything %}
+        <li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
+          <a class="nav-link" href="{{ '/+'+b.name if b and b.has_mod(v) else '' }}/mod/queue" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Guildmaster tools"><i class="fas fa-crown{% if v.has_report_queue %} text-success{% endif %}"></i></a>
+        </li>
+        {% endif %}
 
+        {% if v %}
+        <li class="nav-item d-flex align-items-center justify-content-center text-center mx-1">
+          <a class="nav-link" href="/submit{{ '?guild='+b.name if b else '' }}" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Create post"><i class="fas fa-feather-alt"></i></a>
+        </li>
 
+        {% if v.notifications_count %}
+
+        <li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
+          <a class="nav-link position-relative" href="/notifications" data-toggle="tooltip" data-placement="bottom" title="Notifications"><i class="fas fa-bell" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="{{ v.notifications_count }} notifications"></i><span class="badge-count">{{ v.notifications_count }}</span></a>
+        </li>
+
+        {% elif v.notifications_count > 9 %}
+
+        <li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
+          <a class="nav-link position-relative" href="/notifications" data-toggle="tooltip" data-placement="bottom" title="Notifications"><i class="fas fa-bell" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="9+ notifications"></i><span class="badge-count" style="width: 26px;">9+</span></a>
+        </li>
+
+        {% else %}
+
+        <li class="nav-item d-flex align-items-center text-center justify-content-center mx-1">
+          <a class="nav-link" href="/notifications?all=true" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"0"}' title="Notifications"><i class="fas fa-bell"></i></a>
+        </li>
+
+        {% endif %}
+
+        <li class="nav-item d-flex align-items-center justify-content-center text-center">
+          <div class="dropdown">
+            <a class="nav-link bg-transparent py-0 pr-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            <div class="d-flex">
+              <div><img src="{{ v.profile_url }}" class="profile-pic-30"></div>
+              <div class="my-auto text-left pl-2">
+                <span class="text-small font-weight-bold">{{ v.username }}</span>
+              </div>
             </div>
-            <hr class="my-2">
-            <div class="px-2">
-              <a class="dropdown-item" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})"><span class="align-middle">Log out</span></a>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-left border-0 shadow fade px-0 mt-2"
+          aria-labelledby="dropdownMenuButton">
+          <div class="px-2">
+            <div class="dropdown-meta">
+              <div class="font-weight-bold mb-2">{{ v.username }}</div>
+              <div class="text-small text-purple"><i class="fad fa-medal mr-2"></i>{{ v.energy }} Rep</div>
             </div>
           </div>
-        </div>
+          <hr class="my-2">
+          <div class="px-2">
+            <a class="dropdown-item" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">My
+              profile</span></a>
+              {% if v.notifications_count %}
+              <a class="dropdown-item" href="/notifications"><i class="fas fa-inbox fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Inbox</span><span
+                class="badge badge-danger align-top ml-1">{{ v.notifications_count }}</span></a>
+                {% else %}
+                <a class="dropdown-item" href="/notifications?all=true"><i class="fas fa-inbox fa-width-rem text-left mr-3"></i>Inbox</a>
+                {% endif %}
+                <a class="dropdown-item" href="/settings"><i class="fas fa-cog fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Settings</span></a>
+
+                {% block darkswitch %}
+                {% if v and v.referral_count and session.get("dark_mode_enabled")%}
+                <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+                {% elif v and v.referral_count %}
+                <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+                {% else %}
+                <a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Dark mode</span></a>
+                {% endif %}
+                {% endblock %}
+
+
+              </div>
+              <hr class="my-2">
+              <div class="px-2">
+                <a class="dropdown-item" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})"><span class="align-middle">Log out</span></a>
+              </div>
+            </div>
+          </div>
+        </li>
+        {% else %}
+        <li class="nav-item d-flex align-items-center justify-content-center mx-1">
+         <a class="btn btn-outline-purple" href="/login?redirect={{ request.path | urlencode}}">Sign In</a>
+       </li>
+       <li class="nav-item d-flex align-items-center justify-content-center mx-1">
+         <a class="btn btn-purple" href="/signup?redirect={{ request.path | urlencode}}">Sign Up</a>
+       </li>
+       {% endif %}
+     </ul>
+
+     <!-- Mobile Nav Menu -->
+     <ul class="navbar-nav ml-auto d-flex d-md-none mt-3">
+       <li class="nav-item pb-3">
+        <form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search" method="get">
+          <input class="form-control form-control-sm w-100" type="search" placeholder="Search Ruqqus" aria-label="Search" name="q">
+          <span class="input-group-append">
+            <span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </span>
+        </form>
+      </li>
+      {% if v %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem align-middle mr-3"></i><span class="align-middle">@{{ v.username }}</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/notifications?all=true"><i class="fas fa-envelope fa-width-rem align-middle mr-3"></i><span class="align-middle">Inbox</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/subscriptions"><i class="fas fa-university fa-width-rem align-middle mr-3"></i><span class="align-middle">My guilds</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/settings"><i class="fas fa-cog fa-width-rem align-middle mr-3"></i><span class="align-middle">Settings</span></a>
+      </li>
+      {% if v and v.referral_count and session.get("dark_mode_enabled")%}
+      <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a></li>
+      {% elif v and v.referral_count %}
+      <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a></li>
+      {% else %}
+      <li class="nav-item"><a class="nav-link" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem align-middle mr-3"></i><span class="align-middle">Dark mode</span></a></li>
+      {% endif %}
+      <li class="nav-item nav-item border-top mt-2 pt-2">
+        <a class="nav-link" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})"><span class="align-middle">Log out</span></a>
+      </li>
+      <li class="nav-item nav-item border-top mt-2 pt-2">
+        <a class="nav-link text-small-extra" href="/help/about">About</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="/help/conduct">Terms</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="/help/privacy">Privacy</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="#">Contact</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="https://github.com/ruqqus/ruqqus">Github</a>
       </li>
       {% else %}
-      <li class="nav-item d-flex align-items-center justify-content-center mx-1">
-       <a class="btn btn-outline-purple" href="/login?redirect={{ request.path | urlencode}}">Sign In</a>
-     </li>
-     <li class="nav-item d-flex align-items-center justify-content-center mx-1">
-       <a class="btn btn-purple" href="/signup?redirect={{ request.path | urlencode}}">Sign Up</a>
-     </li>
-     {% endif %}
-   </ul>
+      <li class="nav-item d-flex align-items-center justify-content-center pb-3">
+        <a class="btn btn-outline-purple btn-block" href="/login?redirect={{ request.path | urlencode}}">Sign in</a>
+      </li>
+      <li class="nav-item d-flex align-items-center justify-content-center">
+        <a class="btn btn-purple btn-block" href="/signup?redirect={{ request.path | urlencode}}">Sign up</a>
+      </li>
+      <li class="nav-item nav-item mt-2">
+        <a class="nav-link text-small-extra" href="/help/about">About</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="/help/conduct">Terms</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="/help/privacy">Privacy</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="#">Contact</a>
+      </li>
+      <li class="nav-item nav-item">
+        <a class="nav-link text-small-extra" href="https://github.com/ruqqus/ruqqus">Github</a>
+      </li>
+      {% endif %}
+    </ul>
 
-   <!-- Mobile Nav Menu -->
-   <ul class="navbar-nav ml-auto d-flex d-md-none mt-3">
-     <li class="nav-item pb-3">
-      <form class="form-inline search flex-nowrap mx-0 mx-lg-auto" action="/search" method="get">
-        <input class="form-control form-control-sm w-100" type="search" placeholder="Search Ruqqus" aria-label="Search" name="q">
-        <span class="input-group-append">
-          <span class="input-group-text border-0 bg-transparent" style="margin-left: -2.5rem;">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </span>
-        </span>
-      </form>
-    </li>
-    {% if v %}
-    <li class="nav-item">
-      <a class="nav-link" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem align-middle mr-3"></i><span class="align-middle">@{{ v.username }}</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/notifications?all=true"><i class="fas fa-envelope fa-width-rem align-middle mr-3"></i><span class="align-middle">Inbox</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/subscriptions"><i class="fas fa-university fa-width-rem align-middle mr-3"></i><span class="align-middle">My guilds</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/settings"><i class="fas fa-cog fa-width-rem align-middle mr-3"></i><span class="align-middle">Settings</span></a>
-    </li>
-    {% if v and v.referral_count and session.get("dark_mode_enabled")%}
-    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a></li>
-    {% elif v and v.referral_count %}
-    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a></li>
-    {% else %}
-    <li class="nav-item"><a class="nav-link" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem align-middle mr-3"></i><span class="align-middle">Dark mode</span></a></li>
-    {% endif %}
-    <li class="nav-item nav-item border-top mt-2 pt-2">
-      <a class="nav-link" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})"><span class="align-middle">Log out</span></a>
-    </li>
-    <li class="nav-item nav-item border-top mt-2 pt-2">
-      <a class="nav-link text-small-extra" href="/help/about">About</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="/help/conduct">Terms</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="/help/privacy">Privacy</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="#">Contact</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="https://github.com/ruqqus/ruqqus">Github</a>
-    </li>
-    {% else %}
-    <li class="nav-item d-flex align-items-center justify-content-center pb-3">
-      <a class="btn btn-outline-purple btn-block" href="/login?redirect={{ request.path | urlencode}}">Sign in</a>
-    </li>
-    <li class="nav-item d-flex align-items-center justify-content-center">
-      <a class="btn btn-purple btn-block" href="/signup?redirect={{ request.path | urlencode}}">Sign up</a>
-    </li>
-    <li class="nav-item nav-item mt-2">
-      <a class="nav-link text-small-extra" href="/help/about">About</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="/help/conduct">Terms</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="/help/privacy">Privacy</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="#">Contact</a>
-    </li>
-    <li class="nav-item nav-item">
-      <a class="nav-link text-small-extra" href="https://github.com/ruqqus/ruqqus">Github</a>
-    </li>
-    {% endif %}
-  </ul>
-
-</div>
+  </div>
 </div>
 </nav>
 
 
-	<!-- Page Content -->
+<!-- Page Content -->
 
-	{% block mobileBanner %}
-	{% endblock %}
+{% block mobileBanner %}
+{% endblock %}
 
-	{% block postNav %}
-	{% endblock %}
+{% block postNav %}
+{% endblock %}
 
-	<div class="container-fluid">
-		<div class="row justify-content-around" id="main-content-row">
+<div class="container-fluid">
+  <div class="row justify-content-around" id="main-content-row">
 
     {% block leftSidebar %}
-      {% block leftSidebarBlock %}
-      {% endblock %}
+    {% block leftSidebarBlock %}
+    {% endblock %}
     {% endblock %}
 
-			<div class="col h-100 custom-gutters" id="main-content-col">
+    <div class="col h-100 custom-gutters" id="main-content-col">
 
-        {% block desktopBanner %}
-        {% endblock %}
+      {% block desktopBanner %}
+      {% endblock %}
 
-				{% block PseudoSubmitForm %}
-				{% endblock %}
+      {% block PseudoSubmitForm %}
+      {% endblock %}
 
-				{% block searchText %}
-				{% endblock %}
+      {% block searchText %}
+      {% endblock %}
 
-				{% block content %}
-				{% endblock %}
+      {% block content %}
+      {% endblock %}
 
-				{% block pagenav %}
-				{% endblock %}
+      {% block pagenav %}
+      {% endblock %}
 
-			</div>
+    </div>
 
-			<!-- Right Sidebar (hidden on devices smaller than "large") -->
+    <!-- Right Sidebar (hidden on devices smaller than "large") -->
 
-			{% block sidebar %}
-			<div class="col sidebar text-left d-none d-lg-block pt-3 bg-white border-left">
-				{% block sidebarblock %}
-				<div class="sidebar-section sidebar-about">
-          <div class="title">About Ruqqus</div>
-					<div class="body">
-						<p>Ruqqus lets you share and discover content from around the web in one place. Vote on what you like or dislike and engage in uncensored discussion with the community.</p>
-						<small><a href="/help/about">Learn more →</a></small>
-						{% if v and not v.is_banned %}
-						<div class="mt-3"><a class="btn btn-primary btn-block" href="/submit">Create post</a></div>
-						{% endif %}
-						{% if not v %}
-						<div class="mt-3"><a class="btn btn-primary btn-block" href="/login">Create post</a></div>
-						{% endif %}
-						{% if v and v.can_make_guild %}
-						<div class="mt-2"><a href="/create_guild" class="btn btn-secondary btn-block">Start a Guild</a></div>
-						{% endif %}
-					</div>
-				</div>
-				{% endblock %}
+    {% block sidebar %}
+    <div class="col sidebar text-left d-none d-lg-block pt-3 bg-white border-left">
+      {% block sidebarblock %}
+      <div class="text-center my-4">
+        <i class="fad fa-comment-alt-smile text-gray-400 mb-3" style="
+        font-size: 3.5rem;
+        "></i>
+        <div class="h5 text-gray-500">Cool features coming here soon!</div>
+      </div>
 
-				{% if v and v.referral_count==0 %}
-				<div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
-					<div class="body">
-						<div class="title" style="
-						color: #fff;
-						border-color: rgba(230, 230, 230, 0.1);
-						">Announcement</div>
-						<div class="text-center my-3">
-							<i class="fad fa-moon-stars text-warning" style="font-size: 4rem"></i>
-						</div>
+      <div>
+        <ul class="list-inline text-center text-small-extra mb-0">
+          <li class="list-inline-item"><a href="/help/about" class="text-gray-500">About</a></li>
+          <li class="list-inline-item d-none"><a href="mailto:hello@ruqqus.com" class="text-gray-500">Contact</a></li>
+          <li class="list-inline-item"><a href="/help/terms" class="text-gray-500">Terms</a></li>
+          <li class="list-inline-item"><a href="/help/privacy" class="text-gray-500">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LXJULS6HWDKQG&amp;source=url" class="text-gray-500">Donate</a></li>
+          <li class="list-inline-item"><a href="/help/press" class="text-gray-500">Press</a></li>
+          <li class="list-inline-item"><a href="/help" class="text-gray-500">Help</a></li>
+          <li class="list-inline-item"><a href="https://www.twitter.com/ruqqus" class="text-gray-500">Twitter</a></li>
+          <li class="list-inline-item"><a href="https://ruqqus.org/contribute" class="text-gray-500">Github</a></li>
+          <li class="list-inline-item"><span class="text-muted">© 2020 Ruqqus, LLC</span></li>
+        </ul>
+      </div>
+      {% endblock %}
 
-						<div class="mb-2">
-							<span class="h5">Refer a friend. Get dark mode.</span>
-						</div>
-						<p class="text-small">When you invite a friend to make a Ruqqus, you'll unlock dark mode. Copy your referral code to get started.</p>
-						<label for="referral_code" class="text-white">Referral code</label>
-						<input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://ruqqus.com/signup?ref={{ v.username }}" data-clipboard-text="https://ruqqus.com/signup?ref={{ v.username }}">
-					</div>
-				</div>
-				{% endif %}
+      {% if v and v.referral_count==0 %}
+      <div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
+       <div class="body">
+        <div class="title" style="
+        color: #fff;
+        border-color: rgba(230, 230, 230, 0.1);
+        ">Announcement</div>
+        <div class="text-center my-3">
+         <i class="fad fa-moon-stars text-warning" style="font-size: 4rem"></i>
+       </div>
 
-				{% if v %}
-				{% if v.admin_level %}
-				<div class="sidebar-section sidebar-adminpanel">
-				<div class="title"><i class="fas fa-user-shield mr-2"></i>Admin Panel</div>
-					<div class="body">
-						{% block adminpanel %}
-						<div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
-						<p class="text-center text-small text-muted mb-0">No admin actions available</p>
-						{% endblock %}
-					</div>
-				</div>
-				{% endif %}
-				{% endif %}
-			</div>
-			{% endblock %}
-		</div>
-	</div>
+       <div class="mb-2">
+         <span class="h5">Refer a friend. Get dark mode.</span>
+       </div>
+       <p class="text-small">When you invite a friend to make a Ruqqus, you'll unlock dark mode. Copy your referral code to get started.</p>
+       <label for="referral_code" class="text-white">Referral code</label>
+       <input type="text" readonly="" class="form-control copy-link" id="referral_code" value="https://ruqqus.com/signup?ref={{ v.username }}" data-clipboard-text="https://ruqqus.com/signup?ref={{ v.username }}">
+     </div>
+   </div>
+   {% endif %}
+
+   {% if v %}
+   {% if v.admin_level %}
+   <div class="sidebar-section sidebar-adminpanel">
+    <div class="title"><i class="fas fa-user-shield mr-2"></i>Admin Panel</div>
+    <div class="body">
+      {% block adminpanel %}
+      <div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
+      <p class="text-center text-small text-muted mb-0">No admin actions available</p>
+      {% endblock %}
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
+</div>
+{% endblock %}
+</div>
+</div>
 
 </div>
 </div>
