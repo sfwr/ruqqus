@@ -936,11 +936,13 @@ def siege_guild(v):
     
 
     #Assemble list of mod ids to check
+    #skip any user with a site-wide ban
     mods=[]
     for user in guild.mods:
         if user.id==v.id:
             break
-        mods.append(user)
+        if not user.is_banned:
+            mods.append(user)
 
     #if no mods, skip straight to success
     if mods:
