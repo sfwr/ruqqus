@@ -52,6 +52,9 @@ In order to successfully siege a guild, no current Guildmaster (or no Guildmaste
 
 Additionally, the siege will fail if made against [+general](/+general), or admin-controlled Guilds such as [+Ruqqus](/+Ruqqus) or [+RuqqusPress](/+RuqqusPress).
 
+
+## Siege a Guild
+
 {% endfilter %}
 
 {% if v %}
@@ -68,6 +71,10 @@ Additionally, the siege will fail if made against [+general](/+general), or admi
 
   <input class="btn btn-primary" type="submit" value="Siege Guild">
 </form>
+
+{% elif v.is_banned %}
+
+<p>You have been banned from Ruqqus. You cannot siege any guilds.</p>
 
 {% else %}
 
