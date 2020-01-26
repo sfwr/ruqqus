@@ -595,3 +595,10 @@ class User(Base, Stndrd):
             return False
 
         return True
+
+    @property
+    def can_siege(self):
+
+        now=int(time.time())
+
+        return now-self.last_siege_utc > 60*60*24*30

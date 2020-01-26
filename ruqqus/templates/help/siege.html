@@ -60,7 +60,7 @@ Additionally, the siege will fail if made against [+general](/+general), [+Ruqqu
 {% endfilter %}
 
 
-
+{% if v.can_siege %}
 
 <label>Your name:</label>
 <input class="form-control" type="text" name="username" value="{{ v.username }}">
@@ -74,5 +74,8 @@ Additionally, the siege will fail if made against [+general](/+general), [+Ruqqu
   <input type="submit" value="Siege Guild">
 </form>
 
+{% else %}
 
+<p>You cannot siege any Guilds right now. You can only make one siege every 30 days.</p>
+{% endif %}
 {% endblock %}
