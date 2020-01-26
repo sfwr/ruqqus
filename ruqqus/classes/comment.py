@@ -171,8 +171,10 @@ class Comment(Base, Age_times, Scores, Stndrd):
 
     @property
     @cache.memoize(timeout=60)
-    def score_fuzzed(self, k=0.01):
-        real = self.rank_top
+    def score_fuzzed(self):
+        
+        k=0.01
+        real = self.score_top
         a = math.floor(real * (1 - k))
         b = math.ceil(real * (1 + k))
         return random.randint(a, b)

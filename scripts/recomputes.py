@@ -16,9 +16,6 @@ def recompute():
         cutoff=now-(60860*24*180)
 
         print("Beginning post recompute")
-
-        print(f"{total} submissions to score")
-
         i=0
         for post in db.query(classes.submission.Submission
                        ).filter_by(is_banned=False, is_deleted=False
@@ -47,9 +44,9 @@ def recompute():
         for comment in db.query(classes.comment.Comment
                              ).join(p,
                                     classes.comment.Comment.parent_submission==p.c.id
-                                    ).filter(p.c.id != none,
+                                    ).filter(p.c.id != None,
                                              classes.comment.Comment.is_deleted==False,
-                                             classes.comment.comment.is_banned==False
+                                             classes.comment.Comment.is_banned==False
                                              ).all():
             i+=1
             
