@@ -1012,9 +1012,14 @@ def siege_guild(v):
     
     #Siege is successful
 
-    #delete mods
+    #delete and notify mods
     for x in mods:
+
+        send_notification(x.user,
+                          f"You have been overthrown from +{guild.name}. 
         db.delete(x)
+        
+    db.commit()
 
     #add new mod if user is not already
     if not guild.has_mod(v):
