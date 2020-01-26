@@ -13762,8 +13762,7 @@ a:hover .link-arrow {
 #frontpage .pseudo-submit-form.card, #search .search-results.card, #guild .pseudo-submit-form.card {
   background-color: #ffffff;
   border-radius: 0.35rem;
-  border: none;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  border: 1px solid #DDDDDD;
 }
 
 #frontpage .pseudo-submit-form.card .card-body, #search .search-results.card .card-body, #guild .pseudo-submit-form.card .card-body {
@@ -14382,7 +14381,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
-  border-width: 0 0 1px 0;
+  border-width: 1px 1px 0 1px;
   border-color: #DDDDDD;
   border-style: solid;
   border-radius: 0;
@@ -16228,6 +16227,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
     padding: 15px;
+    border-width: 0 0 1px 0;
   }
 
   #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type {

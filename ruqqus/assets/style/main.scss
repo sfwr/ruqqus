@@ -1062,8 +1062,8 @@ color: $dark;
 #frontpage .pseudo-submit-form.card, #search .search-results.card, #guild .pseudo-submit-form.card {
     background-color: $white;
     border-radius: $border-radius;
-    border: none;
-    box-shadow: $box-shadow-sm;
+    border: 1px solid $border-color;
+    //box-shadow: $box-shadow-sm;
 }
 
 #frontpage .pseudo-submit-form.card .card-body, #search .search-results.card .card-body, #guild .pseudo-submit-form.card .card-body {
@@ -1723,7 +1723,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card{
-    border-width: 0 0 1px 0;
+    border-width: 1px 1px 0 1px;
     border-color: $border-color;
     border-style: solid;
     border-radius: 0;
@@ -3187,6 +3187,7 @@ body, #settings, #notifications, #submit {
 
 #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
     padding: 15px;
+    border-width: 0 0 1px 0;
 }
 
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type {

@@ -14402,7 +14402,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
-  border-width: 0 0 1px 0;
+  border-width: 1px 1px 0 1px;
   border-color: #494a4e;
   border-style: solid;
   border-radius: 0;
@@ -16291,6 +16291,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
     padding: 15px;
+    border-width: 0 0 1px 0;
   }
 
   #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type {
