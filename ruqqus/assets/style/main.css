@@ -13617,7 +13617,7 @@ th {
 }
 
 #thread .voting {
-  min-width: 0px;
+  min-width: 15px;
   margin-right: 15px;
 }
 
