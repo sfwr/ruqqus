@@ -80,7 +80,7 @@
 
 				<p class="text-muted">{% block subtitle %}The first step to making a quality post is choosing an interesting title!{% endblock %}</p>
 
-				<div class="bg-white rounded">
+				<div class="bg-white rounded border-md">
 
 					<div class="row no-gutters">
 
@@ -181,43 +181,6 @@
 
 		<div class="col sidebar text-left d-none d-lg-block pt-3">
 
-			{% block sidebarblock %}
-			<div class="sidebar-section sidebar-info-basic">
-				<div class="title">
-					<span><i class="fas fa-info-circle mr-2"></i>Guild details</span>
-				</div>
-				<div class="body">
-					<div class="d-flex mb-3">
-						{% if b.has_profile %}
-						<div>
-							<a href="{{ b.permalink }}"><img src="{{ b.profile_url }}" class="profile-pic-50 mr-2"></a>
-						</div>
-						{% elif not b.has_profile %}
-						<div>
-							<a href="{{ b.permalink }}"><img src="/assets/images/guilds/default-guild-icon.png" class="profile-pic-50 mr-2"></a>
-						</div>
-						{% endif %}
-						<div class="my-auto"><a href="{{ b.permalink }}"><h1 class="h5 mb-0">+{{ b.name }}</h1></a>
-							<div class="text-small mt-1"><span class="font-weight-bold">{{ b.subscriber_count }}</span> member{{ 's' if b.subscriber_count != 1 else '' }} <span>&#183;</span>
-								Founded <span class="font-weight-bold" data-toggle="tooltip" data-placement="bottom" title="{{ b.created_date }}">{{ b.age_string }}</span>
-							</div>
-						</div>
-					</div>
-					<div>{{ b.description_html | safe }}</div>
-					<div class="text-small mb-3">
-						{% if b.over_18 %}
-						<span class="badge badge-danger text-small-extra mr-1">nsfw</span>
-						<span class="text-danger align-middle">This guild contains adult content</span>
-						{% endif %}
-						{% if b.is_banned %}
-						<span class="badge badge-danger text-small-extra mr-1">Banned</span>
-						<span class="text-danger">This guild has been banned</span>
-						{% endif %}
-					</div>
-				</div>
-			</div>
-			{% endblock %}
-
 			<div class="sidebar-section sidebar-rules">
 				<div class="title"><span><i class="fas fa-scroll-old mr-2"></i>Rules and guidelines</span></div>
 				<div class="body">
@@ -255,13 +218,26 @@
 				</div>
 			</div>
 
+			<div>
+				<ul class="list-inline text-center text-small mb-0">
+					<li class="list-inline-item"><a href="/help/about" class="text-gray-500">About</a></li>
+					<li class="list-inline-item d-none"><a href="mailto:hello@ruqqus.com" class="text-gray-500">Contact</a></li>
+					<li class="list-inline-item"><a href="/help/terms" class="text-gray-500">Terms</a></li>
+					<li class="list-inline-item"><a href="/help/privacy" class="text-gray-500">Privacy Policy</a></li>
+					<li class="list-inline-item"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LXJULS6HWDKQG&amp;source=url" class="text-gray-500">Donate</a></li>
+					<li class="list-inline-item"><a href="/help/press" class="text-gray-500">Press</a></li>
+					<li class="list-inline-item"><a href="/help" class="text-gray-500">Help</a></li>
+					<li class="list-inline-item"><a href="https://www.twitter.com/ruqqus" class="text-gray-500">Twitter</a></li>
+					<li class="list-inline-item"><a href="https://ruqqus.org/contribute" class="text-gray-500">Github</a></li>
+					<li class="list-inline-item"><span class="text-muted">© 2020 Ruqqus, LLC</span></li>
+				</ul>
+			</div>
+
 		</div>
 
 	</div>
 
 </div>
-
-{% include "footer.html" %}
 
 {% include "announcements_modal.html" %}
 
