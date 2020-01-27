@@ -13888,6 +13888,11 @@ a:hover .link-arrow {
 
 .sidebar .sidebar-section .body {
   padding: 1rem;
+  color: #dadada;
+  border: solid #494a4e;
+  border-width: 0 1px 1px 1px;
+  border-bottom-left-radius: 0.35rem;
+  border-bottom-right-radius: 0.35rem;
 }
 
 .sidebar-section {
