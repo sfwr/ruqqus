@@ -252,33 +252,6 @@
 
   </div>
 
-          <h2 class="h5">Guild Banner Contents</h2>
-
-          <p class="text-small text-muted">Disable the guild name and icon from displaying in your guild's banner.</p>
-
-          <div class="settings-section rounded">
-
-            <div class="d-lg-flex">
-
-              <div class="title w-lg-25">
-                <label for="hidebanner">Hide name and icon</label>
-              </div>
-
-              <div class="body w-lg-100">
-
-                <div class="custom-control custom-switch">
-                  <input type="checkbox" class="custom-control-input" id="hidebanner" name="hidebanner"{% if b.hide_banner_data %} checked{% endif %} onchange="mod_post('/mod/{{b.id}}/settings/banner','checkbox','hidebanner')">
-                  <label class="custom-control-label" for="hidebanner"></label>
-                </div>
-
-                <span class="text-small-extra text-muted">Your guild's icon and name will still be displayed on mobile devices and other areas of Ruqqus.</span>
-
-              </div>
-
-            </div>
-
-          </div>
-
 </div>
 
 </div>
