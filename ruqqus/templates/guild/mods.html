@@ -3,18 +3,14 @@
 {% block pagetitle %}+{{ b.name }} Guildmasters - Ruqqus Guildmaster Tools{% endblock %}
 
 {% block scripts %}
-<script>
+    <script>
       // Guildmaster Step Down Function
-
       step_downModal = function(mod) {
-
         document.getElementById("stepDownButton").onclick = function() {
-
           this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Stepping down';
           this.disabled = true;
           post('/mod/{{ b.base36id }}/remove/' + mod,
             callback = function() {
-
               location.reload();
             }
             )
@@ -24,6 +20,7 @@
 
     {% if b.has_invite(v) %}
     <script>
+    // Guildmaster Invitation Modal
      $(window).load(function(){        
       $('#gmInvitationModal').modal('show');
      }); 
