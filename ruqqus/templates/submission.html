@@ -520,7 +520,7 @@
         </div>
         {% endif %}
 
-        {% if p.replies }
+        {% if p.comment_count == 0 }
         <div class="comment-section">
          {% for c in p.replies %}
          {{ c.rendered_comment(v=v) | safe }}
