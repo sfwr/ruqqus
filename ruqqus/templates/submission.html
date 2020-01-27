@@ -520,11 +520,23 @@
         </div>
         {% endif %}
 
+        {% if p.replies }
         <div class="comment-section">
          {% for c in p.replies %}
          {{ c.rendered_comment(v=v) | safe }}
          {% endfor %}
-       </div>
+        </div>
+        {% else %}
+        <div class="comment-section text-center py-7">
+        <i class="fad fa-ghost text-gray-500 mb-4" style="
+        font-size: 3.5rem;"></i>
+        {% if v %}
+        <div class="h6 text-gray-500">This comment section is a ghost town. Be the first to comment!</div>
+        {% else %}
+        <div class="h6 text-gray-500">This comment section is a ghost town. <a href="/login">Sign in</a> to comment!</div>
+        {% endif %}
+        </div>
+        {% endif %}
 
      </div>
 
