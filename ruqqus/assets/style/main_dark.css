@@ -14396,9 +14396,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 #frontpage .posts .card:last-of-type, #userpage .posts .card:last-of-type, #search .posts .card:last-of-type, #guild .posts .card:last-of-type {
-  border-bottom-left-radius: 0.35rem;
-  border-bottom-right-radius: 0.35rem;
-  border-bottom: 0;
+  border-bottom: 1px solid #494a4e;
 }
 
 #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
