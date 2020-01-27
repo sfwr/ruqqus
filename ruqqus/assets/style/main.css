@@ -13836,8 +13836,8 @@ a:hover .link-arrow {
 }
 
 .sidebar {
-  -ms-flex: 0 0 240px;
-  flex: 0 0 240px;
+  -ms-flex: 0 0 300px;
+  flex: 0 0 300px;
 }
 
 .sidebar h1, h2, h3, h4, h5, h6 {
