@@ -268,8 +268,8 @@
 </div>
 {% endblock %}
 
-{% if not listing %}
 {% block pagenav %}
+{% if not listing %}
 <nav aria-label="Page navigation">
   <ul class="pagination pagination-sm mb-0">
     {% if page>1 %}
@@ -288,5 +288,5 @@
     {% endif %}
   </ul>
 </nav>
-{% endblock %}
 {% endif %}
+{% endblock %}
