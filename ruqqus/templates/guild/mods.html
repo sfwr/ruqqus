@@ -21,9 +21,9 @@
     {% if b.has_invite(v) %}
     <script>
     // Guildmaster Invitation Modal
-     $(window).load(function(){        
+    $(window).on('load', function(){
       $('#gmInvitationModal').modal('show');
-     }); 
+    });
    </script>
    {% endif %}
 
