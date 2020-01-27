@@ -24,52 +24,52 @@
 
     {% if b.has_invite(v) %}
     <script>
-      $(document).ready(function() {
-        $('#gm_invitation_modal').modal('show');
-      });
-    </script>
-    {% endif %}
+     $(window).load(function(){        
+      $('#gm_invitation_modal').modal('show');
+     }); 
+   </script>
+   {% endif %}
 
-    {% endblock %}
+   {% endblock %}
 
-    <!-- tabs container -->
+   <!-- tabs container -->
 
-    {% block content %}
-    <div class="row justify-content-around">
+   {% block content %}
+   <div class="row justify-content-around">
 
-      <div class="col h-100">
+    <div class="col h-100">
 
-        {% if request.args.get('error') or error %}
-        <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
-          <i class="fas fa-exclamation-circle my-auto"></i>
-          <span>
-            {{ error if error else request.args.get('error') }}
-          </span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="far fa-times"></i></span>
-          </button>
-        </div>
-        {% endif %}
+      {% if request.args.get('error') or error %}
+      <div class="alert alert-danger alert-dismissible fade show my-3" role="alert">
+        <i class="fas fa-exclamation-circle my-auto"></i>
+        <span>
+          {{ error if error else request.args.get('error') }}
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"><i class="far fa-times"></i></span>
+        </button>
+      </div>
+      {% endif %}
 
-        {% if request.args.get('msg') or msg %}
-        <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
-          <i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
-          <span>
-            {{ msg if msg else request.args.get('msg') }}
-          </span>
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true"><i class="far fa-times"></i></span>
-          </button>
-        </div>
-        {% endif %}
+      {% if request.args.get('msg') or msg %}
+      <div class="alert alert-success alert-dismissible fade show my-3" role="alert">
+        <i class="fas fa-check-circle my-auto" aria-hidden="true"></i>
+        <span>
+          {{ msg if msg else request.args.get('msg') }}
+        </span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true"><i class="far fa-times"></i></span>
+        </button>
+      </div>
+      {% endif %}
 
-        <div class="row">
+      <div class="row">
 
-          <div class="col">
+        <div class="col">
 
-            <div class="settings">
+          <div class="settings">
 
-             <div class="d-md-flex justify-content-between mb-3">
+           <div class="d-md-flex justify-content-between mb-3">
 
 	<!-- Removed
           <form class="form-inline search flex-nowrap" action="/search" method="get">
