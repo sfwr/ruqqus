@@ -4,7 +4,9 @@
 {% filter markdown %}
 # Ruqqus Legal Request
 
-Use this page to submit a legal request to Ruqqus. You must provide an official email address, such as a .gov address. Requests with non-official email addresses will not be processed.
+Use this page to submit a legal request to Ruqqus LLC. You must provide an official email address, such as a .gov address. Requests with non-official email addresses will not be processed.
+
+Ruqqus LLC may charge reasonable fees for compliance with legal process to which Ruqqus LLC is not party, in accordance with the 18 USC 2706.
 
 Abuse of this service may lead to the termination of your Ruqqus account, at the discretion of Ruqqus staff.
 
@@ -12,7 +14,7 @@ Abuse of this service may lead to the termination of your Ruqqus account, at the
 
 {% if v and v.is_banned %}
 
-<div>Your Ruqqus account has been suspended. You are not permitted to submit legal requests at this time.</div>
+<div>Your Ruqqus account has been suspended. You are not permitted to submit legal requests via this portal.</div>
 
 {% elif v and v.is_activated %}
 <form id="legal-form" action="/legal/2" method="post">
