@@ -2134,6 +2134,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     width: 100px;
     height: 70px;
     object-fit: cover;
+    border: 1px solid $primary;
     border-radius: $border-radius;
     z-index: 2;
 }
