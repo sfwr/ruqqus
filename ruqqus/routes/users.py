@@ -26,7 +26,7 @@ def mfa_qr(secret, v):
     x=pyotp.TOTP(secret)
     qr=qrcode.QRCode()
     qr.add_data(x.provisioning_uri(v.username, issuer_name="Ruqqus"))
-    img=qr.make_image(fill_color="603abb", back_color="white")
+    img=qr.make_image(fill_color="#603abb", back_color="white")
     return img
 
 @app.route("/api/is_available/<name>", methods=["GET"])
