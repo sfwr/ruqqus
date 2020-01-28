@@ -16369,6 +16369,11 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     color: #805AD5;
   }
 
+  #thread .voting {
+    min-width: 0;
+    margin-right: 0;
+  }
+
   .voting {
     font-weight: 400;
     font-size: 1rem;

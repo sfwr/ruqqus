@@ -3264,6 +3264,11 @@ body, #settings, #notifications, #submit {
     color: $primary;
 }
 
+#thread .voting {
+    min-width: 0;
+    margin-right: 0;
+}
+
 .voting {
     font-weight: $font-weight-normal;
     font-size: $font-size-base;
