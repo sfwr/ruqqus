@@ -58,6 +58,7 @@ class User(Base, Stndrd):
     profile_nonce=Column(Integer, default=0)
     banner_nonce=Column(Integer, default=0)
     last_siege_utc=Column(Integer, default=0)
+    mfa_secret=Column(String(16), default=None)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
