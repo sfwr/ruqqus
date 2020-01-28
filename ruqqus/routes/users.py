@@ -30,7 +30,7 @@ def mfa_qr(secret, v):
     img=qr.make_image(fill_color="#603abb", back_color="white")
     
     name=f"{secret}.png"
-    with open(name, "bw+") as file:
+    with open(name, "w+b") as file:
         img.save(file)
         
     resp=make_response(send_file(name))
