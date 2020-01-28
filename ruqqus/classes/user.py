@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship, deferred
 from os import environ
 from secrets import token_hex
 import random
+import pyotp
 
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
@@ -90,6 +91,12 @@ class User(Base, Stndrd):
 
         super().__init__(**kwargs)
 
+        
+    def validate_2fa(self, token):
+        
+        x=pyotp.TOTP(self.mfa_secret)
+        return x.verify(token, valid_window=1)
+    
     @property
     def boards_subscribed(self):
 
