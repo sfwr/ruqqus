@@ -46,13 +46,11 @@
 {% endblock %}
 
 {% block PseudoSubmitForm %}
+
+{% if b.can_submit(v) %}
 <!-- Link to submission page from guild -->
-
 <div class="row no-gutters d-none d-lg-flex mt-3">
-
   <div class="col">
-
-    {% if b.can_submit(v) %}
     <div class="card pseudo-submit-form">
       <div class="card-header bg-white">
         <div class="mb-0">Create post in +{{ b.name }}</div>
@@ -83,11 +81,10 @@
         {% endif %}
       </div>
     </div>
-    {% endif %}
-
   </div>
-
 </div>
+{% endif %}
+
 {% endblock %}
 
 {% block desktopBanner %}
@@ -221,5 +218,5 @@
 {% endblock %}
 
 {% block guildModal %}
-  {% include "guild_details_modal.html" %}
+{% include "guild_details_modal.html" %}
 {% endblock %}
