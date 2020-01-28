@@ -33,7 +33,7 @@ def mfa_qr(secret, v):
             
     img.save(mem, format="PNG")
     mem.seek(0,0)
-    return send_file(mem)
+    return send_file(mem, mimetype="image/png", as_attachment=False)
 
 @app.route("/api/is_available/<name>", methods=["GET"])
 def api_is_available(name):
