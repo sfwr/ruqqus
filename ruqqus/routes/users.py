@@ -4,6 +4,7 @@ from sqlalchemy import func
 from bs4 import BeautifulSoup
 import pyotp
 import qrcode
+from os import remove
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -27,7 +28,16 @@ def mfa_qr(secret, v):
     qr=qrcode.QRCode()
     qr.add_data(x.provisioning_uri(v.username, issuer_name="Ruqqus"))
     img=qr.make_image(fill_color="#603abb", back_color="white")
-    return img
+    
+    name=f"tmp/{secret}.png"
+    with open(name, "w+") as file:
+        img.save(file)
+        
+    resp=make_response(send_file(name))
+    
+    remove(name)
+    
+    return resp
 
 @app.route("/api/is_available/<name>", methods=["GET"])
 def api_is_available(name):
