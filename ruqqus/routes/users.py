@@ -34,7 +34,7 @@ def mfa_qr(secret, v):
         
     resp=send_file(name)
     
-    remove(name)
+    #remove(name)
     
     return resp
 
