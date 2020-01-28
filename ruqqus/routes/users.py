@@ -29,12 +29,12 @@ def mfa_qr(secret, v):
     qr.add_data(x.provisioning_uri(v.username, issuer_name="Ruqqus"))
     img=qr.make_image(fill_color="#603abb", back_color="white")
     
-    name=f"{secret}.png"
+    name=f"/{secret}.png"
     img.save(name)
         
     resp=send_file(name)
     
-    #remove(name)
+    remove(name)
     
     return resp
 
