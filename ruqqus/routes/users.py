@@ -2,6 +2,8 @@ from urllib.parse import urlparse
 import mistletoe
 from sqlalchemy import func
 from bs4 import BeautifulSoup
+import pyotp
+import qrcode
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -17,6 +19,15 @@ from ruqqus.__main__ import app, db, cache
 BAN_REASONS=['',
             "URL shorteners are not permitted."
             ]
+
+@app.route("/2faqr/<secret>", methods=["GET"])
+@auth_required
+def mfa_qr(secret, v):
+    x=pyotp.TOTP(secret)
+    qr=qrcode.QRCode()
+    qr.add_data(x.provisioning_uri(v.username, issuer_name="Ruqqus"))
+    img=qr.make_image(fill_color="603abb", back_color="white")
+    return img
 
 @app.route("/api/is_available/<name>", methods=["GET"])
 def api_is_available(name):
