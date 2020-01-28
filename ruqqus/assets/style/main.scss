@@ -1270,6 +1270,10 @@ color: $dark;
     background-color: transparent;
 }
 
+.sidebar.sidebar-left .sidebar-section .body {
+    border: 0;
+}
+
 .sidebar.sidebar-left {
     -ms-flex: 0 0 240px;
     flex: 0 0 240px;
@@ -3106,7 +3110,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
     #frontpage, #search {
-        padding-top: 110px;
+        padding-top: 49px;
     }
 }
 

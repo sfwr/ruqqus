@@ -13964,6 +13964,10 @@ a:hover .link-arrow {
   background-color: transparent;
 }
 
+.sidebar.sidebar-left .sidebar-section .body {
+  border: 0;
+}
+
 .sidebar-section.sidebar-alert {
   border: 1px solid #494a4e;
 }
@@ -16201,7 +16205,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
 @media (max-width: 991.98px) {
   #frontpage, #search {
-    padding-top: 110px;
+    padding-top: 49px;
   }
 }
 @media (max-width: 767.98px) {
