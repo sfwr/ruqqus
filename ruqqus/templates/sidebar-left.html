@@ -1,7 +1,7 @@
-<div class="col sidebar sidebar-left text-left bg-light d-none d-xl-block pt-3" id="sidebar-left">
+<div class="col sidebar sidebar-left bg-light d-none d-xl-block pt-3" id="sidebar-left">
 
   <div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}" style="word-break: break-word">
-    <div class="body text-center p-0">
+    <div class="body p-0">
 
       <div class="mb-4">
         <div class="sidebar-collapsed-hidden">
@@ -82,7 +82,7 @@
               <div class="sidebar-collapsed-visible">
                 <i class="fas fa-university text-muted mb-3" data-toggle="tooltip" data-placement="right" title="Your guilds" style="font-size: 1rem;"></i>
               </div>
-              <ul class="no-bullets guild-recommendations-list text-left pl-0 sidebar-collapsed-hidden">
+              <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
                 {% for board in v.boards_subscribed[0:5] %}
                 <li class="guild-recommendations-item">
                   <a href="{{ board.permalink }}">
@@ -117,7 +117,7 @@
                 <div class="text-small font-weight-bold text-muted text-uppercase" style="letter-spacing: 0.025rem;">My guilds</div>
               </div>
               <p>You are not a member of any guilds. Guilds you are a member of will be displayed here.</p>
-              <a href="/browse" class="btn btn-secondary btn-block">Discover guilds</a>
+              <a href="/browse" class="btn btn-outline-primary btn-block">Discover guilds</a>
             </div>
             {% endif %}
 
@@ -131,7 +131,7 @@
             <div class="sidebar-collapsed-visible">
               <i class="fas fa-crown text-warning mb-3" data-toggle="tooltip" data-placement="right" title="Guildmaster of" style="font-size: 1rem;"></i>
             </div>
-            <ul class="no-bullets guild-recommendations-list text-left pl-0 sidebar-collapsed-hidden">
+            <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
               {% for board in v.boards_modded[0:3] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">

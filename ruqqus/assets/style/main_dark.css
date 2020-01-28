@@ -13925,6 +13925,7 @@ a:hover .link-arrow {
 
 .sidebar.sidebar-left.sidebar-collapsed {
   flex: 0 0 65px;
+  text-align: center;
 }
 
 .sidebar-left.sidebar-collapsed .sidebar-collapsed-hidden {
