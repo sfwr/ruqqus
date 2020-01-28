@@ -29,7 +29,7 @@ def mfa_qr(secret, v):
     qr.add_data(x.provisioning_uri(v.username, issuer_name="Ruqqus"))
     img=qr.make_image(fill_color="#603abb", back_color="white")
     
-    name=f"/{secret}.png"
+    name=f"/app/ruqqus/{secret}.png"
     img.save(name)
         
     resp=send_file(name)
