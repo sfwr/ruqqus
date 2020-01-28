@@ -33,7 +33,7 @@ def mfa_qr(secret, v):
     with open(name, "w+b") as file:
         img.save(file)
         
-    resp=make_response(send_file(name))
+    resp=send_file(name)
     
     remove(name)
     
