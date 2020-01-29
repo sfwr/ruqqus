@@ -16330,6 +16330,11 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     color: #718096;
   }
 
+  .post-actions {
+    color: #A0AEC0;
+    font-weight: 400;
+  }
+
   .post-actions a {
     color: #A0AEC0;
     font-size: 1rem;
