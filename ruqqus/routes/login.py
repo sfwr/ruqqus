@@ -89,7 +89,7 @@ def login_post():
         return render_template("login.html", failed=True, i=random_image())
     
     #test 2fa token
-    if account.mfa_secret and not account.verify_2fa(request.form.get("2fa_token","")):
+    if account.mfa_secret and not account.validate_2fa(request.form.get("2fa_token","")):
         time.sleep(random.uniform(0,2))
         return render_template("login.html", failed=True, i=random_image())
 
