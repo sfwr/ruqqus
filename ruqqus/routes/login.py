@@ -78,10 +78,6 @@ def login_post():
         time.sleep(random.uniform(0,2))
         return render_template("login.html", failed=True, i=random_image())
 
-    #check for reserved username
-    if account.reserved:
-        return redirect(account.permalink)
-
     #test password
 
     if request.form.get("password"):
@@ -97,7 +93,8 @@ def login_post():
                                    v=account,
                                    time=now,
                                    hash=hash,
-                                   i=random_image()
+                                   i=random_image(),
+                                   redirect=request.form.get("redirect","/")
                                   )
     elif request.form.get("2fa_token","x"):
         now=int(time.time())
