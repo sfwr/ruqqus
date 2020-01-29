@@ -136,6 +136,20 @@ def settings_security_post(v):
         db.commit()
     
         return render_template("settings_security.html",v=v, msg="Two-factor authentication enabled.")
+    
+    if request.form.get("2fa_remove",""):
+        
+        if not v.verifyPass(request.form.get('password')):
+            return render_template("settings_security.html", v=v, error="Invalid password"), 401
+            
+        token=request.form.get("2fa_remove")
+        
+        if not v.validate_2fa(token):
+            return render_template("settings_security.html",v=v,error="Invalid token.")
+        
+        v.mfa_secret=None
+        return render-template("settings_security.html", v=v, msg="Two-factor authentication removed.")
+            
 
 
 @app.route("/settings/dark_mode/<x>", methods=["POST"])
