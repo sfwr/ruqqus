@@ -1,5 +1,6 @@
 import time
 import jinja2
+import pyotp
 from flask import *
 
 from ruqqus.helpers.wrappers import *
@@ -58,7 +59,10 @@ def badges(v):
 @app.route("/settings/security", methods=["GET"])
 @auth_required
 def settings_security(v):
-    return render_template("settings_security.html", v=v)
+    return render_template("settings_security.html",
+                           v=v,
+                           mfa_secret=pyotp.random_base32() if not v.mfa_secret else None
+                          )
 
 @app.route("/favicon.ico", methods=["GET"])
 def favicon():
