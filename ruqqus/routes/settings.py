@@ -86,7 +86,7 @@ def settings_security_post(v):
         db.add(v)
         db.commit()
         
-            return redirect("/settings/security?msg="+escape("Your password has been changed."))
+        return redirect("/settings/security?msg="+escape("Your password has been changed."))
 
     if request.form.get("new_email"):
 
