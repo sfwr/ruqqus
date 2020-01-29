@@ -61,7 +61,9 @@ def badges(v):
 def settings_security(v):
     return render_template("settings_security.html",
                            v=v,
-                           mfa_secret=pyotp.random_base32() if not v.mfa_secret else None
+                           mfa_secret=pyotp.random_base32() if not v.mfa_secret else None,
+                           error=request.args.get("error") if request.args.get('error') else None,
+                           msg=request.args.get("msg") if request.args.get("msg") else None
                           )
 
 @app.route("/favicon.ico", methods=["GET"])
