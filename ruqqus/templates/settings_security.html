@@ -251,6 +251,46 @@
 </form>
 
 </div>
+            {% else %}
+            <div class="settings-section rounded">
+
+    <form  action="/settings/security" method="post">
+        <input type="hidden" name="formkey" value="{{ v.formkey }}">
+        <div class="body">
+
+            <div>
+               
+                <label for="2fa_input">Password:</label>
+               <div class="w-lg-100">
+                
+                 <input type="password" autocomplete="new-password" class="form-control mb-2" id="2fa_input" name="password" required>
+             </div>
+                
+                <label for="2fa_input">Two-Factor code:</label>
+               <div class="w-lg-100">
+                
+                 <input type="text" class="form-control mb-2" id="2fa_input" name="2fa_disable" required>
+             </div>
+
+         </div>
+
+     </div>
+
+     <div class="footer">
+
+        <div class="d-flex">
+
+            <input class="btn btn-primary ml-auto"
+            type="submit" value="Disable 2FA">
+
+        </div>
+
+    </div>
+
+</form>
+
+</div>
+
         {% endif %}
 
             
