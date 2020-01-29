@@ -149,6 +149,8 @@ def settings_security_post(v):
             return redirect("/settings/security?error="+escape("Invalid password or token."))
         
         v.mfa_secret=None
+        db.add(v)
+        db.commit()
         return redirect("/settings/security?msg="+escape("Two-factor authentication disabled."))
             
 
