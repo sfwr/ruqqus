@@ -96,7 +96,8 @@ def login_post():
             return render_template("login_2fa.html",
                                    v=account,
                                    time=now,
-                                   hash=hash
+                                   hash=hash,
+                                   i=random_image()
                                   )
     elif request.form.get("2fa_token"):
         now=int(time.time())
@@ -116,7 +117,9 @@ def login_post():
                                    v=account,
                                    time=now,
                                    hash=hash,
-                                   failed=True)
+                                   failed=True,
+                                  i=random_image()
+                                  )
                              
     else:
         abort(400)
