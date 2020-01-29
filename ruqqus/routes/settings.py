@@ -76,7 +76,7 @@ def settings_security_post(v):
 
     if request.form.get("new_password"):
         if request.form.get("new_password") != request.form.get("cnf_password"):
-            return render_template("settings_security.html", v=v, error="Passwords do not match.")
+            return redirect("/settings/security?error="+escape("Passwords do not match."))
 
         if not v.verifyPass(request.form.get("old_password")):
             return render_template("settings_security.html", v=v, error="Incorrect password")
@@ -86,23 +86,23 @@ def settings_security_post(v):
         db.add(v)
         db.commit()
         
-        return render_template("settings_security.html", v=v, msg="Your password has been changed.")
+            return redirect("/settings/security?msg="+escape("Your password has been changed."))
 
     if request.form.get("new_email"):
 
         if not v.verifyPass(request.form.get('password')):
-            return render_template("settings_security.html", v=v, error="Invalid password"), 401
+            return redirect("/settings/security?error="+escape("Invalid password."))
             
         
         new_email = request.form.get("new_email")
         if new_email == v.email:
-            return render_template("settings_security.html", v=v, error="That's already your email!")
+            return redirect("/settings/security?error="+escape("That's already your email."))
 
         #check to see if email is in use
         existing=db.query(User).filter(User.id != v.id,
                                        User.email.lower() == new_email.lower()).first()
         if existing:
-            return render_template("settings_security.html", v=v, error="That email address is already in use.")
+            return redirect("/settings/security?error="+escape("That email address is already in use."))
 
         url=f"https://{environ.get('domain')}/activate"
             
@@ -119,36 +119,37 @@ def settings_security_post(v):
                                        action_url=link,
                                        v=v)
                   )
-        return render_template("settings_security.html", v=v, msg=f"Verify your new email address {new_email} to complete the email change process.")
+        
+        return redirect("/settings/security?msg="+escape("Check your email and click the verification link to complete the email change."))
     
     if request.form.get("2fa_token", ""):
         
         if not v.verifyPass(request.form.get('password')):
-            return render_template("settings_security.html", v=v, error="Invalid password"), 401
+            return redirect("/settings/security?error="+escape("Invalid password or token."))
             
         secret=request.form.get("2fa_secret")
         x=pyotp.TOTP(secret)
         if not x.verify(request.form.get("2fa_token"), valid_window=1):
-            return render_template("settings_security.html",v=v,error="Invalid token.")
+            return redirect("/settings/security?error="+escape("Invalid password or token."))
     
         v.mfa_secret=secret
         db.add(v)
         db.commit()
     
-        return render_template("settings_security.html",v=v, msg="Two-factor authentication enabled.")
+        return redirect("/settings/security?msg="+escape("Two-factor authentication enabled."))
     
     if request.form.get("2fa_remove",""):
         
         if not v.verifyPass(request.form.get('password')):
-            return render_template("settings_security.html", v=v, error="Invalid password"), 401
+            return redirect("/settings/security?error="+escape("Invalid password or token."))
             
         token=request.form.get("2fa_remove")
         
         if not v.validate_2fa(token):
-            return render_template("settings_security.html",v=v,error="Invalid token.")
+            return redirect("/settings/security?error="+escape("Invalid password or token."))
         
         v.mfa_secret=None
-        return render-template("settings_security.html", v=v, msg="Two-factor authentication removed.")
+        return redirect("/settings/security?msg="+escape("Two-factor authentication disabled."))
             
 
 
