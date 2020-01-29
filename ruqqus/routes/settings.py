@@ -120,7 +120,20 @@ def settings_security_post(v):
                                        v=v)
                   )
         return render_template("settings_security.html", v=v, msg=f"Verify your new email address {new_email} to complete the email change process.")
-        
+    
+    if request.form.get("2fa_token", ""):
+            
+        secret=request.form.get("2fa_secret")
+        x=pyotp.TOTP(secret)
+        if not x.verify(request.form.get("2fa_token"), valid_window=1):
+            return render_template("settings_security.html",v=v,error="Invalid token.")
+    
+        v.mfa_secret=secret
+        db.add(v)
+        db.commit()
+    
+        return render_template("settings_security.html",v=v, msg="Two-factor authentication enabled.")
+
 
 @app.route("/settings/dark_mode/<x>", methods=["POST"])
 @auth_required
