@@ -99,7 +99,7 @@ def login_post():
                                    hash=hash,
                                    i=random_image()
                                   )
-    elif request.form.get("2fa_token"):
+    elif request.form.get("2fa_token","x"):
         now=int(time.time())
         
         if now - int(request.form.get("time")) > 600:
