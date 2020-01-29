@@ -84,14 +84,43 @@ def login_post():
 
     #test password
 
-    if not account.verifyPass(request.form.get("password")):
-        time.sleep(random.uniform(0,2))
-        return render_template("login.html", failed=True, i=random_image())
+    if request.form.get("password"):
+        
+        if not account.verifyPass(request.form.get("password")):
+            time.sleep(random.uniform(0,2))
+            return render_template("login.html", failed=True, i=random_image())
+        
+        if account.mfa_secret:
+            now=int(time.time())
+            hash=generate_hash(f"{account.id}+{now}+2fachallenge")
+            return render_template("login_2fa.html",
+                                   v=account,
+                                   time=now,
+                                   hash=hash
+                                  )
+    elif request.form.get("2fa_token"):
+        now=int(time.time())
+        
+        if now - int(request.form.get("time")) > 600:
+            return redirect('/login')
+        
+        formhash=request.form.get("hash")
+        if not validate_hash(f"{account.id}+{request.form.get('time')}+2fachallenge",
+                             formhash
+                            ):
+            return redirect("/login")
+        
+        if not account.validate_2fa(request.form.get("2fa_token", "")):
+            hash=generate_hash(f"{account.id}+{time}+2fachallenge")
+            return render_template("login_2fa.html",
+                                   v=account,
+                                   time=now,
+                                   hash=hash,
+                                   failed=True)
+                             
+    else:
+        abort(400)
     
-    #test 2fa token
-    if account.mfa_secret and not account.validate_2fa(request.form.get("2fa_token","")):
-        time.sleep(random.uniform(0,2))
-        return render_template("login.html", failed=True, i=random_image())
 
     #set session and user id
     session["user_id"]=account.id
