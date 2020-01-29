@@ -122,6 +122,9 @@ def settings_security_post(v):
         return render_template("settings_security.html", v=v, msg=f"Verify your new email address {new_email} to complete the email change process.")
     
     if request.form.get("2fa_token", ""):
+        
+        if not v.verifyPass(request.form.get('password')):
+            return render_template("settings_security.html", v=v, error="Invalid password"), 401
             
         secret=request.form.get("2fa_secret")
         x=pyotp.TOTP(secret)
