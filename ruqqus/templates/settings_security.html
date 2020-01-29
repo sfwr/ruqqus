@@ -205,19 +205,19 @@
 
 <p class="text-small text-muted">Change the two-factor settigns for your account.</p>
 
-            {% if 2fa_secret %}
+            {% if mfa_secret %}
 <div class="settings-section rounded">
 
     <form  action="/settings/security" method="post">
         <input type="hidden" name="formkey" value="{{ v.formkey }}">
-        <input type="hidden" name="2fa_secret" value="{{ 2fa_secret }}">
+        <input type="hidden" name="2fa_secret" value="{{ mfa_secret }}">
         <div class="body">
 
             <div class="d-lg-flex">
                 
                 <p class="w-lg-25" >Step 1: Scan this barcode into a two-factor token manager such as Authy or Google Authenticator</p>
                 
-                <img class="w-lg-100" src="/2faqr/{{ 2fa_secret }}">
+                <img class="w-lg-100" src="/2faqr/{{ mfa_secret }}">
 
                <p class="w-lg-25" id="email-password-label">Step 2: Enter your password and the two-factor code.</p>
 
