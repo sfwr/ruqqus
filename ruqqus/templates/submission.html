@@ -237,15 +237,17 @@
           <h1 class="card-title post-title text-left mb-3">{{ p.title | safe }}</h1>
           {% endif %}
 
+          {% if p.body_html or p.embed_url %}
           <div id="post-body" {% if p.body_html %}class="post-body mt-3"{% endif %}> 
             {{ p.body_html | safe }}
-
+            
             {% if p.embed_url %}
             <div class="embed-responsive embed-responsive-16by9 mb-3">
               <iframe src="{{ p.embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             {% endif %}
           </div>
+          {% endif %}
 
           {% if v and v.id==p.author_id and not v.is_banned %}
           <div id="edit-post-body" class="d-none comment-write collapsed child">
