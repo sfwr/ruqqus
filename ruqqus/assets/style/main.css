@@ -13877,7 +13877,6 @@ a:hover .link-arrow {
 .sidebar-section {
   margin-bottom: 1rem;
   background-color: #F5F7FA;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px 0 rgba(0, 0, 0, 0.03);
   border-radius: 0.35rem;
   overflow: hidden;
 }
@@ -14806,11 +14805,12 @@ div:hover .thumb-img-link-overlay {
   .post-img-overlay {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);
-    bottom: -1px;
     padding: 0.25rem 0.5rem;
     text-align: right;
     width: 100%;
     color: #ffffff;
+    border-bottom-right-radius: 0.35rem;
+    border-bottom-left-radius: 0.35rem;
   }
 }
 .post-actions .comments, .post-actions .share, .post-actions .save, .post-actions .flag {
