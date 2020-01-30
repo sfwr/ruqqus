@@ -66,7 +66,7 @@ def badge_grant_get(v):
             "no_user":"That user doesn't exist."
             }
 
-    return render_template("badge_grant.html",
+    return render_template("admin/badge_grant.html",
                            v=v,
                            badge_types=badge_types,
                            error=errors.get(request.args.get("error"),None) if request.args.get('error') else None,
