@@ -96,10 +96,10 @@
     </div>
     <div class="ml-auto">
       {% if v %}
-      <div id="button-sub" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ p.board.name }}', callback=toggleSub)">Join guild</a></div>
-      <div id="button-unsub" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ p.board.name }}', callback=toggleSub)">Leave</a></div>
+      <div id="button-sub" {% if p.board.has_subscriber(v) %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/subscribe/{{ p.board.name }}', callback=toggleSub)">Join guild</a></div>
+      <div id="button-unsub" {% if not p.board.has_subscriber(v) %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ p.board.name }}', callback=toggleSub)">Leave</a></div>
       {% elif not v %}
-      <a class="btn btn-primary btn-block" href="/signup">Join guild</a>
+      <a class="btn btn-primary" href="/signup">Join guild</a>
       {% endif %}
     </div>
   </div>
@@ -240,7 +240,7 @@
           {% if p.body_html or p.embed_url %}
           <div id="post-body" {% if p.body_html %}class="post-body mt-3"{% endif %}> 
             {{ p.body_html | safe }}
-            
+
             {% if p.embed_url %}
             <div class="embed-responsive embed-responsive-16by9 mb-3">
               <iframe src="{{ p.embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
