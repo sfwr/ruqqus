@@ -13878,14 +13878,6 @@ a:hover .link-arrow {
   text-transform: uppercase;
 }
 
-#frontpage .sidebar .sidebar-section .title,
-#search .sidebar .sidebar-section .title,
-#userpage .sidebar .sidebar-section .title {
-  color: #8c8d94;
-  background-color: transparent;
-  border-bottom: 1px solid #494a4e;
-}
-
 .sidebar .sidebar-section .body {
   padding: 1rem;
   color: #dadada;

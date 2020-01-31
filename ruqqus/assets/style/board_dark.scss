@@ -1201,14 +1201,6 @@ color: $dark;
     text-transform: uppercase;
 }
 
-#frontpage .sidebar .sidebar-section .title, 
-#search .sidebar .sidebar-section .title,
-#userpage .sidebar .sidebar-section .title {
-    color: $muted;
-    background-color: transparent;
-    border-bottom: 1px solid $border-color;
-}
-
 .sidebar .sidebar-section .body {
     padding: 1rem;
     color: $black;

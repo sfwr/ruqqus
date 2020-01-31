@@ -13862,14 +13862,6 @@ a:hover .link-arrow {
   text-transform: uppercase;
 }
 
-#frontpage .sidebar .sidebar-section .title,
-#search .sidebar .sidebar-section .title,
-#userpage .sidebar .sidebar-section .title {
-  color: #718096;
-  background-color: transparent;
-  border-bottom: 1px solid #CBD5E0;
-}
-
 .sidebar .sidebar-section .body {
   padding: 1rem;
   border: solid #CBD5E0;
