@@ -2236,8 +2236,7 @@ div:hover .thumb-img-link-overlay {
     color: $primary;
 }
 
-.comment .comment-body .comment-text,
-.post-body {
+.comment .comment-body .comment-text {
     margin-bottom: 1rem;
     word-break: break-word;
     color: $black;
@@ -2285,6 +2284,10 @@ blockquote p {
 }
 
 // Comments
+
+.commnet-section {
+    background-color: $gray-100;
+}
 
 .comment-actions {
     font-weight: $font-weight-bold;
@@ -3346,6 +3349,14 @@ body, #settings, #notifications, #submit {
 }
 
 // Comments
+
+.commnet-section {
+    background-color: $white;
+}
+
+.comment-write textarea {
+    background-color: $gray-100;
+}
 
 .comment-section > .comment {
     padding-left: 0;

@@ -2194,8 +2194,6 @@ div:hover .thumb-img-link-overlay {
     text-align: right;
     width: 100%;
     color: $white;
-    border-bottom-right-radius: .35rem;
-    border-bottom-left-radius: .35rem;
 }
 }
 
@@ -2256,9 +2254,10 @@ div:hover .thumb-img-link-overlay {
     color: $primary;
 }
 
-.comment .comment-body p.text {
+.comment .comment-body .comment-text {
     margin-bottom: 1rem;
     word-break: break-word;
+    color: $black;
 }
 
 blockquote {

@@ -14838,8 +14838,6 @@ div:hover .thumb-img-link-overlay {
     text-align: right;
     width: 100%;
     color: #FFFFFF;
-    border-bottom-right-radius: 0.35rem;
-    border-bottom-left-radius: 0.35rem;
   }
 }
 .post-actions .comments, .post-actions .share, .post-actions .save, .post-actions .flag {
@@ -14896,9 +14894,10 @@ div:hover .thumb-img-link-overlay {
   color: #805AD5;
 }
 
-.comment .comment-body p.text {
+.comment .comment-body .comment-text {
   margin-bottom: 1rem;
   word-break: break-word;
+  color: #dadada;
 }
 
 blockquote {
