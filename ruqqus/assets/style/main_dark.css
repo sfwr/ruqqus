@@ -16228,10 +16228,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     padding-top: 49px;
   }
 
-  #guild {
-    padding-top: 99px;
-  }
-
   #notifications body, #settings body {
     background-color: #232327 !important;
   }
@@ -16287,8 +16283,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     background-color: #35363e;
   }
 
-  #frontpage, #search {
-    padding-top: 95px;
+  #frontpage, #search, #guild {
+    padding-top: 98px;
     background-color: #35363e;
   }
 

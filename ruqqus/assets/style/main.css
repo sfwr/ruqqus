@@ -16183,10 +16183,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     background-color: #ffffff;
   }
 
-  #guild {
-    padding-top: 99px;
-  }
-
   .custom-gutters {
     padding-left: 0;
     padding-right: 0;
@@ -16230,13 +16226,8 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     padding: 0.25rem 0.75rem;
   }
 
-  #thread, #submit, #error-401, #error-403, #error-404, #error-405, #error-409, #error-410, #error-422, #error-429, #error-451, #error-500 {
-    background-color: #ffffff;
-  }
-
-  #frontpage, #search {
-    padding-top: 95px;
-    background-color: #ffffff;
+  #frontpage, #search, #guild {
+    padding-top: 98px;
   }
 
   #search .search-results.card {

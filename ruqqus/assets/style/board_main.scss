@@ -3151,10 +3151,6 @@ body, #settings, #notifications, #submit {
     background-color: $white;
 }
 
-#guild {
-    padding-top: 99px;
-}
-
 .custom-gutters {
     padding-left: 0;
     padding-right: 0;
@@ -3198,13 +3194,8 @@ body, #settings, #notifications, #submit {
     padding: 0.25rem 0.75rem;
 }
 
-#thread, #submit, #error-401, #error-403, #error-404, #error-405, #error-409, #error-410, #error-422, #error-429, #error-451, #error-500 {
-    background-color: $white;
-}
-
-#frontpage, #search {
-    padding-top: 95px;
-    background-color: $white;
+#frontpage, #search, #guild {
+    padding-top: 98px;
 }
 
 #search .search-results.card  {

@@ -3201,10 +3201,6 @@ body {
     padding-top: 49px;
 }
 
-#guild {
-    padding-top: 99px;
-}
-
 #notifications body, #settings body {
     background-color: $dark!important;
 }
@@ -3260,8 +3256,8 @@ body {
     background-color: $light;
 }
 
-#frontpage, #search {
-    padding-top: 95px;
+#frontpage, #search, #guild {
+    padding-top: 98px;
     background-color: $light;
 }
 
