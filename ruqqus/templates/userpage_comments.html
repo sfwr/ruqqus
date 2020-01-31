@@ -8,7 +8,7 @@
 
 {% if not v %}
 <div class="sidebar-section sidebar-alert">
-<div class="body">
+  <div class="body">
     <img src="/assets/images/illustrations/ruckus.png" class="empty-state-img mb-3" alt="empty state">
     <h5>Join the discourse.</h5>
     <p class="text-small">Internet freedom of speech has a new home. Use your voice. Make a Ruqqus.</p>
@@ -35,14 +35,14 @@
       <li class="dashboard-item">
         <a class="dashboard-link" href="/settings"><i class="fas fa-cog fa-width-rem"></i>Settings</a>
       </li>
-	<li class="dashboard-item">
-	<a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Your guilds</a>
-	</li>
-	<li class="dashboard-item">
-	<a class="dashboard-link" href="/subscriptions"><i class="fas fa-user-friends fa-width-rem"></i>Your subscriptions</a>
-	</li>
-    </ul>
-  </div>
+      <li class="dashboard-item">
+       <a class="dashboard-link" href="/guilds"><i class="fas fa-university fa-width-rem"></i>Your guilds</a>
+     </li>
+     <li class="dashboard-item">
+       <a class="dashboard-link" href="/subscriptions"><i class="fas fa-user-friends fa-width-rem"></i>Your subscriptions</a>
+     </li>
+   </ul>
+ </div>
 </div>
 
 {% endif %}
@@ -64,60 +64,54 @@
 {% endif %}
 {% endblock %}
 
-  {% block postNav %}
-  <!-- Desktop -->
-  <div class="container-fluid bg-white sticky d-none d-md-block">
-    <div class="row border-bottom">
-      <div class="col">
-        <div class="container">
-          <div class="row bg-white">
-            <div class="col">
-              <div class="d-flex">
-                <ul class="nav post-nav mr-auto">
-                  <li class="nav-item">
-                    <a class="nav-link text-center" href="/u/{{ u.username}}">
-                      <div class="text-small text-muted">Posts</div>
-                      <span class="h5 font-weight-bold">{{ u.post_count }}</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-center active" href="/u/{{ u.username}}/comments">
-                      <div class="text-small text-muted">Comments</div>
-                      <span class="h5 font-weight-bold">{{ u.comment_count }}</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
+{% block postNav %}
+<!-- Desktop -->
+<div class="container-fluid bg-white sticky d-none d-md-block">
+  <div class="row border-bottom">
+    <div class="col">
+      <div class="d-flex">
+        <ul class="nav post-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-center" href="/u/{{ u.username}}">
+              <div class="text-small text-muted">Posts</div>
+              <span class="h5 font-weight-bold">{{ u.post_count }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center active" href="/u/{{ u.username}}/comments">
+              <div class="text-small text-muted">Comments</div>
+              <span class="h5 font-weight-bold">{{ u.comment_count }}</span>
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <!-- Mobile -->
-    <div class="container-fluid bg-white sticky d-md-none">
-    <div class="row border-bottom">
-      <div class="col">
-              <div class="d-flex">
-                <ul class="nav post-nav mr-auto">
-                  <li class="nav-item">
-                    <a class="nav-link text-center" href="/u/{{ u.username}}">
-                      <div class="text-small text-muted">Posts</div>
-                      <span class="h6 font-weight-bold">{{ u.post_count }}</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-center active" href="/u/{{ u.username}}/comments">
-                      <div class="text-small text-muted">Comments</div>
-                      <span class="h6 font-weight-bold">{{ u.comment_count }}</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-  {% endblock %}
+</div>
+<!-- Mobile -->
+<div class="container-fluid bg-white sticky d-md-none">
+  <div class="row border-bottom">
+    <div class="col">
+      <div class="d-flex">
+        <ul class="nav post-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-center" href="/u/{{ u.username}}">
+              <div class="text-small text-muted">Posts</div>
+              <span class="font-weight-bold">{{ u.post_count }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center active" href="/u/{{ u.username}}/comments">
+              <div class="text-small text-muted">Comments</div>
+              <span class="font-weight-bold">{{ u.comment_count }}</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
 
 {% block content %}
 
@@ -131,21 +125,21 @@
      {{ c.rendered_comment(v=v, render_replies=False, standalone=True) | safe }}
      {% endfor%}
    </div>
+   {% else %}
+   <div class="text-center py-5">
+
+    <img src="/assets/images/illustrations/searching.png" class="empty-state-img mb-3" alt="empty state">
+
+    {% if v and v.id == u.id %}
+    <div class="font-weight-bold text-muted">You haven't made a ruckus.</div>
+    <div class="text-small text-muted mb-3">Your comments will show up here.</div>
+    <a href="/" class="btn btn-primary">Go to frontpage</a>
     {% else %}
-    <div class="text-center py-5">
-
-      <img src="/assets/images/illustrations/searching.png" class="empty-state-img mb-3" alt="empty state">
-
-      {% if v and v.id == u.id %}
-      <div class="font-weight-bold text-muted">You haven't made a ruckus.</div>
-      <div class="text-small text-muted mb-3">Your comments will show up here.</div>
-      <a href="/" class="btn btn-primary">Go to frontpage</a>
-      {% else %}
-      <div class="font-weight-bold text-muted">No comments here...</div>
-      <div class="text-small text-muted">@{{ u.username }} hasn't made a ruckus yet.</div>
-      {% endif %}
-    </div>
+    <div class="font-weight-bold text-muted">No comments here...</div>
+    <div class="text-small text-muted">@{{ u.username }} hasn't made a ruckus yet.</div>
     {% endif %}
- </div>
+  </div>
+  {% endif %}
+</div>
 </div>
 {% endblock %}

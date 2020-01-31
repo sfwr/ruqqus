@@ -15,7 +15,7 @@
 <!-- Desktop -->
 <div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-block" style="background-image: url({{ u.banner_url }})">
   <div class="jumbotron-overlay"></div>
-  <div class="position-absolute w-100 p-3" style="bottom: 0;">
+  <div class="position-absolute w-100" style="bottom: 1rem;">
     <div class="container-fluid">
       <div class="d-md-flex text-center text-md-left">
         <div>
@@ -231,13 +231,13 @@
           <li class="nav-item">
             <a class="nav-link text-center active" href="/u/{{ u.username}}">
               <div class="text-small text-muted">Posts</div>
-              <span class="h6 font-weight-bold">{{ u.post_count }}</span>
+              <span class="font-weight-bold">{{ u.post_count }}</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-center" href="/u/{{ u.username}}/comments">
               <div class="text-small text-muted">Comments</div>
-              <span class="h6 font-weight-bold">{{ u.comment_count }}</span>
+              <span class="font-weight-bold">{{ u.comment_count }}</span>
             </a>
           </li>
         </ul>
