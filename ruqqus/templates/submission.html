@@ -242,9 +242,9 @@
 
             {% if p.url and not p.embed_url and not p.is_image %}
             <a href="{{ p.url }}">
-              <div class="d-flex d-md-none justify-content-between align-items-center border rounded p-2 {% if p.body_html %}mb-3{% endif %}">
+              <div class="d-flex d-md-none justify-content-between align-items-center border rounded p-2{% if p.body_html %} mb-3{% endif %}">
                 <span>{{ p.domain|truncate(30, True) }}</span>
-                <i class="far fa-external-link-alt text-right"></i>
+                <i class="fas fa-external-link-alt text-small"></i>
               </div>
             </a>
             {% endif %}
