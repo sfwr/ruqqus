@@ -14194,6 +14194,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   margin: auto;
   text-align: center;
   color: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
 .profile-pic .letter {
