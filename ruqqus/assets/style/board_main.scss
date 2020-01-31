@@ -3167,8 +3167,7 @@ body, #settings, #notifications, #submit {
 }
 
 .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0.5rem;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -3186,7 +3185,7 @@ body, #settings, #notifications, #submit {
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    font-size: $font-size-base;
+    color: $purple;
 }
 
 #fixed-bar-mobile {
@@ -3335,7 +3334,6 @@ body, #settings, #notifications, #submit {
 }
 
 .dropdown-actions a {
-    color: $gray-600;
     font-size: $font-size-base;
 }
 
@@ -3344,14 +3342,8 @@ body, #settings, #notifications, #submit {
     color: $gray-400;
 }
 
-.dropdown-actions a {
-    color: $gray-600;
-    font-size: $font-size-base;
-}
-
-.dropdown-actions .fa, .dropdown-actions .fas, .dropdown-actions .far {
-    font-size: $font-size-base;
-    color: $gray-400;
+.btn-tag {
+    font-size: $small-font-size;
 }
 
 // Comments

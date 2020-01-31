@@ -352,6 +352,10 @@ ol > li::before {
     line-height: 1;
 }
 
+.btn-tag:hover {
+    color: $black;
+}
+
 .btn.disabled, .btn:disabled {
     opacity: .5;
 }
@@ -3133,6 +3137,7 @@ html {
 
 body, #settings, #notifications, #submit {
     padding-top: 49px;
+    background-color: $white;
 }
 
 #guild {
@@ -3153,8 +3158,7 @@ body, #settings, #notifications, #submit {
 }
 
 .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0.5rem;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -3172,7 +3176,7 @@ body, #settings, #notifications, #submit {
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    font-size: $font-size-base;
+    color: $purple;
 }
 
 #fixed-bar-mobile {
@@ -3184,7 +3188,7 @@ body, #settings, #notifications, #submit {
 }
 
 #thread, #submit, #error-401, #error-403, #error-404, #error-405, #error-409, #error-410, #error-422, #error-429, #error-451, #error-500 {
-    background-color: $gray-100;
+    background-color: $white;
 }
 
 #frontpage, #search {
@@ -3321,7 +3325,6 @@ body, #settings, #notifications, #submit {
 }
 
 .dropdown-actions a {
-    color: $gray-600;
     font-size: $font-size-base;
 }
 
@@ -3439,7 +3442,6 @@ body, #settings, #notifications, #submit {
 }
 
 .post-filter .dropdown-item {
-    font-size: $small-font-size;
     font-weight: $font-weight-normal;
 }
 

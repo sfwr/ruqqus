@@ -14833,11 +14833,12 @@ div:hover .thumb-img-link-overlay {
   .post-img-overlay {
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5);
-    bottom: -1px;
     padding: 0.25rem 0.5rem;
     text-align: right;
     width: 100%;
     color: #FFFFFF;
+    border-bottom-right-radius: 0.35rem;
+    border-bottom-left-radius: 0.35rem;
   }
 }
 .post-actions .comments, .post-actions .share, .post-actions .save, .post-actions .flag {
@@ -16253,8 +16254,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0.5rem;
   }
 
   .navbar-dark .navbar-nav .nav-link:hover {
@@ -16272,7 +16272,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    font-size: 1rem;
+    color: #805AD5;
   }
 
   #fixed-bar-mobile {
@@ -16529,7 +16529,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .post-filter .dropdown-item {
-    font-size: 12px;
     font-weight: 400;
   }
 

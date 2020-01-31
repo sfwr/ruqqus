@@ -3215,8 +3215,7 @@ body {
 }
 
 .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0.5rem;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -3234,7 +3233,7 @@ body {
 }
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    font-size: $font-size-base;
+    color: $purple;
 }
 
 #fixed-bar-mobile {
@@ -3500,7 +3499,6 @@ body {
 }
 
 .post-filter .dropdown-item {
-    font-size: $small-font-size;
     font-weight: $font-weight-normal;
 }
 

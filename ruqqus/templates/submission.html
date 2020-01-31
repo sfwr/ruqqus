@@ -220,7 +220,7 @@
     <div id="post-{{ p.base36id }}" class="card border-0 mt-3{% if p.is_banned %} banned{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
       <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
 
-        {% if p.thumb_url %}
+        {% if p.thumb_url and not p.embed_url %}
         <div class="card-header bg-transparent border-0 d-none d-md-flex flex-row flex-nowrap p-0">
           <a href="{{ p.url }}" rel="nofollow"><img src="{{ p.thumb_url }}" class="post-img d-none d-md-block" alt="Unable to anonymously load image"></a>
         </div>
@@ -265,8 +265,8 @@
               </div>
               {% endif %}
 
-              <div class="d-flex justify-content-between align-items-center mt-2">
-                <div class="post-actions mt-2 d-none d-md-block">
+              <div class="d-none d-md-flex justify-content-between align-items-center mt-2">
+                <div class="post-actions mt-2">
                   <ul class="list-inline text-right d-flex">
 
                     <li class="list-inline-item"><a href="{{ p.permalink }}"><i class="fas fa-comment-dots"></i>{{ p.comment_count }}</a></li>

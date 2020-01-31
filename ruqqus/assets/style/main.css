@@ -13086,6 +13086,10 @@ ol > li::before {
   line-height: 1;
 }
 
+.btn-tag:hover {
+  color: #121213;
+}
+
 .btn.disabled, .btn:disabled {
   opacity: 0.5;
 }
@@ -16172,6 +16176,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   body, #settings, #notifications, #submit {
     padding-top: 49px;
+    background-color: #ffffff;
   }
 
   #guild {
@@ -16192,8 +16197,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
-    padding-left: 0;
-    padding-right: 0;
+    padding: 0.5rem;
   }
 
   .navbar-dark .navbar-nav .nav-link:hover {
@@ -16211,7 +16215,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
-    font-size: 1rem;
+    color: #805AD5;
   }
 
   #fixed-bar-mobile {
@@ -16223,7 +16227,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   #thread, #submit, #error-401, #error-403, #error-404, #error-405, #error-409, #error-410, #error-422, #error-429, #error-451, #error-500 {
-    background-color: #F5F7FA;
+    background-color: #ffffff;
   }
 
   #frontpage, #search {
@@ -16356,7 +16360,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .dropdown-actions a {
-    color: #718096;
     font-size: 1rem;
   }
 
@@ -16471,7 +16474,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .post-filter .dropdown-item {
-    font-size: 12px;
     font-weight: 400;
   }
 
