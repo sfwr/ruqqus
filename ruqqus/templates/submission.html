@@ -241,7 +241,7 @@
           <div id="post-body" class="post-body mt-3">
 
           {% if not p.embed_url or not p.is_image %}
-            <div class="d-flex justify-content-between align-items-center border rounded p-2 {% if p.body_html %}mb-3{% endif %}">
+            <div class="d-flex d-md-none justify-content-between align-items-center border rounded p-2 {% if p.body_html %}mb-3{% endif %}">
               <span class="text-primary">{{ p.domain|truncate(30, True) }}</span>
               <i class="far fa-external-link-alt text-right"></i>
             </div>
