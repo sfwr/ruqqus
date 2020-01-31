@@ -16,7 +16,7 @@
 <div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-block" style="background-image: url({{ u.banner_url }})">
   <div class="jumbotron-overlay"></div>
   <div class="position-absolute w-100 p-3" style="bottom: 0;">
-    <div class="container">
+    <div class="container-fluid">
       <div class="d-md-flex text-center text-md-left">
         <div>
           <img src="{{ u.profile_url }}" class="guild-icon-square-lg bg-white">
@@ -192,44 +192,38 @@
 {% endif %}
 {% endblock %}
 
-  {% block postNav %}
-  <!-- Desktop -->
-  <div class="container-fluid bg-white sticky d-none d-md-block">
-    <div class="row border-bottom">
-      <div class="col">
-        <div class="container">
-          <div class="row bg-white">
-            <div class="col">
-              <div class="d-flex">
-                <ul class="nav post-nav mr-auto">
-                  <li class="nav-item">
-                    <a class="nav-link text-center active" href="/u/{{ u.username}}">
-                      <div class="text-small text-muted">Posts</div>
-                      <span class="h5 font-weight-bold">{{ u.post_count }}</span>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link text-center" href="/u/{{ u.username}}/comments">
-                      <div class="text-small text-muted">Comments</div>
-                      <span class="h5 font-weight-bold">{{ u.comment_count }}</span>
-                    </a>
-                  </li>
-                </ul>
-                <div class="my-auto">
-                 {% if v and v.id != u.id %}
-                 <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe</a></div>
-                 <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe</a></div>
-                 {% endif %}
-               </div>
-             </div>
-           </div>
-         </div>
+{% block postNav %}
+<!-- Desktop -->
+<div class="container-fluid bg-white sticky d-none d-md-block">
+  <div class="row border-bottom">
+    <div class="col">
+      <div class="d-flex">
+        <ul class="nav post-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-center active" href="/u/{{ u.username}}">
+              <div class="text-small text-muted">Posts</div>
+              <span class="h5 font-weight-bold">{{ u.post_count }}</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-center" href="/u/{{ u.username}}/comments">
+              <div class="text-small text-muted">Comments</div>
+              <span class="h5 font-weight-bold">{{ u.comment_count }}</span>
+            </a>
+          </li>
+        </ul>
+        <div class="my-auto">
+         {% if v and v.id != u.id %}
+         <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe</a></div>
+         <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe</a></div>
+         {% endif %}
        </div>
      </div>
    </div>
  </div>
- <!-- Mobile -->
- <div class="container-fluid bg-white sticky d-md-none">
+ </div>
+<!-- Mobile -->
+<div class="container-fluid bg-white sticky d-md-none">
   <div class="row border-bottom">
     <div class="col">
       <div class="d-flex">
