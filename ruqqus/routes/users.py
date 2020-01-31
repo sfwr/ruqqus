@@ -25,7 +25,9 @@ BAN_REASONS=['',
 @auth_required
 def mfa_qr(secret, v):
     x=pyotp.TOTP(secret)
-    qr=qrcode.QRCode()
+    qr=qrcode.QRCode(
+                error_correction=qrcode.constants.ERROR_CORRECT_L
+    )
     qr.add_data(x.provisioning_uri(v.username, issuer_name="Ruqqus"))
     img=qr.make_image(fill_color="#603abb", back_color="white")
     
