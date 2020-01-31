@@ -596,9 +596,6 @@ class User(Base, Stndrd):
     @property
     def can_make_guild(self):
 
-        if not self.is_activated:
-            return False
-
         if self.karma + self.comment_karma < 100:
             return False
 
