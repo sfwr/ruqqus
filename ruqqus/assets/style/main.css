@@ -12928,6 +12928,10 @@ p {
   background-color: #ffffff;
 }
 
+#thread {
+  background-color: #F5F7FA;
+}
+
 #article .navbar-light .navbar-nav .nav-link {
   color: #121213;
 }
@@ -16176,6 +16180,10 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   body, #settings, #notifications, #submit {
     padding-top: 49px;
+    background-color: #ffffff;
+  }
+
+  #thread {
     background-color: #ffffff;
   }
 
