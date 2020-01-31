@@ -14916,7 +14916,7 @@ blockquote p {
   font-size: 1rem;
 }
 
-.commnet-section {
+.comment-section {
   background-color: #F5F7FA;
 }
 
@@ -16367,7 +16367,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
     font-size: 12px;
   }
 
-  .commnet-section {
+  .comment-section {
     background-color: #ffffff;
   }
 
