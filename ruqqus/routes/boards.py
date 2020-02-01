@@ -266,11 +266,19 @@ def user_kick_pid(pid, v):
     
     return "", 204
 
-@app.route("/mod/take/<bid>/<pid>", methods=["POST"])
+@app.route("/mod/take//<pid>", methods=["POST"])
 @auth_required
-@is_guildmaster
 @validate_formkey
-def mod_take_bid_pid(pid, board, v):
+def mod_take_bid_pid(pid, v):
+
+    bid = request.form.get("board_id",None)
+    if not bid:
+        abort(400)
+
+    board=get_board(bid)
+
+    if not board.has_mod(v):
+        abort(403)
 
     post = get_post(pid)
 
