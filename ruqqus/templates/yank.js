@@ -10,7 +10,7 @@ yank_postModal = function(id, author, comments, points, thumb, title, author_lin
 
   document.getElementById("post-points").textContent = points;
 
-  document.getElementById("post-thumb").textContent = thumb;
+  document.getElementById("post-thumb").src = thumb;
 
   document.getElementById("post-title").textContent = title;
 
