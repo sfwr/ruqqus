@@ -41,16 +41,16 @@
 
   <script src="/assets/js/toggle_sidebar_collapse.js"></script>
 
-	{% block fixedMobileBarJS %}
-	{% endblock %}
+  {% block fixedMobileBarJS %}
+  {% endblock %}
 
-	{% if v %}
+  {% if v %}
 
-	<script>
-		function formkey() {
-			return '{{ v.formkey }}';
-		}
-	</script>
+  <script>
+    function formkey() {
+     return '{{ v.formkey }}';
+   }
+ </script>
  <script src="/assets/js/post.js"></script>
 
  <script src="/assets/js/voting.js"></script>
@@ -290,8 +290,8 @@
   <div class="row justify-content-around" id="main-content-row">
 
     {% block leftSidebar %}
-      {% block leftSidebarBlock %}
-      {% endblock %}
+    {% block leftSidebarBlock %}
+    {% endblock %}
     {% endblock %}
 
     <div class="col h-100 custom-gutters" id="main-content-col">
@@ -406,13 +406,17 @@
 	</div>
 </div>
 
-{% include "flag_post_modal.html" %}
-{% include "flag_comment_modal.html" %}
+{% if v %}
+  {% include "flag_post_modal.html" %}
+  {% include "flag_comment_modal.html" %}
+{% endif %}
 
-{% include "kick_post_modal.html" %}
+{% if v and v.mods_anything %}
+  {% include "kick_post_modal.html" %}
+  {% include "yank_post_modal.html" %}
+{% endif %}
 
 {% include "announcements_modal.html" %}
-
 {% include "bootstrap.html" %}
 
 <script src="/assets/js/collapse.js"></script>
@@ -474,6 +478,8 @@
 {% if v and v.mods_anything %}
 <!-- Ruqqus Flag Comment & Submission -->
 <script src="/assets/js/kick.js"></script>
+<!-- Ruqqus Yank Submission -->
+<script src="/assets/js/yank.js"></script>
 {% endif %}
 
 {% block enlargeThumbJS %}
