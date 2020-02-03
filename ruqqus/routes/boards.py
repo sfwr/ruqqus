@@ -266,7 +266,7 @@ def user_kick_pid(pid, v):
     
     return "", 204
 
-@app.route("/mod/take//<pid>", methods=["POST"])
+@app.route("/mod/take/<pid>", methods=["POST"])
 @auth_required
 @validate_formkey
 def mod_take_pid(pid, v):
