@@ -14,6 +14,9 @@ from ruqqus.classes import *
 from .front import guild_ids
 from ruqqus.classes.rules import *
 from flask import *
+
+from ruqqus.__main__ import app, db, limiter, cache
+
 valid_board_regex=re.compile("^\w{3,25}$")
 
 @app.route("/create_guild", methods=["GET"])
