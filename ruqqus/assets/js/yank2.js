@@ -20,16 +20,6 @@ yank_postModal = function(id, author, comments, points, thumb, title, author_lin
 
   document.getElementById("post-timestamp").textContent = timestamp;
 
-  document.getElementById("yankPostButton").onclick = function() {
 
-    this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Yanking post';
-    this.disabled = true;
-    post('/mod/take/' + id,
-      callback = function() {
-
-        location.reload();
-      }
-      )
-  }
 
 };
