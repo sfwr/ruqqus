@@ -14,8 +14,6 @@ from ruqqus.classes import *
 from .front import guild_ids
 from ruqqus.classes.rules import *
 from flask import *
-from ruqqus.__main__ import app, db, limiter, cache
-
 valid_board_regex=re.compile("^\w{3,25}$")
 
 @app.route("/create_guild", methods=["GET"])
@@ -298,7 +296,7 @@ def mod_take_pid(pid, v):
     #clear board's listing caches
     cache.delete_memoized(Board.idlist, board)
     
-    return "", 204
+    return redirect(post.permalink)
 
 @app.route("/mod/invite_mod/<bid>", methods=["POST"])
 @auth_required
