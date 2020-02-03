@@ -41,6 +41,7 @@ class Board(Base, Stndrd, Age_times):
     submissions=relationship("Submission", lazy="dynamic", backref="board", primaryjoin="Board.id==Submission.board_id")
     contributors=relationship("ContributorRelationship", lazy="dynamic")
     bans=relationship("BanRelationship", lazy="dynamic")
+    postrels=relationship("PostRelationship", lazy="dynamic")
     trending_rank=deferred(Column(Float, server_default=FetchedValue()))
 
     #db side functions
