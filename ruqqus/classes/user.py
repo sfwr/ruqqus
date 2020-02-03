@@ -32,7 +32,6 @@ class User(Base, Stndrd):
     created_utc = Column(Integer, default=0)
     admin_level = Column(Integer, default=0)
     is_activated = Column(Boolean, default=False)
-    reddit_username = Column(String, default=None)
     over_18=Column(Boolean, default=False)
     creation_ip=Column(String, default=None)
     most_recent_ip=Column(String, default=None)
