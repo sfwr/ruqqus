@@ -938,9 +938,13 @@ th {
     margin: auto 0;
 }
 
+/*
+
 #frontpage.toggle-card-view .voting, #search.toggle-card-view .voting, #userpage.toggle-card-view .voting, #guild.toggle-card-view .voting {
     margin: 0;
 }
+
+*/
 
 .voting div:focus {
     outline: 0;
@@ -1633,6 +1637,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 // Thread Card View
 
+/*
+
 #frontpage.toggle-card-view .tab-bar, #userpage.toggle-card-view .tab-bar, #search.toggle-card-view .tab-bar, #guild.toggle-card-view .tab-bar {
     border-radius: 0;
 }
@@ -1683,6 +1689,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     mask-image: linear-gradient(180deg,#000 40%,transparent);
     overflow: hidden;
 }
+
+*/
 
 .toggle-view .nav-link {
     color: $gray;
@@ -3280,6 +3288,8 @@ body {
     padding-top: 2px;
 }
 
+/*
+
 #frontpage.toggle-card-view .posts .card, #userpage.toggle-card-view .posts .card, #search.toggle-card-view .posts .card, #guild.toggle-card-view .posts .card {
     border-width: 0 0 1px 0;
     border-color: $border-color;
@@ -3293,6 +3303,8 @@ body {
     max-width: 100%;
     height: auto;
 }
+
+*/
 
 // Guild
 
