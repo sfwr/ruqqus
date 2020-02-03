@@ -78,8 +78,8 @@ class PostRelationship(Base):
     post_id=Column(Integer, ForeignKey("submissions.id"))
     board_id=Column(Integer, ForeignKey("boards.id"))
 
-    post=relationship("Submission", uselist=False)
-    board=relationship("Board", uselist=False)
+    post=relationship("Submission", lazy="subquery")
+    board=relationship("Board", lazy="subquery")
 
     def __repr__(self):
         return f"<PostRel(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
