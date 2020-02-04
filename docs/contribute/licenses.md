@@ -21,6 +21,7 @@ Jinja2|HTML template engine|BSD
 libsass|Compile .scss to .css|MIT
 mistletoe|Parse markdown to html|MIT
 piexif|Remove EXIF data from jpg images|MIT
+pyotp|Two-factor authentication|MIT
 redis|Interact with Redis caching server|MIT
 requests|Make HTTP requests|Apache
 SQLAlchemy|Database ORM|MIT
