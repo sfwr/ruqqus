@@ -49,26 +49,29 @@
     <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap pl-2 pl-md-0 p-0 mr-md-2">
 
       <div class="position-relative d-none d-md-block" style="z-index: 3;">
+        {% if p.thumb_url %}
         <a href="{{ p.url }}" target="_blank">
-          <div class="thumb-img-link-overlay">
-            <i class="fas fa-external-link-alt text-lg d-block mb-1"></i>View full
-          </div>
-          {% if p.thumb_url %}
           <img src="{{ p.thumb_url }}" class="post-img" alt="">
-          {% endif %}
-
-          {% if p.embed_url %}
-          <img src="/assets/images/icons/default_thumb_yt.png" class="post-img" alt="generic youtube embed thumbnail">
-          {% endif %}
-
-          {% if p.body_html and not not p.thumb_url %}
-          <img src="/assets/images/icons/default_thumb_text.png" class="post-img border-0" alt="text post thumbnail">
-          {% endif %}
-
-          {% if not p.thumb_url %}
-          <img src="/assets/images/icons/default_thumb_link.png" class="post-img" alt="generic link post thumbnail">
-          {% endif %}
         </a>
+        {% endif %}
+
+        {% if p.embed_url %}
+        <a href="{{ p.url }}" target="_blank">
+          <img src="/assets/images/icons/default_thumb_yt.png" class="post-img" alt="generic youtube embed thumbnail">
+        </a>
+        {% endif %}
+
+        {% if not p.url %}
+        <a href="{{ p.permalink }}" target="_blank">
+          <img src="/assets/images/icons/default_thumb_text.png" class="post-img border-0" alt="text post thumbnail">
+        </a>
+        {% endif %}
+
+        {% if not p.thumb_url %}
+        <a href="{{ p.url }}" target="_blank">
+          <img src="/assets/images/icons/default_thumb_link.png" class="post-img" alt="generic link post thumbnail">
+        </a>
+        {% endif %}
       </div>
 
       <div class="d-block d-md-none" style="z-index: 3;">
