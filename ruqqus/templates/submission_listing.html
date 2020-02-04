@@ -61,11 +61,11 @@
           <img src="/assets/images/icons/default_thumb_yt.png" class="post-img" alt="generic youtube embed thumbnail">
           {% endif %}
 
-          {% if not p.url %}
+          {% if p.body_html and not not p.thumb_url %}
           <img src="/assets/images/icons/default_thumb_text.png" class="post-img border-0" alt="text post thumbnail">
           {% endif %}
 
-          {% if p.url and not p.thumb_url %}
+          {% if not p.thumb_url %}
           <img src="/assets/images/icons/default_thumb_link.png" class="post-img" alt="generic link post thumbnail">
           {% endif %}
         </a>
