@@ -130,17 +130,17 @@ def api_comment(v):
 
     #queue up notifications for username mentions
     soup=BeautifulSoup(c.body_html, features="html.parser")
-    mentions=soup.find_all("a", href=re.compile("/u/(\w+)"), limit=3)
+    mentions=soup.find_all("a", href=re.compile("^/@(\w+)"), limit=3)
     for mention in mentions:
-        username=mention["href"].split("/u/")[1]
+        username=mention["href"].split("@")[1]
         user=db.query(User).filter_by(username=username).first()
         if user:
             notify_users.add(user.id)
 
 
-    for id in notify_users:
+    for x in notify_users:
         n=Notification(comment_id=c.id,
-                       user_id=id)
+                       user_id=x)
         db.add(n)
     db.commit()
                            
