@@ -57,7 +57,7 @@
 
         {% if p.embed_url %}
         <a href="{{ p.url }}" target="_blank">
-          <img src="/assets/images/icons/default_thumb_yt.png" class="post-img" alt="generic youtube embed thumbnail">
+          <img src="/assets/images/icons/default_thumb_yt.png" class="post-img border-0" alt="generic youtube embed thumbnail">
         </a>
         {% endif %}
 
@@ -69,14 +69,16 @@
 
         {% if p.url and not p.thumb_url %}
         <a href="{{ p.url }}" target="_blank">
-          <img src="/assets/images/icons/default_thumb_link.png" class="post-img" alt="generic link post thumbnail">
+          <img src="/assets/images/icons/default_thumb_link.png" class="post-img border-0" alt="generic link post thumbnail">
         </a>
         {% endif %}
       </div>
 
+      {% if p.thumb_url %}
       <div class="d-block d-md-none" style="z-index: 3;">
         <img src="{{ p.thumb_url }}" class="post-img" alt="" onclick="enlarge_thumb('post-{{ p.base36id }}')">
       </div>
+      {% endif %}
 
     </div>
 
