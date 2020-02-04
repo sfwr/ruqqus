@@ -26,7 +26,7 @@
               <span class="font-weight-bold">Step 2:</span> Enter the six-digit code generated in the authenticator app and your Ruqqus account password.
             </p>
             <label for="2fa_input">6-digit code</label>
-            <input type="text" class="form-control mb-2" id="2fa_input" name="2fa_token" placeholder="# # # # # #" required>
+            <input type="number" class="form-control mb-2" id="2fa_input" name="2fa_token" placeholder="# # # # # #" required>
 
             <label for="2fa_input_password">Password</label>
             <input type="password" autocomplete="new-password" class="form-control mb-2" id="2fa_input_password" name="password" oninput="document.getElementById('enable2faButton').disabled=false" required>
@@ -50,7 +50,7 @@
             </div>
 
             <label for="2fa_input">6-digit code</label>
-            <input type="text" class="form-control mb-2" id="2fa_input" name="2fa_remove" placeholder="# # # # # #" required>
+            <input type="number" class="form-control mb-2" id="2fa_input" name="2fa_remove" placeholder="# # # # # #" required>
 
             <label for="2fa_input_password">Password</label>
             <input type="password" autocomplete="new-password" class="form-control mb-2" id="2fa_input_password" name="password" oninput="document.getElementById('disable2faButton').disabled=false" required>
