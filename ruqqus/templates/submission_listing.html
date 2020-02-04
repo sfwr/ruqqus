@@ -14,7 +14,7 @@
 
 <div id="post-{{ p.base36id }}" class="card{% if p.is_banned %} banned{% endif %}{% if p.stickied %} stickied{% endif %}{% if voted==1 %} upvoted{% elif voted==-1 %} downvoted{% endif %}">
 
-<div class="d-flex flex-row-reverse flex-md-row flex-nowrap justify-content-end">
+  <div class="d-flex flex-row-reverse flex-md-row flex-nowrap justify-content-end">
 
     <!-- Voting on "medium" devices or larger, hidden on smaller devices -->
 
@@ -115,6 +115,11 @@
           {% endif %}
 
           {% if v %}
+
+          {% if v.mods_anything and p.board.name == 'general' %}
+          <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#yankPostModal" onclick="yank_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.comment_count }}','{{ p.score_percent }}','{{ p.thumb_url }}','{{ p.title | safe }}','{{ p.author.permalink }}','{{ p.domain }}','{{ p.age_string }}')" class="d-block"><i class="fas fa-hand-lizard"></i>Yank</a></li>
+          {% endif %}
+
           {% if p.board.has_mod(v) %}
           <li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}})"><i class="fas fa-times text-danger"></i>Kick</a></li>
           {% if p.report_count >= 1 %}
@@ -212,6 +217,9 @@
             <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
             {% if v and not v.id==p.author_id %}
             <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.board.name }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
+            {% endif %}
+            {% if v and v.mods_anything and p.board.name == 'general' %}
+            <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#yankPostModal" onclick="yank_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.comment_count }}','{{ p.score_percent }}','{{ p.thumb_url }}','{{ p.title | safe }}','{{ p.author.permalink }}','{{ p.domain }}','{{ p.age_string }}')" class="d-block"><i class="fas fa-hand-lizard"></i>Yank</a></li>
             {% endif %}
             {% if v %}
             {% if p.board.has_mod(v) %}
