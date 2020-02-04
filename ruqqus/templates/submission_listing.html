@@ -67,7 +67,7 @@
         </a>
         {% endif %}
 
-        {% if not p.thumb_url %}
+        {% if p.url and not p.thumb_url %}
         <a href="{{ p.url }}" target="_blank">
           <img src="/assets/images/icons/default_thumb_link.png" class="post-img" alt="generic link post thumbnail">
         </a>
