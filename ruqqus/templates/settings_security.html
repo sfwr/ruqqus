@@ -189,8 +189,13 @@
 
             <div class="d-flex">
 
+            {% if v.email %}
                 <input class="btn btn-primary ml-auto"
-                type="submit" value="Update Email">
+                type="submit" value="Update email">
+            {% else %}
+                <input class="btn btn-primary ml-auto"
+                type="submit" value="Add email">
+            {% endif %}
 
             </div>
 
