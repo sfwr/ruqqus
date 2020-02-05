@@ -737,7 +737,8 @@ def all_mod_queue(v):
                            listing=posts,
                            next_exists=next_exists,
                            page=page,
-                           v=v)
+                           v=v,
+                           b=None)
 
 @app.route("/mod/<bid>/images/profile", methods=["POST"])
 @auth_required
