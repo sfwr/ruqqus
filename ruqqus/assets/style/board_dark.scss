@@ -3229,7 +3229,6 @@ body {
 
 .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
     padding: 0.5rem;
-    font-size: $font-size-lg;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -3248,7 +3247,7 @@ body {
 
 .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
     color: $purple;
-    font-size: inherit;
+    font-size: $font-size-lg;
 }
 
 #fixed-bar-mobile {
