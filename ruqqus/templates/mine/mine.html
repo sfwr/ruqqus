@@ -28,31 +28,6 @@
 </script>
 {% endblock %}
 
-{% block postNav %}
-<div class="container-fluid bg-white sticky">
-  <div class="row box-shadow-bottom">
-    <div class="col">
-      <div class="container">
-        <div class="row box-shadow-bottom bg-white">
-          <div class="col">
-            <div class="d-flex">
-              <ul class="nav post-nav mr-auto">
-                <li class="nav-item">
-                  <a class="nav-link{% if kind=="guilds" %} active{% endif %}" href="?kind=guilds"><i class="fas fa-university"></i>Guilds</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link{% if kind=="users" %} active{% endif %}" href="?kind=users"><i class="fas fa-user-friends"></i>Users</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
-
 <!-- Left Sidebar (navigation-purposes, hidden on devices smaller than "large") -->
 
 {% block leftSidebarBlock %}
@@ -61,6 +36,29 @@
 
 
 {% block content %}
+
+<div class="mt-3 mt-md-0">
+
+  <h1>Your guilds</h1>
+
+</div>
+
+<div class="flex-row box-shadow-bottom d-flex pt-3 mb-3 mb-md-5">
+
+      <ul class="nav settings-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link active font-weight-bold" href="/settings/profile">Member of</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link font-weight-bold" href="/settings/security">Guildmaster of</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-none" href="/settings/notifications">Notifications</a>
+        </li>
+      </ul>
+
+</div>
+
 <div class="row row-cols-1 row-cols-md-3">
 
   {% block maincontent %}
@@ -68,9 +66,6 @@
 
 </div>
 {% endblock %}
-
-
-
 
 {% block pagenav %}
 <nav aria-label="Page navigation">

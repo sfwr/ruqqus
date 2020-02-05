@@ -3,15 +3,3 @@
 {% block maincontent %}
 {% include "board_listing.html" %}
 {% endblock %}
-
-{% block sidebarblock %}
-  <div class="sidebar-section sidebar-about">
-    <div class="title">Your Guilds</div>
-    <div class="body">
-      <p>These are the Guilds where you are a member, a guildmaster, or an approved contributor.</p>
-      {% if v and v.is_activated and v.karma+v.comment_karma >=100 %}
-        <div class="mt-2"><a href="/create_guild" class="btn btn-secondary btn-block">Start a Guild</a></div>
-      {% endif %}
-    </div>
-  </div>
-{% endblock %}
