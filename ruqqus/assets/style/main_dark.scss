@@ -267,19 +267,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 // Type
 
 .text-lg {
-    font-size: $font-size-lg;
+    font-size: $font-size-lg!important;
 }
 
 .text-base {
-    font-size: $font-size-base;
+    font-size: $font-size-base!important;
 }
 
 .text-small {
-    font-size: $small-font-size;
+    font-size: $small-font-size!important;
 }
 
 .text-small-extra {
-    font-size: $extra-small-font-size;
+    font-size: $extra-small-font-size!important;
 }
 
 .display-5 {

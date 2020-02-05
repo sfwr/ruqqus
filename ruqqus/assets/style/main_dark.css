@@ -13004,19 +13004,19 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .text-lg {
-  font-size: 1.25rem;
+  font-size: 1.25rem !important;
 }
 
 .text-base {
-  font-size: 1rem;
+  font-size: 1rem !important;
 }
 
 .text-small {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 
 .text-small-extra {
-  font-size: 11px;
+  font-size: 11px !important;
 }
 
 .display-5 {
