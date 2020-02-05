@@ -1,26 +1,27 @@
 {% for b in boards %}
 
-<div id="board-{{ b.base36id }}" class="card h-100">
-  <div style="position: relative;"><img src="{{ b.banner_url }}" class="card-img-top" alt="+{{ b.name | safe }} guild banner" style="height: 175px;">
+<div class="col mb-4">
+  <div id="board-{{ b.base36id }}" class="card h-100">
+    <div style="position: relative;"><img src="{{ b.banner_url }}" class="card-img-top" alt="+{{ b.name | safe }} guild banner" style="height: 175px;">
 
-    <img src="{{ b.profile_url }}" class="profile-pic-50 border-3 border-white" style="position: absolute; left: 15px; bottom: 15px; box-sizing: content-box;"></div>
-    <div class="card-body">
-      <div class="d-flex justify-content-between align-items-center">
+      <img src="{{ b.profile_url }}" class="profile-pic-50 border-3 border-white" style="position: absolute; left: 15px; bottom: 15px; box-sizing: content-box;"></div>
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
 
-        <h5 class="card-title">+{{ b.name | safe }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}</h5>
+          <h5 class="card-title">+{{ b.name | safe }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}</h5>
 
-        <div id="button-sub-{{ b.base36id }}" style="z-index: 2" class="{% if b.has_subscriber(v) %}d-none{% endif %}"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Join</a></div>
-        <div id="button-unsub-{{ b.base36id }}" style="z-index: 2" class="{% if not b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-sm" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Leave</a></div>
+          <div id="button-sub-{{ b.base36id }}" style="z-index: 2" class="{% if b.has_subscriber(v) %}d-none{% endif %}"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Join</a></div>
+          <div id="button-unsub-{{ b.base36id }}" style="z-index: 2" class="{% if not b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-sm" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Leave</a></div>
 
+        </div>
+        <p class="card-text">{{ b.description }}</p>
       </div>
-      <p class="card-text">{{ b.description }}</p>
-    </div>
-    <div class="card-footer bg-white border-0">
-      <small class="text-muted"><i class="fas fa-users text-gray-500 mr-2"></i>{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}</small>
+      <div class="card-footer bg-white border-0">
+        <small class="text-muted"><i class="fas fa-users text-gray-500 mr-2"></i>{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}</small>
+      </div>
     </div>
   </div>
-
-{% endfor %}
+  {% endfor %}
 
 
 
