@@ -7,7 +7,7 @@
     <div class="card-body">
       <div class="d-flex justify-content-between align-items-center">
 
-        <h5 class="card-title">+{{ b.name | safe }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span></h5>
+        <h5 class="card-title">+{{ b.name | safe }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}</h5>
 
         <div id="button-sub-{{ b.base36id }}" style="z-index: 2" class="{% if b.has_subscriber(v) %}d-none{% endif %}"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Join</a></div>
         <div id="button-unsub-{{ b.base36id }}" style="z-index: 2" class="{% if not b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-sm" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Leave</a></div>
