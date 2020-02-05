@@ -13,16 +13,16 @@
       </form>
     </div>
     {% if v %}
-    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/submit{{ '?guild='+b.name if b else '' }}"><i class="fas fa-feather-alt align-middle text-gray-400"></i></a>
+    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/submit{{ '?guild='+b.name if b else '' }}"><i class="fas fa-feather-alt text-gray-500"></i></a>
     {% else %}
-    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/login"><i class="fas fa-feather-alt align-middle text-gray-400"></i></a>
+    <a class="mobile-nav-icon text-lg d-block d-md-none" href="/login"><i class="fas fa-feather-alt text-gray-500"></i></a>
     {% endif %}
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
     aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon {% if v and v.notifications_count %}position-relative{% endif %}"><i class="fal fa-bars text-gray-400" style="font-size: 2rem;"></i>
-    {% if v and v.notifications_count %}
-      <i class="fas fa-circle text-danger text-small position-absolute" style="right: -5px; top: -2px;"></i>
-    {% endif %}
+    <span class="navbar-toggler-icon {% if v and v.notifications_count %}position-relative{% endif %}"><i class="fal fa-bars text-gray-500"></i>
+      {% if v and v.notifications_count %}
+      <i class="fas fa-circle text-danger text-small-extra position-absolute" style="right: -6px; top: -4px;"></i>
+      {% endif %}
     </span>
   </button>
   <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -86,23 +86,23 @@
         </div>
         <hr class="my-2">
         <div class="px-2">
-          <a class="dropdown-item" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">My
-            profile</span></a>
+          <a class="dropdown-item" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem text-left mr-3"></i>My
+            profile</a>
             {% if v.notifications_count %}
-            <a class="dropdown-item" href="/notifications"><i class="fas fa-inbox fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Inbox</span><span
+            <a class="dropdown-item" href="/notifications"><i class="fas fa-inbox fa-width-rem text-left mr-3"></i>Inbox<span
               class="badge badge-danger rounded-circle align-top ml-1">{{ v.notifications_count }}</span></a>
               {% else %}
               <a class="dropdown-item" href="/notifications?all=true"><i class="fas fa-inbox fa-width-rem text-left mr-3"></i>Inbox</a>
               {% endif %}
-              <a class="dropdown-item" href="/settings"><i class="fas fa-cog fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Settings</span></a>
+              <a class="dropdown-item" href="/settings"><i class="fas fa-cog fa-width-rem text-left mr-3"></i>Settings</a>
 
               {% block darkswitch %}
               {% if v and v.referral_count and session.get("dark_mode_enabled")%}
-              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
               {% elif v and v.referral_count %}
-              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a>
+              <a class="dropdown-item" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem text-left mr-3" id="dark-switch"></i>Dark mode</a>
               {% else %}
-              <a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left align-middle mr-3"></i><span class="align-middle">Dark mode</span></a>
+              <a class="dropdown-item" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem text-left mr-3"></i>Dark mode</a>
               {% endif %}
               {% endblock %}
 
@@ -110,7 +110,7 @@
             </div>
             <hr class="my-2">
             <div class="px-2">
-              <a class="dropdown-item" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})"><span class="align-middle">Log out</span></a>
+              <a class="dropdown-item" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})">Log out</a>
             </div>
           </div>
         </div>
@@ -137,33 +137,48 @@
         </span>
       </form>
     </li>
-    {% if v %}
     <li class="nav-item">
-      <a class="nav-link" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem align-middle mr-3"></i><span class="align-middle">@{{ v.username }}</span></a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link {% if v.notifications_count %}position-relative{% endif %}" href="/notifications?all=true">
-      <i class="fas fa-envelope fa-width-rem align-middle mr-3"></i><span class="align-middle">Inbox</span>
-      {% if v.notifications_count %}
-      <i class="fas fa-circle text-danger position-absolute" style="left: 18px; top: 8px; font-size: 10px;"></i>
-      {% endif %}
+      <a class="nav-link " href="/">
+        <i class="fas fa-home-alt fa-width-rem mr-3"></i><span class="">Homepage</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/subscriptions"><i class="fas fa-university fa-width-rem align-middle mr-3"></i><span class="align-middle">My guilds</span></a>
+      <a class="nav-link " href="/all?sort=new">
+        <i class="fas fa-globe-americas fa-width-rem mr-3"></i><span class="">All</span>
+      </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/settings"><i class="fas fa-cog fa-width-rem align-middle mr-3"></i><span class="align-middle">Settings</span></a>
+      <a class="nav-link " href="/all?sort=hot">
+        <i class="fas fa-fire fa-width-rem mr-3"></i><span class="">Trending</span>
+      </a>
+    </li>
+    {% if v %}
+    <li class="nav-item border-top mt-2 pt-2">
+      <a class="nav-link" href="{{ v.permalink }}"><i class="fas fa-user-circle fa-width-rem mr-3"></i>@{{ v.username }}</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link {% if v.notifications_count %}position-relative{% endif %}" href="/notifications?all=true">
+        <i class="fas fa-envelope fa-width-rem mr-3"></i>Inbox
+        {% if v.notifications_count %}
+        <i class="fas fa-circle text-danger position-absolute" style="left: 18px; top: 8px; font-size: 10px;"></i>
+        {% endif %}
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/subscriptions"><i class="fas fa-university fa-width-rem mr-3"></i>My guilds</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/settings"><i class="fas fa-cog fa-width-rem mr-3"></i>Settings</a>
     </li>
     {% if v and v.referral_count and session.get("dark_mode_enabled")%}
-    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a></li>
+    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-on fa-width-rem mr-3" id="dark-switch"></i>Dark mode</a></li>
     {% elif v and v.referral_count %}
-    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem align-middle mr-3" id="dark-switch"></i><span class="align-middle">Dark mode</span></a></li>
+    <li class="nav-item"><a class="nav-link" href="javascript:void(0)" onclick="switch_css()"><i class="fad fa-toggle-off fa-width-rem mr-3" id="dark-switch"></i>Dark mode</a></li>
     {% else %}
-    <li class="nav-item"><a class="nav-link" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem align-middle mr-3"></i><span class="align-middle">Dark mode</span></a></li>
+    <li class="nav-item"><a class="nav-link" href="/settings/profile#referral"><i class="fad fa-toggle-off fa-width-rem mr-3"></i>Dark mode</a></li>
     {% endif %}
     <li class="nav-item nav-item border-top mt-2 pt-2">
-      <a class="nav-link" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})"><span class="align-middle">Log out</span></a>
+      <a class="nav-link" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})">Log out</a>
     </li>
     <li class="nav-item nav-item border-top mt-2 pt-2">
       <a class="nav-link text-small-extra" href="/help/about">About</a>
