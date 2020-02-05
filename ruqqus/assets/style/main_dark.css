@@ -13173,6 +13173,11 @@ ol > li::before {
   font-size: 1rem;
 }
 
+.navbar-toggler-icon {
+  width: auto;
+  height: auto;
+}
+
 .navbar-toggler-icon, .navbar-dark .navbar-toggler-icon, .navbar-light .navbar-toggler-icon {
   background: transparent;
 }
@@ -16249,6 +16254,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
     padding: 0.5rem;
+    font-size: 1.25rem;
   }
 
   .navbar-dark .navbar-nav .nav-link:hover {
@@ -16267,6 +16273,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
     color: #805AD5;
+    font-size: inherit;
   }
 
   #fixed-bar-mobile {
