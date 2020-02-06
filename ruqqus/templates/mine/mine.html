@@ -1,4 +1,4 @@
-{% extends "default.html" %}
+{% extends "home.html" %}
 
 {% block enlargeThumbJS %}
 <script src="/assets/js/enlarge_thumb.js"></script>
@@ -8,11 +8,24 @@
 
 {% block customPadding %}p-md-5{% endblock %}
 
-<!-- Left Sidebar (navigation-purposes, hidden on devices smaller than "large") -->
+      {% block navbar %}
+      <div class="font-weight-bold py-3">Browse Guilds</div>
 
-{% block leftSidebarBlock %}
-{% include "sidebar-left.html" %}
-{% endblock %}
+        <div class="d-flex align-items-center">
+          <div class="text-small font-weight-bold mr-2">Sort by</div>
+          <div class="dropdown dropdown-actions">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if sort_method=="guilds" %}<i class="fas fa-university mr-1"></i>Guilds{% endif %}
+              {% if sort_method=="users" %}<i class="fas fa-user mr-1"></i>Users{% endif %}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+              {% if not sort_method=="guilds" %}<a class="dropdown-item" href="?sort=hot"><i class="fas fa-university mr-2"></i>Guilds</a>{% endif %}
+              {% if not sort_method=="users" %}<a class="dropdown-item" href="?sort=new"><i class="fas fa-user mr-2"></i>Users</a>{% endif %}
+            </div>
+          </div>
+        </div>
+    </div>
+  {% endblock %}
 
 
 {% block content %}
