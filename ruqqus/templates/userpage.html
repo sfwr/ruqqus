@@ -128,7 +128,7 @@
             {% endif %}
           </h1>
         </a>
-        <div class="text-small">{{ u.karma + u.comment_karma }} Rep</div>
+        <div class="text-small mb-2">{{ u.karma + u.comment_karma }} Rep</div>
         {% if u.bio_html %}
         <p class="text-muted">{{ u.bio_html | safe }}</p>
         {% endif %}
@@ -234,7 +234,7 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row no-gutters">
   <div class="col">
     <div class="flex-row box-shadow-bottom d-flex justify-content-between align-items-center">
       <ul class="nav settings-nav">
