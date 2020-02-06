@@ -1,4 +1,5 @@
 from flask import *
+from sqlalchemy import func
 import ruqqus.classes
 from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
@@ -100,7 +101,7 @@ def settings_security_post(v):
 
         #check to see if email is in use
         existing=db.query(User).filter(User.id != v.id,
-                                       User.email.lower() == new_email.lower()).first()
+                                       func.lower(User.email) == new_email.lower()).first()
         if existing:
             return redirect("/settings/security?error="+escape("That email address is already in use."))
 
