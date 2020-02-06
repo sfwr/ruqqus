@@ -10,51 +10,29 @@
 
 {% block customPadding %}{% endblock %}
 
-      {% block navbar %}
-      <div class="font-weight-bold py-3">Browse Guilds</div>
+{% block navbar %}
 
-        <div class="d-flex align-items-center">
-          <div class="text-small font-weight-bold mr-2">Sort by</div>
-          <div class="dropdown dropdown-actions">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {% if sort_method=="guilds" %}<i class="fas fa-university mr-1"></i>Guilds{% endif %}
-              {% if sort_method=="users" %}<i class="fas fa-user mr-1"></i>Users{% endif %}
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
-              {% if not sort_method=="guilds" %}<a class="dropdown-item" href="?sort=hot"><i class="fas fa-university mr-2"></i>Guilds</a>{% endif %}
-              {% if not sort_method=="users" %}<a class="dropdown-item" href="?sort=new"><i class="fas fa-user mr-2"></i>Users</a>{% endif %}
-            </div>
-          </div>
-        </div>
+<div class="d-flex align-items-center">
+  <div class="text-small font-weight-bold mr-2">Show: </div>
+  <div class="dropdown dropdown-actions">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {% if kind=="guilds" %}<i class="fas fa-university mr-1"></i>Guilds{% endif %}
+      {% if kind=="users" %}<i class="fas fa-user mr-1"></i>Users{% endif %}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+      {% if not kind=="guilds" %}<a class="dropdown-item" href="?kind=guilds"><i class="fas fa-university mr-2"></i>Guilds</a>{% endif %}
+      {% if not kind=="users" %}<a class="dropdown-item" href="?kind=users"><i class="fas fa-user mr-2"></i>Users</a>{% endif %}
     </div>
-  {% endblock %}
+  </div>
+</div>
+</div>
+{% endblock %}
 
 
 {% block content %}
 
-<div class="mt-3 mt-md-0">
 
-  <h1>Your guilds</h1>
-
-</div>
-
-<div class="flex-row box-shadow-bottom d-flex pt-3 mb-3 mb-md-5">
-
-      <ul class="nav settings-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link active font-weight-bold" href="/settings/profile">Member of</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link font-weight-bold" href="/settings/security">Guildmaster of</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link d-none" href="/settings/notifications">Notifications</a>
-        </li>
-      </ul>
-
-</div>
-
-<div class="row row-cols-1 row-cols-md-3">
+<div class="row row-cols-1 row-cols-md-3 mt-3">
 
   {% block maincontent %}
   {% endblock %}

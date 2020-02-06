@@ -268,7 +268,6 @@ def my_subs(v):
               ).join(m,
                      m.c.board_id==Board.id,
                      isouter=True)
-        #content=content.filter(s.c.id != None)
         
 
         content=content.filter(or_(s.c.id!=None,
