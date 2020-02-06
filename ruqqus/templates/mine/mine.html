@@ -13,7 +13,8 @@
 {% block navbar %}
 
 <div class="d-flex align-items-center">
-  <div class="text-small font-weight-bold mr-2">Show: </div>
+<div class="font-weight-bold py-3">{% if kind=="guilds" %}Your guilds{% elif kind=="users" %}Your subscriptions{% endif %}</div>
+  <div class="text-small font-weight-bold mr-2">Show</div>
   <div class="dropdown dropdown-actions">
     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       {% if kind=="guilds" %}<i class="fas fa-university mr-1"></i>Guilds{% endif %}
