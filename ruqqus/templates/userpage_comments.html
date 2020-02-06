@@ -65,54 +65,20 @@
 {% endblock %}
 
 {% block postNav %}
-<!-- Desktop -->
-<div class="container-fluid bg-white sticky d-none d-md-block">
-  <div class="row border-bottom">
-    <div class="col">
-      <div class="d-flex">
-        <ul class="nav post-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link text-center" href="/u/{{ u.username}}">
-              <div class="text-small text-muted">Posts</div>
-              <span class="h5 font-weight-bold">{{ u.post_count }}</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-center active" href="/u/{{ u.username}}/comments">
-              <div class="text-small text-muted">Comments</div>
-              <span class="h5 font-weight-bold">{{ u.comment_count }}</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+<div class="row">
+  <div class="col">
+    <div class="flex-row box-shadow-bottom d-flex justify-content-between align-items-center">
+      <ul class="nav settings-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/u/{{ u.username}}">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/u/{{ u.username}}/comments">Comments</a>
+        </li>    
+      </ul>
     </div>
   </div>
 </div>
-<!-- Mobile -->
-<div class="container-fluid bg-white sticky d-md-none">
-  <div class="row border-bottom">
-    <div class="col">
-      <div class="d-flex">
-        <ul class="nav post-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link text-center" href="/u/{{ u.username}}">
-              <div class="text-small text-muted">Posts</div>
-              <span class="font-weight-bold">{{ u.post_count }}</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-center active" href="/u/{{ u.username}}/comments">
-              <div class="text-small text-muted">Comments</div>
-              <span class="font-weight-bold">{{ u.comment_count }}</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
-{% endblock %}
-
 {% block content %}
 
 <div class="row no-gutters">
