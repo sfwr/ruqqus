@@ -19,16 +19,18 @@
 
 {% block desktopUserBanner %}
 <!-- Desktop -->
-<div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-block" style="background-image: url({{ u.banner_url }})">
-  <div class="jumbotron-overlay"></div>
-  <div class="position-absolute w-100" style="bottom: 1rem;">
-    <div class="container-fluid">
-      <div class="d-md-flex text-center text-md-left">
-        <div>
-          <img src="{{ u.profile_url }}" class="guild-icon-square-lg bg-white">
-        </div>
-        <div class="ml-3 w-100">
-          <h1 class="h3 align-middle d-inline-block m-0">{{ u.username }}
+<div class="row d-none d-md-block">
+  <div class="col px-0">
+    <div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-block" style="background-image: url({{ u.banner_url }})">
+      <div class="jumbotron-overlay"></div>
+      <div class="position-absolute w-100" style="bottom: 1rem;">
+        <div class="container-fluid">
+          <div class="d-md-flex text-center text-md-left">
+            <div>
+              <img src="{{ u.profile_url }}" class="guild-icon-square-lg bg-white">
+            </div>
+            <div class="ml-3 w-100">
+              <h1 class="h3 align-middle d-inline-block m-0">{{ u.username }}
 
 	<!--- this comes later
             {% if u.over_18 %}
@@ -88,10 +90,12 @@
   {% endif %}
   {% endif %}
 </div>
-    {% for bp in u.badge_pairs %}
-    {% include "badge_pair.html" %}
-    {% else %}
-    {% endfor %}
+{% for bp in u.badge_pairs %}
+{% include "badge_pair.html" %}
+{% else %}
+{% endfor %}
+</div>
+</div>
 </div>
 </div>
 </div>
