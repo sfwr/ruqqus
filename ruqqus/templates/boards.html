@@ -11,6 +11,7 @@
 
 {% block PseudoSubmitForm %}{% endblock %}
 {% block listcardBlock %}{% endblock %}
+{% block desktopBanner %}{% endblock %}
 
 {% block fixedMobileBarJS %}
 <script>
@@ -84,52 +85,6 @@
       </div>
 
     </div>
-
-    <!-- Post filters bar visible only on medium devices or larger-->
-
-    <div class="flex-row tab-bar sticky d-none">
-
-      <ul class="nav post-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link{% if sort_method=="subs" %} active{% endif %}" href="/browse"><i class="fas fa-users"></i>Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link{% if sort_method=="new" %} active{% endif %}" href="/browse?sort=new"><i class="fas fa-sparkles"></i>New</a>
-        </li>
-      </ul>
-
-      <div>
-        <ul class="nav toggle-view ml-auto">
-          <li class="nav-item" style="">
-            <button class="btn nav-link active pr-3 pb-0 pl-0" id="toggle-list-view-btn" style="box-shadow: none;" onclick="toggle_list_view()">
-              <i class="fas fa-list"></i>List</button>
-            </li>
-            <li class="nav-item" style="">
-              <button class="btn nav-link p-0" style="box-shadow: none;" id="toggle-card-view-btn" onclick="toggle_card_view()">
-                <i class="fas fa-th-large"></i>Card</button>
-              </li>
-            </ul>
-          </div>
-
-          <div class="post-filter pb-2 d-none">
-            <span>Sort By:</span>
-            <span class="dropdown">
-              <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Time
-            </a>
-
-            <span class="dropdown-menu border-0 shadow" aria-labelledby="dropdownMenuLink">
-              <a class="dropdown-item" href="#">Day</a>
-              <a class="dropdown-item" href="#">Month</a>
-              <a class="dropdown-item" href="#">Year</a>
-              <a class="dropdown-item" href="#">All Time</a>
-            </span>
-          </span>
-
-        </div>
-
-      </div>
 
       <div class="row no-gutters">
 
