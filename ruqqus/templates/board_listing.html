@@ -1,6 +1,6 @@
 {% for b in boards %}
 
-<div class="col mb-4">
+<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
   <div id="board-{{ b.base36id }}" class="card h-100">
     <div style="position: relative;"><img src="{{ b.banner_url }}" class="card-img-top" alt="+{{ b.name | safe }} guild banner" style="height: 175px;">
 
