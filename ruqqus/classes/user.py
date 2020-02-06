@@ -227,6 +227,13 @@ class User(Base, Stndrd):
                         )
 
         posts, next_exists = self.list_of_posts(ids)
+        
+        #If page 1, check for sticky
+        if page==1:
+            sticky =[]
+            sticky=db.query(Submission).filter_by(stickied=True).first()
+            if sticky:
+                posts=[sticky]+posts
 
         return render_template("subscriptions.html",
                                v=self,
