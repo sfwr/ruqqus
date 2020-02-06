@@ -87,8 +87,16 @@
       {% include "badge_pair.html" %}
       {% else %}
       {% endfor %}
-    </div>
-  </div>
+
+      <div class="my-auto">
+       {% if v and v.id != u.id %}
+       <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe</a></div>
+       <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe</a></div>
+       {% endif %}
+     </div>
+     
+   </div>
+ </div>
 </div>
 </div>
 </div>
@@ -136,6 +144,7 @@
 {% endblock %}
 
 {% block sidebarblock %}
+<!-- Hide other sidebar content for now
 <div class="sidebar-section sidebar-profile-stats">
  <div class="title">Profile</div>
  <div class="body">
@@ -167,6 +176,7 @@
     {% endfor %}
   </div>
 </div>
+-->
 
 {% endblock %}
 
@@ -201,55 +211,17 @@
 {% endblock %}
 
 {% block postNav %}
-<!-- Desktop -->
-<div class="container-fluid bg-white sticky d-none d-md-block">
-  <div class="row border-bottom">
-    <div class="col">
-      <div class="d-flex">
-        <ul class="nav post-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link text-center active" href="/u/{{ u.username}}">
-              <div class="text-small text-muted">Posts</div>
-              <span class="h5 font-weight-bold">{{ u.post_count }}</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-center" href="/u/{{ u.username}}/comments">
-              <div class="text-small text-muted">Comments</div>
-              <span class="h5 font-weight-bold">{{ u.comment_count }}</span>
-            </a>
-          </li>
-        </ul>
-        <div class="my-auto">
-         {% if v and v.id != u.id %}
-         <div id="button-unsub" {% if not is_following %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Unsubscribe</a></div>
-         <div id="button-sub" {% if is_following %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub').classList.toggle('d-none');document.getElementById('button-sub').classList.toggle('d-none');})">Subscribe</a></div>
-         {% endif %}
-       </div>
-     </div>
-   </div>
- </div>
-</div>
-<!-- Mobile -->
-<div class="container-fluid bg-white sticky d-md-none">
-  <div class="row border-bottom">
-    <div class="col">
-      <div class="d-flex">
-        <ul class="nav post-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link text-center active" href="/u/{{ u.username}}">
-              <div class="text-small text-muted">Posts</div>
-              <span class="font-weight-bold">{{ u.post_count }}</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-center" href="/u/{{ u.username}}/comments">
-              <div class="text-small text-muted">Comments</div>
-              <span class="font-weight-bold">{{ u.comment_count }}</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+<div class="row">
+  <div class="col">
+    <div class="flex-row box-shadow-bottom d-flex justify-content-between align-items-center">
+      <ul class="nav settings-nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/u/{{ u.username}}">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/u/{{ u.username}}/comments">Comments</a>
+        </li>    
+      </ul>
     </div>
   </div>
 </div>
