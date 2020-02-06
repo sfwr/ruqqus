@@ -39,6 +39,39 @@
   {% endblock %}
 
 </div>
+
+<div class="row fixed-top bg-white border-top d-inline-flex d-md-none py-2 px-3" id="fixed-bar-mobile" style="z-index: 100; top: 49px; transition: top 0.3s;">
+
+  <div class="col">
+
+    <div class="d-flex flex-row flex-nowrap justify-content-between">
+
+      <div class="post-filter">
+
+        <div class="d-flex align-items-center">
+
+          <div class="text-small text-uppercase font-weight-bold">Sort by</div>
+
+          <div class="dropdown dropdown-actions">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButtonMobile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% if kind=="guilds" %}<i class="fas fa-university mr-1"></i>Guilds{% endif %}
+              {% if kind=="users" %}<i class="fas fa-user mr-1"></i>Users{% endif %}
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButtonMobile" x-placement="bottom-start" style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 31px, 0px);">
+              {% if not kind=="guilds" %}<a class="dropdown-item" href="?kind=guilds"><i class="fas fa-university mr-2"></i>Guilds</a>{% endif %}
+              {% if not kind=="users" %}<a class="dropdown-item" href="?kind=users"><i class="fas fa-user mr-2"></i>Users</a>{% endif %}
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 {% endblock %}
 
 {% block pagenav %}
