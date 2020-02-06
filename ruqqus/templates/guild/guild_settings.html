@@ -50,7 +50,11 @@
           <div class="row">
             <div class="col">
               <span class="post-meta-guild font-weight-bold">
-                <a href="/+{{ b.name }}" class="text-black"><img src="{{ b.profile_url }}" class="profile-pic-20 align-top mr-1">+{{ b.name }}</a> 
+              {% if b %}
+                <a href="/+{{ b.name }}" class="text-black"><img src="{{ b.profile_url }}" class="profile-pic-20 align-top mr-1">+{{ b.name }}</a>
+              {% else %}
+              Moderation
+              {% endif %}
               </span>
             </div>
           </div>
