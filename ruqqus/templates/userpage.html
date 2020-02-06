@@ -32,13 +32,13 @@
             <div class="ml-3 w-100">
               <div class="d-flex align-items-center mb-2">
                 <h1 class="h3">{{ u.username }}</h1>
+                {% if u.admin_level %}
                 <span>
-                  {% if u.admin_level %}
                   <i class="fad fa-shield text-admin align-middle ml-1" data-toggle="tooltip" data-placement="bottom" title="Admin"></i>
-                  {% endif %}
-                  {% if u.real_id %}<span class="badge badge-pill text-white badge-info">{{ u.real_id }}</span>
-                  {% endif %}
                 </span>
+                {% endif %}
+                {% if u.real_id %}<span class="badge badge-pill text-white badge-info">{{ u.real_id }}</span>
+                {% endif %}
                 {% if v and v.has_follower(u) %}
                 <span class="badge badge-secondary text-small align-middle ml-2">Follows you</span>
                 {% endif %}
