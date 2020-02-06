@@ -11,6 +11,12 @@
 <meta name="description" content="on Ruqqus">
 {% endblock %}
 
+<!-- Left Sidebar (navigation-purposes, hidden on devices smaller than "large") -->
+
+{% block leftSidebarBlock %}
+{% include "sidebar-left.html" %}
+{% endblock %}
+
 {% block desktopUserBanner %}
 <!-- Desktop -->
 <div class="jumbotron jumbotron-fluid jumbotron-guild text-white d-none d-md-block" style="background-image: url({{ u.banner_url }})">
