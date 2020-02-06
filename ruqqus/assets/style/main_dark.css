@@ -14405,18 +14405,18 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-color: #35363e;
 }
 
-#frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type {
+#frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type, #settings-guild .posts .card:first-of-type {
   border-top-left-radius: 0.35rem;
   border-top-right-radius: 0.35rem;
 }
 
-#frontpage .posts .card:last-of-type, #userpage .posts .card:last-of-type, #search .posts .card:last-of-type, #guild .posts .card:last-of-type {
+#frontpage .posts .card:last-of-type, #userpage .posts .card:last-of-type, #search .posts .card:last-of-type, #guild .posts .card:last-of-type, #settings-guild .posts .card:last-of-type {
   border-bottom-left-radius: 0.35rem;
   border-bottom-right-radius: 0.35rem;
   border-bottom: 1px solid #494a4e;
 }
 
-#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card {
+#frontpage .posts .card, #userpage .posts .card, #search .posts .card, #guild .posts .card, #settings-guild .posts .card {
   border-width: 1px 1px 0 1px;
   border-color: #494a4e;
   border-style: solid;
@@ -14424,7 +14424,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   padding: 0.5rem;
 }
 
-#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover, #guild .posts .card:hover {
+#frontpage .posts .card:hover, #userpage .posts .card:hover, #search .posts .card:hover, #guild .posts .card:hover, #settings-guild .posts .card:hover {
   background-color: #3f404a;
 }
 
@@ -16254,7 +16254,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .navbar-nav .nav-link, .navbar-expand-md .navbar-nav .nav-link {
     padding: 0.5rem;
-    font-size: 1.25rem;
   }
 
   .navbar-dark .navbar-nav .nav-link:hover {
@@ -16273,7 +16272,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .navbar-light .navbar-nav .nav-link .fa, .navbar-light .navbar-nav .nav-link .fas, .navbar-light .navbar-nav .nav-link .far, .navbar-light .navbar-nav .nav-link .fab {
     color: #805AD5;
-    font-size: inherit;
+    font-size: 1.25rem;
   }
 
   #fixed-bar-mobile {
