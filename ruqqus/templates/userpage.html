@@ -88,6 +88,10 @@
   {% endif %}
   {% endif %}
 </div>
+    {% for bp in u.badge_pairs %}
+    {% include "badge_pair.html" %}
+    {% else %}
+    {% endfor %}
 </div>
 </div>
 </div>
@@ -227,7 +231,7 @@
      </div>
    </div>
  </div>
- </div>
+</div>
 <!-- Mobile -->
 <div class="container-fluid bg-white sticky d-md-none">
   <div class="row border-bottom">
