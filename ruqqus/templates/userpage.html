@@ -86,8 +86,8 @@
           {% endif %}
           {% endif %}
         </div>
-        {% for bp in u.badge_pairs %}
-        {% include "badge_pair.html" %}
+        {% for b in u.badges %}
+        {% include "badge.html" %}
         {% else %}
         {% endfor %}
 
@@ -171,11 +171,10 @@
 <div class="sidebar-section sidebar-profile-badges">
   <div class="title">Badges</div>
   <div class="body">
-    {% for bp in u.badge_pairs %}
-    {% include "badge_pair.html" %}
+    {% for b in u.badges %}
+    {% include "badge.html" %}
     {% else %}
     <p class="text-small text-muted">Nothing yet!</p>
-
     {% endfor %}
   </div>
 </div>
