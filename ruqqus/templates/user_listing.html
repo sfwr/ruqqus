@@ -1,29 +1,25 @@
+
 {% for u in users %}
 
-<div id="board-{{ u.base36id }}" class="card">
-  <div class="d-flex flex-row-reverse flex-nowrap justify-content-end">
-    <div class="card-header bg-transparent border-0 d-flex flex-row flex-nowrap p-0 my-md-auto pl-3 ml-auto">
+<div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+  <div id="user-{{ u.base36id }}" class="card h-100">
+    <div style="position: relative;"><img src="{{ u.banner_url }}" class="card-img-top" alt="@{{ u.username | safe }} guild banner" style="height: 175px; object-fit: cover">
 
-           <div id="button-sub-{{ u.base36id }}" style="z-index: 2" class="{% if u.has_follower(v) %}d-none{% endif %}"><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Subscribe</a></div>
-           <div id="button-unsub-{{ u.base36id }}" style="z-index: 2" class="{% if not u.has_follower(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Unsubscribe</a></div>
+      <img src="{{ u.profile_url }}" class="profile-pic-50 border-3 border-white" style="position: absolute; left: 15px; bottom: 15px; box-sizing: content-box;"></div>
+      <div class="card-body" style="word-wrap: break-word;">
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-3">
 
+          <a class="card-title stretched-link h5 mb-0" href="{{ u.permalink }}">@{{ b.name | safe }}</a>
 
+          <div id="button-sub-{{ u.base36id }}" style="z-index: 2" class="{% if u.has_follower(v) %}d-none{% endif %}"><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="post('/api/follow/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Subscribe</a></div>
+          <div id="button-unsub-{{ u.base36id }}" style="z-index: 2" class="{% if not u.has_follower(v) %} d-none{% endif %}"><a class="btn btn-secondary btn-sm" href="javascript:void(0)" onclick="post('/api/unfollow/{{ u.username }}', callback=function(){document.getElementById('button-unsub-{{ u.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ u.base36id }}').classList.toggle('d-none');})">Unsubscribe</a></div>
+
+        </div>
+        <p class="card-text">{{ u.bio_html | safe }}</p>
+      </div>
+      <div class="card-footer bg-white border-0">
+        <div class="text-small text-muted"><i class="fas fa-users text-gray-500 mr-2"></i>{{ u.follower_count }} Follower{{ 's' if u.follower_count != 1 else '' }}</div>
+      </div>
     </div>
-
-<div class="card-block text-left x-scroll-parent my-md-auto">
-  <div class="post-meta text-left x-scroll d-block d-md-none mb-2">{% if u.over_18 %}<span class="badge badge-danger">NSFW</span> &#183; {% endif %}{{ u.follower_count }} Member{{ 's' if u.follower_count != 1 else '' }}
   </div>
-  <h5 class="card-title post-title text-left mb-0 mb-md-2"><a href="{{ u.permalink }}" class="stretched-link text-primary">+{{ u.username | safe }}</a></h5>
-  <div class="post-meta text-left d-none d-md-block">{{ u.follower_count }} Member{{ 's' if u.follower_count != 1 else '' }}
-  
-  </div>
-<div class="body text-left">{{ u.description }}</div>
-</div>
-<div class="card-block bg-transparent border-0 d-flex flex-nowrap p-0 my-md-auto pr-3">
-    <img src="{{ u.profile_url }}" class="profile-pic-75">
-   </div>
-
-</div>
-</div>
-
-{% endfor %}
+  {% endfor %}
