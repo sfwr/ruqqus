@@ -13199,6 +13199,7 @@ ol > li::before {
 }
 
 #page .navbar-light .navbar-nav .nav-link:hover {
+  background-color: transparent;
   color: #805AD5;
 }
 
@@ -15324,6 +15325,7 @@ ul.comment-section {
 
 #page .footer a, #article .footer a {
   color: #805AD5;
+  opacity: 0.8;
 }
 
 #page .footer li, #article .footer li {
