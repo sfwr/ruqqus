@@ -9096,7 +9096,7 @@ button.bg-reddit:focus {
 }
 
 .shadow-lg {
-  box-shadow: 0 1rem 3rem rgba(18, 18, 19, 0.175) !important;
+  box-shadow: 0 8px 20px 0 rgba(18, 18, 19, 0.1) !important;
 }
 
 .shadow-none {
