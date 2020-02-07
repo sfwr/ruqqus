@@ -136,7 +136,7 @@
           {% endif %}
 
           {% if p.board.has_mod(v) %}
-          <li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}else{window.location.reload(true);}})"><i class="fas fa-times text-danger"></i>Kick</a></li>
+          <li class="list-inline-item"><a class="text-danger" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}else{window.location.href='{{ p.permalink }}';}})"><i class="fas fa-times text-danger"></i>Kick</a></li>
           {% if p.report_count >= 1 %}
           <li class="list-inline-item"><a class="text-success" href="javascript:void(0)" onclick="post('/mod/accept/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}})"><i class="fas fa-check text-success"></i>Approve</a></li>
           {% endif %}
