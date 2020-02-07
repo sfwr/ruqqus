@@ -10,7 +10,7 @@ $black: #cfcfcf;
 $light: #35363e;
 $success: #38A169;
 $muted: #8c8d94;
-$info: #4299E1;
+$info: #168EEA;
 
 $purple: #805AD5;
 $red:  #E53E3E;
@@ -346,7 +346,7 @@ ol > li::before {
 }
 
 .btn-lg {
-    font-size: $font-size-lg;
+    font-size: $font-size-base;
 }
 
 .btn-secondary {
