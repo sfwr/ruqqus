@@ -477,6 +477,7 @@ ol > li::before {
 }
 
 #page .navbar-light .navbar-nav .nav-link:hover {
+    background-color: transparent;
     color: $primary;
 }
 
