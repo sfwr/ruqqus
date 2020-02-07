@@ -86,8 +86,8 @@
           {% endif %}
           {% endif %}
         </div>
-        {% for bp in u.badge_pairs %}
-        {% include "badge_pair.html" %}
+        {% for b in u.badges %}
+        {% include "badge.html" %}
         {% else %}
         {% endfor %}
 
