@@ -190,7 +190,7 @@
           {% if v and v.id==p.author_id %}
           <li class="list-group-item"><a href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a></li>
 
-          <li class="list-group-item"><a href="javascript:void(0)" onclick="post('/delete_post/{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
+          <li class="list-group-item"><a href="javascript:void(0)" onclick="delete_postModal('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
           {% endif %}
           {% if v and v.mods_anything and p.board.name == 'general' %}
           <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#yankPostModal" onclick="yank_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.comment_count }}','{{ p.score_percent }}','{{ p.thumb_url }}','{{ p.title | escape }}','{{ p.author.permalink }}','{{ p.domain | escape }}','{{ p.age_string }}')" class="d-block"><i class="fas fa-hand-lizard"></i>Yank</a></li>
@@ -298,7 +298,7 @@
                     {% if v and v.id==p.author_id %}
                     <li class="list-inline-item"><a href="javascript:void(0)" onclick="togglePostEdit()"><i class="fas fa-edit"></i>Edit</a></li>
 
-                    <li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/delete_post/{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0)" onclick="delete_postModal('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
                     {% endif %}
 
                     {% if v %}
