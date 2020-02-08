@@ -1,6 +1,6 @@
 // Yank Post
 
-yank_postModal = function(id, author, comments, points, thumb, title, author_link, domain, timestamp) {
+yank_postModal = function(id, author, comments, points, title, author_link, domain, timestamp) {
 
   // Passed data for modal
 
@@ -10,7 +10,7 @@ yank_postModal = function(id, author, comments, points, thumb, title, author_lin
 
   document.getElementById("post-points").textContent = points;
 
-  document.getElementById("post-thumb").src = thumb;
+  // document.getElementById("post-thumb").src = thumb;
 
   document.getElementById("post-title").textContent = title;
 
@@ -29,15 +29,19 @@ yank_postModal = function(id, author, comments, points, thumb, title, author_lin
     document.getElementById("yank-post-form").submit();
   }
 
+/* 
+
   // If not thumbnail exists, remove div that contains img tag
 
   if (thumb == "None" || thumb == null) {
      document.getElementById("post-thumb").classList.toggle("d-none");
   }
 
+  */
+
 };
 
-$('yankPostModal').on('hidden.bs.modal', function () {
+/* $('yankPostModal').on('hidden.bs.modal', function () {
 
   var thumb = document.getElementById("post-thumb");
   
@@ -46,3 +50,5 @@ $('yankPostModal').on('hidden.bs.modal', function () {
   }
 
 });
+*/
+
