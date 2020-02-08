@@ -31,7 +31,7 @@ yank_postModal = function(id, author, comments, points, thumb, title, author_lin
 
   // If not thumbnail exists, remove div that contains img tag
 
-  if (thumb == null) {
+  if (thumb == "None" or thumb == null) {
      document.getElementById("post-thumb").classList.toggle("d-none");
   }
 
