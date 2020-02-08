@@ -13873,7 +13873,7 @@ a:hover .link-arrow {
   flex: 0 0 300px;
 }
 
-.sidebar h1, h2, h3, h4, h5, h6 {
+.sidebar h1, .sidebar h2, .sidebar h3, .sidebar h4, .sidebar h5, .sidebar h6 {
   margin-bottom: 1rem;
 }
 
@@ -15352,7 +15352,7 @@ ul.comment-section {
 }
 
 #page .footer a, #article .footer a {
-  color: #805AD5;
+  color: #FFFFFF;
   opacity: 0.8;
 }
 
@@ -16155,7 +16155,7 @@ pre ol > li {
 pre ol > li::before {
   color: #FFFFFF;
   font-weight: 400;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: transparent;
   right: 1rem;
   padding: 0.25rem;
   text-align: right;
