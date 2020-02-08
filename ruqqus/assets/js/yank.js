@@ -41,7 +41,7 @@ $('yankPostModal').on('hidden.bs.modal', function () {
 
   var thumb = document.getElementById("post-thumb");
   
-  if (thumb.classList.contains(d-none)) {
+  if (thumb.classList.contains("d-none")) {
       thumb.classList.toggle("d-none");
   }
 
