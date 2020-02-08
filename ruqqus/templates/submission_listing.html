@@ -129,6 +129,10 @@
           <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.board.name }}')"><i class="fas fa-flag"></i>Flag</a></li>
           {% endif %}
 
+          {% if v and v.id==p.author_id %}
+          <li class="list-group-item"><a href="javascript:void(0)" onclick="post('/delete_post/{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
+          {% endif %}
+
           {% if v %}
 
           {% if v.mods_anything and p.board.name == 'general' %}
@@ -232,6 +236,9 @@
             <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
             {% if v and not v.id==p.author_id %}
             <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.board.name }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
+            {% endif %}
+            {% if v and v.id==p.author_id %}
+            <li class="list-group-item"><a href="javascript:void(0)" onclick="post('/delete_post/{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
             {% endif %}
             {% if v and v.mods_anything and p.board.name == 'general' %}
             <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#yankPostModal" onclick="yank_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.comment_count }}','{{ p.score_percent }}','{{ p.title | escape }}','{{ p.author.permalink }}','{{ p.domain | escape }}', '{{ p.age_string }}')" class="d-block"><i class="fas fa-hand-lizard"></i>Yank</a></li>
