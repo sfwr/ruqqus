@@ -10,8 +10,6 @@ yank_postModal = function(id, author, comments, points, title, author_link, doma
 
   document.getElementById("post-points").textContent = points;
 
-  // document.getElementById("post-thumb").src = thumb;
-
   document.getElementById("post-title").textContent = title;
 
   document.getElementById("post-author-url").href = author_link;
@@ -29,26 +27,5 @@ yank_postModal = function(id, author, comments, points, title, author_link, doma
     document.getElementById("yank-post-form").submit();
   }
 
-/* 
-
-  // If not thumbnail exists, remove div that contains img tag
-
-  if (thumb == "None" || thumb == null) {
-     document.getElementById("post-thumb").classList.toggle("d-none");
-  }
-
-  */
-
 };
-
-/* $('yankPostModal').on('hidden.bs.modal', function () {
-
-  var thumb = document.getElementById("post-thumb");
-  
-  if (thumb.classList.contains("d-none")) {
-      thumb.classList.toggle("d-none");
-  }
-
-});
-*/
 
