@@ -74,15 +74,15 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None):
 
         
     if sort=="hot":
-        posts=posts.order_by(text("submissions.score_hot desc"))
+        posts=posts.order_by(Submission.score_hot.desc)))
     elif sort=="new":
         posts=posts.order_by(Submission.created_utc.desc())
     elif sort=="disputed":
-        posts=posts.order_by(text("submissions.score_disputed desc"))
+        posts=posts.order_by(Submission.score_disputed.desc())
     elif sort=="top":
-        posts=posts.order_by(text("submissions.score_top desc"))
+        posts=posts.order_by(Submission.score_top.desc())
     elif sort=="activity":
-        posts=posts.order_by(text("submissions.score_activity desc"))
+        posts=posts.order_by(Submission.score_activity.desc())
     else:
         abort(422)
 
@@ -180,11 +180,11 @@ def guild_ids(sort="subs", page=1, nsfw=False):
         guilds=guilds.filter_by(over_18=False)
 
     if sort=="subs":
-        guilds=guilds.order_by(text("boards.subscriber_count desc"))
+        guilds=guilds.order_by(Board.subscriber_count.desc())
     elif sort=="new":
-        guilds=guilds.order_by(text("boards.created_utc desc"))
+        guilds=guilds.order_by(Board.created_utc,desc())
     elif sort=="trending":
-        guilds=guilds.order_by(text("boards.trending_rank desc"))
+        guilds=guilds.order_by(Board.trending_rank.desc())
 
     else:
         abort(422)
