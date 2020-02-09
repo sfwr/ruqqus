@@ -22,7 +22,7 @@ def api_vote_post(post_id, x, v):
 
     post = get_post(post_id)
 
-    if post.is_banned:
+    if post.is_banned or post.is_deleted:
         abort(403)
 
     if x==-1 and post.board.downvotes_disabled:
@@ -57,7 +57,7 @@ def api_vote_comment(comment_id, x, v):
 
     comment = get_comment(comment_id)
 
-    if comment.is_banned:
+    if comment.is_banned or comment.is_deleted:
         abort(403)
 
     if x==-1 and comment.board.downvotes_disabled:

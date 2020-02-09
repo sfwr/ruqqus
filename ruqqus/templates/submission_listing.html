@@ -129,7 +129,7 @@
           <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.board.name }}')"><i class="fas fa-flag"></i>Flag</a></li>
           {% endif %}
 
-          {% if v and v.id==p.author_id %}
+          {% if v and v.id==p.author_id and not p.is_deleted %}
           <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#deletePostModal" onclick="delete_postModal('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
           {% endif %}
 
@@ -237,7 +237,7 @@
             {% if v and not v.id==p.author_id %}
             <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.board.name }}')" class="d-block"><i class="fas fa-flag"></i>Flag</a></li>
             {% endif %}
-            {% if v and v.id==p.author_id %}
+            {% if v and v.id==p.author_id and not p.is_deleted %}
             <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-target="#deletePostModal" onclick="post('/delete_post/{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
             {% endif %}
             {% if v and v.mods_anything and p.board.name == 'general' %}
