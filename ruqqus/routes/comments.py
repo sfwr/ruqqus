@@ -84,7 +84,7 @@ def api_comment(v):
                                badlinks=[x.domain for x in bans],
                                body=body,
                                v=v
-                               )
+                               ), 422
 
     #check existing
     existing=db.query(Comment).filter_by(author_id=v.id,
