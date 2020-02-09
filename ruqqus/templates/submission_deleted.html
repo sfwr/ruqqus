@@ -124,7 +124,7 @@
 
         <div class="card-block w-100 my-md-auto">
 
-          <div class="post-meta text-left d-none d-md-block mb-md-2"><span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.created_date }}">{{ p.age_string }}</span> by [deleted] · ({{ p.domain }}){% if not p.is_public %} · <i class="fas fa-eye-slash text-warning" data-toggle="tooltip" data-placement="bottom" title="Private post, visible because {{ p.visibility_reason(v) }}"></i>{% endif %}{% if p.edited_utc %} · Edited <span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ edited_date }}">{{ p.edited_string }}</span>{% endif %}{% if p.over_18 %} · <span class="badge badge-danger text-small-extra">nsfw</span>{% endif %}{% if p.thumb_url %} · <span id="score-percent">{{ p.score_percent }}% upvoted</span>{% endif %}</div>
+          <div class="post-meta text-left d-none d-md-block mb-md-2"><span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.created_date }}">{{ p.age_string }}</span> by [deleted by user] · ({{ p.domain }}){% if not p.is_public %} · <i class="fas fa-eye-slash text-warning" data-toggle="tooltip" data-placement="bottom" title="Private post, visible because {{ p.visibility_reason(v) }}"></i>{% endif %}{% if p.edited_utc %} · Edited <span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ edited_date }}">{{ p.edited_string }}</span>{% endif %}{% if p.over_18 %} · <span class="badge badge-danger text-small-extra">nsfw</span>{% endif %}{% if p.thumb_url %} · <span id="score-percent">{{ p.score_percent }}% upvoted</span>{% endif %}</div>
 
           {% if p.url %}
           <h1 class="card-title post-title text-left mb-md-3"><a target="_blank" href="{{ p.url }}">{{ p.title | safe }}</a></h1>
@@ -132,28 +132,8 @@
           <h1 class="card-title post-title text-left mb-md-3">{{ p.title | safe }}</h1>
           {% endif %}
 
-          <div class="post-meta text-left d-block d-md-none mb-3">{% if p.over_18 %}<span class="text-danger"><i class="far fa-exclamation-triangle text-small mr-1"></i>nsfw</span> · {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.created_date }}">{{ p.age_string }}</span> by [deleted]{% if p.edited_utc %} · Edited <span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ edited_date }}">{{ p.edited_string }}</span>{% endif %}</div>
+          <div class="post-meta text-left d-block d-md-none mb-3">{% if p.over_18 %}<span class="text-danger"><i class="far fa-exclamation-triangle text-small mr-1"></i>nsfw</span> · {% endif %}<span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ p.created_date }}">{{ p.age_string }}</span> by [deleted by user]{% if p.edited_utc %} · Edited <span data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="{{ edited_date }}">{{ p.edited_string }}</span>{% endif %}</div>
 
-          <div id="post-body" class="post-body mt-3">
-
-            {% if p.url and not p.embed_url and not p.is_image %}
-            <a href="{{ p.url }}" target="_blank">
-              <div class="d-flex d-md-none justify-content-between align-items-center border rounded p-2{% if p.body_html %} mb-3{% endif %}">
-                <span>{{ p.domain|truncate(30, True) }}</span>
-                <i class="fas fa-external-link-alt text-small"></i>
-              </div>
-            </a>
-            {% endif %}
-
-            {{ p.body_html | safe }}
-
-            {% if p.embed_url %}
-            <div class="embed-responsive embed-responsive-16by9 mb-3">
-              <iframe src="{{ p.embed_url }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-            {% endif %}
-
-          </div>
 
               <div class="d-none d-md-flex justify-content-between align-items-center mt-2">
                 <div class="post-actions mt-2">
