@@ -42,7 +42,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     original_board_id=Column(Integer, ForeignKey("boards.id"), default=None)
     over_18=Column(Boolean, default=False)
-    original_board=relationship("Board", uselist=False, primaryjoin="Board.id==Submission.original_board_id")
+    original_board=relationship("Board", lazy="subquery", primaryjoin="Board.id==Submission.original_board_id")
     ban_reason=Column(String(128), default="")
     creation_ip=Column(String(64), default="")
     mod_approved=Column(Integer, default=None)
