@@ -40,6 +40,13 @@
 {% endif %}
 {% endblock %}
 
+{% block sidebarblock %}
+   <div class="sidebar-section sidebar-info">
+    <div class="title"><i class="fas fa-info mr-2"></i>Share Post</div>
+    <div class="body">Shortlink: <input readonly="readonly" value="https://ruqq.us/{{ p.base36id }}" data-clipboard-text="https://ruqq.us/{{ p.base36id }}"></div>
+  </div>
+{% endblock %}
+
 {% set score=p.score_fuzzed %}
 {% if v %}
 {% set voted=v.vote_status_on_post(p) %}
@@ -524,8 +531,8 @@
 
 {% include "delete_comment_modal.html" %}
 
-  {% endblock %}
+{% endblock %}
 
-  {% block guildModal %}
-  {% include "guild_details_modal.html" %}
-  {% endblock %}
+{% block guildModal %}
+{% include "guild_details_modal.html" %}
+{% endblock %}
