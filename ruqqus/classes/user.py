@@ -169,15 +169,15 @@ class User(Base, Stndrd):
             
 
         if sort=="hot":
-            posts=posts.order_by(text("submissions.score_hot desc"))
+            posts=posts.order_by(Submission.score_hot.desc())
         elif sort=="new":
             posts=posts.order_by(Submission.created_utc.desc())
         elif sort=="disputed":
-            posts=posts.order_by(text("submissions.score_disputed desc"))
+            posts=posts.order_by(Submission.score_disputed.desc())
         elif sort=="top":
-            posts=posts.order_by(text("submissions.score_top desc"))
+            posts=posts.order_by(Submission.score_topdesc())
         elif sort=="activity":
-            posts=posts.order_by(text("submissions.score_activity desc"))
+            posts=posts.order_by(Submission.score_activity.desc())
         else:
             abort(422)
 
