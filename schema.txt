@@ -38,7 +38,10 @@ CREATE TABLE public.comments (
     ip character varying(64),
     approved_utc integer DEFAULT 0,
     ban_reason character varying(128) DEFAULT ''::character varying,
-    creation_ip character varying(64) DEFAULT ''::character varying NOT NULL
+    creation_ip character varying(64) DEFAULT ''::character varying NOT NULL,
+    score_disputed double precision DEFAULT 0,
+    score_hot double precision DEFAULT 0,
+    score_top integer DEFAULT 0
 );
 
 
@@ -135,7 +138,9 @@ CREATE TABLE public.users (
     is_nsfw boolean DEFAULT false NOT NULL,
     tos_agreed_utc integer DEFAULT 0,
     profile_nonce integer DEFAULT 0 NOT NULL,
-    banner_nonce integer DEFAULT 0 NOT NULL
+    banner_nonce integer DEFAULT 0 NOT NULL,
+    last_siege_utc integer DEFAULT 0,
+    mfa_secret character varying(32) DEFAULT NULL::character varying
 );
 
 
@@ -216,7 +221,6 @@ CREATE FUNCTION public.comment_energy(public.users) RETURNS numeric
       FROM comments
       WHERE comments.author_id=$1.id
         AND comments.is_banned=false
-        AND comments.is_deleted=false
       ),
       0
       )
@@ -294,7 +298,6 @@ CREATE FUNCTION public.energy(public.users) RETURNS numeric
       FROM submissions
       WHERE submissions.author_id=$1.id
         AND submissions.is_banned=false
-        AND submissions.is_deleted=false
       ),
       0
       )
@@ -1453,77 +1456,6 @@ CREATE SEQUENCE public.votes_id_seq
 --
 
 ALTER SEQUENCE public.votes_id_seq OWNED BY public.votes.id;
-
-
---
--- Name: x; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.x (
-    id integer,
-    username character varying(255),
-    email character varying(255),
-    passhash character varying(255),
-    created_utc integer,
-    admin_level integer,
-    over_18 boolean,
-    creation_ip character varying(255),
-    most_recent_ip character varying(255),
-    is_activated boolean,
-    reddit_username character varying(64),
-    bio character varying(256),
-    bio_html character varying(300),
-    real_id character varying,
-    referred_by integer,
-    is_banned integer,
-    ban_reason character varying(128),
-    ban_state integer,
-    login_nonce integer,
-    title_id integer,
-    has_banner boolean,
-    has_profile boolean,
-    reserved character varying(256),
-    is_nsfw boolean,
-    tos_agreed_utc integer,
-    profile_nonce integer,
-    banner_nonce integer
-);
-
-
---
--- Name: y; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.y (
-    id integer,
-    author_id integer,
-    title character varying(255),
-    url character varying(255),
-    created_utc integer,
-    is_banned boolean,
-    over_18 boolean,
-    distinguish_level integer,
-    created_str character varying(255),
-    stickied boolean,
-    body character varying(5000),
-    body_html character varying(6000),
-    board_id integer,
-    embed_url character varying(256),
-    is_deleted boolean,
-    domain_ref integer,
-    is_approved integer,
-    ip character varying(64),
-    approved_utc integer,
-    original_board_id integer,
-    edited_utc integer,
-    ban_reason character varying(128),
-    creation_ip character varying(64),
-    mod_approved integer,
-    is_image boolean,
-    has_thumb boolean,
-    accepted_utc integer,
-    is_public boolean
-);
 
 
 --
