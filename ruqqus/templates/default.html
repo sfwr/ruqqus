@@ -349,21 +349,7 @@
         <div class="h5 text-gray-500">Cool features coming here soon!</div>
       </div>
 
-      <div class="sticky-63">
-        <ul class="list-inline text-center text-small mb-0">
-          <li class="list-inline-item"><a href="/help/about" class="text-gray-500">About</a></li>
-          <li class="list-inline-item d-none"><a href="mailto:hello@ruqqus.com" class="text-gray-500">Contact</a></li>
-          <li class="list-inline-item"><a href="/help/terms" class="text-gray-500">Terms</a></li>
-          <li class="list-inline-item"><a href="/help/privacy" class="text-gray-500">Privacy Policy</a></li>
-          <li class="list-inline-item"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LXJULS6HWDKQG&amp;source=url" class="text-gray-500">Donate</a></li>
-          <li class="list-inline-item"><a href="/help/press" class="text-gray-500">Press</a></li>
-          <li class="list-inline-item"><a href="/help" class="text-gray-500">Help</a></li>
-          <li class="list-inline-item"><a href="https://www.twitter.com/ruqqus" class="text-gray-500">Twitter</a></li>
-          <li class="list-inline-item"><a href="https://ruqqus.org/contribute" class="text-gray-500">Github</a></li>
-          <li class="list-inline-item"><span class="text-muted">© 2020 Ruqqus, LLC</span></li>
-        </ul>
-      </div>
-      {% endblock %}
+       {% endblock %}
 
       {% if v and v.referral_count==0 %}
       <div class="sidebar-section sidebar-dark-promo text-white bg-black d-none">
@@ -386,19 +372,22 @@
    </div>
    {% endif %}
 
-   {% if v %}
-   {% if v.admin_level %}
-   <div class="sidebar-section sidebar-adminpanel">
-    <div class="title"><i class="fas fa-user-shield mr-2"></i>Admin Panel</div>
-    <div class="body">
-      {% block adminpanel %}
-      <div class="text-center mb-2" style=""><i class="fad fa-ghost text-muted" style="font-size: 2.5rem"></i></div>
-      <p class="text-center text-small text-muted mb-0">No admin actions available</p>
-      {% endblock %}
-    </div>
-  </div>
+
   {% endif %}
-  {% endif %}
+<div class="sticky-63">
+        <ul class="list-inline text-center text-small mb-0">
+          <li class="list-inline-item"><a href="/help/about" class="text-gray-500">About</a></li>
+          <li class="list-inline-item"><a href="/help/terms" class="text-gray-500">Terms</a></li>
+          <li class="list-inline-item"><a href="/help/privacy" class="text-gray-500">Privacy Policy</a></li>
+          <li class="list-inline-item"><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=LXJULS6HWDKQG&amp;source=url" class="text-gray-500">Donate</a></li>
+          <li class="list-inline-item"><a href="/help/press" class="text-gray-500">Press</a></li>
+          <li class="list-inline-item"><a href="/help" class="text-gray-500">Help</a></li>
+          <li class="list-inline-item"><a href="https://www.twitter.com/ruqqus" class="text-gray-500">Twitter</a></li>
+          <li class="list-inline-item"><a href="https://github.com/ruqqus/ruqqus" class="text-gray-500">Github</a></li>
+          <li class="list-inline-item"><span class="text-muted">© 2020 Ruqqus, LLC</span></li>
+        </ul>
+      </div>
+     
 </div>
 {% endblock %}
 </div>
