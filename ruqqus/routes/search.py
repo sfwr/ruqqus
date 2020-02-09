@@ -10,7 +10,7 @@ from ruqqus.__main__ import app, db
 @auth_desired
 def search(v, search_type="posts"):
 
-    query=request.args.get("q").lower()
+    query=request.args.get("q")
     sort=request.args.get("sort", "hot").lower()
 
     page=max(1, int(request.args.get("page", 1)))
@@ -23,7 +23,7 @@ def search(v, search_type="posts"):
     elif search_type == "guilds":
         columns = [Board.description, Board.name, Board.submissions]
 
-    keywords = query.split()
+    keywords = query.lower().split()
     conditions = [func.lower(column).contains(word) for word in keywords for column in columns]
     conditions = tuple(conditions)
     posts = db.query(Submission).filter(or_(*conditions))
