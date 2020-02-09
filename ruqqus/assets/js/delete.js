@@ -8,7 +8,7 @@ delete_postModal = function(id) {
 
     this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Deleting post';  
     this.disabled = true; 
-    post('/mod/take/' + id,
+    post('/delete_post/' + id,
       callback = function() {
 
         location.reload();
