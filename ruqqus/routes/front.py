@@ -74,7 +74,7 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None):
 
         
     if sort=="hot":
-        posts=posts.order_by(Submission.score_hot.desc)))
+        posts=posts.order_by(Submission.score_hot.desc))
     elif sort=="new":
         posts=posts.order_by(Submission.created_utc.desc())
     elif sort=="disputed":
