@@ -175,7 +175,7 @@ class User(Base, Stndrd):
         elif sort=="disputed":
             posts=posts.order_by(Submission.score_disputed.desc())
         elif sort=="top":
-            posts=posts.order_by(Submission.score_topdesc())
+            posts=posts.order_by(Submission.score_top.desc())
         elif sort=="activity":
             posts=posts.order_by(Submission.score_activity.desc())
         else:
