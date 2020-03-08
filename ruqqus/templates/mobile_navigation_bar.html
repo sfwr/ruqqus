@@ -3,27 +3,38 @@
     <div class="row fixed-bottom bg-white border p-2">
 
         <div class="col px-0">
-
-            <div class="text-center text-primary position-relative"><i class="fas fa-home-alt text-lg d-block"></i>
-                <div class="d-inline-block text-small" style="">Home</div>
-            </div>
+            <a href="/">
+                <div class="text-center text-primary">
+                    <i class="fas fa-home-alt text-lg d-block"></i>
+                    <div class="d-inline-block text-small">Home</div>
+                </div>
+            </a>
 
         </div>
         <div class="col px-0">
-            <div class="text-center text-muted"><i class="fas fa-globe-americas text-lg"></i>
-                <div class="text-small">All</div>
-            </div>
+            <a href="/all?sort=new">
+                <div class="text-center text-muted">
+                    <i class="fas fa-globe-americas text-lg"></i>
+                    <div class="text-small">All</div>
+                </div>
+            </a>
         </div>
 
         <div class="col px-0">
-            <div class="text-center text-muted"><i class="fas fa-chess-rook text-lg"></i>
-                <div class="text-small">Guilds</div>
-            </div>
+            {% if v %}<a href="/mine">{% else %}<a href="/login">{% endif %}
+                <div class="text-center text-muted">
+                    <i class="fas fa-chess-rook text-lg"></i>
+                    <div class="text-small">Guilds</div>
+                </div>
+            </a>
         </div>
         <div class="col px-0">
-            <div class="text-center text-muted"><i class="fas fa-compass text-lg"></i>
-                <div class="text-small">Browse</div>
-            </div>
+            <a href="/browse">
+                <div class="text-center text-muted">
+                    <i class="fas fa-compass text-lg"></i>
+                    <div class="text-small">Browse</div>
+                </div>
+            </a>
         </div>
 
     </div>
