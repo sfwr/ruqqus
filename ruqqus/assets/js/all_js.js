@@ -1245,7 +1245,7 @@ window.onload = function () {
     else if (currentScrollPos <= 125) {
       bottomBar.style.bottom = "0px";
     }
-    else if ((window.innerHeight + currentScrollPos) >= document.body.offsetHeight) {
+    else if ((window.innerHeight + currentScrollPos) >= document.body.offsetHeight - 50) {
       bottomBar.style.bottom = "-50px";;
     }
     else {
