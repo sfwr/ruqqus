@@ -1229,12 +1229,22 @@ function charLimit(form, text, button) {
     var prevScrollpos = window.pageYOffset;
     var currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
+      document.getElementById("fixed-bar-mobile").style.top = "49px";
+      document.getElementById("navbar").classList.remove("shadow");
+
       document.getElementById("mobile-bottom-navigation-bar").style.bottom = "0px";
     } 
     else if (currentScrollPos <= 125) {
+      document.getElementById("fixed-bar-mobile").style.top = "49px";
+      document.getElementById("navbar").classList.remove("shadow");
+
       document.getElementById("mobile-bottom-navigation-bar").style.bottom = "0px";
     }
     else {
+      document.getElementById("fixed-bar-mobile").style.top = "-49px";
+      document.getElementById("mobileSortDropdown").classList.remove('show');
+      document.getElementById("navbar").classList.add("shadow");
+      
       document.getElementById("mobile-bottom-navigation-bar").style.bottom = "-55px";
     }
     prevScrollpos = currentScrollPos;
