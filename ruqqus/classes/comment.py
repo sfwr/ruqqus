@@ -214,6 +214,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
                 break
         else:
             self.is_offensive=False
+            db.commit()
             
         
         

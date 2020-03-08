@@ -17,7 +17,7 @@
 </div>
 {% endif %}
 
-<div id="comment-{{ c.base36id }}" class="comment rounded{% if standalone %} mt-0{% endif %}{% if c.is_banned %} banned{% endif %}{% if c.is_deleted %} deleted{% endif %}{% if c.is_offensive %} collapsed{% endif %}">
+<div id="comment-{{ c.base36id }}" class="comment rounded{% if standalone %} mt-0{% endif %}{% if c.is_banned %} banned{% endif %}{% if c.is_deleted %} deleted{% endif %}{% if c.is_offensive and not standalone and (not v or v.id!=c.author_id) %} collapsed{% endif %}">
 
 
   <span class="mr-2 d-block d-md-none"><a href="/@{{ c.author_name }}"><img src="/@{{ c.author_name }}/pic/profile" class="profile-pic-25"></a></span>

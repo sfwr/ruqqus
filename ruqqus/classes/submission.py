@@ -283,3 +283,4 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 break
         else:
             self.is_offensive=False
+            db.commit()
