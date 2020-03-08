@@ -3,7 +3,7 @@
     <div class="row fixed-bottom bg-white border-top p-2" id="mobile-bottom-navigation-bar">
 
         <div class="col px-0">
-            <a href="/" class="text-decoration-none">
+            <a href="/" class="text-decoration-none" role="button">
                 <div class="text-center {% if request.path=='/' %} text-purple{% else %} text-muted{% endif %}">
                     <i class="fas fa-home-alt text-lg d-block"></i>
                     <div class="d-inline-block text-small">Home</div>
@@ -12,7 +12,7 @@
 
         </div>
         <div class="col px-0">
-            <a href="/all?sort=new" class="text-decoration-none">
+            <a href="/all?sort=new" class="text-decoration-none" role="button">
                 <div class="text-center {% if request.path=='/all' %} text-purple{% else %} text-muted{% endif %}">
                     <i class="fas fa-globe-americas text-lg"></i>
                     <div class="text-small">All</div>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="col px-0">
-            {% if v %}<a href="/mine" class="text-decoration-none">{% else %}<a href="/login" class="text-decoration-none">{% endif %}
+            <a href="{% if v %}/mine{% else %}/login{% endif %}" class="text-decoration-none" role="button">
                 <div class="text-center {% if request.path=='/mine' %} text-purple{% else %} text-muted{% endif %}">
                     <i class="fas fa-chess-rook text-lg"></i>
                     <div class="text-small">Guilds</div>
@@ -29,7 +29,7 @@
             </a>
         </div>
         <div class="col px-0">
-            <a href="/browse" class="text-decoration-none">
+            <a href="/browse" class="text-decoration-none" role="button">
                 <div class="text-center {% if request.path=='/browse' %} text-purple{% else %} text-muted{% endif %}">
                     <i class="fas fa-compass text-lg"></i>
                     <div class="text-small">Browse</div>
