@@ -1311,7 +1311,7 @@ color: $dark;
         text-align: center;
     }
     .sidebar-left .collapsed-toggle-parent {
-        display: none;
+        display: none!important;
     }
 }
 

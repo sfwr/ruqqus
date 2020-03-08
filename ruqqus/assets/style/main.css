@@ -14249,7 +14249,7 @@ a:hover .link-arrow {
   }
 
   .sidebar-left .collapsed-toggle-parent {
-    display: none;
+    display: none !important;
   }
 }
 .sidebar.sidebar-left {
