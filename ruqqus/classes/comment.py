@@ -12,6 +12,7 @@ from .submission import Submission
 from .votes import CommentVote
 from .flags import CommentFlag
 from .boards import Board
+from .badwords import *
 
 class Comment(Base, Age_times, Scores, Stndrd):
 
@@ -43,6 +44,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
     title=relationship("Title")
     over_18=Column(Boolean, default=False)
     is_op=Column(Boolean, default=False)
+    is_offensive=Column(Boolean, default=False)
 
     post=relationship("Submission", lazy="subquery")
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
@@ -202,6 +204,17 @@ class Comment(Base, Age_times, Scores, Stndrd):
         a = math.floor(real * (1 - k))
         b = math.ceil(real * (1 + k))
         return random.randint(a, b)
+
+    def determine_offensive(self):
+
+        for x in db.query(BadWord).all():
+            if x.check(self):
+                self.is_offensive=True
+                break
+        else:
+            self.is_offensive=False
+            
+        
         
 class Notification(Base):
 
