@@ -1222,3 +1222,20 @@ function charLimit(form, text, button) {
   text.innerText = maxLength - length;
 
 }
+
+// Mobile bottom navigation bar
+
+  window.onscroll = function () {
+    var prevScrollpos = window.pageYOffset;
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("mobile-bottom-navigation-bar").style.bottom = "55px";
+    } 
+    else if (currentScrollPos <= 125) {
+      document.getElementById("mobile-bottom-navigation-bar").style.bottom = "55px";
+    }
+    else {
+      document.getElementById("mobile-bottom-navigation-bar").style.top = "-55px";
+    }
+    prevScrollpos = currentScrollPos;
+  }
