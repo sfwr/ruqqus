@@ -1225,8 +1225,9 @@ function charLimit(form, text, button) {
 
 // Mobile bottom navigation bar
 
-  window.onscroll = function bottomNav() {
-    var prevScrollpos = window.pageYOffset;
+window.onload = function () {
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
     var currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
       document.getElementById("fixed-bar-mobile").style.top = "49px";
@@ -1244,8 +1245,9 @@ function charLimit(form, text, button) {
       document.getElementById("fixed-bar-mobile").style.top = "-49px";
       document.getElementById("mobileSortDropdown").classList.remove('show');
       document.getElementById("navbar").classList.add("shadow");
-      
+
       document.getElementById("mobile-bottom-navigation-bar").style.bottom = "-55px";
     }
     prevScrollpos = currentScrollPos;
   }
+}
