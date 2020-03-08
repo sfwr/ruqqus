@@ -211,7 +211,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/mine"><i class="fas fa-chess-rook fa-width-rem mr-3"></i>My guilds</a>
+        <a class="nav-link" href="/settings"><i class="fas fa-cog fa-width-rem mr-3"></i>My account</a>
       </li>
 	{% block darkswitchMobile %}
       {% if v and v.referral_count and session.get("dark_mode_enabled")%}
@@ -223,9 +223,6 @@
       {% endif %}
 	{% endblock %}
       <li class="nav-item border-top mt-2 pt-2">
-        <a class="nav-link" href="/settings">Account settings</a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="javascript:void(0)", onclick="post('/logout', callback=function(){window.location.reload(true)})">Log out</a>
       </li>
       <li class="nav-item border-top mt-2 pt-2">
