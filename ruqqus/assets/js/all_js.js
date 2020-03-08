@@ -1235,7 +1235,7 @@ function charLimit(form, text, button) {
       document.getElementById("mobile-bottom-navigation-bar").style.bottom = "55px";
     }
     else {
-      document.getElementById("mobile-bottom-navigation-bar").style.top = "-55px";
+      document.getElementById("mobile-bottom-navigation-bar").style.bottom = "-55px";
     }
     prevScrollpos = currentScrollPos;
   }
