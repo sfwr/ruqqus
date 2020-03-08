@@ -14258,7 +14258,6 @@ a:hover .link-arrow {
   top: 49px;
   z-index: 1000;
   height: 100vh;
-  background-color: #718096 !important;
 }
 
 @media (min-width: 1199.98px) {
