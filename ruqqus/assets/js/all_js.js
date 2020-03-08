@@ -1229,10 +1229,10 @@ function charLimit(form, text, button) {
     var prevScrollpos = window.pageYOffset;
     var currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
-      document.getElementById("mobile-bottom-navigation-bar").style.bottom = "55px";
+      document.getElementById("mobile-bottom-navigation-bar").style.bottom = "0px";
     } 
     else if (currentScrollPos <= 125) {
-      document.getElementById("mobile-bottom-navigation-bar").style.bottom = "55px";
+      document.getElementById("mobile-bottom-navigation-bar").style.bottom = "0px";
     }
     else {
       document.getElementById("mobile-bottom-navigation-bar").style.bottom = "-55px";
