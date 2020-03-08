@@ -1246,7 +1246,7 @@ window.onload = function () {
       bottomBar.style.bottom = "0px";
     }
     else {
-      bottomBar.style.bottom = "-55px";
+      bottomBar.style.bottom = "-50px";
     }
   }
 
