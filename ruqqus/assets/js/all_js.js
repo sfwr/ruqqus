@@ -1245,6 +1245,9 @@ window.onload = function () {
     else if (currentScrollPos <= 125) {
       bottomBar.style.bottom = "0px";
     }
+    else if ((window.innerHeight + currentScrollPos) >= document.body.offsetHeight) {
+      bottomBar.style.bottom = "-50px";;
+    }
     else {
       bottomBar.style.bottom = "-50px";
     }
@@ -1270,3 +1273,11 @@ window.onload = function () {
     prevScrollpos = currentScrollPos;
   }
 }
+
+
+
+window.onscroll = function(ev) {
+    if ((window.innerHeight + window.pageYOffset) >= document.body.offsetHeight) {
+        alert("you're at the bottom of the page");
+    }
+};
