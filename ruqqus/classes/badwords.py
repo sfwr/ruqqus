@@ -12,4 +12,8 @@ class BadWord(Base):
     regex=Column(String(256))
 
     def check(self, text):
-        return bool(re.search(self.regex, text))
+        return bool(re.search(self.regex,
+                              text,
+                              re.IGNORECASE
+                              )
+                    )

@@ -210,6 +210,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
         for x in db.query(BadWord).all():
             if x.check(self.body):
                 self.is_offensive=True
+                db.commit()
                 break
         else:
             self.is_offensive=False

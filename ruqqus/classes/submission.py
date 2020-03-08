@@ -279,6 +279,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         for x in db.query(BadWord).all():
             if x.check(self.body) or x.check(self.title):
                 self.is_offensive=True
+                db.commit()
                 break
         else:
             self.is_offensive=False
