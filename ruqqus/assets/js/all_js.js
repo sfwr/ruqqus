@@ -1225,7 +1225,7 @@ function charLimit(form, text, button) {
 
 // Mobile bottom navigation bar
 
-  window.onscroll = function () {
+  window.onscroll = function bottomNav() {
     var prevScrollpos = window.pageYOffset;
     var currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
