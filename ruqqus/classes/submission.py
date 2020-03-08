@@ -273,4 +273,12 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         elif v.admin_level >= 4:
             return "you are a Ruqqus admin."
 
-        
+
+    def determine_offensive(self):
+
+        for x in db.query(BadWord).all():
+            if x.check(self.body) or x.check(self.title):
+                self.is_offensive=True
+                break
+        else:
+            self.is_offensive=False

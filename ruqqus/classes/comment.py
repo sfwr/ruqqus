@@ -208,7 +208,7 @@ class Comment(Base, Age_times, Scores, Stndrd):
     def determine_offensive(self):
 
         for x in db.query(BadWord).all():
-            if x.check(self):
+            if x.check(self.body):
                 self.is_offensive=True
                 break
         else:

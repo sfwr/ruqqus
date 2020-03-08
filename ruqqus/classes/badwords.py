@@ -9,5 +9,5 @@ class BadWord(Base):
     keyword=Column(String(64))
     regex=Column(String(256))
 
-    def check(self, comment):
-        return bool(re.search(self.regex, comment.body))
+    def check(self, text):
+        return bool(re.search(self.regex, text))
