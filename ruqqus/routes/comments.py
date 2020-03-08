@@ -133,6 +133,8 @@ def api_comment(v):
     db.add(c)
     db.commit()
 
+    c.determine_offensive()
+
     notify_users=set()
 
     #queue up notification for parent author
@@ -208,6 +210,8 @@ def edit_comment(cid, v):
 
     db.add(c)
     db.commit()
+
+    c.determine_offensive()
 
     path=request.form.get("current_page","/")
 
