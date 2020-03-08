@@ -910,19 +910,11 @@ th {
     width: 1.25rem;
 }
 
-.fa-bold:hover {
-    color: $gray;
-}
-
-.fa-italic:hover {
-    color: $gray;
-}
-
-.fa-quote-right:hover {
-    color: $gray;
-}
-
-.fa-link:hover {
+.format .fa-bold:hover,
+.format .fa-italic:hover,
+.format .fa-quote-right:hover,
+.format .fa-link:hover,
+.format .fa-image:hover {
     color: $gray;
 }
 
@@ -1291,7 +1283,38 @@ color: $dark;
     content: "\f347";
 }
 
+@media (max-width: 1199.98px) {
+    .sidebar-left .sidebar-collapsed-hidden {
+        display: none;
+    }
+    .sidebar-left .sidebar-collapsed-visible {
+        display: block;
+    }
+    .sidebar.sidebar-left {
+        flex: 0 0 65px;
+        text-align: center;
+    }
+    .sidebar-left .collapsed-toggle-parent {
+        display: none!important;
+    }
+}
+
 // Sidebar Left
+
+.sidebar.sidebar-left {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 49px;
+    z-index: 1000;
+    height: 100vh;
+}
+
+@media (min-width: 1199.98px) {
+    .sidebar.sidebar-left {
+        -ms-flex: 0 0 240px;
+        flex: 0 0 240px;
+    }
+}
 
 .sidebar-left .sidebar-section {
     border: 0;
@@ -1301,16 +1324,6 @@ color: $dark;
 
 .sidebar.sidebar-left .sidebar-section .body {
     border: 0;
-}
-
-.sidebar.sidebar-left {
-    -ms-flex: 0 0 240px;
-    flex: 0 0 240px;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 49px;
-    z-index: 1000;
-    height: 100vh;
 }
 
 .sidebar-left .sidebar-section.sidebar-filters {
@@ -1832,29 +1845,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 // Modals (post actions, delete confirmations, etc)
-
-// Image expander
-
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) {
-    .desktop-expanded-image-modal .modal-dialog {
-        max-width: 700px;
-    }
-}
-
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) {
-    .desktop-expanded-image-modal .modal-dialog {
-        max-width: 900px;
-    }
-}
-
-// Extra large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) {
-    .desktop-expanded-image-modal .modal-dialog {
-        max-width: 1000px;
-    }
-}
 
 .modal-backdrop.show {
     opacity: 1;
