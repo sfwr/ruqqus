@@ -15,7 +15,6 @@ from ruqqus.__main__ import Base, db, cache
 from .votes import Vote
 from .domains import Domain
 from .flags import Flag
-from .badwords import *
 
 class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
  
@@ -278,7 +277,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     def determine_offensive(self):
 
         for x in db.query(BadWord).all():
-            if x.check(self.body) or x.check(self.title):
+            if (self.body and x.check(self.body)) or x.check(self.title):
                 self.is_offensive=True
                 db.commit()
                 break
