@@ -15,6 +15,7 @@ from ruqqus.__main__ import Base, db, cache
 from .votes import Vote
 from .domains import Domain
 from .flags import Flag
+from .badwords import *
 
 class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
  
