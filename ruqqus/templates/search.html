@@ -105,7 +105,7 @@
 
       <div class="posts" id="posts">
 
-        {% include "submission_listing.html" %}
+        {% block listing_template %}{% include "submission_listing.html" %}{% endblock %}
 
       </div>
     </div>
