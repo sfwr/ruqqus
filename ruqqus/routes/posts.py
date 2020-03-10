@@ -337,6 +337,7 @@ def submit_post(v):
         
         #update post data
         new_post.url=f'https://i.ruqqus.com/{name}'
+        new_post.is_image=True
         db.add(new_post)
         db.commit()
 
