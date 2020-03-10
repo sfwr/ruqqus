@@ -119,6 +119,9 @@ class User(Base, Stndrd):
         if not self.over_18:
             posts=posts.filter_by(over_18=False)
 
+        if not self.show_offensive:
+            posts = posts.filter_by(is_offensive=False)
+
         board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
         user_ids =[x.target_id for x in self.following.all()]
         
@@ -329,6 +332,9 @@ class User(Base, Stndrd):
         if not (v and v.over_18):
             submissions=submissions.filter_by(over_18=False)
 
+        if not (v and v.show_offensive):
+            submissions=submissions.filter_by(is_offensive=False)
+
         if not (v and (v.admin_level >=3)):
             submissions=submissions.filter_by(is_deleted=False)
 
@@ -389,7 +395,10 @@ class User(Base, Stndrd):
 
         if not (v and v.over_18):
             comments=comments.filter_by(over_18=False)
-            
+
+        if not (v and v.show_offensive):
+            comments=comments.filter_by(is_offensive=False)
+
         if not (v and (v.admin_level >=3)):
             comments=comments.filter_by(is_deleted=False)
             

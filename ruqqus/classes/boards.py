@@ -90,7 +90,7 @@ class Board(Base, Stndrd, Age_times):
         return not self.postrels.filter_by(post_id=post.id).first()
 
     @cache.memoize(timeout=60)
-    def idlist(self, sort="hot", page=1, nsfw=False, v=None):
+    def idlist(self, sort="hot", page=1, nsfw=False, show_offensive=False,v=None):
 
         posts=self.submissions.filter_by(is_banned=False,
                                              is_deleted=False
@@ -98,6 +98,9 @@ class Board(Base, Stndrd, Age_times):
 
         if not nsfw:
             posts=posts.filter_by(over_18=False)
+
+        if not show_offensive:
+            posts = posts.filter_by(is_offensive=False)
 
         if self.is_private:
             if v and (self.can_view(v) or v.admin_level >= 4):
