@@ -107,7 +107,7 @@ class User(Base, Stndrd):
         return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=300)
-    def idlist(self, sort="hot", page=1, t=None, show_offensive = self.show_offensive, **kwargs):
+    def idlist(self, sort="hot", page=1, t=None, show_offensive = True, **kwargs):
 
         
 
