@@ -14,7 +14,7 @@ from .flags import CommentFlag
 from .boards import Board
 from .badwords import *
 
-class Comment(Base, Age_times, Scores, Stndrd):
+class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 
     __tablename__="comments"
 
@@ -195,15 +195,6 @@ class Comment(Base, Age_times, Scores, Stndrd):
         elif v.admin_level >= 4:
             return "you are a Ruqqus admin."
 
-    @property
-    @cache.memoize(timeout=60)
-    def score_fuzzed(self):
-        
-        k=0.01
-        real = self.score_top
-        a = math.floor(real * (1 - k))
-        b = math.ceil(real * (1 + k))
-        return random.randint(a, b)
 
     def determine_offensive(self):
 
