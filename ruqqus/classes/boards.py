@@ -90,7 +90,7 @@ class Board(Base, Stndrd, Age_times):
         return not self.postrels.filter_by(post_id=post.id).first()
 
     @cache.memoize(timeout=60)
-    def idlist(self, sort="hot", page=1, nsfw=False, show_offensive=False,v=None):
+    def idlist(self, sort="hot", page=1, nsfw=False, show_offensive=True, v=None):
 
         posts=self.submissions.filter_by(is_banned=False,
                                              is_deleted=False

@@ -107,7 +107,7 @@ class User(Base, Stndrd):
         return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=300)
-    def idlist(self, sort="hot", page=1, t=None, **kwargs):
+    def idlist(self, sort="hot", page=1, t=None, show_offensive = self.show_offensive, **kwargs):
 
         
 
@@ -119,7 +119,7 @@ class User(Base, Stndrd):
         if not self.over_18:
             posts=posts.filter_by(over_18=False)
 
-        if not self.show_offensive:
+        if not show_offensive:
             posts = posts.filter_by(is_offensive=False)
 
         board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
@@ -316,7 +316,7 @@ class User(Base, Stndrd):
     def verifyPass(self, password):
         return check_password_hash(self.passhash, password)
         
-    def rendered_userpage(self, v=None):
+    def rendered_userpage(self, v=None)#, show_offensive=True):
 
         if self.reserved:
             return render_template("userpage_reserved.html", u=self, v=v)
@@ -332,8 +332,8 @@ class User(Base, Stndrd):
         if not (v and v.over_18):
             submissions=submissions.filter_by(over_18=False)
 
-        if not (v and v.show_offensive):
-            submissions=submissions.filter_by(is_offensive=False)
+##        if not show_offensive:
+##            submissions=submissions.filter_by(is_offensive=False)
 
         if not (v and (v.admin_level >=3)):
             submissions=submissions.filter_by(is_deleted=False)
