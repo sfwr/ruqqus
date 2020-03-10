@@ -316,7 +316,7 @@ class User(Base, Stndrd):
     def verifyPass(self, password):
         return check_password_hash(self.passhash, password)
         
-    def rendered_userpage(self, v=None)#, show_offensive=True):
+    def rendered_userpage(self, v=None): #, show_offensive=True):
 
         if self.reserved:
             return render_template("userpage_reserved.html", u=self, v=v)
