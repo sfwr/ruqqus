@@ -225,7 +225,8 @@ class User(Base, Stndrd):
         ids=self.idlist(sort=sort,
                         page=page,
                         only=only,
-                        t=request.args.get('t', None)
+                        t=request.args.get('t', None),
+                        show_offensive = self.show_offensive
                         )
 
         posts, next_exists = self.list_of_posts(ids)
