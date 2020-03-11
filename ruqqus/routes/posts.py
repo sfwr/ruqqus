@@ -37,7 +37,9 @@ def post_base36id(base36id, v=None):
     
     post=get_post(base36id)
 
-    if post.over_18 and not (v and v.over_18) and not session_over18(post.board):
+    board=post.board
+
+    if post.over_18 and not (v and v.over_18) and not session_over18(board):
         t=int(time.time())
         return render_template("errors/nsfw.html",
                                v=v,
@@ -45,6 +47,11 @@ def post_base36id(base36id, v=None):
                                lo_formkey=make_logged_out_formkey(t),
                                board=post.board
                                )
+
+    if board.is_banned and v.admin_level < 3:
+        return render_template("board_banned.html",
+                               v=v,
+                               b=board)
         
     return post.rendered_page(v=v)
 
@@ -188,6 +195,16 @@ def submit_post(v):
     board=get_guild(board_name, graceful=True)
     if not board:
         board=get_guild('general')
+
+    if board.is_banned:
+        return render_template("submit.html",
+                               v=v,
+                               error=f"+{board.name} has been demolished.",
+                               title=title,
+                               url=url
+                               , body=request.form.get("body",""),
+                               b=get_guild("general")
+                               ), 403       
     
     if board.has_ban(v):
         return render_template("submit.html",

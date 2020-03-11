@@ -234,7 +234,8 @@ def api_undistinguish_comment(c_id, v):
 
 @app.route("/api/ban_guild/<bid>", methods=["POST"])
 @admin_level_required(4)
-def api_ban_guild(bid):
+@validate_formkey
+def api_ban_guild(v, bid):
 
     board = get_board(bid)
 
@@ -244,11 +245,12 @@ def api_ban_guild(bid):
     db.add(board)
     db.commit()
 
-    return "",204
+    return redirect(board.permalink)
 
 @app.route("/api/unban_guild/<bid>", methods=["POST"])
 @admin_level_required(4)
-def api_unban_guild(bid):
+@validate_formkey
+def api_unban_guild(v, bid):
 
     board = get_board(bid)
 
@@ -258,4 +260,4 @@ def api_unban_guild(bid):
     db.add(board)
     db.commit()
 
-    return "",204
+    return redirect(board.permalink)
