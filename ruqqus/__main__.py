@@ -106,7 +106,6 @@ def before_request():
 
 
     db.rollback()
-    db.begin()
 
 def log_event(name, link):
 
@@ -135,7 +134,7 @@ def log_event(name, link):
 @app.after_request
 def after_request(response):
 
-    db.rollback()
+    #db.expire_all()
     
     response.headers.add('Access-Control-Allow-Headers',
                          "Origin, X-Requested-With, Content-Type, Accept, x-auth"
