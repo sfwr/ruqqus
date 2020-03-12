@@ -353,4 +353,13 @@ class Board(Base, Stndrd, Age_times):
     @property
     def css_dark_url(self):
         return f"{self.permalink}/dark/{self.color_nonce}.css"
+
+    @property
+    @cache.memoize(timeout=60)
+    def guild_info_dict(self):
+        return {'name':self.name, 'profile_url':self.profile_url, 'banner_url':self.banner_url,
+                'created_date':self.created_utc, 'age_string':self.age_string,
+                'mods_count':self.mods_count, 'subscriber_count':self.subscriber_count}
+
+
     
