@@ -295,7 +295,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                     'is_deleted':self.is_deleted,
                     'ban_reason': self.ban_reason,
                     'id':self.base36id,
-                    'title',self.title,
+                    'title':self.title,
                     'permalink':self.permalink,
                     'guild_name':self.guild_name
                     }
@@ -303,7 +303,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             return {'is_banned':bool(self.is_banned),
                     'is_deleted':True,
                     'id':self.base36id,
-                    'title',self.title,
+                    'title':self.title,
                     'permalink':self.permalink,
                     'guild_name':self.guild_name
                     }
