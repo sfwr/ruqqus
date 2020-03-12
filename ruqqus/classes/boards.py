@@ -355,11 +355,27 @@ class Board(Base, Stndrd, Age_times):
         return f"{self.permalink}/dark/{self.color_nonce}.css"
 
     @property
-    @cache.memoize(timeout=60)
-    def guild_info_dict(self):
-        return {'name':self.name, 'profile_url':self.profile_url, 'banner_url':self.banner_url,
-                'created_date':self.created_utc, 'age_string':self.age_string,
-                'mods_count':self.mods_count, 'subscriber_count':self.subscriber_count}
+    def json(self):
+
+        if self.is_banned:
+            return {'name':self.name,
+                    'permalink':self.permalink,
+                    'is_banned':True
+                    }
+        return {'name':self.name,
+                'profile_url':self.profile_url,
+                'banner_url':self.banner_url,
+                'created_utc':self.created_utc,
+                'mods_count':self.mods_count,
+                'subscriber_count':self.subscriber_count,
+                'permalink':self.permalink,
+                'description':self.description,
+                'description_html':self.description_html,
+                'over_18':self.over_18,
+                'is_banned':False,
+                'is_private':self.is_private,
+                'is_restricted':self.restricted_posting
+                }
 
 
     
