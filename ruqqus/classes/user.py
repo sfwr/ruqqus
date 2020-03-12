@@ -649,8 +649,8 @@ class User(Base, Stndrd):
                 'permalink':self.permalink,
                 'is_banned':False,
                 'created_utc':self.created_utc,
-         #       'post_rep':self.karma,
-         #       'comment_rep':self.comment_karma,
+                'post_rep':int(self.karma),
+                'comment_rep':int(self.comment_karma),
                 'badges':[x.json for x in self.badges]
                 }
 
