@@ -22,7 +22,7 @@ def user_info(username):
     user=get_user(username)
     return jsonify(user.json)
 
-@approute("/api/v1/post/<pid>", methods=["GET"])
+@app.route("/api/v1/post/<pid>", methods=["GET"])
 def post_info(pid):
 
     post=get_post(pid)
