@@ -8,10 +8,8 @@ from ruqqus.__main__ import app, db, cache
 from ruqqus.classes.boards import Board
 
 
-
-
-@cache.memoize(timeout=60)
 @app.route("/guild_info/<id>", methods=["GET"])
+@cache.memoize(timeout=60)
 def guild_info(id=None):
     if not id:
         return abort(404)
@@ -21,7 +19,7 @@ def guild_info(id=None):
     if not guild:
         return abort(404)
 
-    return jsonify(guild)
+    return jsonify(guild.guild_info_dict)
 
 
 
