@@ -9,12 +9,15 @@ from ruqqus.__main__ import app, db, cache
 from ruqqus.classes.boards import Board
 
 
-@app.route("/api/guild/<boardname>", methods=["GET"])
-@cache.memoize(timeout=60)
+@app.route("/api/v1/guild/<boardname>", methods=["GET"])
 def guild_info(boardname):
     guild = get_guild(boardname)
 
     return jsonify(guild.json)
 
 
+@app.route("/api/v1/user/<username>", methods=["GET"])
+def user_info(username):
 
+    user=get_user(username)
+    return jsonify(user.json)

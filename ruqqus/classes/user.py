@@ -634,3 +634,23 @@ class User(Base, Stndrd):
         now=int(time.time())
 
         return now-self.last_siege_utc > 60*60*24*30
+
+    @property
+    def json(self):
+
+        if self.is_banned:
+            return {'username':self.username,
+                    'permalink':self.permalink,
+                    'is_banned':True,
+                    'ban_reason':self.ban_reason
+                    }
+
+        return {'username':self.username,
+                'permalink':self.permalink,
+                'is_banned':False,
+                'created_utc':self.created_utc,
+                'post_rep':self.karma,
+                'comment_rep':self.comment_karma
+                'badges':[x.json for x in self.badges]
+
+        

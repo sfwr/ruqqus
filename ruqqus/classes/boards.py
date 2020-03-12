@@ -360,7 +360,8 @@ class Board(Base, Stndrd, Age_times):
         if self.is_banned:
             return {'name':self.name,
                     'permalink':self.permalink,
-                    'is_banned':True
+                    'is_banned':True,
+                    'ban_reason':self.ban_reason
                     }
         return {'name':self.name,
                 'profile_url':self.profile_url,
