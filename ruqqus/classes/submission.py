@@ -314,7 +314,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 'created_utc':self.created_utc,
                 'id':self.base36id,
                 'title':self.title,
-                'is_nsfw':self.over18,
+                'is_nsfw':self.over_18,
                 'is_offensive':self.is_offensive,
                 'thumb_url':self.thumb_url,
                 'domain':self.domain,
