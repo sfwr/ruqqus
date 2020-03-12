@@ -285,3 +285,45 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         else:
             self.is_offensive=False
             db.commit()
+
+
+    @property
+    def json(self):
+
+        if self.is_banned:
+            return {'is_banned':True,
+                    'is_deleted':self.is_deleted,
+                    'ban_reason': self.ban_reason,
+                    'id':self.base36id,
+                    'title',self.title,
+                    'permalink':self.permalink,
+                    'guild_name':self.guild_name
+                    }
+        elif self.is_deleted:
+            return {'is_banned':bool(self.is_banned),
+                    'is_deleted':True,
+                    'id':self.base36id,
+                    'title',self.title,
+                    'permalink':self.permalink,
+                    'guild_name':self.guild_name
+                    }
+        return {'author':self.author_name,
+                'permalink':self.permalink,
+                'is_banned':False,
+                'is_deleted':False,
+                'created_utc':self.created_utc,
+                'id':self.base36id,
+                'title':self.title,
+                'is_nsfw':self.over18,
+                'is_offensive':self.is_offensive,
+                'thumb_url':self.thumb_url,
+                'domain':self.domain,
+                'is_archived':self.is_archived,
+                'url':self.url,
+                'body':self.body,
+                'body_html':self.body_html,
+                'created_utc':self.created_utc,
+                'edited_utc':self.edited_utc,
+                'guild_name':self.guild_name,
+                'embed_url':self.embed_url
+                }

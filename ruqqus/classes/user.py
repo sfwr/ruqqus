@@ -642,7 +642,8 @@ class User(Base, Stndrd):
             return {'username':self.username,
                     'permalink':self.permalink,
                     'is_banned':True,
-                    'ban_reason':self.ban_reason
+                    'ban_reason':self.ban_reason,
+                    'id':self.base36id
                     }
 
         return {'username':self.username,
@@ -651,7 +652,8 @@ class User(Base, Stndrd):
                 'created_utc':self.created_utc,
                 'post_rep':int(self.karma),
                 'comment_rep':int(self.comment_karma),
-                'badges':[x.json for x in self.badges]
+                'badges':[x.json for x in self.badges],
+                'id':self.base36id
                 }
 
         

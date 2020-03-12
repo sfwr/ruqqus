@@ -361,7 +361,8 @@ class Board(Base, Stndrd, Age_times):
             return {'name':self.name,
                     'permalink':self.permalink,
                     'is_banned':True,
-                    'ban_reason':self.ban_reason
+                    'ban_reason':self.ban_reason,
+                    'id':self.base36id
                     }
         return {'name':self.name,
                 'profile_url':self.profile_url,
@@ -375,7 +376,8 @@ class Board(Base, Stndrd, Age_times):
                 'over_18':self.over_18,
                 'is_banned':False,
                 'is_private':self.is_private,
-                'is_restricted':self.restricted_posting
+                'is_restricted':self.restricted_posting,
+                'id':self.base36id
                 }
 
 
