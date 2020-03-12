@@ -260,12 +260,12 @@ class User(Base, Stndrd):
     @property
     @cache.memoize(timeout=3600) #1hr cache time for user rep
     def karma(self):
-        return self.energy
+        return int(self.energy)
 
     @property
     @cache.memoize(timeout=3600)
     def comment_karma(self):
-        return self.comment_energy
+        return int(self.comment_energy)
 
 
     @property
@@ -649,8 +649,8 @@ class User(Base, Stndrd):
                 'permalink':self.permalink,
                 'is_banned':False,
                 'created_utc':self.created_utc,
-                'post_rep':self.karma,
-                'comment_rep':self.comment_karma,
+         #       'post_rep':self.karma,
+         #       'comment_rep':self.comment_karma,
                 'badges':[x.json for x in self.badges]
                 }
 
