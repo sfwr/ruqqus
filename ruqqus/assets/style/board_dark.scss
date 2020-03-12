@@ -1328,7 +1328,9 @@ color: $dark;
     position: sticky;
     top: 49px;
     z-index: 1000;
-    height: 100vh;
+    height: calc(100vh - 49px);
+    overflow-y: auto;
+    overflow-x: hidden;
     background-color: $gray-600!important;
 }
 
@@ -3637,6 +3639,13 @@ textarea, input[type=text] {
     font-size: 16px;
     font-weight: $font-weight-bold;
     word-break: break-word;
+}
+
+// Scroll bar
+
+.hide-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 // Adam's additions

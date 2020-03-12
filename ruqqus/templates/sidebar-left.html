@@ -1,6 +1,6 @@
-<div class="col sidebar sidebar-left bg-white border-right d-none d-lg-block pt-3{% if session.get('sidebar_collapsed',False) %} sidebar-collapsed{%endif %}" id="sidebar-left">
+<div class="col sidebar sidebar-left hide-scrollbar bg-white border-right d-none d-lg-block pt-3{% if session.get('sidebar_collapsed',False) %} sidebar-collapsed{%endif %}" id="sidebar-left" style="overflow-y: auto; height: calc(100vh - 49px);">
 
-  <div class="sidebar-section sidebar-trending {% if v %}sticky-63{% endif %}" style="word-break: break-word">
+  <div class="sidebar-section sidebar-trending" style="word-break: break-word">
     <div class="body p-0">
 
       <div class="mb-4">
@@ -11,10 +11,10 @@
           </div>
         </div>
         <div class="sidebar-collapsed-visible collapsed-toggle-parent">
-          <button class="btn mb-3" data-toggle="tooltip" data-placement="right" title="Expand" onclick="toggle_sidebar_expand();post('/settings/toggle_collapse');"><span class="collapsed-toggle"></span></button>
+          <button class="btn mb-3" onclick="toggle_sidebar_expand();post('/settings/toggle_collapse');"><span class="collapsed-toggle"></span></button>
         </div>
         <div class="sidebar-collapsed-visible">
-          <i class="fas fa-newspaper text-muted mb-3" data-toggle="tooltip" data-placement="right" title="Ruqqus feeds" style="font-size: 1rem;"></i>
+          <i class="fas fa-newspaper text-muted mb-3" style="font-size: 1rem;"></i>
         </div>
         <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
           <li class="guild-recommendations-item">
@@ -55,17 +55,17 @@
               <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-visible">
                 <li class="guild-recommendations-item">
                   <a href="/">
-                    <img src="/assets/images/icons/house-alt.png" class="profile-pic-30" data-toggle="tooltip" data-placement="right" title="Home">
+                    <img src="/assets/images/icons/house-alt.png" class="profile-pic-30">
                   </a>
                 </li>
                 <li class="guild-recommendations-item">
                   <a href="/all?sort=new">
-                    <img src="/assets/images/icons/planet.png" class="profile-pic-30" data-toggle="tooltip" data-placement="right" title="All">
+                    <img src="/assets/images/icons/planet.png" class="profile-pic-30">
                   </a>
                 </li>
                 <li class="guild-recommendations-item">
                   <a href="/all?sort=hot">
-                    <img src="/assets/images/icons/flame.png" class="profile-pic-30" data-toggle="tooltip" data-placement="right" title="Trending">
+                    <img src="/assets/images/icons/flame.png" class="profile-pic-30">
                   </a>
                 </li>
               </ul>
@@ -80,10 +80,10 @@
                 </div>
               </div>
               <div class="sidebar-collapsed-visible">
-                <i class="fas fa-chess-rook text-muted mb-3" data-toggle="tooltip" data-placement="right" title="Your guilds" style="font-size: 1rem;"></i>
+                <i class="fas fa-chess-rook text-muted mb-3" style="font-size: 1rem;"></i>
               </div>
               <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
-                {% for board in v.boards_subscribed[0:4] %}
+                {% for board in v.boards_subscribed[0:8] %}
                 <li class="guild-recommendations-item">
                   <a href="{{ board.permalink }}">
                     <div class="d-flex">
@@ -101,10 +101,10 @@
               <a class="btn btn-outline-gray-500 btn-block btn-sm text-small sidebar-collapsed-hidden" href="/browse">Discover more</a>
               <!-- Show this list when sidebar is collapsed -->
               <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-visible">
-                {% for board in v.boards_subscribed[0:4] %}
+                {% for board in v.boards_subscribed[0:8] %}
                 <li class="guild-recommendations-item">
                   <a href="{{ board.permalink }}">
-                    <img src="{{ board.profile_url }}" class="profile-pic-30" data-toggle="tooltip" data-placement="right" title="+{{ board.name }}">
+                    <img src="{{ board.profile_url }}" class="profile-pic-30">
                   </a>
                 </li>
                 {% endfor %}
@@ -130,10 +130,10 @@
               </div>
             </div>
             <div class="sidebar-collapsed-visible">
-              <i class="fas fa-crown text-warning mb-3" data-toggle="tooltip" data-placement="right" title="Guildmaster of" style="font-size: 1rem;"></i>
+              <i class="fas fa-crown text-warning mb-3" style="font-size: 1rem;"></i>
             </div>
             <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-hidden">
-              {% for board in v.boards_modded[0:3] %}
+              {% for board in v.boards_modded[0:8] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">
                   <div class="d-flex">
@@ -150,10 +150,10 @@
             </ul>
             <!-- Show this list when sidebar is collapsed -->
             <ul class="no-bullets guild-recommendations-list pl-0 sidebar-collapsed-visible">
-              {% for board in v.boards_modded[0:3] %}
+              {% for board in v.boards_modded[0:8] %}
               <li class="guild-recommendations-item">
                 <a href="{{ board.permalink }}">
-                  <img src="{{ board.profile_url }}" class="profile-pic-30" data-toggle="tooltip" data-placement="right" title="+{{ board.name }}">
+                  <img src="{{ board.profile_url }}" class="profile-pic-30">
                 </a>
               </li>
               {% endfor %}
