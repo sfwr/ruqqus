@@ -650,7 +650,7 @@ class User(Base, Stndrd):
                 'is_banned':False,
                 'created_utc':self.created_utc,
                 'post_rep':self.karma,
-                'comment_rep':self.comment_karma
+                'comment_rep':self.comment_karma,
                 'badges':[x.json for x in self.badges]
                 }
 
