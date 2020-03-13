@@ -46,9 +46,9 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     is_op=Column(Boolean, default=False)
     is_offensive=Column(Boolean, default=False)
 
-    post=relationship("Submission", lazy="subquery")
+    post=relationship("Submission", lazy="joined", innerjoin=True)
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
-    author=relationship("User", lazy="subquery", primaryjoin="User.id==Comment.author_id")
+    author=relationship("User", lazy="joined", innerjoin=True, primaryjoin="User.id==Comment.author_id")
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
@@ -206,6 +206,32 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
         else:
             self.is_offensive=False
             db.commit()
+
+    @property
+    def json(self):
+        if self.is_banned:
+            return {'is_banned':True
+                    'ban_reason':self.ban_reason,
+                    'id':self.base36id
+                    'post':self.post.base36id
+                    'level':self.level,
+                    'parent':self.parent_fullname
+                    }
+        elif self.is_deleted:
+            return {'is_deleted':True
+                    'id':self.base36id
+                    'post':self.post.base36id
+                    'level':self.level,
+                    'parent':self.parent_fullname
+                    }
+        return {'id':self.base36id
+                'post':self.post.base36id
+                'level':self.level,
+                'parent':self.parent_fullname,
+                'author':self.author_name,
+                'body':self.body,
+                'body_html':self.body_html
+                }
             
         
         
