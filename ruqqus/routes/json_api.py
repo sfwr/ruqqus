@@ -35,7 +35,7 @@ def post_info(v, pid):
 @auth_desired
 def comment_info(v, cid):
 
-    comment=get_comment(v, cid)
+    comment=get_comment(cid)
 
     post=comment.post
     if not post.is_public and post.board.is_private and not post.board.can_view(v):
