@@ -653,7 +653,11 @@ class User(Base, Stndrd):
                 'post_rep':int(self.karma),
                 'comment_rep':int(self.comment_karma),
                 'badges':[x.json for x in self.badges],
-                'id':self.base36id
+                'id':self.base36id,
+                'profile_url':self.profile_url,
+                'banner_url':self.banner_url,
+                'post_count':self.post_count,
+                'comment_count':self.comment_count
                 }
 
         
