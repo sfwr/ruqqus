@@ -33,11 +33,11 @@ def post_info(v, pid):
 
 @app.route("/api/v1/comment/<cid>", methods=["GET"])
 @auth_desired
-def comment_info(cid)
+def comment_info(cid):
 
     comment=get_comment(v, cid)
 
-    post=comment.board
+    post=comment.post
     if not post.is_public and post.board.is_private and not post.board.can_view(v):
         abort(403)
         
