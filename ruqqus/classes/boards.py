@@ -377,7 +377,10 @@ class Board(Base, Stndrd, Age_times):
                 'is_banned':False,
                 'is_private':self.is_private,
                 'is_restricted':self.restricted_posting,
-                'id':self.base36id
+                'id':self.base36id,
+                'banner_url':self.banner_url,
+                'profile_url':self.profile_url,
+                'color':self.color
                 }
 
 
