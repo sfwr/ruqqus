@@ -210,22 +210,22 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     @property
     def json(self):
         if self.is_banned:
-            return {'is_banned':True
+            return {'is_banned':True,
                     'ban_reason':self.ban_reason,
-                    'id':self.base36id
+                    'id':self.base36id,
                     'post':self.post.base36id
                     'level':self.level,
                     'parent':self.parent_fullname
                     }
         elif self.is_deleted:
-            return {'is_deleted':True
-                    'id':self.base36id
-                    'post':self.post.base36id
+            return {'is_deleted':True,
+                    'id':self.base36id,
+                    'post':self.post.base36id,
                     'level':self.level,
                     'parent':self.parent_fullname
                     }
-        return {'id':self.base36id
-                'post':self.post.base36id
+        return {'id':self.base36id,
+                'post':self.post.base36id,
                 'level':self.level,
                 'parent':self.parent_fullname,
                 'author':self.author_name,
