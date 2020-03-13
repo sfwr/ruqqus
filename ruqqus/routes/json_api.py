@@ -33,7 +33,7 @@ def post_info(v, pid):
 
 @app.route("/api/v1/comment/<cid>", methods=["GET"])
 @auth_desired
-def comment_info(cid):
+def comment_info(v, cid):
 
     comment=get_comment(v, cid)
 
