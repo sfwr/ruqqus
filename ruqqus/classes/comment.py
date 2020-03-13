@@ -213,7 +213,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
             return {'is_banned':True,
                     'ban_reason':self.ban_reason,
                     'id':self.base36id,
-                    'post':self.post.base36id
+                    'post':self.post.base36id,
                     'level':self.level,
                     'parent':self.parent_fullname
                     }
