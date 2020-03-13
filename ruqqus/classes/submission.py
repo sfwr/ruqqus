@@ -58,6 +58,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     author_name=Column(String(64), default="")
     guild_name=Column(String(64), default="")
     is_offensive=Column(Boolean, default=False)
+    board=relationship("Board", lazy="joined", innerjoin=True, primaryjoin="Board.id=Submission.board_id")
 
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 

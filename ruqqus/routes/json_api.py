@@ -24,14 +24,21 @@ def user_info(username):
 
 @app.route("/api/v1/post/<pid>", methods=["GET"])
 @auth_desired
-def post_info(pid):
+def post_info(v, pid):
 
-    post=get_post(pid)
+    if not post.is_public and post.board.is_private and not post.board.can_view(v):
+        abort(403)
+        
     return jsonify(post.json)
 
 @app.route("/api/v1/comment/<cid>", methods=["GET"])
 @auth_desired
 def comment_info(cid)
 
-    comment=get_comment(cid)
+    comment=get_comment(v, cid)
+
+    post=comment.board
+    if not post.is_public and post.board.is_private and not post.board.can_view(v):
+        abort(403)
+        
     return jsonify(comment.json)
