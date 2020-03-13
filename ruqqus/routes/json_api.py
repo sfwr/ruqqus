@@ -23,7 +23,15 @@ def user_info(username):
     return jsonify(user.json)
 
 @app.route("/api/v1/post/<pid>", methods=["GET"])
+@auth_desired
 def post_info(pid):
 
     post=get_post(pid)
     return jsonify(post.json)
+
+@app.route("/api/v1/comment/<cid>", methods=["GET"])
+@auth_desired
+def comment_info(cid)
+
+    comment=get_comment(cid)
+    return jsonify(comment.json)
