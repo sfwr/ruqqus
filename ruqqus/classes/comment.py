@@ -244,7 +244,7 @@ class Notification(Base):
     comment_id=Column(Integer, ForeignKey("comments.id"))
     read=Column(Boolean, default=False)
 
-    comment=relationship("Comment", dynamic="joined", innerjoin=True)
+    comment=relationship("Comment", lazy="joined", innerjoin=True)
 
     #Server side computed values (copied from corresponding comment)
     created_utc=Column(Integer, server_default=FetchedValue())
