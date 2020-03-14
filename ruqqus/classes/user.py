@@ -492,7 +492,7 @@ class User(Base, Stndrd):
         comments=comments[0:25]
 
         for n in [x for x in notifications][0:25]:
-            print(n.comment.id)
+            print(f"{n.id} - {n.comment.id}")
             if not n.read:
                 n.read=True
                 db.add(n)
