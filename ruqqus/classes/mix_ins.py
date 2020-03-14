@@ -98,7 +98,7 @@ class Scores:
     @property
     @cache.memoize(timeout=60)
     def score(self):
-        return self.score_top
+        return int(self.score_top)
 
 
 
