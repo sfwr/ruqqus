@@ -16,7 +16,7 @@ from .votes import Vote
 from .alts import Alt
 from .titles import Title
 from .submission import Submission
-from .comment import Comment
+from .comment import Comment, Notification
 from .boards import Board
 from .board_relationships import *
 from .mix_ins import *
@@ -485,7 +485,7 @@ class User(Base, Stndrd):
         if not include_read:
             notifications=notifications.filter_by(read=False)
 
-        notifications = notifications.order_by(text("id desc")).offset(25*(page-1)).limit(26)
+        notifications = notifications.order_by(Notification.id.desc()).offset(25*(page-1)).limit(26)
 
         comments=[n.comment for n in notifications]
         next_exists=(len(comments)==26)
