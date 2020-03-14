@@ -17,6 +17,8 @@ def search(v, search_type="posts"):
 
 
     if query.startswith("+"):
+
+        query=query.lstrip("+")
         #guild search stuff here
         sort=request.args.get("sort", "subs").lower()
 
