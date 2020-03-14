@@ -360,7 +360,7 @@ def submit_post(v):
 
     
     #spin off thumbnail generation as  new thread
-    if new_post.url:
+    elif new_post.url:
         new_thread=threading.Thread(target=thumbnail_thread,
                                     args=(new_post.base36id,)
                                     )
