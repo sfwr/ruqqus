@@ -18,11 +18,10 @@ def search(v, search_type="posts"):
 
     if query.startswith("+"):
 
-        query=query.lstrip("+")
         #guild search stuff here
         sort=request.args.get("sort", "subs").lower()
 
-        boards = db.query(Board).filter(func.lower(Board.name).contains(query.lower()))
+        boards = db.query(Board).filter(func.lower(Board.name).contains(query.lstrip("+").lower()))
 
         if not(v and v.over_18):
             boards=boards.filter_by(over_18=False)
