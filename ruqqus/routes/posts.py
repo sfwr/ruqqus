@@ -374,7 +374,8 @@ def submit_post(v):
 
         image.save(name)
         
-        upload_from_file(name)
+
+        upload_file(name, open(name))
         
         #update post data
         new_post.url=f'https://i.ruqqus.com/{name}'
