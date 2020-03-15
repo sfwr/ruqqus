@@ -352,7 +352,7 @@ def submit_post(v):
 
 
         #watermarky stuff
-        file.save(name)
+        file.save(name, "w+")
         image=Image.open(name)
 
         logo_resize = image.height/15
@@ -372,10 +372,10 @@ def submit_post(v):
                     position,
                     ruqqus_logo_resized)
 
-
+        image.save(name)
         
 
-        upload_file(name, image)
+        upload_file(name, open(name))
         
         #update post data
         new_post.url=f'https://i.ruqqus.com/{name}'
