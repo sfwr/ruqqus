@@ -4,7 +4,6 @@ from sqlalchemy import func
 from bs4 import BeautifulSoup
 import secrets
 import threading
-from PIL import Image
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -18,6 +17,9 @@ from ruqqus.helpers.session import *
 from ruqqus.helpers.aws import *
 from ruqqus.classes import *
 from .front import frontlist
+
+from PIL import Image
+
 from flask import *
 from ruqqus.__main__ import app, db, limiter, cache
 
@@ -27,7 +29,7 @@ BAN_REASONS=['',
              "Copyright infringement is not permitted."
             ]
 
-ruqqus_logo=Image.open("/users/adam/downloads/ruqqus.png").convert("RGBA")
+ruqqus_logo=Image.open("/app/ruqqus/assets/images/logo/ruqqus_logo_square_white_fill.png").convert("RGBA")
 
 @app.route("/post/<base36id>", methods=["GET"])
 @auth_desired
