@@ -122,7 +122,7 @@ def front_all(v):
                     nsfw=(v and v.over_18),
                     t=request.args.get('t',None),
                     v=v,
-                    show_offensive= True
+                    show_offensive= v and not v.show_offensive
                     )
 
     #check existence of next page
