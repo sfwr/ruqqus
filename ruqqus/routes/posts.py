@@ -372,10 +372,10 @@ def submit_post(v):
                     position,
                     ruqqus_logo_resized)
 
-        image.save(name)
+
         
 
-        upload_file(name, open(name))
+        upload_file(name, image)
         
         #update post data
         new_post.url=f'https://i.ruqqus.com/{name}'
