@@ -4,6 +4,7 @@ from sqlalchemy import func
 from bs4 import BeautifulSoup
 import secrets
 import threading
+from PIL import Image
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -26,10 +27,7 @@ BAN_REASONS=['',
              "Copyright infringement is not permitted."
             ]
 
-
-
-
-
+ruqqus_logo=Image.open("/users/adam/downloads/ruqqus.png").convert("RGBA")
 
 @app.route("/post/<base36id>", methods=["GET"])
 @auth_desired
@@ -350,7 +348,32 @@ def submit_post(v):
 
         name=f'post/{new_post.base36id}/{secrets.token_urlsafe(16)}'
 
-        upload_file(name, file)
+
+        #watermarky stuff
+        file.save(name)
+        image=Image.open(name)
+
+        logo_resize = image.height/15
+
+        logo_size=(int(ruqqus_logo.width/(ruqqus_logo.height/(image.height/15))),
+                   int(image.height/15)
+                   )
+
+        ruqqus_logo_resized=ruqqus_logo.resize(logo_size,
+                                               resample=Image.BICUBIC
+                                               )
+        position = (image.width-ruqqus_logo_resized.width,
+                    image.height-ruqqus_logo_resized.height)
+
+
+        image.paste(ruqqus_logo_resized,
+                    position,
+                    ruqqus_logo_resized)
+
+        image.save(name)
+        
+
+        upload_file(name, open(name))
         
         #update post data
         new_post.url=f'https://i.ruqqus.com/{name}'
