@@ -32,7 +32,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     distinguish_level=Column(Integer, default=0)
     created_str=Column(String(255), default=None)
     stickied=Column(Boolean, default=False)
-    comments=relationship("Comment", lazy="dynamic", backref="submission")
+    comments=relationship("Comment", lazy="dynamic", backref="submissions")
     body=Column(String(10000), default="")
     body_html=Column(String(20000), default="")
     embed_url=Column(String(256), default="")
