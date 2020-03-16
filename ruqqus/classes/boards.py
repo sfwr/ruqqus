@@ -28,7 +28,6 @@ class Board(Base, Stndrd, Age_times):
     creator_id=Column(Integer, ForeignKey("users.id"))
     ban_reason=Column(String(256), default=None)
     color=Column(String(8), default="603abb")
-    downvotes_disabled=Column(Boolean, default=False)
     restricted_posting=Column(Boolean, default=False)
     hide_banner_data=Column(Boolean, default=False)
     profile_nonce=Column(Integer, default=0)

@@ -367,10 +367,9 @@
               <span id="post-{{ p.base36id }}-score-none" class="score text-muted{% if voted!=0 and voted!=-2 %} d-none{% endif %}">{{ score-adjust }}</span>
               <span id="post-{{ p.base36id }}-score-down" class="score-down text-muted{% if voted!=-1 %} d-none{% endif %}">{{ score-1-adjust }}</span>
 
-              {% if not p.board.downvotes_disabled %}
+
               <div id="post-{{ p.base36id }}-down" class="arrow-down mx-auto" {% if voted==-1 %}onclick="vote('{{ p.base36id }}','0')"{% elif voted>-2 %}onclick="vote('{{ p.base36id }}','-1')"{% endif %}>
               </div>
-              {% endif %}
             </div>
 
             {% else %}
@@ -379,10 +378,8 @@
               <div id="post-{{ p.base36id }}-up" class="arrow-up mx-auto" onclick="location.href='/login';">
               </div>
               <span id="post-{{ p.base36id }}-score-none" class="score text-muted">{{ score-adjust }}</span>
-              {% if not p.board.downvotes_disabled %}
               <div id="post-{{ p.base36id }}-down" class="arrow-down mx-auto" onclick="location.href='/login';">
               </div>
-              {% endif %}
             </div>
 
             {% endif %}
