@@ -13409,10 +13409,6 @@ ul.no-bullets {
   list-style-type: none;
 }
 
-.comment-section li {
-  list-style-type: none;
-}
-
 ol > li {
   list-style-type: none;
   counter-increment: count;
@@ -16530,6 +16526,10 @@ ul.comment-section {
   background-color: #fff;
   -webkit-transform: translateX(1.25rem);
   transform: translateX(1.25rem);
+}
+
+pre code {
+  color: #121213;
 }
 
 pre.prettyprint {

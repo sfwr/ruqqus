@@ -321,10 +321,6 @@ ul.no-bullets {
     list-style-type: none;
 }
 
-.comment-section li {
-    list-style-type: none;
-}
-
 ol > li {
     list-style-type: none;
     counter-increment: count;
@@ -3131,6 +3127,12 @@ ul.comment-section {
   background-color: #fff;
   -webkit-transform: translateX(1.25rem); //translateX(0.75rem);
   transform: translateX(1.25rem); //translateX(0.75rem);
+}
+
+// Code
+
+pre code {
+    color: $black;
 }
 
 // Code Prettify

@@ -13832,10 +13832,6 @@ ul.no-bullets {
   list-style-type: none;
 }
 
-.comment-section li {
-  list-style-type: none;
-}
-
 ol > li {
   list-style-type: none;
   counter-increment: count;
@@ -16988,6 +16984,10 @@ ul.comment-section {
   transform: translateX(1.25rem);
 }
 
+pre code {
+  color: #FFFFFF;
+}
+
 pre.prettyprint {
   padding: 0;
 }
@@ -17492,12 +17492,16 @@ span.green {
 }
 
 div.banned {
-  background-color: #4c2b2b;
+  background-color: #960000;
   border-left: 3px solid #ff0000 !important;
 }
 
+div.deleted {
+  background-color: #969600;
+}
+
 div.deleted.banned {
-  background-color: #ffcc99;
+  background-color: #964000;
 }
 
 .text-admin {

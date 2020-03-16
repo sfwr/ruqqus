@@ -29,9 +29,9 @@ $gray-900: #0f0f0f;
 $upvote: #805AD5;
 $downvote: #38B2AC;
 $admin: #E53E3E;
-$banned: #FEB2B2;
-$deleted: #FEFCBF;
-$deletedandbanned: #ffcc99;
+$banned: #960000;
+$deleted: #969600;
+$deletedandbanned: #964000;
 $mod: #07c20c;
 
 $gold: #ECC94B;
@@ -322,10 +322,6 @@ a.dropdown-toggle:hover {
 // list items
 
 ul.no-bullets {
-    list-style-type: none;
-}
-
-.comment-section li {
     list-style-type: none;
 }
 
@@ -3172,6 +3168,12 @@ ul.comment-section {
   transform: translateX(1.25rem); //translateX(0.75rem);
 }
 
+// Code
+
+pre code {
+    color: $white;
+}
+
 // Code Prettify
 
 pre.prettyprint {
@@ -3704,9 +3706,13 @@ span.green {
 }
 
 div.banned {
-    background-color: #4c2b2b;
+    background-color: $banned;
     border-left: 3px solid #ff0000!important;
 }	  
+
+div.deleted {
+    background-color: $deleted;
+}
 			
 div.deleted.banned {
     background-color: $deletedandbanned
