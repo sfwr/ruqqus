@@ -59,6 +59,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     guild_name=Column(String(64), default="")
     is_offensive=Column(Boolean, default=False)
     board=relationship("Board", lazy="joined", innerjoin=True, primaryjoin="Submission.board_id==Board.id")
+    author=relationship("User", lazy="joined", innerjoin=True, primaryjoin="Submission.author_id==User.id")
 
     approved_by=relationship("User", uselist=False, primaryjoin="Submission.is_approved==User.id")
 
@@ -164,11 +165,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                                comment_info=comment_info,
                                is_allowed_to_comment=self.board.can_comment(v)
                                )
-
-    @property
-    @lazy
-    def author(self):
-        return self.author_rel
 
 
     @property
