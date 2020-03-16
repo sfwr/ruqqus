@@ -81,7 +81,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
                 
     def __repr__(self):
 
-        return f"<Comment(id={self.id})"
+        return f"<Comment(id={self.id})>"
 
     @property
     def fullname(self):

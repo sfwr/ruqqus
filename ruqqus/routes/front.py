@@ -37,8 +37,8 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None, show_offensive=Tru
     if not nsfw:
         posts=posts.filter_by(over_18=False)
 
-    if not show_offensive:
-        posts=posts.filter_by(is_offensive=False)
+##    if not show_offensive:
+##        posts=posts.filter_by(is_offensive=False)
 
     if v and v.admin_level >= 4:
         pass
