@@ -32,7 +32,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     distinguish_level=Column(Integer, default=0)
     created_str=Column(String(255), default=None)
     stickied=Column(Boolean, default=False)
-    comments=relationship("Comment", lazy="dynamic", backref="submissions")
+    comments=relationship("Comment", lazy="dynamic", backref="submission")
     body=Column(String(10000), default="")
     body_html=Column(String(20000), default="")
     embed_url=Column(String(256), default="")
@@ -146,6 +146,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             template="submission.html"
 
         private=not self.is_public and not self.board.can_view(v)
+        print(f"{self.base36id} - private is {private}"
         
         if private and not self.author_id==v.id:
             abort(403)
