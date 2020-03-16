@@ -228,7 +228,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             abort(422)
 
 
-
+        print('treeing comments')
         tree_replies(self)
 
         
