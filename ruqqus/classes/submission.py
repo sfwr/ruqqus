@@ -146,7 +146,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             template="submission.html"
 
         private=not self.is_public and not self.board.can_view(v)
-        print(f"{self.base36id} - private is {private}")
+
         
         if private and not self.author_id==v.id:
             abort(403)
@@ -191,6 +191,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             while i>=0:
                 if comments[i].parent_fullname==thing.fullname:
                     thing.__dict__["replies"].append(comments[i])
+                    print(" "*layer+"-"+comments[i].base36id)
                     comments.pop(i)
 
                 i-=1
