@@ -48,7 +48,7 @@ class User(Base, Stndrd):
     ban_reason=Column(String, default="")
     login_nonce=Column(Integer, default=0)
     title_id=Column(Integer, ForeignKey("titles.id"), default=None)
-    title=relationship("Title")
+    title=relationship("Title", lazy="joined" innerjoin=True)
     has_profile=Column(Boolean, default=False)
     has_banner=Column(Boolean, default=False)
     reserved=Column(String(256), default=None)
