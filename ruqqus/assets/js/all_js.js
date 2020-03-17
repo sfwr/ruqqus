@@ -1315,8 +1315,8 @@ if (url.value == undefined) {
   url.required = true;
 }
 else {
-  text.required = true;
-  url.required = true;
+  text.required = false;
+  url.required = false;
 }
 
 // Disable submit button if invalid inputs
