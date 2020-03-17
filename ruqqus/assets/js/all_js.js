@@ -1309,10 +1309,10 @@ var isValidText = text.checkValidity();
 
 // Toggle reuqired attribute
 
-if (isValidURL) {
-  text.required = false;
-} else if (text.value !== undefined) {
-  url.required = false;
+if (url.value == undefined) {
+  text.required = true;
+} else if (text.value == undefined) {
+  url.required = true;
 }
 else {
   text.required = true;
