@@ -1309,14 +1309,13 @@ var isValidText = text.checkValidity();
 
 // Toggle reuqired attribute
 
-if (url.length == 0) {
-  text.required = true;
-} else if (text.length == 0) {
-  url.required = true;
-}
-else {
+if (url.length > 0) {
   text.required = false;
+} else if (text.length > 0) {
   url.required = false;
+} else {
+  text.required = true;
+  url.required = true;
 }
 
 // Disable submit button if invalid inputs
