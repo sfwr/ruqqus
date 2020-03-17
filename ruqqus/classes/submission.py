@@ -215,13 +215,13 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
         #Treeing is done from the end because reasons, so these sort orders are reversed
         if sort_type=="hot":
-            comments=self.comments.order_by(Comment.score_hot.asc()).all()
+            comments=self.comments.subquery().order_by(Comment.score_hot.asc()).all()
         elif sort_type=="top":
-            comments=self.comments.order_by(Comment.score_top.asc()).all()
+            comments=self.comments.subquery().order_by(Comment.score_top.asc()).all()
         elif sort_type=="new":
-            comments=self.comments.order_by(Comment.created_utc.desc()).all()
+            comments=self.comments.subquery().order_by(Comment.created_utc.desc()).all()
         elif sort_type=="disputed":
-            comments=self.comments.order_by(Comment.score_disputed.asc()).all()
+            comments=self.comments.subquery().order_by(Comment.score_disputed.asc()).all()
         elif sort_type=="random":
             c=self.comments.all()
             comments=random.sample(c, k=len(c))
