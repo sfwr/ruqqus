@@ -1313,7 +1313,7 @@ else {
 
 // Disable submit button if invalid inputs
 
-var isValidTitle = text.checkValidity();
+var isValidTitle = title.checkValidity();
 
 var isValidURL = url.checkValidity();
 
