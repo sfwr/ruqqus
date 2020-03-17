@@ -1301,20 +1301,26 @@ var text = document.getElementById("post-text");
 
 // Check validity of inputs
 
-if (url.length <= 0) {
-    text.required = true;
-} else if (text.length <= 0) {
-    url.required = true;
+if (url.length == 0) {
+  text.required = true;
+} else if (text.length == 0) {
+  url.required = true;
+else {
+  text.required = false;
+  url.required = false;
+}
 }
 
 // Disable submit button if invalid inputs
 
 var isValidURL = url.checkValidity();
 
-if ( isValidURL ) {
-  okButton.disabled = false;
+if ( isValidURL && text.length == 0) {
+  button.disabled = false;
+} else if (url.length == 0 && text.length > 0) {
+  button.disabled = false;
 } else {
-  okButton.disabled = true;
+  button.disabled = true;
 }
 
 }
