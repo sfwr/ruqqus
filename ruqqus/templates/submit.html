@@ -149,6 +149,16 @@
 
 					</div>
 
+					<div class="footer">
+
+						<div class="d-flex">
+
+							<button class="btn btn-primary ml-auto" id="create_button">Create post</button>
+
+						</div>
+
+					</div>
+
 				</form>
 				{% endblock %}
 
@@ -217,48 +227,48 @@
 
 	</div>
 
-		<div class="container">
-			<div class="row fixed-bottom bg-white border-top p-3" id="" style="z-index: 100; bottom: 0px; transition: bottom 220ms cubic-bezier(0, 0, 0.2, 1) 0s;">
-				<div class="col">
-					<a href="/" class="btn btn-secondary">Cancel</a>
-				</div>
-				<div class="col text-right">
-					<button class="btn btn-purple" id="create_button" type="submit" form="submitform" disabled>Create post</button>
-				</div>
+	<div class="container">
+		<div class="row fixed-bottom bg-white border-top p-3" id="" style="z-index: 100; bottom: 0px; transition: bottom 220ms cubic-bezier(0, 0, 0.2, 1) 0s;">
+			<div class="col">
+				<a href="/" class="btn btn-secondary">Cancel</a>
+			</div>
+			<div class="col text-right">
+				<button class="btn btn-purple" id="create_button" type="submit" form="submitform" disabled>Create post</button>
 			</div>
 		</div>
+	</div>
 
-		{% include "announcements_modal.html" %}
+	{% include "announcements_modal.html" %}
 
-		{% include "bootstrap.html" %}
+	{% include "bootstrap.html" %}
 
-		<!-- Ruqqus JS -->
+	<!-- Ruqqus JS -->
 
-		<script src="/assets/js/all_js.js"></script>
+	<script src="/assets/js/all_js.js"></script>
 
-		<!-- ClipboardJS -->
+	<!-- ClipboardJS -->
 
-		<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-		<!-- Instantiate clipboard by passing a string selector -->
-		<script type="text/javascript">
-			var clipboard = new ClipboardJS('.copy-link');
-			clipboard.on('success', function(e) {
+	<!-- Instantiate clipboard by passing a string selector -->
+	<script type="text/javascript">
+		var clipboard = new ClipboardJS('.copy-link');
+		clipboard.on('success', function(e) {
 
-				jQuery(function($) {
-					$('#toast-success').toast('show');
-				})
-				console.log(e);
-			});
-			clipboard.on('error', function(e) {
+			jQuery(function($) {
+				$('#toast-success').toast('show');
+			})
+			console.log(e);
+		});
+		clipboard.on('error', function(e) {
 
-				jQuery(function($) {
-					$('#toast-error').toast('show');
-				})
-				console.log(e);
-			});
-		</script>
+			jQuery(function($) {
+				$('#toast-error').toast('show');
+			})
+			console.log(e);
+		});
+	</script>
 
-	</body>
+</body>
 
-	</html>
+</html>
