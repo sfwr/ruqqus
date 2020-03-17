@@ -68,18 +68,19 @@
 
 	<!-- Page Content -->
 
-	<div class="container">
+	<form id="submitform" action="/submit" method="post" enctype="multipart/form-data">
 
-		<div class="row justify-content-center mb-4 pb-4">
+		<div class="container">
 
-			<div class="col col-md-6 p-3 py-md-0">
+			<div class="row justify-content-center mb-4 pb-4">
 
-				<h1 class="d-none d-md-block">{% block pagetitle %}Create a post{% endblock %}</h1>
+				<div class="col col-md-6 p-3 py-md-0">
 
-				<h1 class="h3 d-md-none">Create a post</h1>
+					<h1 class="d-none d-md-block">{% block pagetitle %}Create a post{% endblock %}</h1>
 
-				{% block form %}
-				<form id="submitform" action="/submit" method="post" enctype="multipart/form-data">
+					<h1 class="h3 d-md-none">Create a post</h1>
+
+					{% block form %}
 
 					<div class="body">
 
@@ -149,17 +150,6 @@
 
 					</div>
 
-					<div class="footer">
-
-						<div class="d-flex">
-
-							<button class="btn btn-primary ml-auto" id="create_button">Create post</button>
-
-						</div>
-
-					</div>
-
-				</form>
 				{% endblock %}
 
 			</div>
@@ -238,36 +228,38 @@
 		</div>
 	</div>
 
-	{% include "announcements_modal.html" %}
+</form>
 
-	{% include "bootstrap.html" %}
+{% include "announcements_modal.html" %}
 
-	<!-- Ruqqus JS -->
+{% include "bootstrap.html" %}
 
-	<script src="/assets/js/all_js.js"></script>
+<!-- Ruqqus JS -->
 
-	<!-- ClipboardJS -->
+<script src="/assets/js/all_js.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<!-- ClipboardJS -->
 
-	<!-- Instantiate clipboard by passing a string selector -->
-	<script type="text/javascript">
-		var clipboard = new ClipboardJS('.copy-link');
-		clipboard.on('success', function(e) {
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
 
-			jQuery(function($) {
-				$('#toast-success').toast('show');
-			})
-			console.log(e);
-		});
-		clipboard.on('error', function(e) {
+<!-- Instantiate clipboard by passing a string selector -->
+<script type="text/javascript">
+	var clipboard = new ClipboardJS('.copy-link');
+	clipboard.on('success', function(e) {
 
-			jQuery(function($) {
-				$('#toast-error').toast('show');
-			})
-			console.log(e);
-		});
-	</script>
+		jQuery(function($) {
+			$('#toast-success').toast('show');
+		})
+		console.log(e);
+	});
+	clipboard.on('error', function(e) {
+
+		jQuery(function($) {
+			$('#toast-error').toast('show');
+		})
+		console.log(e);
+	});
+</script>
 
 </body>
 
