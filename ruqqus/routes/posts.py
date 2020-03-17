@@ -132,7 +132,7 @@ def submit_post(v):
                                )
 
     parsed_url=urlparse(url)
-    if not (parsed_url.scheme and parsed_url.netloc) and not request.form.get("body") and 'file' not in request.files:
+    if not (parsed_url.scheme and parsed_url.netloc) and not request.form.get("body") and not request.files.get("file",None):
         return render_template("submit.html",
                                v=v,
                                error="Please enter a URL or some text.",
