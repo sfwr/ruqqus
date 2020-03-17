@@ -1291,11 +1291,13 @@ function checkForRequired() {
 
 // Divs
 
-var button = document.getElementById("create_button");
+var title = var text = document.getElementById("post-title");
 
 var url = document.getElementById("post-URL");
 
 var text = document.getElementById("post-text");
+
+var button = document.getElementById("create_button");
 
 // Check validity of inputs
 
@@ -1317,6 +1319,8 @@ if ( isValidURL ) {
   button.disabled = false;
 } else if (url.length == 0 && text.length > 0) {
   button.disabled = false;
+} else if (title.length ==0) {
+  button.disabled = true;
 } else {
   button.disabled = true;
 }
