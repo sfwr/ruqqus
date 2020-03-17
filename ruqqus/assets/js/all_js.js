@@ -1311,10 +1311,12 @@ var isValidText = text.checkValidity();
 
 if (isValidURL) {
   text.required = false;
-  url.required = true;
-} else if (isValidText) {
+} else if (text.value !== undefined) {
   url.required = false;
+}
+else {
   text.required = true;
+  url.required = true;
 }
 
 // Disable submit button if invalid inputs
