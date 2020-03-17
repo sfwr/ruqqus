@@ -1313,14 +1313,14 @@ else {
 
 // Disable submit button if invalid inputs
 
+var isValidTitle = text.checkValidity();
+
 var isValidURL = url.checkValidity();
 
-if ( isValidURL ) {
+if (isValidTitle && isValidURL) {
   button.disabled = false;
-} else if (url.length == 0 && text.length > 0) {
+} else if (isValidTitle && url.length == 0 && text.length > 0) {
   button.disabled = false;
-} else if (title.length ==0) {
-  button.disabled = true;
 } else {
   button.disabled = true;
 }
