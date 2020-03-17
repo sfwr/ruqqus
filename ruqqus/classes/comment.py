@@ -10,7 +10,6 @@ from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base, db, cache
 from .votes import CommentVote
 from .flags import CommentFlag
-from .boards import Board
 from .badwords import *
 
 class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
@@ -257,4 +256,4 @@ class Notification(Base):
     @property
     def board(self):
 
-        return db.query(Board).filter_by(id=self.board_id).first()
+        return self.post.board
