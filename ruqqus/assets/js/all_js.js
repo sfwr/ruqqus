@@ -1320,9 +1320,9 @@ if (url.value.length > 0) {
 
 // Disable submit button if invalid inputs
 
-if (isValidTitle && url.value.length > 0) {
+if (isValidTitle && isValidURL) {
   button.disabled = false;
-} else if (isValidTitle && text.value.length > 0) {
+} else if (isValidTitle && isValidText) {
   button.disabled = false;
 } else {
   button.disabled = true;
