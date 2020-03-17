@@ -85,10 +85,8 @@
 
 						<label for="title">Post Title<i class="fas fa-info-circle text-gray-400 ml-1"></i></label>
 
-						<p class="text-muted text-small">The first step to making a quality post is choosing an interesting title!</p>
 						<input class="form-control" id="title-register" aria-describedby="titleHelpRegister" type="text" name="title" placeholder="Required" value="" required onchange="document.getElementById('create_button').disabled=false;">
 
-						<small class="form-text text-muted">Title must be at least 10 characters long</small>
 						<small id="titleHelpRegister" class="form-text font-weight-bold text-muted d-none mt-1">Minimum of 10
 							characters
 						required.</small>
@@ -118,7 +116,6 @@
 							<textarea form="submitform" id="submit-text-form" class="form-control rounded" aria-label="With textarea" placeholder="Optional if you have a link or an image. 5000 character maximum." rows="7" name="body" oninput="charLimit('submit-text-form','character-count-submit-text-form','create_button')" maxlength="5000"></textarea>
 
 							<span class="position-absolute text-small font-weight-bold text-gray-500" id="character-count-submit-text-form" style="right: 1rem; bottom: 0.5rem; z-index: 3;"></span>
-
 
 							<div class="bg-light text-format d-none">
 								<small class="format"><i class="fas fa-bold"></i></small>
