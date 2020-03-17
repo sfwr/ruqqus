@@ -8,7 +8,6 @@ from .mix_ins import *
 from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 from ruqqus.__main__ import Base, db, cache
-from .submission import Submission
 from .votes import CommentVote
 from .flags import CommentFlag
 from .boards import Board
@@ -108,7 +107,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
             return None
 
         if self.is_top_level:
-            return db.query(Submission).filter_by(id=self.parent_submission).first()
+            return self.post
         else:
             return db.query(Comment).filter_by(id=base36decode(self.parent_fullname.split(sep="_")[1])).first()
 

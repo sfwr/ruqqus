@@ -16,6 +16,7 @@ from .votes import Vote
 from .domains import Domain
 from .flags import Flag
 from .badwords import *
+from .comments import Comment
 
 class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
  
@@ -214,13 +215,13 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
         #Treeing is done from the end because reasons, so these sort orders are reversed
         if sort_type=="hot":
-            comments=self.comments.order_by(text("comments.score_hot ASC")).all()
+            comments=self.comments.order_by(Comment.score_hot.asc()).all()
         elif sort_type=="top":
-            comments=self.comments.order_by(text("comments.score_top ASC")).all()
+            comments=self.comments.order_by(Comment.score_top.asc()).all()
         elif sort_type=="new":
-            comments=self.comments.order_by(text("comments.created_utc")).all()
+            comments=self.comments.order_by(Comment.created_utc.desc()).all()
         elif sort_type=="disputed":
-            comments=self.comments.order_by(text("comments.score_disputed ASC")).all()
+            comments=self.comments.order_by(Comment.score_disputed.asc()).all()
         elif sort_type=="random":
             c=self.comments.all()
             comments=random.sample(c, k=len(c))
