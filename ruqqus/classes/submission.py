@@ -33,7 +33,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     distinguish_level=Column(Integer, default=0)
     created_str=Column(String(255), default=None)
     stickied=Column(Boolean, default=False)
-    comments=relationship("Comment", lazy="subquery", primaryjoin="Comment.parent_submission==Submission.id", backref="submissions")
+    comments=relationship("Comment", lazy="dynamic", primaryjoin="Comment.parent_submission==Submission.id", backref="submissions")
     body=Column(String(10000), default="")
     body_html=Column(String(20000), default="")
     embed_url=Column(String(256), default="")
@@ -223,7 +223,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         elif sort_type=="disputed":
             comments=self.comments.subquery().order_by(Comment.score_disputed.asc()).all()
         elif sort_type=="random":
-            c=self.comments.all()
+            c=self.comments.subquery().all()
             comments=random.sample(c, k=len(c))
         else:
             abort(422)
