@@ -1317,9 +1317,11 @@ var isValidTitle = title.checkValidity();
 
 var isValidURL = url.checkValidity();
 
+var isValidText = text.checkValidity();
+
 if (isValidTitle && isValidURL) {
   button.disabled = false;
-} else if (isValidTitle && url.length == 0 && text.length > 0) {
+} else if (isValidTitle && url.length == 0 && isValidText) {
   button.disabled = false;
 } else {
   button.disabled = true;
