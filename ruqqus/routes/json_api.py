@@ -26,6 +26,8 @@ def user_info(username):
 @auth_desired
 def post_info(v, pid):
 
+    post=get_post(pid)
+
     if not post.is_public and post.board.is_private and not post.board.can_view(v):
         abort(403)
         
