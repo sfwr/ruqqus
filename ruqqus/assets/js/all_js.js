@@ -1321,9 +1321,9 @@ else {
 
 // Disable submit button if invalid inputs
 
-if ((isValidTitle) &&  (isValidURL)) {
+if (isValidTitle && isValidURL) {
   button.disabled = false;
-} else if ((isValidTitle) && (isValidText)) {
+} else if (isValidTitle && isValidText) {
   button.disabled = false;
 } else {
   button.disabled = true;
