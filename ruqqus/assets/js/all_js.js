@@ -1313,7 +1313,7 @@ else {
 
 var isValidURL = url.checkValidity();
 
-if ( isValidURL && text.length == 0) {
+if ( isValidURL ) {
   button.disabled = false;
 } else if (url.length == 0 && text.length > 0) {
   button.disabled = false;
