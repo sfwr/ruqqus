@@ -1293,8 +1293,6 @@ function checkForRequired() {
 
 var button = document.getElementById("create_button");
 
-var title = document.getElementById("post-title");
-
 var url = document.getElementById("post-URL");
 
 var text = document.getElementById("post-text");
