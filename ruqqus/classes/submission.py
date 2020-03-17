@@ -151,7 +151,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         if private and not self.author_id==v.id:
             abort(403)
         elif private:
-            self.comments=[]
+            self.__dict__["replies"]=[]
         else:
             #load and tree comments
             #calling this function with a comment object will do a comment permalink thing
