@@ -33,7 +33,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     distinguish_level=Column(Integer, default=0)
     created_str=Column(String(255), default=None)
     stickied=Column(Boolean, default=False)
-    comments=relationship("Comment", lazy="subquery", primaryjoin="Comment.parent_submission==Submission.id", backref="submissions")
+    comments=relationship("Comment", lazy="dynamic", primaryjoin="Comment.parent_submission==Submission.id", backref="submissions")
     body=Column(String(10000), default="")
     body_html=Column(String(20000), default="")
     embed_url=Column(String(256), default="")
@@ -215,7 +215,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
         #Treeing is done from the end because reasons, so these sort orders are reversed
         if sort_type=="hot":
-            comments=self.comments.subquery().order_by(Comment.score_hot.asc()).all()
+            comments=self.comments.order_by(Comment.score_hot.asc()).all()
         elif sort_type=="top":
             comments=self.comments.order_by(Comment.score_top.asc()).all()
         elif sort_type=="new":
