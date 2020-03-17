@@ -1284,3 +1284,37 @@ window.onload = function () {
 $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip(); 
 });
+
+//  Submit Page Front-end Validation
+
+function checkForRequired() {
+
+// Divs
+
+var button = document.getElementById("create_button");
+
+var title = document.getElementById("post-title");
+
+var url = document.getElementById("post-URL");
+
+var text = document.getElementById("post-text");
+
+// Check validity of inputs
+
+if (url.length <= 0) {
+    text.required = true;
+} else if (text.length <= 0) {
+    url.required = true;
+}
+
+// Disable submit button if invalid inputs
+
+var isValidURL = url.checkValidity();
+
+if ( isValidURL ) {
+  okButton.disabled = false;
+} else {
+  okButton.disabled = true;
+}
+
+}
