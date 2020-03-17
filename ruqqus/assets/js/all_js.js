@@ -1309,14 +1309,14 @@ var isValidText = text.checkValidity();
 
 // Toggle reuqired attribute
 
-if (url.value == undefined) {
-  text.required = true;
-} else if (text.value == undefined) {
-  url.required = true;
+if (url.value !== undefined) {
+  text.required = false;
+} else if (text.value !== undefined) {
+  url.required = false;
 }
 else {
-  text.required = false;
-  url.required = false;
+  text.required = true;
+  url.required = true;
 }
 
 // Disable submit button if invalid inputs
