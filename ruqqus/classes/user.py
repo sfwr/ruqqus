@@ -107,7 +107,7 @@ class User(Base, Stndrd):
         return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=300)
-    def idlist(self, sort="hot", page=1, t=None, show_offensive = True, **kwargs):
+    def idlist(self, sort="hot", page=1, t=None, hide_offensive = False, **kwargs):
 
         
 
@@ -119,7 +119,7 @@ class User(Base, Stndrd):
         if not self.over_18:
             posts=posts.filter_by(over_18=False)
 
-        if not show_offensive:
+        if hide_offensive:
             posts = posts.filter_by(is_offensive=False)
 
         board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
@@ -226,7 +226,7 @@ class User(Base, Stndrd):
                         page=page,
                         only=only,
                         t=request.args.get('t', None),
-                        show_offensive = self.show_offensive
+                        hide_offensive = self.hide_offensive
                         )
 
         posts, next_exists = self.list_of_posts(ids)
@@ -317,7 +317,7 @@ class User(Base, Stndrd):
     def verifyPass(self, password):
         return check_password_hash(self.passhash, password)
         
-    def rendered_userpage(self, v=None): #, show_offensive=True):
+    def rendered_userpage(self, v=None, hide_offensive=False):
 
         if self.reserved:
             return render_template("userpage_reserved.html", u=self, v=v)
@@ -333,8 +333,8 @@ class User(Base, Stndrd):
         if not (v and v.over_18):
             submissions=submissions.filter_by(over_18=False)
 
-##        if not show_offensive:
-##            submissions=submissions.filter_by(is_offensive=False)
+        if hide_offensive:
+            submissions=submissions.filter_by(is_offensive=False)
 
         if not (v and (v.admin_level >=3)):
             submissions=submissions.filter_by(is_deleted=False)
