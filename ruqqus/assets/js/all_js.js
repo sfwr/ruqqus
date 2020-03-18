@@ -1199,13 +1199,11 @@ makeQuote = function (form) {
 
 // Character Count
 
-function charLimit(form, text, button) {
+function charLimit(form, text) {
 
   var input = document.getElementById(form);
 
   var text = document.getElementById(text);
-
-  var button = document.getElementById(button);
 
   var length = input.length;
 
@@ -1213,15 +1211,12 @@ function charLimit(form, text, button) {
 
   if (length >= maxLength) {
     text.style.color = "#E53E3E";
-    button.disabled = true;
   }
   else if (length >= maxLength * .72){
     text.style.color = "#FFC107";
-    button.disabled = false;
   }
   else {
     text.style.color = null;
-    button.disabled = false;
   }
 
   text.innerText = maxLength - length;
