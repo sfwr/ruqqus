@@ -1321,10 +1321,7 @@ var isValidText = text.checkValidity();
 // Disable submit button if invalid inputs
 
 if (isValidTitle) {
-  if (isValidURL) {
-    button.disabled = false;
-  }
-  else if (isValidTextd) {
+  if (isValidURL || isValidText) {
     button.disabled = false;
   }
 } else {
