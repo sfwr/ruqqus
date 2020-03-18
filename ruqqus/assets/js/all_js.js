@@ -1299,14 +1299,6 @@ var text = document.getElementById("post-text");
 
 var button = document.getElementById("create_button");
 
-// Validity check
-
-const isValidTitle = title.checkValidity();
-
-const isValidURL = url.checkValidity();
-
-const isValidText = text.checkValidity();
-
 // Toggle reuqired attribute
 
 if (url.value.length > 0) {
@@ -1317,6 +1309,14 @@ if (url.value.length > 0) {
   text.required = true;
   url.required = true;
 }
+
+// Validity check
+
+var isValidTitle = title.checkValidity();
+
+var isValidURL = url.checkValidity();
+
+var isValidText = text.checkValidity();
 
 // Disable submit button if invalid inputs
 
