@@ -38,8 +38,6 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     parent_comment_id=Column(Integer, ForeignKey("comments.id"))
     author_name=Column(String(64), default="")
 
-    title_id=Column(Integer, ForeignKey("titles.id"), default=None)
-    title=relationship("Title")
     over_18=Column(Boolean, default=False)
     is_op=Column(Boolean, default=False)
     is_offensive=Column(Boolean, default=False)
