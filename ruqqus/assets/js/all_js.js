@@ -1351,7 +1351,9 @@ function autoSuggestTitle()  {
   var title = document.getElementById("post-title").value;
 
   $.ajax({
-    url: "https://textance.herokuapp.com/title/" + url,
+    type: "POST",
+    url: url,
+    data: '{formkey: {{v.formkey}}}',
     complete: function(data) {
       title.value = data.responseText;
     }
