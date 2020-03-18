@@ -1301,11 +1301,11 @@ var button = document.getElementById("create_button");
 
 // Validity check
 
-var isValidTitle = title.checkValidity();
+const isValidTitle = title.checkValidity();
 
-var isValidURL = url.checkValidity();
+const isValidURL = url.checkValidity();
 
-var isValidText = text.checkValidity();
+const isValidText = text.checkValidity();
 
 // Toggle reuqired attribute
 
