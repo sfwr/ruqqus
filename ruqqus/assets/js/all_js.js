@@ -1337,7 +1337,7 @@ document.addEventListener('paste', function (event) {
     var url = new RegExp('^(?:[a-z]+:)?//', 'i');
 
     if (url.test(clipText)) {
-      window.location.href = 'https://www.ruqqus.com/submit?url=' + clipText;
+      window.location.href = '/submit?url=' + clipText;
     }
   }
 });
