@@ -161,7 +161,7 @@
               {% if standalone and c.active_flags %}
               <a class="dropdown-item removeDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="removeComment('{{ c.base36id }}')"><i class="fas fa-comment-times"></i>Remove</a>
               {% endif %}
-              {% if c.is_banned or c.active_flags %}
+              {% if standalone and (c.is_banned or c.active_flags) %}
               <a class="dropdown-item approveDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="approveComment('{{ c.base36id }}')"><i class="fas fa-comment-check"></i>Approve</a>
               {% endif %}
               {% endif %}
