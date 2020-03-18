@@ -20,7 +20,7 @@
 <div id="comment-{{ c.base36id }}" class="comment rounded{% if standalone %} mt-0{% endif %}{% if c.is_banned %} banned{% endif %}{% if c.is_deleted %} deleted{% endif %}{% if c.is_offensive and not standalone and (not v or v.id!=c.author_id) %} collapsed{% endif %}">
 
 
-  <span class="mr-2 d-block d-md-none"><a href="{{ c.author.permalink }}"><img src="/@{{ c.author.username }}/pic/profile" class="profile-pic-25"></a></span>
+  <span class="mr-2 d-block d-md-none"><a href="{{ c.author.permalink }}"><img src="{{ c.author.profile_url }}" class="profile-pic-25"></a></span>
 
   <span class="comment-collapse d-md-block d-none" onclick="collapse_comment('{{ c.base36id }}')"></span>
 
@@ -158,7 +158,7 @@
               {% endif %}
               {% endif %}
               {% if v.admin_level>=3 %}
-              {% if not c.is_banned or c.active_flags%}
+              {% if standalone and not c.is_banned or c.active_flags%}
               <a class="dropdown-item removeDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="removeComment('{{ c.base36id }}')"><i class="fas fa-comment-times"></i>Remove</a>
               {% endif %}
               {% if c.is_banned or c.active_flags %}
