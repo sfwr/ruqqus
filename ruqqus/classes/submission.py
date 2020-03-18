@@ -192,6 +192,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             while i>=0:
                 if comments[i].parent_fullname==thing.fullname:
                     thing.__dict__["replies"].append(comments[i])
+                    comments[i].__dict__["parent"]=thing
                     print(" "*layer+"-"+comments[i].base36id)
                     comments.pop(i)
 

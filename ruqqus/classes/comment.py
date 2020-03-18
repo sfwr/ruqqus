@@ -107,8 +107,11 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
 
         if self.is_top_level:
             return self.post
+
         else:
-            return db.query(Comment).filter_by(id=base36decode(self.parent_fullname.split(sep="_")[1])).first()
+            return self.__dict__.get("parent",
+                                     db.query(Comment).filter_by(id=base36decode(self.parent_fullname.split(sep="_")[1])).first()
+                                     )
 
     @property
     def children(self):
@@ -124,6 +127,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
             return db.query(Comment).filter_by(parent_fullname=self.fullname).all()
 
     @property
+    @lazy
     def permalink(self):
 
         return f"/post/{self.post.base36id}/comment/{self.base36id}"
