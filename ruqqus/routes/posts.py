@@ -4,6 +4,7 @@ from sqlalchemy import func
 from bs4 import BeautifulSoup
 import secrets
 import threading
+import requests
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -99,6 +100,21 @@ def edit_post(pid, v):
     db.commit()
 
     return redirect(p.permalink)
+
+@app.route("/api/submit/title/<url>", methods=['POST'])
+@limiter.limit("6/minute")
+@is_not_banned
+@tos_agreed
+@validate_formkey
+def get_post_title(v, url=None):
+
+    if not url:
+        return abort(404)
+
+    soup = BeautifulSoup(requests.get(url).text, 'html.parser')
+    return soup.find('title').string
+
+
 
 @app.route("/submit", methods=['POST'])
 @limiter.limit("6/minute")
