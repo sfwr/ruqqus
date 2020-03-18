@@ -1341,3 +1341,20 @@ document.addEventListener('paste', function (event) {
     }
   }
 });
+
+// Auto-suggest title given URL
+
+function autoSuggestTitle()  {
+
+var url = document.getElementById("post-URL").value;
+
+var title = document.getElementById("post-title").value;
+
+$.ajax({
+      url: "http://textance.herokuapp.com/title/" + url,
+      complete: function(data) {
+        title.value = data.responseText;
+      }
+})
+
+}
