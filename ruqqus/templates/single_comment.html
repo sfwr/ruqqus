@@ -158,14 +158,16 @@
               {% endif %}
               {% endif %}
               {% if v.admin_level>=3 %}
-              {% if standalone and c.active_flags %}
+              {% if standalone %}
+		{% if c.active_flags %}
               <a class="dropdown-item removeDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="removeComment('{{ c.base36id }}')"><i class="fas fa-comment-times"></i>Remove</a>
-              {% endif %}
-              {% if standalone and (c.is_banned or c.active_flags) %}
+                {% endif %}
+                {% if standalone and (c.is_banned or c.active_flags) %}
               <a class="dropdown-item approveDropdownItem" id="moderate-{{ c.base36id }}" href="javascript:void(0)" onclick="approveComment('{{ c.base36id }}')"><i class="fas fa-comment-check"></i>Approve</a>
+                {% endif %}
               {% endif %}
               {% endif %}
-              {% endif %}
+	      {% endif %}
 
             </div>
           </div>
