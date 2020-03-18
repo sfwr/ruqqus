@@ -871,7 +871,7 @@ $(document).ready(function() {
 
 // Desktop
 
-if (localStorage.sidebar_pref == 'collapsed') {
+if (document.getElementById("sidebar-left") && localStorage.sidebar_pref == 'collapsed') {
 
 	document.getElementById('sidebar-left').classList.add('sidebar-collapsed');
 
