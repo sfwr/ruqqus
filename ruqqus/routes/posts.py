@@ -132,7 +132,7 @@ def submit_post(v):
                                )
 
     parsed_url=urlparse(url)
-    if not (parsed_url.scheme and parsed_url.netloc) and not request.form.get("body") and 'file' not in request.files:
+    if not (parsed_url.scheme and parsed_url.netloc) and not request.form.get("body") and not request.files.get("file",None):
         return render_template("submit.html",
                                v=v,
                                error="Please enter a URL or some text.",
@@ -408,6 +408,14 @@ def delete_post_pid(pid, v):
     
     db.add(post)
     db.commit()
+
+    #clear cache
+    cache.delete_memoized(User.idlist, v, sort="new")
+
+    if post.age >= 3600*6:
+        cache.delete_memoized(Board.idlist, post.board, sort="new")
+        cache.delete_memoized(frontlist, sort="new")
+    
 
     #delete i.ruqqus.com
     if post.domain=="i.ruqqus.com":
