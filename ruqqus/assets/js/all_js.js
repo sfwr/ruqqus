@@ -1328,8 +1328,8 @@ if (isValidTitle && isValidURL) {
   button.disabled = true;
 }
 
-console.log(isValidTitle);
-console.log(isValidURL);
-console.log(isValidText);
+console.log("title" + isValidTitle);
+console.log("url" + isValidURL);
+console.log("text" + isValidText);
 
 }
