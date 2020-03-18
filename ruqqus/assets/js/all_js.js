@@ -1344,7 +1344,7 @@ document.addEventListener('paste', function (event) {
 
 // Auto-suggest title given URL
 
-window.onload = function autoSuggestTitle()  {
+function autoSuggestTitle()  {
 
   var url = document.getElementById("post-URL").value;
 
@@ -1358,3 +1358,5 @@ window.onload = function autoSuggestTitle()  {
   })
 
 }
+
+window.onload = autoSuggestTitle();
