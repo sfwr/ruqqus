@@ -220,6 +220,24 @@
             </div>
 
           </div>
+          <div class="d-lg-flex">
+
+            <div class="title w-lg-25">
+              <label for="hideoffensive">Hide Potentially Offensive Content</label>
+            </div>
+
+            <div class="body w-lg-100">
+
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="hideoffensive" name="hide_offensive"{% if v.hide_offensive %} checked{% endif %} onchange="document.getElementById('profile-settings').submit()">
+                <label class="custom-control-label" for="hideoffensive"></label>
+              </div>
+
+              <span class="text-small-extra text-muted">Enable if you would prefer to hide content that is likely to be offensive.</span>
+
+            </div>
+
+          </div>
 
         </div>
 
