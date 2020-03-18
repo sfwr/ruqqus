@@ -1344,17 +1344,21 @@ document.addEventListener('paste', function (event) {
 
 // Auto-suggest title given URL
 
-function autoSuggestTitle()  {
+window.onload = function() {
 
-var url = document.getElementById("post-URL").value;
+  function autoSuggestTitle()  {
 
-var title = document.getElementById("post-title").value;
+    var url = document.getElementById("post-URL").value;
 
-$.ajax({
-      url: "http://textance.herokuapp.com/title/" + url,
+    var title = document.getElementById("post-title").value;
+
+    $.ajax({
+      url: "https://textance.herokuapp.com/title/" + url,
       complete: function(data) {
         title.value = data.responseText;
       }
-})
+    })
+
+  }
 
 }
