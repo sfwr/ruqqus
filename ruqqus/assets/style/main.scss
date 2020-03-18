@@ -3599,6 +3599,12 @@ textarea, input[type=text] {
     background: transparent;
 }
 
+// Hides scroll bar in FF
+
+.hide-scrollbar {
+    scrollbar-width: none;
+}
+
 // Adam's additions
 
 .sidebar-adminpanel input[type="submit"] {

@@ -16893,6 +16893,10 @@ textarea {
   background: transparent;
 }
 
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
 .sidebar-adminpanel input[type=submit] {
   width: 100%;
 }
