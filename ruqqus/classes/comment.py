@@ -61,7 +61,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     rank_fiery=deferred(Column(Float, server_default=FetchedValue()))
     rank_hot=deferred(Column(Float, server_default=FetchedValue()))
 
-    flag_count=Column(Integer, server_default=FetchedValue())
+    flag_count=deferred(Column(Integer, server_default=FetchedValue()))
 
     board_id=Column(Integer, server_default=FetchedValue())
     
