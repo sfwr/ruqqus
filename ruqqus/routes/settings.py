@@ -31,7 +31,7 @@ def settings_profile_post(v):
 
     if request.form.get("hide_offensive") != v.hide_offensive:
         updated=True
-        v.over_18=bool(request.form.get("hide_offensive", None))
+        v.hide_offensive=bool(request.form.get("hide_offensive", None))
         cache.delete_memoized(User.idlist, v)
         
     if request.form.get("bio") != v.bio:
