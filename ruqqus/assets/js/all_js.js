@@ -1346,16 +1346,22 @@ document.addEventListener('paste', function (event) {
 
 function autoSuggestTitle()  {
 
-  var url = '/api/submit/title?url=' + document.getElementById("post-URL").value;
+  var urlField = document.getElementById("post-URL");
 
-  var title = document.getElementById("post-title").value;
+  if (urlField.value.length !== 0) {
 
-  x=new XMLHttpRequest()
-  x.open('get',url)
-  x.withCredentials=true
-  x.send()
+    var url = '/api/submit/title?url=' + document.getElementById("post-URL").value;
 
-console.log(x.response)
+    var title = document.getElementById("post-title").value;
+
+    x=new XMLHttpRequest()
+    x.open('get',url)
+    x.withCredentials=true
+    x.send()
+
+    console.log(x.response)
+
+  }
 
 }
 
