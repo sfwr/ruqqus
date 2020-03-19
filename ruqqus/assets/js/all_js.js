@@ -1350,7 +1350,7 @@ function autoSuggestTitle()  {
 
   var titleField = document.getElementById("post-title");
 
-  if (urlField.value.length !== 0) {
+  if (urlField.value.length > 0) {
 
     x = new XMLHttpRequest();
     x.withCredentials=true;
