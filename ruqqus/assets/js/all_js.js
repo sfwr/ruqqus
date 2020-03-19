@@ -1360,4 +1360,6 @@ function autoSuggestTitle()  {
 
 }
 
+if (window.location.pathname=='/submit') {
 window.onload = autoSuggestTitle();
+}
