@@ -1359,6 +1359,9 @@ function autoSuggestTitle()  {
     x.onreadystatechange = function() {
       if (x.readyState == x.DONE) {
         console.log(x.responseText);
+
+        title=JSON.parse(x.responseText)["title"];
+        titleField.value=title;
       }
     }
     x.open('get','/api/submit/title?url=' + urlField.value);
