@@ -113,7 +113,11 @@ def get_post_title(v):
         return abort(400)
 
     soup = BeautifulSoup(requests.get(url).content, 'html.parser')
-    return soup.find('title').string
+
+    data={"url":url,
+          "title":soup.find('title').string
+          }
+    return jsonify(data)
 
 
 
