@@ -1350,16 +1350,12 @@ function autoSuggestTitle()  {
 
   var titleField = document.getElementById("post-title");
 
-  if (urlField.value.length > 0) {
-
     x = new XMLHttpRequest();
     x.withCredentials=true;
-    x.open('get','/api/submit/title?url='+urlField.value);
+    x.open('get','/api/submit/title?url=' + urlField.value);
     x.send();
     title=JSON.parse(x.response)["title"];
     titleField.value=title;
-
-  };
 
 };
 
