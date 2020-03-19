@@ -1348,24 +1348,20 @@ function autoSuggestTitle()  {
 
   var urlField = document.getElementById("post-URL");
 
+  var titleField = document.getElementById("post-title");
+
   if (urlField.value.length !== 0) {
 
-    var url = '/api/submit/title?url=' + document.getElementById("post-URL").value;
-
-    var title = document.getElementById("post-title").value;
-
-    x=new XMLHttpRequest();
-    x.open('get',url);
-    x.withCredentials=true;
+    x = new XMLHttpRequest();
+    x.withCredentials=True;
+    x.open('get','/api/submit/title?url='+urlField.value);
     x.send();
-
-    console.log(x.response);
-
-    title.value = JSON.parse(x.response)['title'];
+    title=JSON.parse(x.response)['title'];
+    titleField.value=title;
 
   };
 
-}
+};
 
 if (window.location.pathname=='/submit') {
   window.onload = autoSuggestTitle();
