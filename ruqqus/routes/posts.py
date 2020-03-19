@@ -101,17 +101,18 @@ def edit_post(pid, v):
 
     return redirect(p.permalink)
 
-@app.route("/api/submit/title/<url>", methods=['POST'])
+@app.route("/api/submit/title", methods=['GET'])
 @limiter.limit("6/minute")
 @is_not_banned
-@tos_agreed
-@validate_formkey
-def get_post_title(v, url=None):
+#@tos_agreed
+#@validate_formkey
+def get_post_title(v):
 
+    url=request.args.get("url",None)
     if not url:
-        return abort(404)
+        return abort(400)
 
-    soup = BeautifulSoup(requests.get(url).text, 'html.parser')
+    soup = BeautifulSoup(requests.get(url).content, 'html.parser')
     return soup.find('title').string
 
 
