@@ -1353,7 +1353,7 @@ function autoSuggestTitle()  {
   if (urlField.value.length !== 0) {
 
     x = new XMLHttpRequest();
-    x.withCredentials=True;
+    x.withCredentials=true;
     x.open('get','/api/submit/title?url='+urlField.value);
     x.send();
     title=JSON.parse(x.response)['title'];
