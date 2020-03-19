@@ -1280,59 +1280,6 @@ $(document).ready(function(){
   $('[data-toggle="tooltip"]').tooltip(); 
 });
 
-//  Submit Page Front-end Validation
-
-function checkForRequired() {
-
-// Divs
-
-var title = document.getElementById("post-title");
-
-var url = document.getElementById("post-URL");
-
-var text = document.getElementById("post-text");
-
-var button = document.getElementById("create_button");
-
-// Toggle reuqired attribute
-
-if (url.value.length > 0) {
-  text.required = false;
-} else if (text.value.length > 0) {
-  url.required = false;
-} else {
-  text.required = true;
-  url.required = true;
-}
-
-// Validity check
-
-var isValidTitle = title.value.length > 0;
-
-var isValidURL = url.checkValidity();
-
-var isValidText = text.checkValidity();
-
-console.log(title.value);
-
-console.log(isValidTitle);
-
-console.log(isValidURL);
-
-console.log(isValidText);
-
-// Disable submit button if invalid inputs
-
-if (isValidTitle && isValidURL) {
-  button.disabled = false;
-} else if (isValidTitle && isValidText) {
-  button.disabled = false;
-} else {
-  button.disabled = true;
-}
-
-}
-
 // Paste to create submission
 
 document.addEventListener('paste', function (event) {
@@ -1381,4 +1328,57 @@ function autoSuggestTitle()  {
 
 if (window.location.pathname=='/submit') {
   window.onload = autoSuggestTitle();
+}
+
+//  Submit Page Front-end Validation
+
+function checkForRequired() {
+
+// Divs
+
+var title = document.getElementById("post-title");
+
+var url = document.getElementById("post-URL");
+
+var text = document.getElementById("post-text");
+
+var button = document.getElementById("create_button");
+
+// Toggle reuqired attribute
+
+if (url.value.length > 0) {
+  text.required = false;
+} else if (text.value.length > 0) {
+  url.required = false;
+} else {
+  text.required = true;
+  url.required = true;
+}
+
+// Validity check
+
+var isValidTitle = title.checkValidity();
+
+var isValidURL = url.checkValidity();
+
+var isValidText = text.checkValidity();
+
+console.log(title.value);
+
+console.log(isValidTitle);
+
+console.log(isValidURL);
+
+console.log(isValidText);
+
+// Disable submit button if invalid inputs
+
+if (isValidTitle && isValidURL) {
+  button.disabled = false;
+} else if (isValidTitle && isValidText) {
+  button.disabled = false;
+} else {
+  button.disabled = true;
+}
+
 }
