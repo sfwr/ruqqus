@@ -1219,9 +1219,6 @@ function charLimit(form, text) {
     text.style.color = "#A0AEC0";
   }
 
-  console.log(maxLength);
-  console.log(length);
-
   text.innerText = maxLength - length;
 
 }
@@ -1310,7 +1307,7 @@ if (url.value.length > 0) {
 
 // Validity check
 
-var isValidTitle = title.checkValidity();
+var isValidTitle = title.value.length > 0;
 
 var isValidURL = url.checkValidity();
 
