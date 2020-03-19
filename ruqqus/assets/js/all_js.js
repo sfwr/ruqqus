@@ -1363,7 +1363,7 @@ var isValidURL = url.checkValidity();
 
 var isValidText = text.checkValidity();
 
-console.log(title.value);
+console.log(title.value.length);
 
 console.log(isValidTitle);
 
