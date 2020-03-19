@@ -1358,7 +1358,7 @@ function autoSuggestTitle()  {
     x.withCredentials=true;
     x.open('get','/api/submit/title?url=' + urlField.value);
     x.send();
-    title=JSON.parse(x.response)["title"];
+    title=JSON.parse(x.responseText)["title"];
     titleField.value=title;
 
   };
