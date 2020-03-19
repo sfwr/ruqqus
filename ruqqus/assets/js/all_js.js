@@ -1346,12 +1346,12 @@ document.addEventListener('paste', function (event) {
 
 function autoSuggestTitle()  {
 
-  var url = document.getElementById("post-URL").value;
+  var url = '/api/submit/title?url=' + document.getElementById("post-URL").value;
 
   var title = document.getElementById("post-title").value;
 
   x=new XMLHttpRequest()
-  x.open('get','/api/submit/title?url=' + url)
+  x.open('get',url)
   x.withCredentials=true
   x.send()
 
