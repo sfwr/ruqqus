@@ -103,7 +103,7 @@ def edit_post(pid, v):
 
 @app.route("/api/submit/title", methods=['GET'])
 @limiter.limit("6/minute")
-@is_not_banned
+#@is_not_banned
 #@tos_agreed
 #@validate_formkey
 def get_post_title(v):
@@ -113,7 +113,11 @@ def get_post_title(v):
         return abort(400)
 
     soup = BeautifulSoup(requests.get(url).content, 'html.parser')
-    return soup.find('title').string
+
+    data={"url":url,
+          "title",soup.find('title').string
+          }
+    return jsonify(data)
 
 
 
