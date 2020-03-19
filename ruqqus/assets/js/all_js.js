@@ -1205,7 +1205,7 @@ function charLimit(form, text) {
 
   var text = document.getElementById(text);
 
-  var length = input.length;
+  var length = input.value.length;
 
   var maxLength = input.getAttribute("maxlength");
 
