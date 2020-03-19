@@ -139,7 +139,8 @@ def submit_post(v):
                                title=title,
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("guild","")
+                               b=get_guild(request.form.get("guild",""),
+                                           graceful=True
                                            )
                                )
     elif len(title)>250:
@@ -149,7 +150,8 @@ def submit_post(v):
                                title=title[0:250],
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("guild","")
+                               b=get_guild(request.form.get("guild",""),
+                                           graceful=True
                                            )
                                )
 
@@ -195,7 +197,8 @@ def submit_post(v):
                                    title=title,
                                    url=url,
                                    body=request.form.get("body",""),
-                                   b=get_guild(request.form.get("board","general"))
+                                   b=get_guild(request.form.get("board","general"),
+                                           graceful=True)
                                    )
 
         #check for embeds
@@ -225,7 +228,8 @@ def submit_post(v):
                                title=title,
                                url=url
                                , body=request.form.get("body",""),
-                               b=get_guild("general")
+                               b=get_guild("general",
+                                           graceful=True)
                                ), 403       
     
     if board.has_ban(v):
@@ -245,7 +249,9 @@ def submit_post(v):
                                title=title,
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("board","general"))
+                               b=get_guild(request.form.get("board","general"),
+                                           graceful=True
+                                           )
                                )
 
         
@@ -316,7 +322,9 @@ def submit_post(v):
                                title=title,
                                text=body[0:10000],
                                url=url,
-                               b=get_guild(request.form.get("board","general"))
+                               b=get_guild(request.form.get("board","general"),
+                                           graceful=True
+                                           )
                                ), 400
 
     if len(url)>2048:
@@ -326,7 +334,8 @@ def submit_post(v):
                                error="URLs cannot be over 2048 characters",
                                title=title,
                                text=body[0:2000],
-                               b=get_guild(request.form.get("board","general"))
+                               b=get_guild(request.form.get("board","general"),
+                                           graceful=True)
                                ), 400
 
     with CustomRenderer() as renderer:
