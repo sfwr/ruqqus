@@ -1354,14 +1354,16 @@ function autoSuggestTitle()  {
 
     var title = document.getElementById("post-title").value;
 
-    x=new XMLHttpRequest()
-    x.open('get',url)
-    x.withCredentials=true
-    x.send()
+    x=new XMLHttpRequest();
+    x.open('get',url);
+    x.withCredentials=true;
+    x.send();
 
-    console.log(x.response)
+    console.log(x.response);
 
-  }
+    title.value = JSON.parse(x.response)['title'];
+
+  };
 
 }
 
