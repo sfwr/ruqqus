@@ -1354,12 +1354,15 @@ function autoSuggestTitle()  {
 
   if (isValidURL && urlField.value.length > 0) {
 
-    x = new XMLHttpRequest();
+    var x = new XMLHttpRequest();
     x.withCredentials=true;
+    x.onreadystatechange = function() {
+      if (x.readyState == x.DONE) {
+        console.log(x.responseText);
+      }
+    }
     x.open('get','/api/submit/title?url=' + urlField.value);
-    x.send();
-    title=JSON.parse(x.responseText)["title"];
-    titleField.value=title;
+    x.send(null);
 
   };
 
