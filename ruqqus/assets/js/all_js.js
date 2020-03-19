@@ -1219,6 +1219,9 @@ function charLimit(form, text) {
     text.style.color = null;
   }
 
+  console.log(maxLength);
+  console.log(length);
+
   text.innerText = maxLength - length;
 
 }
