@@ -1308,6 +1308,8 @@ if (url.value.length > 0) {
   url.required = true;
 }
 
+console.log(url.value);
+
 // Validity check
 
 var isValidTitle = title.checkValidity();
