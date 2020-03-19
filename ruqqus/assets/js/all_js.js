@@ -1350,16 +1350,15 @@ function autoSuggestTitle()  {
 
   var title = document.getElementById("post-title").value;
 
-  $.ajax({
-    type: "GET",
-    url: "/api/submit/title?url=" + url,
-    complete: function(data) {
-      title.value = data.responseText;
-    }
-  })
+  x=new XMLHttpRequest()
+  x.open('get','/api/submit/title?url=' + url)
+  x.withCredentials=true
+  x.send()
+
+console.log(x.response)
 
 }
 
 if (window.location.pathname=='/submit') {
-window.onload = autoSuggestTitle();
+  window.onload = autoSuggestTitle();
 }
