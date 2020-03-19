@@ -136,9 +136,10 @@ def submit_post(v):
         return render_template("submit.html",
                                v=v,
                                error="Please enter a better title.",
-                               title=title, url=url,
+                               title=title,
+                               url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("board","")
+                               b=get_guild(request.form.get("guild","")
                                            )
                                )
     elif len(title)>250:
@@ -148,7 +149,7 @@ def submit_post(v):
                                title=title[0:250],
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("board","")
+                               b=get_guild(request.form.get("guild","")
                                            )
                                )
 
@@ -160,7 +161,7 @@ def submit_post(v):
                                title=title,
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("board","")
+                               b=get_guild(request.form.get("guild","")
                                            )
                                )
 
