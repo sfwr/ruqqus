@@ -1318,7 +1318,7 @@ var isValidText = text.checkValidity();
 
 console.log(isValidTitle);
 
-console.log(isValidURL;
+console.log(isValidURL);
 
 console.log(isValidText);
 
