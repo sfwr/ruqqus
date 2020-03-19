@@ -1307,7 +1307,7 @@ if (url.value.length > 0) {
 
 // Validity check
 
-var isValidTitle = title.length > 0;
+var isValidTitle = title.value.length > 0;
 
 var isValidURL = url.checkValidity();
 
