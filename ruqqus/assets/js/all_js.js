@@ -1352,7 +1352,7 @@ function autoSuggestTitle()  {
 
   var isValidURL = urlField.checkValidity();
 
-  if (isValidURL && urlField.value.length > 0) {
+  if (isValidURL && urlField.value.length > 0 && titleField.value === "") {
 
     var x = new XMLHttpRequest();
     x.withCredentials=true;
