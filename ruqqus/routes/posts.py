@@ -139,7 +139,7 @@ def submit_post(v):
                                title=title,
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("guild",""),
+                               b=get_guild(request.form.get("board",""),
                                            graceful=True
                                            )
                                )
@@ -150,7 +150,7 @@ def submit_post(v):
                                title=title[0:250],
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("guild",""),
+                               b=get_guild(request.form.get("board",""),
                                            graceful=True
                                            )
                                )
@@ -163,7 +163,7 @@ def submit_post(v):
                                title=title,
                                url=url,
                                body=request.form.get("body",""),
-                               b=get_guild(request.form.get("guild","")
+                               b=get_guild(request.form.get("board","")
                                            )
                                )
 
