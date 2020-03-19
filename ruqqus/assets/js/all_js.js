@@ -1352,7 +1352,7 @@ function autoSuggestTitle()  {
 
   $.ajax({
     type: "POST",
-    url: url,
+    url: "/api/submit/title?url=" + url,
     data: '{formkey: {{v.formkey}}}',
     complete: function(data) {
       title.value = data.responseText;
