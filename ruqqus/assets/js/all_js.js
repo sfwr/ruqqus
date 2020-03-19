@@ -1313,6 +1313,8 @@ var isValidURL = url.checkValidity();
 
 var isValidText = text.checkValidity();
 
+console.log(title.value);
+
 console.log(isValidTitle);
 
 console.log(isValidURL);
