@@ -103,7 +103,7 @@ def edit_post(pid, v):
 
 @app.route("/api/submit/title", methods=['GET'])
 @limiter.limit("6/minute")
-#@is_not_banned
+@is_not_banned
 #@tos_agreed
 #@validate_formkey
 def get_post_title(v):
