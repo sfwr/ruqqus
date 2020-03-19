@@ -1210,10 +1210,10 @@ function charLimit(form, text) {
   var maxLength = input.getAttribute("maxlength");
 
   if (length >= maxLength) {
-    text.style.color = "#E53E3E";
+    text.style.color = "#E53E3E !important";
   }
   else if (length >= maxLength * .72){
-    text.style.color = "#FFC107";
+    text.style.color = "#FFC107 !important";
   }
   else {
     text.style.color = null;
