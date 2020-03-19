@@ -1308,8 +1308,6 @@ if (url.value.length > 0) {
   url.required = true;
 }
 
-console.log(url.value);
-
 // Validity check
 
 var isValidTitle = title.checkValidity();
@@ -1317,6 +1315,12 @@ var isValidTitle = title.checkValidity();
 var isValidURL = url.checkValidity();
 
 var isValidText = text.checkValidity();
+
+console.log(isValidTitle);
+
+console.log(var isValidURL;
+
+console.log(isValidText);
 
 // Disable submit button if invalid inputs
 
