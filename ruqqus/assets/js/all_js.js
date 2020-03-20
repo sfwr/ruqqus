@@ -1315,15 +1315,12 @@ function autoSuggestTitle()  {
       if (x.readyState == x.DONE) {
         console.log(x.responseText);
 
-        var title=JSON.parse(x.responseText)["title"];
-
-        console.log(titleField.value.length);
+        title=JSON.parse(x.responseText)["title"];
+        titleField.value=title;
       }
     }
     x.open('get','/api/submit/title?url=' + urlField.value);
     x.send(null);
-
-    titleField.value=title;
 
   };
 
