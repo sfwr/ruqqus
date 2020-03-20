@@ -1297,37 +1297,6 @@ document.addEventListener('paste', function (event) {
   }
 });
 
-// Auto-suggest title given URL
-
-function autoSuggestTitle()  {
-
-  var urlField = document.getElementById("post-URL");
-
-  var titleField = document.getElementById("post-title");
-
-  var isValidURL = urlField.checkValidity();
-
-  if (isValidURL && urlField.value.length > 0 && titleField.value === "") {
-
-    var x = new XMLHttpRequest();
-    x.withCredentials=true;
-    x.onreadystatechange = function() {
-      if (x.readyState == x.DONE) {
-        console.log(x.responseText);
-
-        title=JSON.parse(x.responseText)["title"];
-        titleField.value=title;
-
-        checkForRequired()
-      }
-    }
-    x.open('get','/api/submit/title?url=' + urlField.value);
-    x.send(null);
-
-  };
-
-};
-
 //  Submit Page Front-end Validation
 
 function checkForRequired() {
@@ -1372,6 +1341,39 @@ if (isValidTitle && isValidURL) {
 }
 
 }
+
+// Auto-suggest title given URL
+
+function autoSuggestTitle()  {
+
+  var urlField = document.getElementById("post-URL");
+
+  var titleField = document.getElementById("post-title");
+
+  var isValidURL = urlField.checkValidity();
+
+  if (isValidURL && urlField.value.length > 0 && titleField.value === "") {
+
+    var x = new XMLHttpRequest();
+    x.withCredentials=true;
+    x.onreadystatechange = function() {
+      if (x.readyState == x.DONE) {
+        console.log(x.responseText);
+
+        title=JSON.parse(x.responseText)["title"];
+        titleField.value=title;
+
+        checkForRequired()
+      }
+    }
+    x.open('get','/api/submit/title?url=' + urlField.value);
+    x.send(null);
+
+  };
+
+};
+
+// Run AutoSuggestTitle function on load
 
 if (window.location.pathname=='/submit') {
   window.onload = autoSuggestTitle();
