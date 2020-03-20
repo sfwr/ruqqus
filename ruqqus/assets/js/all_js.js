@@ -1287,12 +1287,17 @@ document.addEventListener('paste', function (event) {
   var nothingFocused = document.activeElement === document.body;
 
   if (nothingFocused) {
+
     var clipText = event.clipboardData.getData('Text');
 
     var url = new RegExp('^(?:[a-z]+:)?//', 'i');
 
-    if (url.test(clipText)) {
+    if (url.test(clipText) && window.location.pathname !== '/submit') {
       window.location.href = '/submit?url=' + clipText;
+    } else if (url.test(clipText) && window.location.pathname == '/submit') {
+
+      document.getElementById("post-URL").value = clipText;
+
     }
   }
 });
