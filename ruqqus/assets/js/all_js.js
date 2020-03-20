@@ -1317,6 +1317,8 @@ function autoSuggestTitle()  {
 
         title=JSON.parse(x.responseText)["title"];
         titleField.value=title;
+
+        checkForRequired()
       }
     }
     x.open('get','/api/submit/title?url=' + urlField.value);
@@ -1359,14 +1361,6 @@ var isValidURL = url.checkValidity();
 
 var isValidText = text.checkValidity();
 
-console.log(title.value.length);
-
-console.log(isValidTitle);
-
-console.log(isValidURL);
-
-console.log(isValidText);
-
 // Disable submit button if invalid inputs
 
 if (isValidTitle && isValidURL) {
@@ -1381,5 +1375,4 @@ if (isValidTitle && isValidURL) {
 
 if (window.location.pathname=='/submit') {
   window.onload = autoSuggestTitle();
-  window.onload = checkForRequired();
 }
