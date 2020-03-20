@@ -1316,12 +1316,11 @@ function autoSuggestTitle()  {
         console.log(x.responseText);
 
         title=JSON.parse(x.responseText)["title"];
+        titleField.value=title;
       }
     }
     x.open('get','/api/submit/title?url=' + urlField.value);
     x.send(null);
-
-    titleField.value=title;
 
   };
 
