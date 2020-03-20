@@ -1334,7 +1334,7 @@ var isValidText = text.checkValidity();
 
 if (isValidTitle && isValidURL) {
   button.disabled = false;
-} else if (isValidTitle && isValidText) {
+} else if (isValidTitle && isValidText && text.value.legnth =< 5000) {
   button.disabled = false;
 } else {
   button.disabled = true;
