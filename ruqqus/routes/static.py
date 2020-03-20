@@ -56,6 +56,10 @@ def badges(v):
                            v=v,
                            badges=badges)
 
+@app.route("/slurs.txt", methods=["GET"])
+def slurs_txt():
+    return send_file("./assets/slurs.txt")
+
 @app.route("/settings/security", methods=["GET"])
 @auth_required
 def settings_security(v):
