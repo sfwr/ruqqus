@@ -112,7 +112,9 @@ def get_post_title(v):
     if not url:
         return abort(400)
 
-    x=requests.get(url)
+    headers={"User-Agent":app.config["UserAgent"]}
+
+    x=requests.get(url, headers=headers)
     if not x.status_code==200:
         return jsonify({"error":f"Page returned {x.status_code}"}), 400
 
@@ -122,6 +124,7 @@ def get_post_title(v):
         data={"url":url,
               "title":soup.find('title').string
               }
+
         return jsonify(data)
     except:
         return jsonify({"error":f"Could not find a title"}), 400
