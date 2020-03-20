@@ -1317,6 +1317,8 @@ function autoSuggestTitle()  {
 
         title=JSON.parse(x.responseText)["title"];
         titleField.value=title;
+
+        console.log(titleField.value.length);
       }
     }
     x.open('get','/api/submit/title?url=' + urlField.value);
