@@ -1324,6 +1324,11 @@ function autoSuggestTitle()  {
 
   };
 
+  // Fix for undefined text bug
+
+  var event = new Event('change');
+  title.dispatchEvent(event);
+
 };
 
 //  Submit Page Front-end Validation
