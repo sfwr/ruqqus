@@ -113,10 +113,13 @@ def get_post_title(v):
         return abort(400)
 
     headers={"User-Agent":app.config["UserAgent"]}
-
-    x=requests.get(url, headers=headers)
+    try:
+        x=requests.get(url, headers=headers)
+    except:
+        return jsonify(error: "Could not reach page"), 400
+    
     if not x.status_code==200:
-        return jsonify({"error":f"Page returned {x.status_code}"}), 400
+        return jsonify({"error":f"Page returned {x.status_code}"}), x.status_code
 
     try:
         soup = BeautifulSoup(x.content, 'html.parser')
