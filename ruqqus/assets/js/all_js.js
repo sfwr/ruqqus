@@ -1298,6 +1298,8 @@ document.addEventListener('paste', function (event) {
 
       document.getElementById("post-URL").value = clipText;
 
+      autoSuggestTitle()
+
     }
   }
 });
