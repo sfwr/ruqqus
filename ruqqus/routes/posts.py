@@ -116,7 +116,7 @@ def get_post_title(v):
     try:
         x=requests.get(url, headers=headers)
     except:
-        return jsonify(error: "Could not reach page"), 400
+        return jsonify("error": "Could not reach page"), 400
     
     if not x.status_code==200:
         return jsonify({"error":f"Page returned {x.status_code}"}), x.status_code
