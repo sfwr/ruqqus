@@ -1317,19 +1317,20 @@ function autoSuggestTitle()  {
 
         title=JSON.parse(x.responseText)["title"];
         titleField.value=title;
+
+        if (titleField.value.length > 0) {
+            // Fix for undefined text bug
+            var event = new Event('change');
+            titleField.dispatchEvent(event);
+          }
+        }
       }
-    }
-    x.open('get','/api/submit/title?url=' + urlField.value);
-    x.send(null);
+      x.open('get','/api/submit/title?url=' + urlField.value);
+      x.send(null);
+
+    };
 
   };
-
-  // Fix for undefined text bug
-
-  var event = new Event('change');
-  titleField.dispatchEvent(event);
-
-};
 
 //  Submit Page Front-end Validation
 
