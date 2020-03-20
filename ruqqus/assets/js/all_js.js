@@ -1326,10 +1326,6 @@ function autoSuggestTitle()  {
 
 };
 
-if (window.location.pathname=='/submit') {
-  window.onload = autoSuggestTitle();
-}
-
 //  Submit Page Front-end Validation
 
 function checkForRequired() {
@@ -1381,4 +1377,9 @@ if (isValidTitle && isValidURL) {
   button.disabled = true;
 }
 
+}
+
+if (window.location.pathname=='/submit') {
+  window.onload = autoSuggestTitle();
+  window.onload = checkForRequired();
 }
