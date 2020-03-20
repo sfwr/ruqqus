@@ -1327,7 +1327,7 @@ function autoSuggestTitle()  {
   // Fix for undefined text bug
 
   var event = new Event('change');
-  title.dispatchEvent(event);
+  titleField.dispatchEvent(event);
 
 };
 
