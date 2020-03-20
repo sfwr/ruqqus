@@ -1364,7 +1364,7 @@ function autoSuggestTitle()  {
     var x = new XMLHttpRequest();
     x.withCredentials=true;
     x.onreadystatechange = function() {
-      if (x.readyState == x.DONE) {
+      if (x.readyState == 4 && x.status == 200) {
         console.log(x.responseText);
 
         title=JSON.parse(x.responseText)["title"];
