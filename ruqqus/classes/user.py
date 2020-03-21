@@ -661,4 +661,9 @@ class User(Base, Stndrd):
                 'comment_count':self.comment_count
                 }
 
+    @property
+    def total_karma(self):
+
+        return  max(self.karma+self.comment_karma, -5)
+
         
