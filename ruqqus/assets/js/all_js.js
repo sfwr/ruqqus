@@ -391,6 +391,10 @@ function addReplyForm(commentId, postId, formId) {
 
 function autoExpand (field) {
 
+	//get current scroll position
+	xpos=window.scrollX;
+	ypos=window.scrollY;
+
 	// Reset field height
 	field.style.height = 'inherit';
 
@@ -406,6 +410,9 @@ function autoExpand (field) {
   + 32;
 
   field.style.height = height + 'px';
+
+	//keep window position from changing
+	window.scrollTo(xpos,ypos);
 
 };
 
