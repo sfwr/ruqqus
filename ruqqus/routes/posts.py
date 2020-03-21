@@ -495,6 +495,9 @@ def toggle_post_nsfw(pid, v):
     if not post.author_id==v.id:
         abort(403)
 
+    if post.board.over_18 and post.over_18:
+        abort(403)
+
     post.over_18 = not post.over_18
     db.add(post)
     db.commit()
