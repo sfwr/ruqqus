@@ -38,23 +38,38 @@ def thumbnail_thread(pid):
 ##            'css':"iframe {display:none;}"
 ##            }
 
-
-    x=requests.get(post.url)
+    headers={"User-Agent":app.config['UserAgent']}
+    x=requests.get(post.url, headers=headers)
     
     if x.status_code != 200 or not x.headers["Content-Type"].startswith("text/html"):
-        print('not html post')
+        print(f'not html post, status {x.status_code}')
         return
 
     soup=BeautifulSoup(x.content, 'html.parser')
-    img=soup.find('img')
-    if not img:
-        print('no image in doc')
-        return
+    img=soup.find('meta', attrs={"name": "thumbnail"})
+    if img:
+        src=img['content']
+    else:
+    
+        img=soup.find('img')
+        if img:
+            src=img['src']
+        else:
+            print('no image in doc')
+            return
 
-    src=img['src']
-    if not src.startswith("https://"):
+    #convert src into full url
+    if src.startswith("https://"):
+        pass
+    elif src.startswith("http://"):
+        src=f"https://{src.split('http://')}"
+    elif src.startswith('//'):
+        src=f"https:{src}"
+    elif src.startswith('/'):
         parsed_url=urlparse(post.url)
         src=f"https://{parsed_url.netloc}/{src.lstrip('/')}"
+    else:
+        src=f"{post.url}{'/' if not post.url.endswith('/') else ''}{src}"
 
     
     x=requests.get(src, params=params)
