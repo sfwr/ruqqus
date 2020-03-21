@@ -4,7 +4,7 @@ from urllib.parse import urlparse
 from bs4 import BeautifulSoup
 
 from .get import *
-from ruqqus.__main__ import db
+from ruqqus.__main__ import db, app
 
 def thumbnail_thread(pid):
 
