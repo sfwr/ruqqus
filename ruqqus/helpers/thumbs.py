@@ -72,7 +72,7 @@ def thumbnail_thread(pid):
         src=f"{post.url}{'/' if not post.url.endswith('/') else ''}{src}"
 
     
-    x=requests.get(src, params=params)
+    x=requests.get(src, headers=headers)
     print("have first image")
 
     if x.status_code!=200:
