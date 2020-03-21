@@ -13707,9 +13707,6 @@ pre {
 
 #settings, #submit {
   padding-top: 98px;
-}
-
-#settings {
   background-color: #1f2023;
 }
 
@@ -17473,6 +17470,10 @@ textarea {
 .hide-scrollbar::-webkit-scrollbar {
   width: 0px;
   background: transparent;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
 }
 
 .sidebar-adminpanel input[type=submit] {
