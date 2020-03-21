@@ -51,8 +51,13 @@ def thumbnail_thread(pid):
         print('no image in doc')
         return
 
+    src=img['src']
+    if not src.startswith("https://"):
+        parsed_url=urlparse(post.url)
+        src=f"https://{parsed_url.netloc}/{src.lstrip('/')}"
+
     
-    x=requests.get(img['src'], params=params)
+    x=requests.get(src, params=params)
     print("have first image")
 
     if x.status_code!=200:
