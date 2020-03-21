@@ -51,7 +51,7 @@ def thumbnail_thread(pid):
         src=img['content']
     else:
     
-        img=soup.find('img')
+        img=soup.find('img', src=True)
         if img:
             src=img['src']
         else:
