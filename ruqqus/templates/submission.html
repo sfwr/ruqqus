@@ -211,6 +211,9 @@
           <li class="list-group-item"><a href="javascript:void(0)" onclick="togglePostEdit('{{ p.base36id }}')"><i class="fas fa-edit"></i>Edit</a></li>
 
           <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#deletePostModal" onclick="delete_postModal('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
+
+	  <li class="list-group-item"><a href="javascript:void(0)" onclick="post('/api/toggle_post_nsfw/{{ p.base36id }}', function(){window.location.reload(true);})"><i class="fas fa-evil-eye"></i>Toggle NSFW</a></li>
+
           {% endif %}
           {% if v and v.mods_anything and p.board.name == 'general' %}
           <li class="list-group-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#yankPostModal" onclick="yank_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.comment_count }}','{{ p.thumb_url }}','{{ p.title | js_str_escape }}','{{ p.author.permalink }}','{{ p.domain | js_str_escape }}','{{ p.age_string }}')" class="d-block"><i class="fas fa-hand-lizard"></i>Yank</a></li>
@@ -324,6 +327,9 @@
                     <li class="list-inline-item"><a href="javascript:void(0)" onclick="togglePostEdit('{{ p.base36id }}')"><i class="fas fa-edit"></i>Edit</a></li>
 
                     <li class="list-inline-item"><a href="javascript:void(0)" data-toggle="modal" data-dismiss="modal" data-target="#deletePostModal" onclick="delete_postModal('{{ p.base36id }}')"><i class="fas fa-trash-alt"></i>Delete</a></li>
+
+		    <li class="list-inline-item"><a href="javascript:void(0)" onclick="post('/api/toggle_post_nsfw/{{ p.base36id }}', function(){window.location.reload(true);})"><i class="fas fa-evil-eye"></i>Toggle NSFW</a></li>
+
                     {% endif %}
 
                     {% if v %}
