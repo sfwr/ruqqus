@@ -496,5 +496,7 @@ def toggle_post_nsfw(pid, v):
         abort(403)
 
     post.over_18 = not post.over_18
+    db.add(post)
+    db.commit()
 
     return "", 204
