@@ -41,7 +41,7 @@ def thumbnail_thread(pid):
 
     x=requests.get(post.url)
     
-    if x.status_code != 200 or x.headers["Content-Type"]!="text/html":
+    if x.status_code != 200 or not x.headers["Content-Type"].startswith("text/html"):
         print('not html post')
         return
 
