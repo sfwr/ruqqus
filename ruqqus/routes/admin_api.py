@@ -1,4 +1,5 @@
 import time
+import calendar
 from flask import *
 from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
@@ -282,69 +283,53 @@ def mod_self_to_guild(v, bid):
 @app.route("/api/user_stat_data", methods=['GET'])
 @admin_level_required(2)
 def user_stat_data(v):
-    one_day = 60 * 60 * 24 # 1 day in seconds
-    one_week = one_day * 7  # 1 week in seconds
-    one_month = one_day * 30  # 1 month in seconds
 
-    current_total_users = db.query(User).count()
-    user_data = {'current_total_users':current_total_users,
-                 'monthly' : {},
-                 'weekly' : {},
-                 'daily' : {}}
-    data = {}
+    now=time.gmtime()
+    midnight_this_morning=time.struct_time((now.tm_year,
+                                            now.tm_mon,
+                                            now.tm_mday,
+                                            0,
+                                            0,
+                                            0,
+                                            now.tm_wday,
+                                            now.tm_yday,
+                                            0)
+                                           )
+    today_cutoff=calendar.timegm(midnight_this_morning)
 
-    for i in range(1, 6):
+##    midnight_week_start=time.struct_time((now.tm_year,
+##                                            now.tm_mon,
+##                                            now.tm_mday,
+##                                            0,
+##                                            0,
+##                                            0,
+##                                            now.tm_wday,
+##                                            now.tm_yday,
+##                                            0)
+##                                           )
 
-        current_day = time.time() - one_week * i
-        yesterday = time.time() - one_week * (i - 1)
-        current_week = time.time() - one_week * i
-        last_week = time.time() - one_week * (i - 1)
-        current_month = time.time() - one_month * i
-        last_month = time.time() - one_month * (i - 1)
+    day = 3600*24
+##    week = day*7
 
-        if i > 1:
+    day_cutoffs = [today_cutoff - day*i for i in range(15)]
+    day_cutoffs.insert(0,now)
 
-            data[f'month_{i}_users'] = db.query(User)\
-                .filter(User.created_utc >= current_month)\
-                .filter(User.created_utc < last_month).count()
+##    weekly_cutoffs=[today_cutoff - week*i for i in range(9)]
+##    weekly_cutoffs.insert(0,now)
 
-            data[f'week_{i}_users'] = db.query(User)\
-                .filter(User.created_utc >= current_week)\
-                .filter(User.created_utc < last_week).count()
+    daily_signups = [{"date":time.strftime("%d %b %Y", time.gmtime(x)),
+                      "signups": db.query(User).filter(User.created_utc>day_cutoffs[i],
+                                                       User.created_utc<day_cutoffs[i+1]
+                                                       ).count()
+                      } for i in day_cutoffs[0:-1]
+                      ]
 
-            data[f'day_{i}_users'] = db.query(User) \
-                .filter(User.created_utc >= current_day) \
-                .filter(User.created_utc < yesterday).count()
+    
 
-
-
-        else:
-            data[f'month_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_month).count()
-            data[f'week_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_week).count()
-            data[f'day_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_day).count()
-
-
-
-        previous_users_monthly = db.query(User)\
-                                    .filter(User.created_utc < current_month).count()
-
-        previous_users_weekly = db.query(User)\
-                                    .filter(User.created_utc < current_week).count()
-
-        previous_users_daily = db.query(User)\
-                                    .filter(User.created_utc < current_day).count()
+    
+    user_data = {'current_total_users':db.query(User).filter_by(is_banned=0).count(),
+                 'daily_signups':daily_signups
+                 }
 
 
-        user_data['monthly'][f'month_{i}'] = {'users_added': data[f'month_{i}_users'],
-                                         'last_month_users':previous_users_monthly,
-                                         'growth_percent': (data[f'month_{i}_users'] / previous_users_monthly) * 100}
-
-
-        user_data['weekly'][f'week_{i}'] = {'users_added': data[f'week_{i}_users'],
-                                        'last_week_users': previous_users_weekly,
-                                        'growth_percent': (data[f'week_{i}_users'] / previous_users_weekly) * 100}
-
-        user_data['daily'][f'day_{i}'] = {'users_added': data[f'day_{i}_users'],
-                                       'yesterdays_users': previous_users_daily,
-                                       'growth_percent': (data[f'day_{i}_users'] / previous_users_daily) * 100}
     return jsonify(user_data)
