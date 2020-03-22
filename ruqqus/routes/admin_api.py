@@ -336,15 +336,12 @@ def user_stat_data(v):
                  'daily_signups':daily_signups
                  }
 
-
+    create_plot(user_data)
     return jsonify(user_data)
 
-@admin_level_required(2)
-def create_plot(v):
-    data = requests.get("https://dev.ruqqus.com/api/user_stat_data").json()
 
-    times = ""
-    signups = ""
+def create_plot(data):
+
 
     daily_signups = [d["signups"] for d in data['daily_signups']]
     daily_times = [d["day_start"] for d in data['daily_signups']]
