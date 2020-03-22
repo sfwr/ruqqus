@@ -132,5 +132,6 @@ def users_list(v):
     return render_template("admin/new_users.html",
                            v=v,
                            userlist=users,
-                           next_exists=next_exists
+                           next_exists=next_exists,
+                           page=page
                            )
