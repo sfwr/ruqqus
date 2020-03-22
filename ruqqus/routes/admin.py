@@ -124,7 +124,7 @@ def users_list(v):
                                      ).order_by(User.created_utc.desc()
                                                 ).offset(25*(page-1)).limit(26)
 
-    user=[x for x in users]
+    users=[x for x in users]
 
     next_exists = (len(users)==26)
     users=users[0:25]
