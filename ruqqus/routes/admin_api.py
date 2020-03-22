@@ -5,6 +5,8 @@ from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
 from secrets import token_hex
+import matplotlib.pyplot as plt
+
 from ruqqus.__main__ import db, app
 
 @app.route("/api/ban_user/<user_id>", methods=["POST"])
@@ -336,3 +338,20 @@ def user_stat_data(v):
 
 
     return jsonify(user_data)
+
+def create_plot():
+    data = requests.get("/api/user_stat_data").json()
+
+    times = ""
+    signups = ""
+
+    daily_signups = [d["signups"] for d in data['daily_signups']]
+    daily_times = [d["day_start"] for d in data['daily_signups']]
+
+    plt.legend(loc='upper right', frameon=True)
+    plt.xlabel("Time")
+    plt.ylabel("Users")
+
+
+    plt.plot(daily_times, daily_signups,color='red', label="User Growth")
+    plt.savefig('/assets/images/plot.png')
