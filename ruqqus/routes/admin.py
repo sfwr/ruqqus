@@ -128,7 +128,7 @@ def users_list(v):
 
     next_exists = (len(users)==26)
     users=users[0:25]
-    create_plot(v)
+
     return render_template("admin/new_users.html",
                            v=v,
                            users=users,
