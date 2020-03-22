@@ -314,9 +314,10 @@ def user_stat_data():
                                     .filter(User.created_utc < current_week).count() - user_data[
                                     f'week_{i}_users']
         user_data[f'month_{i}_users'] = {'users_added': user_data[f'month_{i}_users'],
-                                         'growth_percent': (user_data[
-                                                                f'month_{i}_users'] / previous_users_monthly) * 100}
+                                         'last_month_users':previous_users_monthly,
+                                         'growth_percent': (user_data[f'month_{i}_users'] / previous_users_monthly) * 100}
         user_data[f'week_{i}_users'] = {'users_added': user_data[f'week_{i}_users'],
+                                        'last_week_users':previous_users_weekly,
                                         'growth_percent': (user_data[f'week_{i}_users'] / previous_users_weekly) * 100}
 
     return jsonify(user_data)
