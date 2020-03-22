@@ -337,14 +337,17 @@ def user_stat_data(v):
 
         user_data['monthly'][f'month_{i}'] = {'users_added': data[f'month_{i}_users'],
                                          'last_month_users':previous_users_monthly,
+                                          'timestamp':current_month,
                                          'growth_percent': (data[f'month_{i}_users'] / previous_users_monthly) * 100}
 
 
         user_data['weekly'][f'week_{i}'] = {'users_added': data[f'week_{i}_users'],
                                         'last_week_users': previous_users_weekly,
+                                        'timestamp': current_week,
                                         'growth_percent': (data[f'week_{i}_users'] / previous_users_weekly) * 100}
 
         user_data['daily'][f'day_{i}'] = {'users_added': data[f'day_{i}_users'],
                                        'yesterdays_users': previous_users_daily,
+                                      'timestamp':current_day,
                                        'growth_percent': (data[f'day_{i}_users'] / previous_users_daily) * 100}
     return jsonify(user_data)
