@@ -284,6 +284,8 @@ def mod_self_to_guild(v, bid):
 @admin_level_required(2)
 def user_stat_data(v):
 
+    days=int(request.args.get("days",14))
+
     now=time.gmtime()
     midnight_this_morning=time.struct_time((now.tm_year,
                                             now.tm_mon,
@@ -311,7 +313,7 @@ def user_stat_data(v):
     day = 3600*24
 ##    week = day*7
 
-    day_cutoffs = [today_cutoff - day*i for i in range(15)]
+    day_cutoffs = [today_cutoff - day*i for i in range(days)]
     day_cutoffs.insert(0,calendar.timegm(now))
 
 ##    weekly_cutoffs=[today_cutoff - week*i for i in range(9)]
