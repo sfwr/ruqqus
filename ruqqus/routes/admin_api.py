@@ -281,41 +281,69 @@ def mod_self_to_guild(v, bid):
 
 @app.route("/api/user_stat_data", methods=['GET'])
 def user_stat_data():
-    one_week = 60 * 60 * 24 * 7  # 1 week in seconds
-    one_month = 60 * 60 * 24 * 30  # 1 month in seconds
+    one_day = 60 * 60 * 24 # 1 day in seconds
+    one_week = one_day * 7  # 1 week in seconds
+    one_month = one_day * 30  # 1 month in seconds
 
     current_total_users = db.query(User).count()
-    user_data = {'current_total_users': current_total_users}
+    user_data = {'current_total_users':current_total_users,
+                 'monthly' : {},
+                 'weekly' : {},
+                 'daily' : {}}
+    data = {}
 
     for i in range(1, 6):
 
+        current_day = time.time() - one_week * i
+        yesterday = time.time() - one_week * (i - 1)
         current_week = time.time() - one_week * i
         last_week = time.time() - one_week * (i - 1)
         current_month = time.time() - one_month * i
         last_month = time.time() - one_month * (i - 1)
 
         if i > 1:
-            user_data[f'week_{i}_users'] = db.query(User) \
-                .filter(User.created_utc >= current_week) \
-                .filter(User.created_utc < last_week).count()
 
-            user_data[f'month_{i}_users'] = db.query(User) \
-                .filter(User.created_utc >= current_month) \
+            data[f'month_{i}_users'] = db.query(User)\
+                .filter(User.created_utc >= current_month)\
                 .filter(User.created_utc < last_month).count()
 
+            data[f'week_{i}_users'] = db.query(User)\
+                .filter(User.created_utc >= current_week)\
+                .filter(User.created_utc < last_week).count()
+
+            data[f'day_{i}_users'] = db.query(User) \
+                .filter(User.created_utc >= current_day) \
+                .filter(User.created_utc < yesterday).count()
+
+
+
         else:
-            user_data[f'week_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_week).count()
-            user_data[f'month_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_month).count()
+            data[f'month_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_month).count()
+            data[f'week_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_week).count()
+            data[f'day_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_day).count()
 
-        previous_users_monthly = db.query(User) \
-                                     .filter(User.created_utc < current_month).count()
-        previous_users_weekly = db.query(User) \
+
+
+        previous_users_monthly = db.query(User)\
+                                    .filter(User.created_utc < current_month).count()
+
+        previous_users_weekly = db.query(User)\
                                     .filter(User.created_utc < current_week).count()
-        user_data[f'month_{i}_users'] = {'users_added': user_data[f'month_{i}_users'],
-                                         'last_month_users':previous_users_monthly,
-                                         'growth_percent': (user_data[f'month_{i}_users'] / previous_users_monthly) * 100}
-        user_data[f'week_{i}_users'] = {'users_added': user_data[f'week_{i}_users'],
-                                        'last_week_users':previous_users_weekly,
-                                        'growth_percent': (user_data[f'week_{i}_users'] / previous_users_weekly) * 100}
 
+        previous_users_daily = db.query(User)\
+                                    .filter(User.created_utc < current_day).count()
+
+
+        user_data['monthly'][f'month_{i}'] = {'users_added': data[f'month_{i}_users'],
+                                         'last_month_users':previous_users_monthly,
+                                         'growth_percent': (data[f'month_{i}_users'] / previous_users_monthly) * 100}
+
+
+        user_data['weekly'][f'week_{i}'] = {'users_added': data[f'week_{i}_users'],
+                                        'last_week_users': previous_users_weekly,
+                                        'growth_percent': (data[f'week_{i}_users'] / previous_users_weekly) * 100}
+
+        user_data['daily'][f'day_{i}'] = {'users_added': data[f'day_{i}_users'],
+                                       'last_week_users': previous_users_daily,
+                                       'growth_percent': (data[f'day_{i}_users'] / previous_users_daily) * 100}
     return jsonify(user_data)
