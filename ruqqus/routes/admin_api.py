@@ -281,7 +281,7 @@ def mod_self_to_guild(v, bid):
 
 @app.route("/api/user_stat_data", methods=['GET'])
 @admin_level_required(2)
-def user_stat_data():
+def user_stat_data(v):
     one_day = 60 * 60 * 24 # 1 day in seconds
     one_week = one_day * 7  # 1 week in seconds
     one_month = one_day * 30  # 1 month in seconds
