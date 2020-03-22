@@ -3,7 +3,7 @@
 {% block title %}+{{ b.name }} Exiles{% endblock %}
 
 {% block pagetitle %}+{{ b.name }}Exiles{% endblock %}
-{% block subtitle %}Exile or pardon users from +{{ b.name }}{% endblock %}
+{% block subtitle %}Manage exiled users from +{{ b.name }}{% endblock %}
 
 {% block content %}
 
@@ -42,12 +42,6 @@
 				<button class="btn btn-muted" data-toggle="modal" data-target="#guildmasterExileModal">Exile user</button>
 			</div>
 		</div>
-
-		<div>
-			<h2 class="h5" name="guild_name">Users exiled from +{{ b.name }}</h2>
-			<p class="text-small text-muted mb-md-0">The following users are prohibited from participating in +{{ b.name }}.</p>
-		</div>
-
 
 		<form action="/+{{ b.name }}/mod/exiled" method="get">
 			<input class="form-input" name="user" type="text" value="{{ request.args.get('user','') }}">
@@ -106,3 +100,5 @@
 	</div>
 
 	{% endblock %}
+
+	{% include "gm_exile_modal.html" %}
