@@ -339,7 +339,8 @@ def user_stat_data(v):
 
     return jsonify(user_data)
 
-def create_plot():
+@admin_level_required(2)
+def create_plot(v):
     data = requests.get("https://dev.ruqqus.com/api/user_stat_data").json()
 
     times = ""
