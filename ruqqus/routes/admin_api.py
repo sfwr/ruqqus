@@ -318,7 +318,7 @@ def user_stat_data(v):
 ##    weekly_cutoffs.insert(0,now)
 
     daily_signups = [{"date":time.strftime("%d %b %Y", time.gmtime(i)),
-                      "day_start":day_cutoffs[i],
+                      "day_start":day_cutoffs[i+1],
                       "signups": db.query(User).filter(User.created_utc>day_cutoffs[i],
                                                        User.created_utc<day_cutoffs[i+1]
                                                        ).count()
