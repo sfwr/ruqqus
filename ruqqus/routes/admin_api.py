@@ -322,7 +322,7 @@ def user_stat_data(v):
                       "signups": db.query(User).filter(User.created_utc>day_cutoffs[i],
                                                        User.created_utc<day_cutoffs[i+1]
                                                        ).count()
-                      } for i in day_cutoffs[0:-1]
+                      } for i in range(len(day_cutoffs)-1)
                       ]
 
     
