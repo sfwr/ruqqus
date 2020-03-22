@@ -120,9 +120,9 @@ def users_list(v):
 
     page=int(request.args.get("page",1))
 
-    users = db.query(User).filter_by(is_banned=0,
-                                     is_deleted=False
-                                     ).order_by(User.created_utc.desc()).offset(25*(page-1)).limit(26)
+    users = db.query(User).filter_by(is_banned=0
+                                     ).order_by(User.created_utc.desc()
+                                                ).offset(25*(page-1)).limit(26)
 
     next_exists = (len(users)==26)
     users=users[0:25]
