@@ -278,8 +278,9 @@ def mod_self_to_guild(v, bid):
 
     return redirect(f"/+{board.name}/mod/mods")
         
-# temporarily commenting on public dev
-"""@app.route("/api/user_stat_data", methods=['GET'])
+
+@app.route("/api/user_stat_data", methods=['GET'])
+@admin_level_required(2)
 def user_stat_data():
     one_day = 60 * 60 * 24 # 1 day in seconds
     one_week = one_day * 7  # 1 week in seconds
@@ -346,4 +347,4 @@ def user_stat_data():
         user_data['daily'][f'day_{i}'] = {'users_added': data[f'day_{i}_users'],
                                        'yesterdays_users': previous_users_daily,
                                        'growth_percent': (data[f'day_{i}_users'] / previous_users_daily) * 100}
-    return jsonify(user_data)"""
+    return jsonify(user_data)
