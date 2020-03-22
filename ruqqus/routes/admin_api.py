@@ -308,11 +308,9 @@ def user_stat_data():
             user_data[f'month_{i}_users'] = db.query(User).filter(User.created_utc >= time.time() - one_month).count()
 
         previous_users_monthly = db.query(User) \
-                                     .filter(User.created_utc < current_month).count() - user_data[
-                                     f'month_{i}_users']
+                                     .filter(User.created_utc < current_month).count()
         previous_users_weekly = db.query(User) \
-                                    .filter(User.created_utc < current_week).count() - user_data[
-                                    f'week_{i}_users']
+                                    .filter(User.created_utc < current_week).count()
         user_data[f'month_{i}_users'] = {'users_added': user_data[f'month_{i}_users'],
                                          'last_month_users':previous_users_monthly,
                                          'growth_percent': (user_data[f'month_{i}_users'] / previous_users_monthly) * 100}
