@@ -312,7 +312,7 @@ def user_stat_data(v):
 ##    week = day*7
 
     day_cutoffs = [today_cutoff - day*i for i in range(15)]
-    day_cutoffs.insert(0,now)
+    day_cutoffs.insert(0,calendar.timegm(now))
 
 ##    weekly_cutoffs=[today_cutoff - week*i for i in range(9)]
 ##    weekly_cutoffs.insert(0,now)
