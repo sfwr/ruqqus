@@ -350,12 +350,12 @@ def create_plot(data):
     plt.xlabel("Time")
     plt.ylabel("Users")
 
-
     plt.plot(daily_times, daily_signups,color='red', label="User Growth")
-    plt.savefig('/assets/images/plot.png')
-    with open("/assets/images/plot.png", "rw") as file:
+    plt.savefig('plot.png')
+
+    with open("plot.png", "w") as file:
         aws.upload_file("plot.png", file)
         file.close()
 
-    remove("/assets/images/plot.png")
+    remove("plot.png")
     return True
