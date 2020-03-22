@@ -340,7 +340,7 @@ def user_stat_data(v):
     return jsonify(user_data)
 
 def create_plot():
-    data = requests.get("/api/user_stat_data").json()
+    data = requests.get("https://dev.ruqqus.com/api/user_stat_data").json()
 
     times = ""
     signups = ""
