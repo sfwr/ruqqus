@@ -278,8 +278,8 @@ def mod_self_to_guild(v, bid):
 
     return redirect(f"/+{board.name}/mod/mods")
         
-
-@app.route("/api/user_stat_data", methods=['GET'])
+# temporarily commenting on public dev
+"""@app.route("/api/user_stat_data", methods=['GET'])
 def user_stat_data():
     one_day = 60 * 60 * 24 # 1 day in seconds
     one_week = one_day * 7  # 1 week in seconds
@@ -326,7 +326,7 @@ def user_stat_data():
 
         previous_users_monthly = db.query(User)\
                                     .filter(User.created_utc < current_month).count()
-        
+
         previous_users_weekly = db.query(User)\
                                     .filter(User.created_utc < current_week).count()
 
@@ -346,4 +346,4 @@ def user_stat_data():
         user_data['daily'][f'day_{i}'] = {'users_added': data[f'day_{i}_users'],
                                        'yesterdays_users': previous_users_daily,
                                        'growth_percent': (data[f'day_{i}_users'] / previous_users_daily) * 100}
-    return jsonify(user_data)
+    return jsonify(user_data)"""
