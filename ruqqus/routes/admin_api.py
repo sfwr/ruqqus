@@ -8,7 +8,7 @@ from secrets import token_hex
 import matplotlib.pyplot as plt
 
 from ruqqus.__main__ import db, app
-
+from os import remove
 @app.route("/api/ban_user/<user_id>", methods=["POST"])
 @admin_level_required(3)
 @validate_formkey
@@ -353,3 +353,9 @@ def create_plot(data):
 
     plt.plot(daily_times, daily_signups,color='red', label="User Growth")
     plt.savefig('/assets/images/plot.png')
+    with open("/assets/images/plot.png", "rw") as file:
+        aws.upload_file("plot.png", file)
+        file.close()
+
+    remove("/assets/images/plot.png")
+    return True
