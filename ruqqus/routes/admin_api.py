@@ -323,7 +323,7 @@ def user_stat_data(v):
                   'banned_users': db.query(User).filter(User.is_banned!=0).count(),
                   'reserved_users':db.query(User).filter(User.reserved!=None).count(),
                   'email_verified_users':db.query(User).filter_by(is_banned=0, is_activated=True).count(),
-                  'real_id_verified_users':db.query(User).filter(reserved!=None, real_id!=None).count()
+                  'real_id_verified_users':db.query(User).filter(User.reserved!=None, User.real_id!=None).count()
                   }
 
 
