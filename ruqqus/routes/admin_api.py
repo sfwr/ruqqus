@@ -5,8 +5,10 @@ from ruqqus.classes import *
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
 from secrets import token_hex
-from ruqqus.__main__ import db, app
+import matplotlib.pyplot as plt
 
+from ruqqus.__main__ import db, app
+from os import remove
 @app.route("/api/ban_user/<user_id>", methods=["POST"])
 @admin_level_required(3)
 @validate_formkey
@@ -324,9 +326,39 @@ def user_stat_data(v):
                   'real_id_verified_users':db.query(User).filter(reserved!=None, real_id!=None).count()
                   }
 
+
+
+
+    #return jsonify(final)
+
+    x=create_plot(user_data)
+
     final={"user_stats":user_stats,
-           "signup_data":daily_signups
+           "signup_data":daily_signups,
+           "plot":f"https://i.ruqqus.com/{x}"
            }
+    
+    return jsonify(user_data)
 
 
-    return jsonify(final)
+def create_plot(data):
+
+
+    daily_signups = [d["signups"] for d in data['daily_signups']]
+    daily_times = [d["day_start"] for d in data['daily_signups']]
+
+    plt.legend(loc='upper right', frameon=True)
+    plt.xlabel("Time")
+    plt.ylabel("Users")
+
+    plt.plot(daily_times, daily_signups,color='red', label="User Growth")
+    plt.savefig('plot.png')
+
+    now=int(time.time())
+    
+    name=f"stats/user_data_{now}.png"
+    aws.upload_from_file(name, "plot.png")
+
+
+    remove("plot.png")
+    return name
