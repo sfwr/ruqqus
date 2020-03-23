@@ -281,6 +281,7 @@ def mod_self_to_guild(v, bid):
         
 
 @app.route("/api/user_stat_data", methods=['GET'])
+@cache.memoize
 @admin_level_required(2)
 def user_stat_data(v):
 
@@ -299,25 +300,11 @@ def user_stat_data(v):
                                            )
     today_cutoff=calendar.timegm(midnight_this_morning)
 
-##    midnight_week_start=time.struct_time((now.tm_year,
-##                                            now.tm_mon,
-##                                            now.tm_mday,
-##                                            0,
-##                                            0,
-##                                            0,
-##                                            now.tm_wday,
-##                                            now.tm_yday,
-##                                            0)
-##                                           )
 
     day = 3600*24
-##    week = day*7
 
     day_cutoffs = [today_cutoff - day*i for i in range(days)]
     day_cutoffs.insert(0,calendar.timegm(now))
-
-##    weekly_cutoffs=[today_cutoff - week*i for i in range(9)]
-##    weekly_cutoffs.insert(0,now)
 
     daily_signups = [{"date":time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i+1])),
                       "day_start":day_cutoffs[i+1],
@@ -330,9 +317,16 @@ def user_stat_data(v):
     
 
     
-    user_data = {'current_total_users':db.query(User).filter_by(is_banned=0).count(),
-                 'daily_signups':daily_signups
-                 }
+    user_stats = {'current_users':db.query(User).filter_by(is_banned=0, reserved=None).count(),
+                  'banned_users': db.query(User).filter(User.is_banned!=0).count(),
+                  'reserved_users':db.query(User).filter(User.reserved!=None).count(),
+                  'email_verified_users':db.query(User).filter_by(is_banned=0, is_activated=True).count()
+                  'real_id_verified_users':db.query(User).filter(reserved!=None, real_id!=None).count()
+                  }
+
+    final={"user_stats":user_stats,
+           "signup_data":daily_signups
+           }
 
 
-    return jsonify(user_data)
+    return jsonify(final)
