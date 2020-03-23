@@ -331,14 +331,14 @@ def user_stat_data(v):
 
     #return jsonify(final)
 
-    x=create_plot(user_data)
+    x=create_plot({'daily_signups':daily_signups})
 
     final={"user_stats":user_stats,
            "signup_data":daily_signups,
            "plot":f"https://i.ruqqus.com/{x}"
            }
     
-    return jsonify(user_data)
+    return jsonify(final)
 
 
 def create_plot(data):
