@@ -283,7 +283,7 @@ def mod_self_to_guild(v, bid):
         
 
 @app.route("/api/user_stat_data", methods=['GET'])
-@cache.memoize
+#@cache.memoize
 @admin_level_required(2)
 def user_stat_data(v):
 
