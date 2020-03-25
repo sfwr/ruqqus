@@ -391,7 +391,7 @@ def create_plot(**kwargs):
 
     #now=int(time.time())
     
-    name=f"stats/plot.png"#_{now}.png"
+    name=f"plot.png"#_{now}.png"
     aws.upload_from_file(name, "plot.png")
 
 
