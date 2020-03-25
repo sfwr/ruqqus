@@ -407,8 +407,8 @@ def create_plot(**kwargs):
 
     #now=int(time.time())
     
-    name=f"plot.png"#_{now}.png"
-    aws.delete_file(name)
-    aws.upload_from_file(name, "plot.png")
+    name=f"plot2.png"#_{now}.png"
+    #aws.delete_file(name)
+    aws.upload_from_file(name, "plot2.png")
 
     return name
