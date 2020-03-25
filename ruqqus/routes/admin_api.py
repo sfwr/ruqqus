@@ -350,6 +350,14 @@ def user_stat_data(v):
                    } for i in range(len(day_cutoffs) - 1)
                   ]
 
+    vote_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
+                      "day_start": day_cutoffs[i + 1],
+                      "comments": db.query(Vote).filter(Vote.created_utc < day_cutoffs[i],
+                                                           Vote.created_utc > day_cutoffs[i + 1]
+                                                           ).count()
+                      } for i in range(len(day_cutoffs) - 1)
+                     ]
+
     #return jsonify(final)
 
     #x=create_plot({'daily_signups':daily_signups})
@@ -358,7 +366,8 @@ def user_stat_data(v):
            "signup_data":daily_signups,
            "post_data":post_stats,
            "guild_data":guild_stats,
-           "comment_data":comment_stats
+           "comment_data":comment_stats,
+           "vote_data":vote_stats
      #      "plot":f"https://i.ruqqus.com/{x}"
            }
     
