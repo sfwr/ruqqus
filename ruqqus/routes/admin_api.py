@@ -335,7 +335,7 @@ def user_stat_data(v):
                       ]
     guild_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
                    "day_start": day_cutoffs[i + 1],
-                   "posts": db.query(SubmisBoardsion).filter(Board.created_utc < day_cutoffs[i],
+                   "posts": db.query(Board).filter(Board.created_utc < day_cutoffs[i],
                                                         Board.created_utc > day_cutoffs[i + 1]
                                                         ).count()
                    } for i in range(len(day_cutoffs) - 1)
