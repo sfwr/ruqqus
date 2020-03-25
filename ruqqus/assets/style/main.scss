@@ -1557,6 +1557,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-radius: 50%;
     margin: auto;
     text-align: center;
+    object-fit: cover;
     color: $white;
     background-color: #FFFFFF;
 }
@@ -1662,6 +1663,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     text-align: center;
     object-fit: cover;
     background-color: $white;
+}
+
+.profile-pic-100 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    object-fit: cover;
+    background-color: #FFFFFF;
 }
 
 .profile-pic-overlap {
