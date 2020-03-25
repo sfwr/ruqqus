@@ -410,6 +410,4 @@ def create_plot(**kwargs):
     name=f"plot.png"#_{now}.png"
     aws.upload_from_file(name, "plot.png")
 
-
-    remove("plot.png")
     return name
