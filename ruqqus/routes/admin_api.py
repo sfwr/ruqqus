@@ -352,7 +352,7 @@ def user_stat_data(v):
 
     vote_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
                       "day_start": day_cutoffs[i + 1],
-                      "comments": db.query(Vote).filter(Vote.created_utc < day_cutoffs[i],
+                      "votes": db.query(Vote).filter(Vote.created_utc < day_cutoffs[i],
                                                            Vote.created_utc > day_cutoffs[i + 1]
                                                            ).count()
                       } for i in range(len(day_cutoffs) - 1)
