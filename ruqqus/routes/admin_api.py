@@ -333,10 +333,19 @@ def user_stat_data(v):
                                                            ).count()
                       } for i in range(len(day_cutoffs)-1)
                       ]
+
     guild_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
                    "day_start": day_cutoffs[i + 1],
                    "guilds": db.query(Board).filter(Board.created_utc < day_cutoffs[i],
                                                         Board.created_utc > day_cutoffs[i + 1]
+                                                        ).count()
+                   } for i in range(len(day_cutoffs) - 1)
+                  ]
+
+    comment_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
+                   "day_start": day_cutoffs[i + 1],
+                   "comments": db.query(Comment).filter(Comment.created_utc < day_cutoffs[i],
+                                                        Comment.created_utc > day_cutoffs[i + 1]
                                                         ).count()
                    } for i in range(len(day_cutoffs) - 1)
                   ]
@@ -348,7 +357,8 @@ def user_stat_data(v):
     final={"user_stats":user_stats,
            "signup_data":daily_signups,
            "post_data":post_stats,
-           "guild_data":guild_stats
+           "guild_data":guild_stats,
+           "comment_data":comment_stats
      #      "plot":f"https://i.ruqqus.com/{x}"
            }
     
