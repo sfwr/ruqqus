@@ -396,7 +396,7 @@ def create_plot(**kwargs):
 
     plt.legend(loc='upper right', frameon=True)
     plt.xlabel("Time")
-    plt.ylabel("Users")
+    plt.ylabel("Growth")
 
     plt.plot(daily_times, daily_signups,color='red', label="Users")
     plt.plot(daily_times, guild_stats, color='blue', label="Guild Members")
@@ -408,6 +408,7 @@ def create_plot(**kwargs):
     #now=int(time.time())
     
     name=f"plot.png"#_{now}.png"
+    aws.delete_file(name)
     aws.upload_from_file(name, "plot.png")
 
     return name
