@@ -326,15 +326,21 @@ def user_stat_data(v):
                   'real_id_verified_users':db.query(User).filter(User.reserved!=None, User.real_id!=None).count()
                   }
 
-
-
+    post_stats = [{"date":time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i+1])),
+                      "day_start":day_cutoffs[i+1],
+                      "posts": db.query(Submission).filter(Submission.created_utc<day_cutoffs[i],
+                                                           Submission.created_utc>day_cutoffs[i+1]
+                                                           ).count()
+                      } for i in range(len(day_cutoffs)-1)
+                      ]
 
     #return jsonify(final)
 
     #x=create_plot({'daily_signups':daily_signups})
 
     final={"user_stats":user_stats,
-           "signup_data":daily_signups
+           "signup_data":daily_signups,
+           "post_data":post_stats
      #      "plot":f"https://i.ruqqus.com/{x}"
            }
     
