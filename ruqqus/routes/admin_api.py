@@ -367,7 +367,7 @@ def user_stat_data(v):
            "post_data":post_stats,
            "guild_data":guild_stats,
            "comment_data":comment_stats,
-           "vote_data":vote_stats
+           "vote_data":vote_stats,
            "plot":f"https://i.ruqqus.com/{x}"
            }
     
