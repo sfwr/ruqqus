@@ -360,7 +360,7 @@ def user_stat_data(v):
 
     #return jsonify(final)
 
-    #x=create_plot({'daily_signups':daily_signups})
+    x=create_plot(sign_ups={'daily_signups':daily_signups})
 
     final={"user_stats":user_stats,
            "signup_data":daily_signups,
@@ -368,17 +368,19 @@ def user_stat_data(v):
            "guild_data":guild_stats,
            "comment_data":comment_stats,
            "vote_data":vote_stats
-     #      "plot":f"https://i.ruqqus.com/{x}"
+           "plot":f"https://i.ruqqus.com/{x}"
            }
     
     return jsonify(final)
 
 
-def create_plot(data):
+def create_plot(**kwargs):
 
+    if not kwargs:
+        return  abort(400)
 
-    daily_signups = [d["signups"] for d in data['daily_signups']]
-    daily_times = [d["day_start"] for d in data['daily_signups']]
+    daily_signups = [d["signups"] for d in kwargs["sign_ups"]['daily_signups']]
+    daily_times = [d["day_start"] for d in kwargs["sign_ups"]['daily_signups']]
 
     plt.legend(loc='upper right', frameon=True)
     plt.xlabel("Time")
@@ -387,9 +389,9 @@ def create_plot(data):
     plt.plot(daily_times, daily_signups,color='red', label="User Growth")
     plt.savefig('plot.png')
 
-    now=int(time.time())
+    #now=int(time.time())
     
-    name=f"stats/user_data_{now}.png"
+    name=f"stats/user_data.png"#_{now}.png"
     aws.upload_from_file(name, "plot.png")
 
 
