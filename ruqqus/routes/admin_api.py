@@ -336,7 +336,7 @@ def user_stat_data(v):
 
     guild_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
                    "day_start": day_cutoffs[i + 1],
-                   "guilds": db.query(Board).filter(Board.created_utc < day_cutoffs[i],
+                   "members": db.query(Board).filter(Board.created_utc < day_cutoffs[i],
                                                         Board.created_utc > day_cutoffs[i + 1]
                                                         ).count()
                    } for i in range(len(day_cutoffs) - 1)
@@ -360,7 +360,12 @@ def user_stat_data(v):
 
     #return jsonify(final)
 
-    x=create_plot(sign_ups={'daily_signups':daily_signups})
+    x=create_plot(sign_ups={'daily_signups':daily_signups},
+                  guilds={'guild_stats':guild_stats},
+                  posts={'post_stats':post_stats},
+                  comments={'comment_stats':comment_stats},
+                  votes={'vote_stats':vote_stats}
+                  )
 
     final={"user_stats":user_stats,
            "signup_data":daily_signups,
@@ -380,13 +385,24 @@ def create_plot(**kwargs):
         return  abort(400)
 
     daily_signups = [d["signups"] for d in kwargs["sign_ups"]['daily_signups']]
+    guild_stats = [d["members"] for d in kwargs["guilds"]['guild_stats']]
+    post_stats = [d["posts"] for d in kwargs["posts"]['post_stats']]
+    comment_stats = [d["comments"] for d in kwargs["comments"]['comment_stats']]
+    vote_stats = [d["votes"] for d in kwargs["votes"]['vote_stats']]
+
+
+
     daily_times = [d["day_start"] for d in kwargs["sign_ups"]['daily_signups']]
 
     plt.legend(loc='upper right', frameon=True)
     plt.xlabel("Time")
     plt.ylabel("Users")
 
-    plt.plot(daily_times, daily_signups,color='red', label="User Growth")
+    plt.plot(daily_times, daily_signups,color='red', label="Users")
+    plt.plot(daily_times, guild_stats, color='blue', label="Guild Members")
+    plt.plot(daily_times, post_stats, color='green', label="Posts")
+    plt.plot(daily_times, comment_stats, color='gold', label="Comments")
+    plt.plot(daily_times, vote_stats, color='silver', label="Vote")
     plt.savefig('plot.png')
 
     #now=int(time.time())
