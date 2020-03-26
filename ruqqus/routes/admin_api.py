@@ -431,7 +431,7 @@ def multiple_plots(**kwargs):
     comments_chart = plt.subplot2grid((10, 2), (7, 0), rowspan=3, colspan=1)
     votes_chart = plt.subplot2grid((10, 2), (7, 1), rowspan=3, colspan=1)
 
-    signup_chart.plot(kwargs['daily_times'], kwargs['signups'], color='red', label="Users")
+    signup_chart.plot(kwargs['daily_times'], kwargs['sign_ups'], color='red', label="Users")
     guilds_chart.plot(kwargs['daily_times'], kwargs['guilds'], color='blue', label="Guilds")
     posts_chart.plot(kwargs['daily_times'], kwargs['posts'], color='blue', label="Guilds")
     comments_chart.plot(kwargs['daily_times'], kwargs['comments'], color='blue', label="Guilds")
