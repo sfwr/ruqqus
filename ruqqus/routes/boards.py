@@ -1074,3 +1074,17 @@ def siege_guild(v):
 
     return redirect(f"/+{guild.name}/mod/mods")
     
+@app.route("/mod/check_exile/<bid>", methods=["GET"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def check_exile_state(bid, board, v):
+
+    user=get_user(request.form.get("username"))
+
+    data={"board":board.name,
+          "user":user.username,
+          "is_banned":bool(board.has_ban(user))
+          }
+
+    return jsonify(data)
