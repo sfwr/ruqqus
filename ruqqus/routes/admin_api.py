@@ -411,13 +411,13 @@ def create_plot(**kwargs):
     plt.plot(daily_times, comment_stats, color='gold', label="Comments")
     plt.plot(daily_times, vote_stats, color='silver', label="Vote")
     plt.legend()
-    plt.savefig('plot2.png')
+    plt.savefig('plot4.png')
 
     #now=int(time.time())
     
-    name=f"plot2.png"#_{now}.png"
+    name=f"plot4.png"#_{now}.png"
     #aws.delete_file(name)
-    aws.upload_from_file(name, "plot2.png")
+    aws.upload_from_file(name, "plot4.png")
 
     return name
 
@@ -446,11 +446,11 @@ def multiple_plots(**kwargs):
     votes_chart.set_xlabel("Time (UTC)")
     plt.legend()
 
-    plt.savefig('plot3.png')
+    plt.savefig('plot5.png')
     plt.clf()
     # now=int(time.time())
 
-    name = f"plot3.png"  # _{now}.png"
+    name = f"plot5.png"  # _{now}.png"
     # aws.delete_file(name)
-    aws.upload_from_file(name, "plot3.png")
-    return name
+    aws.upload_from_file(name, "plot5.png")
+    return True
