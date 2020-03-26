@@ -409,7 +409,7 @@ def create_plot(**kwargs):
     plt.plot(daily_times, guild_stats, color='blue', label="Guilds")
     plt.plot(daily_times, post_stats, color='green', label="Posts")
     plt.plot(daily_times, comment_stats, color='gold', label="Comments")
-    plt.plot(daily_times, vote_stats, color='silver', label="Vote")
+    plt.plot(daily_times, vote_stats, color='silver', label="Votes")
     plt.grid()
     plt.legend()
     plt.savefig('plot4.png')
