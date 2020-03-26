@@ -38,8 +38,8 @@ class BanRelationship(Base):
     is_active=Column(Boolean, default=False)
 
     user=relationship("User", lazy="joined", primaryjoin="User.id==BanRelationship.user_id")
-    banning_mod=relationship("User", lazy="dynamic", primaryjoin="User.id==BanRelationship.banning_mod_id")
-    board=relationship("Board", lazy="dynamic")
+    banning_mod=relationship("User", primaryjoin="User.id==BanRelationship.banning_mod_id")
+    board=relationship("Board")
 
     def __init__(self, *args, **kwargs):
         if "created_utc" not in kwargs:
