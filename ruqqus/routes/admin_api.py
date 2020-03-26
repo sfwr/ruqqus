@@ -433,9 +433,9 @@ def multiple_plots(**kwargs):
 
     signup_chart.plot(kwargs['daily_times'], kwargs['sign_ups'], color='red', label="Users")
     guilds_chart.plot(kwargs['daily_times'], kwargs['guilds'], color='blue', label="Guilds")
-    posts_chart.plot(kwargs['daily_times'], kwargs['posts'], color='blue', label="Guilds")
-    comments_chart.plot(kwargs['daily_times'], kwargs['comments'], color='blue', label="Guilds")
-    votes_chart.plot(kwargs['daily_times'], kwargs['votes'], color='blue', label="Guilds")
+    posts_chart.plot(kwargs['daily_times'], kwargs['posts'], color='green', label="Guilds")
+    comments_chart.plot(kwargs['daily_times'], kwargs['comments'], color='gold', label="Guilds")
+    votes_chart.plot(kwargs['daily_times'], kwargs['votes'], color='silver', label="Guilds")
 
     signup_chart.set_ylabel("Signups")
     guilds_chart.set_ylabel("Joins")
