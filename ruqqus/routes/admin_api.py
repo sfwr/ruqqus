@@ -447,7 +447,7 @@ def multiple_plots(**kwargs):
     plt.legend()
 
     plt.savefig('plot3.png')
-    plt.clear()
+    plt.clf()
     # now=int(time.time())
 
     name = f"plot3.png"  # _{now}.png"
