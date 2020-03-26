@@ -417,7 +417,7 @@ def create_plot(**kwargs):
     #now=int(time.time())
     
     name=f"plot6.png"#_{now}.png"
-    aws.delete_file(name)
+    #aws.delete_file(name)
     aws.upload_from_file(name, name)
 
     return name
@@ -454,6 +454,6 @@ def multiple_plots(**kwargs):
     # now=int(time.time())
 
     name = f"plot7.png"  # _{now}.png"
-    aws.delete_file(name)
+    #aws.delete_file(name)
     aws.upload_from_file(name, name)
     return True
