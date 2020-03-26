@@ -410,13 +410,14 @@ def create_plot(**kwargs):
     plt.plot(daily_times, post_stats, color='green', label="Posts")
     plt.plot(daily_times, comment_stats, color='gold', label="Comments")
     plt.plot(daily_times, vote_stats, color='silver', label="Vote")
+    plt.grid()
     plt.legend()
     plt.savefig('plot4.png')
 
     #now=int(time.time())
     
     name=f"plot4.png"#_{now}.png"
-    #aws.delete_file(name)
+    aws.delete_file(name)
     aws.upload_from_file(name, "plot4.png")
 
     return name
@@ -430,6 +431,8 @@ def multiple_plots(**kwargs):
     posts_chart = plt.subplot2grid((10, 2), (4, 1), rowspan=3, colspan=1)
     comments_chart = plt.subplot2grid((10, 2), (7, 0), rowspan=3, colspan=1)
     votes_chart = plt.subplot2grid((10, 2), (7, 1), rowspan=3, colspan=1)
+
+    signup_chart.grid(),guilds_chart.grid(),posts_chart.grid(),comments_chart.grid(),votes_chart.grid()
 
     signup_chart.plot(kwargs['daily_times'], kwargs['sign_ups'], color='red', label="Users")
     guilds_chart.plot(kwargs['daily_times'], kwargs['guilds'], color='blue', label="Guilds")
@@ -451,6 +454,6 @@ def multiple_plots(**kwargs):
     # now=int(time.time())
 
     name = f"plot5.png"  # _{now}.png"
-    # aws.delete_file(name)
+    aws.delete_file(name)
     aws.upload_from_file(name, "plot5.png")
     return True
