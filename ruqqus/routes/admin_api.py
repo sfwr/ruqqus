@@ -384,17 +384,24 @@ def create_plot(**kwargs):
     if not kwargs:
         return  abort(400)
 
+    #create multiple charts
     daily_signups = [d["signups"] for d in kwargs["sign_ups"]['daily_signups']]
     guild_stats = [d["members"] for d in kwargs["guilds"]['guild_stats']]
     post_stats = [d["posts"] for d in kwargs["posts"]['post_stats']]
     comment_stats = [d["comments"] for d in kwargs["comments"]['comment_stats']]
     vote_stats = [d["votes"] for d in kwargs["votes"]['vote_stats']]
-
-
-
     daily_times = [d["day_start"] for d in kwargs["sign_ups"]['daily_signups']]
 
-    plt.legend(loc='upper right', frameon=True)
+    multiple_plots(sign_ups=daily_signups,
+                   guilds=guild_stats,
+                   posts=post_stats,
+                   comments=comment_stats,
+                   votes=vote_stats,
+                   daily_times=daily_times)
+
+    # create single chart
+    plt.legend(loc='upper left', frameon=True)
+
     plt.xlabel("Time")
     plt.ylabel("Growth")
 
@@ -403,6 +410,7 @@ def create_plot(**kwargs):
     plt.plot(daily_times, post_stats, color='green', label="Posts")
     plt.plot(daily_times, comment_stats, color='gold', label="Comments")
     plt.plot(daily_times, vote_stats, color='silver', label="Vote")
+    plt.legend()
     plt.savefig('plot2.png')
 
     #now=int(time.time())
@@ -411,4 +419,38 @@ def create_plot(**kwargs):
     #aws.delete_file(name)
     aws.upload_from_file(name, "plot2.png")
 
+    return name
+
+
+def multiple_plots(**kwargs):
+
+    #create multiple charts
+    signup_chart = plt.subplot2grid((10,2), (0,0), rowspan=4, colspan=2)
+    guilds_chart = plt.subplot2grid((10,2), (4,0), rowspan=3, colspan=1)
+    posts_chart = plt.subplot2grid((10, 2), (4, 1), rowspan=3, colspan=1)
+    comments_chart = plt.subplot2grid((10, 2), (7, 0), rowspan=3, colspan=1)
+    votes_chart = plt.subplot2grid((10, 2), (7, 1), rowspan=3, colspan=1)
+
+    signup_chart.plot(kwargs['daily_times'], kwargs['signups'], color='red', label="Users")
+    guilds_chart.plot(kwargs['daily_times'], kwargs['guilds'], color='blue', label="Guilds")
+    posts_chart.plot(kwargs['daily_times'], kwargs['posts'], color='blue', label="Guilds")
+    comments_chart.plot(kwargs['daily_times'], kwargs['comments'], color='blue', label="Guilds")
+    votes_chart.plot(kwargs['daily_times'], kwargs['votes'], color='blue', label="Guilds")
+
+    signup_chart.ylabel("Signups")
+    guilds_chart.ylabel("Joins")
+    posts_chart.ylabel("Posts")
+    comments_chart.ylabel("Comments")
+    votes_chart.ylabel("Votes")
+    comments_chart.xlabel("Time (UTC)")
+    votes_chart.xlabel("Time (UTC)")
+    plt.legend()
+
+    plt.savefig('plot3.png')
+
+    # now=int(time.time())
+
+    name = f"plot3.png"  # _{now}.png"
+    # aws.delete_file(name)
+    aws.upload_from_file(name, "plot3.png")
     return name
