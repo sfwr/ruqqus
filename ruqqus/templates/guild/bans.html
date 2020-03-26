@@ -48,7 +48,7 @@
 	-->
 
 	{% for ban in b.bans.filter_by(is_active=True).all() %}
-	<div class="body"><a href="{{ ban.user.permalink }}">@{{ ban.user.username }}</a> - {% if b.has_ban(ban.user) %}exiled - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unban/{{ b.base36id }}/{{ user.username }}', callback=function(){window.location.reload(true)})">Pardon User</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary{% if b.has_mod(ban.user) %} disabled{% endif %}" onclick="post('/mod/ban/{{ b.base36id }}/{{ ban.user.username }}', callback=function(){window.location.reload(true)})">Exile User</a>{% endif %}
+	<div class="body"><a href="{{ ban.user.permalink }}">@{{ ban.user.username }}</a> - {% if b.has_ban(ban.user) %}exiled - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unban/{{ b.base36id }}/{{ ban.user.username }}', callback=function(){window.location.reload(true)})">Pardon User</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary{% if b.has_mod(ban.user) %} disabled{% endif %}" onclick="post('/mod/ban/{{ b.base36id }}/{{ ban.user.username }}', callback=function(){window.location.reload(true)})">Exile User</a>{% endif %}
 	</div>
 	{% else %}
 	{% endfor %}
