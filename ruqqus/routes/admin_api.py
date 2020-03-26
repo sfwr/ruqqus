@@ -447,7 +447,12 @@ def multiple_plots(**kwargs):
     votes_chart.set_ylabel("Votes")
     comments_chart.set_xlabel("Time (UTC)")
     votes_chart.set_xlabel("Time (UTC)")
-    plt.legend()
+    
+    signup_chart.legend(loc='upper left', frameon=True)
+    guilds_chart.legend(loc='upper left', frameon=True)
+    posts_chart.legend(loc='upper left', frameon=True)
+    comments_chart.legend(loc='upper left', frameon=True)
+    votes_chart.legend(loc='upper left', frameon=True)
 
     name = f"plot7.png"  # _{now}.png"
 
