@@ -1391,6 +1391,8 @@ if (window.location.pathname=='/submit') {
 
 function check_exile(boardid) {
 
+  var exileForm = document.getElementById("exile-form");
+
   var exileError = document.getElementById("exile-error");
 
   var usernameField = document.getElementById("exile-username");
@@ -1407,6 +1409,8 @@ function check_exile(boardid) {
       console.log(JSON.parse(x.response));
         if (JSON.parse(x.response)["is_banned"] == true) {
           exileError.textContent = "It looks like that user is already banned.";
+        } else {
+          exileForm.submit();
         }
       } else if (x.readyState == 4 && x.status == 404) {
           console.log("Error 404 - user does not exist");
