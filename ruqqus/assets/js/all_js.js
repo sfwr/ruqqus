@@ -1422,7 +1422,7 @@ function check_exile(boardid) {
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
-    x.onload=function(){console.log(JSON.parse(xhr.response))};
+    x.onload=function(){console.log(JSON.parse(x.response))};
     x.send()
   }
 }
