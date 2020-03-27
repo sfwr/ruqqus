@@ -115,7 +115,7 @@ $('#new_email').on('input', function () {
           }
         }
         else if (max <= 0) {
-          noGIFs.innerHTML = `<div class="text-center py-3 mt-3"><div class="mb-3"><i class="fad fa-frown text-gray-500" style="font-size: 3.5rem;"></i></div><p class="font-weight-bold text-gray-500 mb-0">Aw shucks. No GIFs found...</p></div>`
+          noGIFs.innerHTML = '<div class="text-center py-3 mt-3"><div class="mb-3"><i class="fad fa-frown text-gray-500" style="font-size: 3.5rem;"></i></div><p class="font-weight-bold text-gray-500 mb-0">Aw shucks. No GIFs found...</p></div>';
           container.innerHTML = null;
           loadGIFs.innerHTML = null;
         }
@@ -846,9 +846,7 @@ $(document).ready(function() {
       // disable button
       $("#login_button").prop("disabled", true);
       // add spinner to button
-      $("#login_button").html(
-        `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Signing in`
-        );
+      $("#login_button").html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Signing in');
     });
 });
 
@@ -857,9 +855,7 @@ $(document).ready(function() {
       // disable button
       $("#register_button").prop("disabled", true);
       // add spinner to button
-      $("#register_button").html(
-        `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Registering`
-        );
+      $("#register_button").html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Registering');
     });
 });
 
@@ -868,9 +864,7 @@ $(document).ready(function() {
       // disable button
       $("#create_button").prop("disabled", true);
       // add spinner to button
-      $("#create_button").html(
-        `<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Creating post`
-        );
+      $("#create_button").html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Creating post');
     });
 });
 
