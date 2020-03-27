@@ -1395,11 +1395,13 @@ if (window.location.pathname=='/submit') {
 
 // Exile Member
 
-function check_exile(boardid, username) {
+function check_exile(boardid) {
 
   var usernameField = document.getElementById("exile-username");
 
   var isValidUsername = usernameField.checkValidity();
+
+  username = usernameField.value;
 
   if (isValidUsername) {
     var xhr = new XMLHttpRequest();
