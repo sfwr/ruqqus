@@ -1410,7 +1410,7 @@ function check_exile(boardid) {
     x.withCredentials=true;
     x.onreadystatechange = function() {
       if (x.readyState == 4) {
-          if (x.status == 204) {
+        if (x.status == 204) {
         exileError.textContent = null;
         console.log("success");
       } else if (x.status == 400) {
@@ -1423,7 +1423,7 @@ function check_exile(boardid) {
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
-    x.onload=function(){console.log(JSON.parse(x.response))};
+    x.onload=function(){console.log(JSON.parse(x.response));console.log(JSON.parse(x.responseText)["is_banned"])};
     x.send()
   }
 }
