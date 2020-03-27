@@ -1404,8 +1404,8 @@ function check_exile(boardid) {
   username = usernameField.value;
 
   if (isValidUsername) {
-    var xhr = new XMLHttpRequest();
-    xhr.withCredentials=true;
+    var x = new XMLHttpRequest();
+    x.withCredentials=true;
     x.onreadystatechange = function() {
       if (x.readyState == 4) {
           if (x.status == 204) {
@@ -1419,8 +1419,8 @@ function check_exile(boardid) {
       }
       }
     }
-    xhr.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
-    xhr.onload=function(){console.log(JSON.parse(xhr.response))};
-    xhr.send()
+    x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
+    x.onload=function(){console.log(JSON.parse(xhr.response))};
+    x.send()
   }
 }
