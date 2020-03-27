@@ -1409,17 +1409,12 @@ function check_exile(boardid) {
     var x = new XMLHttpRequest();
     x.withCredentials=true;
     x.onreadystatechange = function() {
-      if (x.readyState == 4) {
-        if (x.status == 204) {
-        exileError.textContent = null;
-        console.log("success");
-      } else if (x.status == 400) {
-        exileError.textContent = "Whoops, that user has not participated in the guild."
-      } else if (x.status == 404) {
-        exileError.textContent = "Hold up, it looks like that user does not exist."
-      } else if (x.status == 409) {
-        exileError.textContent = "It looks like that user is already banned."
-      }
+      if (x.readyState == 4 && x.status == 200) {
+        if (JSON.parse(x.response)["is_banned"] == "true") {
+          exileError.textContent = "It looks like that user is already banned.";
+        }
+      } else if (x.readyState == 4 && x.status == 404) {
+          exileError.textContent = "Whoops, it looks like that user does not exist (yet)...";
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
