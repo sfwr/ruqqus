@@ -121,7 +121,7 @@
 					<p>Users exiled from a guild will receive a notification shortly after you exile them.</p>
 					<input type="hidden" name="formkey" value="{{ v.formkey }}">
 					<input type="text" name="username" placeholder="enter username" id="exile-username" class="form-control" oninput="check_exile('{{ b.base36id }}')" required>
-					<span class="form-text text-danger" id="exile-error"></span>
+					<small class="form-text text-danger" id="exile-error"></small>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
