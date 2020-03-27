@@ -1409,7 +1409,7 @@ function check_exile(boardid) {
           exileError.textContent = "It looks like that user is already banned.";
         }
       } else if (x.readyState == 4 && x.status == 404) {
-          cosnole.log("Error 404 - user does not exist");
+          console.log("Error 404 - user does not exist");
           exileError.textContent = "Whoops, it looks like that user does not exist";
       }
     }
