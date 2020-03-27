@@ -1399,6 +1399,8 @@ function check_exile(boardid) {
 
   var exileError = document.getElementById("exile-error");
 
+  var usernameField = document.getElementById("exile-username");
+
   var username = usernameField.value;
 
   var x = new XMLHttpRequest();
