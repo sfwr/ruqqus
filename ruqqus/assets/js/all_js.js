@@ -1403,7 +1403,7 @@ function check_exile(boardid) {
 
   var isValidUsername = usernameField.checkValidity();
 
-  username = usernameField.value;
+  var username = usernameField.value;
 
   if (isValidUsername) {
     var x = new XMLHttpRequest();
