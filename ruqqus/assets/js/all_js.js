@@ -1397,6 +1397,8 @@ if (window.location.pathname=='/submit') {
 
 function check_exile(boardid) {
 
+  var exileError = document.getElementById("exile-error");
+
   var usernameField = document.getElementById("exile-username");
 
   var isValidUsername = usernameField.checkValidity();
