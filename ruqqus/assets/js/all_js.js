@@ -1423,7 +1423,7 @@ function check_exile(boardid) {
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
-    x.onload=function(){console.log(JSON.parse(x.response));console.log(JSON.parse(x.responseText)["is_banned"])};
+    x.onload=function(){console.log(JSON.parse(x.response));console.log(JSON.parse(x.response)["is_banned"])};
     x.send()
   }
 }
