@@ -1399,28 +1399,22 @@ function check_exile(boardid) {
 
   var exileError = document.getElementById("exile-error");
 
-  var usernameField = document.getElementById("exile-username");
-
-  var isValidUsername = usernameField.checkValidity();
-
   var username = usernameField.value;
 
-  if (isValidUsername) {
-    var x = new XMLHttpRequest();
-    x.withCredentials=true;
-    x.onreadystatechange = function() {
-      if (x.readyState == 4 && x.status == 200) {
-        if (x.status == 200) {
+  var x = new XMLHttpRequest();
+  x.withCredentials=true;
+  x.onreadystatechange = function() {
+    if (x.readyState == 4 && x.status == 200) {
+      if (x.status == 200) {
         if (JSON.parse(x.response)["is_banned"] == true) {
           exileError.textContent = "It looks like that user is already banned.";
         }
       } else if (x.status == 404) {
-          exileError.textContent = "Whoops, it looks like that user does not exist (yet)...";
+        exileError.textContent = "Whoops, it looks like that user does not exist (yet)...";
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
     x.onload=function(){console.log(JSON.parse(x.response));console.log(JSON.parse(x.response)["is_banned"])};
     x.send()
   }
-}
 }
