@@ -1404,8 +1404,8 @@ function check_exile(boardid) {
     x.withCredentials=true;
     x.onreadystatechange = function() {
       if (x.readyState == 4 && x.status == 200) {
+      console.log(JSON.parse(x.response));
         if (JSON.parse(x.response)["is_banned"] == true) {
-          console.log(JSON.parse(x.response));
           exileError.textContent = "It looks like that user is already banned.";
         }
       } else if (x.readyState == 4 && x.status == 404) {
