@@ -1409,7 +1409,7 @@ function check_exile(boardid, username) {
           if (x.status == 204) {
         console.log("success");
       } else if (x.status == 400) {
-        exileError.textContent = "Whoops, that user is a not member of the guild."
+        exileError.textContent = "Whoops, that user has not participated in the guild."
       } else if (x.status == 404) {
         exileError.textContent = "Hold up, it looks like that user does not exist."
       } else if (x.status == 409) {
