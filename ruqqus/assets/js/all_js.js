@@ -1410,15 +1410,16 @@ function check_exile(boardid) {
     x.withCredentials=true;
     x.onreadystatechange = function() {
       if (x.readyState == 4 && x.status == 200) {
-        if (JSON.parse(x.response)["is_banned"] == "true") {
-          exileError.textContent = "It looks like that user is already banned.";
-        }
-      } else if (x.readyState == 4 && x.status == 404) {
+        if (x.status == 200) {
+          if (JSON.parse(x.response)["is_banned"] == "true") {
+            exileError.textContent = "It looks like that user is already banned.";
+          }
+        } else if (x.status == 404) {
           exileError.textContent = "Whoops, it looks like that user does not exist (yet)...";
+        }
       }
+      x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
+      x.onload=function(){console.log(JSON.parse(x.response));console.log(JSON.parse(x.response)["is_banned"])};
+      x.send()
     }
-    x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
-    x.onload=function(){console.log(JSON.parse(x.response));console.log(JSON.parse(x.response)["is_banned"])};
-    x.send()
   }
-}
