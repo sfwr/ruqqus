@@ -1392,3 +1392,33 @@ function autoSuggestTitle()  {
 if (window.location.pathname=='/submit') {
   window.onload = autoSuggestTitle();
 }
+
+// Exile Member
+
+function check_exile(boardid, username) {
+
+  var usernameField = document.getElementById("exile-username");
+
+  var isValidUsername = usernameField.checkValidity();
+
+  if (isValidUsername) {
+    var xhr = new XMLHttpRequest();
+    xhr.withCredentials=true;
+    x.onreadystatechange = function() {
+      if (x.readyState == 4) {
+          if (x.status == 204) {
+        console.log("success");
+      } else if (x.status == 400) {
+        exileError.textContent = "Whoops, that user is a not member of the guild."
+      } else if (x.status == 404) {
+        exileError.textContent = "Hold up, it looks like that user does not exist."
+      } else if (x.status == 409) {
+        exileError.textContent = "It looks like that user is already banned."
+      }
+      }
+    }
+    xhr.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
+    xhr.onload=function(){console.log(JSON.parse(xhr.response))};
+    xhr.send()
+  }
+}
