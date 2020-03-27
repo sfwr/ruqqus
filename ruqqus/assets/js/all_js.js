@@ -1411,11 +1411,11 @@ function check_exile(boardid) {
     x.onreadystatechange = function() {
       if (x.readyState == 4 && x.status == 200) {
         if (JSON.parse(x.response)["is_banned"] == true) {
-          console.log(JSON.parse(x.response)
+          console.log(JSON.parse(x.response));
           exileError.textContent = "It looks like that user is already banned.";
         }
       } else if (x.readyState == 4 && x.status == 404) {
-          cosnole.log("Error 404 - user does not exist")
+          cosnole.log("Error 404 - user does not exist");
           exileError.textContent = "Whoops, it looks like that user does not exist";
       }
     }
