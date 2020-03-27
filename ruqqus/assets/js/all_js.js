@@ -1411,6 +1411,7 @@ function check_exile(boardid) {
     x.onreadystatechange = function() {
       if (x.readyState == 4) {
           if (x.status == 204) {
+        exileError.textContent = null;
         console.log("success");
       } else if (x.status == 400) {
         exileError.textContent = "Whoops, that user has not participated in the guild."
