@@ -1423,5 +1423,4 @@ function check_exile(boardid) {
       x.send()
     }
   }
-
 }
