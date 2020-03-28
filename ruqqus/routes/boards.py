@@ -1081,10 +1081,8 @@ def siege_guild(v):
 @is_guildmaster
 @validate_formkey
 def check_exile_state(bid, board, v):
-
-    user=get_user(request.values.get("username"))
-
-    user=get_user(request.form.get("username"), graceful=True)
+    
+    user=get_user(request.values.get("username"), graceful=True)
 
     can_ban=False
 
