@@ -1405,26 +1405,20 @@ function check_exile(boardid) {
     var x = new XMLHttpRequest();
     x.withCredentials=true;
     x.onreadystatechange = function() {
-      if (x.readyState == 4 && x.status == 200) {
-      console.log(JSON.parse(x.response));
-        if (JSON.parse(x.response)["is_banned"] == true) {
-          $('#toast-exile-error').toast('dispose')
-          $('#toast-exile-error').toast('show');
+      if (x.readyState == 4 && x.status == 204) {
+        exileForm.submit();
+      } else {
+        var error = JSON.parse(x.response)["error"];
 
-          exileError.textContent = "That user is already banned.";
-        } else {
-          exileForm.submit();
-        }
-      } else if (x.readyState == 4 && x.status == 404) {
-          console.log("Error 404 - user does not exist");
+        console.log(JSON.parse(error));
 
           $('#toast-exile-error').toast('dispose');
           $('#toast-exile-error').toast('show');
 
-          exileError.textContent = "That user does not exist";
+          exileError.textContent = error;
+        }
       }
+      x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
+      x.send()
     }
-    x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
-    x.send()
   }
-}
