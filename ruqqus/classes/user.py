@@ -28,6 +28,7 @@ class User(Base, Stndrd):
     id = Column(Integer, primary_key=True)
     username = Column(String, default=None)
     email = Column(String, default=None)
+    api_key = Column(String, default=None)
     passhash = Column(String, default=None)
     created_utc = Column(Integer, default=0)
     admin_level = Column(Integer, default=0)
@@ -60,7 +61,7 @@ class User(Base, Stndrd):
     mfa_secret=Column(String(16), default=None)
     hide_offensive=Column(String(16), default=False)
     has_earned_darkmode=Column(Boolean, default=False)
-    api_key=Column(String, default=None)
+
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
@@ -113,9 +114,11 @@ class User(Base, Stndrd):
 
         if not self.api_key or overwrite:
             key = token_urlsafe(45)
-            self.api_key = generate_password_hash(key, method='pbkdf2:sha512', salt_length=8)
+            self.api_key = hash_password(key, method='pbkdf2:sha512', salt_length=8)
             db.commit()
-            return key
+            return generate_hash(f"{key}{self.id}")
+
+
 
 
         
