@@ -192,21 +192,23 @@ def mod_accept_bid_pid(bid, pid, board, v):
 @validate_formkey
 def mod_ban_bid_user(bid, board, v):
 
-    user=get_user(request.form.get("username"))
+    user=get_user(request.form.get("username"), graceful=True)
 
-    if not board.has_mod(v):
-        abort(403)
+    if not user:
+        return jsonify({"error":"That user doesn't exist."}), 404
+
+    if user.id==v.id:
+        return jsonify({"error":"You can't exile yourself."}), 409
 
     if board.has_ban(user):
-        abort(409)
+        return jsonify({"error":f"@{user.username} is already banned."}), 409
 
     if board.has_mod(user):
-        abort(409)
+        return jsonify({"error":"You can't exile other guildmasters."}), 409
 
     #you can only exile a user who has previously participated in the guild
-    if not (db.query(Submission).filter_by(author_id=user.id, board_id=board.id).first() or
-        db.query(Comment).filter(Comment.author_id==user.id, Comment.board_id==board.id).first()):
-        abort(400)
+    if not board.has_participant(user):
+        return jsonify({"error":f"@{user.username} hasn't participated in +{board.name}."}), 403
 
     #check for an existing deactivated ban
     existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False).first()
@@ -1084,7 +1086,8 @@ def check_exile_state(bid, board, v):
 
     data={"board":board.name,
           "user":user.username,
-          "is_banned":bool(board.has_ban(user))
+          "is_banned":bool(board.has_ban(user)),
+          "user_has_participated":bool(board.has_participant(user))
           }
 
     return jsonify(data)

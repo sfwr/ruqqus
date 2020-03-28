@@ -350,4 +350,9 @@ class Board(Base, Stndrd, Age_times):
     @property
     def css_dark_url(self):
         return f"{self.permalink}/dark/{self.color_nonce}.css"
+
+    def has_participant(self, user):
+        return (self.submissions.filter_by(author_id=user.id).first() or
+                self.comments.filter_by(author_id=user.id).first()
+                )
     
