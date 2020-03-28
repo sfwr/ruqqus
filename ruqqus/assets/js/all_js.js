@@ -1407,6 +1407,7 @@ function check_exile(boardid) {
     x.onreadystatechange = function() {
       if (x.readyState == 4 && x.status == 200) {
         if (JSON.parse(x.response)["can_ban"] == true) {
+          console.log(JSON.parse(x.response));
           exileForm.submit();
         } else {
 
