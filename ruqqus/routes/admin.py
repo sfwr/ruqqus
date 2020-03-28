@@ -129,7 +129,7 @@ def users_list(v):
     next_exists = (len(users)==26)
     users=users[0:25]
 
-    data = user_stat_data()
+    data = json.loads(user_stat_data().content)
 
 
 
