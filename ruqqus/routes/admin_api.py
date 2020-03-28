@@ -283,11 +283,11 @@ def mod_self_to_guild(v, bid):
         
 
 @app.route("/api/user_stat_data", methods=['GET'])
-#@cache.memoize
 @admin_level_required(2)
+@cache.memoize(timeout=1800)
 def user_stat_data(v):
 
-    days=int(request.args.get("days",14))
+    days=int(request.args.get("days",30))
 
     now=time.gmtime()
     midnight_this_morning=time.struct_time((now.tm_year,
@@ -382,7 +382,7 @@ def user_stat_data(v):
 def create_plot(**kwargs):
 
     if not kwargs:
-        return  abort(400)
+        return abort(400)
 
     #create multiple charts
     daily_signups = [d["signups"] for d in kwargs["sign_ups"]['daily_signups']]
