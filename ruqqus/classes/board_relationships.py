@@ -3,6 +3,7 @@ from ruqqus.helpers.security import *
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
 from ruqqus.__main__ import Base, db, cache
+from .mix_ins import *
 import time
 
 class ModRelationship(Base):
