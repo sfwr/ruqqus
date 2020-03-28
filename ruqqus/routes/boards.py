@@ -1084,10 +1084,36 @@ def check_exile_state(bid, board, v):
 
     user=get_user(request.values.get("username"))
 
+    user=get_user(request.form.get("username"), graceful=True)
+
+    can_ban=False
+
+    if not user:
+        status="That user doesn't exist."
+
+    elif user.id==v.id:
+        status="You can't exile yourself."
+
+    elif board.has_ban(user):
+        status=f"@{user.username} is already banned."
+
+    elif board.has_mod(user):
+        status=f"You can't exile other guildmasters."
+
+    #you can only exile a user who has previously participated in the guild
+    elif not board.has_participant(user):
+        status=f"@{user.username} hasn't participated in +{board.name}."
+
+    else:
+        status="You can ban this user"
+        can_ban=True
+
+
     data={"board":board.name,
           "user":user.username,
           "is_banned":bool(board.has_ban(user)),
-          "user_has_participated":bool(board.has_participant(user))
+          "can_ban":can_ban,
+          "status":status
           }
 
     return jsonify(data)
