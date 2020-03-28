@@ -9,6 +9,7 @@ from ruqqus.helpers.session import *
 import ruqqus.helpers.aws as aws
 from .submission import *
 from .board_relationships import *
+from .comment import Comment
 from .mix_ins import *
 from ruqqus.__main__ import Base, db, cache
 

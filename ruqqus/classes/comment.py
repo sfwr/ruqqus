@@ -11,7 +11,6 @@ from ruqqus.__main__ import Base, db, cache
 from .submission import Submission
 from .votes import CommentVote
 from .flags import CommentFlag
-from .boards import Board
 
 class Comment(Base, Age_times, Scores, Stndrd):
 
@@ -229,4 +228,4 @@ class Notification(Base):
     @property
     def board(self):
 
-        return db.query(Board).filter_by(id=self.board_id).first()
+        return self.comment.board
