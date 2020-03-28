@@ -27,7 +27,7 @@ class ModRelationship(Base):
         return f"<Mod(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
 
 
-class BanRelationship(Base):
+class BanRelationship(Base, Age_times):
 
     __tablename__="bans"
     id = Column(BigInteger, primary_key=True)
