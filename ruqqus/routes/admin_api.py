@@ -358,7 +358,6 @@ def user_stat_data(v):
                       } for i in range(len(day_cutoffs) - 1)
                      ]
 
-    #return jsonify(final)
 
     x=create_plot(sign_ups={'daily_signups':daily_signups},
                   guilds={'guild_stats':guild_stats},
@@ -373,7 +372,8 @@ def user_stat_data(v):
            "guild_data":guild_stats,
            "comment_data":comment_stats,
            "vote_data":vote_stats,
-           "plot":f"https://i.ruqqus.com/{x}"
+           "sing_plot":f"https://i.ruqqus.com/{x[0]}",
+           "multi_plot":f"https://i.ruqqus.com/{x[1]}"
            }
     
     return jsonify(final)
@@ -392,7 +392,7 @@ def create_plot(**kwargs):
     vote_stats = [d["votes"] for d in kwargs["votes"]['vote_stats']]
     daily_times = [d["day_start"] for d in kwargs["sign_ups"]['daily_signups']]
 
-    multiple_plots(sign_ups=daily_signups,
+    multi_plots = multiple_plots(sign_ups=daily_signups,
                    guilds=guild_stats,
                    posts=post_stats,
                    comments=comment_stats,
@@ -413,14 +413,14 @@ def create_plot(**kwargs):
     plt.grid()
     plt.legend()
 
-    # now=int(time.time())
-    name = f"plot6.png"  # _{now}.png"
-    plt.savefig(name)
+    now=int(time.time())
+    single_plot = f"single_plot_{now}.png"
+    plt.savefig(single_plot)
 
     #aws.delete_file(name)
-    aws.upload_from_file(name, name)
+    aws.upload_from_file(single_plot, single_plot)
 
-    return name
+    return [single_plot, multi_plots]
 
 
 def multiple_plots(**kwargs):
@@ -447,19 +447,19 @@ def multiple_plots(**kwargs):
     votes_chart.set_ylabel("Votes")
     comments_chart.set_xlabel("Time (UTC)")
     votes_chart.set_xlabel("Time (UTC)")
-    
+
     signup_chart.legend(loc='upper left', frameon=True)
     guilds_chart.legend(loc='upper left', frameon=True)
     posts_chart.legend(loc='upper left', frameon=True)
     comments_chart.legend(loc='upper left', frameon=True)
     votes_chart.legend(loc='upper left', frameon=True)
 
-    name = f"plot7.png"  # _{now}.png"
+    now=int(time.time())
+    name = f"multi_plot_{now}.png"
 
     plt.savefig(name)
     plt.clf()
-    # now=int(time.time())
 
     #aws.delete_file(name)
     aws.upload_from_file(name, name)
-    return True
+    return name

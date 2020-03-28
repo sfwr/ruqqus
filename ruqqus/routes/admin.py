@@ -6,7 +6,7 @@ from ruqqus.helpers.base36 import *
 from ruqqus.helpers.sanitize import *
 from ruqqus.helpers.get import *
 from ruqqus.classes import *
-from ruqqus.routes.admin_api import create_plot
+from ruqqus.routes.admin_api import create_plot, user_stat_data
 from flask import *
 from ruqqus.__main__ import app, db
 
@@ -129,9 +129,15 @@ def users_list(v):
     next_exists = (len(users)==26)
     users=users[0:25]
 
+    data = user_stat_data(v)
+
+
+
     return render_template("admin/new_users.html",
                            v=v,
                            users=users,
                            next_exists=next_exists,
-                           page=page
+                           page=page,
+                           single_plot=data['single_plot'],
+                           multi_plot=data['multi_plot']
                            )
