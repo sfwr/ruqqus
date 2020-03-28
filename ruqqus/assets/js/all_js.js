@@ -1411,7 +1411,7 @@ function check_exile(boardid) {
           console.log("can ban")
           exileForm.submit();
           exileForm.onsubmit = function(){
-            location.reload(true);
+            window.location.reload(true);
           }
         } else {
           $('#toast-exile-error').toast('dispose');
