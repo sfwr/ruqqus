@@ -414,7 +414,7 @@ def create_plot(**kwargs):
     plt.legend()
 
     now=int(time.time())
-    single_plot = f"single_plot_{now}.png"
+    single_plot = f"single_plot.png"
     plt.savefig(single_plot)
 
     #aws.delete_file(name)
@@ -455,7 +455,7 @@ def multiple_plots(**kwargs):
     votes_chart.legend(loc='upper left', frameon=True)
 
     now=int(time.time())
-    name = f"multi_plot_{now}.png"
+    name = f"multi_plot.png"
 
     plt.savefig(name)
     plt.clf()
