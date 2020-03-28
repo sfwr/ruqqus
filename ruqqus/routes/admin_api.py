@@ -372,7 +372,7 @@ def user_stat_data(v):
            "guild_data":guild_stats,
            "comment_data":comment_stats,
            "vote_data":vote_stats,
-           "sing_plot":f"https://i.ruqqus.com/{x[0]}",
+           "single_plot":f"https://i.ruqqus.com/{x[0]}",
            "multi_plot":f"https://i.ruqqus.com/{x[1]}"
            }
     
