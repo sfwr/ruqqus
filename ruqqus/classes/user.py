@@ -116,7 +116,7 @@ class User(Base, Stndrd):
             key = token_urlsafe(45)
             self.api_key = hash_password(key, method='pbkdf2:sha512', salt_length=8)
             db.commit()
-            return generate_hash(f"{key}{self.id}")
+            return generate_hash(f"{key}+{self.id}")
 
 
 

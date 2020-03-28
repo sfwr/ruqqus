@@ -216,3 +216,65 @@ def no_cors(f):
 
     wrapper.__name__=f.__name__
     return wrapper
+
+
+def api_auth_desired(f):
+    # decorator for any api view that changes if user is logged in (most pages)
+
+    def wrapper(*args, **kwargs):
+
+        if "api" in kwargs:
+            kwargs['api'] = kwargs['api'].split("+")
+            key = kwargs['api'][0]
+            id = kwargs['api'][1]
+            if validate_hash(f"{key}+{id}"):
+                user = db.query(User).filter_by(id=id).first()
+                if check_password_hash(user.api_key, key):
+                    v = user
+                else:
+                    v = None
+            else:
+                v= None
+        else:
+            v = None
+
+        resp = make_response(f(*args, v=v, **kwargs))
+        if v:
+            resp.headers.add("Cache-Control", "private")
+            resp.headers.add("Access-Control-Allow-Origin", app.config["SERVER_NAME"])
+        return resp
+
+    wrapper.__name__ = f.__name__
+    return wrapper
+
+
+def api_auth_required(f):
+    # decorator for any api access that requires authentication (ex. posting)
+
+    def wrapper(*args, **kwargs):
+
+        if "api" in kwargs:
+            kwargs['api'] = kwargs['api'].split("+")
+            key = kwargs['api'][0]
+            id = kwargs['api'][1]
+            if validate_hash(f"{key}+{id}"):
+                user = db.query(User).filter_by(id=id).first()
+                if check_password_hash(user.api_key, key):
+                    v = user
+
+                else:
+                    abort(401)
+
+            if not v:
+                abort(401)
+
+        else:
+            abort(401)
+
+        resp = make_response(f(*args, v=v, **kwargs))
+        resp.headers.add("Cache-Control", "private")
+        resp.headers.add("Access-Control-Allow-Origin", app.config["SERVER_NAME"])
+        return resp
+
+    wrapper.__name__ = f.__name__
+    return wrapper
