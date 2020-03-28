@@ -1413,13 +1413,8 @@ function check_exile(boardid) {
           $('#toast-exile-error').toast('dispose');
           $('#toast-exile-error').toast('show');
 
-          exileError.textContent = JSON.parse(x.response)["error"];
+          exileError.textContent = JSON.parse(x.response)["status"];
         }
-      } else if (x.readyState == 4 && x.status == 404) {
-          console.log("Error 404 - user does not exist");
-
-          $('#toast-exile-error').toast('show');
-          exileError.textContent = "Whoops, it looks like that user does not exist";
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
