@@ -1405,10 +1405,10 @@ function check_exile(boardid) {
     var x = new XMLHttpRequest();
     x.withCredentials=true;
     x.onreadystatechange = function() {
-      if (x.readyState == 4 && x.status == 204) {
-        exileForm.submit();
-      } else {
-        console.log(JSON.parse(x.response)["error"]);
+      if (x.readyState == 4 && x.status == 200) {
+        if (JSON.parse(x.response)["can_ban"] == true) {
+          exileForm.submit();
+        } else {
 
           $('#toast-exile-error').toast('dispose');
           $('#toast-exile-error').toast('show');
@@ -1420,3 +1420,4 @@ function check_exile(boardid) {
       x.send()
     }
   }
+}
