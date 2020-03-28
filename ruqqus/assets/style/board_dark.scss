@@ -459,6 +459,7 @@ ol > li::before {
 
 .toast.clipboard, .toast.error {
     font-size: 1rem;
+    font-weight: $font-weight-bold;
 }
 
 // Navbar and tab Bar
