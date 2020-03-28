@@ -1407,20 +1407,18 @@ function check_exile(boardid) {
     x.onreadystatechange = function() {
       if (x.readyState == 4 && x.status == 200) {
       console.log(JSON.parse(x.response));
-        if (JSON.parse(x.response)["is_banned"] == true) {
-          $('#toast-exile-error').toast('show');
-          exileError.textContent = "It looks like that user is already banned.";
-        } else {
+        if (JSON.parse(x.response)["can_ban"] == true) {
           exileForm.submit();
-        }
-      } else if (x.readyState == 4 && x.status == 404) {
-          console.log("Error 404 - user does not exist");
-
+        } else {
+          $('#toast-exile-error').toast('dispose');
           $('#toast-exile-error').toast('show');
-          exileError.textContent = "Whoops, it looks like that user does not exist";
+
+          exileError.textContent = JSON.parse(x.response)["status"];
+        }
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
     x.send()
   }
+
 }
