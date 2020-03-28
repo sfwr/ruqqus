@@ -1,8 +1,8 @@
 {% extends "mine/mine.html" %}
 
 {% block maincontent %}
-    <img src="https://i.ruqqus.com/{{ single_plot }}">
-    <img src="https://i.ruqqus.com/{{ multi_plot }}">
+    <img src="{{ single_plot }}">
+    <img src="{{ multi_plot }}">
 {% include "user_listing.html" %}
 {% endblock %}
 
