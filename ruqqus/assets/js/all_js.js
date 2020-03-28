@@ -1411,7 +1411,7 @@ function check_exile(boardid) {
           $('#toast-exile-error').toast('show');
           $('#toast-exile-error').toast({delay: 5000})
 
-          exileError.textContent = "It looks like that user is already banned.";
+          exileError.textContent = "That user is already banned.";
         } else {
           exileForm.submit();
         }
@@ -1420,8 +1420,8 @@ function check_exile(boardid) {
 
           $('#toast-exile-error').toast('show');
           $('#toast-exile-error').toast({delay: 5000})
-          
-          exileError.textContent = "Whoops, it looks like that user does not exist";
+
+          exileError.textContent = "That user does not exist";
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
