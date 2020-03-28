@@ -47,12 +47,6 @@
 		</form>
 	-->
 
-	{% for ban in b.bans.filter_by(is_active=True).all() %}
-	<div class="body"><a href="{{ ban.user.permalink }}">@{{ ban.user.username }}</a> - {% if b.has_ban(ban.user) %}exiled - <a href="javascript:void(0)" class="btn btn-primary" onclick="post('/mod/unban/{{ b.base36id }}/{{ ban.user.username }}', callback=function(){window.location.reload(true)})">Pardon User</a>{% else %}<a href="javascript:void(0)" class="btn btn-primary{% if b.has_mod(ban.user) %} disabled{% endif %}" onclick="post('/mod/ban/{{ b.base36id }}/{{ ban.user.username }}', callback=function(){window.location.reload(true)})">Exile User</a>{% endif %}
-	</div>
-	{% else %}
-	{% endfor %}
-
 	{% if b.bans.filter_by(is_active=True).first() %}
 	<div class="card mb-5">
 		<table class="table table-hover rounded mb-0">
@@ -69,12 +63,9 @@
 					<td>
 						<a href="{{ ban.user.permalink }}">
 							<img src="{{ ban.user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ ban.user.username }}</a>
-						</td>
-						<td>{{ ban.created_utc }}</td>
-						<td>
-							<i class="fas fa-circle text-success text-small-extra mr-2"></i>
-							Active
-						</td>
+					</td>
+					<td>{{ ban.created_utc }}</td>
+
 						<td>
 							<div class="dropdown float-right dropdown-actions">
 								<a href="#" role="button" id="dropdownMoreLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="line-height: 0;">
