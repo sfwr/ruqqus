@@ -42,7 +42,6 @@ class Board(Base, Stndrd, Age_times):
     contributors=relationship("ContributorRelationship", lazy="dynamic")
     bans=relationship("BanRelationship", lazy="dynamic")
     postrels=relationship("PostRelationship", lazy="dynamic")
-    comments=relationship("Comment", lazy="dynamic", primaryjoin="Comment.board_id==Board.id")
     trending_rank=deferred(Column(Float, server_default=FetchedValue()))
 
     #db side functions
@@ -354,6 +353,6 @@ class Board(Base, Stndrd, Age_times):
 
     def has_participant(self, user):
         return (self.submissions.filter_by(author_id=user.id).first() or
-                self.comments.filter_by(author_id=user.id).first()
+                db.query(Comment).filter_by(author_id=user.id, board_i=self.id).first()
                 )
     
