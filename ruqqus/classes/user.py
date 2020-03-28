@@ -4,7 +4,7 @@ import time
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
 from os import environ
-from secrets import token_hex
+from secrets import token_hex, token_urlsafe
 import random
 import pyotp
 
@@ -60,6 +60,7 @@ class User(Base, Stndrd):
     mfa_secret=Column(String(16), default=None)
     hide_offensive=Column(String(16), default=False)
     has_earned_darkmode=Column(Boolean, default=False)
+    api_key=Column(String, default=None)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
@@ -106,6 +107,17 @@ class User(Base, Stndrd):
     @property
     def age(self):
         return int(time.time())-self.created_utc
+
+    @property
+    def generate_api_key(self, overwrite=False):
+
+        if not self.api_key or overwrite:
+            key = token_urlsafe(45)
+            self.api_key = generate_password_hash(key, method='pbkdf2:sha512', salt_length=8)
+            db.commit()
+            return key
+
+
         
     @cache.memoize(timeout=300)
     def idlist(self, sort="hot", page=1, t=None, hide_offensive = False, **kwargs):
