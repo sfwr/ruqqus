@@ -1408,8 +1408,8 @@ function check_exile(boardid) {
       if (x.readyState == 4 && x.status == 200) {
       console.log(JSON.parse(x.response));
         if (JSON.parse(x.response)["is_banned"] == true) {
+          $('#toast-exile-error').toast('dispose')
           $('#toast-exile-error').toast('show');
-          $('#toast-exile-error').toast({delay: 5000})
 
           exileError.textContent = "That user is already banned.";
         } else {
@@ -1418,8 +1418,8 @@ function check_exile(boardid) {
       } else if (x.readyState == 4 && x.status == 404) {
           console.log("Error 404 - user does not exist");
 
+          $('#toast-exile-error').toast('dispose');
           $('#toast-exile-error').toast('show');
-          $('#toast-exile-error').toast({delay: 5000})
 
           exileError.textContent = "That user does not exist";
       }
