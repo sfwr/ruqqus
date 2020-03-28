@@ -1112,7 +1112,8 @@ def check_exile_state(bid, board, v):
     data={"board":board.name,
           "user":user.username,
           "is_banned":bool(board.has_ban(user)),
-          "can_ban"=can_ban
+          "can_ban":can_ban,
+          "status":status
           }
 
     return jsonify(data)
