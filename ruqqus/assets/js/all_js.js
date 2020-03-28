@@ -1408,14 +1408,12 @@ function check_exile(boardid) {
       if (x.readyState == 4 && x.status == 204) {
         exileForm.submit();
       } else {
-        var error = JSON.parse(x.response)["error"];
-
-        console.log(JSON.parse(error));
+        console.log(JSON.parse(x.response)["error"]);
 
           $('#toast-exile-error').toast('dispose');
           $('#toast-exile-error').toast('show');
 
-          exileError.textContent = error;
+          exileError.textContent = JSON.parse(x.response)["error"];
         }
       }
       x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
