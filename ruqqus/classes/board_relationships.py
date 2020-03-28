@@ -37,9 +37,10 @@ class BanRelationship(Base, Age_times):
     created_utc = Column(BigInteger, default=0)
     banning_mod_id=Column(Integer, ForeignKey("users.id"))
     is_active=Column(Boolean, default=False)
+    mod_note=Column(String(128), default="")
 
     user=relationship("User", lazy="joined", primaryjoin="User.id==BanRelationship.user_id")
-    banning_mod=relationship("User", primaryjoin="User.id==BanRelationship.banning_mod_id")
+    banning_mod=relationship("User", lazy="joined", primaryjoin="User.id==BanRelationship.banning_mod_id")
     board=relationship("Board")
 
     def __init__(self, *args, **kwargs):
