@@ -1406,15 +1406,13 @@ function check_exile(boardid) {
     x.withCredentials=true;
     x.onreadystatechange = function() {
       if (x.readyState == 4 && x.status == 200) {
-      console.log(JSON.parse(x.response));
+        console.log(JSON.parse(x.response));
         if (JSON.parse(x.response)["is_banned"] == true) {
           exileError.textContent = "It looks like that user is already banned.";
-        } else if (JSON.parse(x.response)["is_banned"] == false) {
-          exileForm.submit();
         }
       } else if (x.readyState == 4 && x.status == 404) {
-          console.log("Error 404 - user does not exist");
-          exileError.textContent = "Whoops, it looks like that user does not exist";
+        console.log("Error 404 - user does not exist");
+        exileError.textContent = "Whoops, it looks like that user does not exist";
       }
     }
     x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
