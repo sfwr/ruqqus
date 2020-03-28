@@ -208,7 +208,7 @@ def mod_ban_bid_user(bid, board, v):
 
     #you can only exile a user who has previously participated in the guild
     if not board.has_participant(user):
-        return jsonify({"error":f"@{user.username} hasn't participated in +{board.name}."}), 409
+        return jsonify({"error":f"@{user.username} hasn't participated in +{board.name}."}), 403
 
     #check for an existing deactivated ban
     existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False).first()
@@ -1087,7 +1087,7 @@ def check_exile_state(bid, board, v):
     data={"board":board.name,
           "user":user.username,
           "is_banned":bool(board.has_ban(user)),
-          "user_has_participated":board.has_participant(user)
+          "user_has_participated":bool(board.has_participant(user))
           }
 
     return jsonify(data)

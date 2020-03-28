@@ -352,7 +352,7 @@ class Board(Base, Stndrd, Age_times):
         return f"{self.permalink}/dark/{self.color_nonce}.css"
 
     def has_participant(self, user):
-        return (db.query(Submission).filter_by(author_id=user.id, board_id=board.id).first() or
-                db.query(Comment).filter(Comment.author_id==user.id, Comment.board_id==board.id).first()
+        return (self.submissions.filter_by(author_id=user.id).first() or
+                self.comments.filter_by(author_id=user.id).first()
                 )
     
