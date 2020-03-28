@@ -1409,7 +1409,7 @@ function check_exile(boardid) {
       console.log(JSON.parse(x.response));
         if (JSON.parse(x.response)["is_banned"] == true) {
           exileError.textContent = "It looks like that user is already banned.";
-        } else  {
+        } else {
           exileForm.submit();
         }
       } else if (x.readyState == 4 && x.status == 404) {
