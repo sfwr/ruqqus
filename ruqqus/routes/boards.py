@@ -231,7 +231,7 @@ def mod_ban_bid_user(bid, board, v):
 
     return "", 204
     
-@app.route("/mod/unexile/<bid>/", methods=["POST"])
+@app.route("/mod/unexile/<bid>", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey
