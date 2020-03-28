@@ -1108,7 +1108,7 @@ def check_exile_state(bid, board, v):
 
 
     data={"board":board.name,
-          "user":user.username,
+          "user":user.username if user else "None",
           "is_banned":bool(board.has_ban(user)),
           "can_ban":can_ban,
           "status":status
