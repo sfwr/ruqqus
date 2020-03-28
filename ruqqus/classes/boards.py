@@ -354,6 +354,6 @@ class Board(Base, Stndrd, Age_times):
 
     def has_participant(self, user):
         return (self.submissions.filter_by(author_id=user.id).first() or
-                db.query(Comment).filter_by(author_id=user.id, board_i=self.id).first()
+                db.query(Comment).filter_by(author_id=user.id, board_id=self.id).first()
                 )
     
