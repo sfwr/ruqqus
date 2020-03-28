@@ -1409,6 +1409,8 @@ function check_exile(boardid) {
       console.log(JSON.parse(x.response));
         if (JSON.parse(x.response)["is_banned"] == true) {
           $('#toast-exile-error').toast('show');
+          $('#toast-exile-error').toast({delay: 5000})
+
           exileError.textContent = "It looks like that user is already banned.";
         } else {
           exileForm.submit();
@@ -1417,6 +1419,8 @@ function check_exile(boardid) {
           console.log("Error 404 - user does not exist");
 
           $('#toast-exile-error').toast('show');
+          $('#toast-exile-error').toast({delay: 5000})
+          
           exileError.textContent = "Whoops, it looks like that user does not exist";
       }
     }
