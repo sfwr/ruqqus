@@ -628,14 +628,16 @@ def board_about_mods(boardname, v):
 @is_guildmaster
 def board_about_exiled(boardname, board, v):
 
-    username=request.args.get("user","")
-    if username:
-        users=db.query(User).filter_by(is_banned=0).filter(func.lower(User.username).contains(username.lower())).limit(25)
-    else:
-        users=[]
+    page=int(request.args.get("page",1))
+
+    bans=db.query(BanRelationship).filter_by(id=board.id).order_by(BanRelationship.created_utc.desc()).offset(25*(page-1)).limit(26)
+
+    bans=[ban for ban in bans]
+    next_exists=(len(bans)==26)
+    bans=bans[0:25]
                                     
 
-    return render_template("guild/bans.html", v=v, b=board, users=users)
+    return render_template("guild/bans.html", v=v, b=board, bans=bans)
 
 @app.route("/+<boardname>/mod/contributors", methods=["GET"])
 @auth_required
