@@ -53,7 +53,9 @@
 			<thead class="thead-dark">
 				<tr>
 					<th scope="col">User</th>
-					<th scope="col">Exiled Since</th>
+					<th scope="col">Exiled by:</th>
+					<th scope="col">Exiled since</th>
+					<th scope="col">Reason</th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
@@ -64,7 +66,12 @@
 						<a href="{{ ban.user.permalink }}">
 							<img src="{{ ban.user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ ban.user.username }}</a>
 					</td>
+					<td>
+						<a href="{{ ban.banning_mod.permalink }}">
+							<img src="{{ ban.banning_mod.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ ban.banning_mod.username }}</a>
+					</td>
 					<td>{{ ban.created_date }}</td>
+					<td>{{ ban.mod_note if ban.mod_note else '' }}</td>	
 
 						<td>
 							<div class="dropdown float-right dropdown-actions">
