@@ -26,6 +26,12 @@ class Age_times:
         return now-self.created_utc
 
     @property
+    def created_date(self):
+
+        return time.strftime("%d %b %Y", time.gmtime(self.created_utc))
+        
+
+    @property
     def age_string(self):
 
         age = self.age

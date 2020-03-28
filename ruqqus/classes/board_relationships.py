@@ -3,6 +3,7 @@ from ruqqus.helpers.security import *
 from sqlalchemy import *
 from sqlalchemy.orm import relationship
 from ruqqus.__main__ import Base, db, cache
+from .mix_ins import *
 import time
 
 class ModRelationship(Base):
@@ -27,7 +28,7 @@ class ModRelationship(Base):
         return f"<Mod(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
 
 
-class BanRelationship(Base):
+class BanRelationship(Base, Age_times):
 
     __tablename__="bans"
     id = Column(BigInteger, primary_key=True)
