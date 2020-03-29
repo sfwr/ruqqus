@@ -88,7 +88,7 @@
 <meta property="og:description" name="description" content="posted {{ p.age_string }} by @{{ p.author.username }} in +{{ p.board.name }}">
 <meta property="og:author"name="author" content="{{ p.author.username }}">
 <meta property="og:title" content="{{ p.title }}" />
-<meta property="og:image" content="{% if p.is_image %}{{ p.url }}{% end if %}" />
+<meta property="og:image" content="{% if p.is_image %}{{ p.url }}{% endif %}" />
 <meta property="og:url" content="https://ruqqus.com{{ p.permalink }}>
 {% endif %}
 {% endblock %}
