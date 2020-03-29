@@ -87,6 +87,7 @@
 <meta property="og:description" name="description" content="@{{ comment_info.author.username }} comments in +{{ p.board.name }} on "{{ p.title }}">
 <meta property="og:author" name="author" content="{{ comment_info.author.username }}">
 <meta property="og:title" content="@{{ comment_info.author.username }} comments in +{{ comment.post.board.name }} on '{{ p.title }}'" />
+<meta property="og:image" content="{% if p.is_image %}{{ p.url }}{% elif p.has_thumb%}{{ p.thumb_url }}/thumb.png{% endif %}" />
 <meta property="og:url" content="https://ruqqus.com{{ comment_info.permalink }}">
 <meta property="og:site_name" content="ruqqus.com" />
 
