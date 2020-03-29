@@ -630,7 +630,7 @@ def board_about_exiled(boardname, board, v):
 
     page=int(request.args.get("page",1))
 
-    bans=db.query(BanRelationship).filter_by(board_id=board.id).order_by(BanRelationship.created_utc.desc()).offset(25*(page-1)).limit(26)
+    bans=db.query(BanRelationship).filter_by(board_id=board.id, is_active=True).order_by(BanRelationship.created_utc.desc()).offset(25*(page-1)).limit(26)
 
     bans=[ban for ban in bans]
     next_exists=(len(bans)==26)
@@ -1095,7 +1095,7 @@ def check_exile_state(bid, board, v):
         status="You can't exile yourself."
 
     elif board.has_ban(user):
-        status=f"@{user.username} is already banned."
+        status=f"@{user.username} is already exiled."
 
     elif board.has_mod(user):
         status=f"You can't exile other guildmasters."
