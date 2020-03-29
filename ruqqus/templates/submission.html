@@ -98,7 +98,9 @@
 <meta property="og:site_name" content="ruqqus.com" />
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="{{ p.title }}" />
+<meta name="twitter:site" content="@ruqqus">
+<meta name="twitter:title" content="@{{ comment_info.author.username }} comments on {{ p.title }}" />
+<meta name="twitter:creator" content="@{{ comment_info.author.username }}">
 <meta name="twitter:description" content="{{ comment_info.body_html }}" />
 <meta name="twitter:image" content="{% if p.is_image %}{{ p.url }}{% elif p.has_thumb%}{{ p.thumb_url }}{% else %}https://ruqqus.com/assets/images/logo/ruqqus_logo.png{% endif %}" />
 <meta name="twitter:url" content="https://ruqqus.com{{ p.permalink }}" />
