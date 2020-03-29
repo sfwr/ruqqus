@@ -118,10 +118,12 @@
 <meta property="og:url" content="https://ruqqus.com{{ p.permalink }}" />
 <meta property="og:site_name" content="ruqqus.com" />
 
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@ruqqus">
 <meta name="twitter:title" content="{{ p.title }}" />
+<meta name="twitter:creator" content="@{{ p.author.username }}">
 <meta name="twitter:description" content="{{ p.body_html }}" />
-<meta name="twitter:image" content="{% if p.is_image %}{{ p.url }}{% elif p.has_thumb%}{{ p.thumb_url }}{% else %}https://ruqqus.com/assets/images/logo/ruqqus_logo.png{% endif %}" />
+<meta name="twitter:image" content="{% if p.is_image % }{{ p.url }}{% elif p.has_thumb %}{{ p.thumb_url }}{% else %}https://ruqqus.com/assets/images/logo/ruqqus_logo.png{% endif %}" />
 <meta name="twitter:url" content="https://ruqqus.com{{ p.permalink }}" />
 {% endif %}
 {% endblock %}
