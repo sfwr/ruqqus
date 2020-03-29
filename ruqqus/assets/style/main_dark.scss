@@ -407,7 +407,7 @@ ol > li::before {
 .tooltip-inner {
     background-color: $white;
     color: $dark;
-    }
+}
 
 .tooltip.bs-tooltip-right .arrow:before {
     border-right-color: $white !important;
@@ -611,7 +611,7 @@ ol > li::before {
 }
 
 .settings-nav .nav-link {
-    color: $gray;
+    color: $gray-200;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
     padding: 0.75rem 1rem;
@@ -815,6 +815,21 @@ label.color-radio span {
     box-shadow: none;
 }
 
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $black;
+    //opacity: .25; /* Firefox */
+}
+  
+.form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $black;
+    //opacity: .25;
+}
+  
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: $black;
+    //opacity: .25;
+}
+
 .form-check-label {
     margin-bottom: 0;
     text-transform: none;
@@ -929,7 +944,7 @@ th {
 .format .fa-quote-right:hover,
 .format .fa-link:hover,
 .format .fa-image:hover {
-    color: $gray;
+    color: $black;
 }
 
 // Voting
@@ -1887,7 +1902,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-header {
     border-bottom: none;
-    background-color: $gray-600;
+    background-color: $gray-300;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     padding: 0.5rem 1rem;
@@ -1900,7 +1915,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-content {
     border: none;
-    background-color: $gray-600;
+    background-color: $gray-300;
     border-radius: $border-radius;
     box-shadow: $box-shadow;
     background-color: $dark;
@@ -1908,10 +1923,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-footer {
     border: none;
-    background-color: $gray-600;
+    background-color: $gray-300;
     border-bottom-right-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
-    background-image: linear-gradient(180deg, #ffffff00 25%, $gray-600 100%)!important;
+    background-image: linear-gradient(180deg, #ffffff00 25%, $gray-300 100%)!important;
 }
 
 .modal .post-actions .list-group-item {
