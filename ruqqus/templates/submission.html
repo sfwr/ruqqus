@@ -99,7 +99,7 @@
 {{ p.body_html }}">
 <meta property="og:author" name="author" content="{{ p.author.username }}">
 <meta property="og:title" content="{{ p.title }}" />
-<meta property="og:image" content="{% if p.is_image %}{{ p.url }}{% endif %}" />
+<meta property="og:image" content="{% if p.is_image %}{{ p.url }}{% elif p.has_thumb%}{{ p.thumb_url }}/thumb.png{% endif %}" />
 <meta property="og:url" content="https://ruqqus.com{{ p.permalink }}">
 <meta property="og:site_name" content="ruqqus.com" />
 {% endif %}
