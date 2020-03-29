@@ -237,7 +237,7 @@ def mod_ban_bid_user(bid, board, v):
 @validate_formkey
 def mod_unban_bid_user(bid, username, board, v):
 
-    user=get_user(request.form.get("username"))
+    user=get_user(request.args.get("username"))
 
     x= board.has_ban(user)
     if not x:
