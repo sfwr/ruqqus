@@ -81,15 +81,26 @@
 {% block title %}
 {% if comment_info and not comment_info.is_banned and not linked_comment.is_deleted %}
 <title>@{{ comment_info.author.username }} comments in +{{ p.board.name }} on "{{ p.title }}"</title>
-<meta name="description" content="{{ comment_info.body }}">
+
+    <meta name="description" content="{{ comment_info.body }}">
+<meta charset="utf-8">
+<meta property="og:description" name="description" content="@{{ comment_info.author.username }} comments in +{{ p.board.name }} on "{{ p.title }}">
+<meta property="og:author" name="author" content="{{ comment_info.author.username }}">
+<meta property="og:title" content="@{{ comment_info.author.username }} comments in +{{ comment.post.board.name }} on '{{ p.title }}'" />
+<meta property="og:url" content="https://ruqqus.com{{ comment_info.permalink }}">
+<meta property="og:site_name" content="ruqqus.com" />
+
+
 {% else %}
 <title>{{ p.title | safe}}</title>
 <meta charset="utf-8">
-<meta property="og:description" name="description" content="posted {{ p.age_string }} by @{{ p.author.username }} in +{{ p.board.name }}">
-<meta property="og:author"name="author" content="{{ p.author.username }}">
+<meta property="og:description" name="description" content="posted {{ p.age_string }} by @{{ p.author.username }} in +{{ p.board.name }}
+{{ p.body_html }}">
+<meta property="og:author" name="author" content="{{ p.author.username }}">
 <meta property="og:title" content="{{ p.title }}" />
 <meta property="og:image" content="{% if p.is_image %}{{ p.url }}{% endif %}" />
 <meta property="og:url" content="https://ruqqus.com{{ p.permalink }}">
+<meta property="og:site_name" content="ruqqus.com" />
 {% endif %}
 {% endblock %}
 
