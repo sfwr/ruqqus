@@ -5,24 +5,24 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta property="og:article:author" content="@{{ comment_info.author.username }}" />
-    <meta property="article:section" content="+{{ p.board.name }}" />
-    <meta property="article:published_time" content="{{ comment_info.age_string }}" />
-    <meta property="article:modified_time" content="{{ comment_info.edited_string }}" />
-    <meta property="og:description" name="description" content="{{ comment_info.body_html }}" />
-    <meta property="og:author" name="author" content="{{ comment_info.author.username }}" />
-    <meta property="og:title" content="@{{ comment_info.author.username }} comments on {{ p.title }}" />
-    <meta property="og:image" content="{% if p.is_image %}{{ p.url }}{% elif p.has_thumb%}{{ p.thumb_url }}{% else %}https://ruqqus.com/assets/images/preview-images/ruqqus_og_image.png{% endif %}" />
-    <meta property="og:url" content="https://ruqqus.com{{ comment_info.permalink }}" />
+    <meta name="description" content="Sign up in under 27 seconds.">
+    <meta name="author" content="">
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Ruqqus - Awesome Online Communities, Without Censorship" />
+    <meta property="og:site_name" content="ruqqus.com" />
+    <meta property="og:image" content="https://ruqqus.com/assets/images/preview-images/ruqqus_og_image.png" />
+    <meta property="og:url" content="https://ruqqus.com">
+    <meta property="og:description" name="description" content="Sign up now! Ruqqus is an open-source platform for online communities, free of censorship and moderator abuse by design.">
+    <meta property="og:author" name="author" content="@ruqqus" />
     <meta property="og:site_name" content="ruqqus.com" />
 
-    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:site" content="@ruqqus">
-    <meta name="twitter:title" content="@{{ comment_info.author.username }} comments on {{ p.title }}" />
-    <meta name="twitter:creator" content="@{{ comment_info.author.username }}">
-    <meta name="twitter:description" content="{{ comment_info.body_html }}" />
-    <meta name="twitter:image" content="{% if p.is_image %}{{ p.url }}{% elif p.has_thumb%}{{ p.thumb_url }}{% else %}https://ruqqus.com/assets/images/preview-images/ruqqus_og_image.png{% endif %}" />
-    <meta name="twitter:url" content="https://ruqqus.com{{ p.permalink }}" />
+    <meta name="twitter:title" content="Ruqqus - Awesome Online Communities, Without Censorship" />
+    <meta name="twitter:creator" content="@ruqqus">
+    <meta name="twitter:description" content="Sign up now! Ruqqus is an open-source platform for online communities, free of censorship and moderator abuse by design." />
+    <meta name="twitter:image" content="https://ruqqus.com/assets/images/preview-images/ruqqus_og_image.png" />
+    <meta name="twitter:url" content="https://ruqqus.com" />
 
     <title>{% if ref_user %}{{ ref_user.username }} invites you to Ruqqus{% else %}Sign up - Ruqqus{% endif %}</title>
 
