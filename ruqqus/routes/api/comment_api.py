@@ -11,12 +11,20 @@ import re
 
 
 @app.route("/api/v1/comments", methods=["GET"])
+@app.route("/api/v1/comments/<id>", methods=["GET"])
+@app.route("/api/v1/comments/<username>", methods=["GET"])
 @admin_level_required(2)
-def get_all_comments_api(v):
-    comments=[]
-    for c in db.query(Comment).all():
-        comments.append(c.json())
-    return jsonify({"Comments": {comments}})
+def get_all_comments_api(v, username=None, id=None):
+    if username:
+        comments = db.query(Comment).filter_by(author_id=db.query(User).filter(User.username.ilike(username).first().id))
+    elif id:
+        comments = db.query(Comment).filter_by(author_id=base36decode(id))
+    else:
+        comments = db.query(Comment)
+    comment=[]
+    for c in comments.all():
+        comment.append(c.json())
+    return jsonify({"Comments": {comment}})
 
 
 
