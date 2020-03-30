@@ -10,10 +10,18 @@ import re
 
 
 @app.route("/api/v1/posts", methods=["GET"])
+@app.route("/api/v1/posts/<id>", methods=["GET"])
+@app.route("/api/v1/posts/<username>", methods=["GET"])
 @admin_level_required(2)
-def get_all_posts_api(v):
+def get_all_posts_api(v, username=None, id=None):
+    if username:
+        submissions = db.query(Submission).filter_by(author_id=db.query(User).filter(User.username.ilike(username).first().id))
+    elif id:
+        submissions = db.query(Submission).filter_by(author_id=base36decode(id))
+    else:
+        submissions = db.query(Submission)
     posts=[]
-    for p in db.query(Submission).all():
+    for p in submissions.all():
         posts.append(p.json())
     return jsonify({"Posts": {posts}})
 
