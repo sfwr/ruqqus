@@ -22,6 +22,12 @@ def get_all_guilds_api(v):
 def get_guild_api(v, id):
     return jsonify(db.query(Board).filter_by(id=base36decode(id)).first().json())
 
+@app.route("/api/v1/guild", methods=["POST"])
+@admin_level_required(2)
+def create_guild_api(v):
+    pass
+    # TODO add create guild
+    #return jsonify(comment)
 
 @app.route("/api/v1/guild/<id>", methods=["PUT"])
 @admin_level_required(2)

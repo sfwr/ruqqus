@@ -22,6 +22,13 @@ def get_all_posts_api(v):
 def get_post_api(v, id):
     return jsonify(db.query(Submission).filter_by(id=base36decode(id)).first().json())
 
+@app.route("/api/v1/post", methods=["POST"])
+@admin_level_required(2)
+def create_post_api(v):
+    pass
+    # TODO add create post
+    #return jsonify(post)
+
 @app.route("/api/v1/post/<id>", methods=["PUT"])
 @admin_level_required(2)
 def update_post_api(v, id):
