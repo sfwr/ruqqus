@@ -236,8 +236,7 @@ def mod_ban_bid_user(bid, board, v):
 @is_guildmaster
 @validate_formkey
 def mod_unban_bid_user(bid, board, v):
-    print("values :", request.values)
-    print("args : ", request.args)
+
     user=get_user(request.values.get("username"))
 
     x= board.has_ban(user)
