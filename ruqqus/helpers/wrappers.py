@@ -1,12 +1,19 @@
 from flask import *
 from os import environ
 import requests
-
-
 from ruqqus.classes import *
 from .get import *
 from ruqqus.__main__ import Base, db, app
+from threading import Thread
 
+def asynch(func):
+    def wrapper(*args, **kwargs):
+        func_hl = Thread(target = func, args = args, kwargs = kwargs)
+        func_hl.start()
+        return func_hl
+
+    wrapper.__name__ = func.__name__
+    return wrapper
 
 #Wrappers
 def auth_desired(f):
