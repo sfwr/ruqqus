@@ -10,20 +10,20 @@ import re
 
 
 
-@app.route("/api/v1/users"methods=["GET"])
+@app.route("/api/v1/users", methods=["GET"])
 @admin_level_required(2)
 def get_all_users_api(v):
     user=[]
     for u in db.query(User).all():
         user.append(u.json())
-    return jsonify({"users": {user}})
+    return jsonify({"Users": {user}})
 
 
 
 @app.route("/api/v1/user/<id>", methods=["GET"])
 @admin_level_required(2)
 def get_user_api(v, id):
-    return jsonify(db.query(User).filter_by(id=id).first().json())
+    return jsonify(db.query(User).filter_by(id=base36decode(id)).first().json())
 
 @app.route("/api/v1/user", methods=["POST"])
 @admin_level_required(2)
@@ -70,13 +70,13 @@ def create_user_api(v):
 @admin_level_required(2)
 def update_user_api(v, id):
     """TODO : update logic"""
-    return jsonify(db.query(User).filter_by(id=id).first().json())
+    return jsonify(db.query(User).filter_by(id=base36decode(id)).first().json())
 
 @app.route("/api/v1/user/<id>", methods=["DELETE"])
 @admin_level_required(2)
 def delete_user_api(v, id):
     pass
-    #db.delete(db.query(User).filter_by(id=id).first())
+    #db.delete(db.query(User).filter_by(id=base36decode(id)).first())
     #db.commit()
     #return "", 200
 
