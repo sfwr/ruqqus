@@ -27,14 +27,14 @@ def get_comment_api(v, id):
 
 @app.route("/api/v1/comment", methods=["POST"])
 @admin_level_required(2)
-def create_user_api(v):
+def create_comment_api(v):
     pass
     # TODO create comment
     #return jsonify(comment)
 
 @app.route("/api/v1/comment/<id>", methods=["PUT"])
 @admin_level_required(2)
-def update_user_api(v, id):
+def update_comment_api(v, id):
     """TODO : update logic"""
     return jsonify(db.query(Comment).filter_by(id=base36decode(id)).first().json())
 
