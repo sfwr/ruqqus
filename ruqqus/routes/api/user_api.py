@@ -34,7 +34,7 @@ def create_user_api(v):
                  'admin_level': request.args.get("admin_level",0),
                  'creation_ip': request.remote_addr,
                  'reserved': request.args.get("reserved","")
-                 'referred_by' request.args.get("referred_by","")
+                 'referred_by': request.args.get("referred_by","")
      }
 
     user = db.query(User).filter(User.username.ilike(user_data['username']), User.email.ilike(user_data['email']),

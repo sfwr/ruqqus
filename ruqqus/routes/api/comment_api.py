@@ -36,15 +36,42 @@ def get_comment_api(v, id):
 @app.route("/api/v1/comment", methods=["POST"])
 @admin_level_required(2)
 def create_comment_api(v):
-    pass
-    # TODO create comment
-    #return jsonify(comment)
+    c_data = {'author_id': request.args.get("author_id", ""),
+             'body': request.args.get("body", ""),
+             'parent_submission': request.args.get("parent_submission", ""),
+             'created_utc': time.time(),
+             'creation_ip': request.remote_addr,
+             'level': request.args.get("level", ""),
+             'parent_comment_id': request.args.get("parent_comment_id", ""),
+             'parent_fullname': request.args.get("parent_fullname", ""),
+             'over_18': request.args.get("over_18", ""),
+             'is_op': request.args.get("is_op", "")
+             }
+    db.add(Comment(author_id=c_data["author_id"],
+                      body=c_data["body"],
+                      parent_submission=c_data["parent_submission"],
+                      created_utc=c_data["created_utc"],
+                      creation_ip=c_data["creation_ip"],
+                      level=c_data["level"],
+                      parent_comment_id=c_data["parent_comment_id"],
+                      parent_fullname=c_data["parent_fullname"],
+                      over_18=c_data["over_18"],
+                      is_op=c_data["is_op"]
+                   )
+           )
+    db.commit()
+
+    return jsonify(c_data)
 
 @app.route("/api/v1/comment/<id>", methods=["PUT"])
 @admin_level_required(2)
 def update_comment_api(v, id):
-    """TODO : update logic"""
-    return jsonify(db.query(Comment).filter_by(id=base36decode(id)).first().json())
+    comment = db.query(Comment).filter_by(id=base36decode(id)).first()
+    comment.body = request.args.get("body", "")
+    comment.edited_utc = time.time()
+    db.commit()
+
+    return jsonify(comment.json())
 
 @app.route("/api/v1/comment/<id>", methods=["DELETE"])
 @admin_level_required(2)
