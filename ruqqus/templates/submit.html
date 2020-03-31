@@ -22,13 +22,13 @@
 
 	{% block stylesheets %}
 	{% if b %}
-	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+	{% if v and v.can_use_darkmode and session.get("dark_mode_enabled") %}
 	<link id="css-link" rel="stylesheet" href="{{ b.css_dark_url }}">
 	{% else %}
 	<link id="css-link" rel="stylesheet" href="{{ b.css_url }}">
 	{% endif %}
 	{% else %}
-	{% if v and v.referral_count and session.get("dark_mode_enabled") %}
+	{% if v and v.can_use_darkmode and session.get("dark_mode_enabled") %}
 	<link id="css-link" rel="stylesheet" href="/assets/style/main_dark.css">
 	{% else %}
 	<link id="css-link" rel="stylesheet" href="/assets/style/main.css">
@@ -66,6 +66,8 @@
 	<!-- Navigation -->
 	{% include "header.html" %}
 
+	{% block form %}
+
 	<!-- Page Content -->
 
 	<form id="submitform" action="/submit" method="post" enctype="multipart/form-data">
@@ -76,11 +78,9 @@
 
 				<div class="col col-md-6 p-3 py-md-0">
 
-					<h1 class="d-none d-md-block">{% block pagetitle %}Create a post{% endblock %}</h1>
+					<h1 class="d-none d-md-block">Create a post</h1>
 
-					<h1 class="h3 d-md-none">Create a post</h1>
-
-					{% block form %}
+					<h2 class="h3 d-md-none">Create a post</h2>
 
 					<div class="body">
 
@@ -142,8 +142,6 @@
 
 
 					</div>
-
-					{% endblock %}
 
 				</div>
 
@@ -222,6 +220,8 @@
 		</div>
 
 	</form>
+
+	{% endblock %}
 
 	{% include "announcements_modal.html" %}
 

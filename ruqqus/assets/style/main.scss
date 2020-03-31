@@ -1576,6 +1576,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-radius: 50%;
     margin: auto;
     text-align: center;
+    object-fit: cover;
     color: $white;
     background-color: #FFFFFF;
 }
@@ -1681,6 +1682,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     text-align: center;
     object-fit: cover;
     background-color: $white;
+}
+
+.profile-pic-100 {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    text-align: center;
+    object-fit: cover;
+    background-color: #FFFFFF;
 }
 
 .profile-pic-overlap {
@@ -2179,6 +2189,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border: 1px solid $primary;
     border-radius: $border-radius;
     z-index: 2;
+    background-color: $gray-300;
 }
 
 .post-img-lg, .mobile-thumb-enlarged {
@@ -2665,6 +2676,8 @@ ul.comment-section {
 
 .table .thead-dark th {
     color: $muted;
+    font-size: $small-font-size;
+    text-transform: uppercase;
     background-color: $light;
     border: none;
 }

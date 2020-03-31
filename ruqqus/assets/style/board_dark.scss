@@ -244,7 +244,6 @@ pre {
 
 #thread .custom-gutters {
     padding: 0 15px;
-    background-color: $gray-900;
 }
 
 .custom-gutters {
@@ -420,23 +419,24 @@ ol > li::before {
 }
 
 .tooltip-inner {
-    background-color: $black;
-    }
+    background-color: $white;
+    color: $dark;
+}
 
 .tooltip.bs-tooltip-right .arrow:before {
-    border-right-color: $black !important;
+    border-right-color: $white !important;
 }
 
 .tooltip.bs-tooltip-left .arrow:before {
-    border-left-color: $black !important;
+    border-left-color: $white !important;
 }
 
 .tooltip.bs-tooltip-bottom .arrow:before {
-    border-bottom-color: $black !important;
+    border-bottom-color: $white !important;
 }
 
 .tooltip.bs-tooltip-top .arrow:before {
-    border-top-color: $black !important;
+    border-top-color: $white !important;
 }
 
 // Alerts
@@ -604,7 +604,7 @@ ol > li::before {
     font-weight: $font-weight-bold;
     top: -4px;
     left: 12px;
-    border: 2px solid $white;
+    border: 2px solid $gray-500;
     padding: 0 2px 2px 2px;
 }
 
@@ -616,7 +616,7 @@ ol > li::before {
 }
 
 .settings-nav .nav-link {
-    color: $gray;
+    color: $gray-200;
     font-size: $font-size-base;
     font-weight: $font-weight-normal;
     padding: 0.75rem 1rem;
@@ -784,11 +784,11 @@ label.color-radio span {
     color: $muted;
     border-color: transparent;
     border-width: 2px;
-    background: $light;
+    background: $gray-300;
     transition: none;
 }
 
-.home-submission .form-control, .home-submission .input-group-text {
+.home-submission .form-control, .home-submission .input-group-text, .form-inline.search .input-group-append-focus .input-group-text .fa.fa-search {
     border-color: $border-color;
     background-color: $white;
 }
@@ -815,6 +815,21 @@ label.color-radio span {
     outline: 0;
     border-color: $primary;
     box-shadow: none;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: $black;
+    //opacity: .25; /* Firefox */
+}
+  
+.form-control::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: $black;
+    //opacity: .25;
+}
+  
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+    color: $black;
+    //opacity: .25;
 }
 
 .form-check-label {
@@ -933,7 +948,7 @@ th {
 .format .fa-quote-right:hover,
 .format .fa-link:hover,
 .format .fa-image:hover {
-    color: $gray;
+    color: $black;
 }
 
 // Voting
@@ -1588,6 +1603,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border-radius: 50%;
     margin: auto;
     text-align: center;
+    object-fit: cover;
     color: $white;
     background-color: #FFFFFF;
 }
@@ -1689,6 +1705,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-75 {
     width: 75px;
     height: 75px;
+    border-radius: 50%;
+    text-align: center;
+    object-fit: cover;
+    background-color: #FFFFFF;
+}
+
+.profile-pic-100 {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     text-align: center;
     object-fit: cover;
@@ -1804,13 +1829,17 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .card-header {
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
-    color: $gray;
+    color: $black;
     padding: 0.5rem 1rem;
     border-bottom: 1px solid $input-border-color;
 }
 
 .card {
     background-color: $gray-900;
+}
+
+#thread .card {
+    background-color: $gray-700;
 }
 
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type, #settings-guild .posts .card:first-of-type {
@@ -1891,7 +1920,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-header {
     border-bottom: 1px solid $border-color;
-    background-color: $gray-600;
+    background-color: $gray-400;
     border-top-left-radius: $border-radius;
     border-top-right-radius: $border-radius;
     padding: 0.5rem 1rem;
@@ -1904,26 +1933,27 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-content {
     border: none;
-    background-color: $gray-600;
+    background-color: $gray-400;
     border-radius: $border-radius;
     box-shadow: $box-shadow;
 }
 
 .modal-footer {
     border: none;
-    background-color: $gray-600;
+    background-color: $gray-400;
     border-bottom-right-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
-    background-image: linear-gradient(180deg, #ffffff00 25%, $gray-600 100%)!important;
+    background-image: linear-gradient(180deg, #ffffff00 25%, $gray-400 100%)!important;
 }
 
 .modal .post-actions .list-group-item {
     border: none;
     border-radius: $border-radius;
+    background-color: $gray-400;
 }
 
 .modal .post-actions .list-group-item:focus, .modal .post-actions .list-group-item:hover {
-    background-color: $gray-200;
+    background-color: $gray-300;
 }
 
 .modal .post-actions a {
@@ -2198,6 +2228,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     border: 1px solid $primary;
     border-radius: $border-radius;
     z-index: 2;
+    background-color: $gray-300;
 }
 
 .post-img-lg, .mobile-thumb-enlarged {
@@ -2347,10 +2378,11 @@ blockquote p {
 .modal .comment-actions .list-group-item {
     border: none;
     border-radius: $border-radius;
+    background-color: $gray-400;
 }
 
 .modal .comment-actions .list-group-item:focus, .modal .comment-actions .list-group-item:hover {
-    background-color: $gray-200;
+    background-color: $gray-300;
 }
 
 .modal .comment-actions a {
@@ -2366,7 +2398,7 @@ blockquote p {
 // Comments
 
 .comment-section {
-    background-color: $gray-900;
+    background-color: $gray-700;
 }
 
 .comment-actions {
@@ -2504,7 +2536,11 @@ ul.comment-section {
 .comment-write .comment-format .format {
     padding: 0 .5rem;
     font-size: $font-size-base;
-    color: $gray-500;
+    color: $gray-200;
+}
+
+.comment-write .comment-format .format:hover {
+    color: $black;
 }
 
 .comment .comment-collapse {
@@ -2689,6 +2725,8 @@ ul.comment-section {
 
 .table .thead-dark th {
     color: $muted;
+    font-size: $small-font-size;
+    text-transform: uppercase;
     background-color: $light;
     border: none;
 }
@@ -3285,7 +3323,7 @@ body, #settings, #notifications, #submit{
 }
 
 #thread, #userpage {
-    background-color: $gray-700;
+    background-color: $gray-600;
 }
 
 .custom-gutters {
@@ -3337,7 +3375,7 @@ body, #settings, #notifications, #submit{
 }
 
 #search .search-results.card  {
-    border-bottom: 1px solid #e3e3e3;
+    border-bottom: 1px solid $border-color;
     border-width: 0 0 1px 0;
     border-radius: 0;
 }
@@ -3355,8 +3393,8 @@ body, #settings, #notifications, #submit{
     border-bottom: 1px solid $border-color;
 }
 
-#frontpage .posts .card:hover, #search .posts .card:hover {
-    background-color: transparent;
+#frontpage .posts .card:hover .post-title a, #search .posts .card:hover .post-title a{
+    color: $primary;
 }
 
 #frontpage .posts .card .post-img, #search .posts .card .post-img {
@@ -3396,6 +3434,14 @@ body, #settings, #notifications, #submit{
 }
 
 // Posts and thread
+
+#thread .card {
+    background-color: $gray-600;
+}
+
+.card {
+    background-color: $gray-600;
+}
 
 .posts, #thread #main-content-col {
     box-shadow: none;
@@ -3445,19 +3491,17 @@ body, #settings, #notifications, #submit{
 }
 
 .post-actions {
-    color: $gray-500;
     font-weight: $font-weight-normal;
 }
 
 .post-actions a {
-    color: $gray-100;
     font-size: $font-size-base;
-    font-weight: $font-weight-normal;
+    color: $gray-200;
 }
 
 .post-actions .fa, .post-actions .fas, .post-actions .far {
     font-size: $font-size-base;
-    color: $gray-400;
+    color: $gray-200;
 }
 
 .post-actions .voting .fa, .post-actions .voting .fas, .post-actions .voting .far {
@@ -3484,7 +3528,7 @@ body, #settings, #notifications, #submit{
 // Comments
 
 .comment-section {
-    background-color: $gray-900;
+    background-color: $gray-600;
 }
 
 .comment-section > .comment {

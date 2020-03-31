@@ -13756,7 +13756,6 @@ pre {
 
 #thread .custom-gutters {
   padding: 0 15px;
-  background-color: #0f0f0f;
 }
 
 .custom-gutters {
@@ -14101,7 +14100,7 @@ ol > li::before {
   font-weight: 600;
   top: -4px;
   left: 12px;
-  border: 2px solid #35363e;
+  border: 2px solid #272727;
   padding: 0 2px 2px 2px;
 }
 
@@ -14113,7 +14112,7 @@ ol > li::before {
 }
 
 .settings-nav .nav-link {
-  color: #383838;
+  color: #8f8f90;
   font-size: 1rem;
   font-weight: 400;
   padding: 0.75rem 1rem;
@@ -14225,7 +14224,7 @@ label.color-radio span {
   color: #FFFFFF;
 }
 
-.form-inline.search .input-group-append .input-group-text .fa.fa-search {
+.form-inline.search .input-group-append .input-group-text .fa.fa-search, .form-inline.search .input-group-append-focus .input-group-text .fa.fa-search {
   color: #CFCFCF;
 }
 
@@ -14269,7 +14268,7 @@ label.color-radio span {
   color: #AAAAAA;
   border-color: transparent;
   border-width: 2px;
-  background: #35363e;
+  background: #383838;
   transition: none;
 }
 
@@ -14304,6 +14303,21 @@ label.color-radio span {
   outline: 0;
   border-color: #805AD5;
   box-shadow: none;
+}
+
+.form-control::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #CFCFCF;
+}
+
+.form-control::-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #CFCFCF;
+}
+
+.form-control::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #CFCFCF;
 }
 
 .form-check-label {
@@ -14418,7 +14432,7 @@ th {
 .format .fa-quote-right:hover,
 .format .fa-link:hover,
 .format .fa-image:hover {
-  color: #383838;
+  color: #CFCFCF;
 }
 
 .voting {
@@ -15015,6 +15029,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   border-radius: 50%;
   margin: auto;
   text-align: center;
+  object-fit: cover;
   color: #FFFFFF;
   background-color: #FFFFFF;
 }
@@ -15116,6 +15131,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 .profile-pic-75 {
   width: 75px;
   height: 75px;
+  border-radius: 50%;
+  text-align: center;
+  object-fit: cover;
+  background-color: #FFFFFF;
+}
+
+.profile-pic-100 {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   text-align: center;
   object-fit: cover;
@@ -15235,6 +15259,10 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   background-color: #0f0f0f;
 }
 
+#thread .card {
+  background-color: #181818;
+}
+
 #frontpage .posts .card:first-of-type, #userpage .posts .card:first-of-type, #search .posts .card:first-of-type, #guild .posts .card:first-of-type, #settings-guild .posts .card:first-of-type {
   border-top-left-radius: 0.35rem;
   border-top-right-radius: 0.35rem;
@@ -15305,7 +15333,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-header {
   border-bottom: none;
-  background-color: #1f2023;
+  background-color: #303030;
   border-top-left-radius: 0.35rem;
   border-top-right-radius: 0.35rem;
   padding: 0.5rem 1rem;
@@ -15318,28 +15346,27 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 
 .modal-content {
   border: none;
-  background-color: #1f2023;
+  background-color: #303030;
   border-radius: 0.35rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.05);
-  background-color: #383838;
 }
 
 .modal-footer {
   border: none;
-  background-color: #1f2023;
+  background-color: #303030;
   border-bottom-right-radius: 0.35rem;
   border-bottom-left-radius: 0.35rem;
-  background-image: linear-gradient(180deg, #ffffff00 25%, #1f2023 100%) !important;
+  background-image: linear-gradient(180deg, #ffffff00 25%, #303030 100%) !important;
 }
 
 .modal .post-actions .list-group-item {
   border: none;
   border-radius: 0.35rem;
-  background-color: #383838;
+  background-color: #303030;
 }
 
 .modal .post-actions .list-group-item:focus, .modal .post-actions .list-group-item:hover {
-  background-color: #35363e;
+  background-color: #383838;
 }
 
 .modal .post-actions a {
@@ -15619,6 +15646,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   border: 1px solid #805AD5;
   border-radius: 0.35rem;
   z-index: 2;
+  background-color: #383838;
 }
 
 .post-img-lg, .mobile-thumb-enlarged {
@@ -15759,11 +15787,11 @@ blockquote p {
 .modal .comment-actions .list-group-item {
   border: none;
   border-radius: 0.35rem;
-  background-color: #383838;
+  background-color: #303030;
 }
 
 .modal .comment-actions .list-group-item:focus, .modal .comment-actions .list-group-item:hover {
-  background-color: #35363e;
+  background-color: #383838;
 }
 
 .modal .comment-actions a {
@@ -15777,7 +15805,7 @@ blockquote p {
 }
 
 .comment-section {
-  background-color: #0f0f0f;
+  background-color: #181818;
 }
 
 .comment p {
@@ -15919,7 +15947,7 @@ ul.comment-section {
 .comment-write .comment-format .format {
   padding: 0 0.5rem;
   font-size: 1rem;
-  color: #272727;
+  color: #8f8f90;
 }
 
 .comment-write .comment-format .format:hover {
@@ -16097,6 +16125,8 @@ ul.comment-section {
 
 .table .thead-dark th {
   color: #AAAAAA;
+  font-size: 12px;
+  text-transform: uppercase;
   background-color: #35363e;
   border: none;
 }
@@ -17101,7 +17131,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   #thread, #userpage {
-    background-color: #181818;
+    background-color: #1f2023;
   }
 
   .custom-gutters {
@@ -17162,7 +17192,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   #search .search-results.card {
-    border-bottom: 1px solid #e3e3e3;
+    border-bottom: 1px solid #303030;
     border-width: 0 0 1px 0;
     border-radius: 0;
   }
@@ -17177,15 +17207,15 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   #frontpage .posts .card, #userpage .posts .card, #search .posts .card, #userpage .posts .card {
-    background-color: #383838;
+    background-color: #1f2023;
   }
 
   #frontpage .posts .card:last-of-type, #search .posts .card:last-of-type {
     border-bottom: 1px solid #303030;
   }
 
-  #frontpage .posts .card:hover, #search .posts .card:hover {
-    background-color: transparent;
+  #frontpage .posts .card:hover .post-title a, #search .posts .card:hover .post-title a {
+    color: #805AD5;
   }
 
   #frontpage .posts .card .post-img, #search .posts .card .post-img {
@@ -17219,6 +17249,14 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   */
   .jumbotron-guild {
     height: 115px;
+  }
+
+  #thread .card {
+    background-color: #1f2023;
+  }
+
+  .card {
+    background-color: #1f2023;
   }
 
   .posts, #thread #main-content-col {
@@ -17273,6 +17311,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .post-actions a {
     font-size: 1rem;
+    color: #8f8f90;
   }
 
   .post-actions .fa, .post-actions .fas, .post-actions .far {
@@ -17300,7 +17339,7 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   }
 
   .comment-section {
-    background-color: #0f0f0f;
+    background-color: #1f2023;
   }
 
   .comment-section > .comment {

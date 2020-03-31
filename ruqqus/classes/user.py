@@ -59,6 +59,7 @@ class User(Base, Stndrd):
     last_siege_utc=Column(Integer, default=0)
     mfa_secret=Column(String(16), default=None)
     hide_offensive=Column(String(16), default=False)
+    has_earned_darkmode=Column(Boolean, default=False)
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
@@ -667,3 +668,7 @@ class User(Base, Stndrd):
         return  max(self.karma+self.comment_karma, -5)
 
         
+    def can_use_darkmode(self):
+
+        return self.referral_count or self.has_earned_darkmode or self.has_badge(16) or self.has_badge(17)
+
