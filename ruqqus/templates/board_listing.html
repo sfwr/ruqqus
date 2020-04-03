@@ -27,6 +27,8 @@
 
 		<span class="text-black" style="font-size: 16px;">+{{ b.name }}</span> {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}
 
+		{% if request.path=="/browse" %}<div class="text-small text-muted">{{ b.description|truncate(32, True) }}</div>{% endif %}
+
 		</a>
 
 	</div>
