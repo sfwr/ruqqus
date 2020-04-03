@@ -20,11 +20,14 @@
 	</div>
 </div>
 
-<div class="col d-md-none">
+<div class="col mb-3 d-md-none">
 	<div class="d-flex flex-wrap align-items-center">
-		<img src="{{ b.profile_url }}" class="profile-pic-40 mr-2">
+		<a class="card-title stretched-link h5 mb-0" href="{{ b.permalink }}">
+		<img src="{{ b.profile_url }}" class="profile-pic-35 mr-2">
 
-		<a class="card-title stretched-link h5 mb-0" href="{{ b.permalink }}">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}</a>
+		<span class="text-black">+{{ b.name }}</span> {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}
+
+		</a>
 
 	</div>
 </div>
