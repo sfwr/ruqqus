@@ -21,17 +21,16 @@
 </div>
 
 <div class="col mb-3 d-md-none">
-	<div class="d-flex flex-wrap align-items-center">
-		<a class="card-title stretched-link mb-0" href="{{ b.permalink }}">
-		<img src="{{ b.profile_url }}" class="profile-pic-50 mr-2">
+	<a class="card-title stretched-link mb-0" href="{{ b.permalink }}">
+		<div class="d-flex flex-wrap align-items-center">
+			<img src="{{ b.profile_url }}" class="profile-pic-50 mr-2">
 
-		<span class="text-black" style="font-size: 16px;">+{{ b.name }}</span> {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}
-
-		{% if request.path=="/browse" %}<div class="text-small text-muted">{{ b.description|truncate(32, True) }}</div>{% endif %}
-
-		</a>
-
-	</div>
+			<div>
+				<div class="text-black" style="font-size: 16px;">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}</div>
+				{% if request.path=="/browse" %}<div class="text-small text-muted">{{ b.description|truncate(32, True) }}</div>{% endif %}
+			</div>
+		</div>
+	</a>
 </div>
 
 {% endfor %}
