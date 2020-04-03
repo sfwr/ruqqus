@@ -29,6 +29,13 @@
 				<div class="text-black" style="font-size: 16px;">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}</div>
 				{% if request.path=="/browse" %}<div class="text-small text-muted">{{ b.description|truncate(32, True) }}</div>{% endif %}
 			</div>
+
+			{% if v %}
+			<div id="button-sub-mobile" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-block" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=toggleSub)">Join</a></div>
+			<div id="button-unsub-mobile" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-block" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=toggleSub)">Leave</a></div>
+			{% elif not v %}
+			<a class="btn btn-primary btn-block" href="/signup">Join</a>
+			{% endif %}
 		</div>
 	</a>
 </div>
