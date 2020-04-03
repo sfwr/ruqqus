@@ -9,7 +9,7 @@
 				<a class="card-title stretched-link h5 mb-0" href="{{ b.permalink }}">+{{ b.name }} {% if b.over_18 %}<span class="badge badge-danger">NSFW</span>{% endif %}</a>
 
 			</div>
-			<p class="card-text">{{ b.description|truncate(100, True) }}</p>
+			<p class="card-text text-small text-muted">{{ b.description|truncate(72, True) }}</p>
 		</div>
 		<div class="card-footer bg-white d-flex align-items-center justify-content-between p-3">
 			<div class="text-small text-muted"><i class="fas fa-users text-gray-500 mr-2"></i>{{ b.subscriber_count }} Member{{ 's' if b.subscriber_count != 1 else '' }}</div>
