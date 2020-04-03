@@ -39,9 +39,9 @@
     </a>
 
     {% if v and request.path=="/browse" %}
-    <div id="button-sub-mobile" {% if is_subscribed %}class="d-none"{% endif %}><a class="btn btn-primary btn-sm" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=toggleSub)">Join</a></div>
-    <div id="button-unsub-mobile" {% if not is_subscribed %}class="d-none"{% endif %}><a class="btn btn-secondary btn-sm" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=toggleSub)">Leave</a></div>
-    {% elif not v %}
+    <div id="button-sub-mobile-{{ b.base36id }}" style="z-index: 2" class="{% if b.has_subscriber(v) %}d-none{% endif %}"><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/subscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-mobile-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-{{ b.base36id }}').classList.toggle('d-none');})">Join</a></div>
+      <div id="button-unsub-mobile-{{ b.base36id }}" style="z-index: 2" class="{% if not b.has_subscriber(v) %} d-none{% endif %}"><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ b.name }}', callback=function(){document.getElementById('button-unsub-mobile-{{ b.base36id }}').classList.toggle('d-none');document.getElementById('button-sub-mobile-{{ b.base36id }}').classList.toggle('d-none');})">Leave</a></div>
+    {% elif not v and request.path=="/browse" %}
     <a class="btn btn-primary btn-block" href="/signup">Join</a>
     {% endif %}
 
