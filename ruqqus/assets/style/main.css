@@ -16574,7 +16574,6 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
   body, #settings, #notifications, #submit {
     padding-top: 49px;
     background-color: #ffffff;
-    height: 100%;
   }
 
   #thread, #userpage {
