@@ -1,5 +1,5 @@
 <!-- Delete Post Modal -->
-<div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalTitle" aria-hidden="true">
+<div class="modal fade modal-sm-bottom" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="deletePostModalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
 <div class="modal-content">
       <div class="modal-header">
@@ -12,16 +12,22 @@
       <div class="modal-body text-center">
 
         <div class="py-4">
-        <i class="fad fa-trash-alt text-muted" style="font-size: 3.5rem;"></i>
+          <i class="fad fa-trash-alt text-muted d-none d-md-block" style="font-size: 3.5rem;"></i>
+          <i class="fas fa-trash-alt text-danger d-md-none" style="font-size: 2.5rem;"></i>
         </div>
 
-        <p>Your post will be removed everywhere on Ruqqus. This action cannot be undone.</p>
+        <div class="h4 d-md-none">Delete comment</div>
+
+        <p class="d-none d-md-block">Your post will be removed everywhere on Ruqqus. This action cannot be undone.</p>
+
+        <p class="text-muted d-md-none">Your post will be removed everywhere on Ruqqus. This action cannot be undone.</p>
+
       </div>
       
-      <div class="modal-footer">
+      <div class="modal-footer d-none d-md-block">
         <button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
         <button id="deletePostButton" class="btn btn-danger">Delete post</button>
-    </div>
+      </div>
       
     </div>
   </div>
