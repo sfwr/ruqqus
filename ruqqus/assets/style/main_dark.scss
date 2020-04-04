@@ -2034,6 +2034,25 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     font-size: 1.25rem;
 }
 
+// Mobile Modals
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+    .modal.modal-sm-bottom .modal-content {
+        position: absolute;
+        bottom: 0;
+        border-radius: 1rem;
+    }
+
+    .modal.modal-sm-bottom.fade .modal-dialog {
+        transform: translate3d(0, 100vh, 0);
+      }
+      
+    .modal.modal-sm-bottom.in .modal-dialog {
+        transform: translate3d(0, 0, 0);
+      }
+} 
+
 // Dropdown actions
 
 .dropdown-actions {
