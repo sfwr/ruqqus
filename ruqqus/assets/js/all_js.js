@@ -458,7 +458,7 @@ function delete_postModal(id) {
 
   // Passed data for modal
 
-  document.getElementById("deletePostButton-mobile").addEventListener("click", delete_post);
+  document.getElementById("deletePostButton-mobile").addEventListener("touchstart", delete_post);
 
   document.getElementById("deletePostButton").addEventListener("click", delete_post);
 
