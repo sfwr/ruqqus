@@ -2007,14 +2007,15 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
         border-radius: 1rem;
     }
 
-    .modal.modal-sm-bottom.fade .modal-dialog {
+    .modal.fade.modal-sm-bottom .modal-dialog {
         transform: translate3d(0, 100vh, 0);
-      }
-      
-    .modal.modal-sm-bottom.in .modal-dialog {
+    }
+
+    .modal.show.modal-sm-bottom .modal-dialog {
         transform: translate3d(0, 0, 0);
-      }
-}
+    }
+
+} 
 
 // Dropdown actions
 
