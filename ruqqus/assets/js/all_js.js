@@ -462,7 +462,11 @@ function delete_postModal(id) {
 
   document.getElementById("deletePostButton-mobile").addEventListener("click", delete_post);
 
-  function delete_post() {  
+function delete_post() {
+  console.log("comment would have been deleted");
+}
+
+  /* function delete_post() {  
 
     this.innerHTML='<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Deleting post';  
     this.disabled = true; 
@@ -473,6 +477,7 @@ function delete_postModal(id) {
       }
       )
   }
+  */
 
 };
 
