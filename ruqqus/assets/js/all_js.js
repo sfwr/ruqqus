@@ -460,7 +460,7 @@ function delete_postModal(id) {
 
   document.getElementById("deletePostButton").addEventListener("click", delete_post);
 
-  document.getElementById("deletePostButton-mobile").addEventListener("click", delete_post);
+  document.getElementById("deletePostButton-mobile-test").addEventListener("click", delete_post);
 
   function delete_post() {  
 
