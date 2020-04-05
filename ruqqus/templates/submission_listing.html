@@ -250,7 +250,7 @@
             {% endif %}
             {% if v %}
             {% if v.id | is_mod(p.board_id) %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" id="kick-post-{{ p.base36id }}" onclick="post('/mod/kick/{{ p.board_base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}})"><i class="far fa-times text-center fa-width-rem text-muted mr-3"></i>Kick</button>
+            <button class="btn btn-white btn-block btn-lg text-lg text-left" id="kick-post-{{ p.base36id }}" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="far fa-times text-center fa-width-rem text-muted mr-3"></i>Kick</button>
             {% if p.report_count >= 1 %}
             <button class="btn btn-white btn-block btn-lg text-lg text-left" onclick="post('/mod/accept/{{ p.board_base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}})"><i class="far fa-check text-center fa-width-rem text-muted mr-3"></i>Approve</button>
             {% endif %}
