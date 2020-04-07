@@ -1,4 +1,5 @@
 from ruqqus.helpers.base36 import *
+from ruqqus.helpers.lazy import lazy
 import math
 import random
 import time
@@ -7,11 +8,14 @@ from ruqqus.__main__ import cache
 
 
 class Stndrd:
+    
     @property
+    @lazy
     def base36id(self):
         return base36encode(self.id)
 
     @property
+    @lazy
     def created_date(self):
         return time.strftime("%d %B %Y", time.gmtime(self.created_utc))
 
@@ -61,6 +65,9 @@ class Age_times:
     @property
     def edited_string(self):
 
+        if not self.edited_utc:
+            return "never"
+
         age = int(time.time()) - self.edited_utc
 
         if age < 60:
@@ -104,7 +111,7 @@ class Scores:
     @property
     @cache.memoize(timeout=60)
     def score(self):
-        return self.score_top
+        return int(self.score_top)
 
 
 

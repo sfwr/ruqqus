@@ -40,6 +40,12 @@ def post_base36id(base36id, v=None):
 
     board=post.board
 
+    if board.is_banned and not (v and v.admin_level > 3):
+        return render_template("board_banned.html",
+                               v=v,
+                               b=board,
+                               p=True)
+
     if post.over_18 and not (v and v.over_18) and not session_over18(board):
         t=int(time.time())
         return render_template("errors/nsfw.html",
@@ -48,11 +54,6 @@ def post_base36id(base36id, v=None):
                                lo_formkey=make_logged_out_formkey(t),
                                board=post.board
                                )
-
-    if board.is_banned and v.admin_level < 3:
-        return render_template("board_banned.html",
-                               v=v,
-                               b=board)
         
     return post.rendered_page(v=v)
 
@@ -381,6 +382,8 @@ def submit_post(v):
 
     db.commit()
 
+    new_post.determine_offensive()
+
     vote=Vote(user_id=user_id,
               vote_type=1,
               submission_id=new_post.id
@@ -484,3 +487,22 @@ def embed_post_pid(pid):
         abort(410)
 
     return render_template("embeds/submission.html", p=post)
+
+@app.route("/api/toggle_post_nsfw/<pid>", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def toggle_post_nsfw(pid, v):
+
+    post=get_post(pid)
+
+    if not post.author_id==v.id:
+        abort(403)
+
+    if post.board.over_18 and post.over_18:
+        abort(403)
+
+    post.over_18 = not post.over_18
+    db.add(post)
+    db.commit()
+
+    return "", 204

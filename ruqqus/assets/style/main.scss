@@ -135,6 +135,14 @@ $tooltip-opacity: 1;
 
 $yiq-contrasted-threshold:  160 !default;
 
+// Callouts
+
+@each $color, $value in $theme-colors {
+    .bd-callout-#{$color} {
+      border-left-color: #{$value};
+    }
+  }
+
 @import "node_modules/bootstrap/scss/bootstrap";
 
 html {
@@ -419,6 +427,17 @@ ol > li::before {
 
 .tooltip.bs-tooltip-top .arrow:before {
     border-top-color: $black !important;
+}
+
+// Callouts
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid $border-color;
+    border-left-width: .25rem;
+    border-radius: .25rem;
 }
 
 // Alerts
@@ -927,6 +946,7 @@ th {
 #thread .voting {
     min-width: 15px;
     margin-right: 15px;
+    overflow-wrap: normal;
 }
 
 #frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
@@ -1995,7 +2015,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
 }
 
 // Mobile Modals
-
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
     .modal.modal.modal-sm-bottom .modal-dialog {
@@ -2506,6 +2525,10 @@ ul.comment-section {
     padding: 0 .5rem;
     font-size: $font-size-base;
     color: $gray-500;
+}
+
+.comment-write .comment-format .format:hover {
+    color: $muted;
 }
 
 .comment .comment-collapse {

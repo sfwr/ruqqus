@@ -17,9 +17,8 @@ from ruqqus.__main__ import app, db, limiter
 from werkzeug.contrib.atom import AtomFeed
 from datetime import datetime
 
-@app.route("/cid/<cid>", methods=["GET"])
-@admin_level_required(1)
-def comment_cid(cid, v):
+@app.route("/comment/<cid>", methods=["GET"])
+def comment_cid(cid):
 
     comment=get_comment(cid)
     return redirect(comment.permalink)
@@ -34,6 +33,13 @@ def post_pid_comment_cid(p_id, c_id, v=None):
 
     if comment.parent_submission != post.id:
         abort(404)
+
+    board=post.board
+
+    if board.is_banned and not (v and v.admin_level > 3):
+        return render_template("board_banned.html",
+                               v=v,
+                               b=board)
 
     if post.over_18 and not (v and v.over_18) and not session_over18(comment.board):
         t=int(time.time())
@@ -132,13 +138,14 @@ def api_comment(v):
               parent_comment_id=parent_comment_id,
               level=level,
               author_name=v.username,
-              title_id=v.title_id,
               over_18=post.over_18,
               is_op=(v.id==post.author_id)
               )
 
     db.add(c)
     db.commit()
+
+    c.determine_offensive()
 
     notify_users=set()
 
@@ -215,6 +222,8 @@ def edit_comment(cid, v):
 
     db.add(c)
     db.commit()
+
+    c.determine_offensive()
 
     path=request.form.get("current_page","/")
 

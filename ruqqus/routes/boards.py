@@ -124,31 +124,74 @@ def create_board_post(v):
 
     return redirect(new_board.permalink)
 
-@app.route("/board/<name>", methods=["GET"])
 @app.route("/+<name>", methods=["GET"])
+@app.route("/api/v1/guild/<name>/listing", methods=["GET"])
 @auth_desired
+@api
 def board_name(name, v):
 
     board=get_guild(name)
 
     if not board.name==name:
-        return redirect(board.permalink)
+        return redirect(request.path.replace(name, board.name))
+                                       
 
+    if board.is_banned and not (v and v.admin_level>=3):
+        return {'html':lambda:render_template("board_banned.html",
+                               v=v,
+                               b=board,
+                               p=True
+                               ),
+                'api':lambda:{'error':f'+{board.name} is banned.'}
+                }
     if board.over_18 and not (v and v.over_18) and not session_over18(board):
         t=int(time.time())
-        return render_template("errors/nsfw.html",
+        return {'html':lambda:render_template("errors/nsfw.html",
                                v=v,
                                t=t,
                                lo_formkey=make_logged_out_formkey(t),
                                board=board
-                               )
+                               ),
+                'api':lambda:{'error':f'+{board.name} is NSFW.'}
+                }
 
     sort=request.args.get("sort","hot")
     page=int(request.args.get("page", 1))
              
-    return board.rendered_board_page(v=v,
-                                     sort=sort,
-                                     page=page)
+   
+    ids=board.idlist(sort=sort,
+                    page=page,
+                    nsfw=(v and v.over_18) or session_over18(board),
+                    v=v
+                    )
+
+    next_exists=(len(ids)==26)
+    ids=ids[0:25]
+
+    posts=[db.query(Submission).filter_by(id=x).first() for x in ids]
+
+
+    if page==1:
+        stickies=board.submissions.filter_by(is_banned=False,
+                                  is_deleted=False,
+                                  is_pinned=True).order_by(Submission.id.asc()
+                                                           ).limit(4)
+        stickies=[x for x in stickies]
+        posts=stickies+posts
+
+    return {'html':lambda:render_template("board.html",
+                           b=board,
+                           v=v,
+                           listing=posts,
+                           next_exists=next_exists,
+                           sort_method=sort,
+                           page=page,
+                           is_subscribed=(v and board.has_subscriber(v)
+                                          )
+                                          ),
+            'api':lambda:[x.json for x in posts]
+            }
+
 
 @app.route("/mod/kick/<bid>/<pid>", methods=["POST"])
 @auth_required
@@ -163,6 +206,7 @@ def mod_kick_bid_pid(bid,pid, board, v):
 
     post.board_id=1
     post.guild_name="general"
+    post.is_pinned=False
     db.add(post)
     db.commit()
 
@@ -277,6 +321,7 @@ def user_kick_pid(pid, v):
 
     post.board_id=1
     post.guild_name="general"
+    post.is_pinned=False
     
     db.add(post)
     db.commit()
@@ -296,6 +341,9 @@ def mod_take_pid(pid, v):
         abort(400)
 
     board=get_board(bid)
+
+    if board.is_banned:
+        abort(403)
 
     if not board.has_mod(v):
         abort(403)
@@ -327,7 +375,7 @@ def mod_take_pid(pid, v):
 @validate_formkey
 def mod_invite_username(bid, board, v):
 
-    username=request.form.get("username")
+    username=request.form.get("username",'').lstrip('@')
     user=get_user(username)
 
     if not board.can_invite_mod(user):
@@ -1117,3 +1165,33 @@ def check_exile_state(bid, board, v):
           }
 
     return jsonify(data)
+
+@app.route("/mod/post_pin/<bid>/<pid>/<x>", methods=["POST"])
+@auth_required
+@is_guildmaster
+@validate_formkey
+def mod_toggle_post_pin(bid, pid, x, board, v):
+
+    post=get_post(pid)
+
+    if post.board_id != board.id:
+        abort(422)
+
+    try:
+        x=bool(int(x))
+    except:
+        abort(422)
+
+    if x and not board.can_pin_another:
+        return jsonify({"error":f"+{board.name} already has the maximum number of pinned posts."}), 409
+
+
+    post.is_pinned=x
+
+
+    cache.delete_memoized(Board.idlist, post.board)
+
+    db.add(post)
+    db.commit()
+
+    return "", 204

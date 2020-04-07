@@ -134,6 +134,14 @@ $tooltip-opacity: 1;
 
 $yiq-contrasted-threshold:  160 !default;
 
+// Callouts
+
+@each $color, $value in $theme-colors {
+    .bd-callout-#{$color} {
+      border-left-color: #{$value};
+    }
+  }
+
 @import "ruqqus/assets/style/node_modules/bootstrap/scss/bootstrap";
 
 html {
@@ -929,6 +937,7 @@ th {
 #thread .voting {
     min-width: 15px;
     margin-right: 15px;
+    overflow-wrap: normal;
 }
 
 #frontpage .voting, #search .voting, #userpage .voting, #guild .voting {
@@ -2023,7 +2032,9 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
         transform: translate3d(0, 0, 0);
     }
 
+
     .modal.modal.modal-sm-bottom .modal-header {
+
         border-top-right-radius: 1rem;
         border-top-left-radius: 1rem;
     }
@@ -2513,6 +2524,10 @@ ul.comment-section {
     padding: 0 .5rem;
     font-size: $font-size-base;
     color: $gray-500;
+}
+
+.comment-write .comment-format .format:hover {
+    color: $muted;
 }
 
 .comment .comment-collapse {

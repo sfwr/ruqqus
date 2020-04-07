@@ -1,7 +1,7 @@
 from flask import *
 from os import environ
 import requests
-
+from werkzeug.wrappers.response import Response as RespObj
 
 from ruqqus.classes import *
 from .get import *
@@ -213,6 +213,29 @@ def no_cors(f):
                          )
 
         return resp
+
+    wrapper.__name__=f.__name__
+    return wrapper
+
+#wrapper for api-related things that discriminates between an api url
+#and an html url for the same content
+# f should return {'api':lambda:some_func(), 'html':lambda:other_func()}
+
+def api(f):
+
+    def wrapper(*args, **kwargs):
+
+        x=f(*args, **kwargs)
+
+        if isinstance(x, RespObj):
+            return x
+        
+        if request.path.startswith('/api/v1/'):
+            return jsonify(x['api']())
+        elif request.path.startswith('/inpage/'):
+            return x['inpage']()
+        else:
+            return x['html']()
 
     wrapper.__name__=f.__name__
     return wrapper
