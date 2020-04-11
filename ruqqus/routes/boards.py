@@ -3,6 +3,7 @@ import mistletoe
 import re
 import sass
 import threading
+time
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -260,6 +261,7 @@ def mod_ban_bid_user(bid, board, v):
     existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False).first()
     if existing_ban:
         existing_ban.is_active=True
+        existing_ban.created_utc=int(time.time())
         existing_ban.banning_mod_id=v.id
         db.add(existing_ban)
     else:
@@ -955,32 +957,49 @@ def mod_board_color(bid, board, v):
     
     return redirect(f"/+{board.name}/mod/appearance?msg=Success")
 
-@app.route("/mod/approve/<bid>/<username>", methods=["POST"])
+@app.route("/mod/approve/<bid>", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey
-def mod_approve_bid_user(bid, username, board, v):
+def mod_approve_bid_user(bid, board, v):
 
-    user=get_user(username)
+    user=get_user(request.form.get("username"), graceful=True)
+
+    if not user:
+        return jsonify({"error":"That user doesn't exist."}), 404
+
+    if board.has_ban(user):
+        return jsonify({"error":f"@{user.username} is exiled from +{board.name} and can't be approved."}), 409
+
+    #check for an existing deactivated approval
+    existing_ban=db.query(BanRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False).first()
+    if existing_ban:
+        existing_ban.is_active=True
+        existing_ban.created_utc=int(time.time())
+        existing_ban.banning_mod_id=v.id
+        db.add(existing_ban)
+    else:
+        new_ban=BanRelationship(user_id=user.id,
+                                board_id=board.id,
+                                banning_mod_id=v.id,
+                                is_active=True)
+        db.add(new_ban)
 
 
-    if board.has_contributor(user):
-        abort(409)
-
-    new_contrib=ContributorRelationship(user_id=user.id,
-                                        board_id=board.id)
-    db.add(new_contrib)
+        text=f"You have been exiled from +{board.name}.\n\nNone of your existing posts or comments have been removed, however, you will not be able to make any new posts or comments in +{board.name}."
+        send_notification(user, text)
+            
     db.commit()
 
     return "", 204
     
-@app.route("/mod/unapprove/<bid>/<username>", methods=["POST"])
+@app.route("/mod/unapprove/<bid>", methods=["POST"])
 @auth_required
 @is_guildmaster
 @validate_formkey
-def mod_unapprove_bid_user(bid, username, board, v):
+def mod_unapprove_bid_user(bid, board, v):
 
-    user=get_user(username)
+    user=get_user(request.form.get("username",""))
 
     x= board.has_contributor(user)
     if not x:
@@ -1146,46 +1165,6 @@ def siege_guild(v):
         db.commit()
 
     return redirect(f"/+{guild.name}/mod/mods")
-    
-@app.route("/mod/check_exile/<bid>", methods=["GET"])
-@auth_required
-@is_guildmaster
-@validate_formkey
-def check_exile_state(bid, board, v):
-    
-    user=get_user(request.values.get("username"), graceful=True)
-
-    can_ban=False
-
-    if not user:
-        status="That user doesn't exist."
-
-    elif user.id==v.id:
-        status="You can't exile yourself."
-
-    elif board.has_ban(user):
-        status=f"@{user.username} is already exiled."
-
-    elif board.has_mod(user):
-        status=f"You can't exile other guildmasters."
-
-    #you can only exile a user who has previously participated in the guild
-    elif not board.has_participant(user):
-        status=f"@{user.username} hasn't participated in +{board.name}."
-
-    else:
-        status="You can ban this user"
-        can_ban=True
-
-
-    data={"board":board.name,
-          "user":user.username if user else "None",
-          "is_banned":bool(board.has_ban(user)),
-          "can_ban":can_ban,
-          "status":status
-          }
-
-    return jsonify(data)
 
 @app.route("/mod/post_pin/<bid>/<pid>/<x>", methods=["POST"])
 @auth_required

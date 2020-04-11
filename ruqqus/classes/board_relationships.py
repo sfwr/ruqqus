@@ -59,6 +59,7 @@ class ContributorRelationship(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     board_id = Column(Integer, ForeignKey("boards.id"))
     created_utc = Column(BigInteger, default=0)
+    is_active=Column(Boolean, default=True)
 
     user=relationship("User", lazy="subquery")
     board=relationship("Board", lazy="subquery")
