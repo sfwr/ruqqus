@@ -230,7 +230,8 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
                 'parent':self.parent_fullname,
                 'author':self.author_name,
                 'body':self.body,
-                'body_html':self.body_html
+                'body_html':self.body_html,
+                'replies': [x.json for x in self.replies]
                 }
             
         
