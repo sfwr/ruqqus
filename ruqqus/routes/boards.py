@@ -982,11 +982,13 @@ def mod_approve_bid_user(bid, board, v):
     if existing_contrib:
         existing_contrib.is_active=True
         existing_contrib.created_utc=int(time.time())
+        existing_contrib.approving_mod_id=v.id
         db.add(existing_contrib)
     else:
         new_contrib=ContributorRelationship(user_id=user.id,
                                             board_id=board.id,
-                                            is_active=True)
+                                            is_active=True,
+                                            approving_mod_id=v.id)
         db.add(new_contrib)
 
 

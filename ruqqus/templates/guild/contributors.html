@@ -55,22 +55,21 @@
 					<th scope="col">User</th>
 					<th scope="col">approved by:</th>
 					<th scope="col">approved since</th>
-					<th scope="col">Reason</th>
 					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody class="text-muted">
 				{% for contrib in contributors %}
-				<tr>
-					<td>
-						<a href="{{ contrib.user.permalink }}">
-							<img src="{{ contrib.user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ contrib.user.username }}</a>
-					</td>
-					<td>
-						<a href="{{ contrib.approving_mod.permalink }}">
-							<img src="{{ contrib.approving_mod.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ contrib.approving_mod.username }}</a>
-					</td>
-					<td>{{ contrib.created_date }}</td>
+					<tr>
+						<td>
+							<a href="{{ contrib.user.permalink }}">
+								<img src="{{ contrib.user.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ contrib.user.username }}</a>
+						</td>
+						<td>
+							<a href="{{ contrib.approving_mod.permalink }}">
+								<img src="{{ contrib.approving_mod.profile_url }}" class="profile-pic-20 align-top mr-2">@{{ contrib.approving_mod.username }}</a>
+						</td>
+						<td>{{ contrib.created_date }}</td>
 
 						<td>
 							<div class="dropdown float-right dropdown-actions">
