@@ -1428,8 +1428,7 @@ function exile_from_guild(boardid) {
 
 }
 
-// Exile Member
-
+// Approve user
 function approve_from_guild(boardid) {
 
   var approvalForm = document.getElementById("approve-form");
