@@ -1454,9 +1454,9 @@ function approve_from_guild(boardid) {
         window.location.reload(true);
       }
       else {
-      $('#toast-approve-error').toast('dispose');
-      $('#toast-approve-error').toast('show');
-      exileError.textContent = JSON.parse(xhr.response)["error"];
+        $('#toast-approve-error').toast('dispose');
+        $('#toast-approve-error').toast('show');
+        approveError.textContent = JSON.parse(xhr.response)["error"];
       }
     }
     xhr.send(f)
