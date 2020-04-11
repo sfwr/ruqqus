@@ -49,6 +49,15 @@ def post_pid_comment_cid(p_id, c_id, v=None):
                                lo_formkey=make_logged_out_formkey(t),
                                board=comment.board
                                )
+    if post.is_nsfl and not (v and v.hide_nsfl) and not session_isnsfl(comment.board):
+        t=int(time.time())
+        return render_template("errors/nsfl.html",
+                               v=v,
+                               t=t,
+                               lo_formkey=make_logged_out_formkey(t),
+                               board=comment.board
+                               )
+
 
     #check guild ban
     board=post.board
@@ -139,6 +148,7 @@ def api_comment(v):
               level=level,
               author_name=v.username,
               over_18=post.over_18,
+              is_nsfl=post.is_nsfl,
               is_op=(v.id==post.author_id)
               )
 
