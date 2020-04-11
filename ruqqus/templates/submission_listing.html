@@ -227,47 +227,57 @@
   </div>
 </div>
 
-  <!-- Post Actions Modal -->
-  <div class="modal fade modal-sm-bottom d-md-none" id="actionsModal-{{ p.base36id }}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header p-3">
-          <h5 class="col modal-title text-center h6">Post options</h5>
-          <button type="button" class="close position-absolute py-3" style="right: 1rem;" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true"><i class="fas fa-times-circle text-gray-500"></i></span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
-            {% if v and not v.id==p.author_id %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.board.name }}')"><i class="far fa-flag text-center fa-width-rem text-muted mr-3"></i>Flag</button>
-            {% endif %}
-            {% if v and v.id==p.author_id and not p.is_deleted %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" data-toggle="modal" data-dismiss="modal" data-target="#deletePostModal" onclick="delete_postModal('{{ p.base36id }}')"><i class="far fa-trash-alt text-center fa-width-rem text-muted mr-3"></i>Delete</button>
-            {% endif %}
-            {% if v and v.mods_anything and p.board.name == 'general' %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" data-toggle="modal" data-dismiss="modal" data-target="#yankPostModal" onclick="yank_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.comment_count }}','{{ p.title | js_str_escape}}', '/@{{ p.author.username }}','{{ p.domain | js_str_escape }}', '{{ p.age_string }}')"><i class="far fa-hand-lizard text-center fa-width-rem text-muted mr-3"></i>Yank</button>
-            {% endif %}
-            {% if v %}
-            {% if v.id | is_mod(p.board_id) %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" id="kick-post-{{ p.base36id }}" onclick="post('/mod/kick/{{ p.board.base36id }}/{{ p.base36id }}', callback=function(){window.location.reload(true)})"><i class="far fa-times text-center fa-width-rem text-muted mr-3"></i>Kick</button>
-            {% if p.report_count >= 1 %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" onclick="post('/mod/accept/{{ p.board_base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}})"><i class="far fa-check text-center fa-width-rem text-muted mr-3"></i>Approve</button>
-            {% endif %}
-            {% endif %}
-            {% if v.admin_level >=1 %}
-            {% if p.is_banned or p.active_flags %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" id="moderate-post-{{ p.base36id }}" onclick="approvePost('{{ p.base36id }}')"><i class="far fa-check text-center fa-width-rem text-muted mr-3"></i>Approve</button>
-            {% endif %}
-            {% if not p.is_banned or p.active_flags %}
-            <button class="btn btn-white btn-block btn-lg text-lg text-left" id="moderate-post-{{ p.base36id }}" onclick="removePost('{{ p.base36id }}')"><i class="far fa-ban text-center fa-width-rem text-muted mr-3"></i>Remove</button>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-        </div>
+<!-- Post Actions Modal -->
+<div class="modal fade modal-sm-bottom d-md-none" id="actionsModal-{{ p.base36id }}" tabindex="-1" role="dialog" aria-labelledby="actionsModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header p-3">
+        <h5 class="col modal-title text-center h6">More options</h5>
+        <button type="button" class="close position-absolute py-3" style="right: 1rem;" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="fas fa-times-circle text-gray-500"></i></span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group post-actions">
+          <li class="list-group-item d-none"><a href="#" class="d-block"><i class="fas fa-save"></i>Save</a></li>
+          {% if v and not v.id==p.author_id %}
+          <button class="btn btn-white btn-block btn-lg text-left" data-toggle="modal" data-dismiss="modal" data-target="#reportPostModal" onclick="report_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.board.name }}')" class="d-block"><i class="far fa-flag text-center text-muted mr-3"></i>Flag</button>
+          {% endif %}
+          {% if v and v.id==p.author_id and not p.is_deleted %}
+          <button class="btn btn-white btn-block btn-lg text-left" data-toggle="modal" data-dismiss="modal" data-target="#deletePostModal" onclick="delete_postModal('{{ p.base36id }}')"><i class="far fa-trash-alt text-center text-muted mr-3"></i>Delete</button>
+          {% endif %}
+          {% if v and v.mods_anything and p.board.name == 'general' %}
+          <button class="btn btn-white btn-block btn-lg text-left" data-toggle="modal" data-dismiss="modal" data-target="#yankPostModal" onclick="yank_postModal('{{ p.base36id }}','{{ p.author.username }}','{{ p.comment_count }}','{{ p.title | js_str_escape}}', '/@{{ p.author.username }}','{{ p.domain | js_str_escape }}', '{{ p.age_string }}')" class="d-block"><i class="far fa-hand-lizard text-center text-muted mr-3"></i>Yank</button>
+          {% endif %}
+          {% if v %}
+          {% if v.id | is_mod(p.board_id) %}
+          <button class="btn btn-white btn-block btn-lg text-danger text-left" id="kick-post-{{ p.base36id }}" href="javascript:void(0)" onclick="post('/mod/kick/{{ p.board_base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}})"><i class="far fa-times text-center text-danger mr-3"></i>Remove from +{{ p.board.name }}</button>
+
+          {% if p.is_pinned %}
+          <button class="btn btn-white btn-block btn-lg text-success text-left" id="pin-post-{{ p.base36id }}" href="javascript:void(0)" onclick="post('/mod/post_pin/{{ p.board.base36id }}/{{ p.base36id }}/0', callback=function(){window.location.reload(true)})"><i class="fas fa-thumbtack fa-rotate--45 text-center text-success mr-3"></i>Unpin</button>
+          {% elif p.board.can_pin_another %}
+          <button class="btn btn-white btn-block btn-lg text-success text-left" id="pin-post-{{ p.base36id }}" href="javascript:void(0)" onclick="post('/mod/post_pin/{{ p.board.base36id }}/{{ p.base36id }}/1', callback=function(){window.location.reload(true)})"><i class="fas fa-thumbtack fa-rotate--45 text-center text-success mr-3"></i>Pin</button>
+          {% endif %}
+
+          {% if p.report_count >= 1 %}
+          <button class="btn btn-white btn-block btn-lg text-success text-left" onclick="post('/mod/accept/{{ p.board_base36id }}/{{ p.base36id }}', callback=function(){if (window.location.pathname.endsWith('/mod/queue')){deleteElement('post-{{ p.base36id }}')}})"><i class="far fa-check text-center text-success mr-3"></i>Approve</button>
+          {% endif %}
+          {% endif %}
+          {% if v.admin_level >=1 %}
+          {% if p.is_banned or p.active_flags %}
+          <button class="btn btn-white btn-block btn-lg text-danger text-left" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="approvePost('{{ p.base36id }}')"><i class="far fa-check text-success text-danger mr-3"></i>Approve</button>
+          {% endif %}
+          {% if not p.is_banned or p.active_flags %}
+          <button class="btn btn-white btn-block btn-lg text-danger text-left" id="moderate-post-{{ p.base36id }}" href="javascript:void(0)" onclick="removePost('{{ p.base36id }}')"><i class="far fa-ban text-center text-danger mr-3"></i>Remove</button>
+          {% endif %}
+          {% endif %}
+          {% endif %}
+        </ul>
       </div>
     </div>
   </div>
+</div>
+
 </div>
 
 {% else %}
