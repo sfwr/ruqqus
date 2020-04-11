@@ -1435,7 +1435,7 @@ function approve_from_guild(boardid) {
 
   var approveError = document.getElementById("toast-error-message");
 
-  var usernameField = document.getElementById("exile-username");
+  var usernameField = document.getElementById("approve-username");
 
   var isValidUsername = usernameField.checkValidity();
 
