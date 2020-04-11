@@ -28,7 +28,7 @@ def full_link(url):
     return f"https://{app.config['SERVER_NAME']}{url}"
 
 @app.template_filter("env")
-def env_var_filter(x, datatype="int" ):
+def env_var_filter(x):
 
     x=environ.get(s, 1)
 
