@@ -1393,7 +1393,7 @@ if (window.location.pathname=='/submit') {
 
 // Exile Member
 
-function check_exile(boardid) {
+function exile_from_guild(boardid) {
 
   var exileForm = document.getElementById("exile-form");
 
@@ -1406,23 +1406,23 @@ function check_exile(boardid) {
   username = usernameField.value;
 
   if (isValidUsername) {
-    var x = new XMLHttpRequest();
-    x.withCredentials=true;
-    x.onreadystatechange = function() {
-      if (x.readyState == 4 && x.status == 200) {
-        console.log(JSON.parse(x.response));
-        if (JSON.parse(x.response)["can_ban"] == true) {
-          console.log("can ban")
-          exileForm.submit();
-        } else {
-          $('#toast-exile-error').toast('dispose');
-          $('#toast-exile-error').toast('show');
 
-          exileError.textContent = JSON.parse(x.response)["status"];
-        }
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", "/mod/exile/"+boardid);
+    xhr.withCredentials=true;
+    f=new FormData();
+    f.append("username", username);
+    f.append("formkey", formkey());
+    xhr.onload=function(){
+      if (xhr.status=204) {
+        window.location.reload(true);
+      }
+      else {
+      $('#toast-exile-error').toast('dispose');
+      $('#toast-exile-error').toast('show');
+      exileError.textContent = JSON.parse(x.response)["status"];
       }
     }
-    x.open("GET", "/mod/check_exile/"+boardid+"?username="+username+"&formkey="+formkey(), true);
     x.send()
   }
 
