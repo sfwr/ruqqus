@@ -62,8 +62,8 @@ class ContributorRelationship(Base):
     is_active=Column(Boolean, default=True)
     approving_mod_id=Column(Integer, ForeignKey("users.id"))
 
-    user=relationship("User", lazy="joined", primaryjoin="User.id=ContributorRelationship.user_id")
-    approving_mod=relationship("User", lazy='joined', primaryjoin="User.id=ContributorRelationship.approving_mod_id")
+    user=relationship("User", lazy="joined", primaryjoin="User.id==ContributorRelationship.user_id")
+    approving_mod=relationship("User", lazy='joined', primaryjoin="User.id==ContributorRelationship.approving_mod_id")
     board=relationship("Board", lazy="subquery")
 
     def __init__(self, *args, **kwargs):
