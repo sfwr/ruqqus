@@ -982,8 +982,8 @@ def mod_approve_bid_user(bid, board, v):
         db.add(existing_contrib)
     else:
         new_contrib=ContributorRelationship(user_id=user.id,
-                                board_id=board.id,
-                                is_active=True)
+                                            board_id=board.id,
+                                            is_active=True)
         db.add(new_contrib)
 
 
