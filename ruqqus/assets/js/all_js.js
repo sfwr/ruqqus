@@ -1414,9 +1414,6 @@ function check_exile(boardid) {
         if (JSON.parse(x.response)["can_ban"] == true) {
           console.log("can ban")
           exileForm.submit();
-          exileForm.onsubmit = function(){
-            window.location.reload(true);
-          }
         } else {
           $('#toast-exile-error').toast('dispose');
           $('#toast-exile-error').toast('show');
