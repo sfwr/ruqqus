@@ -30,7 +30,7 @@ def full_link(url):
 @app.template_filter("env")
 def env_var_filter(x):
 
-    x=environ.get(s, 1)
+    x=environ.get(x, 1)
 
     try:
         return int(x)
