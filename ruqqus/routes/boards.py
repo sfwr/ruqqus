@@ -991,9 +991,9 @@ def mod_approve_bid_user(bid, board, v):
                                             approving_mod_id=v.id)
         db.add(new_contrib)
 
-
-        text=f"You have added as an approved contributor to +{board.name}."
-        send_notification(user, text)
+        if user.id != v.id:
+            text=f"You have added as an approved contributor to +{board.name}."
+            send_notification(user, text)
             
     db.commit()
 
