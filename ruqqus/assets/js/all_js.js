@@ -1414,7 +1414,7 @@ function exile_from_guild(boardid) {
     f.append("username", username);
     f.append("formkey", formkey());
     xhr.onload=function(){
-      if (xhr.status=204) {
+      if (xhr.status==204) {
         window.location.reload(true);
       }
       else {
