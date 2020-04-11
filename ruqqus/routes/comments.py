@@ -24,7 +24,9 @@ def comment_cid(cid):
     return redirect(comment.permalink)
 
 @app.route("/post/<p_id>/comment/<c_id>", methods=["GET"])
+@app.route("/api/v1/post<p_id>/comment/<c_id>", methods=["GET"])
 @auth_desired
+@api
 def post_pid_comment_cid(p_id, c_id, v=None):
 
     comment=get_comment(c_id)
@@ -37,34 +39,43 @@ def post_pid_comment_cid(p_id, c_id, v=None):
     board=post.board
 
     if board.is_banned and not (v and v.admin_level > 3):
-        return render_template("board_banned.html",
+        return {'html':lambda:render_template("board_banned.html",
                                v=v,
-                               b=board)
+                               b=board),
+                'api':lambda:{'error':f'+{board.name} is banned.'}
+                }
 
     if post.over_18 and not (v and v.over_18) and not session_over18(comment.board):
         t=int(time.time())
-        return render_template("errors/nsfw.html",
+        return {'html':lambda:render_template("errors/nsfw.html",
                                v=v,
                                t=t,
                                lo_formkey=make_logged_out_formkey(t),
                                board=comment.board
-                               )
+                               ),
+                'api':lambda:{'error':f'This content is not suitable for some users and situations.'}
+                }
+
     if post.is_nsfl and not (v and v.hide_nsfl) and not session_isnsfl(comment.board):
         t=int(time.time())
-        return render_template("errors/nsfl.html",
+        return {'html':lambda:render_template("errors/nsfl.html",
                                v=v,
                                t=t,
                                lo_formkey=make_logged_out_formkey(t),
                                board=comment.board
-                               )
+                               ),
+                'api':lambda:{'error':f'This content is not suitable for some users and situations.'}
+                }
 
 
     #check guild ban
     board=post.board
     if board.is_banned and v.admin_level<3:
-        return render_template("board_banned.html",
+        return {'html':lambda:render_template("board_banned.html",
                                v=v,
-                               b=board)        
+                               b=board),
+                'api':lambda:{'error':f'+{board.name} is banned.'}
+        }
 
     #context improver
     context=int(request.args.get("context", 0))
