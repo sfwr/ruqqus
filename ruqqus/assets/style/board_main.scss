@@ -455,9 +455,8 @@ ol > li::before {
     display: none;
 }
 
-.toast.clipboard, .toast.error {
+.toast.clipboard {
     font-size: 1rem;
-    font-weight: $font-weight-bold;
 }
 
 // Navbar and tab Bar
@@ -2006,8 +2005,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     font-size: 1.25rem;
 }
 
-// Mobile Modals
-
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
     .modal.modal.modal-sm-bottom .modal-dialog {
@@ -2032,9 +2029,7 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
         transform: translate3d(0, 0, 0);
     }
 
-
-    .modal.modal.modal-sm-bottom .modal-header {
-
+    .modal.modal-sm-bottom .modal-header {
         border-top-right-radius: 1rem;
         border-top-left-radius: 1rem;
     }
