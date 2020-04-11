@@ -250,6 +250,9 @@ def mod_ban_bid_user(bid, board, v):
     if board.has_ban(user):
         return jsonify({"error":f"@{user.username} is already exiled from +{board.name}."}), 409
 
+    if board.has_contributor(user):
+        return jsonify({"error":f"@{user.username} is an approved contributor to +{board.name} and can't currently be banned."}), 409
+
     if board.has_mod(user):
         return jsonify({"error":"You can't exile other guildmasters."}), 409
 
@@ -998,13 +1001,15 @@ def mod_approve_bid_user(bid, board, v):
 @validate_formkey
 def mod_unapprove_bid_user(bid, board, v):
 
-    user=get_user(request.form.get("username",""))
+    user=get_user(request.values.get("username"))
 
     x= board.has_contributor(user)
     if not x:
         abort(409)
 
-    db.delete(x)
+    x.is_active=False
+
+    db.add(x)
     db.commit()
     
     return "", 204

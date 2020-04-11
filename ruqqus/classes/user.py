@@ -138,7 +138,7 @@ class User(Base, Stndrd):
         if not self.admin_level >=4:
             #admins can see everything
             m=self.moderates.filter_by(invite_rescinded=False).subquery()
-            c=self.contributes.subquery()
+            c=self.contributes.filter_by(is_active=True).subquery()
             posts=posts.join(m,
                              m.c.board_id==Submission.board_id,
                              isouter=True
