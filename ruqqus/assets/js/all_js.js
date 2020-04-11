@@ -1427,3 +1427,40 @@ function exile_from_guild(boardid) {
   }
 
 }
+
+// Exile Member
+
+function approve_from_guild(boardid) {
+
+  var approvalForm = document.getElementById("approve-form");
+
+  var approveError = document.getElementById("toast-error-message");
+
+  var usernameField = document.getElementById("exile-username");
+
+  var isValidUsername = usernameField.checkValidity();
+
+  username = usernameField.value;
+
+  if (isValidUsername) {
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("post", "/mod/approve/"+boardid);
+    xhr.withCredentials=true;
+    f=new FormData();
+    f.append("username", username);
+    f.append("formkey", formkey());
+    xhr.onload=function(){
+      if (xhr.status==204) {
+        window.location.reload(true);
+      }
+      else {
+      $('#toast-approve-error').toast('dispose');
+      $('#toast-approve-error').toast('show');
+      exileError.textContent = JSON.parse(xhr.response)["error"];
+      }
+    }
+    xhr.send(f)
+  }
+
+}

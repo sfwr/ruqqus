@@ -3,7 +3,7 @@ import mistletoe
 import re
 import sass
 import threading
-time
+import time
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
@@ -249,6 +249,9 @@ def mod_ban_bid_user(bid, board, v):
 
     if board.has_ban(user):
         return jsonify({"error":f"@{user.username} is already exiled from +{board.name}."}), 409
+
+    if board.has_contributor(user):
+        return jsonify({"error":f"@{user.username} is an approved contributor to +{board.name} and can't currently be banned."}), 409
 
     if board.has_mod(user):
         return jsonify({"error":"You can't exile other guildmasters."}), 409
@@ -976,7 +979,6 @@ def mod_approve_bid_user(bid, board, v):
     if existing_contrib:
         existing_contrib.is_active=True
         existing_contrib.created_utc=int(time.time())
-        existing_contrib.banning_mod_id=v.id
         db.add(existing_contrib)
     else:
         new_contrib=ContributorRelationship(user_id=user.id,
@@ -998,13 +1000,15 @@ def mod_approve_bid_user(bid, board, v):
 @validate_formkey
 def mod_unapprove_bid_user(bid, board, v):
 
-    user=get_user(request.form.get("username",""))
+    user=get_user(request.values.get("username"))
 
     x= board.has_contributor(user)
     if not x:
         abort(409)
 
-    db.delete(x)
+    x.is_active=False
+
+    db.add(x)
     db.commit()
     
     return "", 204
