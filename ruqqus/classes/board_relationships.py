@@ -28,7 +28,7 @@ class ModRelationship(Base):
         return f"<Mod(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
 
 
-class BanRelationship(Base, Age_times):
+class BanRelationship(Base, Stndrd, Age_times):
 
     __tablename__="bans"
     id = Column(BigInteger, primary_key=True)
@@ -52,7 +52,7 @@ class BanRelationship(Base, Age_times):
     def __repr__(self):
         return f"<Ban(id={self.id}, uid={self.uid}, board_id={self.board_id})>"
 
-class ContributorRelationship(Base):
+class ContributorRelationship(Base, Stndrd, Age_times):
 
     __tablename__="contributors"
     id = Column(BigInteger, primary_key=True)
