@@ -41,6 +41,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     over_18=Column(Boolean, default=False)
     is_op=Column(Boolean, default=False)
     is_offensive=Column(Boolean, default=False)
+    is_nsfl=Column(Boolean, default=False)
 
     post=relationship("Submission", lazy="joined")
     flags=relationship("CommentFlag", lazy="dynamic", backref="comment")
