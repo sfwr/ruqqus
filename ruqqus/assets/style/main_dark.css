@@ -13957,9 +13957,8 @@ ol > li::before {
   display: none;
 }
 
-.toast.clipboard, .toast.error {
+.toast.clipboard {
   font-size: 1rem;
-  font-weight: 600;
 }
 
 .navbar-light {

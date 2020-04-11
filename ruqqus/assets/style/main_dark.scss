@@ -458,9 +458,8 @@ ol > li::before {
     display: none;
 }
 
-.toast.clipboard, .toast.error {
+.toast.clipboard {
     font-size: 1rem;
-    font-weight: $font-weight-bold;
 }
 
 // Navbar and tab Bar
@@ -2051,7 +2050,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     font-size: 1.25rem;
 }
 
-// Mobile Modals
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
     .modal.modal.modal-sm-bottom .modal-dialog {
