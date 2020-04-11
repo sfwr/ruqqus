@@ -1,6 +1,6 @@
 {% extends "guild/guild_settings.html" %}
 
-{% block pagetitle %}+{{ b.name }} Exiles{% endblock %}
+{% block pagetitle %}+{{ b.name }} Approved Contributors{% endblock %}
 
 {% block content %}
 
@@ -32,11 +32,11 @@
 		<div class="d-md-flex justify-content-between mb-3">
 
 			<div>
-				<h2 class="h5" name="guild_name">Users exiled from +{{ b.name }}</h2>
-				<p class="text-small text-muted mb-md-0">The following users are prohibited from participating in +{{ b.name }}.</p>
+				<h2 class="h5" name="guild_name">Approved contributors for +{{ b.name }}</h2>
+				<p class="text-small text-muted mb-md-0">The following users are approved to participate in +{{ b.name }}.</p>
 			</div>
 			<div class="mt-auto">
-				<button class="btn btn-primary" data-toggle="modal" data-target="#guildmasterExileModal">Exile user</button>
+				<button class="btn btn-primary" data-toggle="modal" data-target="#guildmasterExileModal">Add user</button>
 			</div>
 		</div>
 
