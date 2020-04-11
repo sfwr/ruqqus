@@ -3,7 +3,7 @@ import mistletoe
 import re
 import sass
 import threading
-time
+import time
 
 from ruqqus.helpers.wrappers import *
 from ruqqus.helpers.base36 import *
