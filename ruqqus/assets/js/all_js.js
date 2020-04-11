@@ -1428,15 +1428,14 @@ function exile_from_guild(boardid) {
 
 }
 
-// Exile Member
-
+// Approve user
 function approve_from_guild(boardid) {
 
   var approvalForm = document.getElementById("approve-form");
 
   var approveError = document.getElementById("toast-error-message");
 
-  var usernameField = document.getElementById("exile-username");
+  var usernameField = document.getElementById("approve-username");
 
   var isValidUsername = usernameField.checkValidity();
 
