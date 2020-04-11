@@ -1420,10 +1420,10 @@ function exile_from_guild(boardid) {
       else {
       $('#toast-exile-error').toast('dispose');
       $('#toast-exile-error').toast('show');
-      exileError.textContent = JSON.parse(x.response)["status"];
+      exileError.textContent = JSON.parse(xhr.response)["status"];
       }
     }
-    x.send()
+    xhr.send()
   }
 
 }
