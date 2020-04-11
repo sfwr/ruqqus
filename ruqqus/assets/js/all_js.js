@@ -1423,7 +1423,7 @@ function exile_from_guild(boardid) {
       exileError.textContent = JSON.parse(xhr.response)["status"];
       }
     }
-    xhr.send()
+    xhr.send(f)
   }
 
 }
