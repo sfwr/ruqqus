@@ -7,7 +7,7 @@ $danger: #E53E3E;
 $white: #ffffff;
 $black: #121213;
 $light: #E6E9F0;
-$success: #38A169;
+$success: #38a169;
 $muted: #718096;
 $info: #168EEA;
 
@@ -15,7 +15,7 @@ $info: #168EEA;
 $purple: #805AD5;
 $red:  #E53E3E;
 $gray: #718096;
-$green: #38A169; 
+$green: #38A169;
 
 $gray-100: #F5F7FA;
 $gray-200: #EDF2F7;
@@ -466,9 +466,8 @@ ol > li::before {
     display: none;
 }
 
-.toast.clipboard, .toast.error {
+.toast.clipboard {
     font-size: 1rem;
-    font-weight: $font-weight-bold;
 }
 
 // Navbar and tab Bar
@@ -2014,7 +2013,6 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
     font-size: 1.25rem;
 }
 
-// Mobile Modals
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
     .modal.modal.modal-sm-bottom .modal-dialog {
