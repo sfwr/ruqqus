@@ -703,7 +703,7 @@ def board_about_contributors(boardname, board, v):
     contributors=board.contributors.filter_by(is_active=True).order_by(ContributorRelationship.created_utc.desc()).offset(25*(page-1)).limit(26)
 
     contributors=[x for x in contributors]
-    next_exists=(len(bans)==26)
+    next_exists=(len(contributors)==26)
     contributors=contributors[0:25]
                                 
     return render_template("guild/contributors.html", v=v, b=board, contributors=contributors)
