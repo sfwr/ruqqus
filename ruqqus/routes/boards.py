@@ -971,8 +971,11 @@ def mod_approve_bid_user(bid, board, v):
     if not user:
         return jsonify({"error":"That user doesn't exist."}), 404
 
-    if board.has_contributor(user):
+    if board.has_ban(user):
         return jsonify({"error":f"@{user.username} is exiled from +{board.name} and can't currently be approved."}), 409
+    if board.has_contributor(user):
+        return jsonify({"error":f"@{user.username} is already an approved user."})        
+
 
     #check for an existing deactivated approval
     existing_contrib=db.query(ContributorRelationship).filter_by(user_id=user.id, board_id=board.id, is_active=False).first()
