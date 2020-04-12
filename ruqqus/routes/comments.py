@@ -209,6 +209,7 @@ def api_comment(v):
 @app.route("/edit_comment/<cid>", methods=["POST"])
 @is_not_banned
 @validate_formkey
+@api
 def edit_comment(cid, v):
 
     c = get_comment(cid)
@@ -231,12 +232,14 @@ def edit_comment(cid, v):
     bans=filter_comment_html(body_html)
 
     if bans:
-        return render_template("comment_failed.html",
+        return {'html':lambda:render_template("comment_failed.html",
                                action=f"/edit_comment/{c.base36id}",
                                badlinks=[x.domain for x in bans],
                                body=body,
                                v=v
-                               )
+                               ),
+                'api':lambda:{'error':f'A blacklist domain was used.'}
+                }
 
     c.body=body
     c.body_html=body_html
@@ -252,8 +255,10 @@ def edit_comment(cid, v):
     return redirect(f"{path}#comment-{c.base36id}")
 
 @app.route("/delete/comment/<cid>", methods=["POST"])
+@app.route("/api/v1/delete/comment/<cid>", methods=["POST"])
 @auth_required
 @validate_formkey
+@api
 def delete_comment(cid, v):
 
     c=db.query(Comment).filter_by(id=base36decode(cid)).first()
