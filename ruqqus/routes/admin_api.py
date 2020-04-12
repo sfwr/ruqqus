@@ -289,7 +289,7 @@ def user_stat_data(v):
                       "signups": db.query(User).filter(User.created_utc<day_cutoffs[i],
                                                        User.created_utc>day_cutoffs[i+1]
                                                        ).count()
-                      } for i in range(len(day_cutoffs)-1)
+                      } for i in range(len(day_cutoffs)-2)
                       ]
 
     
@@ -307,7 +307,7 @@ def user_stat_data(v):
                       "posts": db.query(Submission).filter(Submission.created_utc<day_cutoffs[i],
                                                            Submission.created_utc>day_cutoffs[i+1]
                                                            ).count()
-                      } for i in range(len(day_cutoffs)-1)
+                      } for i in range(len(day_cutoffs) - 2)
                       ]
 
     guild_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
@@ -315,7 +315,7 @@ def user_stat_data(v):
                    "members": db.query(Board).filter(Board.created_utc < day_cutoffs[i],
                                                         Board.created_utc > day_cutoffs[i + 1]
                                                         ).count()
-                   } for i in range(len(day_cutoffs) - 1)
+                   } for i in range(len(day_cutoffs) - 2)
                   ]
 
     comment_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
@@ -323,7 +323,7 @@ def user_stat_data(v):
                    "comments": db.query(Comment).filter(Comment.created_utc < day_cutoffs[i],
                                                         Comment.created_utc > day_cutoffs[i + 1]
                                                         ).count()
-                   } for i in range(len(day_cutoffs) - 1)
+                   } for i in range(len(day_cutoffs) - 2)
                   ]
 
     vote_stats = [{"date": time.strftime("%d %b %Y", time.gmtime(day_cutoffs[i + 1])),
@@ -331,7 +331,7 @@ def user_stat_data(v):
                       "votes": db.query(Vote).filter(Vote.created_utc < day_cutoffs[i],
                                                            Vote.created_utc > day_cutoffs[i + 1]
                                                            ).count()
-                      } for i in range(len(day_cutoffs) - 1)
+                      } for i in range(len(day_cutoffs) - 2)
                      ]
 
 
