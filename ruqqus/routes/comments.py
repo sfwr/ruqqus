@@ -18,6 +18,7 @@ from werkzeug.contrib.atom import AtomFeed
 from datetime import datetime
 
 @app.route("/comment/<cid>", methods=["GET"])
+@
 def comment_cid(cid):
 
     comment=get_comment(cid)
@@ -306,6 +307,8 @@ def feeds(sort=None):
 
 @app.route("/embed/comment/<cid>", methods=["GET"])
 @app.route("/embed/post/<pid>/comment/<cid>", methods=["GET"])
+@app.route("/api/vi/embed/post/<pid>/comment/<cid>", methods=["GET"])
+@api
 def embed_comment_cid(cid, pid=None):
 
     comment=get_comment(cid)
@@ -314,9 +317,12 @@ def embed_comment_cid(cid, pid=None):
         abort(403)
 
     if comment.is_banned or comment.is_deleted:
-        return render_template("embeds/comment_removed.html", c=comment)
+        return {'html':lambda:render_template("embeds/comment_removed.html", c=comment),
+                'api':lambda:{'error':f'Comment {cid} has been removed'}
+                }
 
     if comment.board.is_banned:
         abort(410)
 
     return render_template("embeds/comment.html", c=comment)
+
