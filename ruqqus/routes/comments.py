@@ -307,6 +307,7 @@ def feeds(sort=None):
 
 @app.route("/embed/comment/<cid>", methods=["GET"])
 @app.route("/embed/post/<pid>/comment/<cid>", methods=["GET"])
+@app.route("/api/vi/embed/comment/<cid>", methods=["GET"])
 @app.route("/api/vi/embed/post/<pid>/comment/<cid>", methods=["GET"])
 @api
 def embed_comment_cid(cid, pid=None):
@@ -319,7 +320,7 @@ def embed_comment_cid(cid, pid=None):
     if comment.is_banned or comment.is_deleted:
         return {'html':lambda:render_template("embeds/comment_removed.html", c=comment),
                 'api':lambda:{'error':f'Comment {cid} has been removed'}
-                }
+               }
 
     if comment.board.is_banned:
         abort(410)
