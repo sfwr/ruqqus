@@ -4,6 +4,7 @@ from os import environ, remove
 import piexif
 import time
 from urllib.parse import urlparse
+from PIL import Image
 
 BUCKET="i.ruqqus.com"
 CF_KEY=environ.get("CLOUDFLARE_KEY")
@@ -41,9 +42,28 @@ def upload_from_url(name, url):
                      )
 
     remove(tempname)
-    
 
-def upload_file(name, file):
+def crop_and_resize(img, resize):
+
+    i=img
+
+    #get constraining dimension
+    org_ratio=i.width/i.height
+    new_ratio=resize[0]/resize[1]
+
+    if new_ratio>org_ratio:
+        crop_height=int(i.width/new_ratio)
+        box=(0, (i.height//2)-(crop_height//2), i.width, (i.height//2)+(crop_height//2))
+    else:
+        crop_width=int(new_ratio*i.height)
+        box=((i.width//2)-(crop_width//2), 0, (i.width//2)+(crop_width//2), i.height)
+    
+    return i.resize(resize, box=box)
+
+
+
+
+def upload_file(name, file, resize=None):
 
     #temp save for exif stripping
     tempname=name.replace("/","_")
@@ -52,6 +72,11 @@ def upload_file(name, file):
     
     if tempname.split('.')[-1] in ['jpg','jpeg']:
         piexif.remove(tempname)
+
+    if resize:
+        i=Image.open(tempname)
+        i=crop_and_resize(i, resize)
+        i.save(tempname)
     
     S3.upload_file(tempname,
                       Bucket=BUCKET,
@@ -63,12 +88,17 @@ def upload_file(name, file):
 
     remove(tempname)
 
-def upload_from_file(name, filename):
+def upload_from_file(name, filename, resize=None):
 
     tempname=name.replace("/","_")
 
     if filename.split('.')[-1] in ['jpg','jpeg']:
         piexif.remove(tempname)
+
+    if resize:
+        i=Image.open(tempname)
+        i=crop_and_resize(i, resize)
+        i.save(tempname)
     
     S3.upload_file(tempname,
                       Bucket=BUCKET,

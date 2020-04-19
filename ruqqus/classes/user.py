@@ -12,6 +12,7 @@ from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
 import ruqqus.helpers.aws as aws
+#from ruqqus.helpers.alerts import send_notification
 from .votes import Vote
 from .alts import Alt
 from .titles import Title
@@ -61,6 +62,8 @@ class User(Base, Stndrd):
     hide_offensive=Column(Boolean, default=False)
     is_private=Column(Boolean, default=False)
     read_announcement_utc=Column(Integer, default=0)
+    discord_id=Column(Integer, default=None)
+
     
 
     moderates=relationship("ModRelationship", lazy="dynamic")
@@ -472,7 +475,9 @@ class User(Base, Stndrd):
         self.profile_nonce+=1
 
         aws.upload_file(name=f"users/{self.username}/profile-{self.profile_nonce}.png",
-                        file=file)
+                        file=file,
+                        resize=(100,100)
+                        )
         self.has_profile=True
         db.add(self)
         db.commit()
@@ -578,8 +583,31 @@ class User(Base, Stndrd):
 
         return  max(self.karma+self.comment_karma, -5)
 
-        
+    @property        
     def can_use_darkmode(self):
         return True
         #return self.referral_count or self.has_earned_darkmode or self.has_badge(16) or self.has_badge(17)
 
+
+    def ban(self, admin, include_alts=True):
+
+        #Takes care of all functions needed for account termination
+
+        self.del_banner()
+        self.del_profile()
+        self.is_banned=admin.id
+        db.add(self)
+        db.commit()
+
+        if include_alts:
+            for alt in self.alts:
+                alt.ban(admin=admin, include_alts=False)
+
+    def unban(self):
+
+        #Takes care of all functions needed for account reinstatement.
+
+        self.is_banned=0
+
+        db.add(self)
+        db.commit()
