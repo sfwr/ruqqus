@@ -1,13 +1,11 @@
 {% extends "home.html" %}
 
 {% block stylesheets %}
-
-{% if v and v.can_use_darkmode and session.get("dark_mode_enabled") %}
+{% if v and session.get("dark_mode_enabled") %}
 <link id="css-link" rel="stylesheet" href="{{ b.css_dark_url }}">
 {% else %}
 <link id="css-link" rel="stylesheet" href="{{ b.css_url }}">
 {% endif %}
-
 {% endblock %}
 
 {% block adminpanel %}
@@ -36,7 +34,56 @@
 {% endif %}
 {% endblock %}
 
+{% block sidebarblock %}
+<div class="sidebar-section sidebar-guildmake">
+  <div class="title"><i class="fas fa-info-circle mr-2"></i>About Guild</div>
+  <div class="body">
+    {{ b.description_html | safe }}
+    <!-----commenting this bit out----
+    {% if b.description_html | length > 140 %}
+    <a href="#" data-toggle="modal" data-target="#guildDetailsModal">Read more</a>
+    {% endif %}
+    ------>
+    <div class="text-small font-weight-bold text-muted text-uppercase mb-1" style="letter-spacing: 0.025rem;">Founded</div>
+    <p>{{ b.created_date }}</p>      
+    <div class="text-small font-weight-bold text-muted text-uppercase mb-2" style="letter-spacing: 0.025rem;">Guildmasters</div>
+    <div class="d-flex align-items-center">
+      {% for mod in b.mods_list[0:3] %}
+      <a href="{{ mod.user.permalink }}">
+        <img src="{{ mod.user.profile_url }}" class="profile-pic profile-pic-30 profile-stacked {% if not loop.first %}ml-n2{% endif %}">
+      </a>
+      {% if loop.last %}
+      {% if b.mods_count - loop.index > 0 %}
+      <div class="text-small text-primary ml-2">
+        <a href="{{ b.permalink+'/mod/mods' }}">+{{ b.mods_count - loop.index }} more guildmaster{% if b.mods_count - loop.index > 1 %}s{% endif %}</a>
+      </div>
+      {% endif %}
+      {% endif %}
+      {% else %}
+      <small class="text-muted">No guildmasters</small>
+      {% endfor %}
+    </div>
+  </div>
+</div>
 
+{% if b.has_mod(v) %}
+<div class="sidebar-section sidebar-info">
+  <div class="title"><i class="fas fa-crown mr-2"></i>Guildmaster Tools</div>
+  <div class="body">
+    <ul class="list-unstyled mb-0">
+      <li class="mb-2"><a class="text-muted" href="/+{{ b.name }}/mod/settings"><i class="fas fa-cog fa-width-rem text-center mr-2"></i>Settings</a></li>
+      <li class="mb-2"><a class="text-muted" href="/+{{ b.name }}/mod/appearance"><i class="fas fa-palette fa-width-rem text-center mr-2"></i>Appearance</a></li>
+      <li class="mb-2"><a class="text-muted" href="/+{{ b.name }}/mod/mods"><i class="fas fa-crown fa-width-rem text-center mr-2"></i>Guildmasters</a></li>
+      <li class="mb-2"><a class="text-muted" href="/+{{ b.name }}/mod/exiled"><i class="fas fa-user-slash fa-width-rem text-center mr-2"></i>Exiles</a></li>
+      <li {% if b.restricted_posting or b.is_private %}class="mb-2"{% endif %}><a class="text-muted" href="/+{{ b.name }}/mod/queue"><i class="fas fa-flag fa-width-rem text-center mr-2"></i>Reports</a></li>
+      {% if b.restricted_posting or b.is_private %}
+      <li><a class="text-muted" href="/+{{ b.name }}/mod/contributors"><i class="fas fa-user-check fa-width-rem text-center mr-2"></i>Approved users</a></li>
+      {% endif %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
 
 {% block darkswitch %}
 
@@ -53,7 +100,7 @@
           dswitch.classList.remove("fa-toggle-off");
           dswitch.classList.add("fa-toggle-on");
         }
-      );
+        );
     }
     else {
       post("/settings/dark_mode/0",
@@ -62,7 +109,7 @@
           dswitch.classList.remove("fa-toggle-on");
           dswitch.classList.add("fa-toggle-off");
         }
-      );
+        );
 
     }
   }
@@ -119,6 +166,10 @@
 {% endblock %}
 
 {% block desktopBanner %}
+<!-- Guild reference -->
+
+<span id="guild-name-reference" class="d-none">{{ b.name }}</span>
+
 <!-- Desktop -->
 <div class="row d-none d-md-block">
   <div class="col px-0">
@@ -144,7 +195,7 @@
         </div>
       </div>
       <div class="border-right py-3 px-3">
-        <a href="{{ b.permalink+"/mod/mods" }}" class="text-black" style="text-decoration: none;">Guildmasters<span class="text-primary"> {{ b.mods_count }}</span></a>
+        <a href="{{ b.permalink+'/mod/mods' }}" class="text-black" style="text-decoration: none;">Guildmasters<span class="text-primary"> {{ b.mods_count }}</span></a>
       </div>
       <div class="border-right p-3">
         Member{{ 's' if b.subscriber_count != 1 else '' }}<span class="text-primary"> {{ b.subscriber_count }}</span>
@@ -222,7 +273,7 @@
             {% endif %}
           </h1>
         </a>
-        <div class="text-muted">{{ b.description_html | safe }}</div>
+        <div class="text-muted text-break">{{ b.description_html | safe }}</div>
         <p class="font-weight-bold">{{ b.subscriber_count }} member{{ 's' if b.subscriber_count != 1 else '' }}
         </p>
         {% if v %}

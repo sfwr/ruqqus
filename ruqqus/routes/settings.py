@@ -108,7 +108,7 @@ def settings_security_post(v):
         
         new_email = request.form.get("new_email")
         if new_email == v.email:
-            return redirect("/settings/security?error="+escape("That's already your email."))
+            return redirect("/settings/security?error="+escape("That email is already yours!"))
 
         #check to see if email is in use
         existing=db.query(User).filter(User.id != v.id,
@@ -241,7 +241,7 @@ def settings_images_banner(v):
 
     #anti csam
     new_thread=threading.Thread(target=check_csam_url,
-                                args=(v.banner,
+                                args=(v.banner_url,
                                       v,
                                       lambda:board.del_banner()
                                       )

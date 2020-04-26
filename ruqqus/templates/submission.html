@@ -16,7 +16,7 @@
     dswitch = document.getElementById("dark-switch");
 
     if (css.href.endsWith("{{ p.board.css_url }}")) {
-      
+
       post("/settings/dark_mode/1",
         callback=function(){
           css.href="{{ p.board.css_dark_url }}";
@@ -112,7 +112,7 @@
 
 <meta property="og:article:author" content="@{{ p.author.username }}" />
 <meta property="article:section" content="+{{ p.board.name }}" />
-<meta property="article:published_time" content="{{ p.created_date }}" />
+<meta property="article:published_time" content="{{ p.created_iso }}" />
 {% if p.edited_utc %}<meta property="article:modified_time" content="{{ p.edited_string }}" />{% endif %}
 <meta property="og:description" name="description" content="{{ p.body_html }}" />
 <meta property="og:author" name="author" content="@{{ p.author.username }}" />
@@ -134,6 +134,10 @@
 {% block pagetype %}thread{% endblock %}
 
 {% block desktopBanner %}
+<!-- Guild reference -->
+
+<span id="guild-name-reference" class="d-none">{{ p.board.name }}</span>
+
 <!-- Desktop -->
 <div class="row border-bottom bg-white sticky guild-border-top d-none d-md-block" style="overflow: visible;">
   <div class="col">
@@ -171,7 +175,7 @@
       <div id="button-sub" {% if p.board.has_subscriber(v) %}class="d-none"{% endif %}><a class="btn btn-primary" href="javascript:void(0)" onclick="post('/api/subscribe/{{ p.board.name }}', callback=toggleSub)">Join guild</a></div>
       <div id="button-unsub" {% if not p.board.has_subscriber(v) %}class="d-none"{% endif %}><a class="btn btn-secondary" href="javascript:void(0)" onclick="post('/api/unsubscribe/{{ p.board.name }}', callback=toggleSub)">Leave</a></div>
       {% elif not v %}
-      <a class="btn btn-primary" href="/signup">Join guild</a>
+      <a class="btn btn-primary" href="/signup?redirect={{ request.path | urlencode}}">Join guild</a>
       {% endif %}
     </div>
   </div>
@@ -450,10 +454,10 @@
             {% else %}
 
             <div id="voting" class="voting d-none d-md-block mb-auto">
-              <div id="post-{{ p.base36id }}-up" class="arrow-up mx-auto" onclick="location.href='/login';">
+              <div id="post-{{ p.base36id }}-up" class="arrow-up mx-auto" onclick="location.href='/login?redirect={{ request.path | urlencode}}';">
               </div>
               <span id="post-{{ p.base36id }}-score-none" class="score text-muted">{{ score-adjust }}</span>
-              <div id="post-{{ p.base36id }}-down" class="arrow-down mx-auto" onclick="location.href='/login';">
+              <div id="post-{{ p.base36id }}-down" class="arrow-down mx-auto" onclick="location.href='/login?redirect={{ request.path | urlencode}}';">
               </div>
             </div>
 
@@ -501,7 +505,7 @@
               <i class="fas fa-arrow-alt-up mx-0" aria-hidden="true"></i>
             </span>
             {% else %}
-            <span id="arrow-{{ p.base36id }}-mobile-up" class="mr-2 arrow-mobile-up" onclick="location.href='/login';">
+            <span id="arrow-{{ p.base36id }}-mobile-up" class="mr-2 arrow-mobile-up" onclick="location.href='/login?redirect={{ request.path | urlencode}}';">
               <i class="fas fa-arrow-alt-up mx-0" aria-hidden="true"></i>
             </span>
             {% endif %}
@@ -517,7 +521,7 @@
               <i class="fas fa-arrow-alt-down mx-0" aria-hidden="true"></i>
             </span>
             {% else %}
-            <span id="arrow-{{ p.base36id }}-mobile-down" class="arrow-mobile-down ml-2 my-0" onclick="location.href='/login';">
+            <span id="arrow-{{ p.base36id }}-mobile-down" class="arrow-mobile-down ml-2 my-0" onclick="location.href='/login?redirect={{ request.path | urlencode}}';">
               <i class="fas fa-arrow-alt-down mx-0" aria-hidden="true"></i>
             </span>
             {% endif %}
@@ -560,8 +564,6 @@
         <input type="hidden" name="submission" value="{{ p.base36id }}">
         {% if v %}
         <textarea class="comment-box form-control rounded" id="comment-form" name="body" form="reply-to-{{ p.fullname }}" aria-label="With textarea" placeholder="Add your comment..." rows="1"></textarea>
-        {% else %}
-        <textarea class="comment-box form-control rounded" name="body" aria-label="With textarea" placeholder="Add your comment..." rows="1" onclick="location.href='/login';"></textarea>
         {% endif %}
         <div class="comment-format">
           <small class="format pl-0"><i class="fas fa-bold" onclick="makeBold('comment-form')" data-toggle="tooltip" data-placement="bottom" data-delay='{"show":"700", "hide":"300"}' title="Bold"></i></small>
@@ -575,17 +577,22 @@
     </div>
     {% endif %}
 
-    {% if not v and p.comment_count >= 2 and not p.is_banned %}
+    {% if not v and not p.is_banned %}
+    <div class="comment-write mb-3">
+      <textarea class="comment-box form-control rounded" name="body" aria-label="With textarea" placeholder="Add your comment..." rows="1" onclick="location.href='/login?redirect={{ request.path | urlencode}}';"></textarea>
+    </div>
+    {% if p.comment_count >= 2 %}
     <div class="card border-0 bg-light mt-4">
       <div class="card-body">
         <h5 class="card-title">Jump in the discussion.</h5>
-        <p class="card-text">Become part of the community, no email address required. Make a Ruqqus.</p>
+        <p class="card-text">Become a member of +{{ p.board.name }}, no email address required. Make a Ruqqus.</p>
         <div>
-          <a href="/signup" class="btn btn-primary">Sign up</a>
-          <a href="/login" class="btn btn-link text-muted">Sign in</a>
+          <a href="/signup?redirect={{ request.path | urlencode}}" class="btn btn-primary">Sign up</a>
+          <a href="/login?redirect={{ request.path | urlencode}}" class="btn btn-link text-muted">Sign in</a>
         </div>
       </div>
     </div>
+    {% endif %}
     {% endif %}
 
     {% if p.replies %}
@@ -596,12 +603,15 @@
    </div>
    {% elif not p.replies and not p.is_deleted %}
    <div class="comment-section text-center py-7">
-    <i class="fad fa-ghost text-gray-500 mb-4" style="
-    font-size: 3.5rem;"></i>
+    <span class="fa-stack fa-2x text-muted mb-4">
+      <i class="fas fa-square text-gray-500 opacity-25 fa-stack-2x"></i>
+      <i class="fas text-gray-500 fa-ghost fa-stack-1x text-lg"></i>
+    </span>
+    <h2 class="h5">Be the first to comment!</h2>
     {% if v %}
-    <div class="h6 text-gray-500">This comment section is a ghost town. Be the first to comment!</div>
+    <p class="text-muted">This comment section is a ghost town...</p>
     {% else %}
-    <div class="h6 text-gray-500">This comment section is a ghost town. <a href="/login">Sign in</a> to comment!</div>
+    <p class="text-muted">This comment section is a ghost town. <a href="/login?redirect={{ request.path | urlencode}}">Sign in</a></p>
     {% endif %}
   </div>
   {% endif %}
@@ -628,4 +638,10 @@
     <i class="fas fa-exclamation-circle mr-2"></i>Unable to snag gifs :(
   </div>
 </div>
+{% endblock %}
+
+{% block GIFpicker %}
+{% if v %}
+{% include "gif_modal.html" %}
+{% endif %}
 {% endblock %}

@@ -19,7 +19,7 @@ import requests
 
 from werkzeug.middleware.proxy_fix import ProxyFix
 
-_version = "2.6.2"
+_version = "2.7.1"
 
 app = Flask(__name__,
             template_folder='./templates',
@@ -38,7 +38,7 @@ app.config["SESSION_COOKIE_SECURE"]=True
 app.config["SESSION_COOKIE_SAMESITE"]="Lax"
 
 app.config["PERMANENT_SESSION_LIFETIME"]=60*60*24*365
-#app.config["SESSION_REFRESH_EACH_REQUEST"]=True
+app.config["SESSION_REFRESH_EACH_REQUEST"]=True
 
 app.jinja_env.cache = {}
 
@@ -77,8 +77,6 @@ Base = declarative_base()
 import ruqqus.classes
 from ruqqus.routes import *
 import ruqqus.helpers.jinja2
-
-
 
 #enforce https
 @app.before_request

@@ -100,6 +100,9 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     def board_base36id(self):
         return base36encode(self.board_id)
 
+    @property
+    def is_archived(self):
+        return int(time.time()) - self.created_utc > 60*60*24*180
 
     @property
     #@cache.memoize(timeout=60)
@@ -132,7 +135,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
         now=int(time.time())
 
-        cutoff=now-(60860*24*180)
+        cutoff=now-(60*60*24*180)
 
         return self.created_utc < cutoff
                                       
@@ -167,7 +170,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                                sort_method=request.args.get("sort","Hot").capitalize(),
                                linked_comment=comment,
                                comment_info=comment_info,
-                               is_allowed_to_comment=self.board.can_comment(v)
+                               is_allowed_to_comment=self.board.can_comment(v) and not self.is_archived
                                )
 
 
@@ -329,5 +332,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 'created_utc':self.created_utc,
                 'edited_utc':self.edited_utc,
                 'guild_name':self.guild_name,
-                'embed_url':self.embed_url
+                'embed_url':self.embed_url,
+                'is_archived':self.is_archived
                 }

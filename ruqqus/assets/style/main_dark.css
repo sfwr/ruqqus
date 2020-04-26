@@ -13953,12 +13953,19 @@ ol > li::before {
 }
 
 .toast {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #CFCFCF;
   border: 0;
   display: none;
-}
-
-.toast.clipboard {
-  font-size: 1rem;
+  position: fixed;
+  bottom: 1.5rem;
+  margin: 0 auto;
+  left: 1.5rem;
+  right: 0;
+  width: 300px;
+  z-index: 1041;
+  background-color: #383838;
 }
 
 .navbar-light {
@@ -14705,6 +14712,10 @@ a:hover .link-arrow {
   background-color: #181818;
   border-radius: 0.35rem;
   overflow: hidden;
+  word-break: break-word;
+}
+.sidebar-section .profile-pic.profile-stacked {
+  box-shadow: 0 0 0px 3px #181818;
 }
 
 .sidebar-section.sidebar-trending .trending-hashtag, .sidebar-section.sidebar-trending .trending-guild {
@@ -17263,6 +17274,13 @@ pre .clo, pre .opn, pre .pun, code .clo, code .opn, code .pun {
 
   .toggle-view {
     padding-top: 2px;
+  }
+
+  .toast {
+    bottom: 1.5rem;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 
   /*

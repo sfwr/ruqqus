@@ -12,6 +12,7 @@ from ruqqus.helpers.base36 import *
 from ruqqus.helpers.security import *
 from ruqqus.helpers.lazy import lazy
 import ruqqus.helpers.aws as aws
+#from ruqqus.helpers.alerts import send_notification
 from .votes import Vote
 from .alts import Alt
 from .titles import Title
@@ -62,13 +63,15 @@ class User(Base, Stndrd):
     hide_nsfl=Column(Boolean, default=False)
     is_private=Column(Boolean, default=False)
     read_announcement_utc=Column(Integer, default=0)
+    discord_id=Column(Integer, default=None)
+
     
 
     moderates=relationship("ModRelationship", lazy="dynamic")
     banned_from=relationship("BanRelationship", lazy="dynamic", primaryjoin="BanRelationship.user_id==User.id")
     subscriptions=relationship("Subscription", lazy="dynamic")
     boards_created=relationship("Board", lazy="dynamic")
-    contributes=relationship("ContributorRelationship", lazy="dynamic")
+    contributes=relationship("ContributorRelationship", lazy="dynamic", primaryjoin="ContributorRelationship.user_id==User.id")
 
     following=relationship("Follow", lazy="dynamic", primaryjoin="Follow.user_id==User.id")
     followers=relationship("Follow", lazy="dynamic", primaryjoin="Follow.target_id==User.id")
@@ -142,7 +145,7 @@ class User(Base, Stndrd):
         if not self.admin_level >=4:
             #admins can see everything
             m=self.moderates.filter_by(invite_rescinded=False).subquery()
-            c=self.contributes.subquery()
+            c=self.contributes.filter_by(is_active=True).subquery()
             posts=posts.join(m,
                              m.c.board_id==Submission.board_id,
                              isouter=True
@@ -479,7 +482,9 @@ class User(Base, Stndrd):
         self.profile_nonce+=1
 
         aws.upload_file(name=f"users/{self.username}/profile-{self.profile_nonce}.png",
-                        file=file)
+                        file=file,
+                        resize=(100,100)
+                        )
         self.has_profile=True
         db.add(self)
         db.commit()
@@ -543,7 +548,15 @@ class User(Base, Stndrd):
         if self.karma + self.comment_karma < 50:
             return False
 
+        if len(self.boards_modded) >= 10:
+            return False
+
         return True
+    
+    @property
+    def can_join_gms(self):
+        return len(self.boards_modded) < 10
+    
 
     @property
     def can_siege(self):
@@ -585,8 +598,31 @@ class User(Base, Stndrd):
 
         return  max(self.karma+self.comment_karma, -5)
 
-        
+    @property        
     def can_use_darkmode(self):
         return True
         #return self.referral_count or self.has_earned_darkmode or self.has_badge(16) or self.has_badge(17)
 
+
+    def ban(self, admin, include_alts=True):
+
+        #Takes care of all functions needed for account termination
+
+        self.del_banner()
+        self.del_profile()
+        self.is_banned=admin.id
+        db.add(self)
+        db.commit()
+
+        if include_alts:
+            for alt in self.alts:
+                alt.ban(admin=admin, include_alts=False)
+
+    def unban(self):
+
+        #Takes care of all functions needed for account reinstatement.
+
+        self.is_banned=0
+
+        db.add(self)
+        db.commit()
