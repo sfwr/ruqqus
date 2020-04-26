@@ -60,7 +60,7 @@ class User(Base, Stndrd):
     last_siege_utc=Column(Integer, default=0)
     mfa_secret=Column(String(16), default=None)
     hide_offensive=Column(Boolean, default=False)
-    hide_nsfl=Column(Boolean, default=False)
+    show_nsfl=Column(Boolean, default=False)
     is_private=Column(Boolean, default=False)
     read_announcement_utc=Column(Integer, default=0)
     discord_id=Column(Integer, default=None)
@@ -114,7 +114,7 @@ class User(Base, Stndrd):
         return int(time.time())-self.created_utc
         
     @cache.memoize(timeout=300)
-    def idlist(self, sort="hot", page=1, t=None, hide_offensive=False, hide_nsfl=False, **kwargs):
+    def idlist(self, sort="hot", page=1, t=None, hide_offensive=False, **kwargs):
 
         
 
@@ -129,7 +129,7 @@ class User(Base, Stndrd):
         if hide_offensive:
             posts = posts.filter_by(is_offensive=False)
 
-        if hide_nsfl:
+        if not self.show_nsfl:
             posts = posts.filter_by(is_nsfl=False)
 
         board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
