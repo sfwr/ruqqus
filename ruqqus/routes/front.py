@@ -95,12 +95,12 @@ def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None, hide_offensive=Fal
     return posts
 
 @app.route("/", methods=["GET"])
-@app.route("/subscriptions", methods=["GET"])
+@app.route("/<subscriptions>", methods=["GET"])
 @app.route("/api/v1/front/listing", methods=["GET"])
-@app.route("/api/v1/subscriptions/listing", methods=["GET"])
+#@app.route("/api/v1/subscriptions/listing", methods=["GET"])
 @auth_desired
 @api
-def home(v):
+def home(v, subscriptions=""):
 
     if v and v.subscriptions.filter_by(is_active=True).count():
 
@@ -108,8 +108,8 @@ def home(v):
         sort=request.args.get("sort","hot")
 
         page=max(int(request.args.get("page",1)),0)
-        print(f"script root is : {request.script_root}")
-        if request.script_root == "/subscriptions" or request.script_root == "/api/v1/subscriptions/listing":
+
+        if subscriptions == "/subscriptions" or subscriptions == "/api/v1/subscriptions/listing":
             print("checking subscriptions")
             ids=v.idlist(subscription=True,
                          sort=sort,
