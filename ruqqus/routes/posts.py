@@ -182,7 +182,6 @@ def submit_post(v):
                                b=get_guild(request.form.get("board","")
                                            )
                                )
-
     #sanitize title
     title=sanitize(title, linkgen=False)
 
@@ -322,10 +321,9 @@ def submit_post(v):
     #check for embeddable video
     domain=parsed_url.netloc
 
+    if url:
+      repost = db.query(Submission).filter(Submission.url.ilike(url)).filter_by(board_id=board.id).order_by(Submission.id.asc()).first()
 
-
-    
-    
     new_post=Submission(title=title,
                         url=url,
                         author_id=user_id,
@@ -340,6 +338,9 @@ def submit_post(v):
                         author_name=user_name,
                         guild_name=board.name
                         )
+
+    if repost:
+        new_post.repost_id = repost.id
 
     db.add(new_post)
 
@@ -470,6 +471,25 @@ def toggle_post_nsfw(pid, v):
         abort(403)
 
     post.over_18 = not post.over_18
+    db.add(post)
+    db.commit()
+
+    return "", 204
+
+@app.route("/api/toggle_post_nsfl/<pid>", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def toggle_post_nsfl(pid, v):
+
+    post=get_post(pid)
+
+    if not post.author_id==v.id:
+        abort(403)
+
+    if post.board.is_nsfl and post.is_nsfl:
+        abort(403)
+
+    post.is_nsfl = not post.is_nsfl
     db.add(post)
     db.commit()
 

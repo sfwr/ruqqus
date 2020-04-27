@@ -34,8 +34,8 @@ def create_board_get(v):
                                    )
         return render_template("message.html",
                                v=v,
-                               title="Unable to make a guild. For now.",
-                               message="You need more Reputation.")
+                               title="You already lead 10 guilds." if not v.can_join_gms else "Unable to make a guild. For now.",
+                               message="You need to step down from a guild before you can make any more." if not v.can_join_gms else "You need more Reputation.")
 
     #check # recent boards made by user
     cutoff=int(time.time())-60*60*24
@@ -399,7 +399,11 @@ def mod_invite_username(bid, board, v):
     user=get_user(username)
 
     if not board.can_invite_mod(user):
-        abort(409)
+        return jsonify({"error":f"@{user.username} is already a mod or has already been invited."}), 409
+
+
+    if not user.can_join_gms:
+        return jsonify({"error":f"@{user.username} already leads enough guilds."}), 409
 
     if not user.can_make_guild:
         abort(409)
@@ -417,7 +421,7 @@ def mod_invite_username(bid, board, v):
     db.add(new_mod)
     db.commit()
     
-    return redirect(f"/+{board.name}/mod/mods")
+    return "", 204
 
 @app.route("/mod/<bid>/rescind/<username>", methods=["POST"])
 @auth_required
@@ -451,6 +455,9 @@ def mod_accept_board(bid, v):
     x=board.has_invite(v)
     if not x:
         abort(404)
+
+    if not user.can_join_gms:
+        return jsonify({"error":f"You already lead enough guilds."}), 409
 
     x.accepted=True
     db.add(x)

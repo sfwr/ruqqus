@@ -61,6 +61,7 @@ class User(Base, Age_times, Stndrd):
     last_siege_utc=Column(Integer, default=0)
     mfa_secret=Column(String(16), default=None)
     hide_offensive=Column(Boolean, default=False)
+    show_nsfl=Column(Boolean, default=False)
     is_private=Column(Boolean, default=False)
     read_announcement_utc=Column(Integer, default=0)
     discord_id=Column(Integer, default=None)
@@ -111,9 +112,9 @@ class User(Base, Age_times, Stndrd):
 
         
     @cache.memoize(timeout=300)
-    def idlist(self, sort="hot", page=1, t=None, hide_offensive = False, **kwargs):
+    def idlist(self, guild=False, subscription=False, sort="hot", page=1, t=None, hide_offensive=False, **kwargs):
 
-        
+
 
         posts=db.query(Submission).filter_by(is_banned=False,
                                              is_deleted=False,
@@ -126,15 +127,25 @@ class User(Base, Age_times, Stndrd):
         if hide_offensive:
             posts = posts.filter_by(is_offensive=False)
 
-        board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
-        user_ids =[x.target.id for x in self.following.all() if x.target.is_private==False]
-        
-        posts=posts.filter(
-            or_(
-                Submission.board_id.in_(board_ids),
-                Submission.author_id.in_(user_ids)
+        if not self.show_nsfl:
+            posts = posts.filter_by(is_nsfl=False)
+
+        if guild:
+            board_ids=[x.board_id for x in self.subscriptions.filter_by(is_active=True).all()]
+            posts = posts.filter(
+                or_(
+                    Submission.board_id.in_(board_ids)
                 )
             )
+        if subscription:
+            user_ids =[x.target.id for x in self.following.all() if x.target.is_private==False]
+            posts = posts.filter(
+                or_(
+                    Submission.author_id.in_(user_ids)
+                )
+            )
+        
+
 
         if not self.admin_level >=4:
             #admins can see everything
@@ -312,6 +323,9 @@ class User(Base, Age_times, Stndrd):
 
         if v and v.hide_offensive:
             comments=comments.filter_by(is_offensive=False)
+
+        if v and not v.show_nsfl:
+            comments=comments.filter_by(is_nsfl=False)
 
         if not (v and (v.admin_level >=3)):
             comments=comments.filter_by(is_deleted=False)
@@ -543,10 +557,16 @@ class User(Base, Age_times, Stndrd):
         if self.karma + self.comment_karma < 50:
             return False
 
-        if (len(self.boards_created.all()) + len(self.moderates.all())) >= 10:
+        if len(self.boards_modded) >= 10:
+
             return False
 
         return True
+    
+    @property
+    def can_join_gms(self):
+        return len(self.boards_modded) < 10
+    
 
     @property
     def can_siege(self):
