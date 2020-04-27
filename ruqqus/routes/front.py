@@ -108,7 +108,7 @@ def home(v):
         sort=request.args.get("sort","hot")
 
         page=max(int(request.args.get("page",1)),0)
-        print(f"script root is : {request.script_root}")
+        print(f"path is : {request.script_root}")
         if request.path == "/subscriptions" or request.path == "/api/v1/subscriptions/listing":
             print("checking subscriptions")
             ids=v.idlist(subscription=True,
@@ -119,7 +119,7 @@ def home(v):
                          hide_offensive = v.hide_offensive
                          )
         else:
-            print("checking subscriptions")
+            print("checking guilds")
             ids = v.idlist(guild=True,
                            sort=sort,
                            page=page,
