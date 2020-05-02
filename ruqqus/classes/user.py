@@ -608,6 +608,16 @@ class User(Base, Stndrd):
         return True
         #return self.referral_count or self.has_earned_darkmode or self.has_badge(16) or self.has_badge(17)
 
+    def suspend(self, admin, days, include_alts=True):
+
+        ban_time = int(time.time()) + (days * 86400)
+        self.is_banned = ban_time
+        db.add(self)
+        db.commit()
+
+        if include_alts:
+            for alt in self.alts:
+                alt.ban(admin=admin, include_alts=False, days=days)
 
     def ban(self, admin, include_alts=True):
 
