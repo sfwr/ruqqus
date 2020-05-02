@@ -46,7 +46,6 @@ class User(Base, Stndrd):
     notifications=relationship("Notification", lazy="dynamic", backref="user")
     referred_by=Column(Integer, default=None)
     is_banned=Column(Integer, default=0)
-    is_suspended=Column(Integer, default=0)
     ban_reason=Column(String, default="")
     login_nonce=Column(Integer, default=0)
     title_id=Column(Integer, ForeignKey("titles.id"), default=None)
@@ -611,7 +610,7 @@ class User(Base, Stndrd):
 
     def suspend(self, admin, days, include_alts=True):
 
-        ban_time = int(time.time()) + (days * 86400)
+
         self.is_suspended = ban_time
         db.add(self)
         db.commit()
@@ -620,18 +619,26 @@ class User(Base, Stndrd):
             for alt in self.alts:
                 alt.ban(admin=admin, include_alts=False, days=days)
 
-    def ban(self, admin, include_alts=True):
+    def ban(self, admin, include_alts=True, days=0):
 
-        #Takes care of all functions needed for account termination
+        if days > 0:
+            ban_time = int(time.time()) + (days * 86400)
+            self.is_banned = admin.id
 
-        self.del_banner()
-        self.del_profile()
-        self.is_banned=admin.id
+        else:
+            #Takes care of all functions needed for account termination
+
+            self.del_banner()
+            self.del_profile()
+            self.is_banned=admin.id
+
         db.add(self)
         db.commit()
 
         if include_alts:
             for alt in self.alts:
+                if days > 0:
+                    alt.ban(admin=admin, include_alts=False, days=days)
                 alt.ban(admin=admin, include_alts=False)
 
     def unban(self):
@@ -639,15 +646,6 @@ class User(Base, Stndrd):
         #Takes care of all functions needed for account reinstatement.
 
         self.is_banned=0
-
-        db.add(self)
-        db.commit()
-
-    def unsuspend(self):
-
-        # Takes care of all functions needed for account reinstatement.
-
-        self.is_suspended = 0
 
         db.add(self)
         db.commit()
