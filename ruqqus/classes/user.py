@@ -46,6 +46,7 @@ class User(Base, Age_times, Stndrd):
     notifications=relationship("Notification", lazy="dynamic", backref="user")
     referred_by=Column(Integer, default=None)
     is_banned=Column(Integer, default=0)
+    unban_utc=Column(Integer, default=0)
     ban_reason=Column(String, default="")
     feed_nonce=Column(Integer, default=1)
     login_nonce=Column(Integer, default=0)
@@ -625,14 +626,14 @@ class User(Base, Age_times, Stndrd):
 
         if days > 0:
             ban_time = int(time.time()) + (days * 86400)
-            self.is_banned = ban_time
+            self.unban_utc = ban_time
 
         else:
             #Takes care of all functions needed for account termination
-
             self.del_banner()
             self.del_profile()
-            self.is_banned=admin.id
+
+        self.is_banned=admin.id
 
         db.add(self)
         db.commit()
@@ -647,11 +648,17 @@ class User(Base, Age_times, Stndrd):
                 # ban alts
                 alt.ban(admin=admin, include_alts=False)
 
-    def unban(self):
+    def unban(self, include_alts=False):
 
         #Takes care of all functions needed for account reinstatement.
 
         self.is_banned=0
+        self.unban_utc=0
 
         db.add(self)
         db.commit()
+
+        if include_alts:
+            for alt in self.alts:
+                # ban alts
+                alt.unban()
