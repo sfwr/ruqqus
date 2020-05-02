@@ -129,6 +129,10 @@ def login_post():
     session.permanent=True
 
     check_for_alts(account.id)
+    if account.is_suspended and time.time() > account.is_suspended:
+        account.unsuspend()
+
+
 
     #check self-setting badges
     badge_types = db.query(BadgeDef).filter(BadgeDef.qualification_expr.isnot(None)).all()
