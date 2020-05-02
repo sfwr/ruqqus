@@ -36,6 +36,48 @@ def ban_user(user_id, v):
     
     return (redirect(user.url), user)
 
+
+@app.route("/api/suspend_user/<user_id>", methods=["POST"])
+@admin_level_required(3)
+@validate_formkey
+def suspend_user(user_id, v):
+    user = db.query(User).filter_by(id=user_id).first()
+
+    if not user:
+        abort(400)
+
+    days = request.args.get("days", 7)
+
+    if reason:
+        text = f"Your Ruqqus account has been suspended for {days} days. \n reason:\n\n{reason}"
+    else:
+        text = f"Your Ruqqus account has been permanently suspended for {days} days due to a Terms of Service violation."
+
+    send_notification(self, text)
+
+    user.suspend(admin=v, days=days)
+
+    db.commit()
+
+    return (redirect(user.url), user)
+
+
+@app.route("/api/unsuspend_user/<user_id>", methods=["POST"])
+@admin_level_required(3)
+@validate_formkey
+def unsuspend_user(user_id, v):
+    user = db.query(User).filter_by(id=user_id).first()
+
+    if not user:
+        abort(400)
+
+    user.unsuspend()
+
+    send_notification(self,
+                      "Your Ruqqus account has been reinstated. Please carefully review and abide by the [terms of service](/help/terms) and [content policy](/help/rules) to ensure that you don't get suspended again.")
+
+    return (redirect(user.url), user)
+
 @app.route("/api/unban_user/<user_id>", methods=["POST"])
 @admin_level_required(3)
 @validate_formkey
