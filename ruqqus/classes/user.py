@@ -311,7 +311,7 @@ class User(Base, Age_times, Stndrd):
         if self.is_banned and (not v or v.admin_level < 3):
             return render_template("userpage_banned.html", u=self, v=v)
 
-        if self.is_private and (not v or (v.id!=self.id and not v.admin_level<3)):
+        if self.is_private and (not v or (v.id!=self.id and v.admin_level<3)):
             return render_template("userpage_private.html", u=self, v=v)
         
         page=int(request.args.get("page","1"))
@@ -579,6 +579,11 @@ class User(Base, Age_times, Stndrd):
         return now-self.last_siege_utc > 60*60*24*30
 
     @property
+    def can_submit_image(self):
+
+        return self.karma + self.comment_karma >=500
+    
+    @property
     def json(self):
 
         if self.is_banned:
@@ -616,18 +621,30 @@ class User(Base, Age_times, Stndrd):
         #return self.referral_count or self.has_earned_darkmode or self.has_badge(16) or self.has_badge(17)
 
 
-    def ban(self, admin, include_alts=True):
+    def ban(self, admin, include_alts=True, days=0):
 
-        #Takes care of all functions needed for account termination
+        if days > 0:
+            ban_time = int(time.time()) + (days * 86400)
+            self.is_banned = ban_time
 
-        self.del_banner()
-        self.del_profile()
-        self.is_banned=admin.id
+        else:
+            #Takes care of all functions needed for account termination
+
+            self.del_banner()
+            self.del_profile()
+            self.is_banned=admin.id
+
         db.add(self)
         db.commit()
 
         if include_alts:
             for alt in self.alts:
+
+                # suspend alts
+                if days > 0:
+                    alt.ban(admin=admin, include_alts=False, days=days)
+
+                # ban alts
                 alt.ban(admin=admin, include_alts=False)
 
     def unban(self):
