@@ -608,22 +608,12 @@ class User(Base, Stndrd):
         return True
         #return self.referral_count or self.has_earned_darkmode or self.has_badge(16) or self.has_badge(17)
 
-    def suspend(self, admin, days, include_alts=True):
-
-
-        self.is_suspended = ban_time
-        db.add(self)
-        db.commit()
-
-        if include_alts:
-            for alt in self.alts:
-                alt.ban(admin=admin, include_alts=False, days=days)
 
     def ban(self, admin, include_alts=True, days=0):
 
         if days > 0:
             ban_time = int(time.time()) + (days * 86400)
-            self.is_banned = admin.id
+            self.is_banned = ban_time
 
         else:
             #Takes care of all functions needed for account termination
@@ -637,8 +627,12 @@ class User(Base, Stndrd):
 
         if include_alts:
             for alt in self.alts:
+
+                # suspend alts
                 if days > 0:
                     alt.ban(admin=admin, include_alts=False, days=days)
+
+                # ban alts
                 alt.ban(admin=admin, include_alts=False)
 
     def unban(self):
