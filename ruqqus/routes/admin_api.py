@@ -56,7 +56,8 @@ def unban_user(user_id, v):
     if not user:
         abort(400)
 
-    user.unban()
+    alts = request.args.get("alts", False)
+    user.unban(include_alts=alts)
 
 
     send_notification(self,
