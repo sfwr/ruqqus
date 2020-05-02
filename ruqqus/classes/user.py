@@ -46,6 +46,7 @@ class User(Base, Stndrd):
     notifications=relationship("Notification", lazy="dynamic", backref="user")
     referred_by=Column(Integer, default=None)
     is_banned=Column(Integer, default=0)
+    is_suspended=Column(Integer, default=0)
     ban_reason=Column(String, default="")
     login_nonce=Column(Integer, default=0)
     title_id=Column(Integer, ForeignKey("titles.id"), default=None)
@@ -611,7 +612,7 @@ class User(Base, Stndrd):
     def suspend(self, admin, days, include_alts=True):
 
         ban_time = int(time.time()) + (days * 86400)
-        self.is_banned = ban_time
+        self.is_suspended = ban_time
         db.add(self)
         db.commit()
 
@@ -638,6 +639,15 @@ class User(Base, Stndrd):
         #Takes care of all functions needed for account reinstatement.
 
         self.is_banned=0
+
+        db.add(self)
+        db.commit()
+
+    def unsuspend(self):
+
+        # Takes care of all functions needed for account reinstatement.
+
+        self.is_suspended = 0
 
         db.add(self)
         db.commit()
