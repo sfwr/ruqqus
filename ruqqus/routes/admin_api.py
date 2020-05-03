@@ -58,11 +58,11 @@ def unban_user(user_id, v):
     if not user:
         abort(400)
 
-    alts = request.args.get("alts", False)
+    alts = request.form.get("alts", False)
     user.unban(include_alts=alts)
 
 
-    send_notification(self,
+    send_notification(user,
         "Your Ruqqus account has been reinstated. Please carefully review and abide by the [terms of service](/help/terms) and [content policy](/help/rules) to ensure that you don't get suspended again.")
 
     
