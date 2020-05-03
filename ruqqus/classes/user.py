@@ -380,19 +380,6 @@ class User(Base, Age_times, Stndrd):
         return generate_hash(f"{self.username}{self.id}{self.feed_nonce}{self.created_utc}")
 
 
-
-
-
-    def feedkey(self, new=False):
-        if new:
-            self.feed_nonce+=1
-            db.commit()
-        return generate_hash(f"{self.username}{self.id}{self.feed_nonce}{self.created_utc}")
-
-
-
-
-
     @property
     def formkey(self):
 
