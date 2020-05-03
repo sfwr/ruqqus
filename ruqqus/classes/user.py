@@ -48,7 +48,7 @@ class User(Base, Age_times, Stndrd):
     is_banned=Column(Integer, default=0)
     unban_utc=Column(Integer, default=0)
     ban_reason=Column(String, default="")
-    feed_nonce=Column(Integer, default=1)
+    feed_nonce=Column(Integer, default=0)
     login_nonce=Column(Integer, default=0)
     title_id=Column(Integer, ForeignKey("titles.id"), default=None)
     title=relationship("Title", lazy="joined")
@@ -113,7 +113,7 @@ class User(Base, Age_times, Stndrd):
 
         
     @cache.memoize(timeout=300)
-    def idlist(self, guild=False, subscription=False, sort="hot", page=1, t=None, hide_offensive=False, **kwargs):
+    def idlist(self, guild=False, subscription=False, sort="hot", page=1, t=None, hide_offensive=False, ids_only=True, **kwargs):
 
 
 
@@ -194,9 +194,11 @@ class User(Base, Age_times, Stndrd):
         else:
             abort(422)
 
-        posts=[x.id for x in posts.offset(25*(page-1)).limit(26).all()]
-
-        return posts
+        if ids_only:
+            posts=[x.id for x in posts.offset(25*(page-1)).limit(26).all()]
+            return posts
+        else:
+            return [x for x in posts.offset(25*(page-1)).limit(25).all()]
 
     def list_of_posts(self, ids):
 
@@ -372,6 +374,14 @@ class User(Base, Age_times, Stndrd):
                                page=page,
                                next_exists=next_exists,
                                is_following=is_following)
+    @property
+    def feedkey(self):
+
+        return generate_hash(f"{self.username}{self.id}{self.feed_nonce}{self.created_utc}")
+
+
+
+
 
     def feedkey(self, new=False):
         if new:
