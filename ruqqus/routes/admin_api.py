@@ -21,7 +21,8 @@ def ban_user(user_id, v):
     user=db.query(User).filter_by(id=user_id).first()
 
     # check for number of days for suspension
-    days = request.args.get("days", 0)
+    days = int(request.args.get("days", 0))
+    reason = request.form.get("reason", "")
 
     if not user:
         abort(400)
@@ -30,7 +31,7 @@ def ban_user(user_id, v):
         if reason:
             text = f"Your Ruqqus account has been suspended for {days} days. \n reason:\n\n{reason}"
         else:
-            text = f"Your Ruqqus account has been permanently suspended for {days} days due to a Terms of Service violation."
+            text = f"Your Ruqqus account has been suspended for {days} days due to a Terms of Service violation."
         user.ban(admin=v, days=days)
 
     else:
@@ -38,9 +39,10 @@ def ban_user(user_id, v):
             text = f"Your Ruqqus account has been permanently suspended for the following reason:\n\n{reason}"
         else:
             text = "Your Ruqqus account has been permanently suspended due to a Terms of Service violation."
+
         user.ban(admin=v)
 
-    send_notification(self, text)
+    send_notification(user, text)
     
     db.commit()
     
