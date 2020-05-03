@@ -26,8 +26,6 @@ def ban_user(user_id, v):
     if not user:
         abort(400)
 
-    send_notification(self, text)
-
     if days > 0:
         if reason:
             text = f"Your Ruqqus account has been suspended for {days} days. \n reason:\n\n{reason}"
@@ -41,6 +39,8 @@ def ban_user(user_id, v):
         else:
             text = "Your Ruqqus account has been permanently suspended due to a Terms of Service violation."
         user.ban(admin=v)
+
+    send_notification(self, text)
     
     db.commit()
     
