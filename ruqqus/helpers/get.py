@@ -12,9 +12,19 @@ def get_user(username, graceful=False):
             return None
     return x
 
-def get_post(pid):
+def get_post(pid, v=None):
 
-    x=db.query(Submission).filter_by(id=base36decode(pid)).first()
+    if v:
+        vote=db.query(Vote).filter_by(user_id=v.id, post_id=base36decode(pid)).subquery()
+        x=db.query(Submission, Vote).select_from(join(vote,
+                                                      vote.c.post_id==Submission.id,
+                                                      isouter=True
+                                                      )
+                                                 ).filter_by(Submission.id=base36decode(pid)
+                                                             ).first()
+
+    else:
+        x=db.query(Submission).filter_by(id=base36decode(pid)).first()
     if not x:
         abort(404)
     return x
