@@ -34,7 +34,7 @@ def get_post(pid, v=None):
 
 def get_comment(cid):
 
-    i=base36decode(pid)
+    i=base36decode(cid)
 
     if v:
         vt=db.query(CommentVote).filter_by(user_id=v.id, submission_id=i).subquery()
