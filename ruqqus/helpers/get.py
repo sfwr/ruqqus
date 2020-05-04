@@ -22,10 +22,12 @@ def get_post(pid, v=None):
                                                       vote.c.submission_id==post.c.id,
                                                       isouter=True
                                                       )
-                                                 ).filter(Submission.id==base36decode(pid)
-                                                             ).first()
+                                                 ).first()
         x=items[0]
-        x._voted=items[1]
+        if items[1]:
+            x._voted=items[1]
+        else:
+            x._voted=None
 
     else:
         x=db.query(Submission).filter_by(id=base36decode(pid)).first()
