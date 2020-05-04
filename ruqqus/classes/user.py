@@ -280,20 +280,12 @@ class User(Base, Stndrd):
     
     def vote_status_on_post(self, post):
 
-        vote = self.votes.filter_by(submission_id=post.id).first()
-        if not vote:
-            return 0
-        
-        return vote.vote_type
+        return post.voted
 
 
     def vote_status_on_comment(self, comment):
 
-        vote = self.commentvotes.filter_by(comment_id=comment.id).first()
-        if not vote:
-            return 0
-        
-        return vote.vote_type
+        return comment.voted
     
 
     def hash_password(self, password):
