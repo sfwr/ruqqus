@@ -173,7 +173,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
             else:
                 return ""
 
-        p
+        
         return render_template("single_comment.html",
                                v=v,
                                c=self,
