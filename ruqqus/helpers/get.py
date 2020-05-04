@@ -21,7 +21,7 @@ def get_post(pid, v=None):
 
 
         items=db.query(Submission, Vote).select_from(Submission).join(vote,
-            vote.c.submission_id==post.c.id,
+            vote.c.submission_id==Submission.id,
             isouter=True
             ).filter(Submission.id==i).first()
         
