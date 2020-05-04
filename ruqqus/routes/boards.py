@@ -171,7 +171,7 @@ def board_name(name, v):
     next_exists=(len(ids)==26)
     ids=ids[0:25]
 
-    posts=[db.query(Submission).filter_by(id=x).first() for x in ids]
+    posts=[get_post(base36encode(x),v=v) for x in ids]
 
 
     if page==1:
