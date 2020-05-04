@@ -17,11 +17,11 @@ def get_post(pid, v=None):
     i=base36decode(pid)
 
     if v:
-        vote=db.query(Vote).filter_by(user_id=v.id, submission_id=i).subquery()
+        vt=db.query(Vote).filter_by(user_id=v.id, submission_id=i).subquery()
 
 
-        items=db.query(Submission, Vote).select_from(Submission).join(vote,
-            vote.c.submission_id==Submission.id,
+        items=db.query(Submission, Vote).select_from(Submission).join(vt,
+            #vt.c.submission_id==Submission.id,
             isouter=True
             ).filter(Submission.id==i).first()
         
