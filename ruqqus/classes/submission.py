@@ -211,8 +211,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
         for c in comments:
             c.__dict__["replies"]=index.get(c.fullname, [])
-            for r in c.replies:
-                r.__dict__["parent"]=c
 
         self.__dict__["replies"]=index.get(self.fullname, [])
         
