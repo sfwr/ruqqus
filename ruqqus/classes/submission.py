@@ -189,25 +189,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
     def tree_comments(self, comment=None, v=None):
 
-        # def tree_replies(thing, layer=1):
-
-        #     thing.__dict__["replies"]=[]
-        #     i=len(comments)-1
-        
-        #     while i>=0:
-        #         if comments[i].parent_fullname==thing.fullname:
-        #             thing.__dict__["replies"].append(comments[i])
-        #             comments[i].__dict__["parent"]=thing
-        #             #print(" "*layer+"-"+comments[i].base36id)
-        #             comments.pop(i)
-
-        #         i-=1
-                
-        #     if layer <=5:
-        #         for reply in thing.replies:
-        #             tree_replies(reply, layer=layer+1)
-                
-        ######
                 
         if comment:
             self.replies=[comment]
@@ -221,8 +202,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         #Treeing is done from the end because reasons, so these sort orders are reversed
         comments=self.comments(v=v, sort_type=sort_type)
 
-        print(f'treeing {len(comments)} comments')
-
         index={}
         for c in comments:
             if c.parent_fullname in index:
@@ -232,11 +211,10 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
         for c in comments:
             c.__dict__["replies"]=index.get(c.fullname, [])
+            for r in c.replies:
+                r.__dict__["parent"]=c
 
         self.__dict__["replies"]=index.get(self.fullname, [])
-
-        print('done')
-
         
 
 
