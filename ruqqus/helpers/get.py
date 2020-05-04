@@ -20,14 +20,11 @@ def get_post(pid, v=None):
         vote=db.query(Vote).filter_by(user_id=v.id, submission_id=i).subquery()
         post=db.query(Submission).filter_by(id=i).subquery()
 
-        items=db.query(Submission, Vote).select_from(post.join(vote,
-                                                      vote.c.submission_id==post.c.id,
-                                                      isouter=True
-                                                      )
-                                                 ).filter(vote.c.user_id.in_([v.id,None]),
-                                                          vote.c.submission_id.in_([i,None]),
-                                                          post.c.id==i
-                                                          ).first()
+        items=db.query(Submission, Vote).select_from(post).join(vote,
+            vote.c.submission_id==post.c.id,
+            isouter=True
+            ).first()
+        
         x=items[0]
         if items[1]:
             x._voted=items[1]
