@@ -2,6 +2,7 @@ from flask import *
 import time
 from sqlalchemy import *
 from sqlalchemy.orm import relationship, deferred
+from sqlalchemy.ext.associationproxy import association_proxy
 from random import randint
 import math
 from .mix_ins import *
@@ -47,6 +48,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     post=relationship("Submission", lazy="joined")
     flags=relationship("CommentFlag", lazy="joined", backref="comment")
     author=relationship("User", lazy="joined", innerjoin=True, primaryjoin="User.id==Comment.author_id")
+    board=association_proxy("post", "boards")
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
@@ -264,10 +266,6 @@ class Notification(Base):
     def __repr__(self):
 
         return f"<Notification(id={self.id})"
-
-    @property
-    def board(self):
-        return self.post.board
 
     @property
     def voted(self):
