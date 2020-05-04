@@ -12,7 +12,7 @@ from ruqqus.helpers.base36 import *
 from ruqqus.helpers.lazy import lazy
 import ruqqus.helpers.aws as aws
 from ruqqus.__main__ import Base, db, cache
-from .votes import Vote
+from .votes import Vote, CommentVote
 from .domains import Domain
 from .flags import Flag
 from .badwords import *
@@ -34,7 +34,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     distinguish_level=Column(Integer, default=0)
     created_str=Column(String(255), default=None)
     stickied=Column(Boolean, default=False)
-    comments=relationship("Comment", lazy="dynamic", primaryjoin="Comment.parent_submission==Submission.id", backref="submissions")
+    _comments=relationship("Comment", lazy="dynamic", primaryjoin="Comment.parent_submission==Submission.id", backref="submissions")
     body=Column(String(10000), default="")
     body_html=Column(String(20000), default="")
     embed_url=Column(String(256), default="")
@@ -187,7 +187,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
 
 
-    def tree_comments(self, comment=None):
+    def tree_comments(self, comment=None, v=None):
 
         def tree_replies(thing, layer=1):
 
@@ -218,22 +218,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         #get sort type
         sort_type = request.args.get("sort","hot")
 
-
         #Treeing is done from the end because reasons, so these sort orders are reversed
-        if sort_type=="hot":
-            comments=self.comments.order_by(Comment.score_hot.asc()).all()
-        elif sort_type=="top":
-            comments=self.comments.order_by(Comment.score_top.asc()).all()
-        elif sort_type=="new":
-            comments=self.comments.order_by(Comment.created_utc.desc()).all()
-        elif sort_type=="disputed":
-            comments=self.comments.order_by(Comment.score_disputed.asc()).all()
-        elif sort_type=="random":
-            c=self.comments.all()
-            comments=random.sample(c, k=len(c))
-        else:
-            abort(422)
-
+        comments=self.comments(v=v, sort_type=sort_type)
 
         #print(f'treeing {len(comments)} comments')
         tree_replies(self)
@@ -313,7 +299,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                     'permalink':self.permalink,
                     'guild_name':self.guild_name
                     }
-        return {'author':self.author_name,
+        data= {'author':self.author_name,
                 'permalink':self.permalink,
                 'is_banned':False,
                 'is_deleted':False,
@@ -335,7 +321,61 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 'embed_url':self.embed_url,
                 'is_archived':self.is_archived
                 }
+
+        if "_voted" in self.__dict__:
+            data["voted"]=self._voted
+
+        return data
+
     @property
     def voted(self):
         return self._voted if "_voted" in self.__dict__ else 0
+    
+    def comments(self, v=None, sort_type="hot"):
+
+        if v:
+            votes=db.query(CommentVote).filter(CommentVote.user_id==v.id).subquery()
+
+            comms=db.query(Comment, votes.c.vote_type).filter(Comment.parent_submission==self.id).join(votes, isouter=True)
+
+            if sort_type=="hot":
+                comments=comms.order_by(Comment.score_hot.asc()).all()
+            elif sort_type=="top":
+                comments=comms.order_by(Comment.score_top.asc()).all()
+            elif sort_type=="new":
+                comments=comms.order_by(Comment.created_utc.desc()).all()
+            elif sort_type=="disputed":
+                comments=comms.order_by(Comment.score_disputed.asc()).all()
+            elif sort_type=="random":
+                c=comms.all()
+                comments=random.sample(c, k=len(c))
+            else:
+                abort(422)
+
+
+            output=[]
+            for c in comms:
+                comment=c[0]
+                comment._voted=c[1] if c[1] else 0
+                output.append[comment]
+            return output
+
+        else:
+            comms=self._comments
+
+            if sort_type=="hot":
+                comments=comms.order_by(Comment.score_hot.asc()).all()
+            elif sort_type=="top":
+                comments=comms.order_by(Comment.score_top.asc()).all()
+            elif sort_type=="new":
+                comments=comms.order_by(Comment.created_utc.desc()).all()
+            elif sort_type=="disputed":
+                comments=comms.order_by(Comment.score_disputed.asc()).all()
+            elif sort_type=="random":
+                c=comms.all()
+                comments=random.sample(c, k=len(c))
+            else:
+                abort(422)
+
+            return comments
     
