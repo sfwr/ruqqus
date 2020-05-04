@@ -357,7 +357,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             for c in comms:
                 comment=c[0]
                 comment._voted=c[1] if c[1] else 0
-                output.append[comment]
+                output.append(comment)
             return output
 
         else:
