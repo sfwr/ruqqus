@@ -29,9 +29,9 @@ def comment_cid(cid):
 @api
 def post_pid_comment_cid(p_id, c_id, v=None):
 
-    comment=get_comment(c_id)
+    comment=get_comment(c_id, v=v)
 
-    post=get_post(p_id)
+    post=get_post(p_id, v=v)
 
     if comment.parent_submission != post.id:
         abort(404)

@@ -32,7 +32,7 @@ def get_post(pid, v=None):
         abort(404)
     return x
 
-def get_comment(cid):
+def get_comment(cid, v=None):
 
     i=base36decode(cid)
 
