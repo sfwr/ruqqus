@@ -241,7 +241,9 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
                 'is_archived':self.is_archived
                 }
             
-        
+    @property
+    def voted(self):
+        return self._voted if "_voted" in self.__dict__ else 0
         
 class Notification(Base):
 
@@ -266,3 +268,8 @@ class Notification(Base):
     @property
     def board(self):
         return self.post.board
+
+    @property
+    def voted(self):
+        return 0
+    

@@ -337,5 +337,5 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 }
     @property
     def voted(self):
-        return self._voted if "_voted" in self.__dict__ eles 0
+        return self._voted if "_voted" in self.__dict__ else 0
     
