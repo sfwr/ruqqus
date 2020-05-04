@@ -26,7 +26,7 @@ def get_post(pid, v=None):
                                                       )
                                                  ).filter(Vote.user_id.in_([v.id,None]),
                                                           Vote.submission_id.in_([i,None]),
-                                                          Submission.id=i
+                                                          Submission.id==i
                                                           ).first()
         x=items[0]
         if items[1]:
