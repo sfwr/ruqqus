@@ -17,7 +17,7 @@ def get_post(pid, v=None):
     if v:
         vote=db.query(Vote).filter_by(user_id=v.id, submission_id=base36decode(pid)).subquery()
         items=db.query(Submission, Vote).select_from(join(vote,
-                                                      vote.c.post_id==Submission.id,
+                                                      vote.c.submission_id==Submission.id,
                                                       isouter=True
                                                       )
                                                  ).filter(Submission.id==base36decode(pid)
