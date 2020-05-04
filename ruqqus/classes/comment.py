@@ -60,7 +60,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     rank_fiery=deferred(Column(Float, server_default=FetchedValue()))
     rank_hot=deferred(Column(Float, server_default=FetchedValue()))
 
-    flag_count=deferred(Column(Integer, server_default=FetchedValue()))
+    flag_count=Column(Integer, server_default=FetchedValue())
 
     board_id=Column(Integer, server_default=FetchedValue())
     
@@ -125,10 +125,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     @property
     def replies(self):
 
-        if "replies" in self.__dict__:
-            return self.__dict__["replies"]
-        else:
-            return db.query(Comment).filter_by(parent_fullname=self.fullname).all()
+        return self.__dict__.get("replies", db.query(Comment).filter_by(parent_fullname=self.fullname).all())
 
     @property
     @lazy
