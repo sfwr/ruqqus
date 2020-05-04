@@ -15,13 +15,15 @@ def get_user(username, graceful=False):
 def get_post(pid, v=None):
 
     if v:
-        vote=db.query(Vote).filter_by(user_id=v.id, post_id=base36decode(pid)).subquery()
-        x=db.query(Submission, Vote).select_from(join(vote,
+        vote=db.query(Vote).filter_by(user_id=v.id, submission_id=base36decode(pid)).subquery()
+        items=db.query(Submission, Vote).select_from(join(vote,
                                                       vote.c.post_id==Submission.id,
                                                       isouter=True
                                                       )
                                                  ).filter(Submission.id==base36decode(pid)
                                                              ).first()
+        x=items[0]
+        x._voted=items[1]
 
     else:
         x=db.query(Submission).filter_by(id=base36decode(pid)).first()
