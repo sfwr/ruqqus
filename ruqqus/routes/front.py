@@ -3,6 +3,7 @@ from flask import *
 from sqlalchemy import *
 
 from ruqqus.helpers.wrappers import *
+from ruqqus.helpers.get import *
 
 from ruqqus.__main__ import app, db, cache
 from ruqqus.classes.submission import Submission
@@ -115,7 +116,10 @@ def home(v):
                      hide_offensive = v.hide_offensive
                      )
 
-        posts, next_exists = v.list_of_posts(ids)
+        next_exists=(len(ids)==26)
+        ids=ids[0:25]
+
+        posts=[get_post(base36encode(x), v=v) for x in ids]
         
         #If page 1, check for sticky
         if page==1:
