@@ -24,9 +24,9 @@ def get_post(pid, v=None):
                                                       vote.c.submission_id==post.c.id,
                                                       isouter=True
                                                       )
-                                                 ).filter(Vote.user_id.in_([v.id,None]),
-                                                          Vote.submission_id.in_([i,None]),
-                                                          Submission.id==i
+                                                 ).filter(vote.c.user_id.in_([v.id,None]),
+                                                          vote.c.submission_id.in_([i,None]),
+                                                          post.c.id==i
                                                           ).first()
         x=items[0]
         if items[1]:
