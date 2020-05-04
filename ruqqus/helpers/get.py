@@ -20,7 +20,7 @@ def get_post(pid, v=None):
                                                       vote.c.post_id==Submission.id,
                                                       isouter=True
                                                       )
-                                                 ).filter_by(Submission.id=base36decode(pid)
+                                                 ).filter(Submission.id==base36decode(pid)
                                                              ).first()
 
     else:
