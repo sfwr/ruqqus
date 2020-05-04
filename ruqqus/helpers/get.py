@@ -26,7 +26,7 @@ def get_post(pid, v=None):
         x._voted=items[1] if items[1] else 0
 
     else:
-        x=db.query(Submission).filter_by(id=base36decode(pid)).first()
+        x=db.query(Submission).filter_by(id=i).first()
 
     if not x:
         abort(404)
@@ -46,7 +46,7 @@ def get_comment(cid, v=None):
         x._voted=items[1] if items[1] else 0
 
     else:
-        x=db.query(Comment).filter_by(id=base36decode(pid)).first()
+        x=db.query(Comment).filter_by(id=i).first()
 
     if not x:
         abort(404)
