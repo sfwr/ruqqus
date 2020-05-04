@@ -20,16 +20,10 @@ def get_post(pid, v=None):
         vt=db.query(Vote).filter_by(user_id=v.id, submission_id=i).subquery()
 
 
-        items=db.query(Submission, Vote).select_from(Submission).join(vt,
-            #vt.c.submission_id==Submission.id,
-            isouter=True
-            ).filter(Submission.id==i).first()
+        items= db.query(Submission, vt.c.vote_type).filter(Submission.id==i).join(vt, isouter=True).first()
         
         x=items[0]
-        if items[1]:
-            x._voted=items[1]
-        else:
-            x._voted=None
+        x._voted=items[1] if items[1] else 0
 
     else:
         x=db.query(Submission).filter_by(id=base36decode(pid)).first()
@@ -40,7 +34,20 @@ def get_post(pid, v=None):
 
 def get_comment(cid):
 
-    x=db.query(Comment).filter_by(id=base36decode(cid)).first()
+    i=base36decode(pid)
+
+    if v:
+        vt=db.query(CommentVote).filter_by(user_id=v.id, submission_id=i).subquery()
+
+
+        items= db.query(Comment, vt.c.vote_type).filter(Comment.id==i).join(vt, isouter=True).first()
+        
+        x=items[0]
+        x._voted=items[1] if items[1] else 0
+
+    else:
+        x=db.query(Comment).filter_by(id=base36decode(pid)).first()
+
     if not x:
         abort(404)
     return x
