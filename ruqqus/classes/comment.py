@@ -94,16 +94,6 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     def is_archived(self):
         return self.post.is_archived
     
-
-    @property
-    @lazy
-    def board(self):
-
-        if self.post:
-            return self.post.board
-        else:
-            return None
-    
     @property
     @lazy
     def parent(self):
