@@ -221,8 +221,9 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         #Treeing is done from the end because reasons, so these sort orders are reversed
         comments=self.comments(v=v, sort_type=sort_type)
 
-        #print(f'treeing {len(comments)} comments')
+        print(f'treeing {len(comments)} comments')
         tree_replies(self)
+        print('done')
 
         
 
