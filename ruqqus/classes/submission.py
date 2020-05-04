@@ -336,7 +336,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         if v:
             votes=db.query(CommentVote).filter(CommentVote.user_id==v.id).subquery()
 
-            comms=db.query(Comment, votes.c.vote_type).filter(Comment.parent_submission==self.id).join(votes, isouter=True)
+            comms=db.query(Comment, votes.c.vote_type).filter(Comment.parent_submission==self.id, Comment.level<=6).join(votes, isouter=True)
 
             if sort_type=="hot":
                 comments=comms.order_by(Comment.score_hot.asc()).all()
