@@ -48,8 +48,8 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     post=relationship("Submission", lazy="joined")
     flags=relationship("CommentFlag", lazy="joined", backref="comment")
     author=relationship("User", lazy="joined", innerjoin=True, primaryjoin="User.id==Comment.author_id")
-    board=association_proxy("post", "boards", lazy="joined")
-    title=association_proxy("author","title", lazy="joined")
+    board=association_proxy("post", "boards")
+    title=association_proxy("author","title")
 
     #These are virtual properties handled as postgres functions server-side
     #There is no difference to SQLAlchemy, but they cannot be written to
