@@ -369,12 +369,12 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         else:
             comms=db.query(
                 Comment,
-                User,
+                ruqqus.classes.user.User,
                 Title
                 ).filter(
                 Comment.parent_submission==self.id,
                 Comment.level<=6
-                ).join(User).join(
+                ).join(ruqqus.classes.user.User).join(
                 Title,
                 "Title.id==User.title_id",
                 isouter=True
@@ -399,6 +399,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 comment=c[0]
                 comment._title=c[2]
                 output.append(comment)
-                
+
             return output
     
