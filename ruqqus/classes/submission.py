@@ -18,6 +18,7 @@ from .flags import Flag
 from .badwords import *
 from .comment import Comment
 from .titles import Title
+from .user import User
 
 class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
  
@@ -369,12 +370,12 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         else:
             comms=db.query(
                 Comment,
-                ruqqus.classes.user.User,
+                User,
                 Title
                 ).filter(
                 Comment.parent_submission==self.id,
                 Comment.level<=6
-                ).join(ruqqus.classes.user.User).join(
+                ).join(User).join(
                 Title,
                 "Title.id==User.title_id",
                 isouter=True
