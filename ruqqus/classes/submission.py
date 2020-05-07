@@ -17,6 +17,7 @@ from .domains import Domain
 from .flags import Flag
 from .badwords import *
 from .comment import Comment
+from .titles import Title
 
 class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
  
@@ -325,7 +326,22 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         if v:
             votes=db.query(CommentVote).filter(CommentVote.user_id==v.id).subquery()
 
-            comms=db.query(Comment, votes.c.vote_type).filter(Comment.parent_submission==self.id, Comment.level<=6).join(votes, isouter=True)
+            comms=db.query(
+                Comment,
+                User,
+                Title,
+                votes.c.vote_type
+                ).filter(
+                Comment.parent_submission==self.id,
+                Comment.level<=6
+                ).join(User).join(
+                Title,
+                "Title.id==User.title_id",
+                isouter=True
+                ).join(
+                votes,
+                isouter=True
+                )
 
             if sort_type=="hot":
                 comments=comms.order_by(Comment.score_hot.asc()).all()
@@ -345,12 +361,24 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             output=[]
             for c in comms:
                 comment=c[0]
-                comment._voted=c[1] if c[1] else 0
+                comment._title=c[2]
+                comment._voted=c[3] if c[3] else 0
                 output.append(comment)
             return output
 
         else:
-            comms=self._comments
+            comms=db.query(
+                Comment,
+                User,
+                Title
+                ).filter(
+                Comment.parent_submission==self.id,
+                Comment.level<=6
+                ).join(User).join(
+                Title,
+                "Title.id==User.title_id",
+                isouter=True
+                )
 
             if sort_type=="hot":
                 comments=comms.order_by(Comment.score_hot.asc()).all()
@@ -366,5 +394,11 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             else:
                 abort(422)
 
-            return comments
+            output=[]
+            for c in comms:
+                comment=c[0]
+                comment._title=c[2]
+                output.append(comment)
+                
+            return output
     
