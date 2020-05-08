@@ -108,7 +108,10 @@ def get_post_with_comments(pid, v=None):
             ).filter(
             Comment.parent_submission==post.id,
             Comment.level<=6
-            ).join(User).join(
+            ).join(
+            User,
+            "User.id==Comment.author_id"
+            ).join(
             Title,
             "Title.id==User.title_id",
             isouter=True
