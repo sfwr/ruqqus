@@ -236,7 +236,12 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
             
     @property
     def voted(self):
-        return self._voted if "_voted" in self.__dict__ else 0
+        return self.__dict__.get("_voted", 0)
+
+    @property
+    def title(self):
+        return self.__dict__.get("_title", self.author.title)
+    
         
 class Notification(Base):
 
