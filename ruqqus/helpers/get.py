@@ -97,7 +97,7 @@ def get_post_with_comments(pid, sort_type="hot", v=None):
             comment._title=c[2]
             comment._voted=c[3] if c[3] else 0
             output.append(comment)
-        post._comments=output
+        post._preloaded_comments=output
 
     else:
         comms=db.query(

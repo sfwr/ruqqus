@@ -197,8 +197,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
 
 
-        #get sort type
-        sort_type = request.args.get("sort","hot")
 
         #Treeing is done from the end because reasons, so these sort orders are reversed
         comments=self.comments(v=v, sort_type=sort_type)
