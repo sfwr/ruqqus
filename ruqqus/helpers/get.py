@@ -53,7 +53,7 @@ def get_posts(pids, v=None):
         abort(404)
     return posts
 
-def get_post_with_comments(pid, v=None):
+def get_post_with_comments(pid, sort_type="hot", v=None):
 
     post=get_post(pid, v=v)
 
