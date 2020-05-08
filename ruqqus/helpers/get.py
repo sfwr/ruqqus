@@ -72,7 +72,7 @@ def get_post_with_comments(pid, sort_type="hot", v=None):
             User.title
             ).join(
             votes,
-            votes.c.comment_id==Comment.id
+            votes.c.comment_id==Comment.id,
             isouter=True
             )
 
