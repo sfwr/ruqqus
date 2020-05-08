@@ -53,6 +53,91 @@ def get_posts(pids, v=None):
         abort(404)
     return posts
 
+def get_post_with_comments(pid, v=None):
+
+    post=get_post(pid, v=v)
+
+    if v:
+        votes=db.query(CommentVote).filter(CommentVote.user_id==v.id).subquery()
+
+        comms=db.query(
+            Comment,
+            User,
+            Title,
+            votes.c.vote_type
+            ).filter(
+            Comment.parent_submission==post.id,
+            Comment.level<=6
+            ).join(User).join(
+            Title,
+            "Title.id==User.title_id",
+            isouter=True
+            ).join(
+            votes,
+            isouter=True
+            )
+
+        if sort_type=="hot":
+            comments=comms.order_by(Comment.score_hot.asc()).all()
+        elif sort_type=="top":
+            comments=comms.order_by(Comment.score_top.asc()).all()
+        elif sort_type=="new":
+            comments=comms.order_by(Comment.created_utc.desc()).all()
+        elif sort_type=="disputed":
+            comments=comms.order_by(Comment.score_disputed.asc()).all()
+        elif sort_type=="random":
+            c=comms.all()
+            comments=random.sample(c, k=len(c))
+        else:
+            abort(422)
+
+
+        output=[]
+        for c in comms:
+            comment=c[0]
+            comment._title=c[2]
+            comment._voted=c[3] if c[3] else 0
+            output.append(comment)
+        post._comments=output
+
+    else:
+        comms=db.query(
+            Comment,
+            User,
+            Title
+            ).filter(
+            Comment.parent_submission==post.id,
+            Comment.level<=6
+            ).join(User).join(
+            Title,
+            "Title.id==User.title_id",
+            isouter=True
+            )
+
+        if sort_type=="hot":
+            comments=comms.order_by(Comment.score_hot.asc()).all()
+        elif sort_type=="top":
+            comments=comms.order_by(Comment.score_top.asc()).all()
+        elif sort_type=="new":
+            comments=comms.order_by(Comment.created_utc.desc()).all()
+        elif sort_type=="disputed":
+            comments=comms.order_by(Comment.score_disputed.asc()).all()
+        elif sort_type=="random":
+            c=comms.all()
+            comments=random.sample(c, k=len(c))
+        else:
+            abort(422)
+
+        output=[]
+        for c in comms:
+            comment=c[0]
+            comment._title=c[2]
+            output.append(comment)
+
+        post._preloaded_comments=output
+
+    return post
+
 
 def get_comment(cid, v=None):
 

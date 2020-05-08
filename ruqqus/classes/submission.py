@@ -324,13 +324,15 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     
     def comments(self, v=None, sort_type="hot"):
 
+        x=self.__dict__.get("_preloaded_comments")
+        if x:
+            return x
+
         if v:
             votes=db.query(CommentVote).filter(CommentVote.user_id==v.id).subquery()
 
             comms=db.query(
                 Comment,
-                User,
-                Title,
                 votes.c.vote_type
                 ).filter(
                 Comment.parent_submission==self.id,
@@ -362,16 +364,13 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             output=[]
             for c in comms:
                 comment=c[0]
-                comment._title=c[2]
-                comment._voted=c[3] if c[3] else 0
+                comment._voted=c[1] if c[1] else 0
                 output.append(comment)
             return output
 
         else:
             comms=db.query(
-                Comment,
-                User,
-                Title
+                Comment
                 ).filter(
                 Comment.parent_submission==self.id,
                 Comment.level<=6
@@ -395,11 +394,5 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             else:
                 abort(422)
 
-            output=[]
-            for c in comms:
-                comment=c[0]
-                comment._title=c[2]
-                output.append(comment)
-
-            return output
+            return [c for c in comments]
     
