@@ -68,11 +68,8 @@ def get_post_with_comments(pid, v=None):
             ).filter(
             Comment.parent_submission==post.id,
             Comment.level<=6
-            ).join(User,"Comment.author_id==User.id").join(
-            Title,
-            "Title.id==User.title_id",
-            isouter=True
-            ).join(
+            ).join(Comment.author).join(
+            User.title).join(
             votes,
             isouter=True
             )
@@ -108,13 +105,8 @@ def get_post_with_comments(pid, v=None):
             ).filter(
             Comment.parent_submission==post.id,
             Comment.level<=6
-            ).join(
-            User,
-            "Comment.author_id==User.id"
-            ).join(
-            Title,
-            "Title.id==User.title_id",
-            isouter=True
+            ).join(Comment.author).join(
+            User.title
             )
 
         if sort_type=="hot":
