@@ -18,7 +18,6 @@ from .flags import Flag
 from .badwords import *
 from .comment import Comment
 from .titles import Title
-from .user import User
 
 class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
  
