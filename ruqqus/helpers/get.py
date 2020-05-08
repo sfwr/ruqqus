@@ -69,8 +69,10 @@ def get_post_with_comments(pid, sort_type="hot", v=None):
             Comment.parent_submission==post.id,
             Comment.level<=6
             ).join(Comment.author).join(
-            User.title).join(
+            User.title
+            ).join(
             votes,
+            votes.c.comment_id==Comment.id
             isouter=True
             )
 
