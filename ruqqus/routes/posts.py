@@ -34,6 +34,7 @@ BUCKET="i.ruqqus.com"
 def post_base36id(base36id, v=None):
     
     post=get_post_with_comments(base36id, v=v, sort_type=request.args.get("sort","hot"))
+    print(post._preloaded_comments)
 
     board=post.board
 
