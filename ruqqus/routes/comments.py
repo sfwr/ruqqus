@@ -355,9 +355,6 @@ def delete_comment(cid, v):
     if not c:
         abort(404)
 
-    print(c.author_id)
-    print(v.id)
-
     if not c.author_id==v.id:
         abort(403)
 
