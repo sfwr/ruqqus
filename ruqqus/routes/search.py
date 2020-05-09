@@ -8,7 +8,7 @@ from ruqqus.__main__ import app, db
 
 def searchlisting(q, v=None, page=1):
 
-    posts = db.query(Submission).filter(func.lower(Submission.title).contains(query.lower()))
+    posts = db.query(Submission).filter(func.lower(Submission.title).contains(q.lower()))
 
 
     if not (v and v.over_18):
