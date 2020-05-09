@@ -198,7 +198,7 @@ class User(Base, Stndrd):
             return [x for x in posts.offset(25*(page-1)).limit(25).all()]
 
     @cache.memoize(300)
-    def userpagelist(self, v=None, page=1)
+    def userpagelist(self, v=None, page=1):
 
         submissions=self.submissions
 
