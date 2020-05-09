@@ -128,21 +128,21 @@ def u_username_comments(username, v=None):
 
     #check for wrong cases
 
-    if username != result.username:
-        return redirect(f'{result.url}/comments')
+    if username != user.username:
+        return redirect(f'{user.url}/comments')
         
-    if self.reserved:
-        return render_template("userpage_reserved.html", u=self, v=v)
+    if user.reserved:
+        return render_template("userpage_reserved.html", u=user, v=v)
 
-    if self.is_suspended and (not v or v.admin_level < 3):
-        return render_template("userpage_banned.html", u=self, v=v)
+    if user.is_suspended and (not v or v.admin_level < 3):
+        return render_template("userpage_banned.html", u=user, v=v)
 
-    if self.is_private and (not v or (v.id!=self.id and v.admin_level<3)):
-        return render_template("userpage_private.html", u=self, v=v)
+    if user.is_private and (not v or (v.id!=user.id and v.admin_level<3)):
+        return render_template("userpage_private.html", u=user, v=v)
     
     page=int(request.args.get("page","1"))
 
-    ids=self.commentlisting(v=v, page=page)
+    ids=user.commentlisting(v=v, page=page)
 
 
     #we got 26 items just to see if a next page exists
@@ -151,10 +151,10 @@ def u_username_comments(username, v=None):
 
     listing=get_comments(ids, v=v)
 
-    is_following=(v and self.has_follower(v))
+    is_following=(v and user.has_follower(v))
     
     return render_template("userpage_comments.html",
-                           u=self,
+                           u=user,
                            v=v,
                            listing=listing,
                            page=page,
