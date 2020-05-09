@@ -84,7 +84,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
 
 
     #context improver
-    context=int(request.args.get("context", 0))
+    context=min(int(request.args.get("context", 0)), 5)
     c=comment
     while context > 0 and not c.is_top_level:
 

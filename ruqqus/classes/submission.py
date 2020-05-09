@@ -192,14 +192,94 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
                 
         if comment:
-            self.replies=[comment]
-            return
+            current_ids=[comment.id]
+            comments=[comment]
+
+            context=int(request.args.get("context",0))
+            lined_comment=comment
+
+            for i in range(5):
+                if i<context:
+                    current_ids=[x.id for x in lined_comment.replies]
+                    lined_comment=lined_comment.replies[0]
+                if g.v:
+                    votes=db.query(CommentVote).filter(CommentVote.user_id==g.v.id).subquery()
+
+                    comms=db.query(
+                        Comment,
+                        User,
+                        Title,
+                        votes.c.vote_type
+                        ).filter(
+                        Comment.parent_comment_id.in_(current_ids)
+                        ).join(Comment.author).join(
+                        User.title
+                        ).join(
+                        votes,
+                        votes.c.comment_id==Comment.id,
+                        isouter=True
+                        )
+
+                    if sort_type=="hot":
+                        comments=comms.order_by(Comment.score_hot.asc()).all()
+                    elif sort_type=="top":
+                        comments=comms.order_by(Comment.score_top.asc()).all()
+                    elif sort_type=="new":
+                        comments=comms.order_by(Comment.created_utc.desc()).all()
+                    elif sort_type=="disputed":
+                        comments=comms.order_by(Comment.score_disputed.asc()).all()
+                    elif sort_type=="random":
+                        c=comms.all()
+                        comments=random.sample(c, k=len(c))
+                    else:
+                        abort(422)
+
+
+                    output=[]
+                    for c in comms:
+                        com=c[0]
+                        com._title=c[2]
+                        com._voted=c[3] if c[3] else 0
+                        output.append(com)
+                else:
+                    comms=db.query(
+                        Comment,
+                        User,
+                        Title
+                        ).filter(
+                        Comment.parent_comment_id.in_(current_ids)
+                        ).join(Comment.author).join(
+                        User.title
+                        )
+
+                    if sort_type=="hot":
+                        comments=comms.order_by(Comment.score_hot.asc()).all()
+                    elif sort_type=="top":
+                        comments=comms.order_by(Comment.score_top.asc()).all()
+                    elif sort_type=="new":
+                        comments=comms.order_by(Comment.created_utc.desc()).all()
+                    elif sort_type=="disputed":
+                        comments=comms.order_by(Comment.score_disputed.asc()).all()
+                    elif sort_type=="random":
+                        c=comms.all()
+                        comments=random.sample(c, k=len(c))
+                    else:
+                        abort(422)
+
+                    output=[]
+                    for c in comms:
+                        com=c[0]
+                        com._title=c[2]
+                        output.append(com)
+
+                comments+=output
+                current_ids=[x.id for x in output]
 
 
 
 
-        #Treeing is done from the end because reasons, so these sort orders are reversed
-        comments=self.comments(v=v, sort_type=request.args.get("sort","hot"))
+        else:
+            comments=self.comments(v=v, sort_type=request.args.get("sort","hot"))
 
         index={}
         for c in comments:
