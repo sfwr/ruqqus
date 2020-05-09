@@ -55,7 +55,7 @@ def get_posts(pids, sort="hot", v=None):
         else:
             abort(422)
 
-        items=posts.all()
+        items=[i for i in posts.all()]
         
         posts=[n[0] for n in items]
         for i in range(len(posts)):
