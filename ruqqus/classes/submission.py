@@ -163,6 +163,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
             #load and tree comments
             #calling this function with a comment object will do a comment permalink thing
             self.tree_comments(comment=comment)
+
+        print(self.replies)
         
         #return template
         return render_template(template,
