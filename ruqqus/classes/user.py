@@ -197,6 +197,47 @@ class User(Base, Stndrd):
         else:
             return [x for x in posts.offset(25*(page-1)).limit(25).all()]
 
+    @cache.memoize(300)
+    def userpagelist(self, v=None, page=1)
+
+        submissions=self.submissions
+
+        if not (v and v.over_18):
+            submissions=submissions.filter_by(over_18=False)
+
+        if v and v.hide_offensive:
+            submissions=submissions.filter_by(is_offensive=False)
+
+        if not (v and (v.admin_level >=3)):
+            submissions=submissions.filter_by(is_deleted=False)
+
+        if not (v and (v.admin_level >=3 or v.id==self.id)):
+            submissions=submissions.filter_by(is_banned=False)
+
+        if v and v.admin_level >=4:
+            pass
+        elif v:
+            m=v.moderates.filter_by(invite_rescinded=False).subquery()
+            c=v.contributes.subquery()
+            
+            submissions=submissions.join(m,
+                                         m.c.board_id==Submission.board_id,
+                                         isouter=True
+                                    ).join(c,
+                                           c.c.board_id==Submission.board_id,
+                                           isouter=True
+                                    )
+            submissions=submissions.filter(or_(Submission.author_id==v.id,
+                                   Submission.is_public==True,
+                               m.c.board_id != None,
+                               c.c.board_id !=None))
+        else:
+            submissions=submissions.filter_by(is_public=True)
+
+        listing = [x for x in submissions.order_by(Submission.created_utc.desc()).offset(25*(page-1)).limit(26)]
+
+        return [i.id for i in listing]
+
     @property
     def mods_anything(self):
 
