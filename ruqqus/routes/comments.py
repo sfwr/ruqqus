@@ -30,7 +30,6 @@ def comment_cid(cid):
 def post_pid_comment_cid(p_id, c_id, v=None):
 
     comment=get_comment(c_id, v=v)
-    print(comment)
 
     post=get_post(p_id, v=v)
 
@@ -95,7 +94,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
 
         c=parent
         context -=1
-
+    top_comment=c
 
     sort_type=request.args.get("sort", "hot")
     #children comments
@@ -176,7 +175,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
         current_ids=[x.id for x in output]
 
         
-    return {'html':lambda:post.rendered_page(v=g.v, comment=c, comment_info=comment),
+    return {'html':lambda:post.rendered_page(v=g.v, comment=top_comment, comment_info=comment),
             'api':lambda:jsonify(c.json)
             }
 
