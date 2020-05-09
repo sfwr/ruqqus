@@ -127,14 +127,16 @@ def home(v):
         next_exists=(len(ids)==26)
         ids=ids[0:25]
 
-        posts=get_posts(ids, sort=sort, v=v)
-        
         #If page 1, check for sticky
         if page==1:
             sticky =[]
-            sticky=db.query(Submission).filter_by(stickied=True).first()
+            sticky=db.query(Submission.id).filter_by(stickied=True).first()
             if sticky:
-                posts=[sticky]+posts
+                ids=[sticky]+ids
+
+        posts=get_posts(ids, sort=sort, v=v)
+        
+
 
         return {'html':lambda:render_template("subscriptions.html",
                                v=v,
