@@ -236,13 +236,21 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
             
     @property
     def voted(self):
-        return self.__dict__.get(
-            "_voted", 
-            db.query(CommentVote).filter_by(
+        
+        x=self.__dict__.get("_voted")
+        if x:
+            return x
+
+        if g.v:
+            x=db.query(CommentVote).filter_by(
                 comment_id=self.id,
                 user_id=g.v.id
-                ).first if g.v else 0
-            )
+                ).first() if g.v else 0
+            if not x:
+                x=0
+        else:
+            x=0
+        return x
 
     @property
     def title(self):
