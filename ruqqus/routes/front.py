@@ -29,7 +29,7 @@ def notifications(v):
     comments=get_comments(cids, v=v)
 
     return render_template("notifications.html",
-                           v=self,
+                           v=v,
                            notifications=comments,
                            next_exists=next_exists,
                            page=page)
