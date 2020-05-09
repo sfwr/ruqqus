@@ -192,94 +192,9 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
                 
         if comment:
-            current_ids=[comment.id]
-            comments=[comment]
-
-            context=int(request.args.get("context",0))
-            lined_comment=comment
-
-            for i in range(5):
-                if i<context:
-                    current_ids=[x.id for x in lined_comment.replies]
-                    lined_comment=lined_comment.replies[0]
-                if g.v:
-                    votes=db.query(CommentVote).filter(CommentVote.user_id==g.v.id).subquery()
-
-                    comms=db.query(
-                        Comment,
-                        User,
-                        Title,
-                        votes.c.vote_type
-                        ).filter(
-                        Comment.parent_comment_id.in_(current_ids)
-                        ).join(Comment.author).join(
-                        User.title
-                        ).join(
-                        votes,
-                        votes.c.comment_id==Comment.id,
-                        isouter=True
-                        )
-
-                    if sort_type=="hot":
-                        comments=comms.order_by(Comment.score_hot.asc()).all()
-                    elif sort_type=="top":
-                        comments=comms.order_by(Comment.score_top.asc()).all()
-                    elif sort_type=="new":
-                        comments=comms.order_by(Comment.created_utc.desc()).all()
-                    elif sort_type=="disputed":
-                        comments=comms.order_by(Comment.score_disputed.asc()).all()
-                    elif sort_type=="random":
-                        c=comms.all()
-                        comments=random.sample(c, k=len(c))
-                    else:
-                        abort(422)
-
-
-                    output=[]
-                    for c in comms:
-                        com=c[0]
-                        com._title=c[2]
-                        com._voted=c[3] if c[3] else 0
-                        output.append(com)
-                else:
-                    comms=db.query(
-                        Comment,
-                        User,
-                        Title
-                        ).filter(
-                        Comment.parent_comment_id.in_(current_ids)
-                        ).join(Comment.author).join(
-                        User.title
-                        )
-
-                    if sort_type=="hot":
-                        comments=comms.order_by(Comment.score_hot.asc()).all()
-                    elif sort_type=="top":
-                        comments=comms.order_by(Comment.score_top.asc()).all()
-                    elif sort_type=="new":
-                        comments=comms.order_by(Comment.created_utc.desc()).all()
-                    elif sort_type=="disputed":
-                        comments=comms.order_by(Comment.score_disputed.asc()).all()
-                    elif sort_type=="random":
-                        c=comms.all()
-                        comments=random.sample(c, k=len(c))
-                    else:
-                        abort(422)
-
-                    output=[]
-                    for c in comms:
-                        com=c[0]
-                        com._title=c[2]
-                        output.append(com)
-
-                comments+=output
-                current_ids=[x.id for x in output]
-
-
-
-
-        else:
-            comments=self.comments(v=v, sort_type=request.args.get("sort","hot"))
+            self.__dict__["replies"]=[comment]
+        
+        comments=self._preloaded_comments
 
         index={}
         for c in comments:
@@ -291,7 +206,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         for c in comments:
             c.__dict__["replies"]=index.get(c.fullname, [])
 
-        self.__dict__["replies"]=index.get(self.fullname, [])
+        if "replies" not in self.__dict__:
+            self.__dict__["replies"]=index.get(self.fullname, [])
         
 
 
@@ -398,76 +314,3 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     @property
     def voted(self):
         return self._voted if "_voted" in self.__dict__ else 0
-    
-    def comments(self, v=None, sort_type="hot"):
-
-        x=self.__dict__.get("_preloaded_comments")
-        if x:
-            return x
-
-        if v:
-            votes=db.query(CommentVote).filter(CommentVote.user_id==v.id).subquery()
-
-            comms=db.query(
-                Comment,
-                votes.c.vote_type
-                ).filter(
-                Comment.parent_submission==self.id,
-                Comment.level<=6
-                ).join(Comment.author).join(
-                Comment.author.title,
-                isouter=True
-                ).join(
-                votes,
-                isouter=True
-                )
-
-            if sort_type=="hot":
-                comments=comms.order_by(Comment.score_hot.asc()).all()
-            elif sort_type=="top":
-                comments=comms.order_by(Comment.score_top.asc()).all()
-            elif sort_type=="new":
-                comments=comms.order_by(Comment.created_utc.desc()).all()
-            elif sort_type=="disputed":
-                comments=comms.order_by(Comment.score_disputed.asc()).all()
-            elif sort_type=="random":
-                c=comms.all()
-                comments=random.sample(c, k=len(c))
-            else:
-                abort(422)
-
-
-            output=[]
-            for c in comms:
-                comment=c[0]
-                comment._voted=c[1] if c[1] else 0
-                output.append(comment)
-            return output
-
-        else:
-            comms=db.query(
-                Comment
-                ).filter(
-                Comment.parent_submission==self.id,
-                Comment.level<=6
-                ).join(Comment.author).join(
-                Comment.author.title,
-                isouter=True
-                )
-
-            if sort_type=="hot":
-                comments=comms.order_by(Comment.score_hot.asc()).all()
-            elif sort_type=="top":
-                comments=comms.order_by(Comment.score_top.asc()).all()
-            elif sort_type=="new":
-                comments=comms.order_by(Comment.created_utc.desc()).all()
-            elif sort_type=="disputed":
-                comments=comms.order_by(Comment.score_disputed.asc()).all()
-            elif sort_type=="random":
-                c=comms.all()
-                comments=random.sample(c, k=len(c))
-            else:
-                abort(422)
-
-            return [c for c in comments]
-    
