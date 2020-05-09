@@ -175,6 +175,8 @@ def post_pid_comment_cid(p_id, c_id, v=None):
             post._preloaded_comments+=output
             current_ids=[x.id for x in output]
 
+    print(post._preloaded_comments)
+
         
     return {'html':lambda:post.rendered_page(v=v, comment=c, comment_info=comment),
             'api':lambda:jsonify(c.json)
