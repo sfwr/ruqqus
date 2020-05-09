@@ -96,7 +96,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
         context -=1
 
 
-
+    sort_type=request.args.get("sort", "hot")
     #children comments
     current_ids=[comment.id]
     new_comments=[]
