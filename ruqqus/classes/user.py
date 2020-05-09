@@ -195,42 +195,6 @@ class User(Base, Stndrd):
         else:
             return [x for x in posts.offset(25*(page-1)).limit(25).all()]
 
-#     def list_of_posts(self, ids):
-
-#         next_exists=(len(ids)==26)
-#         ids=ids[0:25]
-
-#         if ids:
-
-# ##            #assemble list of tuples
-# ##            i=1
-# ##            tups=[]
-# ##            for x in ids:
-# ##                tups.append((x,i))
-# ##                i+=1
-# ##
-# ##            tups=str(tups).lstrip("[").rstrip("]")
-# ##
-# ##            #hit db for entries
-# ##            posts=db.query(Submission
-# ##                           ).from_statement(
-# ##                               text(
-# ##                               f"""
-# ##                                select submissions.*
-# ##                                from submissions
-# ##                                join (values {tups}) as x(id, n) on submissions.id=x.id
-# ##                                where x.n is not null
-# ##                                order by x.n"""
-# ##                               )).all()
-#             posts=[get]
-#             for x in ids:
-#                 posts.append(db.query(Submission).filter_by(id=x).first())
-            
-#         else:
-#             posts=[]
-
-#         return posts, next_exists
-
     @property
     def mods_anything(self):
 

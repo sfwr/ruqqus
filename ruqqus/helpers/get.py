@@ -141,7 +141,7 @@ def get_comment(cid, v=None):
     i=base36decode(cid)
 
     if v:
-        vt=db.query(CommentVote).filter(user_id==v.id, submission_id==i).subquery()
+        vt=db.query(CommentVote).filter(CommentVote.user_id==v.id, CommentVote.comment_id==i).subquery()
 
 
         items= db.query(Comment, vt.c.vote_type).filter(Comment.id==i).join(vt, isouter=True).first()
