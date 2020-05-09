@@ -6,7 +6,7 @@ from sqlalchemy import *
 from flask import *
 from ruqqus.__main__ import app, db
 
-def searchlisting(q, v=None, page=1)
+def searchlisting(q, v=None, page=1):
 
     posts = db.query(Submission).filter(func.lower(Submission.title).contains(query.lower()))
 
