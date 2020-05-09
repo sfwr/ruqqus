@@ -34,13 +34,11 @@ def get_post(pid, v=None):
 
 def get_posts(pids, sort="hot", v=None):
 
-    ids = [base36decode(x) for x in pids]
-
     if v:
-        vt=db.query(Vote).filter(Vote.user_id==v.id, Vote.submission_id.in_(ids)).subquery()
+        vt=db.query(Vote).filter(Vote.user_id==v.id, Vote.submission_id.in_(pids)).subquery()
 
 
-        posts= db.query(Submission, vt.c.vote_type).filter(Submission.id.in_(ids)).join(vt, isouter=True)
+        posts= db.query(Submission, vt.c.vote_type).filter(Submission.id.in_(pids)).join(vt, isouter=True)
 
         if sort=="hot":
             posts=posts.order_by(Submission.score_hot.desc())
@@ -62,7 +60,7 @@ def get_posts(pids, sort="hot", v=None):
             posts[i]._voted = items[i][1]
 
     else:
-        posts=db.query(Submission).filter(Submission.id.in_(ids))
+        posts=db.query(Submission).filter(Submission.id.in_(pids))
 
         if sort=="hot":
             posts=posts.order_by(Submission.score_hot.desc())
@@ -79,7 +77,6 @@ def get_posts(pids, sort="hot", v=None):
 
         posts=[i for i in posts.all()]
 
-    print(posts)
     return posts
 
 def get_post_with_comments(pid, sort_type="hot", v=None):
