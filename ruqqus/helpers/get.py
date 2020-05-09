@@ -57,9 +57,7 @@ def get_posts(pids, sort="hot", v=None):
         
         posts=[n[0] for n in items]
         for i in range(len(posts)):
-            vote = items[i][1]
-            if vote==None:
-                vote=0
+            vote = items[i][1] if items[i][1] else 0
             posts[i]._voted = vote
 
 
