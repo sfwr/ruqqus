@@ -65,6 +65,7 @@ class User(Base, Stndrd):
     is_private=Column(Boolean, default=False)
     read_announcement_utc=Column(Integer, default=0)
     discord_id=Column(Integer, default=None)
+    unban_utc=Column(Integer, default=0)
 
     
 
@@ -650,3 +651,8 @@ class User(Base, Stndrd):
             for alt in self.alts:
                 # ban alts
                 alt.unban()
+
+    @property
+    def is_suspended(self):
+        return  (self.is_banned and (self.unban_utc == 0 or self.unban_utc > time.time()))
+
