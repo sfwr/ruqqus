@@ -13,7 +13,26 @@ from ruqqus.classes.submission import Submission
 def slash_post():
     return redirect("/")
 
+@app.route("/notifications", methods=["GET"])
+@auth_required
+def notifications(v):
 
+    page=int(request.args.get('page',1))
+    all_=request.args.get('all', False)
+
+    cids=v.notification_commentlisting(page=page,
+        all_=all_
+        )
+    next_exists=(len(cids)==26)
+    cids=cids[0:25]
+
+    comments=get_comments(cids, v=v)
+
+    return render_template("notifications.html",
+                           v=self,
+                           notifications=comments,
+                           next_exists=next_exists,
+                           page=page)
 
 @cache.memoize(timeout=300)
 def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None, hide_offensive=False, ids_only=True):
