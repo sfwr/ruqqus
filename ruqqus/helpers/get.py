@@ -105,13 +105,13 @@ def get_post_with_comments(pid, sort_type="hot", v=None):
             )
 
         if sort_type=="hot":
-            comments=comms.order_by(Comment.score_hot.asc()).all()
+            comments=comms.order_by(Comment.score_hot.desc()).all()
         elif sort_type=="top":
-            comments=comms.order_by(Comment.score_top.asc()).all()
+            comments=comms.order_by(Comment.score_top.desc()).all()
         elif sort_type=="new":
             comments=comms.order_by(Comment.created_utc.desc()).all()
         elif sort_type=="disputed":
-            comments=comms.order_by(Comment.score_disputed.asc()).all()
+            comments=comms.order_by(Comment.score_disputed.desc()).all()
         elif sort_type=="random":
             c=comms.all()
             comments=random.sample(c, k=len(c))
@@ -140,13 +140,13 @@ def get_post_with_comments(pid, sort_type="hot", v=None):
             )
 
         if sort_type=="hot":
-            comments=comms.order_by(Comment.score_hot.asc()).all()
+            comments=comms.order_by(Comment.score_hot.desc()).all()
         elif sort_type=="top":
-            comments=comms.order_by(Comment.score_top.asc()).all()
+            comments=comms.order_by(Comment.score_top.desc()).all()
         elif sort_type=="new":
             comments=comms.order_by(Comment.created_utc.desc()).all()
         elif sort_type=="disputed":
-            comments=comms.order_by(Comment.score_disputed.asc()).all()
+            comments=comms.order_by(Comment.score_disputed.desc()).all()
         elif sort_type=="random":
             c=comms.all()
             comments=random.sample(c, k=len(c))
