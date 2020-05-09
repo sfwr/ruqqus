@@ -246,6 +246,8 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
                 comment_id=self.id,
                 user_id=g.v.id
                 ).first() if g.v else 0
+
+            x=x.vote_type
             if not x:
                 x=0
         else:
