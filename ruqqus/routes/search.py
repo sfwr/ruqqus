@@ -85,7 +85,7 @@ def search(v, search_type="posts"):
         total, ids = searchlisting(query, v=v, page=page, sort=sort)
         
         next_exists=(len(ids)==26)
-        ids=posts[0:25]
+        ids=ids[0:25]
 
         posts=get_posts(ids, v=v)
 
