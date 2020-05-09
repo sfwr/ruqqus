@@ -313,4 +313,20 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
     @property
     def voted(self):
-        return self._voted if "_voted" in self.__dict__ else 0
+        x=self.__dict__.get("_voted")
+        if x != None:
+            return x
+
+        if g.v:
+            x=db.query(Vote).filter_by(
+                submission_id=self.id,
+                user_id=g.v.id
+                ).first()
+
+            if x:
+                x=x.vote_type
+            else:
+                x=0
+        else:
+            x=0
+        return x

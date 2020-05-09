@@ -124,17 +124,42 @@ def u_username_comments(username, v=None):
     
     #case insensitive search
 
-    result = db.query(User).filter(User.username.ilike(username)).first()
-
-    if not result:
-        abort(404)
+    user=get_user(username)
 
     #check for wrong cases
 
     if username != result.username:
-        return redirect(result.url)
+        return redirect(f'{result.url}/comments')
         
-    return result.rendered_comments_page(v=v)
+    if self.reserved:
+        return render_template("userpage_reserved.html", u=self, v=v)
+
+    if self.is_suspended and (not v or v.admin_level < 3):
+        return render_template("userpage_banned.html", u=self, v=v)
+
+    if self.is_private and (not v or (v.id!=self.id and v.admin_level<3)):
+        return render_template("userpage_private.html", u=self, v=v)
+    
+    page=int(request.args.get("page","1"))
+
+    ids=self.commentlisting(v=v, page=page)
+
+
+    #we got 26 items just to see if a next page exists
+    next_exists=(len(ids)==26)
+    ids=ids[0:25]
+
+    listing=get_comments(ids, v=v)
+
+    is_following=(v and self.has_follower(v))
+    
+    return render_template("userpage_comments.html",
+                           u=self,
+                           v=v,
+                           listing=listing,
+                           page=page,
+                           next_exists=next_exists,
+                           is_following=is_following)
 
 @app.route("/api/follow/<username>", methods=["POST"])
 @auth_required

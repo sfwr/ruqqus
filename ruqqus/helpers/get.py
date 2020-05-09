@@ -186,6 +186,29 @@ def get_comment(cid, v=None):
         abort(404)
     return x
 
+def get_comments(cids, v=None):
+
+    if v:
+        vt=db.query(CommentVote).filter(CommentVote.user_id==v.id, CommentVote.comment_id.in_(cids)).subquery()
+
+
+        items= db.query(Comment, vt.c.vote_type).filter(Comment.id.in_(cids)).join(vt, isouter=True).all()
+
+        items=[i for i in items]
+        output=[]
+        for i in items:
+        
+            x=items[0]
+            x._voted=items[1] if items[1] else 0
+            output.append(x)
+
+    else:
+        x=db.query(Comment).filter(Comment.id.in_(cids)).all()
+        output=[i for i in x]
+
+    
+    return output
+
 def get_board(bid):
 
     x=db.query(Board).filter_by(id=base36decode(bid)).first()
