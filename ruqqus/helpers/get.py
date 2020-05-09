@@ -57,7 +57,11 @@ def get_posts(pids, sort="hot", v=None):
         
         posts=[n[0] for n in items]
         for i in range(len(posts)):
-            posts[i]._voted = items[i][1]
+            vote = items[i][1]
+            if vote==None:
+                vote=0
+            posts[i]._voted = vote
+
 
     else:
         posts=db.query(Submission).filter(Submission.id.in_(pids))
