@@ -245,7 +245,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
             x=db.query(CommentVote).filter_by(
                 comment_id=self.id,
                 user_id=g.v.id
-                ).first()
+                ).first() if g.v else 0
 
             if x:
                 x=x.vote_type
