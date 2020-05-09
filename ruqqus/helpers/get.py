@@ -37,7 +37,7 @@ def get_posts(pids, sort="hot", v=None):
     ids = [base36decode(x) for x in pids]
 
     if v:
-        vt=db.query(Vote).filter(user_id==v.id, submission_id.in_(ids)).subquery()
+        vt=db.query(Vote).filter(Vote.user_id==v.id, Vote.submission_id.in_(ids)).subquery()
 
 
         posts= db.query(Submission, vt.c.vote_type).filter(Submission.id.in_(ids)).join(vt, isouter=True)
