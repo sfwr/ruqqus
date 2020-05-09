@@ -313,7 +313,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
 
     @property
     def voted(self):
-        x=self.__dict__.get("_voted")
+        print(self.__dict__)
+        x=self.__dict__.get("_voted", None)
         if x != None:
             return x
 
