@@ -198,8 +198,8 @@ def get_comments(cids, v=None):
         output=[]
         for i in items:
         
-            x=items[0]
-            x._voted=items[1] if items[1] else 0
+            x=i[0]
+            x._voted=i[1] if i[1] else 0
             output.append(x)
 
     else:
