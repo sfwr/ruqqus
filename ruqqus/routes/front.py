@@ -159,7 +159,7 @@ def front_all(v):
     ids=ids[0:25]
 
     #check if ids exist
-    posts=posts=get_posts(ids, sort=sort, v=v)
+    posts=get_posts(ids, sort=sort_method, v=v)
 
     #If page 1, check for sticky
     if page==1:
