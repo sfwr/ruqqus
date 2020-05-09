@@ -101,10 +101,10 @@ def u_username(username, v=None):
     
     
     #we got 26 items just to see if a next page exists
-    next_exists=(len(listing)==26)
-    listing=listing[0:25]
+    next_exists=(len(ids)==26)
+    ids=ids[0:25]
 
-    listing=get_posts(listing, v=v, sort="new")
+    listing=get_posts(ids, v=v, sort="new")
 
     return {'html': lambda:render_template("userpage.html",
                            u=u,
