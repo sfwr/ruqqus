@@ -174,8 +174,8 @@ def front_all(v):
                            next_exists=next_exists,
                            sort_method=sort_method,
                            time_filter=t,
-                           page=page,
-                           trending_boards = trending_boards(n=5)
+                           page=page #,
+                        #   trending_boards = trending_boards(n=5)
                            ),
             'inpage':lambda:render_template("submission_listing.html",
                                             v=v,
