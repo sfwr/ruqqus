@@ -387,33 +387,19 @@ class User(Base, Stndrd):
     def __repr__(self):
         return f"<User(username={self.username})>"
 
-    def notifications_page(self, page=1, include_read=False):
 
-        page=int(page)
+    def notification_commentlisting(self, page=1, all_=False):
 
         notifications=self.notifications.filter_by(is_banned=False, is_deleted=False)
 
-        if not include_read:
+        if not all_:
             notifications=notifications.filter_by(read=False)
 
         notifications = notifications.order_by(Notification.id.desc()).offset(25*(page-1)).limit(26)
 
-        comments=[n.comment for n in notifications]
-        next_exists=(len(comments)==26)
-        comments=comments[0:25]
+        return [x.comment_id for x in notifications]
 
-        for n in [x for x in notifications][0:25]:
-            #print(f"{n.id} - {n.comment.id}")
-            if not n.read:
-                n.read=True
-                db.add(n)
-                db.commit()
 
-        return render_template("notifications.html",
-                               v=self,
-                               notifications=comments,
-                               next_exists=next_exists,
-                               page=page)
     
     @property
     def notifications_count(self):
