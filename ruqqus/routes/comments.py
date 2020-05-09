@@ -99,7 +99,6 @@ def post_pid_comment_cid(p_id, c_id, v=None):
     sort_type=request.args.get("sort", "hot")
     #children comments
     current_ids=[comment.id]
-    new_comments=[]
     for i in range(6-context):
         if g.v:
             votes=db.query(CommentVote).filter(CommentVote.user_id==g.v.id).subquery()
@@ -173,9 +172,8 @@ def post_pid_comment_cid(p_id, c_id, v=None):
                 output.append(com)
 
             post._preloaded_comments+=output
-            current_ids=[x.id for x in output]
-
-    print(post._preloaded_comments)
+            
+        current_ids=[x.id for x in output]
 
         
     return {'html':lambda:post.rendered_page(v=v, comment=c, comment_info=comment),
