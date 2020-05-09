@@ -238,7 +238,7 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
     def voted(self):
         
         x=self.__dict__.get("_voted")
-        if x:
+        if x != None:
             return x
 
         if g.v:
@@ -247,8 +247,9 @@ class Comment(Base, Age_times, Scores, Stndrd, Fuzzing):
                 user_id=g.v.id
                 ).first() if g.v else 0
 
-            x=x.vote_type
-            if not x:
+            if x:
+                x=x.vote_type
+            else:
                 x=0
         else:
             x=0
