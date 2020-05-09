@@ -30,6 +30,7 @@ def comment_cid(cid):
 def post_pid_comment_cid(p_id, c_id, v=None):
 
     comment=get_comment(c_id, v=v)
+    print(comment)
 
     post=get_post(p_id, v=v)
 
@@ -139,7 +140,7 @@ def post_pid_comment_cid(p_id, c_id, v=None):
                 com._title=c[2]
                 com._voted=c[3] if c[3] else 0
                 output.append(com)
-            post._preloaded_comments+=output
+            post._preloaded_comments.append(output)
         else:
             comms=db.query(
                 Comment,
@@ -171,8 +172,8 @@ def post_pid_comment_cid(p_id, c_id, v=None):
                 com._title=c[2]
                 output.append(com)
 
-            post._preloaded_comments+=output
-            
+            post._preloaded_comments.append(output)
+
         current_ids=[x.id for x in output]
 
         
