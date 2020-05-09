@@ -305,7 +305,7 @@ class User(Base, Stndrd):
         if self.reserved:
             return render_template("userpage_reserved.html", u=self, v=v)
 
-        if self.is_banned and (not v or v.admin_level < 3):
+        if self.is_suspended and (not v or v.admin_level < 3):
             return render_template("userpage_banned.html", u=self, v=v)
 
         if self.is_private and (not v or (v.id!=self.id and v.admin_level<3)):
@@ -619,6 +619,7 @@ class User(Base, Stndrd):
 
         else:
             #Takes care of all functions needed for account termination
+            self.unban_utc=0
             self.del_banner()
             self.del_profile()
 
