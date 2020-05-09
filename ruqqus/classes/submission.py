@@ -414,7 +414,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 ).filter(
                 Comment.parent_submission==self.id,
                 Comment.level<=6
-                ).join(User).join(
+                ).join(Comment.author).join(
                 Title,
                 "Title.id==User.title_id",
                 isouter=True
@@ -451,7 +451,7 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
                 ).filter(
                 Comment.parent_submission==self.id,
                 Comment.level<=6
-                ).join(User).join(
+                ).join(Comment.author).join(
                 Title,
                 "Title.id==User.title_id",
                 isouter=True
