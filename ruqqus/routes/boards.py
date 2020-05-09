@@ -173,7 +173,9 @@ def board_name(name, v):
     next_exists=(len(ids)==26)
     ids=ids[0:25]
 
-    posts=[get_post(base36encode(x),v=v) for x in ids]
+    posts=get_posts(ids,
+        sort=sort,
+        v=v)
 
 
     if page==1:

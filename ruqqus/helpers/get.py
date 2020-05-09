@@ -32,7 +32,7 @@ def get_post(pid, v=None):
         abort(404)
     return x
 
-def get_posts(pids, v=None):
+def get_posts(pids, sort="hot", v=None):
 
     ids = [base36decode(x) for x in pids]
 
@@ -40,17 +40,45 @@ def get_posts(pids, v=None):
         vt=db.query(Vote).filter(user_id==v.id, submission_id.in_(ids)).subquery()
 
 
-        items= db.query(Submission, vt.c.vote_type).filter(Submission.id.in_(ids)).join(vt, isouter=True).all()
+        posts= db.query(Submission, vt.c.vote_type).filter(Submission.id.in_(ids)).join(vt, isouter=True)
+
+        if sort=="hot":
+            posts=posts.order_by(Submission.score_hot.desc())
+        elif sort=="new":
+            posts=posts.order_by(Submission.created_utc.desc())
+        elif sort=="disputed":
+            posts=posts.order_by(Submission.score_disputed.desc())
+        elif sort=="top":
+            posts=posts.order_by(Submission.score_top.desc())
+        elif sort=="activity":
+            posts=posts.order_by(Submission.score_activity.desc())
+        else:
+            abort(422)
+
+        items=posts.all()
         
-        posts=[items[n][0] for n in items]
+        posts=[n[0] for n in items]
         for i in range(len(posts)):
             posts[i]._voted = items[i][1]
 
     else:
-        posts=db.query(Submission).filter(Submission.id.in_(ids)).all()
+        posts=db.query(Submission).filter(Submission.id.in_(ids))
 
-    if not posts:
-        abort(404)
+        if sort=="hot":
+            posts=posts.order_by(Submission.score_hot.desc())
+        elif sort=="new":
+            posts=posts.order_by(Submission.created_utc.desc())
+        elif sort=="disputed":
+            posts=posts.order_by(Submission.score_disputed.desc())
+        elif sort=="top":
+            posts=posts.order_by(Submission.score_top.desc())
+        elif sort=="activity":
+            posts=posts.order_by(Submission.score_activity.desc())
+        else:
+            abort(422)
+
+        posts=[i for i in posts.all()]
+
     return posts
 
 def get_post_with_comments(pid, sort_type="hot", v=None):

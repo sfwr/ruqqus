@@ -14,18 +14,6 @@ def slash_post():
     return redirect("/")
 
 
-@cache.memoize(timeout=3600)
-def trending_boards(n=5):
-
-    now=int(time.time())
-    cutoff=now-60*60*24
-
-    boards=db.query(Board).filter_by(is_banned=False,
-                                     over_18=False,
-                                     is_private=False).filter(
-                                     Board.created_utc<cutoff).order_by(Board.trending_rank.desc()).limit(n)
-
-    return [(x, x.subscriber_count) for x in boards]
 
 @cache.memoize(timeout=300)
 def frontlist(sort="hot", page=1, nsfw=False, t=None, v=None, hide_offensive=False, ids_only=True):
@@ -120,7 +108,7 @@ def home(v):
         next_exists=(len(ids)==26)
         ids=ids[0:25]
 
-        posts=[get_post(base36encode(x), v=v) for x in ids]
+        posts=get_posts(ids, sort=sort, v=v)
         
         #If page 1, check for sticky
         if page==1:
@@ -171,7 +159,7 @@ def front_all(v):
     ids=ids[0:25]
 
     #check if ids exist
-    posts=[db.query(Submission).filter_by(id=x).first() for x in ids]        
+    posts=posts=get_posts(ids, sort=sort, v=v)
 
     #If page 1, check for sticky
     if page==1:
