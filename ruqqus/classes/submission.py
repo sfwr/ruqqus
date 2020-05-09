@@ -191,8 +191,6 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     def tree_comments(self, comment=None, v=None):
 
                 
-        if comment:
-            self.__dict__["replies"]=[comment]
         
         comments=self._preloaded_comments
 
@@ -206,7 +204,9 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
         for c in comments:
             c.__dict__["replies"]=index.get(c.fullname, [])
 
-        if "replies" not in self.__dict__:
+        if comment:
+            self.__dict__["replies"]=[comment]
+        else:
             self.__dict__["replies"]=index.get(self.fullname, [])
         
 
