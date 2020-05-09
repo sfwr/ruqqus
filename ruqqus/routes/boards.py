@@ -173,18 +173,20 @@ def board_name(name, v):
     next_exists=(len(ids)==26)
     ids=ids[0:25]
 
-    posts=get_posts(ids,
-        sort=sort,
-        v=v)
-
-
     if page==1:
         stickies=board.submissions.filter_by(is_banned=False,
                                   is_deleted=False,
                                   is_pinned=True).order_by(Submission.id.asc()
                                                            ).limit(4)
-        stickies=[x for x in stickies]
-        posts=stickies+posts
+        stickies=[x.id for x in stickies]
+        ids=stickies+ids
+
+    posts=get_posts(ids,
+        sort=sort,
+        v=v)
+
+
+
 
     return {'html':lambda:render_template("board.html",
                            b=board,

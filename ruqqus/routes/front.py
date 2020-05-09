@@ -178,15 +178,17 @@ def front_all(v):
     #check existence of next page
     next_exists=(len(ids)==26)
     ids=ids[0:25]
-
+    
+   #If page 1, check for sticky
+    if page==1:
+        sticky =[]
+        sticky=db.query(Submission.id).filter_by(stickied=True).first()
+        if sticky:
+            ids=[sticky]+ids
     #check if ids exist
     posts=get_posts(ids, sort=sort_method, v=v)
 
-    #If page 1, check for sticky
-    if page==1:
-        sticky =[]
-        sticky=db.query(Submission).filter_by(stickied=True).first()
-        if sticky:
+
             posts=[sticky]+posts
     
     return {'html':lambda:render_template("home.html",
