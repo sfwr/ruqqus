@@ -4,9 +4,10 @@ from ruqqus.helpers.wrappers import *
 from sqlalchemy import *
 
 from flask import *
-from ruqqus.__main__ import app, db
+from ruqqus.__main__ import app, db, cache
 
-def searchlisting(q, v=None, page=1):
+@cache.memoize(300)
+def searchlisting(q, v=None, page=1, sort="hot"):
 
     posts = db.query(Submission).filter(func.lower(Submission.title).contains(q.lower()))
 
@@ -81,7 +82,7 @@ def search(v, search_type="posts"):
 
         #posts search
 
-        total, ids = searchlisting(query, v=v, page=page)
+        total, ids = searchlisting(query, v=v, page=page, sort=sort)
         
         next_exists=(len(ids)==26)
         ids=posts[0:25]
