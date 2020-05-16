@@ -580,7 +580,8 @@ class User(Base, Stndrd):
                 'profile_url':self.profile_url,
                 'banner_url':self.banner_url,
                 'post_count':self.post_count,
-                'comment_count':self.comment_count
+                'comment_count':self.comment_count,
+                'title':self.title.json if self.title else None
                 }
 
     @property
