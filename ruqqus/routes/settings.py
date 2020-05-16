@@ -314,6 +314,9 @@ def update_announcement(v):
 @validate_formkey
 def delete_account(v):
 
+    if not v.verifyPass(request.form.get("password","")) or not v.validate_2fa(request.form.get("twofactor","")):
+        abort(403)
+
     v.is_deleted=True
     v.login_nonce+=1
     db.add(v)
