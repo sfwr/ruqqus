@@ -38,7 +38,7 @@ def get_posts(pids, sort="hot", v=None):
         vt=db.query(Vote).filter(Vote.user_id==v.id, Vote.submission_id.in_(pids)).subquery()
 
 
-        posts= db.query(Submission, Title, vt.c.vote_type).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title).join(vt, vt.c.submission_id==Submission.id, isouter=True)
+        posts= db.query(Submission, Title, vt.c.vote_type).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title, isouter=True).join(vt, vt.c.submission_id==Submission.id, isouter=True)
 
         if sort=="hot":
             posts=posts.order_by(Submission.score_hot.desc())
@@ -63,7 +63,7 @@ def get_posts(pids, sort="hot", v=None):
 
 
     else:
-        posts=db.query(Submission, Title).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title)
+        posts=db.query(Submission, Title).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title, isouter=True)
 
         if sort=="hot":
             posts=posts.order_by(Submission.score_hot.desc())
