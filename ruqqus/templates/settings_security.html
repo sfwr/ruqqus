@@ -318,7 +318,7 @@
     <div class="d-flex">
 
       <button class="btn btn-outline-danger ml-auto" id="delete_account_confirm"
-      data-toggle="modal" data-target="#exampleModalCenter"
+      data-toggle="modal" data-target="#deleteAccountModal"
       value="Delete Account">Delete Account
     </button>
 
@@ -336,6 +336,42 @@
 
 </div>
 
+</div>
+
+
+<!-- Account Deletion Modal -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" role="dialog" aria-labelledby="deleteAccountModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Deactivate your Ruqqus account</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true"><i class="far fa-times"></i></span>
+        </button>
+      </div>
+      <!-- Before report is made, show this -->
+      <div class="" id="deleteFormContainer">
+        <form id="deleteAccountForm" method="post" action="/settings/delete_account">
+          <div class="modal-body">
+            <div class="h6">We're sorry to see you go.</div>
+              <input type="hidden" name="formkey" value="{{ v.formkey }}">
+              <small class="form-text text-muted">Password:</small>
+              <input type="text" name="password">
+              {% if v.mfa_secret %}
+              <small class="form-text text-muted">Two-factor code:</small>
+              <input type="text" name="twofactor">
+              {% endif %}
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
+            <input type="submit" id="deleteAccountBUtton" class="btn btn-danger" value="Deactivate my account"disabled></button>
+          </div>
+        </form>
+      </div>
+      <!-- After report is made, show this -->
+    </div>
+  </div>
 </div>
 
 {% endblock %}
