@@ -38,7 +38,7 @@ def get_posts(pids, sort="hot", v=None):
         vt=db.query(Vote).filter(Vote.user_id==v.id, Vote.submission_id.in_(pids)).subquery()
 
 
-        posts= db.query(Submission, vt.c.vote_type).filter(Submission.id.in_(pids)).join(vt, isouter=True)
+        posts= db.query(Submission, Title, vt.c.vote_type).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title).join(vt, vt.c.submission_id==Submission.id, isouter=True)
 
         if sort=="hot":
             posts=posts.order_by(Submission.score_hot.desc())
@@ -57,12 +57,13 @@ def get_posts(pids, sort="hot", v=None):
         
         posts=[n[0] for n in items]
         for i in range(len(posts)):
-            vote = items[i][1] if items[i][1] else 0
+            posts[i]._title=items[i][1]
+            vote = items[i][2] if items[i][2] else 0
             posts[i]._voted = vote
 
 
     else:
-        posts=db.query(Submission).filter(Submission.id.in_(pids))
+        posts=db.query(Submission, Title).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title)
 
         if sort=="hot":
             posts=posts.order_by(Submission.score_hot.desc())
@@ -77,7 +78,11 @@ def get_posts(pids, sort="hot", v=None):
         else:
             abort(422)
 
-        posts=[i for i in posts.all()]
+        items=[i for i in posts.all()]
+        
+        posts=[n[0] for n in items]
+        for i in range(len(posts)):
+            posts[i]._title=items[i][1]
 
     return posts
 

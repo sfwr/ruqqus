@@ -314,3 +314,8 @@ class Submission(Base, Stndrd, Age_times, Scores, Fuzzing):
     @property
     def voted(self):
         return self._voted if "_voted" in self.__dict__ else 0
+
+    @property
+    def title(self):
+        return self._title if "_title" in self.__dict__ else self.author.title
+    
