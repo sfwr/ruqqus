@@ -307,3 +307,18 @@ def update_announcement(v):
     db.add(v)
     db.commit()
     return "", 204
+
+
+@app.route("/settings/delete_account", methods=["POST"])
+@is_not_banned
+@validate_formkey
+def delete_account(v):
+
+    v.is_deleted=True
+    db.add(v)
+    db.commit()
+
+    session.pop("user_id", None)
+    session.pop("session_id", None)
+
+    return redirect('/')
