@@ -352,6 +352,7 @@
       <!-- Before report is made, show this -->
       <div class="" id="deleteFormContainer">
         <form id="deleteAccountForm" method="post" action="/settings/delete_account">
+          <input type="hidden" name="formkey" value="{{ v.formkey }}">
           <div class="modal-body body">
 
             <div class="d-lg-flex">
