@@ -68,6 +68,7 @@ class User(Base, Stndrd):
     discord_id=Column(Integer, default=None)
     unban_utc=Column(Integer, default=0)
     is_deleted=Column(Boolean, default=False)
+    delete_reason=Column(String(500), default='')
 
     
 
