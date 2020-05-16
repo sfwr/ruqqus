@@ -315,7 +315,7 @@ def update_announcement(v):
 def delete_account(v):
 
     if not v.verifyPass(request.form.get("password","")) or not v.validate_2fa(request.form.get("twofactor","")):
-        abort(403)
+        return render_template("settings_security.html", v=v, error="Invalid password or token" if v.mfa_secret else "Invalid password")
 
     v.is_deleted=True
     v.login_nonce+=1
