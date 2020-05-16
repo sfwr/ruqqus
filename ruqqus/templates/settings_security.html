@@ -352,15 +352,33 @@
       <!-- Before report is made, show this -->
       <div class="" id="deleteFormContainer">
         <form id="deleteAccountForm" method="post" action="/settings/delete_account">
-          <div class="modal-body">
-            <div class="h6">We're sorry to see you go.</div>
-              <input type="hidden" name="formkey" value="{{ v.formkey }}">
-              <small class="form-text text-muted">Password:</small>
-              <input type="text" class="form-control" name="password">
-              {% if v.mfa_secret %}
-              <small class="form-text text-muted">Two-factor code:</small>
-              <input type="text" class="form-control" name="twofactor">
-              {% endif %}
+          <div class="modal-body body">
+
+            <div class="d-lg-flex">
+
+              <label for="delete-password" class="w-lg-25" id="email-password-label">Password</label>
+
+              <div class="w-lg-100">
+
+                  <input autocomplete="new-password" type="password" class="form-control mb-2" id="delete-password" name="password" required>
+
+              </div>
+
+            </div>
+
+            {% if v.mfa_secret %}
+            <div class="d-lg-flex mt-3">
+
+              <label for="delete-mfa" class="w-lg-25" id="email-password-label">Two-Factor Code</label>
+
+              <div class="w-lg-100">
+
+                  <input autocomplete="new-password" type="password" class="form-control mb-2" id="delete-mfa" name="twofactor" required>
+
+              </div>
+
+            </div>
+            {% endif %}
 
           </div>
           <div class="modal-footer">
