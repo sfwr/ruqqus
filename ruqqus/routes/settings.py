@@ -315,6 +315,7 @@ def update_announcement(v):
 def delete_account(v):
 
     v.is_deleted=True
+    v.login_nonce+=1
     db.add(v)
     db.commit()
 
