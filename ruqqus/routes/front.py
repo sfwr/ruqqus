@@ -131,7 +131,6 @@ def home(v):
         if page==1:
             sticky =[]
             sticky=db.query(Submission.id).filter_by(stickied=True).first()[0]
-            print(sticky)
             if sticky:
                 ids=[sticky]+ids
 
