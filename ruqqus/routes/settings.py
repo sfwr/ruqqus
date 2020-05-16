@@ -319,7 +319,7 @@ def delete_account(v):
 
     v.is_deleted=True
     v.login_nonce+=1
-    v.deleted_reason=request.form.get("delete_reason","")
+    v.delete_reason=request.form.get("delete_reason","")
     db.add(v)
     db.commit()
 
