@@ -40,20 +40,8 @@ def get_posts(pids, sort="hot", v=None):
 
         posts= db.query(Submission, Title, vt.c.vote_type).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title, isouter=True).join(vt, vt.c.submission_id==Submission.id, isouter=True)
 
-        if sort=="hot":
-            posts=posts.order_by(Submission.score_hot.desc())
-        elif sort=="new":
-            posts=posts.order_by(Submission.created_utc.desc())
-        elif sort=="disputed":
-            posts=posts.order_by(Submission.score_disputed.desc())
-        elif sort=="top":
-            posts=posts.order_by(Submission.score_top.desc())
-        elif sort=="activity":
-            posts=posts.order_by(Submission.score_activity.desc())
-        else:
-            abort(422)
-
         items=[i for i in posts.all()]
+
         
         posts=[n[0] for n in items]
         for i in range(len(posts)):
@@ -62,21 +50,11 @@ def get_posts(pids, sort="hot", v=None):
             posts[i]._voted = vote
 
 
+
+
     else:
         posts=db.query(Submission, Title).filter(Submission.id.in_(pids)).join(Submission.author).join(User.title, isouter=True)
 
-        if sort=="hot":
-            posts=posts.order_by(Submission.score_hot.desc())
-        elif sort=="new":
-            posts=posts.order_by(Submission.created_utc.desc())
-        elif sort=="disputed":
-            posts=posts.order_by(Submission.score_disputed.desc())
-        elif sort=="top":
-            posts=posts.order_by(Submission.score_top.desc())
-        elif sort=="activity":
-            posts=posts.order_by(Submission.score_activity.desc())
-        else:
-            abort(422)
 
         items=[i for i in posts.all()]
         
@@ -84,6 +62,7 @@ def get_posts(pids, sort="hot", v=None):
         for i in range(len(posts)):
             posts[i]._title=items[i][1]
 
+    posts=sorted(posts, key= lambda x: pids.index(x.id))
     return posts
 
 def get_post_with_comments(pid, sort_type="top", v=None):
@@ -125,7 +104,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
 
 
         output=[]
-        for c in comms:
+        for c in comments:
             comment=c[0]
             comment._title=c[2]
             comment._voted=c[3] if c[3] else 0
@@ -159,7 +138,7 @@ def get_post_with_comments(pid, sort_type="top", v=None):
             abort(422)
 
         output=[]
-        for c in comms:
+        for c in comments:
             comment=c[0]
             comment._title=c[2]
             output.append(comment)
