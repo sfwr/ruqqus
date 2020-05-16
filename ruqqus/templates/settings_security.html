@@ -356,16 +356,16 @@
             <div class="h6">We're sorry to see you go.</div>
               <input type="hidden" name="formkey" value="{{ v.formkey }}">
               <small class="form-text text-muted">Password:</small>
-              <input type="text" name="password">
+              <input type="text" class="form-control" name="password">
               {% if v.mfa_secret %}
               <small class="form-text text-muted">Two-factor code:</small>
-              <input type="text" name="twofactor">
+              <input type="text" class="form-control" name="twofactor">
               {% endif %}
 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-link text-muted" data-dismiss="modal">Cancel</button>
-            <input type="submit" id="deleteAccountBUtton" class="btn btn-danger" value="Deactivate my account"disabled></button>
+            <input type="submit" id="deleteAccountBUtton" class="btn btn-danger" value="Deactivate my account"></button>
           </div>
         </form>
       </div>
