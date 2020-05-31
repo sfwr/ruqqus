@@ -52,6 +52,24 @@ On Ruqqus, you can share links or text posts.
 
 Pull requests are welcome! For major changes, please open an issue to discuss what you would like to change.
 
+## Dev Setup
+
+Docker is the easiest way to start developing on ruqqus.  Instructions were written with Linux in mind.
+- edit your hosts file (`/etc/hosts`), add `dev.localhost` as a proxy for `127.0.0.1`, there should be a line that looks like: `127.0.0.1 localhost dev.localhost`
+- run `docker-compose up` in the project root
+- `sudo apt install postgresql-client`
+- `psql -U unicorn_user -d ruqqus < schema.txt`, enter the password `magical_password`
+- install 
+- you should be able to see ruqqus at `http://dev.localhost:8000` in your browser.  There will be some errors.  This is due to ruqqus expecting a stickied post at all times, to fix this:
+  - sign up for a user on your local instance
+  - go to `http://localhost:5050`(pgAdmin) and connect to the db with the credentials in `docker-compose.yml`.
+  - set the user's admin level to 100 in pgAdmin
+  - go back to your local instance of ruqqus in your browser, create a guild, create a post
+  - go back to pgAdmin and find your post, and sticky it.
+- ruqqus should be more or less working now at `http://dev.localhost:8000`
+
+- known issue:  some changes (like those to .html files) will not be picked up automatically, you have to change a .py file for changes to be picked up.  When in doubt, `docker-compose build && docker-compose up`.
+
 ## Sponsors
 
 As an open-source project, we are supported by the community. If you would like to support the development of Ruqqus, please consider [making a donation](https://ruqqus.com/help/donate) :)

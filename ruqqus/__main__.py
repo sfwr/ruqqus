@@ -27,6 +27,7 @@ app = Flask(__name__,
            )
 app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=2)
 
+app.config['IS_DEV'] = environ.get("IS_DEV")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get("DATABASE_URL")
 app.config['SECRET_KEY']=environ.get('MASTER_KEY')
@@ -34,8 +35,9 @@ app.config["SERVER_NAME"]=environ.get("domain", None)
 app.config["SESSION_COOKIE_NAME"]="session_ruqqus"
 app.config["VERSION"]=_version
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
-app.config["SESSION_COOKIE_SECURE"]=True
+app.config["SESSION_COOKIE_SECURE"]='localhost' not in app.config['SERVER_NAME']
 app.config["SESSION_COOKIE_SAMESITE"]="Lax"
+
 
 app.config["PERMANENT_SESSION_LIFETIME"]=60*60*24*365
 app.config["SESSION_REFRESH_EACH_REQUEST"]=True
@@ -43,12 +45,7 @@ app.config["SESSION_REFRESH_EACH_REQUEST"]=True
 app.jinja_env.cache = {}
 
 app.config["UserAgent"]="Ruqqus webserver ruqqus.com"
-
-if "localhost" in app.config["SERVER_NAME"]:
-    app.config["CACHE_TYPE"]="null"
-else:
-    app.config["CACHE_TYPE"]="redis"
-    
+app.config["CACHE_TYPE"]="redis"
 app.config["CACHE_REDIS_URL"]=environ.get("REDIS_URL")
 app.config["CACHE_DEFAULT_TIMEOUT"]=60
 app.config["CACHE_KEY_PREFIX"]="flask_caching_"
@@ -105,8 +102,6 @@ def before_request():
     if not session.get("session_id"):
         session["session_id"]=secrets.token_hex(16)
 
-
-
     db.rollback()
 
 def log_event(name, link):
@@ -151,7 +146,6 @@ def after_request(response):
     if not request.path.startswith("/embed/"):
         response.headers.add("X-Frame-Options",
                          "deny")
-
     #signups - hit discord webhook
     if request.method=="POST" and response.status_code in [301, 302] and request.path=="/signup":
         link=f'https://{app.config["SERVER_NAME"]}/@{request.form.get("username")}'

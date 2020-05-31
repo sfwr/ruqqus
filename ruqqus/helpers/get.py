@@ -193,7 +193,6 @@ def get_comments(cids, v=None, sort_type="new"):
     return output
 
 def get_board(bid):
-
     x=db.query(Board).filter_by(id=base36decode(bid)).first()
     if not x:
         abort(404)
